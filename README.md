@@ -11,6 +11,6 @@ Note taking space for CodeFellow's Code201 class reading assignments.
 <!-- obvioudly this content will change once reading begins -->
 
 ## TODOs
-- [] create 12 more DRAs (see above) :grin:
+- [ ] create 12 more DRAs (see above) :grin:
 
 
