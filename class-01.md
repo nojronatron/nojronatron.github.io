@@ -10,6 +10,8 @@ HTML pages are comprised of plain-text documents decorated with HTML Tags and HT
 Attributes are key-value pairs that help describe content stored within HTML elements. An example attribute is `lang='en-us'` *[Duckett, pg.25]*.
 
 - HTML Chapter 8: “Extra Markup” (p.176-199)
+
+
 - HTML Chapter 17: “HTML5 Layout” (pp.428-451)
 - HTML Chapter 18: “Process & Design” (pp.452-475)
 
