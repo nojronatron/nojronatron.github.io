@@ -126,16 +126,17 @@ Html5 can be used in older browsers but will be treated as *inline elements*. In
   ```
 
 ### HTML Chapter 18: “Process & Design” (pp.452-475)   
-
+   
+   
 
 ## From the Duckett JS book
 
-- Introduction
-- JS Chapter 1: “The ABC of Programming” (pp.11-52)
+- Introduction   
+- JS Chapter 1: “The ABC of Programming” (pp.11-52)   
 
-# Remember To...
-[ ] Bookmark additional resources
-[ ] Present material as if to someone new to the industry
-[ ] Cite sources with links when directly quoting
+# Remember To...   
+[ ] Bookmark additional resources   
+[ ] Present material as if to someone new to the industry   
+[ ] Cite sources with links when directly quoting   
 
 ### Updated: 2-Mar-22
