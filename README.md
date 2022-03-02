@@ -3,7 +3,7 @@ Note taking space for CodeFellow's Code201 class reading assignments.
 
 ## 15 Daily Reading Assignments
 1. class-01
-   - [ ] [Read01 summary notes](../class-01.md)
+   - [ ] [Read01 summary notes](./class-01.html)
 
 <!-- obvioudly this content will change once reading begins -->
 
