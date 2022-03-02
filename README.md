@@ -3,7 +3,7 @@ Note taking space for CodeFellow's Code201 class reading assignments.
 
 ## 15 Daily Reading Assignments
 1. class-01
-   - [ ] [Read01 summary notes](../blob/main/class-01.md)
+   - [ ] [Read01 summary notes](../class-01.md)
 
 <!-- obvioudly this content will change once reading begins -->
 
@@ -11,4 +11,4 @@ Note taking space for CodeFellow's Code201 class reading assignments.
 - [ ] create more DRAs (see above) :grin:
 
 ## Links
-Career Launch Strategy Notes (../blob/main/CareerLaunchStrategy.md)
+Career Launch Strategy Notes (../CareerLaunchStrategy.md)
