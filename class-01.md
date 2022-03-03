@@ -126,17 +126,153 @@ Html5 can be used in older browsers but will be treated as *inline elements*. In
   ```
 
 ### HTML Chapter 18: “Process & Design” (pp.452-475)   
-   
-   
 
-## From the Duckett JS book
+OVERVIEW
+The chapter covers a process for creating a new website, and includes suggestions for the design process. It is important to get to know your website visitors (current and potential), why they would visit the website and what they are looking for, and how the website will get them what they need. Information can be organized and stylized in ways that helps visitors meet their goals, as well as produce a professional and functional website.   
+   
+WHO IS THE SITE FOR?   
+Determine who wants to use the site, but understand it cannot serve everyone. Acquire information from target audience, including demographics, to help design the site organization and design.   
+- Are the visitors individuals?   
+   Ask questions about age, gender (and ratio thereof), where they live.   
+   Also consider income, education level, martial status and occupations.   
+   Also consider how long individuals would want/need to be on the site, and the device(s) they might use.   
+- Are the visitors Companies/Organizations?   
+  Ask questions about the size of the organizatino or department, and positions within the company.   
+  Also determine the buget of the organization and whether visitors are using the site for themselves or for someone else.   
 
+Develop a matrix of the above information so questions about what the website should look like, the information it will contain, and how the website will operate can be better answered during the design process.   
+
+WHY VISIT THE WEBSITE?   
+Visitors sometimes find wesites by chance, other time there are motivators and goals that drive users to a website. These should influence the design and content of the webiste.   
+
+- Motivators can be:
+  - General entertainment  
+  - Acheiving a personal or professional goal  
+  - Essential or luxury use of the site  
+
+- Goals can be:   
+  - Perform general research or look for specific detailed information, product, or service   
+  - An expectation by the users that they do (or don't) know how the website works and whether they might need to get introduced to it  
+  - Time sensitivity to the information they seek, such as breaking news or financial information or looking up historical information   
+   
+WHAT ARE VISITORS TRYING TO ACHIEVE?   
+ID the key motivators and goals to help design the website appropriately for intended audience.   
+Create a list of reasons for various imaginary users to come to the website and use this as a guide in the design.   
+
+WHAT INFORMATION DO VISITORS NEED?   
+- Think about additional information that might be helpful to your visitors.   
+- Determine what each visitor needs to meet the goals of their visit.   
+- Determine the most important information vs least important, and apply those priorities to the design.   
+- Failing to provide visitors with information they need could prompt them to leave.   
+- How familiar are the visitors with the product and/or information on the site, or the brand?   
+- What site features are most critical to what the site offers, and does it differentiate from other, similar sites?   
+- After a visitor achieves their goal for visiting the site, what common information will they be interested in? For example, a shopping cart will provide an estimate for when a completed order will arrive and by what shipping service.   
+   
+HOW OFTEN WILL PEOPLE VISIT?   
+Sites offering time-sensitive information or regularly changing information might see more users that other types of sites.
+The cost and effort to update a site regularly should be considered in site design to make it easy to update especially for higher-traffic sites.
+Consider settings scheduled site updates (quarterly, daily...whatever fits the goals of the users and purpose of the site).
+Regularly or often updated pages could see benefits over pages that are not updated as often.
+
+>For goods & services sites:   
+-	How often do same people return to purchase from you?  
+-	How often is your stock updated or your service changed?  
+>For Infomration sites:
+-	How often is the subject updated?  
+-	What percentage of visitors return for regular updates, compared with those that need the info just once?  
+*[Duckett, pg.460]*   
+   
+SITE MAPS   
+- Organize the site to appropriately section the information, prioritizing user-goals to drive the design.   
+- Diagram the site structure, naming the pages, and identifying the home page, primary topics, and sub-topical pages.   
+- A user survey can help organize a useful structure.   
+- Duplication might be required, if info is related to several pages across the site.   
+- Appropriately groups pages will help site visitors navigate easily.   
+   
+WIREFRAMES   
+- Sketches of key information for each web page on a site.   
+- Get an idea as to what space is necessary and how it could be arranged.   
+- Can ensure all necessary info get onto each page as intended.   
+- Are information-focused, rather than style.   
+- Can use these to get feedback from client/users, without worrying if they are judging style and look rather than layout and info.
+
+Wireframe tools list from *[Duckett, pg.463]*:   
+-	Photoshop templates from 960.gs  grid system   
+-	Paper and pencil or whiteboard   
+-	Illustrator, InDesign, or another graphics application   
+-	[GoMockingBird.com](http://gomockingbird.com)   
+-	[LovelyCharts.com](http://lovelycharts.com)   
+   
+DESIGN TO GET MESSAGE ACROSS
+Content should have been sorted out already, sonow the design needs to organize and prioritize the content to guide users and lead users to what they are looking for. Use styles to make portions of the page distinct from other content, calling it out to the user. Can also draw a user's attention away from content items.   
+
+Visual Hierarchy   
+- >Helps users focus on the key messages that will draw ... attention, and then guide them to subsequent messages. *[Duckett, pg.465]*   
+
+The book has a visual hierarchy example *[Duckett, pgs. 467-468]* that I have arranged into key statements, below:   
+-	Use pictures and strong colors and larger regions to call attention to the primary message on the page.   
+-	Add details below in more passive colors and arrangements.   
+	--	Size: Larger get attention first.   
+	--	Color: Pick fore- and background colors specifically for key messages, using bright sections to draw users eyes.   
+	--	Style: Varying syles can make items stand out, even if size and color are the same.   
+	--	Contrast: High contrast tends to draw attention, so put the highest priority content there.   
+	 
+Related content should be put into "blocks" or "chunks" to keep it simple to follow and understand.   
+   
+Use similar visual styles for similar content so users quickly associate the style with the purpose or information.   
+-	Buttons or links   
+-	Info on groupings and similarity on pages 469-470   
+	-	Grouping chunks similar content throughout the page and separates different contents or types   
+	-	Groups of groups buttons or information help the user understand the purpose of the information   
+	-	Similarity is used to provide consistency between like-type elements and information e.g. icons and headings   
+  
+GROUPING AND SIMILARITY  
+"Grouping related pieces of information together can make a design easier to comprehend." *[Duckett, pg.469]*   
+  
+Various ways to group information:  
+-	Proximity: Close-together items are seen as related.  
+-	Closure: There is a tendancy to imagine a recognizable pattern in a complex arrangement. Try to take advantage of that in the site design.  
+-	Continuance: Items placed in a line are seen as related, and users will follow along the line.  
+-	White Space: Gappage between items.  
+-	Color: Make items pop by adjusting the background color to emphasize the foreground items.  
+-	Borders: Lines drawn around related items, or between unrelated ones, can alter their groupings and releationship.  
+-	Repitition:  
+	-	Use same color, style, orientation, texture, font and/or shape to match content, and increase their priority or level of interest.   
+	-	Consistency: A collection of items of the same type are easily identifyable as similar when they are styled consistently.   
+	-	Headings: Concise info in a heading about what content is to follow helps the user identify content they are looking for (or not).   
+  
+SITE NAVIGATION   
+Navigation design can help users find their way and understand what the site is about.   
+
+Good navigation design principles:   
+-	Concise: Limit options, down to 8 or less.   
+-	Clear: Single-word links convey clues as to what info will be found at the link target.   
+-	Selective: Point to primary content in the site, not additional info like legalease, login forms, etc.   
+-	Context: Visual cues in the navigation helps user know where they are.   
+-	Interactive: Change the color or some styling when hovered over or the link is clicked for visual cues.   
+-	Consistent: Primary nav should be consistent across pages; secondary can change depending on where in the site the user is.
+Primary, Secondary, and additional Navigation   
+-	Primary Navigation is often along the top of a site. *[Duckett, pg.472]* on left-hand section of a page.   
+-	Tertiary Navigation is often along the bottom of a page.   
+-	Check out: How to implement search functionality for your site using Google Search (companion website content) *[Duckett, pg.471]*   
+  
+SUMMARY
+The following list of items are quoted directly from *[Duckett, pg.475]*   
+-	It's important to understand who your target auience is, whey they would come to your site, what information they want to find, and when they are likely to return.  
+-	Site maps allow you to plan the structure of a site.  
+-	Wireframes allow you to organize the informatin that will need to go on each page.  
+-	Design is about communication. Visual hierarchy helps visitors understand what you are trying to tell them.  
+-	You can differentiate between pieces of information using size, color, and style.  
+-	You can use grouping and similarity to help siplify the information you present.  
+
+
+## From the Duckett JS book   
 - Introduction   
 - JS Chapter 1: “The ABC of Programming” (pp.11-52)   
-
+  
 # Remember To...   
 [ ] Bookmark additional resources   
 [ ] Present material as if to someone new to the industry   
 [ ] Cite sources with links when directly quoting   
 
-### Updated: 2-Mar-22
+### Updated: 3-Mar-22
