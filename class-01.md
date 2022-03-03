@@ -174,13 +174,12 @@ The cost and effort to update a site regularly should be considered in site desi
 Consider settings scheduled site updates (quarterly, daily...whatever fits the goals of the users and purpose of the site).
 Regularly or often updated pages could see benefits over pages that are not updated as often.
 
->For goods & services sites:   
--	How often do same people return to purchase from you?  
--	How often is your stock updated or your service changed?  
->For Infomration sites:
--	How often is the subject updated?  
--	What percentage of visitors return for regular updates, compared with those that need the info just once?  
-*[Duckett, pg.460]*   
+For goods & services sites: *[Duckett, pg.460]*  
+>	How often do same people return to purchase from you?  
+>	How often is your stock updated or your service changed?  
+For Infomration sites: *[Duckett, pg.460]*   
+>	How often is the subject updated?  
+>	What percentage of visitors return for regular updates, compared with those that need the info just once?     
    
 SITE MAPS   
 - Organize the site to appropriately section the information, prioritizing user-goals to drive the design.   
