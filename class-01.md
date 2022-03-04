@@ -266,12 +266,99 @@ The following list of items are quoted directly from *[Duckett, pg.475]*
 
 
 ## From the Duckett JS book   
-- Introduction   
-- JS Chapter 1: “The ABC of Programming” (pp.11-52)   
+   
+### JS Book Introduction   
+Goals of this book *[Duckett, pg.2]*:   
+> 1. Understanding some basic programming concepts and terms...   
+> 2. Learning the language itself ... vocabulary and how to structure your sentances.   
+> 3. Becoming familiar with how it is applied ... today.   
+   
+JavaScript enables interactivity on a website. JS Can:   
+1. Select text or elements, or find data input into a form.   
+2. Modify items including text and attributes, and change proparties of items like images.   
+3. Create rules for browser to follow, like: collect info, calculate a result, and then change webpage content.   
+4. React, by taking action when something happens like a button click, textbox input change, page finishes loading, etc.   
+   
+The book will also address work-around for compatibility with older browsers and introduce JQuery.   
+   
+### JS Chapter 1: “The ABC of Programming” (pp.11-52)   
+   
+WHAT IS A SCRIPT AND HOW DO I CREATE ONE?   
+Think of a script as a recipe or manual, that tells the computer what to do.   
+When preparing to write a script, follow these steps: *[Duckett, pgs.17]*  
+> Define the goal. What do you plan to achieve?   
+> Design the script. Document smaller tasks and decision trees necessary to attain the stated goal.   
+> Code each step. In this case, use _JavaScript_!   
   
+Use flowcharts and lists to logically design the script:
+- Flowcharts for decision-points.  
+- Lists for small, appropriately detailed steps.  
+
+*Vocabulary*: The keywords used in the script that a computer knows how to act upon.  
+*Syntax*: A kind of sentance structure of vocabulary the computer can execute.  
+*Programmatic*: Follow steps, one after another.  
+  
+HOW DO COMPUTERS FIT IN WITH THE WORLD AROUND THEM?  
+Data Models: Represent what a thing is and what it can do.  
+Objects contain Properties, Events, and Methods.  
+Properties: Define what an object is, and contain data within the object like its color or state of being.
+Events: Represent actions such as flipping a light switch in a room.  
+Methods: Can take action on data, especially in response to events, such as a lamp illuminating when a light switch is flipped.  
+
+PROPERTIES, ATTRIBUTES, and EVENTS  
+An interesting note regarding properties and attributes *[Duckett, pg.28]*   
+> The idea of name/value pairs is used in both HTML and CSS.
+> In HTML an attribute is like a property:  
+  - Different attributes have different names.  
+  - Each attribute can have a value.  
+> In CSS you can:  
+  - Change the color of a heading by creating a rule that gives the color property a specific value.  
+  - Change the typeface (a heading) is written in by giving the font-family property a specific value.  
+
+Name-value pairs enable storing and acquiring property values. Example:
+  A house can be painted a color. The property name could be 'paint' and the value could be 'yellow':  
+  Object: House  
+  Property name "color": value "yellow"  
+
+Consider Events to be the interaction between objects or things. Some examples of events that could be acted upon:   
+- When a user clicks a button or changes text in a form.  
+- When a property of an object changes.  
+- When a packet from a connected network is received.
+Exactly what action to take when an event is "fired" can be defined by the developer. For example:
+- When a user click the Submit button on a web page an event is fired and it can call a method that causes the form data to be stored in a database.  
+
+METHODS  
+A method defines what an object can do. It is a _capability_ of a thing.  
+For example, when the user clicked the Submit button on the web page and that event was fired, the event can call a method that will show a popup message informing the user that the information was submitted successfully (or failed).  
+
+PROPERTIES, EVENTS, and METHODS
+When developing scripts and web pages with JavaScript:
+- Define the _Properties_ that are involved.  
+- Determine what _Events_ will happen and what (if anything) to do when they happen.  
+- Create _Methods_ that will act on Properties based on Events.  
+  
+Back to the light switch example:  
+1. The lightswitch object has a property ON that can be true or false.  
+2. When the "flip switch" event occurs it will call a specific method to do some work.  
+3. The called method changes the property from false to true, for example.  
+  
+WEB BROWSERS ARE PROGRAMS BUILT USING OBJECTS  
+Primary objects are:  
+ - Window  
+   - Properties of the Window object include position on the screen, the size of the window, etc.  
+ - Document: Represents an HTML page  
+   - Represents the currently loaded web page.  
+   - Properties include Title, lastModified, and URL.  
+   - Has methods  like write() and getElementById().  
+   - Has events like load, click, and keypress.  
+
+
+
+
 # Remember To...   
 [ ] Bookmark additional resources   
 [ ] Present material as if to someone new to the industry   
 [ ] Cite sources with links when directly quoting   
 
-### Updated: 3-Mar-22
+
+### Updated: 4-Mar-22
