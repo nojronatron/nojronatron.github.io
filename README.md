@@ -10,4 +10,4 @@ Note taking space for CodeFellow's Code201 class reading assignments.
 
 ## Other Links
 Career Launch Strategy [Notes](./CareerLaunchStrategy.html)  
-  
+Other Session [Notes](./power-hour-notes/readme.md)  
