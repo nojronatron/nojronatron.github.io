@@ -351,9 +351,45 @@ Primary objects are:
    - Properties include Title, lastModified, and URL.  
    - Has methods  like write() and getElementById().  
    - Has events like load, click, and keypress.  
+  
+_All major web browsers_ support a common set of objects:  
+- Document Object (note: major browsers implement this the same way)  
+- All elements on the page are represented by objects  
+  
+Browsers perform these steps every time the URL is pointed to a valid document:  
+1. Download the file containing all the code.  
+2. Create models of the document, and the elements within it, and store it in memory.  
+3. Launch a rendering engine to display the web page on the screen.  
 
+JavaScript is interpreted by a subsystem of the browser:  
+- JS is an _interpreted language_ meaning each line of code is executed one by one.
+- The web browser calls a JS interpreter to convert JS commands into tasks the browser can perform.  
 
+**Key takeaway** *[Duckett, pg.43]*  
+> To make web pages interactive, you write code that uses the browser's model of the web page.  
 
+HOW JAVASCRIPT, HTML, AND CSS FIT TOGETHER  
+- HTML: Content layer  
+- CSS: Presentation layer  
+- JavaScript: Behavior layer  
+
+_Keep code files separate as much as possible_  
+This will make sure that partial page loads will still give the user some of the expected experience and information, rather than none.  
+
+CREATING BASIC JAVASCRIPT AND LINKING IT TO AN HTML PAGE   
+JavaScript is plaintext, so create a new file, name it with a `.js` extension and add JavaScript commands to it.  
+Create a simple web page and add the following element:
+  `<script src="file-name.js"></script>`  
+When the browser reads this line it will stop to look for `file-name.js` in the current directory and try to execute it using the JavaScript interpreter before continuing on, rendering the next line of code.
+
+**Note**: There is a very simple example of HTML + JavaScript usage, copied from Duckett, pgs.46-47, in the folder called chapter1_files.  
+
+HOW TO USE OBJECTS AND METHODS  
+`document` is an object that represents an entire page, as implemented in the web browser.  
+The 'document' model has several methods and properties, aka members.  
+The write() member is a method and accepts a string of text as the data parameters.  
+  
+  
 
 # Remember To...   
 [ ] Bookmark additional resources   
