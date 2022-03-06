@@ -10,4 +10,5 @@ Note taking space for CodeFellow's Code201 class reading assignments.
 
 ## Other Links
 Career Launch Strategy [Notes](./CareerLaunchStrategy.html)  
-Other Session [Notes](./power-hour-notes/readme.md)  
+PH Loops Session [Notes](./power-hour-notes/readme.md)  
+Linux and Terminal/Bash [Notes](./linux-terminal/readme.md)  
