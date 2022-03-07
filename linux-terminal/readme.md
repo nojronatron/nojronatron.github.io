@@ -43,6 +43,7 @@ There are MANY options, see the LS MAN pages for more.
 Just prefix the file or folder name with a dot:
 - Folder `my_configurations` can be made hidden by renaming to `.my_configurations`  
 - File `config` can be made hidden by renaming to `.config`  
+
 > Use `ls -a` to list hidden files in a directory.  
 
 ## Linux is full of MANuals
@@ -54,16 +55,21 @@ To search terms WITHIN a MAN page display: `/ <search_term>` then press `n` for 
 ## Manipulating Files
 Create a directory: `mkdir <name>`  
 - Create a directory tree: `mkdir <parent_name>/<child_name>`  
+
 Remove files and empty directories: `rm [options] <filespec>`  
 - Recursive: `rm -r <filespec>`  
+
 Remove an empty directory: `rmdir <name>`  
 - Can be used to remove multiple directories in one command.  
 - Directories will not be removed unless they are empty of files and child directories.  
+
 Create a new blank file: `touch <path>/<filename>[.ext]`  
+
 Copy a file or directory: `cp [options] <source_path> <dest_path>`  
 - Note: PATHs can be absolute or relative.  
 - Remember: Folders ARE files, so both folders and files are part of a path.  
 - Recuse over directories: `cp -r <source_path> <dest_path>`  
+
 Move/Rename files or directories: `mv [options] <source_path> <dest_path>`  
 - Can move directories without using recuse option.
 - Will rename if paths are the same except:  
