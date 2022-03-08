@@ -367,8 +367,10 @@ In order to make a decision, code statements must:
 
 Equal to `==` evaluates equality of *values* on each side of the operator, but not the types.  
 Not equal to `!=` evaluates like Equal, but returns the opposite result.  
+*Note*: For this class, avoid using 'loosely equals' and 'loosely not equals' because it will evaluate different types as 'loosely equal' and that might not be intended behavior.  
 Strict equal to `===` evaluates the *type* *and* the *value* and returns true only if both conditions are true.  
 Strict not equal to `!==` evaluates the opposite of Strict Equal To.  
+*Note*: Stick with Strict evaluators to check that the type is the same before evaluating if the values are the same.  
 Greater than `>` evaluates true if the left-hand value is larger than the right-hand value.  
 Greater than or equal to `>=` evaluates the same way `>` and `==` do, and returns true if one or the other is true.  
 Less than `<` evaluates true if the left-hand value is smaller than the right-hand value.  
