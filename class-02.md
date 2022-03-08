@@ -182,10 +182,56 @@ Online CSS Validation Tools Reference *[Duckett, pg.242]*
 - [CrossBrowserTesting](https://www.crossbrowsertesting.com)
 
 CSS Bug Sites Reference *[Duckett, pg.242]* 
- 
+
 - [PositionIsEverything](https://www.positioniseverything.net)  
 - [QuirksMode](https://www.quirksmode.org)  
 
 ## JS Book Chapter 2: Basic JavaScript Instructions
+
+### Statements
+
+
+### Comments
+
+
+### Variables
+
+
+### Data Types
+
+
+### Using Variables for Storage
+
+
+### Strings and Quotes
+
+### Store a Boolean
+
+### Creating Variables
+
+### Changing the Value of a Variable
+
+### Runes for Naming Variables
+
+Varible names in JavaScript Can:
+
+- begin with a letter, `$` or `_`; NOT a number  
+- contain the same characters as the starting characters rule; NOT `-` nor `.`  
+- not contain keywords or reserved JavaScript terminology  
+- and are case sensitive: person and Person are two distinct variables in JS  
+- and should be named after their purpose; of the data that they store  
+- be made up of more than one word, so use camelCase styling  
+
+### Arrays
+
+
+### Expressions and Operators
+
+
+### Arithmetic Operators
+
+
+### String Operators
+
 
 ## JS Book Chapter 4: Decisions and Loops (up to switch statement)
