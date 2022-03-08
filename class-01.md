@@ -13,8 +13,8 @@ HTML5 is the latest revision of the HTML specifications.
 
 HTML  
 
-- HTML pages are comprised of plain-text documents decorated with HTML Tags and HTML Elements.
-- HTML Tags are identified with '<' and '>', and are usually in pairs surrounding the element name. 
+- HTML pages are comprised of plain-text documents decorated with HTML Tags and HTML Elements.  
+- HTML Tags are identified with '<' and '>', and are usually in pairs surrounding the element name.  
 - Examples:
   Opening tag `<head>`  
   Closing tag `</p>`  
@@ -418,7 +418,7 @@ Create a simple web page and add the following element:
   `<script src="file-name.js"></script>`  
 When the browser reads this line it will stop to look for `file-name.js` in the current directory and try to execute it using the JavaScript interpreter before continuing on, rendering the next line of code.
 
-**Note**: There is a very simple example of HTML + JavaScript usage, copied from Duckett, pgs.46-47, in the folder called chapter1_files [here](https://github.com/nojronatron/nojronatron.github.io/tree/main/chapter1_files). Example [webpage](./chapter1_files/add-content.html)   
+**Note**: There is a very simple example of HTML + JavaScript usage, copied from Duckett, pgs.46-47, in the folder called chapter1_files [here](https://github.com/nojronatron/nojronatron.github.io/tree/main/chapter1_files). Example [webpage](./chapter1_files/add-content.html)  
   
 HOW TO USE OBJECTS AND METHODS  
 `document` is an object that represents an entire page, as implemented in the web browser.  

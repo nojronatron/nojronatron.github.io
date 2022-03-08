@@ -181,7 +181,7 @@ Online CSS Validation Tools Reference *[Duckett, pg.242]*
 - [BrowserShots](https://www.browsershots.org)  
 - [CrossBrowserTesting](https://www.crossbrowsertesting.com)
 
-CSS Bug Sites Reference *[Duckett, pg.242]* 
+CSS Bug Sites Reference *[Duckett, pg.242]*  
 
 - [PositionIsEverything](https://www.positioniseverything.net)  
 - [QuirksMode](https://www.quirksmode.org)  
@@ -302,7 +302,7 @@ Alternately, use the array literal initialization: `var myArray = new Array( 1, 
 Determine the number of items in an array with `myArray.length;`  
 Arrays are zero-based indexed storage types.  
 
-Arrays include an indexer: 
+Arrays include an indexer:  
 
 1. Access the 3rd item in the array with the following syntax: `var arrayItem = myArray[2];`  
 2. Assign the 3rd item in the array a new value: `myArray[2] = 100;`  
