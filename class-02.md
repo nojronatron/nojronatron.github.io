@@ -392,7 +392,7 @@ Expressions with operands can be used on either or both sides of the comparison 
 ### Logical Operators
 
 AND: `&&` If both expressions return true then the operator result is true.  
-OR: '||' If either expression returns true then the operator result is true.
+OR: `||` If either expression returns true then the operator result is true.
 Not: `!` Inverts a Boolean value. If a conditioni returns 'true', !condition returns 'false'.  
 
 Both AND and OR are short-circuit evaluations: AND returns false as soon as a false if found; OR returns true as soon as a true is found.
