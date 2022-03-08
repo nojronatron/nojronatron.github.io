@@ -106,7 +106,7 @@ CSS is like a set of rules the browser follows to layout, colors, size and shape
 CSS terminology:
 
 - selector: an element, class, or id that the CSS declaration will apply to  
-- declaration: the CSS code that will apply to the selector  
+- declaration: the CSS code that will apply to the selector. Could be referred to as a 'css rule'  
 - property: the CSS attribute that is getting configured  
 - value: the value the CSS attribute will take on
 
@@ -132,7 +132,7 @@ For code examples in a learning textbook like Duckett's HTML and CSS boook.
 
 ### Selectors
 
-Several portions of this were lifted from *[Duckett, pg238]*  
+Several portions of this were lifted from *[Duckett, pg.238]*  
 
 - Universal: all document elements in the current page  
 - Type: matches element names like `<h1>` etc  

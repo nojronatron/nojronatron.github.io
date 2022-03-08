@@ -11,7 +11,7 @@ HTML5 is the latest revision of the HTML specifications.
 
 ### HTML Chapter 1: “Structure” (pp.12-39)  
 
-HTML  
+#### HTML  
 
 - HTML pages are comprised of plain-text documents decorated with HTML Tags and HTML Elements.  
 - HTML Tags are identified with '<' and '>', and are usually in pairs surrounding the element name.  
@@ -22,26 +22,37 @@ HTML
   H tags: `<h1>Header H1</h1>`  
   Pairs of HTML tags are refered to as Elements.  
 
-ATTRIBUTES  
+#### ATTRIBUTES  
+
 Attributes are key-value pairs that help describe content stored within HTML elements. An example attribute:  
   `lang='en-us'`*[Duckett, pg.25]*.  
   
+#### BODY HEAD and TITLE
+
+Body: Defines the area the browser will render. Think of this as the parent container for the entire web page.  
+Head: This element should be within the Body element, and defines any additional metadata about the web page.  
+Title: The Title tag should live within the Head.  
+
 ### HTML Chapter 8: “Extra Markup” (p.176-199)  
 
 HTML 4 was released in 1997, XHTML (based on XML) was released in 2000, and HTML5 was initially released in 2008 and is now considered a *living standard* (see [Wikipedia](https://en.wikipedia.org/wiki/HTML5)). The most widely used browsers keep up with (or ahead of) HTML standards, and website developers must know how to tell the browser which version they are coding in.  
 
 - DOCTYPE  
   'doctype' tells the browser the html version. Example: HTML5 is identified with `<!DOCTYPE html>` as the first line in an HTML page.  
+  DOCTYPE element does not require a closing tag.  
 - Comments
   Used to store developer notes within the code like section beginnings and endings, and do not appear on the rendered page, but are visible to anyone that uses a browser's built-in ability to 'view code'.  
 
-ID ATTRIBUTES  
+#### ID ATTRIBUTES  
+
 These is global and can be applied to any html element, so each must be unique on each web page. Usage:`<p id="id_name">text</p>`. ID Attributes are used to allow styling elements differently than others on the page, by using CSS. JavaScript can leverage ID attributes to work with HTML elements.  
 
-CLASS ATTRIBUTES  
+#### CLASS ATTRIBUTES  
+
 Class attributes allow identifying many attributes within a page by applying CSS to the class-named elements. Usage:`<p class="blue_font bold_font">text</p>`. This will make the P element content font take on the CSS featured programmed for that class name (presumably **bold** and blue).  
 
-BLOCK AND INLINE ELEMENTS  
+#### BLOCK AND INLINE ELEMENTS  
+
 Block elements cause content to always appear on a new line, whereas Inline elements continue on the same line as neighboring elements (and their content).  
 
 - Block elements include: `<h1> ..., <p>, <ul>, <li>, and <div>`  
@@ -53,13 +64,15 @@ Block elements cause content to always appear on a new line, whereas Inline elem
   Contains a section of text or any number of in-line elements.  
   Use to control the appearance of in-line content using CSS but using ID or CLASS attributes to target them.  
 
-IFRAMES  
+#### IFRAMES  
+
 Iframe is short for Inline Frame. It forms a window within a larger document to place images, video, or other information.
 
 - `SRC=` is used to point to the source content.
 - `height, width, and seamless` properties are used to control the size of the iframe, and whether or not there is a scroll bar within it.  
 
-META TAGS  
+#### META TAGS  
+
 These live in the HEAD element and are not rendered in the browser, but they should contain descriptive information for the browser and Search Engines to use, like `author, description, published'... etc.  
 
 - META Tags
@@ -70,7 +83,8 @@ There are Search Engine properties, cache-controlling properties, and a viewport
 - VIEWPORT
   Controls the size of the page depending on what type of client is rendering it.  
 
-ESCAPE CHARACTERS  
+#### ESCAPE CHARACTERS  
+
 Escape Characters allow display of reserved HTML characters like the less-than sign aka left-angled-bracket: `<`.  
 Use `&lt` or `&#60` to display the `<` character otherwise the browser might not be able to render the page at all.  
 There are many other characters and special symbols like currency, the copyright symbol, and soome punctuation.  
@@ -80,11 +94,13 @@ There are many other characters and special symbols like currency, the copyright
 
 This chapter discusses layout elements, how to get old browsers to understand html5 elements, and how to stylize elements with css.
 
-TRADITIONAL HTML LAYOUTS  
+#### TRADITIONAL HTML LAYOUTS  
+
 `<div>` Groups together related elements on the page.  
 `class` or `id` These attributes indicate the role of `<div>` elements.
 
-HTML5 LAYOUT ELEMENTS
+#### HTML5 LAYOUT ELEMENTS
+
 These elements are named after sectional areas of common web sites and have specific purposes that should be closely followed:  
   
 - HEADER  
@@ -126,7 +142,8 @@ These elements are named after sectional areas of common web sites and have spec
 LINKING Around Block-level Elements  
 Html5 allows surrounding block-level elements with an anchor element. The entire block between the tags becomes an active link. Attempting this in previous html versions could result in rendering or the link not functioning.  
 
-HTML5 ELEMENTS IN OLDER BROWSERS  
+#### HTML5 ELEMENTS IN OLDER BROWSERS  
+
 Html5 can be used in older browsers but will be treated as *inline elements*. Include a line of CSS that tells the browser the html5 elements should be rendered as **block** elements instead:  
 
   ```HTML
@@ -137,10 +154,12 @@ Html5 can be used in older browsers but will be treated as *inline elements*. In
 
 ### HTML Chapter 18: “Process & Design” (pp.452-475)  
 
-OVERVIEW
+#### OVERVIEW
+
 The chapter covers a process for creating a new website, and includes suggestions for the design process. It is important to get to know your website visitors (current and potential), why they would visit the website and what they are looking for, and how the website will get them what they need. Information can be organized and stylized in ways that helps visitors meet their goals, as well as produce a professional and functional website.  
   
-WHO IS THE SITE FOR?  
+#### WHO IS THE SITE FOR?  
+
 Determine who wants to use the site, but understand it cannot serve everyone. Acquire information from target audience, including demographics, to help design the site organization and design.  
 
 - Are the visitors individuals?  
@@ -153,7 +172,8 @@ Determine who wants to use the site, but understand it cannot serve everyone. Ac
 
 Develop a matrix of the above information so questions about what the website should look like, the information it will contain, and how the website will operate can be better answered during the design process.  
 
-WHY VISIT THE WEBSITE?  
+#### WHY VISIT THE WEBSITE?  
+
 Visitors sometimes find wesites by chance, other time there are motivators and goals that drive users to a website. These should influence the design and content of the webiste.  
 
 - Motivators can be:
@@ -166,11 +186,12 @@ Visitors sometimes find wesites by chance, other time there are motivators and g
   - An expectation by the users that they do (or don't) know how the website works and whether they might need to get introduced to it  
   - Time sensitivity to the information they seek, such as breaking news or financial information or looking up historical information  
   
-WHAT ARE VISITORS TRYING TO ACHIEVE?  
+#### WHAT ARE VISITORS TRYING TO ACHIEVE?  
+
 ID the key motivators and goals to help design the website appropriately for intended audience.  
 Create a list of reasons for various imaginary users to come to the website and use this as a guide in the design.  
 
-WHAT INFORMATION DO VISITORS NEED?  
+#### WHAT INFORMATION DO VISITORS NEED?  
 
 - Think about additional information that might be helpful to your visitors.  
 - Determine what each visitor needs to meet the goals of their visit.  
@@ -193,7 +214,7 @@ For Infomration sites: *[Duckett, pg.460]*
 > How often is the subject updated?  
 > What percentage of visitors return for regular updates, compared with those that need the info just once?  
   
-SITE MAPS  
+#### SITE MAPS  
 
 - Organize the site to appropriately section the information, prioritizing user-goals to drive the design.  
 - Diagram the site structure, naming the pages, and identifying the home page, primary topics, and sub-topical pages.  
@@ -201,7 +222,7 @@ SITE MAPS
 - Duplication might be required, if info is related to several pages across the site.  
 - Appropriately groups pages will help site visitors navigate easily.  
   
-WIREFRAMES  
+#### WIREFRAMES  
 
 - Sketches of key information for each web page on a site.  
 - Get an idea as to what space is necessary and how it could be arranged.  
@@ -217,7 +238,8 @@ Wireframe tools list from *[Duckett, pg.463]*:
 - [GoMockingBird.com](http://gomockingbird.com)  
 - [LovelyCharts.com](http://lovelycharts.com)  
   
-DESIGN TO GET MESSAGE ACROSS
+#### DESIGN TO GET MESSAGE ACROSS
+
 Content should have been sorted out already, sonow the design needs to organize and prioritize the content to guide users and lead users to what they are looking for. Use styles to make portions of the page distinct from other content, calling it out to the user. Can also draw a user's attention away from content items.  
 
 Visual Hierarchy  
@@ -243,7 +265,8 @@ Use similar visual styles for similar content so users quickly associate the sty
   - Groups of groups buttons or information help the user understand the purpose of the information  
   - Similarity is used to provide consistency between like-type elements and information e.g. icons and headings  
   
-GROUPING AND SIMILARITY  
+#### GROUPING AND SIMILARITY  
+
 "Grouping related pieces of information together can make a design easier to comprehend." *[Duckett, pg.469]*  
   
 Various ways to group information:  
@@ -259,7 +282,8 @@ Various ways to group information:
   - Consistency: A collection of items of the same type are easily identifyable as similar when they are styled consistently.  
   - Headings: Concise info in a heading about what content is to follow helps the user identify content they are looking for (or not).  
   
-SITE NAVIGATION  
+#### SITE NAVIGATION  
+
 Navigation design can help users find their way and understand what the site is about.  
 
 Good navigation design principles:  
@@ -275,7 +299,8 @@ Primary, Secondary, and additional Navigation
 - Tertiary Navigation is often along the bottom of a page.  
 - Check out: How to implement search functionality for your site using Google Search (companion website content) *[Duckett, pg.471]*  
   
-SUMMARY
+#### SUMMARY
+
 The following list of items are quoted directly from *[Duckett, pg.475]*  
 
 - It's important to understand who your target auience is, whey they would come to your site, what information they want to find, and when they are likely to return.  
@@ -304,7 +329,7 @@ JavaScript enables interactivity on a website. JS Can:
   
 The book will also address work-around for compatibility with older browsers and introduce JQuery.  
   
-### JS Chapter 1: “The ABC of Programming” (pp.11-52)  
+#### JS Chapter 1: “The ABC of Programming” (pp.11-52)  
   
 WHAT IS A SCRIPT AND HOW DO I CREATE ONE?  
 Think of a script as a recipe or manual, that tells the computer what to do.  
@@ -356,11 +381,13 @@ Consider Events to be the interaction between objects or things. Some examples o
 Exactly what action to take when an event is "fired" can be defined by the developer. For example:
 - When a user click the Submit button on a web page an event is fired and it can call a method that causes the form data to be stored in a database.  
 
-METHODS  
+#### METHODS  
+
 A method defines what an object can do. It is a *capability* of a thing.  
 For example, when the user clicked the Submit button on the web page and that event was fired, the event can call a method that will show a popup message informing the user that the information was submitted successfully (or failed).  
 
-PROPERTIES, EVENTS, and METHODS
+#### PROPERTIES, EVENTS, and METHODS
+
 When developing scripts and web pages with JavaScript:
 
 - Define the *Properties* that are involved.  
@@ -373,7 +400,8 @@ Back to the light switch example:
 2. When the "flip switch" event occurs it will call a specific method to do some work.  
 3. The called method changes the property from false to true, for example.  
   
-WEB BROWSERS ARE PROGRAMS BUILT USING OBJECTS  
+#### WEB BROWSERS ARE PROGRAMS BUILT USING OBJECTS  
+
 Primary objects are:  
 
 - Window  
@@ -403,7 +431,7 @@ JavaScript is interpreted by a subsystem of the browser:
 **Key takeaway** *[Duckett, pg.43]*  
 > To make web pages interactive, you write code that uses the browser's model of the web page.  
 
-HOW JAVASCRIPT, HTML, AND CSS FIT TOGETHER  
+#### HOW JAVASCRIPT, HTML, AND CSS FIT TOGETHER  
 
 - HTML: Content layer  
 - CSS: Presentation layer  
@@ -412,7 +440,8 @@ HOW JAVASCRIPT, HTML, AND CSS FIT TOGETHER
 *Keep code files separate as much as possible*  
 This will make sure that partial page loads will still give the user some of the expected experience and information, rather than none.  
 
-CREATING BASIC JAVASCRIPT AND LINKING IT TO AN HTML PAGE  
+#### CREATING BASIC JAVASCRIPT AND LINKING IT TO AN HTML PAGE  
+
 JavaScript is plaintext, so create a new file, name it with a `.js` extension and add JavaScript commands to it.  
 Create a simple web page and add the following element:
   `<script src="file-name.js"></script>`  
@@ -420,7 +449,8 @@ When the browser reads this line it will stop to look for `file-name.js` in the 
 
 **Note**: There is a very simple example of HTML + JavaScript usage, copied from Duckett, pgs.46-47, in the folder called chapter1_files [here](https://github.com/nojronatron/nojronatron.github.io/tree/main/chapter1_files). Example [webpage](./chapter1_files/add-content.html)  
   
-HOW TO USE OBJECTS AND METHODS  
+#### HOW TO USE OBJECTS AND METHODS  
+
 `document` is an object that represents an entire page, as implemented in the web browser.  
 The 'document' model has several methods and properties, aka members.  
 The write() member is a method and accepts a string of text as the data parameters.  
