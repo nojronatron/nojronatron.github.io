@@ -351,3 +351,51 @@ The concatenation operator will bring together the string values on either side 
 Comparison Operators and Logical Operators are covered in Chapter 4.
 
 ## JS Book Chapter 4: Decisions and Loops (up to switch statement)
+
+This chapter will cover the topics of *evaluations*, *decisions*, and *loops*.  
+
+### Decision Making
+
+JavaScript can be coded to make decisions based on current variables, user input, etc.  
+A flow chart is a great example of a decision tree, which could be used to help programmers write conditional statements.  
+In order to make a decision, code statements must:
+
+1. Evaluate an expression, returning a value, like a boolean.  
+2. Perform the action(s) in the following code block(s), depending on the result.  
+
+### Comparison Operators
+
+Equal to `==` evaluates equality of *values* on each side of the operator, but not the types.  
+Not equal to `!=` evaluates like Equal, but returns the opposite result.  
+Strict equal to `===` evaluates the *type* *and* the *value* and returns true only if both conditions are true.  
+Strict not equal to `!==` evaluates the opposite of Strict Equal To.  
+Greater than `>` evaluates true if the left-hand value is larger than the right-hand value.  
+Greater than or equal to `>=` evaluates the same way `>` and `==` do, and returns true if one or the other is true.  
+Less than `<` evaluates true if the left-hand value is smaller than the right-hand value.  
+Less than or equal to `<=` evaluates the same way `<` and `==` do, and returns true if one or the other is true.  
+
+Enclosing brackets '(' and ')' are used to create a comparison operating statement.  
+Operands sit on either side of the comparison operatork, between the enclosing brackets.  
+
+```JavaScript
+(savingsAccount >= withdrawlAmount)
+```
+
+Expressions with operands can be used on either or both sides of the comparison operator within enclosing brackets to perform the comparison on the results of the expressions.
+
+```JavaScript
+( (10 - 6) < (8 - 2))
+```
+
+### Logical Operators
+
+AND: `&&` If both expressions return true then the operator result is true.  
+OR: '||' If either expression returns true then the operator result is true.
+Not: `!` Inverts a Boolean value. If a conditioni returns 'true', !condition returns 'false'.  
+
+Both AND and OR are short-circuit evaluations: AND returns false as soon as a false if found; OR returns true as soon as a true is found.
+
+### IF and IF-ELSE Statements
+
+The IF statement is used to check a condition and executes the following codeblock only if the condition returns 'true'.  
+IF statements can be followed by ELSE statements with another code block that executes when the IF conditioni returns 'false'.
