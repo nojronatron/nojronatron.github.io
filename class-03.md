@@ -192,8 +192,169 @@ border-top-left-radius: npx;
 Uses `border-radius` creatively to define more complex curves.  
 Configure horizonal and vertical distances with different values.  
 
-## JS Book Chapter 2 Notes
+## JS Book Chapter 2: Basic JavaScript Instructions
 
+### Statements
+
+Individual instructions are called Statements.  
+A code block is contained between curly braces `{` and `}`  
+Code blocks contain one or more Statements.  
+Code blocks can contain other code blocks.  
+JavaScript is CaSe SeNsItIvE  
+Statements are separated by a new line, and should end with a semicolon  
+
+### Comments
+
+There are two types of comments: Multi-line and Single-line.  
+Use comments to document the code, or to stop commented code statements from executing for testing.  
+
+### Variables
+
+Variables store data in memory.  
+The JavaScript interpreter executes code statements one at a time, in order, and variables allow the interpreter to store values for future code statements to recall the variable to obtain the value.  
+Data stored within a variable can be changed.  
+There are two steps to storing data in a variable (memory):
+
+1. The var keyword is used to define the variable name.  
+2. The variable name is assigned a variable value using an assignment operator.  
+
+Declare the variable: `var age;`  
+Assign a value to them: `thingy = 11;`  
+
+*Note*: A variable that is declared but not assigned has a type of 'undefined'.  
+
+### Data Types
+
+Some common data types are:
+
+- Numeric: Integral or decimal number types.  
+- String: Data types that contain letters, digits, characters, or all of the above.  
+- Boolean: Binary values representing 'true' and 'false'.  
+
+Additional types:
+
+- arrays: Stores a list of multiple variable entries.  
+- objects: Complex memory locations, discussed later in the book.  
+- undefined: A memory location that has not had a value assigned to it.  
+- null: Nothing (not to be confused with numeric 0).  
+
+### Using Variables for Storage
+
+Numeric: Do not use quotations, just a raw integer or decimal number, followed by a semicolon.  
+String: Use single quotes `'` or `"` to encapsulate the string data, but do not mix them.
+
+### Strings and Quotes
+
+To include a quote insie of a string, encapsulate the entire string value with the other type of quote mark.
+Example using single and double quotes:
+
+```JavaScript
+var message = '<p class="intro">Welcome to my website!</p>';
+```
+
+Example using the escape character `\`:
+
+```html
+<p class="post">My car has a name: \"Scooby\"</p>
+```
+
+### Store a Boolean
+
+Assign a variable the keywords 'true' or 'false'.  
+Do not use quotation marks for the keywords.  
+
+```JavaScript
+var switchIsOn = true;
+```
+
+### Creating Variables
+
+Instead of taking two steps to declare a variable and assign it a value, both can be done in a single line:  
+
+`var sales = 150000;`
+
+Multiply your efforts by declaring and assigning multiple variables on each line!  
+
+`var sales = 150000, year = 2022;`
+
+*Note*: Assignment is not required when declaring multiple variables in a single statment.  
+
+### Changing the Value of a Variable
+
+Once a variable has been declared, the 'var' keyword is no longer necessary when assigning to the variable, or returning its stored value.  
+
+```JavaScript
+var stimpy = "cat";
+stimpy = "cartoon character";
+```
+
+### Runes for Naming Variables
+
+Varible names in JavaScript Can:
+
+- begin with a letter, `$` or `_`; NOT a number  
+- contain the same characters as the starting characters rule; NOT `-` nor `.`  
+- not contain keywords or reserved JavaScript terminology  
+- and are case sensitive: person and Person are two distinct variables in JS  
+- and should be named after their purpose; of the data that they store  
+- be made up of more than one word, so use camelCase styling  
+
+### Arrays
+
+Arrays store lists of variables.
+Initialize arrays with the syntax `var myArray = [ ];`  
+Initialize and assign values to an array of integrals with `var myArray = [ 1, 2, 3, 4, 5 ];`  
+Alternately, use the array literal initialization: `var myArray = new Array( 1, 2, 3, 4, 5);`  
+Determine the number of items in an array with `myArray.length;`  
+Arrays are zero-based indexed storage types.  
+
+Arrays include an indexer:  
+
+1. Access the 3rd item in the array with the following syntax: `var arrayItem = myArray[2];`  
+2. Assign the 3rd item in the array a new value: `myArray[2] = 100;`  
+
+### Expressions and Operators
+
+"An expression evaluated into a single value." *[Duckett, pg.74]*  
+There are two types of expressions: Simple assignment; Return a single value from two or more variables.
+
+1. Simple Assignment Expression: `var name = 'Dave';`  
+2. Multi-value Single-return Expression: `var sum = 2 * 3;`  
+
+Expressions rely on operators (see next subsection).
+
+### Arithmetic Operators
+
+The following symbols will perform mathematical operations on Number types:
+
+- Addition: `+`  
+- Subtraction: `-`  
+- Multiplication: `*`  
+- Division: `/`  
+- Increment: `++`  
+- Decrement: `--`  
+- Modulus (return remainder): `%`  
+
+The rules you learned about mathematical orders of operation are followed in JavaScript: PEMDAS.  
+
+### String Operators
+
+There is only one, the concatenation operator: `+`  
+Use it to 'add' strings together!
+
+```JavaScript
+var name = "Tom";
+var action = "ran";
+var place = "Madrid, Spain";
+var sentence = name + " the 3rd grader " + action + " from his home in Paris to " + place + ", overnight!";
+console.log(sentence);
+```
+
+The concatenation operator will bring together the string values on either side of it, so the previous code block when executed would return the following to the console: "Tom the 3rd grader ran from his home in Paris to Madrid, Spain, overnight!"  
+
+### Additional Operators
+
+Comparison Operators and Logical Operators are covered in Chapter 4.
 
 ## JS Book Chapter 4 Notes
 
