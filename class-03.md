@@ -157,7 +157,40 @@ Earlier browser versions of Chrome, Firefox, and Safari will need the following 
 
 ### Box Shadows
 
+Drop shadows on a box!
+Must use at least horizontal or vertical offset, plus a color.
 
+- horizonal offset: Negative values for left, positive for right-side shading.  
+- vertical offset: Negative above, positive below.  
+- blur distance: Drop Shadow is more like a border when this property is not set.  
+- spread of shadow: Causes shadow to widen with positive values, shrink down with negative.  
+
+*NOTE*: Be sure to accommodate Chrome, Firefox, and Safari with the following properties:
+
+- `-moz-box-shadow`  
+- `-webkit-box-shadow`  
+
+### Rounded Corners
+
+This effect can be applied to *any box*. The size of radius is defined in pixels.  
+
+- Also use `-moz-border-radius` and `-webkit-border-radius` properties (not in spec but helps some browsers).
+
+Can apply specific configuration to 1, 2, or 3 corners rather than all four:
+
+```css
+border-top-right-radius: npx;
+border-botton-right-radius: npx;
+border-bottom-left-radius: npx;
+border-top-left-radius: npx;
+```
+
+*Shorthand* is also supported (TR, BR, BL, TL).  
+
+### Eliptical Shapes
+
+Uses `border-radius` creatively to define more complex curves.  
+Configure horizonal and vertical distances with different values.  
 
 ## JS Book Chapter 2 Notes
 
