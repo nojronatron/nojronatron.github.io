@@ -72,9 +72,9 @@ Older browsers used to shrink the font size when an overflow situation would oth
 
 These properties define the edge, inside edge, and outside edge of all sides of a box.  
 
-- padding: Provides releif between the content and the border.  
-- border: Every box has a border, and it can have `width: 0px` which makes it not visible, to larger px sizes.  
-- margin: Provides a gap between the border and other content/boxes around it.  
+- `padding`: Provides releif between the *content* and the *border*.  
+- `border`: Every box has a border, and it can have `width: 0px` which makes it not visible, or visible with larger px sizes.  
+- `margin`: Provides a gap between the *border* and other *boxes* or *elements* that are around it.  
 
 Whitespace plays an important part is page readability and useability, so use these properties to your advantage.  
 
