@@ -358,4 +358,135 @@ Comparison Operators and Logical Operators are covered in Chapter 4.
 
 ## JS Book Chapter 4 Notes
 
-From Switch Statements section onward.  
+Notes starting from Switch Statements in *[Duckett pg.164]* through the rest of Chapter 4.
+
+### Switch Statements
+
+Similar to if...else statement chains.  
+My opinion is these are a bit tidier and a little easier to read through.  
+Primary components:
+
+- `switch (arg)`: 'arg' is the variable that will be tested against each 'case' value.  
+- `case Object:`: Object will be compared to switch(arg) before executing the code block that follows.  
+- A code block that includes `break;`  
+- `default:` followed by a code block to run if no other cases are matched.  
+
+### Type Coercion and Weak Typing
+
+Data Types are important in JavaScript, even though developers do not need to strictly declare types when initializing variables.
+Type coercion: JS statements can be written to 'coerce' a type to be like another type.
+
+From *[Ducket, pg166]*:
+
+```javascript
+('1' > 0)
+// returns true because the string '1' is convered to a Number type during evaluation
+```
+
+Weak Typing: Term used to describe how javascript allows type coersion and simple conversions.
+Type Coercion can cause unexpected results so *use it carefully*.  
+
+Various Data Types in JavaScript (Type: Purpose)
+
+- string: Text  
+- number: Number  
+- Boolean: true or false  
+- null: empty value  
+- undefined: A declared but unassigned variable  
+
+### Truthy and Falsy
+
+When something is 'truthy', it means that something can be resolved to Boolean 'true'.  
+Similarly, when an item is 'falsy' it can be resolved to Boolean 'false'.  
+
+Falsy Values are things like boolean false, 0 (zero), empty strings, using a divisor of type String, NaN (not a number), an unassigned variable.
+
+Truthy Values are things like boolean true, Number with a value != 0, and non-empty Strings (including Strings with values of '0', 'true', or 'false', because the string is non-empty), valid number calculations.
+
+### Checking Equality and Existence
+
+Unary Operator: Returns a result from a single operand.  
+
+Strict Equality operators result is fewer unexpected results. This is due to type coercion.
+
+To ensure something exists, check for the following:
+
+- null?  
+- undefined?  
+- 0?  
+- empty String?  
+- NaN?  
+- false?  
+
+### Short Circuit Values
+
+Quoted from *[Ducket, pg.169]* (because it is written so succinctly):
+
+"""Logical operators are processed left to right.
+They short-circuit (stop) as soon as they have a result - but they return the value that stopped the processing (not necessarily true or false)."""
+
+The OR operator `||` will short-circuit as soon as a truthy value is returned.  
+The AND operator `&&` will short-circuit as soon as a falsey value is returned.
+
+### Loops and Loop Counters
+
+Three types of loops using these keywords:
+
+- FOR  
+- WHILE  
+- DO WHILE  
+
+All three types have keyword followed by the conditional statement or counter, followed by opening and closing braces for code statement(s).  
+
+The Conditional in a 'For' loop contains:
+
+- A variable initialization: `var idx=0;`  
+- A condition that will break the loop: `idx > 11;`  
+- An update statement or incrementor: `idx++;`  
+
+Additional keywords:
+
+- 'break': causes loop to terminate and drop out of the loop codeblock to the parent level.  
+- 'continue': ceases current iteration to re-check the conditional statement without processing any more code statements or blocks.  
+
+*Note*: The browser will wait for javascript loops to complete, halting all other processing, so be certain your loops will exit cleanly and efficiently.  
+
+It is best practice to define variables outside of a loop whenever possible, to avoid having them reset or altered unexpectedly within the loop.
+
+### For Loop
+
+An example For loop:
+
+```javascript
+for (let int=0; int < 10; int++) {
+  console.log("I'm loopy!");
+}
+//  I'm loopy! will be logged to console 10 times then the code will exit.
+```
+
+### While Loop
+
+An example While loop:
+
+``` javascript
+let idx=10;
+while (idx > 0) {
+  console.log("Counting backwards! " + idx);
+  idx--;
+}
+//  On each iteration, the text and the value of idx will be logged to console, counting backwards until idx == 1.
+```
+
+### Do While Loop
+
+An example Do While loop:
+
+```javascript
+let idx=1;
+let top=26;
+do {
+  console.log("Counting odd numbers " + idx);
+  idx += 2;
+} while (idx < top);
+//  idx starts at 1 and is logged to the console with the message, as are every 2nd number until the idx is > 25 then the loop will exit.
+```
