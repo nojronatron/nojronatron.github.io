@@ -88,6 +88,7 @@ Controlling the position of elements can be achieve with:
 *Note*: Use the Z-index to set the "bring to front" and "send to back" equivalent effect on a box.  
 
 FLow Details:
+
 - Normal Flow: `position: static;` Causes a top-to-bottom layout of elements.  
 - Releative Positioning: `position: relative;` Moves an element relative to 'normal flow' positining.  
   - Set in px, '%', or em  
@@ -117,11 +118,11 @@ div {
 
 ### Multi-column Layouts with Floats
 
-Define:
+You Must Define These rules to `<div>` elements to enable the 'column' box behavior:
+
 - `width:`  
 - `float:`  
 - `margin:`  
-- Assign these rules to `<div>` elements to act as each 'column' box.  
 
 ### Screen Size, Resolution, and Pages
 
@@ -173,3 +174,35 @@ Reference multiple stylesheets using the Link element `<link rel="stylesheet" ty
 
 ## JS Book Chapter 3 Notes - Nnnn
 
+## Reading: 6 Reasons for Paired Programming
+
+Personal notes while reading the Code Fellows blog article about [Paired Programming](https://www.codefellows.org/blog/6-reasons-for-pair-programming/)  
+
+Blog Author: *[Allie Grampa]*  
+
+Key takeaways:  
+
+- Pair Programming is a common, agile workspace activity.  
+- Two developers share one screen and develop, together.  
+- Develops skills and encourages collaboration.  
+- Driver: The dev on the keyboard. The mechanic of code, text editors, handling files and version control.  
+- Navigator: The guide, with a higher-level perspective on the project, design questions like how to convert algorithm to code, and also bug watcher. Could also be the reference librarian, looking up resources, but is not necessarily writing any code.  
+
+Learning to Code:
+
+Core skills are put to work:
+
+- Listening  
+- Speaking  
+- Reading  
+- Writing  
+
+Lab sessions for pair programming will take place at Code Fellows to learn and practice Paired Programming skills and processes.  
+
+Benefits include:
+
+- Effeciency in coding. Arguably slower, but code quality usually higher in design, idiomatic style, and fewer bugs.  
+- Enhanced collaboration within the team.  
+- Additional learning opportunities between paired programmers, as they learn from each other.  
+- Build communication, collaboration, and other social skills.  
+- Preparedness for job interviews and on-the-job expectations or processes.  
