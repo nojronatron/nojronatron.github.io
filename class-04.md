@@ -180,6 +180,37 @@ Functions: Perform specific actions with a block of code.
 Objects: User-created items that store data in a specified format, sometimes providing properties about the data or manipulate data.  
 Built-in Objects: JavaScript provides some objects with members that are commonly used to perform tasks.  
 
+### The Structure of a Function
+
+```javascript
+function myFunc (params) {
+  //  codeblock
+}
+```
+
+- function: Keyword defines a javascript function.  
+- myFunc: A custom, unique name for the function.  
+- (params): A list of parameters (or none) that the code block could operate on.  
+- '{ codeblock; }': Defines the instructions for javascript to execute.  
+
+Calling a function is simple:
+
+1. Define the function.  
+2. Call the function by name.  
+
+```javascript
+function logIt (message) {
+  console.log(message);
+}
+
+logIt('Hello World!');
+```
+
+When the interpreter comes to the function keyword it will store the function in memory and use 'logIt' as the custom function name.
+
+When the interpreter continues down the code lines to the logIt(are) line, it looks up the function name 'logIt()' in memory, and supplies any argument (none in this example), and then executes the codeblock.
+
+When the interpreter hits the last curly in the function it exits the function and returns to the end of the 'logIt()' line, and continues downward.  
 
 ## Reading: 6 Reasons for Paired Programming
 
