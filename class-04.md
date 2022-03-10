@@ -212,6 +212,59 @@ When the interpreter continues down the code lines to the logIt(are) line, it lo
 
 When the interpreter hits the last curly in the function it exits the function and returns to the end of the 'logIt()' line, and continues downward.  
 
+If a function has a variable name in its argument list, then the function must be *called* in the code and must include initialized variables for the argument list.  
+
+### Functions that return values
+
+Functions that have a 'return' statement with an argument (a variable or some object), will send that variable back to the calling line of code when it exits.
+
+The calling line of code can either ignore or store the return value from the function with a return statement.  
+
+A function can return multiple values by returning:
+
+- A custom Object.  
+- An Array object.  
+
+Named Functions are functions with a name.
+Anonymous Functions are functions with no name.
+
+```javascript
+let funcyMessage = function(message) {
+  return `This is your message: "${message}"`;
+}
+let newMessage = funcyMessage("Hello World!") ;
+```
+
+IIFE: Immediately Invoked Function Expression. 'iffy'. Stores a value returned from an anonymous function.
+
+```javascript
+let perimeter = (function() {
+  let width = 4;
+  let height = 5;
+  return width + height;
+}());
+//  the inner parentheses after the let statement ensure the code is treated as a single block
+//  the final parentheses tell the interpreter to run the function immediately
+```
+
+When to use anonymous functions and iffys?
+
+- When code only needs to run once within a task.  
+- As an argument when a function is called.  
+- To assign the value of a proeprty to an object.  
+- In event handlers and listeners (see Chapter 6) to perform a task when an event occurs.  
+- To prevent conflicts between two scripts that might use the same variable names (see pg.99).
+
+The above list of examples are directly quoted from *[Duckett, pg97]*  
+
+### Variable Scope
+
+Globally scoped: A variable declared at the root level in a document, and not enclosed with any curly braces. Risks naming collisions in your code if not used carefully.  
+Locally scoped: A variable declared within a pair of curly braces is scoped to any code within those braces.
+Function-level scope: A variable declared within a function can only be accessed within that function.  
+
+*Performance Warning*: Globally scoped variables live as long as the web page is loaded in the browser window.
+
 ## Reading: 6 Reasons for Paired Programming
 
 Personal notes while reading the Code Fellows blog article about [Paired Programming](https://www.codefellows.org/blog/6-reasons-for-pair-programming/)  
