@@ -172,7 +172,14 @@ Reference multiple stylesheets using the Link element `<link rel="stylesheet" ty
 
 *Note*: When using multiple stylesheets, rules of precedence can make determining final applied style more complicated.
 
-## JS Book Chapter 3 Notes - Nnnn
+## JS Book Chapter 3 Notes - Functions
+
+*Only cover pgs. 86-99  
+
+Functions: Perform specific actions with a block of code.  
+Objects: User-created items that store data in a specified format, sometimes providing properties about the data or manipulate data.  
+Built-in Objects: JavaScript provides some objects with members that are commonly used to perform tasks.  
+
 
 ## Reading: 6 Reasons for Paired Programming
 
