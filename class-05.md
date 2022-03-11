@@ -66,7 +66,6 @@ Set the units of measurement to the screen:
 - Use px (pixels) for the best possible rendering.  
 - Do not worry about the resolution of the picture as much as the dimensions in pixels.  
 
-
 Commonly used tools, and those suggested by the author, in no particular order *[Duckett, pg.108]*
 
 > Adobe Fireworks
@@ -110,7 +109,7 @@ Older browsers ignore these tags but will still display the content within and a
 
 Color is another "grabber" feature of a web page - it can really get the attention of your users.  
 
-### Specifing Color
+### Specifing Colors
 
 Several ways to specify colors:  
 
@@ -169,19 +168,19 @@ Two groups of properties for controlling text style:
 
 Controlling fonts and styles of text directly impact the beauty of your website.  
 
-Typefaces:
+### Typefaces
 
 - serif: Has tails on line ends.  
 - sans-serif: Without tails.  
 - monospace: regardless of the letter width, each character takes the exact same amount of space.  
 
-Font adjustments:  
+### Font adjustments
 
 - Weight  
 - Style  
 - Stretch  
 
-Font Limitations:  
+### Font Limitations
 
 - Must be installed in the site visitor's browser (many are by default).  
 - Cursive or Fantasy styled fonts might not be in alignment with the theme and goals of the website.  
@@ -189,31 +188,31 @@ Font Limitations:
 
 ### Font Properties and Settings
 
-font-family:
+#### font-family
 
 - Pick a list of families, starting with most specific, and ending with the most widely available.  
 - Stick with a list of fonts that are of the same typeface.
 - End the list with the most generic typeface category names: monospace, sans-serif, or serif.  
 - `@font-face`: Allows picking a non-installed font by identifying a src url for the typeface.  
 
-font-size:
+#### font-size
 
 - 12 or 16-pixel scale. Moniker: px  
 - Percentages. Moniker: '%'  
 - EMS: Think of these as one 100^th of a percentage. Moniker: 'em'  
 
-font-weight:  
+#### font-weight
 
 - normal: Reset a parent-set font-weight to the 'normal' weight settings.
 - bold
 
-font-style:  
+#### font-style
 
 - normal  
 - italic: If typeface doesn't have an italic style, browser applies oblique instead.  
 - oblique: A calculated slane to a 'normal' font style. Browsers support doing this natively for missing italic styles.  
 
-text-decoration:  
+#### text-decoration
 
 - none: Removes a previously applied decoration.  
 - underline:  
@@ -221,19 +220,21 @@ text-decoration:
 - line-through:  
 - blink:  
 
-Spacings:  
+#### Spacings
 
 - line-height: Vertical relief between text characters.  
 - letter-spacing and word-spacing: Horizontal space between characters, and words, respectively.  
 
-text-align: One and only one of these:  
+#### text-align
+
+One and only one of these:  
 
 - left, or  
 - right, or  
 - center, or  
 - justify  
 
-vertical-align:
+#### vertical-align
 
 Used when adding text near an 'img' tag.
 Moves text up or down within the box neighboring another element.  
@@ -248,12 +249,12 @@ Moves text up or down within the box neighboring another element.
 - text-bottom  
 - length and percentage (of line height) can also be used.  
 
-text-indent:
+#### text-indent
 
 Indents the *first line of text*.  
 Accepts px units.  
 
-text-shadow:  
+#### text-shadow
 
 There are four properties to set on this rule, e.g. *[Duckett, pg.288]*:  
 
@@ -271,7 +272,7 @@ p.one {
 
 *Note*: Possible browser support problems with this rule.  
 
-First Letter or Line
+#### First Letter or Line
 
 `:first-letter`, `:first-line`  
 
@@ -285,7 +286,7 @@ p.pOne: first-letter{
 }
 ```
 
-Styling Links
+#### Styling Links
 
 `:link`, '`:visited`  
 
@@ -300,7 +301,7 @@ a:visited {
 }
 ```
 
-Responding to Users  
+#### Responding to Users
 
 `:hover`, `:active`, `:focus`  
 
