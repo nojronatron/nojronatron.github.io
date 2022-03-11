@@ -161,3 +161,156 @@ p {
 *Work Around For Old Browsers*: Since the final element setting will take precedence, and older browsers do not recognize the opacity setting in the RGB property specification, enter the backward-compatiby rgb(r, g, b) setting first, followed by the newer rgb(r, g, b, opacity) setting, the latter of which will be applied by newer browsers, and ignored by older ones.  
 
 ## Chapter 12: Text (pg.264)
+
+Two groups of properties for controlling text style:
+
+1. Directly affect the font itself: size, typeface, bold, italicized.
+2. Other non-font-specific alterations: color, spacing, etc.
+
+Controlling fonts and styles of text directly impact the beauty of your website.  
+
+Typefaces:
+
+- serif: Has tails on line ends.  
+- sans-serif: Without tails.  
+- monospace: regardless of the letter width, each character takes the exact same amount of space.  
+
+Font adjustments:  
+
+- Weight  
+- Style  
+- Stretch  
+
+Font Limitations:  
+
+- Must be installed in the site visitor's browser (many are by default).  
+- Cursive or Fantasy styled fonts might not be in alignment with the theme and goals of the website.  
+- Typefaces are subject to copyright, so if you are *distributing* a typeface font, be sure to look at rights and limitations of doing so.  
+
+### Font Properties and Settings
+
+font-family:
+
+- Pick a list of families, starting with most specific, and ending with the most widely available.  
+- Stick with a list of fonts that are of the same typeface.
+- End the list with the most generic typeface category names: monospace, sans-serif, or serif.  
+- `@font-face`: Allows picking a non-installed font by identifying a src url for the typeface.  
+
+font-size:
+
+- 12 or 16-pixel scale. Moniker: px  
+- Percentages. Moniker: '%'  
+- EMS: Think of these as one 100^th of a percentage. Moniker: 'em'  
+
+font-weight:  
+
+- normal: Reset a parent-set font-weight to the 'normal' weight settings.
+- bold
+
+font-style:  
+
+- normal  
+- italic: If typeface doesn't have an italic style, browser applies oblique instead.  
+- oblique: A calculated slane to a 'normal' font style. Browsers support doing this natively for missing italic styles.  
+
+text-decoration:  
+
+- none: Removes a previously applied decoration.  
+- underline:  
+- overline: Adds a line over the top of the text.  
+- line-through:  
+- blink:  
+
+Spacings:  
+
+- line-height: Vertical relief between text characters.  
+- letter-spacing and word-spacing: Horizontal space between characters, and words, respectively.  
+
+text-align: One and only one of these:  
+
+- left, or  
+- right, or  
+- center, or  
+- justify  
+
+vertical-align:
+
+Used when adding text near an 'img' tag.
+Moves text up or down within the box neighboring another element.  
+
+- baseline  
+- sub  
+- super  
+- top  
+- text-top  
+- middle  
+- bottom  
+- text-bottom  
+- length and percentage (of line height) can also be used.  
+
+text-indent:
+
+Indents the *first line of text*.  
+Accepts px units.  
+
+text-shadow:  
+
+There are four properties to set on this rule, e.g. *[Duckett, pg.288]*:  
+
+```css
+p.one {
+  //
+  text-shadow: 1px 1px 0px #000000;
+}
+```
+
+1. Shadow fall left or right.  
+2. Shadow fall top or bottom.  
+3. Blur amount to apply (optional).  
+4. Shadowing color.  
+
+*Note*: Possible browser support problems with this rule.  
+
+First Letter or Line
+
+`:first-letter`, `:first-line`  
+
+These 'pseudo-elements' apply to the first-letter of a line or the first-line of a block of text.  
+
+Usage:
+
+```css
+p.pOne: first-letter{
+  font-size: 2em;
+}
+```
+
+Styling Links
+
+`:link`, '`:visited`  
+
+Usage:
+
+```css
+a:link {
+  color: blue;
+}
+a:visited {
+  color: red;
+}
+```
+
+Responding to Users  
+
+`:hover`, `:active`, `:focus`  
+
+Define what happens to elements with certain user actions.  
+
+### Attribute Selectors
+
+Existence: Attribute matcher `element[string]`: `p[class]` selects all p elements with a 'class' attribute.  
+Equality: Matches `element[comparer]` selects elements with 'attribute=string'.  
+Space: Matches elements that contain a space-separated word `element[attribute ~= string]`.  
+Prefix: Matches attribute by starting string `element[attribute ^= "string"]`.  
+Substring: Matches attribute by substring `element[attribute *= "string"]`.  
+Suffix: Matches attribute with ending value `element[attribute $= "string"]`.
