@@ -108,6 +108,56 @@ Older browsers ignore these tags but will still display the content within and a
 
 ## Chapter 11: Color (pg.246)
 
+Color is another "grabber" feature of a web page - it can really get the attention of your users.  
 
+### Specifing Color
+
+Several ways to specify colors:  
+
+- Somewhat plain-english names like 'blue', 'grey', 'gray', 'red', and 'green'.  
+- RGB values i.e. `rgb(105, 220, 78)`  
+- Hex codes i.e. `#07a85c`  
+
+These color specifiers can be applied to:
+
+- color: Foreground color e.g. `<h1>` or content.  
+- background-color e.g. `<body>`, `<section>` or `<p>`.  
+
+### Color Terminology and Contrast
+
+Colors are displayed on computer monitors by using a color or hue, and saturation and brightness:
+> Color: RGB, Hex, or Color Name
+> Hue: An alternate to Color; think of the colors of a rainbow.  
+> Saturation: The amount of grey that is in the color.  
+> Brightness: The amount of black that is in the color.  
+
+Contrast: Text can become illegible in low-contrast styling arrangements. Ensure the contrast is high enough to make the content stand out without being too "strong" for the message or theme of the website.  
+
+Opacity: New in CSS3, it can be set using a value between 0.0 and 1.0, or using a 4th setting in rgb(r, g, b, opacity).  
+
+### CSS3 HSL Colors and HSLA
+
+HSL is composed of:
+
+- Hue: Color, as in colors of the rainbow.  
+- Saturation: Amount of grey in the color.  
+- Lightness: Amount of *white* in the color (the opposite of Brightness, btw).  
+
+HSLA includes one more:
+
+- Alpha: Transparency.  
+
+HSL and HSLA Usage:
+
+```css
+body {
+  background-color: hsl(0, 0%, 78%);
+}
+p {
+  background-color: hsla(0, 100%, 100%, 0.5);
+}
+```
+
+*Work Around For Old Browsers*: Since the final element setting will take precedence, and older browsers do not recognize the opacity setting in the RGB property specification, enter the backward-compatiby rgb(r, g, b) setting first, followed by the newer rgb(r, g, b, opacity) setting, the latter of which will be applied by newer browsers, and ignored by older ones.  
 
 ## Chapter 12: Text (pg.264)
