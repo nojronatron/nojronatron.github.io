@@ -174,7 +174,7 @@ Reference multiple stylesheets using the Link element `<link rel="stylesheet" ty
 
 ## JS Book Chapter 3 Notes - Functions
 
-*Only cover pgs. 86-99  
+*Note*: Only cover pgs. 86-99  
 
 Functions: Perform specific actions with a block of code.  
 Objects: User-created items that store data in a specified format, sometimes providing properties about the data or manipulate data.  
