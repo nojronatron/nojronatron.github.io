@@ -70,13 +70,13 @@ Other Page:
 
 ### Positioning Elements
 
-The BOX concept defines how elements act, and where elements get placed, within a web page.  
-Boxes can be block-level or in-line.  
-Block-level elements start on a new line.  
-Inline elements flow inbetween surrounding text.  
-Nested elements are refered to, contextually, as parent and child(ren), where the parent is the containing element.  
+- The BOX concept defines how elements act, and where elements get placed, within a web page.  
+- Boxes can be block-level or in-line.  
+- Block-level elements start on a new line.  
+- Inline elements flow inbetween surrounding text.  
+- Nested elements are refered to, contextually, as parent and child(ren), where the parent is the containing element.  
 
-Controlling the position of elements can be achieve with:
+Controlling the position of elements can be achieve through the following:
 
 - Normal flow: basicallyl top-to-bottom, vertically stacked elements.  
 - Relative Positining: Assign a position based on another point on the page.  
@@ -118,7 +118,7 @@ div {
 
 ### Multi-column Layouts with Floats
 
-You Must Define These rules to `<div>` elements to enable the 'column' box behavior:
+You *must define these rules* to `<div>` elements to enable the 'column' box behavior:
 
 - `width:`  
 - `float:`  
@@ -126,10 +126,10 @@ You Must Define These rules to `<div>` elements to enable the 'column' box behav
 
 ### Screen Size, Resolution, and Pages
 
-Various computers, hand-helds, phones, etc will have different screen sizes.
-Take screen-size differences into account when designing a website.  
+Various computers, hand-helds, phones, etc will have different screen sizes.  
+Developers should take screen-size differences into account when designing a website.  
 Screen resolution varies from device-to-device as well, which impacts an absolute setting like px.  
-Page sizing is important, and good sizing decisions will help all users view a well-desgined page.
+Page sizing is important, and good sizing decisions will help all users view a well-desgined page.  
 *Recommendation*: Stick with page widths of around 960-1000 px.  
 Try to capture user attention within the first 500-700px vertically on the page, and let them know there is more 'below the fold' and entice them to scroll down.  
 
