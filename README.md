@@ -7,8 +7,9 @@ Note taking space for CodeFellow's Code201 class reading assignments.
 Assignments: Prework Reading Notes  
 [x] Class-01 [Summary Notes](./class-01.html)  
 [x] Class-02 [Summary Notes](./class-02.html)  
-[ ] Class-03 [Summary Notes](./class-03.html)  
-[ ] Class-04 [Summary Notes](./class-04.html)  
+[x] Class-03 [Summary Notes](./class-03.html)  
+[x] Class-04 [Summary Notes](./class-04.html)  
+[ ] Class-05 [Summary Notes](./class-05.html)  
 
 ## Other Links
 
