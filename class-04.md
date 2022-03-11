@@ -66,7 +66,7 @@ Other Page:
 <a href="http://my-site.com/#SummaryLinks">Summary Links on my site</a>
 ```
 
-## HTML Book Chapter 15 Notes - Nnnn
+## HTML Book Chapter 15 Notes - Layout
 
 ### Positioning Elements
 
