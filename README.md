@@ -12,13 +12,19 @@ Assignments: Prework Reading Notes
 [x] Class-05 [Summary Notes](./class-05.html)  
 [x] Class-06 [JS Functions, Methods, Objects; The Document Object Model](./class-06.html)  
 [ ] Class-07 [HTML Chpt 6 Tables; JS Chpt 3 Function, Methods, and Objects](./class-07.html)  
-[ ] Class-08
- 
-## Other Links
+[ ] Class-08  
+
+## Reference Links
 
 Career Launch Strategy [Notes](./CareerLaunchStrategy.html)  
 PH Loops Session [Notes](./power-hour-notes/readme.md)  
 Linux and Terminal/Bash Reading Ntoes [Notes](./linux-terminal/readme.md)  
+Image Placeholder Generator: [place-hold.it](https://place-hold.it)  
+Build and Test FE Code: [CodePen](https://codepen.io/)  
+Find, Support, Hire Creatives: [Dribbble](https://dribbble.com/)  
+Design Inspiration: [Designspiration](https://www.designspiration.com/)  
+Color Palette Designer: [Paletton.com](https://paletton.com/)  
+Digital Ocean's CSS Tricks: [CSS-Tricks.com](https://css-tricks.com/)  
 
 ## Remember To-do-s  
 
