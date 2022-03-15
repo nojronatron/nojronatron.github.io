@@ -461,9 +461,3 @@ When the browser reads this line it will stop to look for `file-name.js` in the 
 `document` is an object that represents an entire page, as implemented in the web browser.  
 The 'document' model has several methods and properties, aka members.  
 The write() member is a method and accepts a string of text as the data parameters.  
-
-## Remember To-do-s  
-
-[ ] Bookmark additional resources  
-[ ] Present material as if to someone new to the industry  
-[ ] Cite sources with links when directly quoting  
