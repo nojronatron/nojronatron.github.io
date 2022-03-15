@@ -1,8 +1,15 @@
 # Summarized topics
 
+[Introduction](#introduction)
+[HTML Chapter 1: Structure](#html-chapter-1-structure-pp12-39)
+[HTML Chapter 17: Layout](#html-chapter-17-html5-layout-pp428-451)
+[HTML Chapter 18: Process and Design](#html-chapter-18-process--design-pp452-475)
+[JS Book Introduction](#js-book-introduction)
+[JS The Art of Programming](#js-chapter-1-the-abc-of-programming-pp11-52)
+
 ## From the Duckett HTML book
 
-### Introduction (pp.2-11)  
+### Introduction  
 
 The internet is a global network connecting computers together. Computers have unique IP addresses (like a home street address) allowing other computers to find them. A naming system called DNS is like a directory that provides a lookup of human-readable names like www.microsoft.com into ip addresses like 192.168.123.10. Web servers on the internet are like special file servers, hosting special files that web browsers can process and display on a users screen.  
 Web browsers interpret HTML to display text on the page, arranging text elements into different parts of the page or with different styles.  
@@ -360,13 +367,13 @@ An interesting note regarding properties and attributes *[Duckett, pg.28]*
 > The idea of name/value pairs is used in both HTML and CSS.
 > In HTML an attribute is like a property:  
 
-  - Different attributes have different names.  
-  - Each attribute can have a value.  
+- Different attributes have different names.  
+- Each attribute can have a value.  
 
 > In CSS you can:  
 
-  - Change the color of a heading by creating a rule that gives the color property a specific value.  
-  - Change the typeface (a heading) is written in by giving the font-family property a specific value.  
+- Change the color of a heading by creating a rule that gives the color property a specific value.  
+- Change the typeface (a heading) is written in by giving the font-family property a specific value.  
 
 Name-value pairs enable storing and acquiring property values. Example:
   A house can be painted a color. The property name could be 'paint' and the value could be 'yellow':  
