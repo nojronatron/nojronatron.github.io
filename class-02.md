@@ -1,5 +1,10 @@
 # Notes from Duckett HTML and JS Books
 
+[HTML Chapter 2: Text](#html-book-chapter-2-text)
+[HTML Chapter 10: Intro to CSS](#html-book-chapter-10-introducing-css)
+[JS Chapter 2: Basic Instructions](#js-book-chapter-2-basic-javascript-instructions)
+[JS Chapter 4: Decision Loops (part 1)](#js-book-chapter-4-decisions-and-loops-up-to-switch-statement)
+
 ## HTML Book Chapter 2: Text
 
 Focus of this chapter are structural markup and semantic markup.  
