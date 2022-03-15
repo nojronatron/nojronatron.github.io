@@ -11,7 +11,7 @@ Assignments: Prework Reading Notes
 [x] Class-04 [Summary Notes](./class-04.html)  
 [x] Class-05 [Summary Notes](./class-05.html)  
 [x] Class-06 [JS Functions, Methods, Objects; The Document Object Model](./class-06.html)  
-[ ] Class-07 [HTML Chpt 6 Tables; JS Chpt 3 Function, Methods, and Objects](./class-07.html)
+[ ] Class-07 [HTML Chpt 6 Tables; JS Chpt 3 Function, Methods, and Objects](./class-07.html)  
 [ ] Class-08
  
 ## Other Links
