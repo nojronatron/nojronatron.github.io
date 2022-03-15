@@ -1,7 +1,9 @@
 # Notes from Duckett HTML and JS Books
 
-HTML Book Chapters 3 and 13  
-JS Book Chapters 2 and 4  
+[HTML Book Chapter 3: Lists](#html-book-chapter-3-notes---lists)
+[HTML Book Chapter 13: Boxes](#html-book-chapter-13-notes---boxes)
+[JS Chapter 2: Basic Javascript Instructions](#js-book-chapter-2-basic-javascript-instructions)
+[JS Chapters 4: Decisions and Loops (part 2)](#js-book-chapter-4-notes)  
 
 ## HTML Book Chapter 3 Notes - Lists
 
