@@ -302,9 +302,72 @@ var foo = document.getElementById('bar').innerHTML; //  GETs the HTML from eleme
 document.getEleementById('doh').innerHtml = foo;      //  SET element with ID 'doh' with value of variable 'foo'
 ```
 
-### Adding Elements Using DOM Manipulation
+### Adding and Removing Elements Using DOM Manipulation
 
-Process overview:  
+Add Process Overview:  
 
 1. Create and store a new element node with `createElement()` method into a new variable.  
-2. 
+2. Add a TextNode with text content using `createTextNode()`.
+3. Append the TextNode to the new element Node using `appendChild()`.
+
+*Note*: Duckett recommends against leaving empty elements in the HTML for later updating by javascript code.  
+
+Elements are targeted by `createElement()` using the string name e.g. `<p>` would be 'p' in the parameter.  
+
+`.appendChild()` expects an Element type object as its parameter.  
+
+Remove Element Process Overview:
+
+1. Select the element to be removed using a DOM function like `.gtElementsByTagName('p')[0]`  
+2. Select the parent node using `.parentNode` method of the variable created in step 1, above.  
+3. Call the parent Node's `.removeChild()` function and include the variable of the element to be removed.  
+
+### Updating HTML Content
+
+Document Write method: `document.write()`. Only works during page load but is fast.  
+Element InnerHtml method: `element.innerHtml`. Good for adding lots of elements to a page, and to remove lots of content by assigning a blank string as a value. Do not use to replace user-added-content (like a form). Using it could break event handlers.
+DOM Manipulation Methods: Best for changing DOM element(s), will not break event handlers. Requires a lot of code. InnerHtml is faster.  
+
+### Cross-Site Scripting Attacks
+
+Using `innerHtml` calls can allow an attacker access to the DOM, Cookies, and Session Tokens.  
+
+To ward against XSS attacks:
+
+1. Validate user input, and filter out unwanted or unnecessary characters.  
+2. Use server-side validation before submitting to the DB or displaying user data.  
+3. DBs can safely store code and markup from "trusted sources" but not outside code.  
+4. Filter outgoing content to remove potentially dangerous characters.  
+5. Carefully control what content users can add to the page.  
+6. DOM fragments from outside sources should be ignored.  
+
+Always validate user input.
+
+Always control where content goes.
+
+Escape user content at the server, i.e. `/&amp` and `/+` (js) so it is not processed as executable code.  
+
+JQuery language constructs should also be escaped so they are not processed on the server side.  
+
+*Always* control all markup and code that is entered into and read from `.innerHtml` property and `jQuery.html()` method.  
+
+### Attribute Nodes
+
+Attributes can be changed on element nodes once a reference to them is made:
+
+```javascript
+document.getelementById('header').getAttribute('for');
+```
+
+List of Methods and Properties:
+
+`getAttribute()`: Returns attribute value.  
+`hasAttribute()`: Specified attribute exists on the element.  
+`setAttribute()`: Assigns a value to the selected attribute.  
+`removeAttribute()`: Deletes the attribute from the element Node.  
+`className`: Getter/Setter of class attribute name.  
+`id`: Getter/Setter of id attribute value.  
+
+### Examining The DOM
+
+Open "Developer Tools" in the browser and select the "Elements" tab or view to see the full DOM Tree.  
