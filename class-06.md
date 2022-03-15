@@ -2,7 +2,10 @@
 
 Notes taken from Ducketts JavaScript and JQuery book while skimming Chapters 3 and 5.
 
-## Chapter 3: Objects (pg.100)
+[JS Chapter 3 Functions Methods and Objects](#chapter-3-functions-methods-and-objects-pg100)
+[JS Chapter 5 Document Object Model](#chapter-5-document-object-model-pg183)
+
+## Chapter 3: Functions Methods and Objects (pg.100)
 
 ### Introduction
 
@@ -157,7 +160,7 @@ Complex Data Types:
 
 - Object: Includes Arrays and Functions (callable/executable objects).  
 
-## Chapter 5: Docment Object Model (pg.183)
+## Chapter 5: Document Object Model (pg.183)
 
 Overview:
 
