@@ -230,6 +230,46 @@ However:
 
 ### Layout Grids
 
+Grid structures are used to help layout items on a page consistently, with controlled spacing and column counts and sizings.  
+Users can more easily find information because the layout is very predictable.  
+*spanning* columns allows widened boxes in which to place content.  
+The 12-column example in the book layous out a 940px wide window containing 12 columns that span various numbers of columns that controls where the child elements appear on the page.  
+
 ### CSS Frameworks
+
+Frameworks provide shortcuts and functionality that is otherwise difficult or not possible without them.  
+They can generate code for you or otherwise encapsulate often-used or complex syntax into a simple command possibly with some parameters.  
+Frameworks are heavily tested, and usually documented to get users up and running without having to test the solutions prior to utilizing them.  
+
+Drawbacks:
+
+Specifically for HTML and CSS, only the presentation portion of the work is done for you.  
+Frameworks can contain a *lot* of code and be more than what your project needs (or you want in the codebase).  
+
+### 960.GS Grid
+
+Many frameworks utilize a grid system for managing layouts.  
+A stylesheet is included with 960.gs to manage the layout for you - just link the HTML page to the 960.gs stylesheet.  
+Setting the number of coumns and widths of columns is fairly simple by setting class attributes.  
+
+Some other grid frameworks:  
+[blueprintcss.org](https://blueprintcss.org)  
+[lessframework.com](https://lessframework.com)  
+[developer.yahoo.com/yui/grids](https://developer.yahoo.com/yui/grids/)  
+
+### Multiple Stylesheets
+
+Use `@import` or `link` to attach multiple stylesheets to the webpage.  
+
+`@import`: Use in-line in the CSS page to import the targer stylesheet:  
+
+```css
+@import url("newsprint.css");
+@import url("tinyprint.css");
+```
+
+`<link href="stylesheet.css">`: Use within html to link the page to a stylesheet.
+
+*Remember*: The last loaded and most-specific rules take precedence.  
 
 [Back to Top](#notes-from-duckett-html-and-js-books)
