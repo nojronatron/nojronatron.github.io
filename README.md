@@ -14,6 +14,7 @@ Assignments: Prework Reading Notes
 [x] Class-07 [HTML Chpt 6 Tables; JS Chpt 3 Function, Methods, and Objects](./class-07.html)  
 [ ] Class-08 [HTML Chpt 15: CSS Layouts (revisited)](./class-08.html)  
 [ ] Class-09 [HTML Chpt 7 Forms, Chpt 14, Lists Tables Forms, JS Chpt 6 Events](./class-09.html)  
+[ ] Class-10 [JS Chpt. 10 Error Handling and Debugging](./class-10.html)  
 
 ## Reference Links
 
