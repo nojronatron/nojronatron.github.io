@@ -19,8 +19,8 @@ Assignments: Prework Reading Notes
 ## Reference Links
 
 Career Launch Strategy [Notes](./CareerLaunchStrategy.html)  
-PH Loops Session [Notes](./power-hour-notes/readme.md)  
-Linux and Terminal/Bash Reading Ntoes [Notes](./linux-terminal/readme.md)  
+Power Hour Sessions [Notes](./power-hour-notes/readme.html)  
+Linux and Terminal/Bash Reading Ntoes [Notes](./linux-terminal/readme.html)  
 Image Placeholder Generator: [place-hold.it](https://place-hold.it)  
 Build and Test FE Code: [CodePen](https://codepen.io/)  
 Find, Support, Hire Creatives: [Dribbble](https://dribbble.com/)  
