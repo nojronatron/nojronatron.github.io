@@ -113,6 +113,28 @@ Things to try when debugging errors, exceptions, and unexpected results:
 
 - Try a different browser.  
 - Log to the console to see what is output and confirm good/bad during execution.  
+- Comment out code segments and re-run, observing the behavior.  
+- Try reading the code aloud or explaining what it is doing. Talking through it often helps uncover errors.  
+- Use the interwebs: Stack Overflow, MDN, W3Scools, etc.  
+- There are many online 'code playgrounds' where ideas can be tested out and code segments can be duplicated and executed in isolation.  
+- Validation tools to check the syntax.  
+- Check case sensitivity.  
+- Verify correct variable keyword and scope are used.  
+- Confirm spellings using a search & replace utility for handle mis-keyed words and identifiers.  
+- Confirm whether an issue is `undefined`, `null`, or `NaN`. These are different types and concepts.  
+- Verify the correct TYPE is in use. Take into consideration type coersion, strictly equals, and parse or other evaluating statements.  
+
+### Resources
+
+jQuery debugger (Check the Chrome Store)  
+[JSBin.com](https://jsbin.com)  
+[JSFiddle.com](https://jsfiddle.com)  
+[Dabblet.com](https://dabblet.com)  
+[CSSDeck.com](https://CSSDeck.com)  
+[CodePen.com](https://codepen.com)  
+[JSLint.com](https://www.jslint.com)  
+[JSHint.com](https://www.jshint.com)  
+[JSONLint.com](https://www.jsonlint.com)  
 
 
 [Back to index in readme](./README.md)
