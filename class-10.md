@@ -136,5 +136,4 @@ jQuery debugger (Check the Chrome Store)
 [JSHint.com](https://www.jshint.com)  
 [JSONLint.com](https://www.jsonlint.com)  
 
-
 [Back to index in readme](./README.md)
