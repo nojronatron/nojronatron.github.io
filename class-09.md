@@ -9,7 +9,6 @@ Chapter 6: “Events” (pp.243-292)
 
 [Back to index in readme](./README.md)  
 
-
 ## HTML Chapter 7 Forms  
 
 ### Forms Basics
@@ -77,7 +76,6 @@ Place the label to the right of these input elements:
 
 - Checkboxes  
 - Radio Buttons  
-
 
 ### Grouping Form Elements  
 
@@ -226,7 +224,166 @@ Use the developer tools to view:
 
 ## JS Chapter 6 Events  
 
-..
+Preview:
+
+- Actions or state changes in the DOM are raised as an 'event' type.
+- An event type can be detected using a special asynchronous method.
+- The async method calls an event handler method that executes code.
+
+### Types of DOM Events
+
+#### UI Events
+
+UI Events occur when the user interacts with the browser user interface:
+
+- load
+- unload
+- error
+- resize
+- scroll
+
+#### Keyboard Events
+
+Keyboard Events occur when keyboard keys are manipulated:
+
+- keydown
+- keyup
+- keypress
+
+#### Mouse Events
+
+Mouse Events occur when the mouse input interacts with the UI (i.e. move or click):
+
+- click
+- dblclick
+- mousedown
+- mouseup
+- mousemove
+- mouseover
+- mouseout
+
+#### Focus Events
+
+Focus Events occur when a pointer (cursor) moves over a UI element:
+
+- focus or focusin: Element gains focus.
+- blur or focusout: Element looses focus.
+
+#### Form Events
+
+Form Events occur when Form Elements are changed or are interacted with:
+
+- input: Value has changed in `<input>`, `<textarea>`, or any element with a `contenteditable` attribute.
+- change
+- submit
+- reset
+- cut
+- copy
+- paste
+- select
+
+#### Mutation Events
+
+Mutation Events occur when the Document Object Model is modified:
+
+- DOMSubtreeModified: Change has been made to the document
+- DOMNodeInserted
+- DOMNodeRemoved
+- DOMNodeInsertedIntoDocument
+- DOMNodeRemovedFromDocument
+
+### Three Steps To Triggering JS Code
+
+1. Use DOM queries to get a reference to an element.
+2. Configure which event to listen for.
+3. Target a function to call when the event is raised.
+
+#### Bind an Event to an Element
+
+Use HTML Event Handlers.
+
+- These are HTML element attributes.
+- Do *not* use these as it is not considered bad practice.
+
+Use DOM Event Handlers.
+
+- Can attach a single function to a single event handler.
+- Create a reference to the element to listen to which can then be bound to a function to execute.
+- Call the function to execute using the syntax elementRef.on*event* = *function_to_execute*;
+
+```javascript
+let elementRef = getElementById('click-me-button'); //  get a ref to the element
+elementRef.onclick = function_to_execute;           //  select action member to ref element then assign the function name to execute
+```
+
+You can do the following when defining DOM Event Handlers
+
+1. Use a named function or anonymous function when the event fires.
+2. Acquire a reference to the target element using `.getElementById('')`.
+3. Omit the parentheses following the method name to ensure it does not run upon script load.
+
+DOM Level 2 (yr.2000) Event Handlers
+These are preferred and described in detail, below.
+##### DOM Events and Keyword 'this'
+
+Most browsers allow using the 'this' keyword as the context of the event is carried with the function call.  
+*Note*: IE 8 and earlier select the wrong context when the keyword 'this' is used.
+
+### DOM L2 Event Listeners
+
+Newer style, considered *best practice*.  
+Not supported in older browsers.  
+Can trigger multiple functions per listener.  
+
+Example DOM L2 Event Listener:
+
+```javascript
+let elName = document.getElementById('id_name');
+elNameaddEventListener(`event`, functionName [, Boolean]);
+```
+
+Components of an event listener:
+
+1. Acquire a ref to the element to bind the listener to.
+2. Define the listener: 'element to target'.'addEventListener_method'('event-name', 'function-to-call-no-parens');
+
+Example usage to check users input on a form *[Duckett, pg255]*:
+
+```javascript
+function checkUsername() {
+  var elMsg = document.getElementById('feedback');
+  if (this.value.length < 5) {
+    elMsg.textContent = 'Username must be 5 characters or more.';
+  } else {
+    elMsg.textContent = '';
+  }
+}
+
+var elUsername = document.getElementById('username');
+elUserName.addEventListener('blur', checkUsername, false);
+```
+
+*Note*: The last parameter of .addEventListener, "false" is optional and refers to a state called "capture" which will be addressed later.  
+*Also Note*: Prefix keyword 'on' is not used in L2 DOM Event Listeners.  
+*Key Detail*: Use DOM "Level 2" Event Listeners, not the previous methods.  
+
+### Remove An Event Listener
+
+Built-in member '.removeEventListener()' is used to accomplish this.
+
+### Event Listeners, Parameters, and Anonymous Functions
+
+When binding a function to an event listener, parentheses are not allowed, otherwise the called function is executed immediately.  
+An anonymous function allows passing arguments to an event handler:
+
+```javascript
+/*  replaces elUserName.addEventListener('blur', checkUsername, false); */
+el.addEventListener('blur', function() {
+  checkUsername(5);
+}, false);
+```
+
+
 
 [Back to top](#notes-from-duckett-html-and-js-books)  
 
