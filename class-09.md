@@ -112,7 +112,115 @@ Duckett Pg.171-172 have example code of Form features and usage.
 
 ## HTML Chapter 14 Lists Tables Forms  
 
-..
+### List Styles
+
+Many CSS properties target Lists, Tables, and Forms.
+
+List Type: `list-style-type`: decimal; decimal-leading-zero; lower-alpha; upper-alpha; lower-roman; uppoer-roman.  
+Image Style: `list-style-image`: url("image-file-path"). Use `margin:` property to change whitespace between list items (usually vertically).  
+Position: `list-style-position`: inside or outside. Positions the list-style-image inside (indented) or outside the block of text that follows. Think of outside as left-justified text with hanging icons, and inside as indented text with in-line icons.  
+Short-hand List-Style: `list-style`: Consolidate all properties from type, image, and position, into a single css statement.  
+
+### Table Styles
+
+There are many table properties that can be set, customizing the look of table elements.  
+Below is a list with important to-do items highlighted:  
+
+- width: Table width.  
+- *padding*: Around cells.
+- *text-transform*: Converts text up upper-case.  
+- letter-spacing & font-size: Applies to header cells.  
+- border-top and border-bottom
+- *text-align*: cell-level property aligns text left or right within the cell. *Numbers to the right* and *alpha to the left*.
+- *background-color*: Apply this to header row/columns to make them stand out.  
+- `:hover`: Highlights a table row when moust hovers over a cell.  
+
+Also:  
+
+- Use bold fonts for header rows/cols.
+- Set tr.even{} and tr.odd{} selectors to alternate row shading.  
+
+#### Additional Table Styling Properties
+
+`empty-cells: [show | hide];`: Show, hide, and inherit.  
+`border-spacing`: Controls gap in px between adjacent cells. Use Ypx and Xpx where Y-axis separation and X-axis separation need to be different.
+`border-collapse: [collapse | separate];`: Border is collapsed into single border where applicable.  
+
+### Styling Forms
+
+Forms have a bad reputation: Nobody likes to fill them out.
+As a developer it is your job to make the form more interesting (or less boring or annoying) for users.
+Making forms look consistent across browsers is difficult, especially for `<select>` elements.  
+
+Reference: Check out form consistency styling code at [Formalize Me](https://formalize.me/).  
+
+#### Stylizing Text Inputs
+
+Several CSS properties are commonly used to style inputs type=text:
+
+- font-size
+- color
+- background-color
+- border
+- border-radius
+- :focus Pseudo-class enables changing CSS properties to change appearance when input has focus (is being used)
+- background-image will place an image within the input and should be carefully designed to help the user understand the purpose of the input element
+
+#### Stylizing Submit Buttons
+
+Input button element inherits styles applied to the parent form.
+Other CSS styling properties commonly used are:
+
+- color
+- text-shadow
+- border-bottom
+- background-color: Can also utilize gradients to further stylize
+- :hover pseudo-class enables changing the appearance of the button when the mouse passes over the button
+
+#### Fieldsets and Legends
+
+- width
+- color Controls TEXT color within the fieldset or legend
+- background-color
+- border
+- border-radius
+- padding Adds space within the fieldset and leged elements
+
+Tips of aligning form items:
+
+- Place `<div>` elements with class CSS selectors between the form elements.
+- Use `<span>` with a class CSS selector as a labelling mechaism *prior* a group of radio buttons.
+  - The Label element is still required and needs to be wired-up via the `for=''` attribute.
+  - Both span and label elements should have a class CSS selector set to the same style properties and settings.
+- Set all `<input type='text'>` elements to the same width (if possible).
+- Use `float` property to move elements horizontally to get them into alignment.
+- `text-align` can be used to set the titles to the left or right, to set consistent spacing between the titles and the form controls.
+- Apply styles to the `<div>` elements containing each row of the form to fix their widths and create vertical space between rows, and to ensure any buttons (e.g. `<button type='submit'>`) is aligned. Suggestion is to align it to the right-hand side of the form.
+
+#### Cursor Styles
+
+Commonly used values for the `cursor: n;` property:
+
+- auto
+- crosshair
+- default
+- pointer
+- move
+- text
+- wait
+- help
+- url(path)
+
+### Web Developer Tools
+
+Duckett refers to a downloadable toolset for browsers, however modern browsers already have highly capable developer tools natively.
+Use the developer tools to view:
+
+- site structure
+- css application
+- javascript results
+
+...and many more DOM and BOM properties and settings.
 
 [Back to top](#notes-from-duckett-html-and-js-books)  
 
