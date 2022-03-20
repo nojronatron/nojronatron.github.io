@@ -389,7 +389,7 @@ el.addEventListener('blur', function() {
 2. Binding an event listener to an element does not allow adding parameters.
 3. Add an anonymous function, and include the necessary parameters within the anonymous function so they get passed to the event handler when the event listener fires.
 
-Reminder: How to build an anonymous function that calls another function and supplies parameters:
+Reminder: How to build an anonymous function that supplies parameters to, and calls another function:
 
 ```javascript
 /*  a named function can be called and can take parmeters */
@@ -405,6 +405,125 @@ let foo = function() {
 /*  call and return the result  */
 console.log(foo());
 ```
+
+To implement this with event handlers *[Duckett, pg257]*:
+
+```javascript
+/* global variables */
+let elUsername = document.getElementById('username');
+let elMsg = document.getElementById('feedback');
+
+/* create the function to be called when the event handler fires */
+function checkUsername(minLength){
+  if (elUsername.value.length < minLength) {
+    //  Set the error message
+    elMsg.textContent = 'Username must be ' + minLength + ' characters or more';
+  } else {
+    elMsg.innerHTML = '';
+  }
+}
+
+/* create an event listener with an anonymous function that passes params to checkUsername */
+elUsername.addEventListener('blur', function() {
+  checkUsername(5);
+}, false);
+```
+
+#### IE 8 and Event Listeners
+
+*not supported*  
+Use 'attachEvent()' instead.  
+Work-around: Test to see if `.addEventListener` is true or false, then take approprate action.  
+Example from *[Duckett, pg258]*  
+
+```javascript
+if (el.addEventListener){
+  // codeblock using el.addEventListener like before
+  } else {
+    el.attachEvent('onblur', function() {
+      checkUsername(5);
+    });
+  }
+```
+
+### Event Flow
+
+HTML element nesting effects how events flow.  
+Event flow is the Bubbling (up from element to Document) or Capturing (down from Document) of events as seen by elements (bubling) and by listeners (capturing).  
+Firing an event on a child element also fires an event on the parent element(s) all the way up to the DOM.  
+Event Listeners can be bound to DOM *and* the Window object, *in addition* to the specific element declared in its binding statement.  
+Event Flow matters when handlers bound to an element *and one of its ancestors*.  
+The '.addEventListener()' method allows configuring of the phase the eventListener will respond to: Capturing or Bubbling:  
+
+- Seen earlier as 'Event Flow Boolean'.  
+- true: Trigger events during Capturing Phase of event flow => From the Document level to the Target Element.  
+- false: Trigger events during the Bubbling Phase of event flow => From the Target Element to the Document level.  
+
+The event object has properties that describe when and where the event was raised:  
+
+- target (srcElement in IE8): The targeted element in the binding.  
+- type: The event type that was raised.  
+- cancelable (not in IE8): Enables canceling the default element behavior.  
+
+Event object methods:
+
+- preventDefault() (returnValue in IE8): Cancels default event behvior if cancelable is true.  
+- stopPropagation() (cancelBubble in IE8): Stops event from bubbling / capturing further down the event flow.  
+
+Event Listeners can get a reference to the event object in the following ways, with or without parameters:  
+
+```javascript
+// No parmeters
+function foo(e) {
+  var targetOfEvent = e.target; // gets target of event
+}
+var el = document.getElementById('el_id');
+el.addEventListener('blur', foo, false); // call foo() and block bubbling
+}
+```
+
+```javascript
+// With parameters
+function foo(e, param1) {
+  var targetOfEvent = e.target; // gets target of event
+}
+var el = document.getElementById('el_id');
+el.addEventListener('blur', function(e) { // define anonymous function to execute
+  foo(e, 5);  // call function foo with parameter of 'e' and 5
+}, false);  // execute anonymous function with args and block bubbling
+```
+
+### Event Object Differences in IE
+
+Internet Explorer 5 through 8 use a slightly different model.  
+Event object is not automatically passed around, instead a reference to 'window.event' must be initialized, then the properties can be accessed to use the event payload.  
+See Duckett, Pg. 264 for examples.  
+
+### Event Delegation
+
+Event flows allows listening for events on parent elements.  
+
+- Reduces the number of listeners you need to create.  
+- Reduces memory consumption.  
+
+Place event handlers on a containing element.
+Use 'event.target' property to find child that event happened on.  
+For example, place the event listener on the `<ul>` element rather than each `<li>` item!
+This is called Event Delegation.
+
+Benefits of Event Delegation:
+
+- New DOM elements inherit the parent in their event bubbling path.  
+- IE 8 doesn't support the 'this' keyword. With delegation the event.target is explicitly filtered.  
+- Write fewer functions in JS and still get desired effects.  
+
+### Changing Default Behavior
+
+preventDefault (returnValue in IE8): Blocks default behavior of some elements that would normally refresh a page or open a new one after firing a click event (like a Form).  
+stopPropagation (cancelBubble in IE8): Once an event is handled in code, stopPropagation() should be called so no other elements have to respond to the event bubbling.  
+Optional (popular, not necessarily the best choice): 'return false;'. This tells the executing code to exit the current function, which effectively stops bubbling *and* default behavior, but it also forces the code to jump to a parent function, which might not be the best path for code execution at that time.  
+
+
 
 
 
