@@ -270,9 +270,78 @@ Common Third Party Tools:
 
 ## MDN Aricle: Video and Audio APIs
 
+Source: [MDN: Video and Audio APIs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Video_and_audio_APIs)
+
+Embed rich media content using tags `<video>` and `<audio>`.
+Supply a `<p>` tag immediately following the audio or video elements for unsupported browsers, providing a link to the source video file.  
+The attribute `controls` in a video or audio element tells the browser to show start/stop and other controls in the window.  
+HtmlMediaElement HTML5 API provides .stop() and .play() functions.
+HTML5 Native Player controls are all defined within HTML.  
+Use multiple `<video src=""...` elements to point to different files to support multiple media types/encodings (e.g. MP4 and WEBM).  
+Attribute `aria-label=""` is used to provide a readable button purpose description like 'Play'.  
+Style the native controls using CSS.  
+
+The following css snippets are from [MDN's Client Side Audio and Video APIs documentation](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Video_and_audio_APIs)  
+
+```css
+.video-controls {
+  visibility: hidden; /* use javascript to show the player */
+  opacity: 0.5;       /* mute control so it is visually distracting */
+  width: 400px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  margin-left: -200px;
+  background-color: black;
+  box-shadow: 3px 3px 5px black;
+  transition: 1s all;
+  display: flex;      /* control the layout of the buttons in the player */
+}
+
+.player:hover .controls, player:focus .controls {
+  opacity: 1;
+}
+```
+
+```css
+@font-face {            /* import custom font */
+   font-family: 'HeydingsControlsRegular';
+   src: url('fonts/heydings_controls-webfont.eot');
+   src: url('fonts/heydings_controls-webfont.eot?#iefix') format('embedded-opentype'),
+        url('fonts/heydings_controls-webfont.woff') format('woff'),
+        url('fonts/heydings_controls-webfont.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+}
+
+button:before {             /* display content before button element */
+  font-family: HeydingsControlsRegular; /* custom font family makes 'P' a play icon intead of alpha-numeric' */
+  font-size: 20px;
+  position: relative;
+  content: attr(data-icon); /* displays the content of data-icon as the button content e.g. 'P' for play */
+  color: #aaa;
+  text-shadow: 1px 1px 0px black;
+}
+```
+
+The API documentation shows how to build an animated timer that tracks video progress. It uses HTML, CSS, and JavaScript to accomplish this.
+The JavaScript uses DOM `.querySelector('')` methods to make references to all of the player controls including the timer bar.  
+Also, JavaScript functions are used to define event listeners and event handlers to manage user-clicks on the controls, executing API calls to `media.play()`, `media.pause()`, etc.  
+And `ended` event will fire when the video reaches the end of teh media, so an event handler must be implemented to handle it.  
+The API has `media.currentTime` and `media.duration` properties that indicate where in the media the player is 'at' and how long the media is in its entirety. In the API example, these are used to define the behavior of the timer element and animation.  
+The DOM 'event' type captures mouse click (x,y) location information with it, and that can be used to implement a 'click-and-seek' function where a user can click anywhere in the seek bar, and the media will move to that location.  
+
+### Jons Key Takeaway
+
+APIs contain the capability to manage data in programming languages.  
+In JavaScript, EventListener and EventHandler methods are used to capture events (like mouse click), that then call API methods to cause the desired effect.  
+In the case of an API like HTML5 Media, calling 'media.play()' after a mouse click event is faily simple and the user sees immediate results.  
+Other API calls mights require some pre-processing of information: User-input data, API.property information, time-of-day, etc.  
+
 ## Chapter 9: Flash
 
-Althouht an older, deprecated technology, Flash had a large impact on the internet, then and now.  
+Although Flash is an older, deprecated technology, Flash had a large impact on the internet, then and now.  
 Authoring Flash content usually required software licensed from Adobe - some other unlicensed tools were available.  
 HTML tags `<object>` and `<embed>` were used to add Flash to websites but later JavaScript was used instead.  
 Flash `.fla` files were run within a browser using the Flash Player plugin.  
