@@ -383,6 +383,29 @@ el.addEventListener('blur', function() {
 }, false);
 ```
 
+*Key Concepts*:
+
+1. Event handlers can take zero, or many parmeters - they are just a regular function after all.
+2. Binding an event listener to an element does not allow adding parameters.
+3. Add an anonymous function, and include the necessary parameters within the anonymous function so they get passed to the event handler when the event listener fires.
+
+Reminder: How to build an anonymous function that calls another function and supplies parameters:
+
+```javascript
+/*  a named function can be called and can take parmeters */
+function FooBar(param1, param2) {
+  return `${param1} to the ${param2}`;
+}
+/*  anonymous functions have no name and are called immediately  */
+let foo = function() {
+  let param1 = 'foo';
+  let param2 = 'bar';
+  return FooBar(param1, param2);
+};
+/*  call and return the result  */
+console.log(foo());
+```
+
 
 
 [Back to top](#notes-from-duckett-html-and-js-books)  
