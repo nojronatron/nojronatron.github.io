@@ -324,6 +324,7 @@ You can do the following when defining DOM Event Handlers
 
 DOM Level 2 (yr.2000) Event Handlers
 These are preferred and described in detail, below.
+
 ##### DOM Events and Keyword 'this'
 
 Most browsers allow using the 'this' keyword as the context of the event is carried with the function call.  
@@ -522,6 +523,81 @@ Benefits of Event Delegation:
 preventDefault (returnValue in IE8): Blocks default behavior of some elements that would normally refresh a page or open a new one after firing a click event (like a Form).  
 stopPropagation (cancelBubble in IE8): Once an event is handled in code, stopPropagation() should be called so no other elements have to respond to the event bubbling.  
 Optional (popular, not necessarily the best choice): 'return false;'. This tells the executing code to exit the current function, which effectively stops bubbling *and* default behavior, but it also forces the code to jump to a parent function, which might not be the best path for code execution at that time.  
+
+### Using Event Delegation
+
+Step by step instructions (1-13) are listed in Duckett pg.268.
+Example HTML and JavaScript captured on Duckett pg.269.
+
+*Use the above as a guide to implement Event Delegation*.
+
+### Which Element Did An Event Occur On
+
+First look to the 'target' property of the event object.
+Optionally, use keyword 'this', which points to the event.target property automatically, but only works when no parameters are passed.  
+When parameters must be passed, pass them via an anonymous method and also pass a reference to the event.target element as an additional element. This was the event.target context can still be acquired at the called method.  
+
+### Different Types of Events
+
+Events are defined in: W3C DOM spec; HTML5 spec; Browser Object Models' specs.  
+
+#### W3C DOM Events
+
+DOM events provide information about the source element of the event, keyboard key info, and mouse location and state info.   
+
+#### HTML5 Events
+
+Browsers are programmed to respond to HTML5 specified events.
+
+- Form submission events: submit; input; change.  
+- Some newer events that might not have wide browser support: readystatechange; DOMContentLoaded; hashchange.  
+
+#### BOM Events
+
+The Browser Object Model is also supported by the browsers.  
+BOM events are usualy events that are not yet covered by the W3C specifications.  
+Touch-screen events are relatively new and might be in BOM rather than HTML5 event specs:  
+
+- touchstart
+- touchend
+- touchmove
+- orientationchange
+
+*Note*: The newer to event (within whichever model), the less likely all browsers will support it. Try to implement back-up functions for unsupported event types so your website does not break.  
+
+#### User Interface Events
+
+Interaction with the browser window will fire UI events:
+
+- load: Web page has finished loading.  
+- unload: New page has been requested and current page is removed.  
+- error: JS errors on non-existent assets.  
+- resize: Browser window has resized.  
+- scroll: Entire page or page segment scrolls by the user/mouse/keyboard.  
+
+Utilize the 'load' event on early-running scripts to trigger things like:  
+
+- cursor placement into a form input element.  
+- animation or other "you made it" type of messages or interactive messages or activities.  
+
+Listen for these events by attaching an event handler method to the Window model.  
+
+*Note*: Waiting to run the script at the bottom of the HTML might result in unintended concequences like moving a user's cursor after they've already filled out a form element or two.  
+
+### Focus and Blue Events
+
+Gaining focus is when a cursor is over the area of another element on the web page.
+Focus-oriented events fire when the cursor enters or leaves the element's view.  
+
+Event - Trigger - Flow  
+focus: Element gains focus. Capture flow.  
+blur: Element loses focus. Capture flow.  
+focusin: Element gains focus (except maybe FF). Bubble and Capture flow.  
+focusout: Element loses focus (except maybe FF). Bubble and Capture flow.  
+
+focus and blur are good events to add UI features like ToolTips or other hints.
+focus and blur are also good events to add or remove color, shadow, or other effects to UI elements.  
+focus and blur can also be used to fire 'validation code' in the background so the user gets quick feedback on whether they need to correct form entries prior to hitting 'submit'.  
 
 
 
