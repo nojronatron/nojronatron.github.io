@@ -52,10 +52,46 @@ The 'type="hidden"' attribute will hide a form control (browser will not render 
 
 `<label>`
 
+Use one for each form element, and bind them together either through nesting or using the `for=""` attribute.  
+The `for=''` attribute binds the label with the input via the input elements `id=''` attribute.  
+
+```html
+<!-- nested -->
+<label>First Name: <input type='text' name='firstName' /></label>
+
+<!-- using for attribute -->
+<label for='lastName'>Last Name:</label>
+<input type='text' name='lastName' id='lastName' />
+```
+
+#### Best Practice for Placing Labels
+
+Place the label above or to the Left of the input element:
+
+- Text Input
+- Text Areas
+- Select Boxes  
+- File Uploads  
+
+Place the label to the right of these input elements:  
+
+- Checkboxes  
+- Radio Buttons  
+
+
 ### Grouping Form Elements  
 
 `<fieldset>`  
+
+- Groups sets of Form elements together.  
+- Helpful especially with longer forms.  
+- Use CSS to style the fieldset default look-and-feel e.g. change the border type and color, etc.  
+
 `<legend>`  
+
+- Immediately follows `<fieldset>`  
+- Used to describe the form in its entirety.  
+- Text appears as the form title when rendered.  
 
 ### HTML5 Form and Input Concepts  
 
