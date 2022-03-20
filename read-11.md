@@ -10,7 +10,6 @@ Skim over [Chapter 9: pp.201-206 re: Flash (as a history lesson)](#chapter-9-fla
 
 Keep your HTML markup clean by using CSS to control the placement, style, and orientation of images on the website.  
 
-
 ### Controlling Image Size using CSS
 
 The `width` or `height` properties in CSS control image size and help the browser to load the page more efficiently.  
@@ -159,6 +158,116 @@ When setting a background image behind text:
 
 ## Chapter 19: Practical Information
 
+SEO, Analytics, and Putting Your Site on the Web.
+
+### Search Engine Optimization
+
+SEO is the art of increasing chances your website will appear in search engine results.  
+Search Engines look at:  
+
+- The content on your site.  
+- How many sites link to your site.  
+
+On-page Techniques are things you can do to improve your site's search ranking:  
+
+- Images should have text in their `alt=` attribute.  
+- An appropriate page `<title>`.  
+- Use of keywords in filenames (URL components).  
+- Include keywords in `<h1-6>` elements.  
+- Repeat keywords in the content / text.  
+- Link text includes keywords.  
+- The meta `description` tag should include a good site description that includes keywords.  
+
+### Keywords and Phrases
+
+Duckett suggests six tasks to perform when developing keywords and phrases for your site:
+
+1. Brainstorm: How would potential visitors search for your site? What words would they use? What phrases might they use to find sites they are interested in?
+2. Organize: Categorize keywords and phrases into areas associated with pages or sections of your website.  
+3. Research: Add suggestions of additional keywords and suggestions provided by keyword tools online (see list below).  
+4. Compare: Keyword research sites can show how popular certain keywords and phrases are, and will give you an idea as to how much competition might be out there.  
+5. Refine: Create a sub-list of keywords and phrases that will be the ones you focus on the most. Ensure the keywords and phrases are related enough that when put together they still associate closely with the goals and services of your website (and not some other site).
+6. Map: Select a few keywords and phrases from each of the page categories created in step 2, and plan to use these on the site pages. Avoid repeating the words and phrases on the pages, although some repition is appropriate.
+
+### Analytics
+
+Once your site is published you will want to learn how often your home page is loaded and other related information.
+Google Analytics provides tracking code for your site that reports site visits back to Google, and access to a site with reports showing site visit data and trends.  
+
+There are several analytic properties:
+
+- Visits: Browsers that open a page on your site are counted.  
+- Unique Visits: The number of visits by unique browsers over a specified timeframe.  
+- Page views: Total page views by all visitors.  
+- Pages Per Visit: An averaged number.  
+- Avg Time On Site: Estimated average time each 'user' spent on the site.  
+
+#### What Are Your Visitors Looking At?
+
+- Pages: Which pages were viewed.  
+- Landing Pages: The page visitors arrive to the site on.  
+- Top Exit Pages: The last page viewed before the visitor left the site.  
+
+Reference: [Google Analytics](https://www.google.com/analytics)  
+
+#### Where Are Your Visitors Coming From?
+
+- Referrers: Sites that have linked to your site.  
+- Direct Search Terms: Visitors that arrived to the site NOT via a referring link i.e. via search engine, address typed into URL bar, links from within documents, etc.  
+
+### Domain Names and Hosting
+
+- Domain Name: The web address of your site.  
+- Web Hosting: Internet-connected web servers that host your website pages.
+
+Web Hosting Services have various offerings in terms of:
+
+- Disk Space
+- Bandwidth
+- Backups: Do you have to backup your own site or will the hosting service do backups and restoration for you?
+- Email Accounts: It can be handy to have this provided by a hosting service.
+- Server-side Languages and Databases: Some hosts require using a specific language to access back-end services like databases. Know what the service offers (or requires).
+
+Hosted Services do a majority of the web hosting and managing services for you, and could provide a web-development interface, but might not include email:
+
+- WordPress  
+- Tumblr  
+- Posterous  
+- Big Cartel (e-commerce)  
+- Shopify (e-commerce)  
+
+### FTP and Third Party Tools
+
+FTP is a file transfer tool that allows you upload your website files to the webserver.  
+There are GUI versions and terminal FTP programs that will do the trick.  
+
+Common FTP Tools:
+
+[FileZilla](https://www.filezilla-project.org/)  
+[FireFTP](https://www.fireftp.mozdev.org)  
+[CuteFTP](https://www.cuteftp.com)  
+[SmartFTP](https://www.smartftp.com)  
+[Transmit](https://www.panic.com/transmit)  
+
+Common Third Party Tools:  
+
+[WordPress](https://www.wordpress.com)  
+[tumblr](https://www.tumblr.com)  
+[posterous.com](https://www.posterous.com)  
+[Shopify](https://www.shopify.com)  
+[BigCartel](https://www.bigcartel.com)  
+[Go Magento](https://go.magento.com)  
+[Campaign Monitor](https://www.campaignmonitor.com)  
+[MailChimp](https://www.mainchimp.com)  
+[AddThis.com](https://www.addthis.com)
+[AddToAny.com](https://www.addtoany.com)  
+
+#### Keyword and Phrase Tools
+
+[Google AdWords](https://www.adwords.google.co.uk/select/KeywordToolExternal). Use the 'exact match' option.  
+[Word Tracker](https://www.wordtracker.com).  
+[Keyword Discovery](https://www.keyworddiscovery.com).  
+
 ## MDN Aricle: Video and Audio APIs
 
 ## Chapter 9: Flash
@@ -179,7 +288,7 @@ Using a hosting service also simplifies transcoding...it is done for you.
 
 ## Additional Resources
 
-Mozilla Developer Network: [Video and Audio APIs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Video_and_audio_APIs)
+Mozilla Developer Network: [Video and Audio APIs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Video_and_audio_APIs)  
 
 ## Back to Readme.md
 
