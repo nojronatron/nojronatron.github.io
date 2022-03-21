@@ -634,8 +634,34 @@ There is a hierarchy with the properties beginning with 'key':
 2. then keypress if user pressed a key that adds content to the page.  
 3. keyup when the user releases the key that was pressed.  
 
+#### Which Key Was Pressed?
 
+ASCII keycodes are used under the hood to encode and decode keypress values.  
+Event property keyCode is included when the firing event is from keydown or keypress.  
+'keyCode' returns an ASCII code representing the key value that was pressed.  
+Use the String method 'String.fromCharCode(event.keyCode)' to get the key value.  
 
+### Form Events Revisited
+
+Three events are generated from Forms:
+
+- submit: Happens when the Form is submitted. Attached to the Form element.  
+- change: Generated when a selection box is changed, or a radio button or checkbox are clicked. *Preferred over click event detection* because most elements can be operated by keyboard input only, in addtion to mouse actions.  
+- input: Occurs when an `<input>` or `<textarea>` element are changed.  
+
+*[Duckett, Pg.283]* has a full page example of code showing how to use Form Events.  
+
+### Mutation Events and Observers
+
+A structural change in the DOM generates Mutation Events. They include:
+
+- DOMNode Inserted  
+- DOMNodeRemoved  
+- DOMSubtreeModified  
+- DOMNodeInsertedIntoDocument  
+- DOMNodeRemovedFromDocument  
+
+Relying on mutation events can cause your code to operate slowly when it is making many changes to teh DOM.
 
 [Back to top](#notes-from-duckett-html-and-js-books)  
 
