@@ -662,6 +662,17 @@ A structural change in the DOM generates Mutation Events. They include:
 - DOMNodeRemovedFromDocument  
 
 Relying on mutation events can cause your code to operate slowly when it is making many changes to teh DOM.
+*Mutation Observers* wait until the script has completed before firing the Mutation Event(s).
+*Note*: Browser support for Mutation Events might be lacking, check the latest MDN Documentation for up-to-date info.  
+*[Duckett, Pg.285]* has a full page example of code showing how to use Mutation Events.  
+
+### HTML5 Events Revisited
+
+Three new HTML5 events have been implemented:
+
+DOMContentLoaded: Event generated when the DOM Tree forms. Event could be attached to Window or Document object. Timing issues between page load and script execution should be mostly resolved by this.  
+hashchange: If URL changes (non-refresh) this event is generated. This event's handler is attached to the Window object with properties of 'oldurl' and 'newurl'.  
+beforeunload: Generated and attached to Window object, prior to a page being unloaded. Only use to help the user prior to page unloading, such as "are you sure" type of interactions like leaving the site.  
 
 [Back to top](#notes-from-duckett-html-and-js-books)  
 
