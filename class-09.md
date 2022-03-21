@@ -543,7 +543,7 @@ Events are defined in: W3C DOM spec; HTML5 spec; Browser Object Models' specs.
 
 #### W3C DOM Events
 
-DOM events provide information about the source element of the event, keyboard key info, and mouse location and state info.   
+DOM events provide information about the source element of the event, keyboard key info, and mouse location and state info.  
 
 #### HTML5 Events
 
@@ -599,10 +599,44 @@ focus and blur are good events to add UI features like ToolTips or other hints.
 focus and blur are also good events to add or remove color, shadow, or other effects to UI elements.  
 focus and blur can also be used to fire 'validation code' in the background so the user gets quick feedback on whether they need to correct form entries prior to hitting 'submit'.  
 
+### Mouse Events Revisited
+
+These fire upon mouse movements and clicks.
+
+click: Fires when primary mouse button is clicked. Source is the element that has focus. A screen tap is equivalent to a Click event.  
+dblclick: Two rapid-succession clicks. Single event. Otherwise same as click.  
+mousedown: Any mouse button is depressed. touchstart is equivalent.  
+mouseup: Any mouse button is released. touchend is equivalent.  
+mouseover: Mouse cursor enters the border of an element. Same in touch.  
+mouseout: Mouse cursor leaves the perimeter of an element. Same in touch.  
+mousemove: Fires repeatedly when cursor moves near an element. Same in touch.  
+
+*Note*: Preferrable to use ':hover' pseudo-class instead of mouseover or mouseout to style elements on those actions.  
+
+### Where Events Occur
+
+Screen: Cursor position values within the *screen* are stored in properties screenX and screenY.  
+Page: Cursor position values within the entire *page* are stored in properties pageX and pageY.  
+Client: Cursor position values within the *viewport* are stored in properties clientX and clientY.  
+
+*Note*: Check out the JavaScript example leveraging screenx and screeny in *[Duckett, pg.279]*.  
+
+### Keyboard Events Revisited
+
+input: When `<input>` or `<textarea>` elements are changed this event is fired. Use 'keydown' as a fallback for older browsers.  
+keydown: Fired when a key is depressed. Multiple fires will occur when key is held down.  
+keypress: Only fires when the user is typing a key that would result in text being added to an input. Arrow keys etc are not included.  
+keyup: Fires when a keyboard key is released, but only *after* it is released fully.  
+
+There is a hierarchy with the properties beginning with 'key':
+
+1. keydown fires 1st.
+2. then keypress if user pressed a key that adds content to the page.  
+3. keyup when the user releases the key that was pressed.  
 
 
 
 
 [Back to top](#notes-from-duckett-html-and-js-books)  
 
-[Up one level](./README.md)  
+[Up one level](./README.md)
