@@ -104,6 +104,12 @@ Lines can be styled with:
 
 [MDN > Canvas API > Drawing Text](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_text)
 
+Drawing text has its own set of methods:
 
+- fillText(): solid text characters
+- strokeText(): outlined text characters
+- font, alignment, and direction are all available modifiers
+
+*Note*: Prefixed APIs have been removed from FireFox and other Mozilla apps.
 
 [Back to index in readme](./README.md)
