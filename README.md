@@ -16,6 +16,7 @@ Assignments: Prework Reading Notes
 [ ] Class-09 [HTML Chpt 7 Forms, Chpt 14, Lists Tables Forms, JS Chpt 6 Events](./class-09.html)  
 [ ] Class-10 [JS Chpt. 10 Error Handling and Debugging](./class-10.html)  
 [ ] Read-11 [HTML Chpt.16, 19, 9, and MDN Article on Video and Audio APIs](./read-11.html)  
+[ ] Read-12 [ChartJS and Canvas API](./read-12.html)  
 
 ## Reference Links
 
