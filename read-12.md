@@ -85,7 +85,20 @@ Make quadratic or bezier shapes and patterns!
 
 [MDN > Canvas API > Applying Styles and Colors](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors)  
 
+Color is added using `fillStyle()` and `strokeStyle()` methods.  
+*Note*: These methods are 'sticky', meaning once set, following drawing commands will use them, until the methods are changed again.  
 
+Transparency is possible using globalAlpha property or by assining a semi-transparent color to the stroke/fill style.  
+RGBA() fillStyle() properties provide a bit more control over the hue and brightness.  
+Lines can be styled with:  
+
+- Width
+- Dashed or solid
+- Cap: how the end of the line is styled
+- Join
+- setLineDash() and lineDashOffset()
+- gradients: linear, radial and conical
+- various 'patterns'
 
 ## Mozilla Developers Network Canvas API Drawing Text
 
