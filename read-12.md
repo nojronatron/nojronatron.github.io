@@ -22,7 +22,7 @@ Chart options are JSON data to set values and colors.
 Line, Pie, and Bar charts were shown as baseline examples.
 Chart animation is fairly straightforward, just set a property or two.
 
-Article Source: *[SARA VIEIRA, freelance Web Designer and Developer](https://iamsaravieira.com/)  
+Article Credit: *[SARA VIEIRA, freelance Web Designer and Developer](https://iamsaravieira.com/)  
 
 ## Chart.js Home Page
 
@@ -46,10 +46,51 @@ Resizing/responsiveness is possible however a specific set of configurations mus
 
 [MDN > Canvas API > Basic Usage](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_usage)  
 
+Think of the `<canvas>` element as an `<img>` element but without src or alt attributes.  
+Width and Height are the only attributes.  
+CSS Styling and DOM Manipulation can be acquired through Class or ID attributes.  
+CSS Rules applied to a Class or ID or parent of the Canvas element do not change the Chart style, rather the container surrounding the chart.  
+A closing tage is *required*.  
+Apply alternate content by putting it between elements, i.e.:
+
+```html
+<canvas id='stock-chart' heigh='100px' width='100px'>Stock Chart is not available</canvas>
+```
+
+Two- and Three-dimensional chart renderings are available.  
+To test for support, execute `canvas.getContext()` and use the result to render a canvas or something else.  
+MDN has several minimalist examples that could probably be used as boilerplate.
+
+## Mozilla Developers Network Canvas API Drawing Shapes
+
 [MDN > Canvas API > Drawing Shapes with Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes)  
+
+The drawing 'grid' (Coordinate Space) is how the canvas drawing space is described.  
+Coord (0,0) is at the top-left corner, so (x,y) pixels are targeted accordingly.  
+
+Two shapes are supported:  
+
+- Rectangles: These can be filled, outlined, or transparent.  
+- Paths: Line segments. Stroke() is the brush stroke creating the line; Fill() draws a solid shape by filling between lines.  
+
+Draw Triangles using LineTo() and MoveTo().  
+Draw other objects or free-form using Paths and Arcs.  
+
+MoveTo() moves the 'pen' to a new location, to start drawing elsewhere on the canvas.  
+
+Use Loops to make many drawings!  
+Make quadratic or bezier shapes and patterns!  
+
+## Mozilla Developers Network Canvas API Style and Color
 
 [MDN > Canvas API > Applying Styles and Colors](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Applying_styles_and_colors)  
 
+
+
+## Mozilla Developers Network Canvas API Drawing Text
+
 [MDN > Canvas API > Drawing Text](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_text)
+
+
 
 [Back to index in readme](./README.md)
