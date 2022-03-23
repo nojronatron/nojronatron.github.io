@@ -17,6 +17,7 @@ Assignments: Prework Reading Notes
 [ ] Class-10 [JS Chpt. 10 Error Handling and Debugging](./class-10.html)  
 [ ] Read-11 [HTML Chpt.16, 19, 9, and MDN Article on Video and Audio APIs](./read-11.html)  
 [ ] Read-12 [ChartJS and Canvas API](./read-12.html)  
+[ ] Read-13 [The Past Present and Future of Local Storage for Web Applications](./read-13.html)  
 
 ## Reference Links
 
