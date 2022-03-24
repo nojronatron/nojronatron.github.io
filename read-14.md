@@ -20,7 +20,7 @@ Google created a project, "Aristotle", to research why some teams were very effe
 
 ### Group Norms
 
-"Norms are the traditions, behavioral standards and unwritten rules that govern how we function when we gather..." *[]*
+"Norms are the traditions, behavioral standards and unwritten rules that govern how we function when we gather..." *[NYT Magazine (Duhigg, Charles)]*
 
 These play a part in how a group acts and feels, and maybe how 'attractive' a group might be for some people, but it still does not define how productive or 'efficient' the group is.  
 
