@@ -12,12 +12,13 @@ Assignments: Prework Reading Notes
 [x] Class-05 [Summary Notes](./class-05.html)  
 [x] Class-06 [JS Functions, Methods, Objects; The Document Object Model](./class-06.html)  
 [x] Class-07 [HTML Chpt 6 Tables; JS Chpt 3 Function, Methods, and Objects](./class-07.html)  
-[ ] Class-08 [HTML Chpt 15: CSS Layouts (revisited)](./class-08.html)  
-[ ] Class-09 [HTML Chpt 7 Forms, Chpt 14, Lists Tables Forms, JS Chpt 6 Events](./class-09.html)  
-[ ] Class-10 [JS Chpt. 10 Error Handling and Debugging](./class-10.html)  
-[ ] Read-11 [HTML Chpt.16, 19, 9, and MDN Article on Video and Audio APIs](./read-11.html)  
-[ ] Read-12 [ChartJS and Canvas API](./read-12.html)  
+[x] Class-08 [HTML Chpt 15: CSS Layouts (revisited)](./class-08.html)  
+[x] Class-09 [HTML Chpt 7 Forms, Chpt 14, Lists Tables Forms, JS Chpt 6 Events](./class-09.html)  
+[x] Class-10 [JS Chpt. 10 Error Handling and Debugging](./class-10.html)  
+[x] Read-11 [HTML Chpt.16, 19, 9, and MDN Article on Video and Audio APIs](./read-11.html)  
+[x] Read-12 [ChartJS and Canvas API](./read-12.html)  
 [ ] Read-13 [The Past Present and Future of Local Storage for Web Applications](./read-13.html)  
+[ ] Read-14 Multiple Articles, see links in [read-14.md](./read-14.html)  
 
 ## Reference Links
 
