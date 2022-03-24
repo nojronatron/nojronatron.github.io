@@ -61,6 +61,98 @@ Since work is a significant part of life, embrace your team as part of your life
 
 [New York Times Magazine](https://www.nytimes.com/2016/02/28/magazine/what-google-learned-from-its-quest-to-build-the-perfect-team.html)  
 
+https://learn.shayhowe.com/advanced-html-css/css-transforms/
+
+## CSS Transforms Article Notes
+
+Transforms change html elements including size and position.  
+The `transform` property does *not* enjoy great browser support, so using vendor prefixes to fend against problems is strongly recommended.  
+
+```css
+/* vendor prefixes */
+-webkit-transform: ...;
+-moz-transform: ...;
+-o-transform: ...;
+transform: ...;  /* native, overwrites others if supported */  
+```
+
+### 2D Transforms
+
+Think of transform meaning 'to distort'.  
+2D transforms operate on x- and y- axes.  
+3D transforms operate on 2D plus the z- plane.  
+The origin of a transform is the center of the element.  
+*Note*: Think of xyz and length, width, depth.  
+
+#### Rotate
+
+Rotates an element by n degree units from -360 to 360.  
+
+```css
+div {
+  transform: rotate(-100deg); 
+}
+```
+
+#### Scale
+
+Size: transform: scale(0.01 to >1.01)
+Horizontal Size: transform: scaleX(n)  
+Vertical Size: transform: scaleY(n)  
+
+#### Translation
+
+Does not interrupt the normal flow of the document.  
+Pulls an element away from its normal position.  
+Same syntax as transform ( translate() translateX() translateY() ).  
+Use px or percentage units.  
+
+#### 2D Skew
+
+Distort elements on X-, Y-, or both Axes.  
+Use to transform a box or rectangle into a polygon or rhomboid.  
+Syntax similar to Scale.  
+Units are in degrees.  
+
+#### Combining Transforms
+
+In the Transform: statement include the types of transforms and their settings, in-line, without commas.
+
+```css
+section {
+ transform: rotate(150deg) scale(1.25);
+}
+```
+
+#### Transform Origin
+
+The basis or center-point upon which a transform is based can be moved using 'transform-origin'.  
+Units can be px or percentages.  
+Single-argument: X- and Y- planes.
+Double-argument: (xPlane yPlane).  
+
+#### Perspective Property
+
+The "vanishing point".  
+Apply to the parent element OR as a second property setting in the transform property setting.  
+Set units in px.  
+
+#### Perspective Depth
+
+Units can be `none` or a length measurement.  
+Tilts the object using x- or y- plane.  
+
+#### Perspective Origin
+
+Values and units used in transform-origin can be used here.  
+Determines the vanishing point location.  
+
+### 3D Transforms
+
+Changes elements along the Z axis in addition to X and Y.  
+
+
+
 ## Back to Readme.md
 
 [Back to index in readme](./README.md)
