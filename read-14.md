@@ -234,6 +234,26 @@ ShayHowe.com has multiple links at the bottom of the article with more resources
 
 [ShayHowe.com css transforms](https://learn.shayhowe.com/advanced-html-css/css-transforms/)
 
+## 8 Simple CSS3 Transitions
+
+[Web Designer Depot article](https://www.webdesignerdepot.com/2014/05/8-simple-css3-transitions-that-will-wow-your-users)  
+
+Sarah Vieira in 2014 writes about hardware accelerated css rules that will help improve website design and interest, with very few lines of code. This is a general overview highlighting key points.
+
+1. Do the usual html layout and use IDs or Classes to target filters to specific elements.
+2. Set a height, width, background and us the transition property `transition: all 0.3s ease;`
+3. Leverage pseudo elements to adjust the opacity property, e.g. div and div:hover `opacity:0.5;` and `opacity:1.0;`  
+4. Animate a color change by altering the background property on e.g. div:hover `background: some_other_color;`  
+5. Use 'Transform' to grow and shrink elements e.g. `.grow:hover { -webkit-transform: scale(1.3); -ms-transform: scale(1.3); transform: scale(1.3); }`  
+6. To shrink, use transform the same as in 5, above, using values less than 1.0.  
+7. RotateZ will add a rotation animation e.g. `.rotate:hover { transform: rotateZ(90deg);}`  
+8. Use border-radius to transform a square into a circle: `.circle:hover { transform: border-radius: 50%; }`  
+9. Adding a shadow to a box is good, but 3D is better right? `.three-d-shadow:hover { box-shadow: 1px 1px #color, 2px 2px #color, 3px 3px #color; }`  
+10. Add a 'shiver' animation by defining `@keyframes`and `transform: translateX()`, then apply it e.g. `swing.hover { animation: swing 1s ease; animation-iteration-count: 1;}`  
+11. Use 'inset border animation'. Rather than just add a border that can change the size and location of the element, apply box-shadow e.g.: `.border:hover { box-shadow: inset 0 0 0 25px #color; }`  
+
+*Note*: Remember to include back-level browser properties e.g. `-webkit-transform`, `-ms-transform`, etc.  
+
 ## Back to Readme.md
 
 [Back to index in readme](./README.md)
