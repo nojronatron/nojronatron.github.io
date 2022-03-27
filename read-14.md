@@ -297,6 +297,31 @@ Assigns a speed of movement calculation type to the transitioning property.
 - ease-out
 - ease-in-out
 
+Timing functions use a cubic-bezier curve to calculate timings.  
+Additional control over each timing function is possible:  
+
+- `cubic-bezier(x1, y1, x2, y2);`
+- `setp-start;`
+- `step-stop;`
+- `steps(number-of-steps, direction);`
+
+### Transition Delay
+
+A delay can be added using the property `transition-delay:`.  
+Values can be s or 0.s (seconds or milliseconts) of 'stalling time'.  
+
+### Shorthand Transitions
+
+Like many other CSS3 properties, a shorthand version is available.  
+The order is:  
+
+```css
+div {
+  transition: {transition-property transition-duration transition-timing-function transition-delay};
+}
+```
+
+*Note*: Only use commas when targeting *multiple transitions*.  
 
 
 ## Eight Simple CSS3 Transitions
