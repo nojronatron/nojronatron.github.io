@@ -240,11 +240,42 @@ ShayHowe.com has multiple links at the bottom of the article with more resources
 
 ## Transitions and Animations
 
-Transition effects can be accomplished with little added code in CSS3. When your website pops, it is more interesting, and attracts attention.
+Transition and animation effects can be accomplished with little added code in CSS3. When your website pops, it is more interesting, and attracts attention.  
+
+### Transitions in General
+
+- Alter element behavior and appearance.
+- Hover, focus, active, and target.
+  - 'target' matches a string in the selection portion of the current URL.  
+- Animations are accomplished via 'keyframes'.  
+- Transitions change an elements state.  
+- Animations need transition points on different keyframes to get the intended effect.  
+
+#### Transitions
+
+Changes the state of an element. In the first example the .box class selector sets the following properties:  
+
+- background
+- transition-property
+- transition-duraction
+- transition-timing-function
+
+Then the pseudo-class `:hover` is used to apply a different background for when the element is *not* hovered.  
+
+#### Vendor Prefixes
+
+I order to accomplish some compatibility, especially with newer CSS3 properties and older browsers. Here's how the prefix is used:  
+
+- `-webkit-*`: Android, Chrome, iOS, Safari browsers  
+- `-moz-*`: Firefox browser  
+- `-ms-*`: Microsoft (i.e. IE)  
+- `-o-*`: Opera browser  
+
+## Eight Simple CSS3 Transitions
 
 [Web Designer Depot article](https://www.webdesignerdepot.com/2014/05/8-simple-css3-transitions-that-will-wow-your-users)  
 
-Sarah Vieira in 2014 writes about hardware accelerated css rules that will help improve website design and interest, with very few lines of code. This is a general overview highlighting key points.
+Sarah Vieira writes, in a 2014 article, about hardware accelerated css rules that will help improve website design and interest, with very few lines of code. This is a general overview highlighting key points.
 
 1. Do the usual html layout and use IDs or Classes to target filters to specific elements.
 2. Set a height, width, background and us the transition property `transition: all 0.3s ease;`
@@ -274,21 +305,113 @@ Create two CSS3 rules that target the specific element to fade and apply a `:hov
 
 ### Change Color
 
+```css
+.color:hover {
+  background:#53a7ea;
+}
+```
+
 ### Grow and Shrink
+
+```css
+.grow:hover {
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
+}
+.shrink:hover {
+  -webkit-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  transform: scale(0.8);
+}
+```
 
 ### Rotate Elements
 
+```css
+.rotate:hover{
+  -webkit-transform: rotateZ(-30deg);
+  -ms-transform: rotateZ(-30deg);
+  transform: rotateZ(-30deg);
+}
+```
+
 ### Square to Circle
+
+```css
+.circle:active{
+  -webkit-animation: swing 0.5s ease;
+  animation: swing 0/5s ease;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
+.circle:hover{
+  border-radius:50%;
+}
+```
 
 ### 3D Shadow
 
+```css
+.threed:hover{
+  box-shadow: 1px 1px #53a7ea,
+    2px 2px #53a7ea,
+    3px 3px #53a7ea;
+  -webkit-transform: translateX(-3px);
+  transform: translateX(-3px);
+}
+```
+
 ### Swing
+
+```css
+.swing:hover
+{
+  -webkit-animation: swing 1s ease;
+  animation: swing 1s ease;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
+```
 
 ### Inset Border
 
+```css
+.border:hover{
+  box-shadow: inset 0 0 0 10px #53a7ea;
+}
+```
+
+### Combining
+
+Recall that multiple CSS3 selectors can be added to a class attribute in a space-separated list.
+
+```html
+<div class="border circle">Inset Border</div>
+```
+
+When the element renders, CSS3 rules from BOTH class selectors will apply:
+
+- When pointed at (hover) both rules, names 'border' and 'circle' apply.
+- When cursor is *not* over the elements, neither 'border' nor 'circle' selectors take effect.
+
+```css
+.border:hover{
+  box-shadow: inset 0 0 0 10px #53a7ea;
+}
+.circle:hover{
+  border-radius:50%;
+}
+```
+
+This way the page can leverage both CSS selectors independantly, perhaps pointing to other similar elements that should only render one effect or the other.
 
 [ShayHow.com css transitions and animations](https://learn.shayhowe.com/advanced-html-css/transitions-animations/)
 
-## Back to Readme.md
+## Three Buttons Animated
+
+This links to a codepen.io environment similar to replit.com, and displays the HTML and CSS3 necessary to animate 3 buttons that move up and down. Pseudo-class 'hover' has CSS3 rules that stop the up-and-down translation animation, stopping the buttons motions.
+
+## Back to Readme
 
 [Back to index in readme](./README.md)
