@@ -323,6 +323,24 @@ div {
 
 *Note*: Only use commas when targeting *multiple transitions*.  
 
+### More Examples
+
+See [this article](https://learn.shayhowe.com/advanced-html-css/transitions-animations/) for transition examples like a cool button click and a card-flip transition.  
+
+## Animations
+
+Many of the same concepts that apply to transitions also apply to animations.  
+
+- Property `keyframes:` `@keyframes name { n { properties }};`  
+- Vendor prefixes  
+
+Animations have additional properties:
+
+- `animation-name: slide;`: Defines which keyframe rule to apply to.
+- Follow animatin-name with animation-duration with a value.  
+
+### Animation Duration Timing Function and Delay
+
 
 ## Eight Simple CSS3 Transitions
 
