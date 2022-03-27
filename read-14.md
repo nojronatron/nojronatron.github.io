@@ -345,7 +345,7 @@ Animations that call on an animation name share properties with transitions.
 
 - `animation-duration: seconds;`  
 - `animation-timing-function: function;`  
-- `animation-delay: seconds;'  
+- `animation-delay: seconds;`  
 
 ### Customizing Animations
 
@@ -511,6 +511,24 @@ This way the page can leverage both CSS selectors independantly, perhaps pointin
 ## Three Buttons Animated
 
 This links to a codepen.io environment similar to replit.com, and displays the HTML and CSS3 necessary to animate 3 buttons that move up and down. Pseudo-class 'hover' has CSS3 rules that stop the up-and-down translation animation, stopping the buttons motions.
+
+## CSS3 Keyframes
+
+This is a codepen.io demonstration using keyframes to animate a ball (a child div) with `position: absolute;` set, inside of a box (parent div).
+Both divs are set with inline styles that set the animation to keyframes by name ('bouncing').
+The properties set in the keyframe definition sets timing, starting and animated relative locations (in px) to create the illusion of movement.  
+
+Keyframe Animation in [codepen.io](https://codepen.io/akshaychauhan/pen/dyBqVo) *[akshaychauhan, codepen.io animation designer]*  
+
+## 404 Animation
+
+Another codepen.io demonstration animates the number 404 using multiple keyframes.  
+
+Keyframe Animation in [codepen.io](https://codepen.io/kieranfivestars/pen/MYdQxX) *[Kieran Hunter]*  
+
+## Pure CSS Bounce Animation
+
+CSS as an artform 101: [codepen.io](https://codepen.io/dp_lewis/pen/QWMxRR)_ *[David Lewis]*  
 
 ## Back to Readme
 
