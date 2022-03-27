@@ -341,6 +341,35 @@ Animations have additional properties:
 
 ### Animation Duration Timing Function and Delay
 
+Animations that call on an animation name share properties with transitions.
+
+- `animation-duration: seconds;`  
+- `animation-timing-function: function;`  
+- `animation-delay: seconds;'  
+
+### Customizing Animations
+
+Additional setings of animations include the number of times an animation runs and the direction it completes.  
+
+- `animation-iteration-count: infinite | count;`  
+- `animation-direction: normal | reverse | alternate | alternate-reverse;`  
+- `animation-play-state: running | paused;`
+- `animation-fill-mode: none | forward | backward | both;`  
+
+### Shorthand Animations
+
+Like many other CSS3 properties, a shorthand version is available.  
+The order is:  
+
+```css
+div {
+  animation: {animation-name animation-duration animation-timing-function animation-delay animation-iteration-count animation-direction animation-fill-mode animation-play-state};
+}
+```
+
+### Additional Resources
+
+See the collection of links at the end of the Animation section.
 
 ## Eight Simple CSS3 Transitions
 
