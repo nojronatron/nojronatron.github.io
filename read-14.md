@@ -61,6 +61,186 @@ Since work is a significant part of life, embrace your team as part of your life
 
 [New York Times Magazine](https://www.nytimes.com/2016/02/28/magazine/what-google-learned-from-its-quest-to-build-the-perfect-team.html)  
 
+## CSS Transforms Article Notes
+
+[ShayHowe.com css transforms](https://learn.shayhowe.com/advanced-html-css/css-transforms/)
+
+Transforms change html elements including size and position.  
+The `transform` property does *not* enjoy great browser support, so using vendor prefixes to fend against problems is strongly recommended.  
+
+```css
+.element-class {
+/* vendor prefixes */
+-webkit-transform: ...;
+-moz-transform: ...;
+-o-transform: ...;
+transform: ...;  /* native, overwrites others if supported */  
+}
+```
+
+### 2D Transforms
+
+Think of transform meaning 'to distort'.  
+2D transforms operate on x- and y- axes.  
+3D transforms operate on 2D plus the z- plane.  
+The origin of a transform is the center of the element.  
+*Note*: Think of xyz and length, width, depth.  
+
+#### Rotate
+
+Rotates an element by n degree units from -360 to 360.  
+
+```css
+div {
+  transform: rotate(-100deg); 
+}
+```
+
+#### Scale
+
+Size: transform: scale(0.01 to >1.01)
+Horizontal Size: transform: scaleX(n)  
+Vertical Size: transform: scaleY(n)  
+
+#### Translation
+
+Does not interrupt the normal flow of the document.  
+Pulls an element away from its normal position.  
+Same syntax as transform ( translate() translateX() translateY() ).  
+Use px or percentage units.  
+
+#### 2D Skew
+
+Distort elements on X-, Y-, or both Axes.  
+Use to transform a box or rectangle into a polygon or rhomboid.  
+Syntax similar to Scale.  
+Units are in degrees.  
+
+*Note*: This CAN NOT be used on 3D transforms - it must be achieved using other 3D transform properties.  
+
+#### Combining Transforms
+
+In the Transform: statement include the types of transforms and their settings, in-line, without commas.
+
+```css
+section {
+ transform: rotate(150deg) scale(1.25);
+}
+```
+
+#### Transform Origin
+
+The basis or center-point upon which a transform is based can be moved using 'transform-origin'.  
+Units can be px or percentages.  
+Single-argument: X- and Y- planes.
+Double-argument: (xPlane yPlane).  
+
+#### Perspective Property
+
+The "vanishing point".  
+Apply to the parent element OR as a second property setting in the transform property setting.  
+Set units in px.  
+
+#### Perspective Depth
+
+Units can be `none` or a length measurement.  
+Tilts the object using x- or y- plane.  
+
+#### Perspective Origin
+
+Values and units used in transform-origin can be used here.  
+Determines the vanishing point location.  
+
+### 3D Transforms
+
+3-dimensional transforms incorporate the Z-axis.  
+
+#### 3D Rotate
+
+Changes elements along the Z axis in addition to X and Y.  
+Transform can take `perspective()` and `rotate` settings.  
+`rotateX()`, `rotateY()`, `rotateZ()`.  
+Rotate units are 'deg'.
+
+```css
+#boxone {
+  transform: perspective(150px) rotateX(25deg);
+}
+#boxtwo {
+  transform: perspective(100px) rotateZ(150deg);
+}
+```
+
+#### 3D Scale
+
+Scale the box on its Z-axis.  
+Use with rotate or another transform to see its effect.  
+
+```css
+#boxthree {
+  transform: perspective(100px) scaleZ(1.80) rotateY(230deg);
+}
+```
+
+#### 3D Translate
+
+Translate on the Z-axis.  
+Effectively shrinks and expands an elements i.e.: closer or further away, at the viewer's perspective.  
+Units are in px.  
+
+```css
+#boxfour {
+  transform: perspective(100px) translateZ(-20);
+}
+```
+
+#### 3D Skew
+
+Cannot be done - use other transform properties to meet the desired effect.  
+
+#### 3D Transform Shorthand
+
+Rotate3d, Scale3d, Transition3D, and Matrix3D support CSS Shorthand.  
+Experiment first, it is complicated.  
+
+### Transform Style
+
+Use to manage transformations applied to nested elements.  
+Allows maintaining 3d space properly when trnasforms are applied to a parent element, and then its child.  
+
+```css
+.childelement {
+  transform-style: 
+}
+```
+
+### Backface Visibility
+
+Causes a fully rotated element to no longer be visible until rotated back.  
+
+```css
+.alpha {
+  transform: rotateY(180deg);
+}
+.bravo {
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+}
+```
+
+### References
+
+ShayHowe.com has multiple links at the bottom of the article with more resources on these topics.
+
+[ShayHowe.com css transforms](https://learn.shayhowe.com/advanced-html-css/css-transforms/)
+
+## Transitions and Animations
+
+Alter 
+
+
+[ShayHow.com css transitions and animations](https://learn.shayhowe.com/advanced-html-css/transitions-animations/)
+
 ## Back to Readme.md
 
 [Back to index in readme](./README.md)
