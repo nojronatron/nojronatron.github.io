@@ -264,12 +264,40 @@ Then the pseudo-class `:hover` is used to apply a different background for when 
 
 #### Vendor Prefixes
 
-I order to accomplish some compatibility, especially with newer CSS3 properties and older browsers. Here's how the prefix is used:  
+In order to accomplish some compatibility, especially with newer CSS3 properties and older browsers, vendor prefixes are used:  
 
 - `-webkit-*`: Android, Chrome, iOS, Safari browsers  
 - `-moz-*`: Firefox browser  
 - `-ms-*`: Microsoft (i.e. IE)  
 - `-o-*`: Opera browser  
+
+Follow vendor prefixes with the CSS property.  
+Each line could include a vendor-prefixed property.  
+The property on its own should be last in the list of properties (after vendor-prefixed ones).  
+
+### Transitional Property  
+
+Determines which properties will be altered: `transitional-property: property;`  
+Follow that with `transition-duration: #s;` and `transition-timing-function: [linear | ];`  
+
+*Note*: Not all properties may be transitioned! Only properties that have a clear set of "in between values", such as `color:`  
+
+### Transition Duration
+
+Set in seconds as integers or decimal, e.g. '.2s'.  
+Set one for each transition property.  
+Multiple transition-property properties will use a single `transition-duration:` if it is the only one declared.  
+
+### Transition Timing
+
+Assigns a speed of movement calculation type to the transitioning property.  
+
+- linear
+- ease-in
+- ease-out
+- ease-in-out
+
+
 
 ## Eight Simple CSS3 Transitions
 
