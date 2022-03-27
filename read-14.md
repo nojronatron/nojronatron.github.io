@@ -1,5 +1,9 @@
 # Notes from Various Readings
 
+[What Google Learned About Teams](#what-google-learned-from-its-quest-to-buid-the-perfect-team)  
+[CSS Transforms](#css-transforms-article-notes)  
+[Transitions and Animations](#transitions-and-animations)  
+
 ## What Google Learned from its Quest to Buid the Perfect Team
 
 In the age of information, data, and cubicles, it turns out that collaborative efforts and activities has increased a lot in the last few decades.  
@@ -236,7 +240,35 @@ ShayHowe.com has multiple links at the bottom of the article with more resources
 
 ## Transitions and Animations
 
-Alter 
+Transition effects can be accomplished with little added code in CSS3. When your website pops, it is more interesting, and attracts attention.
+
+### Fade In
+
+Create two CSS3 rules that target the specific element to fade and apply a `:hover` pseudo element to one of them:
+
+```css
+.fade {
+  opacity: 0.5;
+}
+.fade:hover {
+  opacity:1;
+}
+
+### Change Color
+
+### Grow and Shrink
+
+### Rotate Elements
+
+### Square to Circle
+
+### 3D Shadow
+
+### Swing
+
+### Inset Border
+
+
 
 
 [ShayHow.com css transitions and animations](https://learn.shayhowe.com/advanced-html-css/transitions-animations/)
