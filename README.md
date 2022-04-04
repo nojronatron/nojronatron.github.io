@@ -31,7 +31,7 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 
 ## Reference Links
 
-Career Launch Strategy [Notes](./CareerLaunchStrategy.html)  
+Career Launch Strategy [Notes](./code201-files/CareerLaunchStrategy.html)  
 Power Hour Sessions [Notes](./power-hour-notes/readme.html)  
 Linux and Terminal/Bash Reading Ntoes [Notes](./linux-terminal/readme.html)  
 Image Placeholder Generator: [place-hold.it](https://place-hold.it)  
