@@ -2,6 +2,8 @@
 
 ## High Level Overview of React Notes
 
+### Table of Contents
+
 High Level [Points](#high-level-points)  
 The [UI](#the-ui)  
 React [Objects](#react-creates-objects)  
