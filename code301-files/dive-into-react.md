@@ -2,6 +2,14 @@
 
 ## High Level Overview of React Notes
 
+High Level [Points](#high-level-points)  
+The [UI](#the-ui)  
+React [Objects](#react-creates-objects)  
+React is a [Library](#react-is-a-library)  
+Component [Architecture](#component-architecture)  
+[Data Flow](#component-trees-and-data-flow)  
+Component Leve [State](#component-level-state)  
+[Quiz](#quiz)  
 Information Source: Zac Gordon on [YouTube](https://www.youtube.com/watch?v=FRjlF74_EZk&ab_channel=ZacGordon)  
 
 ### High Level Points
