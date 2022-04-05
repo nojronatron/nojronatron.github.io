@@ -183,6 +183,12 @@ console.log(rosie);
 rosie.speak();
 ```
 
+## ES6 Classes Lab
+
+Submit this link to complete the Assignment:
+
+Jon's completed ES6 Classes [Replit](https://replit.com/@JonRumsey/ES6-Classes#vehicles-with-classes.js)  
+
 ## Footer
 
 Back to [ReadMe](../README.md)  
