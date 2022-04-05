@@ -11,7 +11,7 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 ## Code301 Assignment Notes
 
 [ ] Dive Into [React](./code301-files/dive-into-react.html)  
-[ ] System Setup [Notes](./code301-files/setup-notes.md)  
+[ ] System Setup [Notes](./code301-files/setup-notes.html)  
 
 ## Code201 Reading Assignments and Notes
 
