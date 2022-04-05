@@ -14,6 +14,7 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 [ ] System Setup [Notes](./code301-files/setup-notes.html)  
 [ ] ES6 [Arrow Functions](./code301-files/arrow-functions.html)  
 [ ] ES6 [Classes](./code301-files/es6-classes.html)  
+[ ] JS Conf Session: The [Event Loop](https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf)  
 
 ## Code201 Reading Assignments and Notes
 
