@@ -43,6 +43,28 @@ Keeps the actively-executing function in memory while it executes.
 Every function-call within Main is then 'added to the stack'.  
 After each function "returns", it is removed from the Stack and the previous function entry continues excution.  
 
+### Blocking
+
+When things are 'slow', it blocks execution of other methods, they have to 'wait'.  
+This is due to the synchronous behavior of the JS Runtime.  
+Single-threaded applications will suffer from this.  
+Browsers make this problem very apparent when blocking happens because the UI will not appear to respond, even to UI clicks or other events.
+
+*The browser has to wait until the call stack is cleared before waiting functions and requests can be executed.*
+
+## Concurrency and the Event Loop
+
+JS - the Runtime - cannot make additional requests while it is working on something else.  
+The Browser has other APIs, that are basically threads that will do their own work.  
+The WebAPI cannot just push completed work onto the JS Stack so instead it puts the completed work item into the Task Queue.  
+Whenever the JS/V8 Stack is clear, the Event Loop takes the first-in work item from the Task Queue and passes it to the JS Stack to be executed.  
+
+*Note*: Node is like the DOM except instead of web APIs it is made of C++ APIs and hides all the concurrency and threading issues from the developer.  
+
+What about setting a function timeout timer to zero (set time zero) when we call a Web API? *This forces the completed task to move directly to the Task Queue so it is 1st in line once the JS Stack is clear*.
+
+
+
 ## Blocking Effects on the Event Loop
 
 ## Footer
