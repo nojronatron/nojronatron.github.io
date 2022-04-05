@@ -70,9 +70,9 @@ The newly created Class automatically acquires the attributes and behaviors of t
 
 ```javascript
 class Dog extends Animal {
-
 }
-let rosie = ne Dog('Rolph', 4);
+
+let rosie = new Dog('Rolph', 4);
 rosie.walk();
 rosie.eat();
 console.log(rosie);
@@ -82,3 +82,39 @@ console.log(rosie);
 
 Extends does lots of work for you by 'inheriting' the attributes and behaviors of the 'parent class'.  
 Extends creates a 'child class'.  
+
+#### Semantically Speaking
+
+It is easier to speak english to walk through the code when using Class syntax rather than Constructor Function syntax and trying to meet all of its requirements.  
+Syntactic Sugar: The way code is written that (usually) makes the code easier to read, write, and speak.  
+*For example*: When pair programming, the navigator can just say:  
+
+"Create a new Class called Animal that has properties Name and Legs that can be assigned using parameters. Add functions Walk and Eat to the Animal..."
+
+```javascript
+class Animal {
+  constructor(name, legs) {
+    this.name = name;
+    this.legs = legs;
+  }
+  walk() {
+    this.isWalking = true;
+  }
+  eat() {
+    this.isEating = true;
+  }
+}
+```
+
+Continuing this example to inheritance:  
+
+"Now extend the Animal Class to create a child class named Dog. For now do not add any properties or methods."  
+
+```javascript
+class Dog extends Animal {
+}
+```
+
+## Footer
+
+Back to [ReadMe](../README.md)  

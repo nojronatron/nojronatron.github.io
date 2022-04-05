@@ -9,7 +9,7 @@ MDN Docs: [Arrow Function Expressions](https://developer.mozilla.org/en-US/docs/
 ### Function Expression
 
 Recall that the function keyword defines a Function Expression.  
-The syntax is: ` function [name]([param1[,paramN]]) { statements; };`  *[Mozilla Developer Network Documentation]*  
+The syntax is: `function [name]([param1[,paramN]]) { statements; };`  *[Mozilla Developer Network Documentation]*  
 
 Name is the plain-english (or complicated gibberish) word by which the function can be referenced.  
 Parameters represent arguments to be passed *in* to the function.  
@@ -92,7 +92,7 @@ param => {
 
 #### Return an Object Literal
 
-Straight from *[MDN]*:  
+Straight from *[MDN, 'Arrow_functions']*:  
 
 ```javascript
 params => ({foo: "a"}) // returns object {foo: 'a'}
@@ -111,6 +111,7 @@ Support for ES6 Arrow Functions is pretty vast, even on mobile and specialy plat
 *Note*: IE (of course) and Opera Mini are two outliers as they do not support it.
 
 Reference: [caniuse.com](https://www.caniuse.com)  
+Reference: [MDN Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)  
 
 ## Footer
 
