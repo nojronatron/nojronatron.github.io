@@ -63,9 +63,37 @@ Whenever the JS/V8 Stack is clear, the Event Loop takes the first-in work item f
 
 What about setting a function timeout timer to zero (set time zero) when we call a Web API? *This forces the completed task to move directly to the Task Queue so it is 1st in line once the JS Stack is clear*.
 
-
-
 ## Blocking Effects on the Event Loop
+
+DOM Events, like 'onClick()' can be subject to asynchronous concurrency issues. For example:  
+
+1. 'onClick()' calls a Web API that runs asynchronously.  
+2. The WebAPI processes the call and returns via the Callback Queue to the CallStack (once the existing stack is done executing).  
+3. Any payload that JS can execute can then be executed by the RunTime now that the Event Loop has popped the work onto the JS Call Stack.  
+
+### Browser Rendering and Timing
+
+The Browser checks to see if it can render the screen or handle any UI-related event triggers every few milliseconds.  
+When a function is sitting in the JS Call Stack, the Render Queue is blocked, which:  
+
+- Makes the browser feel "slow".  
+- Could make the browser seem unresponsive.  
+- Stops the user from interacting with your (presumedly) interactive website.  
+
+When you want to run code that is slow or potentially blocking:  
+
+- Don't store it on the Call Stack.  
+- Avoid massive amounts of animations. These rely on executing code in the Call Stack to keep them animating.  
+
+"Don't block the event loop, else the browser cannot render."  
+
+#### Flooding the Queue
+
+Events from UI elements like the scroll bar can produce a massive number of events in a short period of time.  
+
+- If those events cause 'slow code' to run, the Callback Queue will fill very rapidly.  
+- The Event Loop can only handle so many Callback Queue work items per second.  
+- A large number of events can take a long time to clear the Callback Queue so browser rendering will be negatively impacted.  
 
 ## Footer
 
