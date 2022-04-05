@@ -47,3 +47,12 @@ Look for the Azure CosmosDB extension.
 
 ## Data Structures and Algorithms
 
+TODO: Come back to this when a template repo is available (probably via Canvas, Syllabus).  
+
+### ESLinter
+
+When creating React applications, eslint is already included, so if you've created one already, rm it.  
+
+## Footer
+
+Go back to [Readme.md](../README.html)  
