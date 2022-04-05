@@ -13,6 +13,7 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 [ ] Dive Into [React](./code301-files/dive-into-react.html)  
 [ ] System Setup [Notes](./code301-files/setup-notes.html)  
 [ ] ES6 [Arrow Functions](./code301-files/arrow-functions.html)  
+[ ] ES6 [Classes](./code301-files/es6-classes.html)  
 
 ## Code201 Reading Assignments and Notes
 
