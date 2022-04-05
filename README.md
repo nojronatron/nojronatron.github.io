@@ -13,6 +13,7 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 [ ] Dive Into [React](./code301-files/dive-into-react.html)  
 [ ] System Setup [Notes](./code301-files/setup-notes.html)  
 [ ] ES6 [Arrow Functions](./code301-files/arrow-functions.html)  
+[ ] ES6 [Classes](./code301-files/es6-classes.html)  
 
 ## Code201 Reading Assignments and Notes
 
@@ -28,11 +29,12 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 [x] Class-10 [JS Chpt. 10 Error Handling and Debugging](./code201-files/class-10.html)  
 [x] Read-11 [HTML Chpt.16, 19, 9, and MDN Article on Video and Audio APIs](./code201-files/read-11.html)  
 [x] Read-12 [ChartJS and Canvas API](./code201-files/read-12.html)  
-[ ] Read-13 [The Past Present and Future of Local Storage for Web Applications](./code201-files/read-13.html)  
-[ ] Read-14 Multiple Articles, see links in [read-14.md](./code201-files/read-14.html)  
+[x] Read-13 [The Past Present and Future of Local Storage for Web Applications](./code201-files/read-13.html)  
+[x] Read-14 Multiple Articles, see links in [read-14.md](./code201-files/read-14.html)  
 
 ## Reference Links
 
+Mozilla Developers Network [Reference Docs](https://developer.mozilla.org/en-US/docs/Web)  
 Career Launch Strategy [Notes](./code201-files/CareerLaunchStrategy.html)  
 Power Hour Sessions [Notes](./power-hour-notes/readme.html)  
 Linux and Terminal/Bash Reading Ntoes [Notes](./linux-terminal/readme.html)  
