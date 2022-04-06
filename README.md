@@ -14,7 +14,8 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 [ ] System Setup [Notes](./code301-files/setup-notes.html)  
 [ ] ES6 [Arrow Functions](./code301-files/arrow-functions.html)  
 [ ] ES6 [Classes](./code301-files/es6-classes.html)  
-[ ] JS Conf Session: The [Event Loop](https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf)  
+[ ] JS Conf Session: The Event Loop [Video Notes](./code301-files/event-loop-video.html)  
+[ ] Components and React [Notes and Quiz](./code301-files/components-react.html)
 
 ## Code201 Reading Assignments and Notes
 
@@ -46,6 +47,7 @@ Design Inspiration: [Designspiration](https://www.designspiration.com/)
 Color Palette Designer: [Paletton.com](https://paletton.com/)  
 Digital Ocean's CSS Tricks: [CSS-Tricks.com](https://css-tricks.com/)  
 Web.Dev - Learn about CSS: [Web.Dev](https://web.dev/learn/css/layout/)  
+The Event Loop - Video [YouTube.com](https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf)  
 
 ## Remember To-do-s  
 
