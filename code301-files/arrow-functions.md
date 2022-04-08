@@ -104,6 +104,51 @@ params => ({foo: "a"}) // returns object {foo: 'a'}
 - Default Parameters. Some inputs should default if not assigned.  
 - Destructuring within params. *An advanced topic* to me.  
 
+#### Summarized Configurations
+
+Arrow Functions can be written in several different ways, with options on when to use parenthesis and braces.
+
+Parentheses:
+
+- Use when *zero* or *more than 1* parameters are necessary.  
+- Do *not* use for *single parameter* arrow functions.  
+- Use in the *code block* when braces are needed to identify *an object definition*.  
+
+```javascript
+/* zero parameters requires parens */
+alpha = () => `Hello World!`;
+
+/* multiple params requires parens */
+let bravo = (name, age) => `${name} is ${age} years old.`;
+
+/* single param does not require parens */
+let charlie = name => `Her name is ${name}.`;
+
+/* surround object literal with parens */
+let delta = (name, age) => ({
+  name: name,
+  age: age,
+});
+```
+
+Braces:  
+
+- Do *not* use when following the arrow with a single code statement.  
+- Use when *multiple* code statements are needed in the implicit return and *include* the *return statement*.  
+
+```javascript
+/* single code statement does not require braces */
+let echo = () => `Hello Hello World World!`;
+
+/* multi-line code block requires braces */
+let foxtrot = (length, width) => {
+  let ttlLen = length * 2;
+  let ttlWid = width * 2;
+  let perimeter = ttlLen + ttlWid;
+  return `Perimeter: ${perimeter}`;
+}
+```
+
 ## Caniuse.com Summary Notes
 
 Support for ES6 Arrow Functions is pretty vast, even on mobile and specialy platforms.  
