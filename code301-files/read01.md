@@ -5,8 +5,8 @@ Read and take notes from the following resources:
 [X] Component Based Architecture [Article](https://www.tutorialspoint.com/software_architecture_design/component_based_architecture.htm)  
 [X] What are props and how to use it [Article](https://itnext.io/what-is-props-and-how-to-use-it-in-react-da307f500da0#:~:text=%E2%80%9CProps%E2%80%9D%20is%20a%20special%20keyword,way%20from%20parent%20to%20child)  
 [X] React Tutorial through Passing Data Through [Props](https://reactjs.org/tutorial/tutorial.html)  
-[ ] React Docs [Hello World](https://reactjs.org/docs/hello-world.html)  
-[ ] React Docs [Introducing JSX](https://reactjs.org/docs/introducing-jsx.html)  
+[X] React Docs [Hello World](https://reactjs.org/docs/hello-world.html)  
+[X] React Docs [Introducing JSX](https://reactjs.org/docs/introducing-jsx.html)  
 [ ] React Docs [Rendering Elements](https://reactjs.org/docs/rendering-elements.html)  
 [ ] React Docs [Components and Props](https://reactjs.org/docs/components-and-props.html)  
 
@@ -159,6 +159,54 @@ const element = (
 );
 ```
 
+#### JSX Prevents XSS Attacks
+
+React DOM escapes embedded JSX values before rendering the compoennt.  
+Components are stringified before rendering to help prevent executable code injections.  
+
+#### JSX is a New React Element
+
+`const element = (...);`
+
+is equivalent to
+
+`const element = React.createElement(...);`
+
+React.createElement organizes the parameters you enter, into a new Class object with properties as assigned.  
+
+## Rendering Elements
+
+Elements describe what will be seen on-screen.
+
+### Into The DOM
+
+Apps built with React typically have a single root DOM node.  
+Many, isolated Root DOM Nodes can exist in more complex applications.  
+
+To render a React element pass the DOM element to createRoot method then pass the React element to the render method:  
+
+```javascript
+const element = <h1>Hello, world</h1>;
+const root = ReactDOM.createRoot(
+  document.getElementById('root')
+);
+root.render(element);
+/* example taken from reactjs.org/docs/rendering-elements-html */
+```
+
+### Updating Rendered Elements
+
+React elements:
+
+- cannot be changed once created (Immutability).  
+- Represent a portion of the UI at a single point in time.  
+- Can be stateful components, to avoid calling root.render() over and over again.  
+
+### Only Updates When Necessary
+
+React DOM compares an element (and its children) and applies only updates needed to bring DOM up-to-date with the current React DOM representation.  
+Duplicate tree nodes that haven't changes *are not rendered again*.  
+
 ## React Components
 
 [React Components](https://reactjs.org/docs/react-component.html)  
@@ -175,6 +223,8 @@ const element = (
 Lifecycle methods are included in many React components.
 
 *Note*: They can be overridden.  
+
+React Lifecycle Methods [Diagram](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)  
 
 #### Mounting
 
