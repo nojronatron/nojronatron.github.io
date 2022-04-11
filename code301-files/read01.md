@@ -44,7 +44,9 @@ Special React syntax that makes writing React Elements easy.
 JSX syntax can collapse a hierarchy of HTML tags down to a few lines of React statements.  
 Any javascript expressions can be put within JSX brackets.  
 
+### Tips and Tactics
 
+- To ensure an onClick or other event are called only when the event occurs (instead of when rendering), use an Arrow Function as the onClick() parameter.  
 
 ## Footer
 
