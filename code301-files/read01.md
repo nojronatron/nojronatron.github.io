@@ -20,6 +20,30 @@ See [components-react.md](./components-react.md).
 
 ## React Tutotial Passing Data Through Props
 
+[Demo starter code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)  
+
+### What Is React?
+
+Javascript library for building user interfaces.  
+Allows composition of UIs from 'components'.  
+React Elements are actually javascript objects that can be passed-around as parameters.  
+
+### What Are Props?
+
+Props is short for 'properties' and represents parameter-passing in React.  
+Props are passed to child components using syntax that is similar to *html5 attributes*.  
+
+### What Does React Do?
+
+Efficiently re-renders components without a screen refresh.  
+Utilizes Props as parameters to move data around.  
+
+### What Is JSX?
+
+Special React syntax that makes writing React Elements easy.  
+JSX syntax can collapse a hierarchy of HTML tags down to a few lines of React statements.  
+Any javascript expressions can be put within JSX brackets.  
+
 
 
 ## Footer
