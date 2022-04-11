@@ -95,6 +95,23 @@ If a component is built-out as a class, but only has one job, consider refactori
 - Remove references to 'this' since the Class scope will no longer exist.  
 - Verify no other state information is necessary other than the props to be rendered.  
 
+### React and Keys
+
+React reserves a property called 'key' for use in rendering.  
+
+"When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key. If the current list has a key that didn't exist before, React creates a component. If the current list is missing a key that existsed in teh previous list, React destroys the previous component. If two keys match, the corresponding component is moved." *[reactjs.org/tutorial/tutorial.html, section 'picking a key']*
+
+Assign keys whenever building a dynamic list.  
+Without a key, React throws a warning and uses the index as the key by default.  
+Do *not* use `key={i}` (it will silence the warning but does not properly resolve the problem of missing, valid keys).  
+
+```html
+// a key can be as simple as a React prop
+<li key={move}>
+    <button></button>
+</li>
+```
+
 ### Tips and Tactics
 
 - React Elements are first-class javascript objects so they can be passed around as parameters.  
@@ -102,7 +119,9 @@ If a component is built-out as a class, but only has one job, consider refactori
 - Install ReactDevTools to add the ability to inspect React Components and to Profile the React application.  
 - Avoid modifying an existing array, instead call 'Array.slice()' to create a copy of the array and then use the values as necessary.  
 
-## Array Map
+## Bonus Material
+
+### Array Map
 
 Consider Array.Map() to be equivalent to:  
 
@@ -125,6 +144,11 @@ let myArr = [1, 2, 3];
 console.log(myArr.map((i) => i * 2));
 //  output: [2, 4, 6]
 ```
+
+### Additional React References
+
+React [Hello World](https://reactjs.org/docs/hello-world.html)  
+React [Components](https://reactjs.org/docs/react-component.html)  
 
 ## Footer
 
