@@ -97,9 +97,34 @@ If a component is built-out as a class, but only has one job, consider refactori
 
 ### Tips and Tactics
 
+- React Elements are first-class javascript objects so they can be passed around as parameters.  
 - To ensure an onClick or other event are called only when the event occurs (instead of when rendering), use an Arrow Function as the onClick() parameter.  
 - Install ReactDevTools to add the ability to inspect React Components and to Profile the React application.  
 - Avoid modifying an existing array, instead call 'Array.slice()' to create a copy of the array and then use the values as necessary.  
+
+## Array Map
+
+Consider Array.Map() to be equivalent to:  
+
+```javascript
+let myArr = [1, 2, 3];
+for(let i=0; i < myArr.length; i++) {
+  //  yield myArr[i];
+};
+```
+
+Apply the following logic to define the Map function operation:  
+
+- Use an Arrow Function to define an expression.  
+- Arrow Function parameter is the currently selected item in the array.  
+- Arrow Function performs expression using input parameter.  
+- Map function captures each result into a new Array and returns it.  
+
+```javascript
+let myArr = [1, 2, 3];
+console.log(myArr.map((i) => i * 2));
+//  output: [2, 4, 6]
+```
 
 ## Footer
 
