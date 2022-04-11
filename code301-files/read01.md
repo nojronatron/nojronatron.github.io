@@ -10,6 +10,18 @@ Read and take notes from the following resources:
 - React Docs [Rendering Elements](https://reactjs.org/docs/rendering-elements.html)  
 - React Docs [Components and Props](https://reactjs.org/docs/components-and-props.html)  
 
+## Component Based Architecture
+
+See [components-react.md](./components-react.html).  
+
+## Props and How To Use Them
+
+See [components-react.md](./components-react.md).  
+
+## React Tutotial Passing Data Through Props
+
+
+
 ## Footer
 
 Go back to [Readme.md](../README.html)  
