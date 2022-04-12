@@ -53,6 +53,12 @@ TODO: Come back to this when a template repo is available (probably via Canvas, 
 
 When creating React applications, eslint is already included, so if you've created one already, rm it.  
 
+### Setup GPG
+
+1. Ensure it is installed and version is gt 2.1.17
+2. Follow steps in github docs [here](https://docs.github.com/en/github-ae@latest/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)  
+3. 
+
 ### Git and Credential Manager
 
 GitHub authentication no longer supports https fetch/push operations using un+pw authentication.  
