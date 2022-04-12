@@ -53,6 +53,14 @@ TODO: Come back to this when a template repo is available (probably via Canvas, 
 
 When creating React applications, eslint is already included, so if you've created one already, rm it.  
 
+### Git and Credential Manager
+
+GitHub authentication no longer supports https fetch/push operations using un+pw authentication.  
+Appropriate solution is to install GH Credential Manager.  
+See these steps [here](https://github.com/GitCredentialManager/git-credential-manager#linux-install-instructions)  
+
+*Note*! The link above contains an *experimental script*. Be certain that is what you want to use rather than the Ubuntu/Debian distribution instructions!!  
+
 ## Footer
 
 Go back to [Readme.md](../README.html)  
