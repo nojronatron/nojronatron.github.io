@@ -1,4 +1,4 @@
-# Read01 Assignment - Intro to React and Components
+# Read02 Assignment - State And Props
 
 Read and take notes from the following resources:
 
