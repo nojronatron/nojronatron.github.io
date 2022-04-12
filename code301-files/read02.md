@@ -1,6 +1,19 @@
 # Read01 Assignment - Intro to React and Components
 
-Read and take notes from the following resources:  
+Read and take notes from the following resources:
+
+[Medium.com](https://medium.com/@joshuablankenshipnola/react-component-lifecycle-events-cb77e670a093)  
+React State vs Props by Web Dev Simplified on [YouTube](https://www.youtube.com/watch?v=IYvD9oBCuJI)  
+
+## Additional Resources
+
+Reactjs.org [State And Lifecycle](https://reactjs.org/docs/state-and-lifecycle.html)  
+Reactjs.org [Handling Events](https://reactjs.org/docs/handling-events.html)  
+Reactjs.org Tuturial [Into to React](https://reactjs.org/tutorial/tutorial.html)  
+[React-bootstap](https://react-bootstrap.github.io/)  
+Bootstrap [Cheat Sheet](https://getbootstrap.com/docs/5.0/examples/cheatsheet/)  
+Shuffle for Bootstrap [bootstrapshuffle.com](https://bootstrapshuffle.com/classes)  
+Host sites and apps on [Netlify.com](https://www.netlify.com/)  
 
 ## React Lifecycle Events
 
@@ -59,9 +72,6 @@ When do we re-render our application?
 What are some examples of things that we could store in state?  
 > Values that change, and the change should be rendered to the UI.  
 > User-updated values, like from a Form, where the UI might need to update based on the state change.  
-
-
-
 
 ## Footer
 
