@@ -10,7 +10,8 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 
 ## Code301 Assignment Notes
 
-[ ] Read01 [Intro to React and Components](./code301-files/read01.md)  
+[ ] Read02 [State and Props](./code301-files/read02.html)  
+[ ] Read01 [Intro to React and Components](./code301-files/read01.html)  
 [ ] Dive Into [React](./code301-files/dive-into-react.html)  
 [ ] System Setup [Notes](./code301-files/setup-notes.html)  
 [ ] ES6 [Arrow Functions](./code301-files/arrow-functions.html)  

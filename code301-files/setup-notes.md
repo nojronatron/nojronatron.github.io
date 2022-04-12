@@ -53,6 +53,27 @@ TODO: Come back to this when a template repo is available (probably via Canvas, 
 
 When creating React applications, eslint is already included, so if you've created one already, rm it.  
 
+### Setup GPG and Pass
+
+1. Go to [PasswordStore.org](https://www.passwordstore.org/) and follow the steps to install 'pass', it will be needed later.  
+2. Review steps in GitHub Credential Manager [docs](https://github.com/GitCredentialManager/git-credential-manager/blob/main/docs/credstores.md)  
+3. Ensure GPG is installed and version is gt 2.1.17
+4. Follow steps in github docs [here](https://docs.github.com/en/github-ae@latest/authentication/managing-commit-signature-verification/generating-a-new-gpg-key)  
+5. The GPG User ID is the long string of your username comment and email address.  
+6. Use GPG Armor to create the signed key.  
+7. Set up pass (see steps in step 1, above) to store the GPG key by User ID.  
+8. Go to GitHub, Settings, SSH and GPG Keys, and upload the signed key to a new GPG key.  
+
+*Note*: Yes, I know this is documented elsewhere for the CF classes, but the inner workings are buried in a script and I just wanted to know what was going on.  
+
+### Git and Credential Manager
+
+GitHub authentication no longer supports https fetch/push operations using un+pw authentication.  
+Appropriate solution is to install GH Credential Manager.  
+See these steps [here](https://github.com/GitCredentialManager/git-credential-manager#linux-install-instructions)  
+
+*Note*! The link above contains an *experimental script*. Be certain that is what you want to use rather than the Ubuntu/Debian distribution instructions!!  
+
 ## Footer
 
 Go back to [Readme.md](../README.html)  
