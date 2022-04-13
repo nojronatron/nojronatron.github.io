@@ -73,6 +73,19 @@ Give an example of using the spread operator to combine two objects into one.
 
 Ref [link](https://www.youtube.com/watch?v=c05OL7XbwXU)  
 
+Scenario:
+
+- Parent Component rendered a collection of child components.  
+- Each child component has an event handler that needs to set or change State in the parent component.  
+
+To Do:
+
+1. Create and register an event handler function in the child Component whose State is to be changed.  
+2. Create an event handler function in the Parent that will update the this.state.stateName of the Child component that called it, by using the replacement technique (so React can detect the State change and re-render automatically).  
+3. In the Parent component, pass-in a prop and assign it the value of the Parent's event handler function (created in step 2, above) i.e. `handler={this.stateChngFuncName}`  
+4. In the Child component, call the method that was passed-in at step 3 and pass-in any rqeuired parameters i.e. `this.props.stateChngFuncName(this.props.name);`.  
+
+
 ## Other Reference Links
 
 React [Tutorial](https://reactjs.org/tutorial/tutorial.html)  
