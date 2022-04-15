@@ -10,6 +10,7 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 
 ## Code301 Assignment Notes
 
+[ ] Read05 Thinking in React and Higher Order Functions [readings](./code301-files/reactthink-higherorderfuncs.html)  
 [ ] Read04 [React and Forms](./code301-files/react-and-forms.html)  
 [ ] Read03 [Funcs As Props](./code301-files/funcs-as-props.html)  
 [ ] Read02 [State and Props](./code301-files/read02.html)  
