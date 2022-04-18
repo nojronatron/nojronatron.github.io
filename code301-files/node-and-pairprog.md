@@ -1,5 +1,10 @@
 # Read06 Node and Pair Programming
 
+## Index
+
+[Node JS Q and A](#node-js-q-and-a)  
+[Pair-Programming Q and A](#pp-q-and-a)  
+
 ## Node JS
 
 Article by James Hibbard of [sitepoint.com](https://www.sitepoint.com/an-introduction-to-node-js/)
@@ -71,30 +76,42 @@ What command would you type to install a library/package called ‘jshint’?
 
 What is node used for?
 
-> Node is based on the V8 javascript runtime engine so it will execute javascript. 
-> Client-side and server-side applications, especially Apps that required real-time interaction, streaming, or have APIs.   
+> Node is based on the V8 javascript runtime engine so it will execute javascript.  
+> Client-side and server-side applications, especially Apps that required real-time interaction, streaming, or have APIs.  
 
 ## Six Reasons to Pair Program
+
+### Improve Code Quality
+
+Use a linter.  
+Code review.  
+*Pair Programming*.
 
 ### PP Q and A
 
 What are the 6 reasons for pair programming?
 
-> .
+1. Greater efficiency. Improve code quality, reducing coding mistakes (two heads are better than one).  
+2. Promotes a collaborative environment. Pair programmers are more likely to focus on the job at hand, for the benefit of each other.  
+3. Supports learning. Exposes pair programmers to new or unique approaches and solutions to coding problems.  
+4. Improve social skills. Communication is key to effective pair programing, and so is learning how to work well with others. Finding the right words to use is necessary. Employers look for employees that can work well with others, and pair programming helps build that soft skill.  
+5. Prepares for job interviews. Often times a candidate will be asked to pair program with an employee to evaluate the candidates collaboration style, and ability to get along with the existing team.  
+6. Having pair programming skills at the onset of employement will help new hires to rapidly become more productive.  
 
 In your experience, which of these reasons have you found most beneficial?
 
-> .
+> Promotes learning. I have seen this technique help fellow students learn javascript and gain a better understanding of a block of code while writing it.  
 
 How does pair programming work?
 
-> .
+> Bothe developers sit at the same workstation working on the same app, feature, and/or code block or for a specific coding purpose. One developer is the *navigator* - responsible to researching the code, and determining what code needs to be written to the code page. The other developer is the *driver* - the only person allowed to touch the keyboard, and follows the instructions of the Navigator, asking questions when necessary, but otherwise concentrating on writing the code as described by the Navigator.  
 
 ## Resources
 
 Build a NodeJS [MVC App](https://www.sitepoint.com/node-js-mvc-application/)  
 Create a javascript project [scaffolding tool](https://www.sitepoint.com/scaffolding-tool-caporal-js/)  
 Nodejs [Best Practices](https://www.sitepoint.com/node-js-best-practices-from-the-node-gurus/)  
+Six Reasons to [Pair Program](https://www.codefellows.org/blog/6-reasons-for-pair-programming/)  
 
 ## Footer
 
