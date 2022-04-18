@@ -6,7 +6,36 @@ Article by James Hibbard of [sitepoint.com](https://www.sitepoint.com/an-introdu
 
 ### What is Node
 
+A runtime environment that supports javascript.  
+NPM is Node Package Manager, which handles registration, updates, and dependencies in node packages.  
+NVM is Node Version Manager, which allows changing versions of Node easily.  
+Node is *single-threaded*.  
+When Node encounters a blocking call, it "registers a call-back" and moves forward in execution until the callback is "called" by the other entity that Node *could have been waiting for* but didn't.  
 
+### Server-side Node
+
+Node allows execution of javascript, server-side.  
+Use a cloning strategy with node to handle large volumes of requests and calls.  
+Node uses an "event loop" to manage thread pooling and effecient utilization.  
+CPU-intensive operations should be sent to a "worker thread" so it does not block other operations.  
+
+*Note*: Newer features "Promises" and "async-await" of javascript make working with asynchronous code a little easier.  
+
+### What Node Is Good At
+
+- Real time interaction.  
+- Streaming data.  
+- Building APIs.  
+- Native ability to read, process, and output JSON.  
+
+### About Packages
+
+They can be installed globally with the '-g' switch.  
+To save a package as a project dependancy add the '--save' switch.  
+lodash: Install to make working with JS objects and arrays easier, see [the docs](https://lodash.com/docs)  
+package.json: npm stores node modules in this file, as a lookup or directory of installed or dependent packages.  
+Node is the modern way to easily build and use javascript applications.  
+Express is a package that helps structure and build applicatiosn with Node. [ExpressJS](http://expressjs.com/)  
 
 ### Node JS Q and A
 
@@ -42,7 +71,8 @@ What command would you type to install a library/package called ‘jshint’?
 
 What is node used for?
 
-> Node is based on the V8 javascript runtime engine so it will execute javascript.  
+> Node is based on the V8 javascript runtime engine so it will execute javascript. 
+> Client-side and server-side applications, especially Apps that required real-time interaction, streaming, or have APIs.   
 
 ## Six Reasons to Pair Program
 
@@ -59,6 +89,12 @@ In your experience, which of these reasons have you found most beneficial?
 How does pair programming work?
 
 > .
+
+## Resources
+
+Build a NodeJS [MVC App](https://www.sitepoint.com/node-js-mvc-application/)  
+Create a javascript project [scaffolding tool](https://www.sitepoint.com/scaffolding-tool-caporal-js/)  
+Nodejs [Best Practices](https://www.sitepoint.com/node-js-best-practices-from-the-node-gurus/)  
 
 ## Footer
 
