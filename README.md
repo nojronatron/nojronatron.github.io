@@ -10,17 +10,18 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 
 ## Code301 Assignment Notes
 
+[ ] Read06 About [NodeJS and Pair Programming](./code301-files/node-and-pairprog.html)
 [ ] Read05 Thinking in React and Higher Order Functions [readings](./code301-files/reactthink-higherorderfuncs.html)  
-[ ] Read04 [React and Forms](./code301-files/react-and-forms.html)  
-[ ] Read03 [Funcs As Props](./code301-files/funcs-as-props.html)  
-[ ] Read02 [State and Props](./code301-files/read02.html)  
-[ ] Read01 [Intro to React and Components](./code301-files/read01.html)  
-[ ] Dive Into [React](./code301-files/dive-into-react.html)  
-[ ] System Setup [Notes](./code301-files/setup-notes.html)  
-[ ] ES6 [Arrow Functions](./code301-files/arrow-functions.html)  
-[ ] ES6 [Classes](./code301-files/es6-classes.html)  
-[ ] JS Conf Session: The Event Loop [Video Notes](./code301-files/event-loop-video.html)  
-[ ] Components and React [Notes and Quiz](./code301-files/components-react.html)
+[X] Read04 [React and Forms](./code301-files/react-and-forms.html)  
+[X] Read03 [Funcs As Props](./code301-files/funcs-as-props.html)  
+[X] Read02 [State and Props](./code301-files/read02.html)  
+[X] Read01 [Intro to React and Components](./code301-files/read01.html)  
+[X] Dive Into [React](./code301-files/dive-into-react.html)  
+[X] System Setup [Notes](./code301-files/setup-notes.html)  
+[X] ES6 [Arrow Functions](./code301-files/arrow-functions.html)  
+[X] ES6 [Classes](./code301-files/es6-classes.html)  
+[X] JS Conf Session: The Event Loop [Video Notes](./code301-files/event-loop-video.html)  
+[X] Components and React [Notes and Quiz](./code301-files/components-react.html)
 
 ## Code201 Reading Assignments and Notes
 
