@@ -10,7 +10,8 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 
 ## Code301 Assignment Notes
 
-[ ] Read06 About [NodeJS and Pair Programming](./code301-files/node-and-pairprog.html)
+[ ] Read07 [Queries and REST](./code301-files/queries-rest-api.html)  
+[ ] Read06 About [NodeJS and Pair Programming](./code301-files/node-and-pairprog.html)  
 [ ] Read05 Thinking in React and Higher Order Functions [readings](./code301-files/reactthink-higherorderfuncs.html)  
 [X] Read04 [React and Forms](./code301-files/react-and-forms.html)  
 [X] Read03 [Funcs As Props](./code301-files/funcs-as-props.html)  
@@ -21,7 +22,7 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 [X] ES6 [Arrow Functions](./code301-files/arrow-functions.html)  
 [X] ES6 [Classes](./code301-files/es6-classes.html)  
 [X] JS Conf Session: The Event Loop [Video Notes](./code301-files/event-loop-video.html)  
-[X] Components and React [Notes and Quiz](./code301-files/components-react.html)
+[X] Components and React [Notes and Quiz](./code301-files/components-react.html)  
 
 ## Code201 Reading Assignments and Notes
 
