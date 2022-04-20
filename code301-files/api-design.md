@@ -52,6 +52,12 @@ What status code does a successful DELETE request return?
 
 > HTTP 204 (No Content)
 
+## RegEx Readings To Review
+
+Media-Temples [RexExr](https://regexr.com/)  
+Medium.com [RegEx Cheatsheet](https://medium.com/factory-mind/regex-tutorial-a-simple-cheatsheet-by-examples-649dc1c3f285)  
+[Regular Expressions 101](https://regex101.com/)  
+
 ## References
 
 Antipatterns:
