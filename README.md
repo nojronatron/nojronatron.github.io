@@ -10,8 +10,9 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 
 ## Code301 Assignment Notes
 
-[ ] Read08 [API Design](./code301-files/api-design.html)  
-[ ] Read07 [Queries and REST](./code301-files/queries-rest-api.html)  
+[ ] Read09 [Node Modules and Functional Programming](./code301-files/nodemodules-funcproging.md)  
+[X] Read08 [API Design](./code301-files/api-design.html)  
+[X] Read07 [Queries and REST](./code301-files/queries-rest-api.html)  
 [X] Read06 About [NodeJS and Pair Programming](./code301-files/node-and-pairprog.html)  
 [X] Read05 Thinking in React and Higher Order Functions [readings](./code301-files/reactthink-higherorderfuncs.html)  
 [X] Read04 [React and Forms](./code301-files/react-and-forms.html)  
