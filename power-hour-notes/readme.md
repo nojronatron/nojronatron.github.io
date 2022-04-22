@@ -4,8 +4,9 @@ Notes taken while attending Power Hour sessions - videos and/or in-person events
 
 ## Index
 
-Refresher (or clarification) on [Loops](loops-refresher.html)  
-[Data Structures and Algorithms](data-structures-algos.html)  
+Communicating Under [Stress](./comms-under-stress.html)  
+Refresher (or clarification) on [Loops](./loops-refresher.html)  
+[Data Structures and Algorithms](./data-structures-algos.html)  
 
 ## Important  
 
