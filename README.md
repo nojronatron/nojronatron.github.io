@@ -11,7 +11,7 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments).
 ## Code301 Assignment Notes
 
 [ ] Read10 JS and [Memory Usage](./code301-files/js-mem-usage.html)  
-[ ] Read09 [Node Modules and Functional Programming](./code301-files/nodemodules-funcproging.md)  
+[ ] Read09 [Node Modules and Functional Programming](./code301-files/nodemodules-funcproging.html)  
 [X] Read08 [API Design](./code301-files/api-design.html)  
 [X] Read07 [Queries and REST](./code301-files/queries-rest-api.html)  
 [X] Read06 About [NodeJS and Pair Programming](./code301-files/node-and-pairprog.html)  
@@ -63,4 +63,4 @@ The Event Loop - Video [YouTube.com](https://www.youtube.com/watch?v=8aGhZQkoFbQ
 
 [ ] Bookmark additional resources  
 [ ] Present material as if to someone new to the industry  
-[ ] Cite sources with links when directly quoting
+[ ] Cite sources with links when directly quoting  
