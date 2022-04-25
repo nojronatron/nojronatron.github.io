@@ -47,7 +47,17 @@ Look for the Azure CosmosDB extension.
 
 ## Data Structures and Algorithms
 
-TODO: Come back to this when a template repo is available (probably via Canvas, Syllabus).  
+See the instructions in the class repo for specifics.  
+
+Overview:
+
+1. CD into the correct folder.  
+2. Check out a new local branch.  
+3. Get the Challenge code by running an sh script.  
+4. Execute `npm test` to see test results for all tests in the designated code file.  
+5. ACP to GH then wait a minute for GH Action to finish.  
+6. Check the Actions tab to confirm tests are passing.  
+7. PR to main an submit assignment.  
 
 ### ESLinter
 
@@ -73,6 +83,10 @@ Appropriate solution is to install GH Credential Manager.
 See these steps [here](https://github.com/GitCredentialManager/git-credential-manager#linux-install-instructions)  
 
 *Note*! The link above contains an *experimental script*. Be certain that is what you want to use rather than the Ubuntu/Debian distribution instructions!!  
+
+## Other Stuff To Consider
+
+[Oh my Posh](https://medium.com/analytics-vidhya/customize-your-windows-powershell-with-oh-my-posh-posh-git-93284b2749b6)  
 
 ## Footer
 
