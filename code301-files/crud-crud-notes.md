@@ -8,7 +8,7 @@ Which HTTP method would you use to update a record through an API?
 
 Which REST methods require an ID parameter?  
 
-> DELETE requires an :id.  
+> DELETE and UPDATE require the parameter `:id`  
 
 What’s the relationship between REST and CRUD?  
 
