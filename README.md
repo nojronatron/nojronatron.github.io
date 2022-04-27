@@ -4,12 +4,13 @@ A collection of notes taken while attending Code Fellows CODE curriculum classes
 
 ## Contents
 
-Reference [links](#reference-links).  
-Code 301 Reading Notes are indexed [below](#code301-assignment-notes).  
-Code 201 Reading Notes are indexed [below](#code201-reading-assignments).  
+Reference [links](#reference-links)  
+Code 301 Reading Notes are indexed [below](#code301-assignment-notes)  
+Code 201 Reading Notes are indexed [below](#code201-reading-assignments)  
 
 ## Code301 Assignment Notes
 
+[ ] Read14 [Diversity in Tech](./code301-files/diversity-in-tech.html)  
 [ ] Read13 More about [CRUD](./code301-files/crud-crud-notes.html)  
 [ ] Read12 *Coming Soon!*
 [X] Read11 [Mongo and Mongoose](./code301-files/mongo-and-mongoose.html)  
