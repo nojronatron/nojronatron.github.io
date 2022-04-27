@@ -16,15 +16,16 @@ Ask the question: Why diversity matters to your tech company
 
 When are diversity efforts most successful?
 
-> 
+> According to the USA Today article "when they're driven by a commitment from company leaders" *[USA Today; Joelle Emerson; see references below]*
 
 Why do diverse companies perform better?
 
-> 
+> More diverse inputs into how the company operates and how it solves problems lead to better outcomes and faster solutions.
 
 Give an example of how a diverse company can serve a diverse user base or vise-versa.
 
->
+> Updating or changing recruitment and hiring practices that are inclusive to people of all backgrounds.  
+> By employing people of diverse backgrounds and capabilities, products that end up in the hands of consumers can be better designed to meet the needs of *a larger customer base* through inclusive accessibility.  
 
 ## Resources and References
 
