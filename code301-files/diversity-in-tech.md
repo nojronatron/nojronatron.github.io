@@ -4,11 +4,12 @@
 
 What occurred during the same time as the beginning of the decline of women in computer science?
 
-> 
+> In 1984, personal computers became widely available, and affordable, but were marketed to boys.  
+> It didn't help that most movies were boy meets girl, boy loses girl, boy is super special in some way and then "wins the girl".
 
 Why does it matter that males had been playing on computers growing up?
 
-> 
+> It set an expectation that boys would grow up to use computers but did not enable girls/women to gain skills equally.
 
 ## Employee breakdown of key technology companies
 
