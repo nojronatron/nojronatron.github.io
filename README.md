@@ -10,9 +10,10 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments)
 
 ## Code301 Assignment Notes
 
-[ ] Read14 [Diversity in Tech](./code301-files/diversity-in-tech.html)  
-[ ] Read13 More about [CRUD](./code301-files/crud-crud-notes.html)  
-[ ] Read12 *Coming Soon!*
+[ ] Read15 (coming soon!)  
+[X] Read14 [Diversity in Tech](./code301-files/diversity-in-tech.html)  
+[X] Read13 More about [CRUD](./code301-files/crud-crud-notes.html)  
+[ ] Read12 Crud Rest [Status Codes](./code301-files/crud-rest-statuscodes.html)  
 [X] Read11 [Mongo and Mongoose](./code301-files/mongo-and-mongoose.html)  
 [X] Read10 JS and [Memory Usage](./code301-files/js-mem-usage.html)  
 [X] Read09 [Node Modules and Functional Programming](./code301-files/nodemodules-funcproging.html)  
