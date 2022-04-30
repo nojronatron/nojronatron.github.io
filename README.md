@@ -10,7 +10,7 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments)
 
 ## Code301 Assignment Notes
 
-[ ] Read15 (coming soon!)  
+[ ] Read15 [Authentication](./code301-files/authentication.html)  
 [X] Read14 [Diversity in Tech](./code301-files/diversity-in-tech.html)  
 [X] Read13 More about [CRUD](./code301-files/crud-crud-notes.html)  
 [ ] Read12 Crud Rest [Status Codes](./code301-files/crud-rest-statuscodes.html)  

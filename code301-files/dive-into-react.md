@@ -81,3 +81,7 @@ A. One way: Data flows down from the parent to the nested children.
 
 Q. Every component manages its own _____?  
 A. State, i.e. data in the component.  
+
+## Footer
+
+Return to [README.md](../README.html)  
