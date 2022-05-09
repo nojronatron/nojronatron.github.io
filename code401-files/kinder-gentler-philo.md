@@ -25,11 +25,17 @@ Failure is much more crushing when certain people's success implies the success 
 People own their success and their failures, however confidence can turn those failures into suicide and bad behaviors.  
 Randomness of life in general is *not* taken into consideration in a meritocracy.  
 
-## Consider These
+## Consider These Things
 
 St. August said "It is a sin to judge any man by his post".  
 It should not be the "business card" by which people should be judged in today's world.  
+You cannot be successful at *everything* - therefore there must be an acceptance that in some areas, you are a loser.  
 
+> Why focus on the losing part then?  
+
+Focus on our own ideas of *success*.  
+Own your own successess, and make sure those ideas of success are our own.  
+Leave room for randomness in evaluations of success.  
 
 ## Footer
 
