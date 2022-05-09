@@ -35,7 +35,6 @@ The word 'yet' promotes considering learning into the future, rather than an end
 There are chronic under-performers like kids in inner-cities or on american reservations.  
 However growth mind-set teaching makes a difference per *[National Achievement Tests provided supporting data]*.  
 
-
 ## Footer
 
 Return to [Code 401 Readme.md](./readme.html)  
