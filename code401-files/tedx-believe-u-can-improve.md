@@ -1,6 +1,6 @@
 # The Power Of Believing You Can Improve
 
-Speaker: Carol Dweck discusses the growth mindset.
+Speaker: Carol Dweck discusses [The Growth Mindset](https://www.ted.com/talks/carol_dweck_the_power_of_believing_that_you_can_improve?language=en)  
 
 ## Notes
 
@@ -33,7 +33,7 @@ The word 'yet' promotes considering learning into the future, rather than an end
 ## Equality
 
 There are chronic under-performers like kids in inner-cities or on american reservations.  
-However growth mind-set teaching makes a difference (National Achievement Tests provide supporting data).  
+However growth mind-set teaching makes a difference per *[National Achievement Tests provided supporting data]*.  
 
 
 ## Footer
