@@ -13,6 +13,7 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments)
 
 The following are reading and research notes taken during, and in preparation for, Code401 Java:
 
+[ ] Make your projects *client ready* aka visually appealing to anyone *[CodeFellows Prework]*  
 [ ] A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)  
 [ ] Passion and [Perseverence](./code401-files/passion-perseverence.html)  
 [ ] Believe [you can](./code401-files/tedx-believe-u-can-improve.html)  
