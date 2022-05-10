@@ -5,16 +5,13 @@ A collection of notes taken while attending Code Fellows CODE curriculum classes
 ## Contents
 
 Reference [links](#reference-links)  
-Code 401 Java Reading Notes are indexed [below](#code401-java-assignment-notes)  
+Code 401 Java Reading Notes are indexed [here](./code401-files/readme.html)  
 Code 301 Reading Notes are indexed [below](#code301-assignment-notes)  
 Code 201 Reading Notes are indexed [below](#code201-reading-assignments)  
 
 ## Code401 Java Assignment Notes
 
-[ ] Prework: Kinder, gentler [philosophy of success](./code401-files/kinder-gentler-philo.html)  
-[ ] Prework: Power of [Passion and Perseverence](./code401-files/passion-perseverence.html)  
-[ ] Prework: The Power of [Believing You Can Improve](./code401-files/tedx-believe-u-can-improve.html)  
-[ ] Prework: Upgrade your skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)  
+See [Code 401 Prework and Reading Notes Index](./code401-files/readme.html)  
 
 ## Code301 Assignment Notes
 
@@ -55,22 +52,24 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments)
 [x] Read-11 [HTML Chpt.16, 19, 9, and MDN Article on Video and Audio APIs](./code201-files/read-11.html)  
 [x] Read-12 [ChartJS and Canvas API](./code201-files/read-12.html)  
 [x] Read-13 [The Past Present and Future of Local Storage for Web Applications](./code201-files/read-13.html)  
-[x] Read-14 Multiple Articles, see links in [read-14.md](./code201-files/read-14.html)  
+[x] Read-14 Multiple Articles, see links in [read-14](./code201-files/read-14.html)  
 
 ## Reference Links
 
 Mozilla Developers Network [Reference Docs](https://developer.mozilla.org/en-US/docs/Web)  
 Career Launch Strategy [Notes](./code201-files/CareerLaunchStrategy.html)  
 Power Hour Sessions [Notes](./power-hour-notes/readme.html)  
-Linux and Terminal/Bash Reading Ntoes [Notes](./linux-terminal/readme.html)  
+Linux and Terminal/Bash Reading [Notes](./linux-terminal/readme.html)  
 Image Placeholder Generator: [place-hold.it](https://place-hold.it)  
-Build and Test FE Code: [CodePen](https://codepen.io/)  
+Build and Test Code befor edeployment in [CodePen](https://codepen.io/)  
 Find, Support, Hire Creatives: [Dribbble](https://dribbble.com/)  
 Design Inspiration: [Designspiration](https://www.designspiration.com/)  
 Color Palette Designer: [Paletton.com](https://paletton.com/)  
 Digital Ocean's CSS Tricks: [CSS-Tricks.com](https://css-tricks.com/)  
 Web.Dev - Learn about CSS: [Web.Dev](https://web.dev/learn/css/layout/)  
 The Event Loop - Video [YouTube.com](https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf)  
+Do daily challenges or steps in FE/BE/Java paths at [Free Code Camp](https://www.freecodecamp.org/)  
+Consider a subscription to CodeAcademy to support [Continuous Learning](https://www.codecademy.com/)  
 
 ## Remember To-do-s  
 
