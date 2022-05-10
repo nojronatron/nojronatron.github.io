@@ -5,15 +5,23 @@ A collection of notes taken while attending Code Fellows CODE curriculum classes
 ## Contents
 
 Reference [links](#reference-links)  
-Code 401 Java Reading Notes are indexed [here](./code401-files/readme.html)  
+Code 401 Java Reading Notes are indexed [below](#code401-java-assignment-notes)  
 Code 301 Reading Notes are indexed [below](#code301-assignment-notes)  
 Code 201 Reading Notes are indexed [below](#code201-reading-assignments)  
 
 ## Code401 Java Assignment Notes
 
-See [Code 401 Prework and Reading Notes Index](./code401-files/readme.html)  
+The following are reading and research notes taken during, and in preparation for, Code401 Java:
+
+[ ] A Kinder and Gentler [Philosophy](./kinder-gentler-philo.html)  
+[ ] Passion and [Perseverence](./passion-perseverence.html)  
+[ ] Believe [you can](./tedx-believe-u-can-improve.html)  
+[ ] Upgrade Skills with [Deliberate Practice](./upg-skills-with-practice.html)  
+[ ] Review Linux bash/cmdline [Tools and Usage](../linux-terminal/readme.html)  
 
 ## Code301 Assignment Notes
+
+The following are reading and research notes taken during, and in preparation for, Code301:
 
 [ ] Read15 [Authentication](./code301-files/authentication.html)  
 [X] Read14 [Diversity in Tech](./code301-files/diversity-in-tech.html)  
