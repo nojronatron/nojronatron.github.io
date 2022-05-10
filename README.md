@@ -13,11 +13,11 @@ Code 201 Reading Notes are indexed [below](#code201-reading-assignments)
 
 The following are reading and research notes taken during, and in preparation for, Code401 Java:
 
-[ ] A Kinder and Gentler [Philosophy](./kinder-gentler-philo.html)  
-[ ] Passion and [Perseverence](./passion-perseverence.html)  
-[ ] Believe [you can](./tedx-believe-u-can-improve.html)  
-[ ] Upgrade Skills with [Deliberate Practice](./upg-skills-with-practice.html)  
-[ ] Review Linux bash/cmdline [Tools and Usage](../linux-terminal/readme.html)  
+[ ] A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)  
+[ ] Passion and [Perseverence](./code401-files/passion-perseverence.html)  
+[ ] Believe [you can](./code401-files/tedx-believe-u-can-improve.html)  
+[ ] Upgrade Skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)  
+[ ] Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/bash-stuff.html)  
 
 ## Code301 Assignment Notes
 
