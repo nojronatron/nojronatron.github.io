@@ -21,8 +21,10 @@ Many of these concepts will also apply to Unix and other unix-based operating sy
 
 ## List Files
 
-Remember, EVERYTHING is a file so `<pathspec>` actually means `filename` or `foldername/filename` etc.  
+Remember, EVERYTHING is a file so `<pathspec>` actually means `filename` or `foldername` or `foldername/filename` etc.  
 List files in current directory: `ls [options] <filespec>`  
+List files in a list with file details (long listing) within the '/etc/ directory: `ls -l /etc`  
+List hidden files: `ls -a`  
 There are MANY options, see the LS MAN pages for more.  
 
 ## Linux Is Extensionless
@@ -43,6 +45,18 @@ There are MANY options, see the LS MAN pages for more.
   - Ex: `ls spacey folder name` returns an error.  
   - Ex: `ls 'spacey folder name'` works.  
 
+## Escape Characters
+
+Use a backslash `\` to escape (nullify) the special meaning of reserved characters like spaces e.g.:  
+
+```bash
+user@bash: pwd
+/home/toor
+user@bash: cd My\ Music
+user@bash: pwd
+/home/toor/My Music
+```
+
 ## Hidden Files
 
 Just prefix the file or folder name with a dot:
@@ -62,12 +76,9 @@ To search terms WITHIN a MAN page display: `/ <search_term>` then press `n` for 
 ## Manipulating Files
 
 Create a directory: `mkdir <name>`  
-
-- Create a directory tree: `mkdir <parent_name>/<child_name>`  
-
+Create a directory tree: `mkdir <parent_name>/<child_name>`  
 Remove files and empty directories: `rm [options] <filespec>`  
-
-- Recursive: `rm -r <filespec>`  
+Recursively remove files and directories: `rm -r <filespec>`  
 
 Remove an empty directory: `rmdir <name>`  
 
@@ -75,19 +86,26 @@ Remove an empty directory: `rmdir <name>`
 - Directories will not be removed unless they are empty of files and child directories.  
 
 Create a new blank file: `touch <path>/<filename>[.ext]`  
-
 Copy a file or directory: `cp [options] <source_path> <dest_path>`  
-
-- Note: PATHs can be absolute or relative.  
-- Remember: Folders ARE files, so both folders and files are part of a path.  
-- Recuse over directories: `cp -r <source_path> <dest_path>`  
-
+Recurse over directories: `cp -r <source_path> <dest_path>`  
 Move/Rename files or directories: `mv [options] <source_path> <dest_path>`  
 
-- Can move directories without using recuse option.
+You can move directories without using recuse option.
+
 - Will rename if paths are the same except:  
-  - Directory rename: dest_path directory name is only difference  
-  - File rename: dest_path filename is only difference  
+- Directory rename: dest_path directory name is only difference  
+- File rename: dest_path filename is only difference  
+
+Bulk-copy files and rename them, but file extension: `basename -s .jpg -a *.jpg | xargs -n1 -i cp {}.jpg {}_original.jpg`  
+
+### About Relative and Absolute Paths
+
+PATHs can be absolute or relative.  
+Linux file strucuture is hierarchical.  
+Folders ARE files, but with a 'd' flag set, so folders *and* files are part of the path.  
+Absolute paths start with a forward slash `/` e.g.: `/etch`  
+Relative paths identify a location 'relative' to the pwd and will not begin with a forward slash i.e. `../project/code401` is one folder 'back' from pwd and one folder 'forward' from the 'project' folder.  
+Home path is `~` which is equivalent to `\home\$username`  
 
 ## Vi Text Editor
 
@@ -126,28 +144,65 @@ Display all contents of a file: `cat <filespec>` Displays file contents.
 View portion of a file: `less <filespec>` Use arrow keys to scroll up and down, `b` to go "back a page", and `q` to quit.  
 Grep is used to filter data for viewing: `grep`  
 
+*Note*: See more grep usage in [Grepping](#grepping)  
+
 ## Wildcards
 
-- `*` Zero or more characters.  
-  - Remember, these affect the entire pathspec, which includes directories and filenames and file extensions.  
-- `?` Single character.  
-- `[]` A range of characters.  
-Example: `ls [Qq][0-9][0-3]*` results in a listing of files in the current directory whose 1st character is a Q or q, second character is within the range 0 to 9, third character is within the range 0-3, and there are any number of any other characters following.  
-- `^` Not. As the first character within a range wildcard causes the filter to eliminate files that match that first character range wildcard characters.  
+Zero or more characters: `*`  
+Single character: `?`  
+A range of characters: `[]`  
+List files in the pwd whose 1st character is a 'Q' or 'q', 2nd character is within the range 0-9, 3rd character is within the range 0-3, and any number of other character following: `ls [Qq][0-9][0-3]*`  
+Not: `^`  
+
+*Note about Not*: As the first character within a range wildcard causes the filter to eliminate files that match that first character range wildcard characters.  
+*Remember*: Wildcards affect the entire pathspec, which includes directories and filenames and file extensions.  
+
+## Piping and Redirection
+
+Redirect Standard Out (STDOUT) to a file: `>`  
+Append STDOUT to the end of a file: `>>`  
+Redirect Standard Error Out (STDERR) to a file: `2>`  
+Pass contents of a file to a program as Standard Input (STDIN): `<`  
+Feed STDOUT of the program on the left, as STDIN to the program on the right: `|`  
+
+## Filters
+
+When displaying or searching file contents, it can be helpful to filter the results to minimize clutter.  
+
+Show the first n lines: `head -n number`  
+Show the last n lines: `tail -n number`  
+Sort lines in a given way:  `sort`  
+Word Count, including characters and lines: `wc`  
+Search for a given pattern: `grep`  
+
+### Grepping
+
+Run grep with extended regex: `egrep` or `grep -E`  
+Ignore case: `-i`  
+Return NON MATCHING lines: `-v`  
+Select only whole-word matches: `-w`  
+Print count of matching lines: `-c`  
+Print name of each file containing the match: `-l` (normally used when grep is invoked with wildcards in file arg)  
+Print the number before each line that matches: `-n`  
+Recursive (all files in given pathspec): `-r`  
+
+Regex: Follow standard regex rules, incluidng Multipliers and Anchors.  
+
+*Note*: Check out [regularexpressions101](https://regex101.com/) for an easy tool to test RegEx before you 'buy' results. :-)  
 
 ## Permissions
 
 Linux permissions place rules on what can be done with a file:
 
-- Read: `r`  
-- Write: `w`  
-- Exectute: `x`  
+Read: `r`  
+Write: `w`  
+Exectute: `x`  
 
 Linux defines three groups that permissions can be applied to:  
 
-- Owner: Typically the username that created the file.  
-- Group: Every file must belong to a single group.  
-- Others: Any users not in Owner or Group.  
+Owner: Typically the username that created the file.  
+Group: Every file must belong to a single group.  
+Others: Any users not in Owner or Group.  
 
 Show permissions with `ls -l <pathspec>`  
 Result example: `-rwxr----x 1 pi owner 1.2K Jan 1 00:00 /home/pi/file.txt`
@@ -164,6 +219,14 @@ Change Permissions on a file (meaning everything): `chmod [permissions] [filespe
 Get version (long): `uname`  
 Get specific Linux kernel version and type: `uname -sr`  
 
+## Interrogate Files and Disk
+
+Beyond creating, copying, moving, and deleting files, use these commands to manage the file *system* and disks.  
+
+Find the size of directories in pwd: `du -sh ./*`  
+Disk space utilization report: `df -h`  
+Find files modified within last 24 hours in a specified directory: `find $directory -mtime -1`  
+
 ## Interrogating Hardware
 
 List PCI Hardware/Driver info: `lspci` or `lspci -k` or `lspci -nnk`  
@@ -177,13 +240,32 @@ Get network driver info: `inxi -n`
 
 ## Viewing Internal Logs
 
+Many system program logs are stored in `/var/log`  
 Device Message Logs: `sudo dmesg`  
 Messages in Logs related to network(s): `sudo dmesg | grep iwl`  
 Network Manager Log: `sudo journalctl -b 0 -u NetworkManager`  
 
 ## Install Software
 
+Config files are generally stored in `/etc`  
+Commonly used program binaries are stored in `/bin`  
+Other program binaries, perhaps related to users (rather than system) are stored in `/usr/bin`  
 Reinstall Ubuntu package 'linux-firmware': `sudo apt-get install --reinstall linux-firmware`  
+
+## Manage Processes
+
+Cancel a running operation: `[CTRL] + C`  
+Cancel a *process* by its ID: `kill $process_id`  
+Force canceling a 'stubborn' process: `kill $process_id -9`  
+Show list of running processes and IDs: `ps`  
+Put currently running process onto a background (paused) thread: `[CTRL] + z`  
+List current background processes: `jobs`  
+Move background process to foreground: `fg $job_number`  
+
+## References
+
+A great deal of the basics were gleened from [Ryan's Tutorials](https://ryanstutorials.net/linuxtutorial)  
+Specific grep, filter, and some other commands were copied from Ryan's Tutorials' [Linux Cheatsheet](https://ryanstutorials.net/linuxtutorial/cheatsheet.php) and [Grep Cheatsheet](https://ryanstutorials.net/linuxtutorial/cheatsheetgrep.php) and whenever possible, variables were changed to protect the innocent.  
 
 ## Footer
 
