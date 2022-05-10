@@ -39,5 +39,4 @@ Leave room for randomness in evaluations of success.
 
 ## Footer
 
-Return to [Code 401 Readme.md](./readme.html)  
 Return to [Parent Readme.md](../README.html)  

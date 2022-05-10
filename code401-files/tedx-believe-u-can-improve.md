@@ -37,5 +37,4 @@ However growth mind-set teaching makes a difference per *[National Achievement T
 
 ## Footer
 
-Return to [Code 401 Readme.md](./readme.html)  
 Return to [Parent Readme.md](../README.html)  
