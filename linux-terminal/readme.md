@@ -13,42 +13,37 @@ NOTE: I made a best-effort to verify these work in Windows PowerShell, but do no
 
 Many of these concepts will also apply to Unix and other unix-based operating systems.  
 
-## Everything is a file
+## Everything Is A File
 
 - System will have read, write, or both permissions, based on what the file represents and the underlying capabilities.
 - An audio card is repreented by System write-only file, for example (meaning System can only write to it).  
 - Folders are actually files with different properties than the files they 'contain'.  
 
-## List files
+## List Files
 
 Remember, EVERYTHING is a file so `<pathspec>` actually means `filename` or `foldername/filename` etc.  
 List files in current directory: `ls [options] <filespec>`  
 There are MANY options, see the LS MAN pages for more.  
 
-## Linux is extensionless
+## Linux Is Extensionless
 
 - Windows relies on file extensions to associate an applicable parent or executor program.  
   - Ex: `.txt` is usually associatd with `Notepad.exe` and is of FileTyle `text` or `plaintext`.  
 - Linux 'looks inside' a file to determine its 'type'.
 
-## Linux is case SENSITIVE  
+## Linux Is Case SENSITIVE  
 
 - Windows is case INsensitive
 - Terminal commands in a Linux shell will fail if CaSe rUlEs aRe nOt fOlLoWeD.  
   - This applies to filenames as well for ex: `file_name.txt` is not the same as `FileName.txt`.  
 
-## Quote around spaces
+## Quote Around Spaces
 
 - Use single `'` or double `"` quotation marks to identify a file or folder name that contains a space.  
   - Ex: `ls spacey folder name` returns an error.  
   - Ex: `ls 'spacey folder name'` works.  
-  
-### Question: Where do quotations go when using `../` notation?  
 
-- `ls '../spacey folder name'` ?  
-- `ls ../'spacey folder name'` ?  
-
-## Hidden files
+## Hidden Files
 
 Just prefix the file or folder name with a dot:
 
@@ -57,7 +52,7 @@ Just prefix the file or folder name with a dot:
 
 > Use `ls -a` to list hidden files in a directory.  
 
-## Linux is full of MANuals
+## Linux MANuals
 
 Invoke `man` command followed by the command name you want information about to get an on-screen instruction MANual.  
 Exit MAN pages by pressing `q` on the keyboard.  
@@ -96,35 +91,40 @@ Move/Rename files or directories: `mv [options] <source_path> <dest_path>`
 
 ## Vi Text Editor
 
-This is less critical information (for me, right now, as a Windows user) but should be kept in mind for diving into a linux-based environment (JS/Python full stack dev and webapp dev, etc).
+This should be kept in mind for driving around text files in a native Linux viewer/editor:  
 
-- All CLI, no UI.  
-- Two modes:  
-  1. Insert/Input Mode: Enter data into a file.  
-    - Tap `i` to change to INSERT mode  
-    - `--INSERT--` will be displayed at bottom when in this mode  
-  2. Edit Mode: Move around the file, add, delete, or copy data, search for data and replace data.  
-    - Tap `[esc]` to change to EDIT mode.  
-- Launch VI: `vi <filename>`  
-  - Will create a new file if `<filename>` does not exist already.  
-  - Starts VI in EDIT mode.  
-- Command usage
-  - Commands starting with a colon require pressing `[Enter]` to execute them.  
-- Save and Close (multple options):
-  - `ZZ` Save AND Exit.  
-  - `:q!` Discard changes and Exit.  
-  - `:w` Save changes (without exiting).  
-  - `:wq` Save changes and exit.  
-  - `:set nu` Sets 'line numbers' in file view.  
+All CLI, no UI.  
+Two modes:  
 
-  Advice:
-  - Use the man pages for more details on commands.  
-  - Also check out [Ryans Tutorials VI page](https://ryanstutorials.net/linuxtutorial/vi.php) for more.  
+1. Insert/Input Mode: Enter data into a file: Tap `i` to change to INSERT mode and `--INSERT--` will be displayed at bottom of screen.  
+2. Edit Mode: Move around the file, add, delete, or copy data, search for data and replace data. Tap `[esc]` to change to EDIT mode.  
 
-## Display file contents on-screen
+Launch VI: `vi <filename>`  
 
-- `cat <filespec>` Displays file contents.  
-- `less <filespec>` Use arrow keys to scroll up and down, `b` to go "back a page", and `q` to quit.  
+- Will create a new file if `<filename>` does not exist already.  
+- Starts VI in EDIT mode.  
+
+Command usage:
+
+Commands starting with a colon require pressing `[Enter]` to execute them.  
+Save and Close (multple options):
+
+- Save AND Exit: `ZZ`  
+- Discard changes and exit: `:q!`  
+- Save changes (no exit): `:w`  
+- Save changes and exit: `:wq`  
+- Sets 'line numbers' in file view: `:set nu`  
+
+Advice:
+
+- Use the man pages for more details on commands.  
+- Also check out [Ryans Tutorials VI page](https://ryanstutorials.net/linuxtutorial/vi.php) for more.  
+
+## Display File Contents On Screen
+
+Display all contents of a file: `cat <filespec>` Displays file contents.  
+View portion of a file: `less <filespec>` Use arrow keys to scroll up and down, `b` to go "back a page", and `q` to quit.  
+Grep is used to filter data for viewing: `grep`  
 
 ## Wildcards
 
@@ -158,3 +158,33 @@ Characters 5, 6, and 7: Group permissions. Group members can Read this file, but
 Characters 8, 9, and 10: Everyone Else permissions. Users that are not members of Owners or Group can NOT Read nor Write to the file, but the CAN Execute it.  
 
 Change Permissions on a file (meaning everything): `chmod [permissions] [filespec]`  
+
+## Interrogating Linux
+
+Get version (long): `uname`  
+Get specific Linux kernel version and type: `uname -sr`  
+
+## Interrogating Hardware
+
+List PCI Hardware/Driver info: `lspci` or `lspci -k` or `lspci -nnk`  
+Check LSB Module State: `lsb_release -a`  
+Report on hardware driver info: `sudo lshw`  
+
+## Network Interfaces
+
+Get IP info from an interface: `ip a`  
+Get network driver info: `inxi -n`  
+
+## Viewing Internal Logs
+
+Device Message Logs: `sudo dmesg`  
+Messages in Logs related to network(s): `sudo dmesg | grep iwl`  
+Network Manager Log: `sudo journalctl -b 0 -u NetworkManager`  
+
+## Install Software
+
+Reinstall Ubuntu package 'linux-firmware': `sudo apt-get install --reinstall linux-firmware`  
+
+## Footer
+
+Return to [Readme](../README.html)  
