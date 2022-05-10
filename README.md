@@ -5,8 +5,16 @@ A collection of notes taken while attending Code Fellows CODE curriculum classes
 ## Contents
 
 Reference [links](#reference-links)  
+Code 401 Java Reading Notes are indexed [below](#code401-java-assignment-notes)  
 Code 301 Reading Notes are indexed [below](#code301-assignment-notes)  
 Code 201 Reading Notes are indexed [below](#code201-reading-assignments)  
+
+## Code401 Java Assignment Notes
+
+[ ] Prework: Kinder, gentler [philosophy of success](./code401-files/kinder-gentler-philo.html)  
+[ ] Prework: Power of [Passion and Perseverence](./code401-files/passion-perseverence.html)  
+[ ] Prework: The Power of [Believing You Can Improve](./code401-files/tedx-believe-u-can-improve.html)  
+[ ] Prework: Upgrade your skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)  
 
 ## Code301 Assignment Notes
 
