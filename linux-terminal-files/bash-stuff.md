@@ -164,6 +164,14 @@ Append STDOUT to the end of a file: `>>`
 Redirect Standard Error Out (STDERR) to a file: `2>`  
 Pass contents of a file to a program as Standard Input (STDIN): `<`  
 Feed STDOUT of the program on the left, as STDIN to the program on the right: `|`  
+When multiple piped commands all require 'sudo', add it to the commands at the start of each pipe (see example below).  
+
+```shell
+# the following will fail due to lack of permissions
+wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /usr/share/keyrings/adoptium.asc
+# the following will succeed
+sudo wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo tee /usr/share/keyrings/adoptium.asc
+```
 
 ## Filters
 
@@ -218,6 +226,10 @@ Change Permissions on a file (meaning everything): `chmod [permissions] [filespe
 
 Get version (long): `uname`  
 Get specific Linux kernel version and type: `uname -sr`  
+Environment variables like `PATH=` are stored in `/etc/environment`.  
+Update Alternatives (tbd): `update-alternatives --list java` displays path to java JDK.  
+Display the existing PATH environment variable: `echo $PATH`  
+Update $PATH with a new entry: `export PATH=$PATH:/opt/package/example/bin`  
 
 ## Interrogate Files and Disk
 
@@ -251,6 +263,17 @@ Config files are generally stored in `/etc`
 Commonly used program binaries are stored in `/bin`  
 Other program binaries, perhaps related to users (rather than system) are stored in `/usr/bin`  
 Reinstall Ubuntu package 'linux-firmware': `sudo apt-get install --reinstall linux-firmware`  
+Apt is the primary software manager utility: `apt get install $package`  
+DPKG is the *underlying package management system*: `dpkg -i $deb_package`  
+As stated at AskUbuntu.com: `dpkg => apt-get, aptitude => Synaptic, Software Center`  
+
+## Manage Software Packages
+
+Installed packages will probably have an entry in $PATH that should be interrogated.  
+Listing and Removing packages might leave behind $PATH entries.  
+List existing packages: `dpkg -l $package_name_in_single_quotes`  
+Remove a package: `dpkg -r $package_name`  
+Purge remaining package artifacts: `dpkg -P $package_name`  
 
 ## Manage Processes
 
@@ -266,6 +289,8 @@ Move background process to foreground: `fg $job_number`
 
 A great deal of the basics were gleened from [Ryan's Tutorials](https://ryanstutorials.net/linuxtutorial)  
 Specific grep, filter, and some other commands were copied from Ryan's Tutorials' [Linux Cheatsheet](https://ryanstutorials.net/linuxtutorial/cheatsheet.php) and [Grep Cheatsheet](https://ryanstutorials.net/linuxtutorial/cheatsheetgrep.php) and whenever possible, variables were changed to protect the innocent.  
+Apt and DPKG details were gleened from [this AskUbuntu.com article](https://askubuntu.com/questions/40779/how-do-i-install-a-deb-file-via-the-command-line)  
+[TechRepublic](https://www.techrepublic.com/article/how-to-add-an-openpgp-repository-key-now-that-apt-key-is-deprecated/) discusses adding an openGPG key, now that apt-key is deprecated.  
 
 ## Footer
 
