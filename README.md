@@ -1,17 +1,17 @@
-# CodeFellows Notes Area
+# Reading Notes
 
 A collection of notes taken while attending Code Fellows CODE curriculum classes.
 
-## Contents
+## Table of Contents
 
 Reference [links](#reference-links)  
-Code 401 Java Reading Notes are indexed [below](#code401-java-assignment-notes)  
-Code 301 Reading Notes are indexed [below](#code301-assignment-notes)  
-Code 201 Reading Notes are indexed [below](#code201-reading-assignments)  
+Code 401 - [Advanced Software Development - Java](#advanced-software-development)  
+Code 301 - [Intermediate Software Development](#intermediate-software-development)  
+Code 201 - [Foundations of Software Development](#foundations-of-software-development)  
 
-## Code401 Java Assignment Notes
+## Advanced Software Development
 
-The following are reading and research notes taken during, and in preparation for, Code401 Java:
+The following are reading and research notes taken during, and in preparation for Code401 Java:
 
 [ ] Make your projects *client ready* aka visually appealing to anyone *[CodeFellows Prework]*  
 [ ] A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)  
@@ -20,14 +20,14 @@ The following are reading and research notes taken during, and in preparation fo
 [ ] Upgrade Skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)  
 [ ] Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/bash-stuff.html)  
 
-## Code301 Assignment Notes
+## Intermediate Software Development
 
-The following are reading and research notes taken during, and in preparation for, Code301:
+The following are reading and research notes taken during, and in preparation for Code301 Intermediate Software Development:
 
-[ ] Read15 [Authentication](./code301-files/authentication.html)  
+[X] Read15 [Authentication](./code301-files/authentication.html)  
 [X] Read14 [Diversity in Tech](./code301-files/diversity-in-tech.html)  
 [X] Read13 More about [CRUD](./code301-files/crud-crud-notes.html)  
-[ ] Read12 Crud Rest [Status Codes](./code301-files/crud-rest-statuscodes.html)  
+[X] Read12 Crud Rest [Status Codes](./code301-files/crud-rest-statuscodes.html)  
 [X] Read11 [Mongo and Mongoose](./code301-files/mongo-and-mongoose.html)  
 [X] Read10 JS and [Memory Usage](./code301-files/js-mem-usage.html)  
 [X] Read09 [Node Modules and Functional Programming](./code301-files/nodemodules-funcproging.html)  
@@ -46,13 +46,15 @@ The following are reading and research notes taken during, and in preparation fo
 [X] JS Conf Session: The Event Loop [Video Notes](./code301-files/event-loop-video.html)  
 [X] Components and React [Notes and Quiz](./code301-files/components-react.html)  
 
-## Code201 Reading Assignments and Notes
+## Foundations of Software Development
+
+The following are reading and research notes taken during, and in preparation for Code201 Foundations of Software Development:
 
 [x] Class-01 [HTML Process, Design, and Layout; JS The Art of Programming](./code201-files/class-01.html)  
 [x] Class-02 [HTML Text and Intro to CSS; JS Decision Loops (part 1)](./code201-files/class-02.html)  
 [x] Class-03 [HTML Lists and Boxes; JS Basic Instructions and Decision Loops (part 2)](./code201-files/class-03.html)  
-[x] Class-04 [Summary Notes](./code201-files/class-04.html)  
-[x] Class-05 [Summary Notes](./code201-files/class-05.html)  
+[x] Class-04 [HTML Structure, HTML Layout, and JS Functions](./code201-files/class-04.html)  
+[x] Class-05 [Images, Color, and Text in HTML and CSS](./code201-files/class-05.html)  
 [x] Class-06 [JS Functions, Methods, Objects; The Document Object Model](./code201-files/class-06.html)  
 [x] Class-07 [HTML Chpt 6 Tables; JS Chpt 3 Function, Methods, and Objects](./code201-files/class-07.html)  
 [x] Class-08 [HTML Chpt 15: CSS Layouts (revisited)](./code201-files/class-08.html)  
