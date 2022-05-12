@@ -183,7 +183,7 @@ Sort lines in a given way:  `sort`
 Word Count, including characters and lines: `wc`  
 Search for a given pattern: `grep`  
 
-### Grepping
+## Grepping
 
 Run grep with extended regex: `egrep` or `grep -E`  
 Ignore case: `-i`  
@@ -226,10 +226,21 @@ Change Permissions on a file (meaning everything): `chmod [permissions] [filespe
 
 Get version (long): `uname`  
 Get specific Linux kernel version and type: `uname -sr`  
-Environment variables like `PATH=` are stored in `/etc/environment`.  
-Update Alternatives (tbd): `update-alternatives --list java` displays path to java JDK.  
+
+### Environment Variables
+
+Environment variables like `PATH=` are stored in `/etc/environment`, as well as `.zshrc` and `.config` files, often in the user profile area (but there could be others).  
+Update Alternatives: `update-alternatives --list java` displays path to java JDK.  
+Display all environment variables in the current context: `printenv`  
+Display a specific environment variable: `printenv VAR_NAME`  e.g. `printenv JAVA_HOME`  
 Display the existing PATH environment variable: `echo $PATH`  
 Update $PATH with a new entry: `export PATH=$PATH:/opt/package/example/bin`  
+
+#### Environment Variable Hierarchy
+
+Loading variables in the current context becomes the 'parent context' set of variables.  
+If the parent (e.g. ZSH) launches another shell, its variables are then pushed to the child process.  
+To force specific variables into the child process, bash for example: `zsh> VAR_ONE="Foo" VAR_TWO="BAR" sh` would load child process 'sh' with those two additional enironemnt variables preceeding it.  
 
 ## Interrogate Files and Disk
 
