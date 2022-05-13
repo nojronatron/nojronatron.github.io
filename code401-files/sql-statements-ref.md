@@ -4,6 +4,40 @@ Use this as a resource to guide writing and executing safe and valid SQL stateme
 
 ## Queries
 
+Select information from one or more or all columns, in one or more or all tables.  
+Constraints can be put on queries to only display certain data, within certain ranges, etc.  
+Queries can be 'joined' to display interrelated data.  
+
+```sh
+SELECT * FROM table_name; # returns all cols from table_name
+SELECT col1,col2 FROM table_name; # return just the named column data
+```
+
+Completed Exercise 1:  
+
+![Completed Exercise 1](./images/)  
+
+### Constraints
+
+Limit or specify the query results you want using Constraints.  
+Constraints can be applied to other SQL commands in addition to Queries.  
+Use constraints to limit results to improve performance.  
+Return only what the client really, really needs, rather than everything.  
+
+```sh
+SELECT col1, col2 FROM table_name WHERE cond1 AND cond2 OR cond3;
+# multiple constrains on 2 columns here
+# single-col and/or single-constraint are also legal
+```
+
+Constaint Definitions
+
+Number Operators: `=, !=, <, <=, >, >=`  
+Between Operators: `BETWEEN first AND second` where first and second are values.  
+Not Between: Same as between, prefixed with `NOT`  
+Exists in a list: `IN(...)` e.g. `col_name IN(1, 3, 5)`  
+Not Exists: Counter of IN e.g. `col_name NOT IN(2, 4, 6)`  
+
 ## Insert Update Delete
 
 ## Makin Tables
