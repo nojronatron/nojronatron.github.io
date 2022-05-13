@@ -20,6 +20,8 @@ CREATE TABE IF NOT EXISTS table_name (
 );
 ```
 
+### Data Types
+
 Many data types exist (MySql, Postgres, SQLite, MS SQL Server are just a few that have intersecting types):
 
 Integer and Boolean - Recall that 0 is false and 1 is true.  
@@ -27,6 +29,29 @@ Float, Double, Real - These are all FP or decimal type primatives and are theref
 Character/Char, VARCHAR, TEXT - String values with limited memory allocations w/ overflow truncation.  
 Date, DateTime - Depending on the system these might have somewhat different schemas.  
 Blob - Data stored directly in the database. Not always the best option if performance (memory and query processing) are of any concern.  
+
+### Table Constraints
+
+Primary Key
+AutoIncrement
+Unique
+Not Null
+Check (expression)
+Foreign Key
+
+### Example Schema
+
+```sh
+CREATE TABLE my_table (
+  id INTEGER PRIMARY KEY,
+  title TEXT,
+  owner TEXT,
+  birthday INTEGER,
+  active BOOLEAN,
+  created DATETIME,
+  Updated DATETIME
+);
+```
 
 ## Resources
 
