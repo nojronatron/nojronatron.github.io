@@ -53,6 +53,48 @@ CREATE TABLE my_table (
 );
 ```
 
+## Alter Tables
+
+Add, remove, or modify columns and table constraints.  
+
+### Add Columns
+
+```sh
+ALTER TABLE table_name
+ADD col_name DataType OptionalTableConstraint
+DEFAULT def_value;
+```
+
+### Remove Columns
+
+```sh
+ALTER TABLE table_name 
+DROP col_to_delete;
+```
+
+### Rename Table
+
+```sh
+ALTER TABLE table_name 
+RENAME TO new_table_name;
+```
+
+### Other Alter Capabilities
+
+Consult the documentation for the DB platform to get details on other ALTER operations.  
+
+## Drop Table
+
+Use with caution:  
+
+- An FK relationthip will break if a table partner is missing and could have detrimental results to your application.  
+- Data in the table can only be restored from a backup *prior* to the table drop command execution.  
+- Always use `IF EXIST` clause to avoid an exception being thrown if the table does not exist.  
+
+```sh
+DROP TABLE IF EXISTS table_name;
+```
+
 ## Resources
 
 A great deal of the information on this page was gleened from exercises provided by [SQLBolt lessons](https://www.sqlbolt.com)  
