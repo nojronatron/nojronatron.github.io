@@ -49,7 +49,12 @@ Case insensitive string comparisons: `LIKE "likeish"` and `NO LIKE "unlikeish"`
 Wildcard: Use `%` as a placeholder for zero-or-more-characters-in-place within LIKE/NOT LIKE constraints.  
 Single placeholder: Use `_` to represent a single-character replacement i.e. `col1 IN ("_r.")` matches "Mr."  
 
+Completed Exercise 2:
+
 ![Completed Exercise 2](./images/lesson2.jpg)  
+
+Completed Exercise 3:
+
 ![Completed Exercise 3](./images/lesson3.jpg)  
 
 ## Filtering And Sorting
@@ -83,7 +88,12 @@ LIMIT limit_n OFFSET offset_n;
 # also limit the number of results to limit_n starting at offset_n (from zeroth result)
 ```
 
+Completed Exercise 4:
+
 ![Completed Exercise 4](./images/lesson4.jpg)  
+
+Completed Exercise 5:
+
 ![Completed Exercise 5](./images/lesson5.jpg)  
 
 ### JOINs
@@ -118,6 +128,8 @@ LIMIT limit_n OFFSET offset_n
 ```
 
 A note about *OUTER* JOIN: It is retained for compatibility but is usually not necessary.  
+
+Completed Exercise 6:
 
 ![Completed Exercise 6](./images/lesson6.jpg)  
 
@@ -171,6 +183,8 @@ VALUES (1, 60 * 60 * 24);
 
 *Note*: If auto-increment is enabled on a column, don't bother adding that column to your INSERT statement.  
 
+Completed Exercise 13:
+
 ![Completed Exercise 13](./images/lesson13.jpg)  
 
 ### UPDATE Statement
@@ -180,6 +194,8 @@ UPDATE table_name
 SET col1 = value_or_expression col2 = value2_or_expr2, ...
 WHERE condx;
 ```
+
+Completed Exercise 14:
 
 ![Completed Exercise 14](./images/lesson14.jpg)  
 
@@ -193,6 +209,8 @@ Of course, having a recent backup of the data is also handy.
 DELETE FROM table_name
 WHERE condx
 ```
+
+Completed Exercise 15:
 
 ![Completed Exercise 15](./images/lesson15.jpg)  
 
@@ -209,6 +227,8 @@ CREATE TABE IF NOT EXISTS table_name (
   ...
 );
 ```
+
+Completed Exercise 16:
 
 ![Completed Exercise 16](./images/lesson16.jpg)  
 
@@ -249,6 +269,8 @@ CREATE TABLE my_table (
 
 Add, remove, or modify columns and table constraints.  
 
+Completed Exercise 17:
+
 ![Completed Exercise 17](./images/lesson17.jpg)  
 
 ### Add Columns
@@ -288,6 +310,8 @@ Use with caution:
 ```sh
 DROP TABLE IF EXISTS table_name;
 ```
+
+Completed Exercise 18:
 
 ![Completed Exercise 18](./images/lesson18.jpg)  
 
