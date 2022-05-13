@@ -22,6 +22,7 @@ The following are reading and research notes taken during, and in preparation fo
 [ ] SQL Statement [Reference](./code401-files/sql-statements-ref.html)  
 
 [~] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
+[~] Study [Guide](./code401-files/java-reference.html)  
 
 ## Intermediate Software Development
 
