@@ -86,7 +86,115 @@ LIMIT limit_n OFFSET offset_n;
 ![Completed Exercise 4](./images/lesson4.jpg)  
 ![Completed Exercise 5](./images/lesson5.jpg)  
 
+### JOINs
+
+You can choose to to chained queries, or you can do better by using JOIN statements.  
+JOIN queries allows finding data across many tables, based on shared info, perhaps a Key column.  
+Database Normalization is used to allow tables to grow independantly of each other.  
+JOINs are necessary to query data across these Normalized databases.  
+
+INNER JOIN:  
+
+```sh
+SELECT col1, col2
+FROM first_table
+INNER JOIN second_table
+ON first_table.col_name = second_table.col_name
+WHERE condx
+ORDER BY col1,col2 ASC/DESC
+LIMIT limit_n OFFSET offset_n;
+```
+
+Other JOIN types:  
+
+```sh
+SELECT col1, col2
+FROM first_table
+INNER|LEFT|RIGHT|FULL JOIN second_table
+ON first_table.col1 = second_table.col1
+WHERE condx
+ORDER BY col1, col2 ASC
+LIMIT limit_n OFFSET offset_n
+```
+
+A note about *OUTER* JOIN: It is retained for compatibility but is usually not necessary.  
+
+![Completed Exercise 6](./images/lesson6.jpg)  
+
+### Additional Conditions and Nulls
+
+NULLs can be good or bad.  
+Data should be *something* rather than nothing in most cases so that nulls don't have to be specially process by calling code logic.  
+However, NULLs can be used where they can be removed from the resulting Query data so that they don't pollute a chart or result summary data.  
+For example, using a '-1' might be a good NULL-alternative, until your chart tries to render it when the data is expected to be all positive integers.  
+
+Anyway, check out the use of AND and OR conditionals, next.
+
+```sh
+SELECT vol1, col2
+FROM table_name
+WHERE col1 IS NULL # or IS NOT NULL
+AND condx_1
+OR condx_2
+```
+
 ## Insert Update Delete
+
+Back to the program (skipping aggregates and order-of-execution details).  
+
+INSERTing and UPDATEing data into tables is cumbersome for two reasons:  
+
+1. You have to be 100% certain your `WHERE condx` is correct else you might get unexpected results  
+1. It takes extra typing to identify the columns (keys) and data (values) for what you want to insert (or update)  
+
+### INSERT Statement
+
+```sh
+INSERT INTO table_name
+(col1_name, col2_name, ...)
+values(val1, vol2, ...)
+WHERE condx; # required and critical to get it right
+```
+
+To avoid making a bad INSERT or UPDATE:  
+
+1. Test your conditionals in a standard QUERY statement
+1. Use the *exact same conditional(s)* in the INSERT or UPDATE statement(s)
+
+An 'expression' can be used to define values to insert per the condition.  
+
+```sh
+INSERT INTO table_name
+(col1_name, col2_name, ...)
+VALUES (1, 60 * 60 * 24);
+```
+
+*Note*: If auto-increment is enabled on a column, don't bother adding that column to your INSERT statement.  
+
+![Completed Exercise 13](./images/lesson13.jpg)  
+
+### UPDATE Statement
+
+```sh
+UPDATE table_name
+SET col1 = value_or_expression col2 = value2_or_expr2, ...
+WHERE condx;
+```
+
+![Completed Exercise 14](./images/lesson14.jpg)  
+
+### DELETE Statement
+
+Use extra caution this is a non-reversable (like UPDATE) and destructive statement.  
+Always test your conditions using a SELECT Query statement prior to attempting a delete.  
+Of course, having a recent backup of the data is also handy.  
+
+```sh
+DELETE FROM table_name
+WHERE condx
+```
+
+![Completed Exercise 15](./images/lesson15.jpg)  
 
 ## Makin Tables
 
@@ -101,6 +209,8 @@ CREATE TABE IF NOT EXISTS table_name (
   ...
 );
 ```
+
+![Completed Exercise 16](./images/lesson16.jpg)  
 
 ### Data Types
 
@@ -139,6 +249,8 @@ CREATE TABLE my_table (
 
 Add, remove, or modify columns and table constraints.  
 
+![Completed Exercise 17](./images/lesson17.jpg)  
+
 ### Add Columns
 
 ```sh
@@ -176,6 +288,8 @@ Use with caution:
 ```sh
 DROP TABLE IF EXISTS table_name;
 ```
+
+![Completed Exercise 18](./images/lesson18.jpg)  
 
 ## Resources
 
