@@ -2,6 +2,10 @@
 
 Use this as a resource to guide writing and executing safe and valid SQL statements.  
 
+SQL Statements Turn Me Upside Down!  
+
+![SQL Statements Turn Me Upside Down](./images/mini-me-180.jpg)  
+
 ## Queries
 
 Select information from one or more or all columns, in one or more or all tables.  
@@ -15,7 +19,7 @@ SELECT col1,col2 FROM table_name; # return just the named column data
 
 Completed Exercise 1:  
 
-![Completed Exercise 1](./images/)  
+![Completed Exercise 1](./images/lesson1.jpg)  
 
 ### Constraints
 
@@ -25,7 +29,11 @@ Use constraints to limit results to improve performance.
 Return only what the client really, really needs, rather than everything.  
 
 ```sh
-SELECT col1, col2 FROM table_name WHERE cond1 AND cond2 OR cond3;
+SELECT col1, col2 
+FROM table_name 
+WHERE cond1 
+AND cond2 
+OR cond3;
 # multiple constrains on 2 columns here
 # single-col and/or single-constraint are also legal
 ```
@@ -37,6 +45,46 @@ Between Operators: `BETWEEN first AND second` where first and second are values.
 Not Between: Same as between, prefixed with `NOT`  
 Exists in a list: `IN(...)` e.g. `col_name IN(1, 3, 5)`  
 Not Exists: Counter of IN e.g. `col_name NOT IN(2, 4, 6)`  
+Case insensitive string comparisons: `LIKE "likeish"` and `NO LIKE "unlikeish"`  
+Wildcard: Use `%` as a placeholder for zero-or-more-characters-in-place within LIKE/NOT LIKE constraints.  
+Single placeholder: Use `_` to represent a single-character replacement i.e. `col1 IN ("_r.")` matches "Mr."  
+
+![Completed Exercise 2](./images/lesson2.jpg)  
+![Completed Exercise 3](./images/lesson3.jpg)  
+
+## Filtering And Sorting
+
+Data within a table might not be in the order you want it to be in.  
+Queries return data as they find it within the database.  
+Sometimes Queries return too much similar data so results must be limited or forced to be unique.  
+
+### Distinct
+
+```sh
+SELEcT DISTINCT col1, col2,
+FROM table_name
+WHERE condx;
+# selects only unique record value col1, col2 from table
+```
+
+### Order By
+
+AKA Sort.  
+Perform ascending (default) with `ASC`  
+Perform descending with: `DESC`  
+
+```sh
+SELEcT col1, col2
+FROM table_name
+WHERE condx
+ORDER BY col1 DESC
+LIMIT limit_n OFFSET offset_n;
+# descending order sort depending on condition condx from table showing only col1 and col2 data
+# also limit the number of results to limit_n starting at offset_n (from zeroth result)
+```
+
+![Completed Exercise 4](./images/lesson4.jpg)  
+![Completed Exercise 5](./images/lesson5.jpg)  
 
 ## Insert Update Delete
 
