@@ -19,6 +19,7 @@ The following are reading and research notes taken during, and in preparation fo
 [ ] Believe [you can](./code401-files/tedx-believe-u-can-improve.html)  
 [ ] Upgrade Skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)  
 [ ] Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/bash-stuff.html)  
+[ ] SQL Statement [Reference](./code401-files/sql-statements-ref.html)  
 
 ## Intermediate Software Development
 
@@ -81,6 +82,7 @@ Web.Dev - Learn about CSS: [Web.Dev](https://web.dev/learn/css/layout/)
 The Event Loop - Video [YouTube.com](https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf)  
 Do daily challenges or steps in FE/BE/Java paths at [Free Code Camp](https://www.freecodecamp.org/)  
 Consider a subscription to CodeAcademy to support [Continuous Learning](https://www.codecademy.com/)  
+SQL Bolt [Lessons In SQL](https://www.sqlbolt.com/)  
 
 ## Remember To-do-s  
 
