@@ -54,6 +54,88 @@ Assignment: `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `^=`, `|=`, `<<=`, `>>=`, `
 
 ## Expressions Statements and Blocks
 
+### Summary
+
+Operators are used to build *expressions*.  
+Expressions are the core components of *statements*.  
+Statements can be grouped into *blocks*.  
+
+### Expressions
+
+Comprised of variables, operators, and possibly invoking other members.  
+Evaluate to a single value.  
+Data Types between expressions must match in order to process without error.  
+Use parentheses to force order-of-operation precedence within expressions to ensure they evaluate to a predictable value every time.  
+
+### Statements
+
+End is semi-colon `;`  
+Includes:
+
+- Assignment expressions
+- Usage of `++` or `--` e.g. `counter++;`  
+- Method invokations  
+- Object creation expressions  
+
+### Blocks
+
+Zero or more statements contained between braces `{` and `}`  
+Some expressions utilize braces to surround *multi-line* code blocks  
+
+### Control Flow Statements
+
+Without control flow statements, code is executed from top-to-bottom.  
+Control Flow Statements allow altering the flow of execution based on the state in memory (i.e. variable values) aka 'conditions' at that point in the code.  
+Results of control flow might include:
+
+- Skipping-over code blocks or statements i.e. break, if, or switch statements.  
+- Running the same code block multiple times i.e. looping structures like for, do/while.  
+- Executing code that was skipped before but now needs to be run i.e. if/then/else or switch statements.  
+
+#### The Switch Construct
+
+Because I have a hard time remembering how Switch statements are constructed in every language I've come across it, I've copied-pasted the example from *[Oracle Documentation, accessed 14May22]*:
+
+```java
+public class SwitchDemo {
+    public static void main(String[] args) {
+
+        int month = 8;
+        String monthString;
+        switch (month) {
+            case 1:  monthString = "January";
+                     break;
+            case 2:  monthString = "February";
+                     break;
+            case 3:  monthString = "March";
+                     break;
+            case 4:  monthString = "April";
+                     break;
+            case 5:  monthString = "May";
+                     break;
+            case 6:  monthString = "June";
+                     break;
+            case 7:  monthString = "July";
+                     break;
+            case 8:  monthString = "August";
+                     break;
+            case 9:  monthString = "September";
+                     break;
+            case 10: monthString = "October";
+                     break;
+            case 11: monthString = "November";
+                     break;
+            case 12: monthString = "December";
+                     break;
+            default: monthString = "Invalid month";
+                     break;
+        }
+        System.out.println(monthString);
+    }
+}
+```
+
+[Switch Demo by Oracle Docs](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html)  
 
 ## Footer
 
