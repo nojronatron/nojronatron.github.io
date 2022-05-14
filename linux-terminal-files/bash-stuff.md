@@ -7,45 +7,48 @@ This page was created to store random notes, throughts, and snippets regarding:
 
 The primary resource for these notes was through reading [Ryans Tutorials](https://ryanstutorials.net/linuxtutorial/).  
 
-NOTE: I made a best-effort to verify these work in Windows PowerShell, but do not guarantee I made note of successes or any errors while doing so.
+NOTE: I am no longer making any effort to verify any of these work in Windows PowerShell, as I have moved to a pure-Linux workstation.
 
 ## Linux Facts and Figures
 
 Many of these concepts will also apply to Unix and other unix-based operating systems.  
 
-## Everything Is A File
+### Many Terminal Options
+
+The command line, or Shell, is the text-only I/O mechanism for humans telling Linux what to do, and for Linux to tell human operators what it is doing or has done (or nothing at all, just a prompt awaiting input).  
+On my system I am using Oh My ZSH! which is a bash knock-off with lots of interesting themes that make bashing-around a little easier (for example: using Git) and fun (colors, layouts, fonts, markers, etc).  
+Despite having an "add on shell" like ZSH, I can still "drop to a Bash" shell with the command `bash` (Bourne Again SHell).  
+I could also use `sh` but since ZSH is installed, it really just loads ZSH again.  
+If I was in a remote terminal session I could force-load ZSH with `sh` or `zsh` at the prompt and it would work.  
+In Windows, I stick with *PowerShell* because it has much greater capability than 'cmd.exe', and can be well-integrated into the OS and to apps like Visual Studio.  
+
+### Everything Is A File
 
 - System will have read, write, or both permissions, based on what the file represents and the underlying capabilities.
 - An audio card is repreented by System write-only file, for example (meaning System can only write to it).  
 - Folders are actually files with different properties than the files they 'contain'.  
 
-## List Files
-
-Remember, EVERYTHING is a file so `<pathspec>` actually means `filename` or `foldername` or `foldername/filename` etc.  
-List files in current directory: `ls [options] <filespec>`  
-List files in a list with file details (long listing) within the '/etc/ directory: `ls -l /etc`  
-List hidden files: `ls -a`  
-There are MANY options, see the LS MAN pages for more.  
-
-## Linux Is Extensionless
+### Linux Is Extensionless
 
 - Windows relies on file extensions to associate an applicable parent or executor program.  
   - Ex: `.txt` is usually associatd with `Notepad.exe` and is of FileTyle `text` or `plaintext`.  
 - Linux 'looks inside' a file to determine its 'type'.
 
-## Linux Is Case SENSITIVE  
+### Linux Is Case SENSITIVE  
 
 - Windows is case INsensitive
 - Terminal commands in a Linux shell will fail if CaSe rUlEs aRe nOt fOlLoWeD.  
   - This applies to filenames as well for ex: `file_name.txt` is not the same as `FileName.txt`.  
 
-## Quote Around Spaces
+### Linux is Space-Sensitive Too
+
+Quote Around Spaces or get frustrated (your choice).  
 
 - Use single `'` or double `"` quotation marks to identify a file or folder name that contains a space.  
   - Ex: `ls spacey folder name` returns an error.  
   - Ex: `ls 'spacey folder name'` works.  
 
-## Escape Characters
+### Escape Characters
 
 Use a backslash `\` to escape (nullify) the special meaning of reserved characters like spaces e.g.:  
 
@@ -57,7 +60,24 @@ user@bash: pwd
 /home/toor/My Music
 ```
 
-## Hidden Files
+### Linux MANuals
+
+Invoke `man` command followed by the command name you want information about to get an on-screen instruction MANual.  
+Exit MAN pages by pressing `q` on the keyboard.  
+To search all MAN pages from Terminal: `man -k <search_term>`  
+To search terms WITHIN a MAN page display: `/ <search_term>` then press `n` for Next page.  
+
+## Operations in Linux
+
+### List Files
+
+Remember, EVERYTHING is a file so `<pathspec>` actually means `filename` or `foldername` or `foldername/filename` etc.  
+List files in current directory: `ls [options] <filespec>`  
+List files in a list with file details (long listing) within the '/etc/ directory: `ls -l /etc`  
+List hidden files: `ls -a`  
+There are MANY options, see the LS MAN pages for more.  
+
+### Create and View Hidden Files
 
 Just prefix the file or folder name with a dot:
 
@@ -66,14 +86,7 @@ Just prefix the file or folder name with a dot:
 
 > Use `ls -a` to list hidden files in a directory.  
 
-## Linux MANuals
-
-Invoke `man` command followed by the command name you want information about to get an on-screen instruction MANual.  
-Exit MAN pages by pressing `q` on the keyboard.  
-To search all MAN pages from Terminal: `man -k <search_term>`  
-To search terms WITHIN a MAN page display: `/ <search_term>` then press `n` for Next page.  
-
-## Manipulating Files
+### Manipulating Files
 
 Create a directory: `mkdir <name>`  
 Create a directory tree: `mkdir <parent_name>/<child_name>`  
@@ -107,11 +120,18 @@ Absolute paths start with a forward slash `/` e.g.: `/etch`
 Relative paths identify a location 'relative' to the pwd and will not begin with a forward slash i.e. `../project/code401` is one folder 'back' from pwd and one folder 'forward' from the 'project' folder.  
 Home path is `~` which is equivalent to `\home\$username`  
 
-## Vi Text Editor
+### Nano Text Editor
 
-This should be kept in mind for driving around text files in a native Linux viewer/editor:  
+My favorite when in Bash/ZSH.  
+Simple, to the point, plain-text editor.  
+Search exists but is limited.  
 
+### Vi Text Editor
+
+A much more capable text editor.  
+Should be kept in mind for driving around text files in a native Linux viewer/editor.  
 All CLI, no UI.  
+
 Two modes:  
 
 1. Insert/Input Mode: Enter data into a file: Tap `i` to change to INSERT mode and `--INSERT--` will be displayed at bottom of screen.  
@@ -138,15 +158,16 @@ Advice:
 - Use the man pages for more details on commands.  
 - Also check out [Ryans Tutorials VI page](https://ryanstutorials.net/linuxtutorial/vi.php) for more.  
 
-## Display File Contents On Screen
+### Display File Contents On Screen
 
 Display all contents of a file: `cat <filespec>` Displays file contents.  
 View portion of a file: `less <filespec>` Use arrow keys to scroll up and down, `b` to go "back a page", and `q` to quit.  
+Use `tail <filespec>` to get a quick 'end-of-the-file' view. `tail -n NUM` to show a specific number of lines at the end of the file.  
 Grep is used to filter data for viewing: `grep`  
 
 *Note*: See more grep usage in [Grepping](#grepping)  
 
-## Wildcards
+### Use Wildcards
 
 Zero or more characters: `*`  
 Single character: `?`  
@@ -157,7 +178,7 @@ Not: `^`
 *Note about Not*: As the first character within a range wildcard causes the filter to eliminate files that match that first character range wildcard characters.  
 *Remember*: Wildcards affect the entire pathspec, which includes directories and filenames and file extensions.  
 
-## Piping and Redirection
+## Use Piping and Redirection
 
 Redirect Standard Out (STDOUT) to a file: `>`  
 Append STDOUT to the end of a file: `>>`  
@@ -173,7 +194,7 @@ wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /us
 sudo wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo tee /usr/share/keyrings/adoptium.asc
 ```
 
-## Filters
+### Use Filters
 
 When displaying or searching file contents, it can be helpful to filter the results to minimize clutter.  
 
@@ -183,7 +204,7 @@ Sort lines in a given way:  `sort`
 Word Count, including characters and lines: `wc`  
 Search for a given pattern: `grep`  
 
-## Grepping
+### Get the things with Grepping
 
 Run grep with extended regex: `egrep` or `grep -E`  
 Ignore case: `-i`  
@@ -198,7 +219,7 @@ Regex: Follow standard regex rules, incluidng Multipliers and Anchors.
 
 *Note*: Check out [regularexpressions101](https://regex101.com/) for an easy tool to test RegEx before you 'buy' results. :-)  
 
-## Permissions
+### Permissions
 
 Linux permissions place rules on what can be done with a file:
 
@@ -222,12 +243,12 @@ Characters 8, 9, and 10: Everyone Else permissions. Users that are not members o
 
 Change Permissions on a file (meaning everything): `chmod [permissions] [filespec]`  
 
-## Interrogating Linux
+### Interrogating Linux
 
 Get version (long): `uname`  
 Get specific Linux kernel version and type: `uname -sr`  
 
-### Environment Variables
+#### Environment Variables
 
 Environment variables like `PATH=` are stored in `/etc/environment`, as well as `.zshrc` and `.config` files, often in the user profile area (but there could be others).  
 Update Alternatives: `update-alternatives --list java` displays path to java JDK.  
@@ -242,7 +263,7 @@ Loading variables in the current context becomes the 'parent context' set of var
 If the parent (e.g. ZSH) launches another shell, its variables are then pushed to the child process.  
 To force specific variables into the child process, bash for example: `zsh> VAR_ONE="Foo" VAR_TWO="BAR" sh` would load child process 'sh' with those two additional enironemnt variables preceeding it.  
 
-## Interrogate Files and Disk
+### Interrogate Files and Disk
 
 Beyond creating, copying, moving, and deleting files, use these commands to manage the file *system* and disks.  
 
@@ -250,25 +271,25 @@ Find the size of directories in pwd: `du -sh ./*`
 Disk space utilization report: `df -h`  
 Find files modified within last 24 hours in a specified directory: `find $directory -mtime -1`  
 
-## Interrogating Hardware
+### Interrogating Hardware
 
 List PCI Hardware/Driver info: `lspci` or `lspci -k` or `lspci -nnk`  
 Check LSB Module State: `lsb_release -a`  
 Report on hardware driver info: `sudo lshw`  
 
-## Network Interfaces
+### Interrogate Network Interfaces
 
 Get IP info from an interface: `ip a`  
 Get network driver info: `inxi -n`  
 
-## Viewing Internal Logs
+### View Internal Logs
 
 Many system program logs are stored in `/var/log`  
 Device Message Logs: `sudo dmesg`  
 Messages in Logs related to network(s): `sudo dmesg | grep iwl`  
 Network Manager Log: `sudo journalctl -b 0 -u NetworkManager`  
 
-## Install Software
+### Install Software
 
 Config files are generally stored in `/etc`  
 Commonly used program binaries are stored in `/bin`  
@@ -278,7 +299,7 @@ Apt is the primary software manager utility: `apt get install $package`
 DPKG is the *underlying package management system*: `dpkg -i $deb_package`  
 As stated at AskUbuntu.com: `dpkg => apt-get, aptitude => Synaptic, Software Center`  
 
-## Manage Software Packages
+### Manage Software Packages
 
 Installed packages will probably have an entry in $PATH that should be interrogated.  
 Listing and Removing packages might leave behind $PATH entries.  
@@ -286,7 +307,7 @@ List existing packages: `dpkg -l $package_name_in_single_quotes`
 Remove a package: `dpkg -r $package_name`  
 Purge remaining package artifacts: `dpkg -P $package_name`  
 
-## Manage Processes
+### Manage Processes
 
 Cancel a running operation: `[CTRL] + C`  
 Cancel a *process* by its ID: `kill $process_id`  
