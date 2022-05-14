@@ -40,6 +40,20 @@ Evaluation: Operators are evaluated from left-to-right.
 Postfix:  `expr++`, `expr--`  
 Unary: `++expr`, `--expr`, `+expr`, `-expr`, `~`, `!`  
 Mutiplicative:  `*`, `/`, `%`  
+Additive: `+`, `-`  
+Shift: `<<`, `>>`, `>>>`  
+Relational: `<`, `>`, `<=` `>=` `instanceOf`  
+Equality: `==`, `!=`  
+bitwise AND: `&`  
+Bitwise Exclusive OR: `^`  
+Bitwise Inclusive OR: `|`  
+Logical AND: `&&`  
+Logical OR: `||`  
+Ternary: `?` and `:`  
+Assignment: `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `^=`, `|=`, `<<=`, `>>=`, `>>>=`  
+
+## Expressions Statements and Blocks
+
 
 ## Footer
 
