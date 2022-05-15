@@ -137,6 +137,53 @@ public class SwitchDemo {
 
 [Switch Demo by Oracle Docs](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html)  
 
+## Compiling Code
+
+To 'compile code' is to make human-readable code statements into machine-readable bits and bytes that become 'machine instructuctions' telling the computer what to do and when to do it.  
+Compilers are converters that take C#, Java, and other compiled language code, and turn it into machine code for execution (Run Time).  
+Compilers use strict rules to determine whether code *can* be compiled or not - some of them tell you while you are writing the code if there are errors in the code statements that would prevent compiling.  
+Compilers, however, do *not* check code statements to determine if they do the right thing or not, they will compile "bad code" and either an exception is thrown at runtime, or incorrect (or unexpected) output occurs.  
+
+### But That Is Not All Really
+
+There is more to compiling that the simple statements listed above.  
+For example, C# is not compiled to "machine language" literally, it is compiled to an intermediary code that a *runtime environment* (or virtual machine) can understand and execute.  
+C++ compiles to machine language.  
+
+### Another Definition of Compiling
+
+Slacking.  
+Playing when you should be coding.  
+
+## Java Coding References
+
+There are 51 keywords in Java, from 'abstract' to 'new' to 'while'.  
+Arguably, the underscore '_' might or might not be a keyword, you decide.  
+Java Literal Words that can only be used in a specific way, they are: 'false', 'null', and 'true'.  
+Java Restricted Keywords are used in specific ways but can also be used as ordinary variable names, e.g. 'requires' when used as a statement tells Java to not execute the code without the external code required in the statement `requires some.other.module;` but `int requires = 0;` simply instantiates and initialized an integer called 'requires'.  
+Identifiers are keywords that denote Java API commands that can be used elsewhere, but it could cause problems in the code e.g. `int System = 7; System.out.println(System); // does not work`  
+User-created Identifiers: Words the developer uses to identify variables, objects, methods, and etc.  
+
+Examples gleaned from *[Java For Dummites 8th Edition, page 20767, https://www.dummies.com/article/technology/programming-web-design/java/java-for-dummies-cheat-sheet-207676/]*  
+
+All In One Java for Dummies [All In One Cheat Sheet](https://www.dummies.com/article/technology/programming-web-design/java/java-all-in-one-for-dummies-cheat-sheet-207712/)  
+
+### Four Tools Needed To Dev Java
+
+Java Compiler, Java Virtual Machine, Java API, and Java API Documentation are needed for developing apps using Java.  
+Java SE is the standard edition.  
+Java ME is special-purposed for small devices.  
+Java EE is (was) the enterprise data-oriented development, but has since been handed over to the Eclipse Foundation and renamed to Jakarta EE.  
+
+Information source for Java SE, ME, and Jakarta EE: *[Java for Dummies website, https://www.dummies.com/article/technology/programming-web-design/java/getting-started-with-java-programming-200023/]*  
+
+Information source for portions of this subsection: *[Java For Dummies website, https://www.dummies.com/article/technology/programming-web-design/java/getting-started-with-java-programming-200023/]*  
+
+### Error Messages and Meanings
+
+There are multiple error messages that might be "thrown" in Java code at runtime.  
+Here is a reference to [some errors and what they mean](https://www.dummies.com/article/technology/programming-web-design/java/tackling-error-messages-in-java-programming-199123/)  
+
 ## Footer
 
 Return to [Parent Readme.md](../README.html)  
