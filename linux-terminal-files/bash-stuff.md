@@ -67,6 +67,11 @@ Exit MAN pages by pressing `q` on the keyboard.
 To search all MAN pages from Terminal: `man -k <search_term>`  
 To search terms WITHIN a MAN page display: `/ <search_term>` then press `n` for Next page.  
 
+## Using SHELLS
+
+To execute a script in a different directory: `sh> (cd /dir/where/script/is/ ; sh script-name.sh [args])`  
+Doing this will contain the script execution within the child SH process, and if the script forces closure at the end, you won't lose your existing SH session.  
+
 ## Operations in Linux
 
 ### List Files
