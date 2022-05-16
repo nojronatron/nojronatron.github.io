@@ -9,6 +9,12 @@ Code 401 - [Advanced Software Development - Java](#advanced-software-development
 Code 301 - [Intermediate Software Development](#intermediate-software-development)  
 Code 201 - [Foundations of Software Development](#foundations-of-software-development)  
 
+## Code 401 Things I Want To Learn More About
+
+[ ] Interfaces  
+[ ] Proper and efficient installation of a specified JDK in Linux  
+[ ] When and why would I choose to develop in Java vs C# or Python?  
+
 ## Advanced Software Development
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
