@@ -56,6 +56,94 @@ Late work: Turn-in substantially completed work *before* deadlines, to avoid pen
 Do NOT worry about implementing tests in Code Challenge Day 1.  
 While Alex is in Remo, he is available to get assistance/conversations.  
 
+## Objects and Arrays
+
+Arrays should store like-data values.  
+Objects can store different data types.  
+Create objects multiple ways including `let myObj = {};` and object instantiation of a class `let myThingy = new Thingy([args],...)`  
+DRY: Don't Repeat Yourself. Classes allow following this principal.  
+Strongly Typed Languages: Require declaring a Type (or Class).  
+Functional and Procedural languages include javascript: Run code top-to-bottom as a runtime language.  
+Compiled languages like Java are translated to run in a specific way, not just top-to-bottom.  
+Libraries: Do *not* utilize a 'main' function.  
+
+## Long Stream of Consciousness
+
+Protected, Public, and Private: Control access to classes and members.  
+Parameters: Abstract idea that the variables will eventually have values.  
+Arguments: Whatever you want to call the local variables you will use within the function.  
+Dot notation/object notation: Use '.' between objects and their members, child-objects, etc.  
+Escape character `\`: Use to enable use of a reserved character in a string.  
+Applications need an entry-point e.g. a 'main' function.  
+Libraries do *not* have an entry-point and are referenced by another App or other Libraries.  
+To execute java apps from command line: `java appName.java` But this performs the java runtime execution but it probably doesn't do a full compilation.  
+Compiler: javac.exe is an example. It just creates a 'build file' but does not execute it.  
+Always *compile* before pushing to your repo.  
+Probably the most commonly used types will be String and Int.  
+Hexadecimal values default to Int type, so be sure to cast to the correct type for the size of the Hex value.  
+CONSTANT_VALUES can be accessed outside of the defining class with: `className.CONST_VAL;`  
+Work within objects, using methods within those objects to get work done.  
+String Interpolation? *NO* Instead do: `System.out.println("Maximum integer is: " + maxInt)`;  
+Terminology: Method (rather than Function) because we are working in a OOP language.  
+Short-cut declartion for float and double: 'f' and 'd'.  
+Expressions: Happen within parens `( expr... )`  
+Need precision? Float (32-bit) over Decimal.  
+String type is a Class *not a primitive type*.  
+Characters 'char' are a special type that represent ASCII codes to display a specific single character.  
+char char1 + char char2 returns a 'string'.  
+Integer.parseInt(string): Converts a string into an integer.  
+Do not use '==' to compare/equality of objects, *this includes String*!  
+When comparing Types '==' will fail you so use `{}.equals(other)` instead.  
+Overflow: Wraps-around from MAX_VAL to MIN_VAL and vice-versa.  
+Two ways to create arrays:  
+
+```java
+int[] myArray = new int[10];
+int[] myArray2 = {1,2,3};
+```
+
+Println(array) will return the reference address to the item in memory.  
+Common java utilities example: `import java.util.____`  
+Use StackOverflow and Google searches to find the import libraries you want/need rather than trying to wade through docs.oracle.com (don't get lost in the sauce).  
+
+Loops: FOR and WHILE  
+
+```java
+for(int i=0; i,myArr.length; i++) {
+  ...
+}
+```
+
+```java
+//  use a boolean conditional because it will be easy to read
+while(condition) {
+  incrementor/decrementor/condition-setter
+  ...
+}
+```
+
+For...Of
+
+```java
+//  for every value in :array do codeblock statements
+for(type variable : array) {
+  codeblock;
+}
+//  : is essentialy the "of" in the statement
+//  Inc/decrementor is not necessary here
+```
+
+Break: Break *out* of the parent looping structure.  
+Continue: Move on with next iteration.  
+Be aware: Procedural Debugging is a little different than Compiler debugging.  
+Static: Can be applied to Methods and Variables.  
+
+
+### Aliasing For Automation
+
+Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.  
+[ ] Mess with this to streamline my processes.  
+
 ## Prep Notes TODOs and Reminders
 
 [ ] DS&A Syllabus  
@@ -68,7 +156,8 @@ While Alex is in Remo, he is available to get assistance/conversations.
 [ ] Not sure how to do something like build a project? Run it? Do it over and over until it makes sense and becomes easier and commits to memory.  
 [ ] Include blockers and challenging areas in Learning Journals for your own good *and* so Alex is aware of what is going on.  
 [ ] Ask yourself DS&A questions: How do I traverse this structure? Sort that out *first*.  
-
+[ ] Thursday Code Challenges are *Moch Interview* assignments, timeboxed to 30 minutes.  
+[ ] Build a shortcut to assist with string concatenation in Java.  
 
 Assignments Due Monday:
 
