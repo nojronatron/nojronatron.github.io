@@ -156,7 +156,51 @@ Today: JavaC.
 > javac filename.java
 ```
 
-### Aliasing For Automation
+## Whiteboarding Overview
+
+Note: There are many different ways a whiteboarding interview and layout will work/go.  
+Problem Domain: The problem the interviewer supplies.  
+Test Cases: Given a good input, a good output is expected (with examples?). Includes Edge Cases where errors or other returns could happen.  
+Algorithm / Logic description: Use arrows and verbose english to discuss how the logic should work.  
+Pseudocode: Required during week 1, later is optional. If it helps you, use it.  
+Actual Code:  
+Big O: Effeciency of the algorithm. No actual code writing is required to get this right.  
+Step Through / After-code: Talk through the code, visualizing the step-through following current and next values based on operations.  
+
+### Invision
+
+Whiteboarding software.  
+Recommended by Code Fellows.  
+
+### Miro
+
+Whiteboarding software.  
+Alex says Miro is better than Invision.  
+
+### Stay Engaged
+
+You may have to ask questions of the interviewer to better understand the problem.  
+What are the inputs and outputs? What are the types? Consider drawing example in/outputs.  
+Edge Cases: Update these throughout the interview. Consider questions about nulls, empty/undefined, various datatypes, and whether in-place or output new result.  
+
+#### Whiteboarding Advice
+
+Ask as many questions about the problem as you can early in the process: inputs, desired outputs, are objects required or okay to just build a new method, etc.  
+Keep whiteboard neat, but use enough style to differentiate sections of the whiteboard.  
+Use the software to create images/drawing shapes with labels to depict input(s), output, and then put the steps in between.  
+Chat about the algorithm next. Still not code, rather describe the algorithm operation(s).  
+Pseudo-code: With a visual and an algorithm, write pseudo-code to represent how the actual code would work.  
+Big-O Notation: Creating a variable is O(1); Not creating any new structures so Space O(1); Time O(n).  
+Testing Discussion: Describe which testing suites you would use, if/when purposely-failing tests, null/empty tests, and known-good (must pass) test methods.  
+Remember to cover *start* and *stop* conditions if they are used.  
+Talk-though the whiteboarding every step of the way.  
+At any time throughout the process, tell the interviewer when you are going to stop and think through something briefly -- avoid uncomfortable and/or unexpected silence.  
+Revisit the algorithm to ensure it matches your code.  
+You can talk as you type and what you type.  
+Ask the interviewer if they have any questions about what you've done so far and whether anything could be reviewed.  
+If you want to use a built-in method *you'd better know how it works*!  
+
+## Aliasing For Automation
 
 Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.  
 [ ] Mess with this to streamline my processes.  
