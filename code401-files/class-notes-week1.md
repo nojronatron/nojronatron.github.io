@@ -138,6 +138,23 @@ Continue: Move on with next iteration.
 Be aware: Procedural Debugging is a little different than Compiler debugging.  
 Static: Can be applied to Methods and Variables.  
 
+### Debugging
+
+Did I set the type properly?  
+Is the method accessible?  
+Is my method expecting the correct type or the caller sending the correct type as args?  
+Do the number of params match?  
+Does the method return anything or is it void and is the caller expecting that?  
+Where am I in the code body? Am I within another method or at the class root?  
+
+### Compiling at the Terminal
+
+Gradle (tomorrow).  
+Today: JavaC.  
+
+```sh
+> javac filename.java
+```
 
 ### Aliasing For Automation
 
