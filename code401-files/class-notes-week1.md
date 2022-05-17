@@ -231,6 +231,36 @@ When Pseudo-coding:
 
 Solve the problem first *then* write the code.  
 
+### Gradle
+
+Automation building tool for Java.  
+Maven is a compettitor but we are not going to use it in this class.  
+Groovy and Kotlin can bewill be used in this class either.  
+To create a ne Gradle project: `$> gradle init` which generates project files etc.  
+Gradle uses its own Daemon (process) to manage its work.  
+Gradle will ask a bunch of questions: Apps vs Libraries, etc.  
+*Important*: Use JUnit Jupiter.  
+Gradle sets up the JUnit Jupiter with a default "proof of life" test.  
+It is up to you to build-out other tests necessary for your project.  
+
+### IntelliJ
+
+Important: *Where* you open your IDEA folder. If you don't see 'settings.gradle' you are in the *wrong folder* and tests will not run, etc.  
+For a package, concentrate in the 'lib' folder to build your package namespace => lib/src/main/java/project_name/Library  
+Packages cannot be Run in IDEA like an App can.  
+Use LibraryTest (and other tests you create) to test your ...library.  
+
+#### Testing
+
+Arrange => Act => Assert
+
+Arrange: Configure variables to prep for testing including test-inputs and expected outputs.  
+Act: Call the function under test.  
+Assert: Pass/Fail output based on expected return the function under test.  
+
+Create your test names to describe what the test is doing and expected output.  
+
+
 ## Aliasing For Automation
 
 Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.  
