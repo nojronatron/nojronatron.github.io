@@ -29,6 +29,7 @@ The following are reading and research notes taken during, and in preparation fo
 [ ] Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/bash-stuff.html)  
 [ ] SQL Statement [Reference](./code401-files/sql-statements-ref.html)  
 
+[ ] Class Notes [Week One](./code401-files/class-notes-week1.html)  
 [~] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
 [~] Study [Guide](./code401-files/java-reference.html)  
 
