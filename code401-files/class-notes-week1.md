@@ -191,6 +191,7 @@ Use the software to create images/drawing shapes with labels to depict input(s),
 Chat about the algorithm next. Still not code, rather describe the algorithm operation(s).  
 Pseudo-code: With a visual and an algorithm, write pseudo-code to represent how the actual code would work.  
 Big-O Notation: Creating a variable is O(1); Not creating any new structures so Space O(1); Time O(n).  
+More Big-O: Mention the worst-case scenario O(n) in time for the algorithm and make an assertion about use of space.  
 Testing Discussion: Describe which testing suites you would use, if/when purposely-failing tests, null/empty tests, and known-good (must pass) test methods.  
 Remember to cover *start* and *stop* conditions if they are used.  
 Talk-though the whiteboarding every step of the way.  
@@ -199,6 +200,7 @@ Revisit the algorithm to ensure it matches your code.
 You can talk as you type and what you type.  
 Ask the interviewer if they have any questions about what you've done so far and whether anything could be reviewed.  
 If you want to use a built-in method *you'd better know how it works*!  
+Testing: Mention JUnit Jupiter as the testing tools and the basic pass/fail requirement.  
 
 ## Tuesday Discussion Topics and Streams of Thoughts
 
@@ -235,8 +237,8 @@ Solve the problem first *then* write the code.
 
 Automation building tool for Java.  
 Maven is a compettitor but we are not going to use it in this class.  
-Groovy and Kotlin can bewill be used in this class either.  
-To create a ne Gradle project: `$> gradle init` which generates project files etc.  
+Groovy and Kotlin can be used but will not be used in this class either.  
+To create a new Gradle project: `$> gradle init` which generates project files etc.  
 Gradle uses its own Daemon (process) to manage its work.  
 Gradle will ask a bunch of questions: Apps vs Libraries, etc.  
 *Important*: Use JUnit Jupiter.  
@@ -252,6 +254,11 @@ Packages cannot be Run in IDEA like an App can.
 Use LibraryTest (and other tests you create) to test your ...library.  
 *Note*: Ensure to include '.idea' in the `.gitignore` file with your submitted work.  
 Resources allow building modular code e.g. APIs to incorporate into your custom App.  
+Performance and IDEA Cache: Invalidate the cache every once in a while to maintain IDEA performance.  
+
+#### Packages
+
+Import using `package.class.member` or `package.class.*`  
 
 #### Testing
 
@@ -262,12 +269,36 @@ Act: Call the function under test.
 Assert: Pass/Fail output based on expected return the function under test.  
 Use the term "System Under Test" or 'sut'
 Create your test names to describe what the test is doing and expected output.  
+*Note*: Empty Tests will PASS by default!  
 
 #### Check Your SDK
 
 Make sure the language and SDK selection in Project Structure are correct.  
 Do *not* use the Oracle SDK for this class.  
 Run the tests after setting SDK and continue only if the tests pass.  
+
+## ArrayList T
+
+ArrayList has built-in methods like `.add` and several others:  
+
+- Get: `.get(n)` accesses an element via the index number 'n'.  
+- Set: `.set(n)` modifies an element in place via index number 'n'.  
+- Remove: `.remove(n)` removes an element via the index number 'n'.  
+- Clear: `.clear();` removes all elements from the array.  
+
+```java
+String[] studentArray = new String[9]; // create new array of strings with capacity of 9
+ArrayList<Integer> classSizes = new ArrayList<>(); // this is an object Type
+```
+
+### AsList
+
+This comes from a parent package to the ArrayList class.  
+Use like `my_arrayList.addAll(Arrays.asList(my_other_array));`  
+
+### Collections
+
+Has built-in methods like SORT that take an existing Array as an argument and sort it (in-place?).  
 
 ## Aliasing For Automation
 
@@ -288,6 +319,7 @@ Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.
 [ ] Ask yourself DS&A questions: How do I traverse this structure? Sort that out *first*.  
 [ ] Thursday Code Challenges are *Moch Interview* assignments, timeboxed to 30 minutes.  
 [ ] Build a shortcut to assist with string concatenation in Java.  
+[ ] GitIgnore: Use this for the *entire class*  
 
 Assignments Due Tuesday:
 
