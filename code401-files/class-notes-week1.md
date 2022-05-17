@@ -224,7 +224,7 @@ When thinking through the Algorithm:
 - Do NOT think about code specifically.  
 - Consider more about the step-by-steps required to meet the Problem Domain statement and visual.  
 
-When Pseudo-coding: 
+When Pseudo-coding:  
 
 - High-level, code-looking statements, but worry less about specific code and instead consider how the statements solve the problem.  
 - Use declarations perhaps in CAPS with terms like DECLARE, DEFINE, ITERATE, RETURN, etc.  
@@ -246,9 +246,12 @@ It is up to you to build-out other tests necessary for your project.
 ### IntelliJ
 
 Important: *Where* you open your IDEA folder. If you don't see 'settings.gradle' you are in the *wrong folder* and tests will not run, etc.  
+Everything under the '/test' folder should be colored 'green' otherwise you opened the project in the wrong folder.  
 For a package, concentrate in the 'lib' folder to build your package namespace => lib/src/main/java/project_name/Library  
 Packages cannot be Run in IDEA like an App can.  
 Use LibraryTest (and other tests you create) to test your ...library.  
+*Note*: Ensure to include '.idea' in the `.gitignore` file with your submitted work.  
+Resources allow building modular code e.g. APIs to incorporate into your custom App.  
 
 #### Testing
 
@@ -257,9 +260,14 @@ Arrange => Act => Assert
 Arrange: Configure variables to prep for testing including test-inputs and expected outputs.  
 Act: Call the function under test.  
 Assert: Pass/Fail output based on expected return the function under test.  
-
+Use the term "System Under Test" or 'sut'
 Create your test names to describe what the test is doing and expected output.  
 
+#### Check Your SDK
+
+Make sure the language and SDK selection in Project Structure are correct.  
+Do *not* use the Oracle SDK for this class.  
+Run the tests after setting SDK and continue only if the tests pass.  
 
 ## Aliasing For Automation
 
