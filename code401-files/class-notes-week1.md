@@ -200,6 +200,37 @@ You can talk as you type and what you type.
 Ask the interviewer if they have any questions about what you've done so far and whether anything could be reviewed.  
 If you want to use a built-in method *you'd better know how it works*!  
 
+## Tuesday Discussion Topics and Streams of Thoughts
+
+### Review Pluralize Lab
+
+Do not have to use '.Equals()' when comparing non-objects.  
+Do not overload a single method => DRY and single-responsibility.  
+Public: Accessible everywhere within the current Project.  
+Private: Limited access within a subset of the current Project (more on this later).  
+
+### Practice Whiteboard Interview
+
+Experience and Exposure are going to help you getting through these problems.  
+This problem was "Given an array, return an array with the middle index removed."  
+Good question to ask: "Should the array be edited in-place or can I return a new array?"  
+Another good question: "Do you have sample input I can use?"  
+Another question regarding arrays: "If working with an odd-length array, should there be any special handling?"  
+What do I know about arrays? They have a length; They are of a set size.  
+Visual: Should reflect the algorith including input and result or output of the algorithm.  
+Recursion: A separate iterating process than Looping.  
+When thinking through the Algorithm:  
+
+- Do NOT think about code specifically.  
+- Consider more about the step-by-steps required to meet the Problem Domain statement and visual.  
+
+When Pseudo-coding: 
+
+- High-level, code-looking statements, but worry less about specific code and instead consider how the statements solve the problem.  
+- Use declarations perhaps in CAPS with terms like DECLARE, DEFINE, ITERATE, RETURN, etc.  
+
+Solve the problem first *then* write the code.  
+
 ## Aliasing For Automation
 
 Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.  
@@ -220,16 +251,16 @@ Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.
 [ ] Thursday Code Challenges are *Moch Interview* assignments, timeboxed to 30 minutes.  
 [ ] Build a shortcut to assist with string concatenation in Java.  
 
-Assignments Due Monday:
+Assignments Due Tuesday:
 
 [X] Read  
 [ ] Code Challenge (just get the whiteboard layout good and properly whiteboard the solution)  
 [ ] Lab  
 [ ] Learning Journal
 
-Assignments Due Tuesday Morning:  
+Assignments Due Wednesday Morning:  
 
-[ ] Read: Java Imorts (but not NetBeans) and Loops in Java  
+[ ] Read: Java Primitives vs Objects, Exceptions, Scanner  
 
 Get-Ahead Work Items As Time Permits:
 
