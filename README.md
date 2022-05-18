@@ -20,7 +20,8 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
 [X] Read Class01 [Java Basics Compiling and Java Doc Refs](./code401-files/read401-01-java.html)  
-[ ] Read Class02 [Java Packages and Loops](./code401-files/read401-02-java.html)  
+[X] Read Class02 [Java Packages and Loops](./code401-files/read401-02-java.html)  
+[ ] Read Class03 [Handling Exceptions, Java Scanner, and Objects vs Primatives](./code401-files/java-exceptions-scanner.html)  
 [ ] Make your projects *client ready* aka visually appealing to anyone *[CodeFellows Prework]*  
 [ ] A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)  
 [ ] Passion and [Perseverence](./code401-files/passion-perseverence.html)  
