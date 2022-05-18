@@ -300,6 +300,92 @@ Use like `my_arrayList.addAll(Arrays.asList(my_other_array));`
 
 Has built-in methods like SORT that take an existing Array as an argument and sort it (in-place?).  
 
+## Wednesday Whiteboard Review
+
+CONDITIONAL instead of IF
+DEFINE functions instead of DECLARING them
+DECLARE variables
+
+Question: Is this a sorted array? If so, should it stay that way?  
+
+## Creating Packages
+
+Name your Package and Class *the same thing*.  
+Exporting a package: First line of package should be `package package_name;` to make it available to the rest of your code in your App.  
+Importing: Grab a single class `import package_name.ClassName;` or all members in a package `import package_name.*;`  
+Create a package to easily reuse code, including your own!  
+IntelliJ: rClick => New => Package. Create a new Class within the package_name folder.  
+Package Names are camelCase.  
+Class Names are PascalCase.  
+
+## Map and Set
+
+HashMaps aka Dictionaries aka Hash Tables aka Key-Value Stores.  
+HashMaps are good at storing retreivable, organized data.  
+Set extends HashMaps?  
+HashSet inclues member `.addAll(ArrayList<>)` to bulk-add an existing ArrayList.  
+Linked- versions of HashMaps and HashSets maintain order.  
+Good at handling: Counts, Lookups, and Uniqueness.  
+Measure Uniqueness!!  
+Quick Lookups!!  
+Count Instances!!  
+
+### Maps
+
+Maps accept a Key Value pairs as args.  
+Values *belong* to a specific Key.  
+KV Pairs need to be typed e.g. Key of type Integer, Value of type String.  
+Create a HashMap Example: `HashMap<String, ArrayList<Boolean>> variableName = new HashMap<>();`  
+Create a HashSet Example: `HashSet<String> variableName = new HashSet<>();`  
+
+### Input and Output
+
+Path: `import java.nio.file.Path;`  
+Paths: `import java.nio.file.Paths;`  
+Access, Read, track (counting instances): `HashMap<String, Integer> myMap = new HashMap<>(); String[] items = {string, string, ...}; System.out.println(scannerInstance.nextLine());`  
+
+Access: `Path path_var = Paths.get(file_path_var);`  
+Get Absolute Path: `path_var.toAbsolutePath();` outputs the path in full of the path_var value.  
+
+### Scanner
+
+Java's Scanner class has built-in methods that will be helpful.  
+Boolean `.hasNextLine()` returns true only if look-ahead to next line succeeds.  
+Remember to use RegEx101.com to help when regex is the right solution for finding strings in lines.  
+
+### Exception Handling
+
+Types include: Runtime Exceptions, IO Exceptions i.e. File System based.  
+
+```java
+try {
+  // run your might-throw-an-exception code here
+  myScanner = new Scanner(myPath);
+
+}
+catch (IDException ioe) {
+  // oopsie something bad happened in the try block
+  System.out.println("That file cnnot be scanned or was not found. File path is: " + myPath.toAbsolutePath());
+  ioe.printStackTrace();
+  System.exit(status_code);  // status_code can be any integer but 0 is usually 'success' 
+                             // any other integer is 'failure of some type'
+}
+```
+
+Multiple Catch blocks can be defined.  
+
+## Static and Non-Static Members
+
+Static members are shared among all instances of a Class.  
+Static members can be called via the ClassName of the containing Class.  
+Non-Static members are Instance Members.  
+Instance Members are unique to the Instance of the Class.  
+Instance Members are *not shared* among instances.  
+You will want to consider the following when creating a member:
+
+- Member needs to share data with other instances: Make it STATIC.  
+- Member should only be utilized by the instance of the Class: Do *not* use Static.  
+
 ## Aliasing For Automation
 
 Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.  
