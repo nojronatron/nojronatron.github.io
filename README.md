@@ -5,8 +5,11 @@ A collection of notes taken while attending Code Fellows CODE curriculum classes
 ## Table of Contents
 
 Reference [links](#reference-links)  
+
 Code 401 - [Advanced Software Development - Java](#advanced-software-development)  
+
 Code 301 - [Intermediate Software Development](#intermediate-software-development)  
+
 Code 201 - [Foundations of Software Development](#foundations-of-software-development)  
 
 ## Code 401 Things I Want To Learn More About
@@ -19,9 +22,10 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
-[X] Read Class01 [Java Basics Compiling and Java Doc Refs](./code401-files/read401-01-java.html)  
-[X] Read Class02 [Java Packages and Loops](./code401-files/read401-02-java.html)  
+[ ] Read Class04 [OOP, Classes, Bin-Dec-Hex](./code401-files/oop-classes-bindechex.html)  
 [ ] Read Class03 [Handling Exceptions, Java Scanner, and Objects vs Primatives](./code401-files/java-exceptions-scanner.html)  
+[X] Read Class02 [Java Packages and Loops](./code401-files/read401-02-java.html)  
+[X] Read Class01 [Java Basics Compiling and Java Doc Refs](./code401-files/read401-01-java.html)  
 [ ] Make your projects *client ready* aka visually appealing to anyone *[CodeFellows Prework]*  
 [ ] A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)  
 [ ] Passion and [Perseverence](./code401-files/passion-perseverence.html)  
