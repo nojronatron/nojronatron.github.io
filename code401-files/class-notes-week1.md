@@ -417,6 +417,7 @@ Methods define *behaviors*.
 State is defined by the data contained within the object e.g. Fields and Properties.  
 Methods often alter the state (or Properties) of an object, like change a boolean value via a method.  
 Constructors allow instantiating Objects from Classes.  
+Overrides: Allows over-riding built-in members.  
 
 ### OOP Principals
 
@@ -428,6 +429,29 @@ Inheritance: Avoids having to re-write Classes by enabling building-upon an exis
 Encapsulation: Do not display the data state of an object to everything.  
 Encapsulation: Use GETter and SETter functions to change state (data).  
 Use 'static' keyword to *share Methods and Properties* between object instances.  
+
+### Inheritance
+
+A top-level Class can define shared Properties and Methods that all children will get "for free".  
+Child Classes inherit from the top-level Class and can define their own specific Properties and Methods.  
+Child Classes *do not have to define* Props and Methods already defined by the parent!  
+Modifiers will impact which Properties and Methods child Classes will inherit??  
+Keyword 'extends' is used to implement inheritance.  
+
+```java
+package bakery;
+
+public class CinnamonRolls extends BakedGoods {
+  public boolean hasSwirl;
+
+  public CinnamonRolls( <parent-constructor-params>, boolean swirl) {
+    super(parent-param, ...);
+    hasSwirl = swirl;
+  }
+}
+```
+
+When creating a bunch of objects, consider categorizing them and using ArrayList for storage in another object.  
 
 ### Access Modifiers
 
@@ -455,7 +479,69 @@ public static final int MY_CONST = 1;
 // use UPPER_SNAKE_CASE for constant properties
 ```
 
+### Overriding
+
+toString is a built-in Object method.  
+It does *not know how to work with your custom Class instances*!  
+Tell it what to do by using the `@override` decorator.  
+
+```java
+class... {
+  @override
+  public Stringn toString() {
+    return property.toString() + ...;
+  }
+}
+```
+
 ### Domain Modeling
+
+Create these to help ID:
+
+- Shared information  
+- Opportunities for modularization  
+- Hierarchy of inheritance between types  
+- Opportunities for overrides i.e. toString  
+- Apply appropriate modifiers to members in each Class  
+
+Even *very simple* domain models will help simplify code development.  
+
+## Bitmap Lab
+
+Bitmap Transformer!  
+Create a very very very simple PhotoShop - edit images.  
+Minimum Requirements:
+
+- CLI architected to follow modularization best practices  
+- Contains a BitMap Class  
+- Must instantiate the Class in App  
+- Minimum 3 args: filepath; output filepath; transform name  
+- Minimum 3 transforms i.e. methods i.e. invertColor  
+- CLI should log useful error messages  
+- CLI should log success messages upon completion  
+- MINIMUM one single, non-empty test! Arrange, Act, Assert (and done)  
+
+### Breaking Down The Problem
+
+1. Get access to the file  
+1. Read the file  
+1. Attempt to write to the file (just to verify things are working)  
+1. Try parsing the file: Arrays within Arrays of binary and Hex information (not Java has a built-in way to deal with HEX etc)  
+1. Write-out the transform to a NEW FILE  
+
+Class TA Ben has done this project recently so he can help but will not give you the answer.  
+
+### Partners
+
+Groups of 3 will work on this lab.  
+Assigned by Alex.  
+
+## Code Challenge Day 4
+
+Whiteboard Only.  
+Paired programming.  
+Bookmark and save the Whiteboard Rubric!  
+Timebox this assignment - strict!  
 
 ## Acquire Input From Terminal
 
