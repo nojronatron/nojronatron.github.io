@@ -353,6 +353,17 @@ Java's Scanner class has built-in methods that will be helpful.
 Boolean `.hasNextLine()` returns true only if look-ahead to next line succeeds.  
 Remember to use RegEx101.com to help when regex is the right solution for finding strings in lines.  
 
+```java
+Scanner scanner = new Scanner(path);
+scanner.hasNext();
+scanner.nextLine();
+```
+
+Relative vs. Absolute file pathing:
+
+- Absolute can be a good for accessing a file that is in an expected location, i.e. a `/bin` directory.  
+- Relative will be relative to the root of the executable's PWD.  
+
 ### Exception Handling
 
 Types include: Runtime Exceptions, IO Exceptions i.e. File System based.  
@@ -386,6 +397,11 @@ You will want to consider the following when creating a member:
 - Member needs to share data with other instances: Make it STATIC.  
 - Member should only be utilized by the instance of the Class: Do *not* use Static.  
 
+## Object Oriented Programming
+
+next: domain modeling - always use this whenever you begin a new project.  
+cmd-line arguments - back-end input into an App  
+
 ## Aliasing For Automation
 
 Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.  
@@ -407,20 +423,18 @@ Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.
 [ ] Build a shortcut to assist with string concatenation in Java.  
 [ ] GitIgnore: Use this for the *entire class*  
 
-Assignments Due Tuesday:
-
-[X] Read  
-[ ] Code Challenge (just get the whiteboard layout good and properly whiteboard the solution)  
-[ ] Lab  
-[ ] Learning Journal
-
-Assignments Due Wednesday Morning:  
+Assignments Due Thursday:
 
 [ ] Read: Java Primitives vs Objects, Exceptions, Scanner  
+[ ] Pick Accountability Partners  
+[ ] Read04: OOP, Objects, Binary, Decimal, and Hexidecimal  
+[ ] Code Challenge - Paired Whiteboard Interviewing  
+[ ] Complete Lab03  
+[ ] Lab04 (make as much progress as possible within timebox TBD) (interact with a BMP file)  
+[ ] Learning Journal  
 
 Get-Ahead Work Items As Time Permits:
 
-[ ] Pick Accountability Partners  
 [ ] Workshop #1 Prep: Networking Gameplan  
 [ ] Workshop #1 Prep: Resume & Completed Resume
 
