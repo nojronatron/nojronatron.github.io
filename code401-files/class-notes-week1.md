@@ -397,12 +397,77 @@ You will want to consider the following when creating a member:
 - Member needs to share data with other instances: Make it STATIC.  
 - Member should only be utilized by the instance of the Class: Do *not* use Static.  
 
+## Setting Up A New Java Project
+
+1. Go to the directory and mkdir the project directory you want to do.  
+1. Git Pull.
+1. gradle init
+1. Difference between an App and a Library? Apps have Main (an 'entry point').  
+1. Check that correct SDK is selected (apply it) and then do a BUILD.  
+1. Check if settings.gradle is in the root
+
+*Note*: Sometimes the project directory must be removed and gradle init run again.
+
 ## Object Oriented Programming
 
-next: domain modeling - always use this whenever you begin a new project.  
-cmd-line arguments - back-end input into an App  
+There are 8 primitive data types in Java.  
+Everything else *is a class*.  
+Classes are blueprints for instantiated object(s).  
+Methods define *behaviors*.  
+State is defined by the data contained within the object e.g. Fields and Properties.  
+Methods often alter the state (or Properties) of an object, like change a boolean value via a method.  
+Constructors allow instantiating Objects from Classes.  
 
-## Aliasing For Automation
+### OOP Principals
+
+Encapsulation: Hide state (data) from other objects and processes.  
+Inheritance: Avoids having to re-write Classes by enabling building-upon an existing 'parent' class.  
+
+#### Encapsulation
+
+Encapsulation: Do not display the data state of an object to everything.  
+Encapsulation: Use GETter and SETter functions to change state (data).  
+Use 'static' keyword to *share Methods and Properties* between object instances.  
+
+### Access Modifiers
+
+Public: The class you are working in can see all other access-modified members.  
+Protected: Classes, Packages, Subclasses, and other Project-level items have access.  
+Private: Only the defining Class can access these members.  
+Default: Only the defining class or Package.  
+
+*Note*: Default is an optional modifier keyword.  
+
+### Constructors
+
+Build your own constructor!  
+Use 'public' to allow calling the Constructor from other modules.  
+The term 'this' relates to the current *scope*.  
+Multiple Constructors can be created with differing parameter lists.  
+
+### Properties
+
+Keep Properties private.  
+Constants can be created that cannot be edited using 'final' keyword.  
+
+```java
+public static final int MY_CONST = 1;
+// use UPPER_SNAKE_CASE for constant properties
+```
+
+### Domain Modeling
+
+## Acquire Input From Terminal
+
+`./gradlew run --args strings...`  
+
+To have your App accept other types (besides String[]), just define the args parameter list in Main method.  
+
+```sh
+./gradlew run --args %arg_types_defined_by_main_method%
+```
+
+## Aliasing TerminalFor Automation
 
 Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.  
 [ ] Mess with this to streamline my processes.  
