@@ -353,6 +353,17 @@ Java's Scanner class has built-in methods that will be helpful.
 Boolean `.hasNextLine()` returns true only if look-ahead to next line succeeds.  
 Remember to use RegEx101.com to help when regex is the right solution for finding strings in lines.  
 
+```java
+Scanner scanner = new Scanner(path);
+scanner.hasNext();
+scanner.nextLine();
+```
+
+Relative vs. Absolute file pathing:
+
+- Absolute can be a good for accessing a file that is in an expected location, i.e. a `/bin` directory.  
+- Relative will be relative to the root of the executable's PWD.  
+
 ### Exception Handling
 
 Types include: Runtime Exceptions, IO Exceptions i.e. File System based.  
@@ -386,7 +397,163 @@ You will want to consider the following when creating a member:
 - Member needs to share data with other instances: Make it STATIC.  
 - Member should only be utilized by the instance of the Class: Do *not* use Static.  
 
-## Aliasing For Automation
+## Setting Up A New Java Project
+
+1. Go to the directory and mkdir the project directory you want to do.  
+1. Git Pull.
+1. gradle init
+1. Difference between an App and a Library? Apps have Main (an 'entry point').  
+1. Check that correct SDK is selected (apply it) and then do a BUILD.  
+1. Check if settings.gradle is in the root
+
+*Note*: Sometimes the project directory must be removed and gradle init run again.
+
+## Object Oriented Programming
+
+There are 8 primitive data types in Java.  
+Everything else *is a class*.  
+Classes are blueprints for instantiated object(s).  
+Methods define *behaviors*.  
+State is defined by the data contained within the object e.g. Fields and Properties.  
+Methods often alter the state (or Properties) of an object, like change a boolean value via a method.  
+Constructors allow instantiating Objects from Classes.  
+Overrides: Allows over-riding built-in members.  
+
+### OOP Principals
+
+Encapsulation: Hide state (data) from other objects and processes.  
+Inheritance: Avoids having to re-write Classes by enabling building-upon an existing 'parent' class.  
+
+#### Encapsulation
+
+Encapsulation: Do not display the data state of an object to everything.  
+Encapsulation: Use GETter and SETter functions to change state (data).  
+Use 'static' keyword to *share Methods and Properties* between object instances.  
+
+### Inheritance
+
+A top-level Class can define shared Properties and Methods that all children will get "for free".  
+Child Classes inherit from the top-level Class and can define their own specific Properties and Methods.  
+Child Classes *do not have to define* Props and Methods already defined by the parent!  
+Modifiers will impact which Properties and Methods child Classes will inherit??  
+Keyword 'extends' is used to implement inheritance.  
+
+```java
+package bakery;
+
+public class CinnamonRolls extends BakedGoods {
+  public boolean hasSwirl;
+
+  public CinnamonRolls( <parent-constructor-params>, boolean swirl) {
+    super(parent-param, ...);
+    hasSwirl = swirl;
+  }
+}
+```
+
+When creating a bunch of objects, consider categorizing them and using ArrayList for storage in another object.  
+
+### Access Modifiers
+
+Public: The class you are working in can see all other access-modified members.  
+Protected: Classes, Packages, Subclasses, and other Project-level items have access.  
+Private: Only the defining Class can access these members.  
+Default: Only the defining class or Package.  
+
+*Note*: Default is an optional modifier keyword.  
+
+### Constructors
+
+Build your own constructor!  
+Use 'public' to allow calling the Constructor from other modules.  
+The term 'this' relates to the current *scope*.  
+Multiple Constructors can be created with differing parameter lists.  
+
+### Properties
+
+Keep Properties private.  
+Constants can be created that cannot be edited using 'final' keyword.  
+
+```java
+public static final int MY_CONST = 1;
+// use UPPER_SNAKE_CASE for constant properties
+```
+
+### Overriding
+
+toString is a built-in Object method.  
+It does *not know how to work with your custom Class instances*!  
+Tell it what to do by using the `@override` decorator.  
+
+```java
+class... {
+  @override
+  public Stringn toString() {
+    return property.toString() + ...;
+  }
+}
+```
+
+### Domain Modeling
+
+Create these to help ID:
+
+- Shared information  
+- Opportunities for modularization  
+- Hierarchy of inheritance between types  
+- Opportunities for overrides i.e. toString  
+- Apply appropriate modifiers to members in each Class  
+
+Even *very simple* domain models will help simplify code development.  
+
+## Bitmap Lab
+
+Bitmap Transformer!  
+Create a very very very simple PhotoShop - edit images.  
+Minimum Requirements:
+
+- CLI architected to follow modularization best practices  
+- Contains a BitMap Class  
+- Must instantiate the Class in App  
+- Minimum 3 args: filepath; output filepath; transform name  
+- Minimum 3 transforms i.e. methods i.e. invertColor  
+- CLI should log useful error messages  
+- CLI should log success messages upon completion  
+- MINIMUM one single, non-empty test! Arrange, Act, Assert (and done)  
+
+### Breaking Down The Problem
+
+1. Get access to the file  
+1. Read the file  
+1. Attempt to write to the file (just to verify things are working)  
+1. Try parsing the file: Arrays within Arrays of binary and Hex information (not Java has a built-in way to deal with HEX etc)  
+1. Write-out the transform to a NEW FILE  
+
+Class TA Ben has done this project recently so he can help but will not give you the answer.  
+
+### Partners
+
+Groups of 3 will work on this lab.  
+Assigned by Alex.  
+
+## Code Challenge Day 4
+
+Whiteboard Only.  
+Paired programming.  
+Bookmark and save the Whiteboard Rubric!  
+Timebox this assignment - strict!  
+
+## Acquire Input From Terminal
+
+`./gradlew run --args strings...`  
+
+To have your App accept other types (besides String[]), just define the args parameter list in Main method.  
+
+```sh
+./gradlew run --args %arg_types_defined_by_main_method%
+```
+
+## Aliasing TerminalFor Automation
 
 Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.  
 [ ] Mess with this to streamline my processes.  
@@ -407,20 +574,18 @@ Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.
 [ ] Build a shortcut to assist with string concatenation in Java.  
 [ ] GitIgnore: Use this for the *entire class*  
 
-Assignments Due Tuesday:
-
-[X] Read  
-[ ] Code Challenge (just get the whiteboard layout good and properly whiteboard the solution)  
-[ ] Lab  
-[ ] Learning Journal
-
-Assignments Due Wednesday Morning:  
+Assignments Due Thursday:
 
 [ ] Read: Java Primitives vs Objects, Exceptions, Scanner  
+[ ] Pick Accountability Partners  
+[ ] Read04: OOP, Objects, Binary, Decimal, and Hexidecimal  
+[ ] Code Challenge - Paired Whiteboard Interviewing  
+[ ] Complete Lab03  
+[ ] Lab04 (make as much progress as possible within timebox TBD) (interact with a BMP file)  
+[ ] Learning Journal  
 
 Get-Ahead Work Items As Time Permits:
 
-[ ] Pick Accountability Partners  
 [ ] Workshop #1 Prep: Networking Gameplan  
 [ ] Workshop #1 Prep: Resume & Completed Resume
 
