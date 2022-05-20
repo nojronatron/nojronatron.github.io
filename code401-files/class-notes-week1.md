@@ -300,7 +300,385 @@ Use like `my_arrayList.addAll(Arrays.asList(my_other_array));`
 
 Has built-in methods like SORT that take an existing Array as an argument and sort it (in-place?).  
 
-## Aliasing For Automation
+## Wednesday Whiteboard Review
+
+CONDITIONAL instead of IF
+DEFINE functions instead of DECLARING them
+DECLARE variables
+
+Question: Is this a sorted array? If so, should it stay that way?  
+
+## Creating Packages
+
+Name your Package and Class *the same thing*.  
+Exporting a package: First line of package should be `package package_name;` to make it available to the rest of your code in your App.  
+Importing: Grab a single class `import package_name.ClassName;` or all members in a package `import package_name.*;`  
+Create a package to easily reuse code, including your own!  
+IntelliJ: rClick => New => Package. Create a new Class within the package_name folder.  
+Package Names are camelCase.  
+Class Names are PascalCase.  
+
+## Map and Set
+
+HashMaps aka Dictionaries aka Hash Tables aka Key-Value Stores.  
+HashMaps are good at storing retreivable, organized data.  
+Set extends HashMaps?  
+HashSet inclues member `.addAll(ArrayList<>)` to bulk-add an existing ArrayList.  
+Linked- versions of HashMaps and HashSets maintain order.  
+Good at handling: Counts, Lookups, and Uniqueness.  
+Measure Uniqueness!!  
+Quick Lookups!!  
+Count Instances!!  
+
+### Maps
+
+Maps accept a Key Value pairs as args.  
+Values *belong* to a specific Key.  
+KV Pairs need to be typed e.g. Key of type Integer, Value of type String.  
+Create a HashMap Example: `HashMap<String, ArrayList<Boolean>> variableName = new HashMap<>();`  
+Create a HashSet Example: `HashSet<String> variableName = new HashSet<>();`  
+
+### Input and Output
+
+Path: `import java.nio.file.Path;`  
+Paths: `import java.nio.file.Paths;`  
+Access, Read, track (counting instances): `HashMap<String, Integer> myMap = new HashMap<>(); String[] items = {string, string, ...}; System.out.println(scannerInstance.nextLine());`  
+
+Access: `Path path_var = Paths.get(file_path_var);`  
+Get Absolute Path: `path_var.toAbsolutePath();` outputs the path in full of the path_var value.  
+
+### Scanner
+
+Java's Scanner class has built-in methods that will be helpful.  
+Boolean `.hasNextLine()` returns true only if look-ahead to next line succeeds.  
+Remember to use RegEx101.com to help when regex is the right solution for finding strings in lines.  
+
+```java
+Scanner scanner = new Scanner(path);
+scanner.hasNext();
+scanner.nextLine();
+```
+
+Relative vs. Absolute file pathing:
+
+- Absolute can be a good for accessing a file that is in an expected location, i.e. a `/bin` directory.  
+- Relative will be relative to the root of the executable's PWD.  
+
+### Exception Handling
+
+Types include: Runtime Exceptions, IO Exceptions i.e. File System based.  
+
+```java
+try {
+  // run your might-throw-an-exception code here
+  myScanner = new Scanner(myPath);
+
+}
+catch (IDException ioe) {
+  // oopsie something bad happened in the try block
+  System.out.println("That file cnnot be scanned or was not found. File path is: " + myPath.toAbsolutePath());
+  ioe.printStackTrace();
+  System.exit(status_code);  // status_code can be any integer but 0 is usually 'success' 
+                             // any other integer is 'failure of some type'
+}
+```
+
+Multiple Catch blocks can be defined.  
+
+## Static and Non-Static Members
+
+Static members are shared among all instances of a Class.  
+Static members can be called via the ClassName of the containing Class.  
+Non-Static members are Instance Members.  
+Instance Members are unique to the Instance of the Class.  
+Instance Members are *not shared* among instances.  
+You will want to consider the following when creating a member:
+
+- Member needs to share data with other instances: Make it STATIC.  
+- Member should only be utilized by the instance of the Class: Do *not* use Static.  
+
+## Setting Up A New Java Project
+
+1. Go to the directory and mkdir the project directory you want to do.  
+1. Git Pull.
+1. gradle init
+1. Difference between an App and a Library? Apps have Main (an 'entry point').  
+1. Check that correct SDK is selected (apply it) and then do a BUILD.  
+1. Check if settings.gradle is in the root
+
+*Note*: Sometimes the project directory must be removed and gradle init run again.
+
+## Object Oriented Programming
+
+There are 8 primitive data types in Java.  
+Everything else *is a class*.  
+Classes are blueprints for instantiated object(s).  
+Methods define *behaviors*.  
+State is defined by the data contained within the object e.g. Fields and Properties.  
+Methods often alter the state (or Properties) of an object, like change a boolean value via a method.  
+Constructors allow instantiating Objects from Classes.  
+Overrides: Allows over-riding built-in members.  
+
+### OOP Principals
+
+Encapsulation: Hide state (data) from other objects and processes.  
+Inheritance: Avoids having to re-write Classes by enabling building-upon an existing 'parent' class.  
+
+#### Encapsulation
+
+Encapsulation: Do not display the data state of an object to everything.  
+Encapsulation: Use GETter and SETter functions to change state (data).  
+Use 'static' keyword to *share Methods and Properties* between object instances.  
+
+### Inheritance
+
+A top-level Class can define shared Properties and Methods that all children will get "for free".  
+Child Classes inherit from the top-level Class and can define their own specific Properties and Methods.  
+Child Classes *do not have to define* Props and Methods already defined by the parent!  
+Modifiers will impact which Properties and Methods child Classes will inherit??  
+Keyword 'extends' is used to implement inheritance.  
+
+```java
+package bakery;
+
+public class CinnamonRolls extends BakedGoods {
+  public boolean hasSwirl;
+
+  public CinnamonRolls( <parent-constructor-params>, boolean swirl) {
+    super(parent-param, ...);
+    hasSwirl = swirl;
+  }
+}
+```
+
+When creating a bunch of objects, consider categorizing them and using ArrayList for storage in another object.  
+
+### Access Modifiers
+
+Public: The class you are working in can see all other access-modified members.  
+Protected: Classes, Packages, Subclasses, and other Project-level items have access.  
+Private: Only the defining Class can access these members.  
+Default: Only the defining class or Package.  
+
+*Note*: Default is an optional modifier keyword.  
+
+### Constructors
+
+Build your own constructor!  
+Use 'public' to allow calling the Constructor from other modules.  
+The term 'this' relates to the current *scope*.  
+Multiple Constructors can be created with differing parameter lists.  
+
+### Properties
+
+Keep Properties private.  
+Constants can be created that cannot be edited using 'final' keyword.  
+
+```java
+public static final int MY_CONST = 1;
+// use UPPER_SNAKE_CASE for constant properties
+```
+
+### Overriding
+
+toString is a built-in Object method.  
+It does *not know how to work with your custom Class instances*!  
+Tell it what to do by using the `@override` decorator.  
+
+```java
+class... {
+  @override
+  public Stringn toString() {
+    return property.toString() + ...;
+  }
+}
+```
+
+### Domain Modeling
+
+Create these to help ID:
+
+- Shared information  
+- Opportunities for modularization  
+- Hierarchy of inheritance between types  
+- Opportunities for overrides i.e. toString  
+- Apply appropriate modifiers to members in each Class  
+
+Even *very simple* domain models will help simplify code development.  
+
+## Bitmap Lab
+
+Bitmap Transformer!  
+Create a very very very simple PhotoShop - edit images.  
+Minimum Requirements:
+
+- CLI architected to follow modularization best practices  
+- Contains a BitMap Class  
+- Must instantiate the Class in App  
+- Minimum 3 args: filepath; output filepath; transform name  
+- Minimum 3 transforms i.e. methods i.e. invertColor  
+- CLI should log useful error messages  
+- CLI should log success messages upon completion  
+- MINIMUM one single, non-empty test! Arrange, Act, Assert (and done)  
+
+### Breaking Down The Problem
+
+1. Get access to the file  
+1. Read the file  
+1. Attempt to write to the file (just to verify things are working)  
+1. Try parsing the file: Arrays within Arrays of binary and Hex information (not Java has a built-in way to deal with HEX etc)  
+1. Write-out the transform to a NEW FILE  
+
+Class TA Ben has done this project recently so he can help but will not give you the answer.  
+
+### Partners
+
+Groups of 3 will work on this lab.  
+Assigned by Alex.  
+
+## Code Challenge Day 4
+
+Whiteboard Only.  
+Paired programming.  
+Bookmark and save the Whiteboard Rubric!  
+Timebox this assignment - strict!  
+
+## Acquire Input From Terminal
+
+`./gradlew run --args strings...`  
+
+To have your App accept other types (besides String[]), just define the args parameter list in Main method.  
+
+```sh
+./gradlew run --args %arg_types_defined_by_main_method%
+```
+
+## Thursday Discussion Linked Lists
+
+### Generally
+
+Linked lists and Trees are very common interview/technical questions.  
+Nested objects (nodes) with links REF'ing other Nodes.  
+
+### Heap Based Concepts
+
+Little Endian: Right-to-left memory location addressing (smallest to largest)  
+Big Endian: Left-to right memory location addressing (largest to smallest)  
+Blocks of space will get consumed by bits, bytes, and Big/Little endian storage types and methods.  
+
+### Stack Based Concepts
+
+Call Stack: Methods go here! LIFO-ordered rule.  
+Stacks must be exited via a RETURN statement.  
+Do *NOT* exit out of a stack space using BREAK it *will not work*.  
+Inner-Call: Calling a method from within a method.  
+
+### Linked List Terminology
+
+LL is a Data STructure that contains references to other linked nodes.  
+Links are called NEXT.  
+Values stored in LL Nodes are the Data (State).  
+TreeNode has a Left and a Right (value or methods?).  
+Values stored in Nodes can be Objects, Primatives, Methods, Files, etc.  
+
+#### Doubly Linked List
+
+Tracks Next  
+Tracks Previous  
+These are NOT ALLOWED here because the technical interviews are mostly Single-Linked Lists.
+
+### Singly Linked List
+
+Track a REF to Next  
+Head: REF to FIRST Node  
+Current: Currently REF'd Node, used to traverse Linked Lists  
+Tail: REF to the Last Node  
+
+### Drawing Linked Lists
+
+Use bubbles!  
+Connect them with one-way arrows!  
+Remember that nothing is NULL  
+Linked List Class: Contains all of the functionality to adding, moving, removing LL Nodes.  
+LL Node: Data and Node Next properties.  
+Traverse a LL: Method that takes a parameters list of Type LinkedList, then captures Node currentNode = LL.head, then utilizes a while(condition) will change REFs from currentNode via currentNode = currentNode.next.  
+
+### Coding LLNodes and LLClass
+
+Linked List Node
+
+```java
+// Nodes are selfish and only care about their State
+// Member next is not even assigned!
+public class Node {
+  public int value;
+  public Node next; // defaults null
+
+  public Node(int value) {
+    this.value = value;
+  }
+}
+```
+
+Linked List Class
+
+```java
+public class LinkedList {
+  Node head = null; // no LLNodes so force null so callers know list is empty
+  Node tail = null; // OPTIONAL
+
+  public void insert(int value) {
+    // create a new Node
+  }
+
+  public Boolean includes(int value) {
+    // does one of the LLNodes have this value?
+
+    return false; // default return
+  }
+
+  // override toString
+  @Override
+  public String tostring() {
+    return " ";
+  }
+}
+```
+
+### Reference Types vs Value Types
+
+Why references instead of values? To be efficient with memory.  
+Storing a link to a memory location is more efficient: Easier to lookup, sort, and takes less space.  
+The actual objects are stored elsewhere in memory (sthe Stack).  
+
+### Big O
+
+Discussion of BigO analysis of Singly-Linked Lists.  
+BigO describes algorithm complexity in time and space, therefore its efficiency.  
+Measures *worst case scenarios*  
+0(1): CONSTANT => Exact same amount every time, very efficient.  
+O(n): Linear Time => Grows over time, built-in methods ARE included in this calculation and are usually iterating structures.  
+O(log n): Logarithmic => Very efficienct; Algorithm can determine whether to look at data at all to know if it needs that data or not. Includes recursive algorithms.  
+O(n^2): Exponential. Inefficient. Nested loops (usually).  
+
+#### Big O Time
+
+Measured in milliseconds so BigO is measured relatively in terms of efficiency.  
+a=1 is a constant  
+a+b is a constant
+O(1) lookups include Sets and Maps
+O(n) Linear Time => Over time takes increasing amount of time  
+
+#### Big O Space
+
+Remember ONE thing: Additional Allocation => Should I measure my input?  
+O(1) => Integers, Bytes, Strings (they have a max limit) etc; Constant Space.  
+O(n) => Arrays, Lists, Collections, and Objects => Structures that can have n items.  
+O(n^2): ??
+O(log n): ??
+
+
+## Aliasing TerminalFor Automation
 
 Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.  
 [ ] Mess with this to streamline my processes.  
@@ -321,20 +699,18 @@ Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.
 [ ] Build a shortcut to assist with string concatenation in Java.  
 [ ] GitIgnore: Use this for the *entire class*  
 
-Assignments Due Tuesday:
-
-[X] Read  
-[ ] Code Challenge (just get the whiteboard layout good and properly whiteboard the solution)  
-[ ] Lab  
-[ ] Learning Journal
-
-Assignments Due Wednesday Morning:  
+Assignments Due Thursday:
 
 [ ] Read: Java Primitives vs Objects, Exceptions, Scanner  
+[ ] Pick Accountability Partners  
+[ ] Read04: OOP, Objects, Binary, Decimal, and Hexidecimal  
+[ ] Code Challenge - Paired Whiteboard Interviewing  
+[ ] Complete Lab03  
+[ ] Lab04 (make as much progress as possible within timebox TBD) (interact with a BMP file)  
+[ ] Learning Journal  
 
 Get-Ahead Work Items As Time Permits:
 
-[ ] Pick Accountability Partners  
 [ ] Workshop #1 Prep: Networking Gameplan  
 [ ] Workshop #1 Prep: Resume & Completed Resume
 
