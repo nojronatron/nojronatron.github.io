@@ -14,6 +14,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 [ ] Interfaces  
 [ ] Proper and efficient installation of a specified JDK in Linux  
 [ ] When and why would I choose to develop in Java vs C# or Python?  
+[ ] Trees and Decision Trees have perplexed me for a while I'd like to get over that  
 
 ## Advanced Software Development
 
@@ -30,7 +31,8 @@ The following are reading and research notes taken during, and in preparation fo
 [ ] Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/bash-stuff.html)  
 [ ] SQL Statement [Reference](./code401-files/sql-statements-ref.html)  
 
-[ ] Class Notes [Week One](./code401-files/class-notes-week1.html)  
+[~] Class Notes [Week One](./code401-files/class-notes-week1.html)  
+[~] Partner Power Hour [Rover](./power-hour-notes/pph-rover.html)  
 [~] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
 [~] Study [Guide](./code401-files/java-reference.html)  
 
