@@ -553,6 +553,131 @@ To have your App accept other types (besides String[]), just define the args par
 ./gradlew run --args %arg_types_defined_by_main_method%
 ```
 
+## Thursday Discussion Linked Lists
+
+### Generally
+
+Linked lists and Trees are very common interview/technical questions.  
+Nested objects (nodes) with links REF'ing other Nodes.  
+
+### Heap Based Concepts
+
+Little Endian: Right-to-left memory location addressing (smallest to largest)  
+Big Endian: Left-to right memory location addressing (largest to smallest)  
+Blocks of space will get consumed by bits, bytes, and Big/Little endian storage types and methods.  
+
+### Stack Based Concepts
+
+Call Stack: Methods go here! LIFO-ordered rule.  
+Stacks must be exited via a RETURN statement.  
+Do *NOT* exit out of a stack space using BREAK it *will not work*.  
+Inner-Call: Calling a method from within a method.  
+
+### Linked List Terminology
+
+LL is a Data STructure that contains references to other linked nodes.  
+Links are called NEXT.  
+Values stored in LL Nodes are the Data (State).  
+TreeNode has a Left and a Right (value or methods?).  
+Values stored in Nodes can be Objects, Primatives, Methods, Files, etc.  
+
+#### Doubly Linked List
+
+Tracks Next  
+Tracks Previous  
+These are NOT ALLOWED here because the technical interviews are mostly Single-Linked Lists.
+
+### Singly Linked List
+
+Track a REF to Next  
+Head: REF to FIRST Node  
+Current: Currently REF'd Node, used to traverse Linked Lists  
+Tail: REF to the Last Node  
+
+### Drawing Linked Lists
+
+Use bubbles!  
+Connect them with one-way arrows!  
+Remember that nothing is NULL  
+Linked List Class: Contains all of the functionality to adding, moving, removing LL Nodes.  
+LL Node: Data and Node Next properties.  
+Traverse a LL: Method that takes a parameters list of Type LinkedList, then captures Node currentNode = LL.head, then utilizes a while(condition) will change REFs from currentNode via currentNode = currentNode.next.  
+
+### Coding LLNodes and LLClass
+
+Linked List Node
+
+```java
+// Nodes are selfish and only care about their State
+// Member next is not even assigned!
+public class Node {
+  public int value;
+  public Node next; // defaults null
+
+  public Node(int value) {
+    this.value = value;
+  }
+}
+```
+
+Linked List Class
+
+```java
+public class LinkedList {
+  Node head = null; // no LLNodes so force null so callers know list is empty
+  Node tail = null; // OPTIONAL
+
+  public void insert(int value) {
+    // create a new Node
+  }
+
+  public Boolean includes(int value) {
+    // does one of the LLNodes have this value?
+
+    return false; // default return
+  }
+
+  // override toString
+  @Override
+  public String tostring() {
+    return " ";
+  }
+}
+```
+
+### Reference Types vs Value Types
+
+Why references instead of values? To be efficient with memory.  
+Storing a link to a memory location is more efficient: Easier to lookup, sort, and takes less space.  
+The actual objects are stored elsewhere in memory (sthe Stack).  
+
+### Big O
+
+Discussion of BigO analysis of Singly-Linked Lists.  
+BigO describes algorithm complexity in time and space, therefore its efficiency.  
+Measures *worst case scenarios*  
+0(1): CONSTANT => Exact same amount every time, very efficient.  
+O(n): Linear Time => Grows over time, built-in methods ARE included in this calculation and are usually iterating structures.  
+O(log n): Logarithmic => Very efficienct; Algorithm can determine whether to look at data at all to know if it needs that data or not. Includes recursive algorithms.  
+O(n^2): Exponential. Inefficient. Nested loops (usually).  
+
+#### Big O Time
+
+Measured in milliseconds so BigO is measured relatively in terms of efficiency.  
+a=1 is a constant  
+a+b is a constant
+O(1) lookups include Sets and Maps
+O(n) Linear Time => Over time takes increasing amount of time  
+
+#### Big O Space
+
+Remember ONE thing: Additional Allocation => Should I measure my input?  
+O(1) => Integers, Bytes, Strings (they have a max limit) etc; Constant Space.  
+O(n) => Arrays, Lists, Collections, and Objects => Structures that can have n items.  
+O(n^2): ??
+O(log n): ??
+
+
 ## Aliasing TerminalFor Automation
 
 Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.  
