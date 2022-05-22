@@ -84,7 +84,7 @@ Many files and entire directory hierarchies can be stored in packages to define 
 
 Note: There is an entire Oracle website dedicated to the [Java SE 8 API Specification](https://docs.oracle.com/javase/8/docs/api/index.html)  
 
-## Classes Discussion
+## Reference: Classes Discussion
 
 [Classes discussion by Oracle](https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html)  
 
@@ -92,7 +92,54 @@ Note: There is an entire Oracle website dedicated to the [Java SE 8 API Specific
 
 Binary, Decimal, and Hexidecimal reading by [MathIsFun](https://www.mathsisfun.com/binary-decimal-hexadecimal.html)  
 
-TBD...
+Decimals are 10-base numbers.  
+Digits have positions, arranged around a decimal point.  
+Every position is 10x bigger to the left, or 1/10th the value to the right of the decimal.  
+
+### Different Number Systems
+
+Other number systems count using a base other than 10.  
+Hexadecimal numbers are base-16.  
+Binary numbers are base-2.  
+Regardless of the numbering system, once you know the base, you know when to "carry a one" by this algorithm:
+
+```pseudo
+while: number % base_system != 0 {
+  increment: +1
+}
+shift: stack a 1 in the 2nd digit position and reset the 2nd digit position to 0
+```
+
+### Hexadecimal
+
+A base-16 system.  
+Numbers are 0-9 with A-F for the 11th through 16th values.  
+
+```text
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F
+```
+
+#### Convert Hexadecimal to Decimal Algorithm
+
+Source [Permandi.com FP HTML Tips](https://www.permadi.com/tutorial/numHexToDec/index.html)  
+
+1. Get the *last digit* of the hexideciaml number and call this digit the *current digit*.  
+2. Make a variable called *power* and set it to 0.  
+3. Multiply the *current digit* with `16^power` and store the result.  
+4. Increment *power* by 1.  
+5. Set the *current digit* to the previous digit of the hexadecimal number.  
+6. Repeat steps 3 through 5 until all digits have been multiplied.  
+7. Sum all of the result of step 4 to get the answer.  
+
+#### Convert Decimal to Hexadecimal Algorithm
+
+Source [Permandi.com FP HTML Tips](https://www.permadi.com/tutorial/numDecToHex/)  
+
+1. Divide decimal number by 16. Tret the division as an integer division.  
+2. Store the remainder as a Hexadecimal number.  
+3. Divide the result again by 16. Treat the division as an integer division.  
+4. Repeat steps 2 and 3 above until result is 0.  
+5. The hex value is teh digit sequence of the *remainders* from *last to first*.  
 
 ## Footer
 
