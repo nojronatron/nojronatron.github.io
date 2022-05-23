@@ -49,7 +49,50 @@ public class Composer extends Artist {
 }
 ```
 
-Members that 
+Write Tests! Use the IntelliJ generator to help you write test methods.  
+
+Constructors of child classes must be created too!  
+We can create Constructors that are rooted in the Class's Parent Class.  
+
+```java
+public class Musician extends Artist {
+  public int totalSongs;
+  public Musician(String name, String genre, int totalSongs) {
+    super(name, genre); // this is calling the parent constructor grabbing its properties
+    this.totalSongs = totalSongs;
+  }
+}
+// private fields in the parent will NOT show via the super() constructor call
+```
+
+Packages vs Sub Classes: A sub class might be imported via another Package, so Access Modifiers are important to understand.  
+While domain modeling, ask yourself: Which Class should be responsible?  
+
+- Acquiring data  
+- Processing data  
+
+### Abstract Classes
+
+You cannot instantiate an Abstract Class => NO NEW KEYWORD!  
+Abstract Classes: Write your "big logic" code here so all inheriting classes implement it without rewriting the same code.  
+Keyword 'abstract', e.g.:  
+
+```java
+public abstract class Artist {
+  protected String name;
+  String genre;
+}
+```
+
+Abstraction: Hide complexities of an implementation. Only expose an API that includes implementations that *you want inheritors to use*.  
+
+Abstract Members: Use the 'abstract' keyword to define methods that *tells inheritors they must implement it*.  
+
+### Override vs Overload
+
+Override: Used to implement abstract methods.  
+Overload: Create multiple methods using the same name but changing the number or input parameters and possibly the return type.  
+
 ## Code Review?
 
 
