@@ -29,6 +29,9 @@ The following are reading and research notes taken during, and in preparation fo
 [X] Read Class03 [Handling Exceptions, Java Scanner, and Objects vs Primatives](./code401-files/java-exceptions-scanner.html)  
 [X] Read Class02 [Java Packages and Loops](./code401-files/read401-02-java.html)  
 [X] Read Class01 [Java Basics Compiling and Java Doc Refs](./code401-files/read401-01-java.html)  
+
+### ASD Class Reminders
+
 [ ] Make your projects *client ready* aka visually appealing to anyone *[CodeFellows Prework]*  
 [ ] A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)  
 [ ] Passion and [Perseverence](./code401-files/passion-perseverence.html)  
@@ -36,6 +39,8 @@ The following are reading and research notes taken during, and in preparation fo
 [ ] Upgrade Skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)  
 [ ] Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/bash-stuff.html)  
 [ ] SQL Statement [Reference](./code401-files/sql-statements-ref.html)  
+
+### ASD Additional References and Notes
 
 [ ] Class Notes [Week Two](./code401-files/class-notes-week2.html)  
 [~] Class Notes [Week One](./code401-files/class-notes-week1.html)  
