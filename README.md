@@ -14,7 +14,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 ## Code 401 Things I Want To Learn More About
 
-[ ] Interfaces  
+[ ] Interfaces: See OOP, Inheritance, Interfaces (below)  
 [ ] Proper and efficient installation of a specified JDK in Linux  
 [ ] When and why would I choose to develop in Java vs C# or Python?  
 [ ] Trees and Decision Trees have perplexed me for a while I'd like to get over that  
@@ -23,12 +23,15 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
-[ ] Read Class06 [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html)  
-[ ] Read about [Linked Lists](./code401-files/bigo-linkedlists.html)  
+[X] Read Class06 [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html)  
+[X] Read about [Linked Lists](./code401-files/bigo-linkedlists.html)  
 [X] Read Class04 [OOP, Classes, Bin-Dec-Hex](./code401-files/oop-classes-bindechex.html)  
 [X] Read Class03 [Handling Exceptions, Java Scanner, and Objects vs Primatives](./code401-files/java-exceptions-scanner.html)  
 [X] Read Class02 [Java Packages and Loops](./code401-files/read401-02-java.html)  
 [X] Read Class01 [Java Basics Compiling and Java Doc Refs](./code401-files/read401-01-java.html)  
+
+### ASD Class Reminders
+
 [ ] Make your projects *client ready* aka visually appealing to anyone *[CodeFellows Prework]*  
 [ ] A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)  
 [ ] Passion and [Perseverence](./code401-files/passion-perseverence.html)  
@@ -37,6 +40,9 @@ The following are reading and research notes taken during, and in preparation fo
 [ ] Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/bash-stuff.html)  
 [ ] SQL Statement [Reference](./code401-files/sql-statements-ref.html)  
 
+### ASD Additional References and Notes
+
+[ ] Class Notes [Week Two](./code401-files/class-notes-week2.html)  
 [~] Class Notes [Week One](./code401-files/class-notes-week1.html)  
 [~] Partner Power Hour [Rover](./power-hour-notes/pph-rover.html)  
 [~] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
