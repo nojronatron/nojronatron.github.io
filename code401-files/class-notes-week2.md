@@ -115,6 +115,117 @@ Always reassign the Head pointer LAST.
 
 ## Generics
 
+What are Generics?
+
+- Basic idea is a non-specificy type can be placeheld for what could be used at Runtime.  
+- The requirement to define the exact Type is not required during design time.  
+
+```java
+public class Node<T> {
+  public T value; // value of node
+  public Node<T> next; // generic Node with type T
+  public Node(T value) {
+    this.value = value; // works within constructors and methods
+  }
+}
+public class LinkedList<T> {
+  public Node<T> head = null;
+  public Node<T> tail;
+  public void insert(T val) {
+    Node<T> newNode = new Node(val);
+    if (head != null) {
+      newNode.next = head;
+    }
+    if (head == null) {
+      tail = newNode;
+    }
+    head = newNode;
+  }
+  ...
+}
+```
+
+### Generic Extensions
+
+Class Number is the parent to int, long, float, double, etc.  
+Restricts the Types to certain super and child types, rather than the entire Java Libraries types.  
+Similar to C# "Constraints"  
+
+`public class Node<T extends MyClass> {...}`
+
+### User Input and Data Flow
+
+How do we know how the user is going to interact with our App/Packages?  
+The WRRC and API modeling can help answer these questions.  
+We will also need to consider validating input, etc.
+All of this will get revisited in a future class.  
+For now just keep in mind user-input and output are impotant aspects with code design.  
+
+### Code Design and Data Relationships
+
+One to One: 1:1 =>  Each pair of items are directly related to each other and only each other.  
+One to Many: 1:Infinite => The single has many, many links to other items but each item has only one link to the one.  
+Many to Many: Infinite:Infinite => Many Items have many links to many other items.  
+What does good coding practices say about a class that is used A LOT? Modularize it!  
+Consider whether releated objects have a relationship that indicates whether inheritance with sub-classing or abstract classes etc are necessary.  
+
+### Interfaces
+
+Why are these necessary?  
+Interfaces are NOT Classes but they are instantiated similarly: 
+
+`public interface iMyInterface {...}`  
+
+Only implement logic and methods *as required*.  
+To attach an interface to a Class, use the keyword "implements": 
+
+`public class myClass implements iMyInterface {...}`  
+
+Define members *without implementation* in your Interface definition.  
+Classes that "implements" that interface *need to implement those member(s)* in order to compile.  
+Interfaces enable reusability and are well suited in many-to-one scenarios.  
+It is possilbe (and legal) to define a Class *within an interface*.  
+Classes that *implement* an interface *must* define the implementations within the Class to meet the interface requirements.  
+Classes can implement *multiple interfaces*.  
+
+#### Loggers
+
+Create a Logger interface that all of your classes implement to ensure logging in your App!  
+
+#### Implementing Multiple Interfaces
+
+```java
+public class Zork extends Doggo implements Feeding, logger {
+  // now implement the members required by Feeding and logger interfaces
+}
+```
+
+## Tuesday Lab
+
+[ ] Create a Domain Model first  
+[ ] Try to use interfaces => ID where they will come in handy e.g. many-to-one relationships  
+[ ] Step 1 Shouldn't take more than 30 minutes
+[ ] Step 2 Consider using an abstract class or other modularization means to achieve goals  
+[ ] Step 3 Movie Class creation is not required so do a String name if not Classing it  
+[ ] Utilize Java built-in Packages as possible e.g. ArrayList.add() remove() etc  
+[ ] Remember that specific Reviews could be for *many things* and ensure the "user" is able to enter the correct type of Review  
+[ ] DO NOT write complex tests - 1 for each method is enough for Labs  
+
+## Tuesday Code Challenge
+
+More linked lists!  
+
+## Schedule Through Memorial Day
+
+Friday: Alex is out, so JB (or another) and Dr.Robin  
+Monday: NO CLASS  
+Homework will get shifted back by 1 day  
+Fridays WILL NOT CHANGE  
+There will be updates to cover for the missed day on Monday  
+
+## Questions and Things to Think About
+
+[ ] Project Idea: Try to develop a Linked List using javascript
 
 ## Footer
 
