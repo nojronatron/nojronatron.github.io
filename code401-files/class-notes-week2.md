@@ -71,6 +71,9 @@ While domain modeling, ask yourself: Which Class should be responsible?
 - Acquiring data  
 - Processing data  
 
+Inheritance introduces the instanceOf method.  
+'instanceOf()' is used to determine inherited hierarchy of your current or custom classes at runtime.  
+
 ### Abstract Classes
 
 You cannot instantiate an Abstract Class => NO NEW KEYWORD!  
@@ -93,7 +96,24 @@ Abstract Members: Use the 'abstract' keyword to define methods that *tells inher
 Override: Used to implement abstract methods.  
 Overload: Create multiple methods using the same name but changing the number or input parameters and possibly the return type.  
 
-## Code Review?
+## Feedback Review
+
+You *will* feel lost at times.  
+Give yourself breaks from a project by timeboxing and then walking away for a while.  
+Code Fellows is going to rapidly run through concepts that college-level classes take weeks and months to get through.  
+What if you're behind? Finish the current days work before working on catchup labs/challenges/etc.  
+Pair Programming!!  
+Try code warmups to get going in the morning.  
+
+## Tuesday Code Review
+
+You will need to spend ~70% of your time whiteboarding a problem and only ~30% coding the solution!  
+The order in which you reassign REFs to Nodes is *critical*.  
+Always reassign the Head pointer LAST.  
+
+## Typecasting
+
+## Generics
 
 
 ## Footer
