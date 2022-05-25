@@ -19,9 +19,12 @@ Two instances of similar code is probably fine, three instances is time to recon
 
 ## You Aren't Gonna Need It
 
-
+Saying arose from Extreme Programming (XP).  
+Basically *do not add functionality until it is absolutely necessary*.  
+"Do the simplest thing that could possibly work".  
 
 ## Minimum Viable Product
+
 
 
 ## Don't Repeat Yourself
