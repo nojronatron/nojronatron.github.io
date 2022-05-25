@@ -25,7 +25,26 @@ Basically *do not add functionality until it is absolutely necessary*.
 
 ## Minimum Viable Product
 
+An MVP is a product "...with just enough features to the usable..." *[Wikipedia, accessed 25-May-22, see References above]*  
+Purpose is to provide a working product that can be used and from which feedback can be drawn to determine the next phase of development neededd to meet end-users needs.  
+Validate a business hypothysis through experimenting...with ann App.  
 
+- Use minimal resources  
+- Only the least amount of functionality is necessary  
+- Get product to customers as early in the development cycle as possible  
+- Can help find a base for other Apps/products  
+- Validate builder's capabilities / Readiness to develop the product  
+- Rapidly build a brand  
+
+Steve Blank said (paraphrased) "Sell the vision, deliver the mvp to visionaries."  
+
+### Critisism
+
+Releasing an MVP too early or as a copy-cat can actually injure the reputation of the developer / company.  
+Releasing an MVP that is TOO MINIMAL injures the company, team, and product as it is incomplete and does not meet user expectations.  
+Testing ideas in the market is risky business especially in areas where Intellectual Property is a major concern.  
+
+MVE - Minimum Viable Experiment - and MAP - Minimum Awesome Product - are two new approaches that have surfaced through criticism of MVP.  
 
 ## Don't Repeat Yourself
 
