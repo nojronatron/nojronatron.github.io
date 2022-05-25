@@ -51,7 +51,11 @@ MVE - Minimum Viable Experiment - and MAP - Minimum Awesome Product - are two ne
 Reduce repetition in software development patterns through reuse and advanced software development techniques and principles.  
 
 - Utilize abstractions
-- Apply data normalization techniques
+- Apply [data normalization techniques](https://en.wikipedia.org/wiki/Canonical_form#Computing)
+- Develop functions that are easily reused  
+- Arrange the object hierarchy so inheritance members can be automatically applied and overridden when needed  
+
+Take a peek at [this book by Andrew Hunt and David Thomas (Addison Wesley)](https://en.wikipedia.org/wiki/The_Pragmatic_Programmer)  
 
 ### When Applied Properly
 
