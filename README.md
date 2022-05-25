@@ -16,13 +16,16 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 [ ] Interfaces: See OOP, Inheritance, Interfaces (below)  
 [ ] Proper and efficient installation of a specified JDK in Linux  
-[ ] When and why would I choose to develop in Java vs C# or Python?  
+[ ] When and why would I choose to develop in Java vs C# or Python e.g. for a pet project  
 [ ] Trees and Decision Trees have perplexed me for a while I'd like to get over that  
+[ ] Configure OS to support "IDEA ." to open IntelliJ at current directory  
+[ ] How do I know when it is best to use Generics? Right from the beginning?  
 
 ## Advanced Software Development
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
+[ ] Read Class08 [DRY, Rule of Three, Dont Need It, and MVP](./code401-files/dry-three-mvp.html)  
 [X] Read Class06 [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html)  
 [X] Read about [Linked Lists](./code401-files/bigo-linkedlists.html)  
 [X] Read Class04 [OOP, Classes, Bin-Dec-Hex](./code401-files/oop-classes-bindechex.html)  
