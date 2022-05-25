@@ -48,7 +48,23 @@ MVE - Minimum Viable Experiment - and MAP - Minimum Awesome Product - are two ne
 
 ## Don't Repeat Yourself
 
+Reduce repetition in software development patterns through reuse and advanced software development techniques and principles.  
 
+- Utilize abstractions
+- Apply data normalization techniques
+
+### When Applied Properly
+
+Modifications are only necessary in the directly-affected portions of the system, and not beyond.  
+Less code is written and commonly-used logic is modularized and reused.  
+Related elements are kept in sync and change predictably.  
+
+### Challenges with DRY
+
+Simply applying DRY because it exists might not be the right solution for a project.  
+Forcing abstractions at every turn can cause a codebase to become rigid and difficult to refactor (rising costs as it ages).  
+There are arguments that principles of abstraction and DRY should be applied *when not doing so becomes a barrier to the product*.  
+Kent C. Dodds coined the acronym AHA - Avoid Hasty Abstractions - that talks to the previous statements.  
 
 ## Footer
 
