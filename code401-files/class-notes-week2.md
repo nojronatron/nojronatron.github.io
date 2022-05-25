@@ -194,14 +194,27 @@ JSON is plaintext, therefore a String, and WYSIWYG.
 Lab Goal today: Read-in a JSON file.  
 
 Do this using GSON.  
+When reading-in JSON, you will need to have a Class instance to push the imported data into (members etc).  
 
 Design:  
-App imports Files  
-import GSON: `implementation 'com.google.code.gson:n.n.n'` => add this (and more) to build.gradle  
-Create dog object (input)
-Read in a dog.json  
+App imports Files: `implementation 'com.google.code.gson:n.n.n'` => add this (and more) to build.gradle  
+import GSON: `import com.google.gson.Gson;`  
+Rebuild: Reset Gradle (use a build command) to ensure build.gradle changes are picked up.  
+test => resources directory: Allows Tests easy access to the files during test writing and execution.  
+Read-in a file:  
 
-TODO: Reset Gradle (use a build command) to ensure build.gradle changes are picked up.  
+1. Define a Try-Catch to wrap-around the following (or use 'throws IOException' at method definition).  
+2. Find filepath: `File myFile = new File("./app/src/test/resources/JSON.json");`  
+3. Use try-with-resources to utilize FileReader.
+4. Use fileReader: `FileReader fileReader = new FileReader(myFile);`  
+5. Create a new Object instance: `MyClass myClass = new FileReader(fileReader, Class.class);`  
+
+Write-out a file:  
+
+1. Find filepath: `File zorkFile2 = new File(path_to_file_output_file.json);`  
+2. Use try-with-resources: `try(FileWriter zorkFileWriter = new FileWriter(zorkFile2)) {...}`  
+3. The try-with-resources codeblock contains the rest of the code.  
+4. Implement the resource and Exceptions will be caught: `gson.toJson(newZork, zorkFileWriter);`  
 
 ### Wednesday Code Challenge
 
