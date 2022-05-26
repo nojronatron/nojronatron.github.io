@@ -93,8 +93,135 @@ Abstract Members: Use the 'abstract' keyword to define methods that *tells inher
 Override: Used to implement abstract methods.  
 Overload: Create multiple methods using the same name but changing the number or input parameters and possibly the return type.  
 
-## Code Review?
 
+## Wednesday Discussion
+
+MVP: Pare this down more than you want to for your final! Avoids.  
+Passing by value: This is the *default* operation in Java, primatives and classes.  
+Java passes REFERENCES by value by default.  
+Passing by reference: MUST BE SPECIFIED with a keyword.  
+Call Stack: Where temporary memory gets stored and methods are stored during execution.  
+Heap: Longer-term memory storage of object instances and their data.  
+Reference Addresses: Stored in the Stack, point to memory locations in the Heap e.g. to an Object.  
+GSon: Stringifying objects.  
+JSON: Similar to javascript objects (braces surrounding KVPs), using string-based keys.  
+Java cannot natively read JSON:
+
+- You need to define object(s) that are in the JSON before Java can use it.  
+- Also need to use a Package Library to read-in and write-out JSON.  
+
+### Weds Callenge Review
+
+KEY CODE TO REMEMBER FOR LINKED LISTS: `while(current != null) {...}`  
+Keywords:
+
+- break: Break OUT of the parent loop/iterating structure.  
+- continue: Stop the current iteration and start the NEXT iteration.  
+
+### Weds Lab Review
+
+Push as many members UP the hierarchy to a parent class as possible to simplify domain model design.  
+Use GETTERS so that other Objects have access to information in parent, sibling, and other Objects.  
+super. vs super():
+
+- `super.`: References the parent class using object (dot) notation.  
+- `super()`: invokes the parent Constructor, based on parameter list matching.  
+
+Implicit Upcasting: A shortcut, affirms that a type IS-A, which is similar to how Generics are implemented.  
+
+### Good Developer Concepts
+
+DRY: Don't repeat yourself.  
+YAGNI: Don't implement what is not needed right now. Future-Proofing can end up violating this rule.  
+RuleOf3: If you're writing the same code for the 3rd+ time, consider modularizing it into a common or helper function.  
+MVP: Minimum Viable Product => An experiment that early, visionaries get to use and provide feedback of an App while it is a mimumally usable (but functional) state.  
+KISS: Keep is simple. Don't over-complicate the code, just solve the problem at hand, as directly as possible.  
+SOLID: A set of principles.
+
+### SOLID Principles
+
+Single Responsibility:  
+Open-Closed:  
+Liskov Substitution:  
+Interface Segregation:  
+Dependency Inversion:  
+
+### Team Concepts
+
+PM: Product or Project Manager  
+TL: Team Lead  
+Senior Dev: Assists with managing the developer processes and workload.  
+
+Clients/customers: Will have a set of requirements, wants/needs that need to get turned into User Stories.  
+Take customer/client requirements and develop user stories.  
+
+The Dev (You): Implement these User Stories in code.  
+
+### Code Styling
+
+How do you name your variables and members? Snake_Case? Skewer-Case?  
+How do you write tests?  
+Where do you throw exceptions?  
+How do you name your Classes, Interfaces, etc.  
+Single-line or multi-line conditionals?  
+How many tab spaces are standard? 2? 4? Some other number?  
+How is the directory architecture set up in your project(s)?  
+
+My team / employer might have a code style guide and *you will need to follow it*.  
+
+If a guide doesn't exist MAKE ONE! It will help others create consistent code.  
+
+Code Linters: The Linter enforces (or warns) about code style violations.  
+
+### Wednesday Relational DB Overview
+
+IDs and UUIDs: One is for SQL, the other is for you (the software or API).  
+Data that we are storing within classes today, will actually be stored in SQL, in real life.  
+Relational checking a-la: 'Where foreignKey = itemId'  
+
+### Wednesday GSON and JSON
+
+GSON is an external package.  
+Google Script Object Notation.  
+JUnitJupiter is an external package.  
+The gradle config has a dependency codeblock that defines the required packages for build (and test).  
+JSON is consumed via several ways: Files, Internet, Resources (e.g. libraries, DBs, etc).  
+JSON is fast and thin compared to other data types.  
+Serialization: Translate INTO JSON format. Makes it easier to XMIT data via the web/network.  
+Deserialization: Extract the data from JSON format into an Object or Collection of Objects.  
+JSON is plaintext, therefore a String, and WYSIWYG.  
+
+Lab Goal today: Read-in a JSON file.  
+
+Do this using GSON.  
+When reading-in JSON, you will need to have a Class instance to push the imported data into (members etc).  
+
+Design:  
+App imports Files: `implementation 'com.google.code.gson:n.n.n'` => add this (and more) to build.gradle  
+import GSON: `import com.google.gson.Gson;`  
+Rebuild: Reset Gradle (use a build command) to ensure build.gradle changes are picked up.  
+test => resources directory: Allows Tests easy access to the files during test writing and execution.  
+Read-in a file:  
+
+1. Define a Try-Catch to wrap-around the following (or use 'throws IOException' at method definition).  
+2. Find filepath: `File myFile = new File("./app/src/test/resources/JSON.json");`  
+3. Use try-with-resources to utilize FileReader.
+4. Use fileReader: `FileReader fileReader = new FileReader(myFile);`  
+5. Create a new Object instance: `MyClass myClass = new FileReader(fileReader, Class.class);`  
+
+Write-out a file:  
+
+1. Find filepath: `File zorkFile2 = new File(path_to_file_output_file.json);`  
+2. Use try-with-resources: `try(FileWriter zorkFileWriter = new FileWriter(zorkFile2)) {...}`  
+3. The try-with-resources codeblock contains the rest of the code.  
+4. Implement the resource and Exceptions will be caught: `gson.toJson(newZork, zorkFileWriter);`  
+
+### Wednesday Code Challenge
+
+Zip-up 2 linked lists!  
+Manage your pointers and references.  
+Use a TEMP variable!  
+MAINTAIN refs to the nodes with access to the rest of your Linked Lists.  
 
 ## Footer
 
