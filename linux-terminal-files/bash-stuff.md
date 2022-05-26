@@ -199,6 +199,13 @@ wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /us
 sudo wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo tee /usr/share/keyrings/adoptium.asc
 ```
 
+### Semicolons
+
+Use semicolons to chain commands together.  
+Essentially, it will run commands, in order, immediately after each previous command returns.
+Does not conditionally manage any previous command's succees (or failure) code e.g. 0 (pass) or non-0 (fail).  
+See [this StackOverflow question and its responses for more](https://stackoverflow.com/questions/25669540/what-is-the-difference-between-double-ampersand-and-semicolon-in-linux)  
+
 ### Use Filters
 
 When displaying or searching file contents, it can be helpful to filter the results to minimize clutter.  

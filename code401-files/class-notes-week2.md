@@ -229,6 +229,41 @@ The only time you need to use the TypeToken type, is when getting a collection o
 Whenever you make an API call that returns a JSON Array, it will be enclosed in `[ ]` and the TypeToken code will be *required*.  
 With GSON, using a Class to schema the data, a constructor is *not required*.  
 
+### HTTP Interaction
+
+Create fun and interactive websites, not single-page static sites.  
+UI vs UX: User Interface is one thing, User *Experience* design interactive, intuitive user interfaces, especially websites.  
+UX Designers study user psychology and design patterns for useability and interactiveness.  
+HttpUrlConnection: Class we will use, based on advice from Baeldug.com, but we'll include Try-With-Resources.  
+
+#### Goals for Today
+
+1. Pick an API - We will use PokeAPI here
+2. Get a URL - Check the documentation to find out the URL(s) then set it in code: Java has a type "URL" e.g. `URL pokeURL = new URL(stringURL);`
+3. Connect to a URL - Typecast to HttpURLConnection type: `HttpURLConnection myConnection = (HttpURLConnection) myURL.openConnection();`
+4. Read contents at the URL (dont forget to manage/handle HTTP Response Codes)
+5. Convert/Instantiate objects based on response - We will use "wrapper classes"
+
+Wrapper Classes:
+
+- Follow the naming convention "Wrapper" + jsonObjectName
+- Define the WrapperObj properties and other Wrapper Objects within it
+
+Two primery methods of getting data from APIs:
+
+1. REST Method: Get everything from the API  
+2. GraphQL Method: Only get the data you specifically want from the API  
+
+#### RESTful Commands
+
+GET: Query, no payload (data) is sent to the API but response is required.  
+PUT, PATCH, and DELTE: Action methods that require data to be sent TO the API.  
+
+### Advice Going Forward
+
+Use '_inputName' to name your method input parameters.  
+Use '_recursiveFunc' to name your recursive functions.  
+Utilize HTTP Status Codes in your REST calls so they are more easily testable.  
 
 ## Footer
 
