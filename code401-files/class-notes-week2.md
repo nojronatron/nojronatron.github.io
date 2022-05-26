@@ -269,6 +269,26 @@ Always put Stream Reader types inside of a Try-with-resources e.g. `try (Buffere
 Define Methods to return things like StringBuffer so the caller gets the data wholesale.  
 Try to return HttpConnection types in your methods so the caller can utilize the response codes, etc.  
 Case Sensitivity between JSON object parameters and Class properties MUST MATCH.  
+Describe the Schema of what you are expecting to get back from the REST Call.  
+If the JSON data contains collections, your Schema will need to include ArrayList<T> and nested Classes that define T in order to fully model the JSON data.  
+Heads: Linked Lists.  
+Tops: Stacks have these.  
+Front: Queues have these.  
+
+### Recursion
+
+There are two methods of traversal:
+
+1. Iteration: Loops, While, ...
+2. Recursion: Function calls itself Directly or Indirectly  
+
+A function that calls itself is a Recursive Function.  
+Direct Recursion: Method calls itself.  
+*Remember*: The Call Stack is a LIFO system and recursive functions take advantage of that.  
+Indirect recursion: A helper function is called by the 1st function that recurse-calls from there.  
+*Note*: At every single iteration the base-case MUST BE TESTED.  
+Base Case: Tells recursion when to stop.  
+Recursion does *not* allow 'break' and 'return' statements.  
 
 ## Footer
 
