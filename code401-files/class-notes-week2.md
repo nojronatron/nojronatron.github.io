@@ -6,7 +6,7 @@
 
 Inheritance: Super and Extends => Create sub-classes.  
 Abstraction: Abstract Classes => Stepping "out one layer" from doing the actual thing.  
-DRY: Code modularization => Don't Repeat Yourself. Why keep writing the same code over and over?  
+DRY: Code modularization => Don't Repeat Yourself => Why keep writing the same code over and over?  
 Object hierarchy: Built-in methods get inherited down the tree.  
 Everything is Java is either a Class aka Object aka REF type, or a Primative.  
 Type casting: Upcasting (free in Java) and Downcasting (manual)  
@@ -14,7 +14,8 @@ Instance of: IS-A => Is this Type type an instance of AnotherType.
 Arguments: Have actual value and are set when a method is called.  
 Parameters: Are placeholders for Arguments that are expected as method inputs.  
 Primatives: Long, Double, Short, Char, Integer, Decimal, Float, Byte, Boolean.  
-Keyword 'this': Use to limit the scope, i.e. within a Constructor or inside a spefific Class and not it's base or Parent Class. Objects do NOT have a 'this' keyword, but CLASSES need this.  
+Keyword 'this': Use to limit the scope, i.e. within a Constructor or inside a specific Class and not it's base or Parent Class.  
+Objects do NOT have a 'this' keyword, but CLASSES need this.  
 Dot Notation is equivalent to Class Notation => ClassName.memberName  
 Encapsulation: Data Hiding => Do not show Properties to other Classes.  
 Getters & Setters => Methods that enable reading from, and writing to, Properties.  
@@ -289,6 +290,17 @@ Indirect recursion: A helper function is called by the 1st function that recurse
 *Note*: At every single iteration the base-case MUST BE TESTED.  
 Base Case: Tells recursion when to stop.  
 Recursion does *not* allow 'break' and 'return' statements.  
+
+### Calendar Planning
+
+Due Today:
+
+1. Prep work: Career Coaching Personal Pitch and Stage Fright assignments  
+2. Code Challenge: Partner interviews  
+3. Lab: Partners to call an API (Quote APIs). Refactor any code from previous lab to prepare for this lab  
+4. 9am Friday Zoom: Dr. Robin; 1215 Power-Hour Session; 2pm Zoom: Stacks and Queues with JB Tellez; Feedback assignment(s) too
+5. Monday: NO CLASS
+6. Networking appointments are coming due: 1:1 in-person or remote, outside of this class. Targeted company interview counts!  
 
 ## Footer
 
