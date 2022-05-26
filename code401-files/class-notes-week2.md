@@ -182,7 +182,7 @@ Relational checking a-la: 'Where foreignKey = itemId'
 ### Wednesday GSON and JSON
 
 GSON is an external package.  
-Google Script Object Notation. 
+Google Script Object Notation.  
 JUnitJupiter is an external package.  
 The gradle config has a dependency codeblock that defines the required packages for build (and test).  
 JSON is consumed via several ways: Files, Internet, Resources (e.g. libraries, DBs, etc).  
