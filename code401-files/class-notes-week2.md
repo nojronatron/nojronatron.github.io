@@ -223,6 +223,13 @@ Manage your pointers and references.
 Use a TEMP variable!  
 MAINTAIN refs to the nodes with access to the rest of your Linked Lists.  
 
+## Thursday 26-May Discussion Topics
+
+The only time you need to use the TypeToken type, is when getting a collection of JSON objects using the Gson package.  
+Whenever you make an API call that returns a JSON Array, it will be enclosed in `[ ]` and the TypeToken code will be *required*.  
+With GSON, using a Class to schema the data, a constructor is *not required*.  
+
+
 ## Footer
 
 Return to [Parent Readme.md](../README.html)  
