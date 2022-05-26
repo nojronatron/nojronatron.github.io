@@ -264,6 +264,11 @@ PUT, PATCH, and DELTE: Action methods that require data to be sent TO the API.
 Use '_inputName' to name your method input parameters.  
 Use '_recursiveFunc' to name your recursive functions.  
 Utilize HTTP Status Codes in your REST calls so they are more easily testable.  
+Use Baeldung's examples to put together REST operations in Java.  
+Always put Stream Reader types inside of a Try-with-resources e.g. `try (BufferedReader responseReader = new BufferedReader(args)) {...}`: This auto-closes (garbage-collects) the enclosed resources automatically.  
+Define Methods to return things like StringBuffer so the caller gets the data wholesale.  
+Try to return HttpConnection types in your methods so the caller can utilize the response codes, etc.  
+Case Sensitivity between JSON object parameters and Class properties MUST MATCH.  
 
 ## Footer
 
