@@ -107,4 +107,15 @@ TODO
 [ ] Ensure your professional headshot: Clear, groomed, smiling, business-casual attire, posture. Use the *same photo* across all online professional profiles. No selfies, animals, alcohol, friends, etc. Consider a professionally-shot headshot.  
 [ ] Background: Creativity encouraged! Avoid the stock photos because they tell the visitor you did not spent time thinking about an interesting photo
 [ ] Summary/About: Include sw developing, tools, languages... add you pitch! Include where you are and where you are going. If you already have a good pitch on your resume then include that on you LinkedIn. Maximize space toward who you are and where you are going, but avoid life-stories.  
-[ ] 
+[ ] Education is education (including Code Fellows *if* you include it); Experience is your professional and personal experience that applies to your value proposition and where you are going. Be breif, but informational.  
+[ ] Skills: Stay away from fluffy "MS Word/Office" skills. Developers know *hard core stuff*, techie stuff! Be clear that you have development chops needed to break into tech and your target role. Take the skill quizzes!  
+[ ] Take quizzes! React, javascript, html, css, Java, mongo, mongoose, sql, C# (already done)  
+[ ] Endorse classmates!  
+[ ] Add Projects to LinkedIn! Even a single project, but add it. Find it under "Add New Profile Section".  
+[ ] Hyperlink projects whenever possible after polishing them up, including grammatical errors, etc.  
+[ ] Add *everyone* on your team via LinkedIn, and list their information on your projects.  
+[ ] What did I build, Why did I build it, What Key Technologies were implemented?  
+[ ] Engage on a quest of getting over 500 connection to unlock a LinkedIn achievement BUT make sure you know these people and prove you are connected in the industry. Be intentional on how you build your network.  
+[ ] Purge old network links whenever you want! Send invites to Partner Power Hour guests!  
+[ ] Recruiter Notifications: Verify current status and set reminder to change this setting after August 16th (Recruiters only, All members, etc).  
+[ ] Follow influencers. Follow companies and individuals in groups/tech you are interested in!  
