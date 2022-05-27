@@ -6,7 +6,7 @@
 
 Inheritance: Super and Extends => Create sub-classes.  
 Abstraction: Abstract Classes => Stepping "out one layer" from doing the actual thing.  
-DRY: Code modularization => Don't Repeat Yourself. Why keep writing the same code over and over?  
+DRY: Code modularization => Don't Repeat Yourself => Why keep writing the same code over and over?  
 Object hierarchy: Built-in methods get inherited down the tree.  
 Everything is Java is either a Class aka Object aka REF type, or a Primative.  
 Type casting: Upcasting (free in Java) and Downcasting (manual)  
@@ -14,7 +14,8 @@ Instance of: IS-A => Is this Type type an instance of AnotherType.
 Arguments: Have actual value and are set when a method is called.  
 Parameters: Are placeholders for Arguments that are expected as method inputs.  
 Primatives: Long, Double, Short, Char, Integer, Decimal, Float, Byte, Boolean.  
-Keyword 'this': Use to limit the scope, i.e. within a Constructor or inside a spefific Class and not it's base or Parent Class. Objects do NOT have a 'this' keyword, but CLASSES need this.  
+Keyword 'this': Use to limit the scope, i.e. within a Constructor or inside a specific Class and not it's base or Parent Class.  
+Objects do NOT have a 'this' keyword, but CLASSES need this.  
 Dot Notation is equivalent to Class Notation => ClassName.memberName  
 Encapsulation: Data Hiding => Do not show Properties to other Classes.  
 Getters & Setters => Methods that enable reading from, and writing to, Properties.  
@@ -222,6 +223,84 @@ Zip-up 2 linked lists!
 Manage your pointers and references.  
 Use a TEMP variable!  
 MAINTAIN refs to the nodes with access to the rest of your Linked Lists.  
+
+## Thursday 26-May Discussion Topics
+
+The only time you need to use the TypeToken type, is when getting a collection of JSON objects using the Gson package.  
+Whenever you make an API call that returns a JSON Array, it will be enclosed in `[ ]` and the TypeToken code will be *required*.  
+With GSON, using a Class to schema the data, a constructor is *not required*.  
+
+### HTTP Interaction
+
+Create fun and interactive websites, not single-page static sites.  
+UI vs UX: User Interface is one thing, User *Experience* design interactive, intuitive user interfaces, especially websites.  
+UX Designers study user psychology and design patterns for useability and interactiveness.  
+HttpUrlConnection: Class we will use, based on advice from Baeldug.com, but we'll include Try-With-Resources.  
+
+#### Goals for Today
+
+1. Pick an API - We will use PokeAPI here
+2. Get a URL - Check the documentation to find out the URL(s) then set it in code: Java has a type "URL" e.g. `URL pokeURL = new URL(stringURL);`
+3. Connect to a URL - Typecast to HttpURLConnection type: `HttpURLConnection myConnection = (HttpURLConnection) myURL.openConnection();`
+4. Read contents at the URL (dont forget to manage/handle HTTP Response Codes)
+5. Convert/Instantiate objects based on response - We will use "wrapper classes"
+
+Wrapper Classes:
+
+- Follow the naming convention "Wrapper" + jsonObjectName
+- Define the WrapperObj properties and other Wrapper Objects within it
+
+Two primery methods of getting data from APIs:
+
+1. REST Method: Get everything from the API  
+2. GraphQL Method: Only get the data you specifically want from the API  
+
+#### RESTful Commands
+
+GET: Query, no payload (data) is sent to the API but response is required.  
+PUT, PATCH, and DELTE: Action methods that require data to be sent TO the API.  
+
+### Advice Going Forward
+
+Use '_inputName' to name your method input parameters.  
+Use '_recursiveFunc' to name your recursive functions.  
+Utilize HTTP Status Codes in your REST calls so they are more easily testable.  
+Use Baeldung's examples to put together REST operations in Java.  
+Always put Stream Reader types inside of a Try-with-resources e.g. `try (BufferedReader responseReader = new BufferedReader(args)) {...}`: This auto-closes (garbage-collects) the enclosed resources automatically.  
+Define Methods to return things like StringBuffer so the caller gets the data wholesale.  
+Try to return HttpConnection types in your methods so the caller can utilize the response codes, etc.  
+Case Sensitivity between JSON object parameters and Class properties MUST MATCH.  
+Describe the Schema of what you are expecting to get back from the REST Call.  
+If the JSON data contains collections, your Schema will need to include ArrayList<T> and nested Classes that define T in order to fully model the JSON data.  
+Heads: Linked Lists.  
+Tops: Stacks have these.  
+Front: Queues have these.  
+
+### Recursion
+
+There are two methods of traversal:
+
+1. Iteration: Loops, While, ...
+2. Recursion: Function calls itself Directly or Indirectly  
+
+A function that calls itself is a Recursive Function.  
+Direct Recursion: Method calls itself.  
+*Remember*: The Call Stack is a LIFO system and recursive functions take advantage of that.  
+Indirect recursion: A helper function is called by the 1st function that recurse-calls from there.  
+*Note*: At every single iteration the base-case MUST BE TESTED.  
+Base Case: Tells recursion when to stop.  
+Recursion does *not* allow 'break' and 'return' statements.  
+
+### Calendar Planning
+
+Due Today:
+
+1. Prep work: Career Coaching Personal Pitch and Stage Fright assignments  
+2. Code Challenge: Partner interviews  
+3. Lab: Partners to call an API (Quote APIs). Refactor any code from previous lab to prepare for this lab  
+4. 9am Friday Zoom: Dr. Robin; 1215 Power-Hour Session; 2pm Zoom: Stacks and Queues with JB Tellez; Feedback assignment(s) too
+5. Monday: NO CLASS
+6. Networking appointments are coming due: 1:1 in-person or remote, outside of this class. Targeted company interview counts!  
 
 ## Footer
 

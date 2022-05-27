@@ -25,7 +25,8 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
-[ ] Read Class08 [DRY, Rule of Three, Dont Need It, and MVP](./code401-files/dry-three-mvp.html)  
+[ ] Read Class09 [HTTP Request Lifecycle and HTTP Request using Spring for Java](./code401-files/java-and-http.html)  
+[X] Read Class08 [DRY, Rule of Three, Dont Need It, and MVP](./code401-files/dry-three-mvp.html)  
 [X] Read Class06 [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html)  
 [X] Read about [Linked Lists](./code401-files/bigo-linkedlists.html)  
 [X] Read Class04 [OOP, Classes, Bin-Dec-Hex](./code401-files/oop-classes-bindechex.html)  
