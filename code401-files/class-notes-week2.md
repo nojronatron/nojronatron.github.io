@@ -291,6 +291,43 @@ Indirect recursion: A helper function is called by the 1st function that recurse
 Base Case: Tells recursion when to stop.  
 Recursion does *not* allow 'break' and 'return' statements.  
 
+## JB Tellez Stacks and Queues
+
+Execution or Call Stack: First In Last Out frames. It's a stack!  
+Getting back to something is pretty easy in a stack, compared to a willy-nilly random pile. 
+When the Call Stack is empty, the program is over / closed.  
+Queues are First In First Out: Formally ordered front to back.  
+With queues you put things in the front, and take things out of back/end?  
+
+### Terminology
+
+Stack
+
+- Consisted of Nodes, similar to (or the same) as LinkedList Nodes.
+- PUSH: Only puts things on TOP of the stack. Handles VALUES *only*!
+- POP: Remove the last-in item from the "top" of the stack. *Could* throw an exception if stack is empty/null, but depends on the implementation.
+- IsEmpty: Check the Stack if it is empty *before* trying to Pop it. Can use Try-Catch and handle any exception would be an implementation.
+- Top: The top of the stack.  
+- Peek: What's there at the top of the stack, without Popping it.
+
+FILO
+
+- First In Last Out
+- Same a LIFO just flipped around
+- The Top's Next is the Node that USED TO BE THE TOP
+
+Pseudo Code for Push and Pop: See the DS&A Class-10 => resources => stacks_and_queues.md
+
+*Important*: Be sure to update the this.top property with PUSH and POP operations:
+
+- Top: private property that tracks the last-in Node reference, or null if there are no nodes
+- Initial state of Stack: Empty list.head needs to be set to null
+- Implement an isEmpty method to test the state of this.top and return true if null, false if has Node
+- Push: Newly created node.next points to head, and then head is pointed to newly created Node
+- Pop: head Node value is stored, then head pointer is moved to head.next, then value is returned to the user
+- Implement a peek method to return the value of top only if isEmpty is false
+
+
 ### Calendar Planning
 
 Due Today:
