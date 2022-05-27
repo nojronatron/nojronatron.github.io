@@ -327,6 +327,19 @@ Pseudo Code for Push and Pop: See the DS&A Class-10 => resources => stacks_and_q
 - Pop: head Node value is stored, then head pointer is moved to head.next, then value is returned to the user
 - Implement a peek method to return the value of top only if isEmpty is false
 
+Queue
+
+- Queues have *two ends*: Front and Rear
+- FIFO: First In First Out
+- Enqueue: Nodes are items that are added to the *rear* of the queue
+- Dequeue: Remove the FRONT Node from the QUEUE
+- Front: Same as Rear when there is only one Node. Always the "next" node ready to be DEQUEUEd
+- Rear: The last Node that was ENQUEUEd into the Queue
+- Peek: Preview the value of the FRONT Node
+- IsEmpty: Return True if QUEUE size is 0, False if > 0
+
+The Next property of each Node points *toward the Rear* and *toward the Enqueue side* of the Queue.  
+Rear.next will always equal NULL.  
 
 ### Calendar Planning
 
