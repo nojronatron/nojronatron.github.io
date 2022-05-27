@@ -20,13 +20,14 @@ The human brain *dislikes doing new things*.
 Human brain cannot distinguish the difference in dangers e.g. Bear Attacking vs. Presenting/performing in front of 1,000 people.  
 Removing yourself from its comfort zone puts the brain into a different state, usually defense and heightened fear.  
 Lizard-brain: Am I food or is that food? Freight, flight, or food?  
+What about imposter syndrome? Social change is necessary, corporate changes too, but our brain is wired to "keep us safe", although it is a misguided thinking process.  
 
 ## Keys to Confidence
 
 Choose to create confidence.  
 Choose to *not* pay attention to your brain and not believe everything your brain is telling you.  
 
-### Five Step Process
+### TODOs to Build Your Confidence
 
 Questions to ask myself:
 
