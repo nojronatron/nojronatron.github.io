@@ -105,6 +105,41 @@ connection.setReadTimeout(Integer: number);
 
 Work with cookies using CookieManager and HttpCookie.  
 
+1. Read cookies from Response:
+
+    ```java
+    String cookiesHeader = connection.getHeaderField("Set-Cookie");
+    List<HttpCookie> cookies = HttpCookie.parse(cookiesHeader);
+    ```
+
+2. Add cookies to Cookies Store:
+
+    ```java
+    cookies.forEach(cookie -> cookieManager.getCookieStore().add(null, cookie));
+    ```
+
+3. Check for specific cookie by name
+
+    ```java
+    Optional<HttpCookie> usernameCookie = cookies.stream()
+      .findAny().filter(cookie -> cookie.getName()
+      .equals("username"));
+    if (usernameCookie == null) {
+      cookieManager.getCookieStore()
+        .add(null, new HttpCookie("username", String: username));
+    }
+    ```
+
+4. Add cookies to Request (after closing then re-opening the connection):  
+
+    ```java
+    connection.disconnect();
+    connection = (HttpURLConnection) url.openConnection();
+    connection.setRequestProperty("Cookie",
+      StringUtils.join(cookieManager.getCookieStore().getCookies(),
+      ";"));
+    ```
+
 ### Handling Redirects
 
 ### Reading the Response
