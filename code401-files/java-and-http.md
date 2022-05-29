@@ -167,9 +167,39 @@ if (status == HttpURLConnection.HTTP_MOVED_TEMP ||
 
 ### Reading the Response
 
+Parse the input stream of the connection instance to read the response.
 
+```java
+int status = connection.getResponseCode();
+
+// place the response into a string
+BufferedReader bufferedReader = new BufferedReader(
+  new InputStreamReader(connection.getInputStream()));
+String inputLine;
+StringBuffer content = new StringBuffer();
+while ((inputLine = bufferedReader.readLine()) != null) {
+  content.append(inputLine);
+}
+bufferedReader.close();
+
+// close the connection
+connection.disconnect();
+```
 
 ### Reading the Response on Failed Requests
+
+Requests do not always succeed, so the InputStream from HttpUrlConnection instance will not be useful.  
+Consume the stream provided by `HttpUrlConnection.getErrorStream()`  
+
+```java
+int status = connection.getResponseCode();
+Reader streamReader = null;
+if (status > 299) {
+  streamReader = new InputStreamReader(connection.getErrorStream());
+} else {
+  streamReader = new InputStreamReader(connection.getInputStream());
+}
+```
 
 ### Building the Full Response
 
