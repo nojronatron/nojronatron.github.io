@@ -44,6 +44,75 @@ There are other HTTP protocol actions that are different in later versions.
 
 Applies to Spring 5 and Spring Boot 2.  
 
+### Perform HTTP Requests in Java
+
+Baeldung has a link to a page that explores updates to Java's [HTTP API](https://www.baeldung.com/java-9-http-client)  
+
+### HttpUrlConnection
+
+Class that enables basic HTTP Requests.  
+Single library needed: java.net  
+Simple functionality only.  
+For more advanced, use other libraries.  
+
+### Creating a Request
+
+This is step one and *only creates the request*.  
+Can be used for the following: GET, POST, HEAD, OPTIONS, PUT, DELETE, and TRACE.  
+
+```java
+URL url = new URL("http://website.ext");
+HttpURLConnection connection = (HttpURLConnecion) url.openConnection();
+connection.setRequestMethod(String: verb);
+```
+
+### Adding Request Params
+
+Request parameters are set by Boolean property doOutput.  
+Use a String to create an appropriate key:value pair to add a request parameter.  
+
+```java
+Map<String, String> parameters = new HashMap<>();
+parameters.put("param1", "val");
+connection.setDoOutput(true);
+DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+// parameterStringBuilder is a custom class see Baeldung.com for details
+out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
+out.flush();
+out.close();
+```
+
+### Setting Request Headers
+
+Add headers to a request via method `setRequestProperty()`  
+Read the value of a header from a connection via method `getHeaderField()`  
+
+```java
+connection.setRequestProperty("Content-Type", "application/json");
+String contentType = connection.getHeaderField("Content-Type");
+```
+
+### Configuring Timeouts
+
+Set connect and read Timeouts via HttpUrlConnection class using `setConnectTimeout()` and `setReadTimeout()` methods.  
+
+```java
+connection.setConnectTimeout(Integer: number);
+connection.setReadTimeout(Integer: number);
+```
+
+### Handling Cookies
+
+Work with cookies using CookieManager and HttpCookie.  
+
+### Handling Redirects
+
+### Reading the Response
+
+### Reading the Response on Failed Requests
+
+### Building the Full Response
+
 ## Footer
 
 Return to [Parent Readme.md](../README.html)  
