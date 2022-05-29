@@ -142,7 +142,32 @@ Work with cookies using CookieManager and HttpCookie.
 
 ### Handling Redirects
 
+Enable or Disable automatic redirect following for a specific connection.  
+Use `setInstanceFollowRedirects(Boolean: param)` to true or false.  
+Default behavior is to follow automatic redirects (true).  
+
+```java
+// specified connection
+connection.setInstanceFollowRedirects(false);
+
+// all connections
+HttpUrlConnection.setFollowRedirects(false);
+```
+
+When an HTTP 301 or 302 response is returned, create a new request to the new URL:
+
+```java
+if (status == HttpURLConnection.HTTP_MOVED_TEMP ||
+    status == HttpURLConnection.HTTP_MOVED_PERM) {
+      String location = connection.getHeaderField("Location");
+      URL newUrl = new URL(location);
+      connection = (HttpURLConnection) newUrl.openConnection();
+    }
+```
+
 ### Reading the Response
+
+
 
 ### Reading the Response on Failed Requests
 
