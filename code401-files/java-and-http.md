@@ -203,6 +203,52 @@ if (status > 299) {
 
 ### Building the Full Response
 
+It is not possible to get the full response info from `HttpUrlConnection` instance.  
+Information on the response can be *built* using `HttpUrlConnection` instance though.  
+
+```java
+public class FullResponseBuilder {
+    public static String getFullResponse(HttpURLConnection con) throws IOException {
+        StringBuilder fullResponseBuilder = new StringBuilder();
+
+        // read status and message
+
+        // read headers
+
+        // read response content
+
+        return fullResponseBuilder.toString();
+    }
+}
+
+// add the response status information
+fullResponseBuilder.append(connection.getResponseCode())
+  .append(" ")
+  .append(connection.getResponseMessage())
+  .append("\n");
+
+// get the headers using getHeaderFields and add to StringBuilder
+connection.getHeaderFields().entrySet().stream()
+  .filter(entry -> entry.getKey() != null)
+  .forEach(entry -> {
+      fullResponseBuilder.append(entry.getKey()).append(": ");
+      List headerValues = entry.getValue();
+      Iterator item = headerValues.iterator();
+      if (item.hasNext()) {
+          fullResponseBuilder.append(item.next());
+          while (item.hasNext()) {
+              fullResponseBuilder.append(", ").append(item.next());
+          }
+      }
+      fullResponseBuilder.append("\n");
+});
+```
+
+After executing this code, go back and execute the "read response content" code and append it.  
+This will enable making decisions on whether to use `connection.getInputStream()` or `connection.getErrorStream()` to retreive the request content.  
+
+*Note*: Every code sample is available at the [baeldung.com website](https://www.baeldung.com/java-http-request). Certain variable names were changed and comments were added so that I have a quick-reference available for myself.  
+
 ## Footer
 
 Return to [Parent Readme.md](../README.html)  
