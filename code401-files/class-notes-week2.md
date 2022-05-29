@@ -94,7 +94,6 @@ Abstract Members: Use the 'abstract' keyword to define methods that *tells inher
 Override: Used to implement abstract methods.  
 Overload: Create multiple methods using the same name but changing the number or input parameters and possibly the return type.  
 
-
 ## Wednesday Discussion
 
 MVP: Pare this down more than you want to for your final! Avoids.  
@@ -271,7 +270,7 @@ Define Methods to return things like StringBuffer so the caller gets the data wh
 Try to return HttpConnection types in your methods so the caller can utilize the response codes, etc.  
 Case Sensitivity between JSON object parameters and Class properties MUST MATCH.  
 Describe the Schema of what you are expecting to get back from the REST Call.  
-If the JSON data contains collections, your Schema will need to include ArrayList<T> and nested Classes that define T in order to fully model the JSON data.  
+If the JSON data contains collections, your Schema will need to include `ArrayList<T>` and nested Classes that define T in order to fully model the JSON data.  
 Heads: Linked Lists.  
 Tops: Stacks have these.  
 Front: Queues have these.  
