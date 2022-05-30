@@ -84,11 +84,28 @@ Many files and entire directory hierarchies can be stored in packages to define 
 
 Note: There is an entire Oracle website dedicated to the [Java SE 8 API Specification](https://docs.oracle.com/javase/8/docs/api/index.html)  
 
+## About getClass() and .class
+
+The getClass method: `objectInstance.getClass()`  
+Using any direct instance of `objectInstance`, '.getClass()' returns the Class from which the instance was instantiated.  
+Per Oracle's documentation: "Returns the runtime class of this Object."
+
+The .class property: `ObjectType.class`  
+Returns an Object that *represents* the ObjectType class.  
+
+There is interesting conversation about these members in [this StackOverflow discussion](https://stackoverflow.com/questions/15078935/what-does-class-mean-in-java)  
+
+Both members are defined within API java.lang.Object, the top Class in the Java hierarchy.  
+
+See Oracle's documentation on [Java Classes](https://docs.oracle.com/javase/7/docs/api/java/lang/Class.html) for more details.  
+
+Documentation of Spring and a few HTTP-oriented libraries we've looked at recently.  
+
 ## Reference: Classes Discussion
 
 [Classes discussion by Oracle](https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html)  
 
-## Binary Decimal and Hexidecimal
+## Binary Decimal and Hexadecimal
 
 Binary, Decimal, and Hexidecimal reading by [MathIsFun](https://www.mathsisfun.com/binary-decimal-hexadecimal.html)  
 
