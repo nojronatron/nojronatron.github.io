@@ -66,17 +66,137 @@ Spring [Initializr website](https://start.spring.io)
 We will be using this going forward with Spring-based development.  
 Enables setting:
 
-- Project Type
-- Language
+- Project Type: Gradle (over Maven)
+- Language: Java (rather than Kotlin or Groovy)
 - Spring Boot type (2.7.0, non-snapshot recommended)
 - Metadata: Fill-in with the actual project info.  
+- Packaging: JAR (rather than WAR)
+- Java version: Your version (today is v17)
 
 Metadata:
 
 - Group: Must be *unique*. 'com.example' works on localhost. Will *not* work on Heroku.  
 - Artifact: Internal Project Name  
-- Name: 
-- 
+- Name: Your custom project name.
+- Description: Your custom description for your project.  
+- Package Name: Derived from inputs above.
+
+DO: Click Generate => Zip is downloaded to your localhost.
+THEN: Unzip to your project location and then open your IDE to the root of the project.
+ALSO: Verify '.gitignore' has the correct additions to avoid sharing built code and other Project details related to your IDE settings.  
+
+#### Folder Hierarchy Review
+
+application.properties: Synonymous with '.env' file.  
+main resources static: CSS, Images, and non-dynamic HTML files like 'index.html'.  
+Create new Folders and Files to store CSS etc e.g. 'resources/static.css/style.css'.  
+src main java com.ProjectName.Name => Add a '$name$Controller' file.  
+
+##### CSS
+
+Yes BOOTSTRAP CAN BE USED!!
+Import Bootstrap to Spring MVC:
+
+Resource: [Bootstrap CSS in Spring MVC on StackOverflow](https://stackoverflow.com/questions/22693452/bootstrap-with-spring-mvc)  
+
+#### Project Execution
+
+Tomcat gets launched for you using a default port 8080.  
+*Note*: Use 'kill pid' to get rid of a lingering Tomcat instance.  
+
+#### Building a Controller
+
+This enables *dynamic web pages*.  
+Define the controller with '@Controller' to *describe the Class*.
+Set the Map using '@RequestMapping(String)` to *describe the Class*.
+For now: Make all Controllers using public access modifiers.  
+Process:
+
+1. Set the request method
+2. Set either a Response Body or Use A Model (do both is allowed)
+
+    - '@ResponseBody'  
+
+3. Set up a View for the results to be sent to (else WhiteLabel Error)
+
+    - Get Mapping '@GetMapping("/routeToGet")`
+    - Use ResponseBody '@ResponseBody`
+    - Implement the controller method(){} to define what to return.
+
+Use RESTful commands for these Controllers: GET, POST, PUT, and DELETE
+Think of Controllers as *the logic for your resource*.  
+Domain Model your Controllers to define:
+
+- Routes
+- Resources
+- Add/Remove/Update operations
+
+#### Path Variables
+
+Use '@PathVariable' keyword with the method definition like `public String doThing(@PathVariable String paramName){}`  
+Use '@RequestParam';' keyword to extract query parameters, form parameters, or files from the web Request.  
+
+#### Live Reload
+
+Manual reload is just the Reload button in the IDE.  
+TBD  
+
+#### URL Parameters vs POST Call
+
+URL Parameters can be captured by Controllers.  
+POST Calls will include data (TBD).  
+
+#### Using Models
+
+Do NOT use '@ResponseBody' because a Model will do this for us.  
+Return type is still String.  
+Return statement will include "model" i.e. `return "model"` so that the model itself is returns (this is a Spring MVC implementation detail).  
+Thymeleaf looks at directory 'templates' when `return "model"` is used e.g. 'model.html'.  
+Thymeleaf will allow you to point to a template page within a folder using `return "parentfolder/mymodel` will point to '.../templates/parentfolder/mymodel.html'.  
+Thymeleaf looks to the 'templates' folder to find the return type.  
+Thymeleaf attributes are `th:name` which can be used within HTML elements.  
+Thymeleaf 'th' attributes use a template literal style notation: `${model.name}`  
+
+```html
+<span th:text="${model.name}"></span>
+```
+
+In Spring, the actual Model is what is passed-in as params to a Controller (route).  
+Think of these Models as a data Schema.  
+MVC Model `.addAttribute()` method accepts an Object Instance and is used as the Controller return type.  
+
+#### FAT vs skinny Controllers
+
+Fat Controller: Defines ALL or MOST processing and functionality within it.  
+Skinny Controller: Relies on other Modules, Packages, and internal Code to do the work, and the Controller's only purpose is to manage the path, parameters, and returning the correct View template.  
+
+### IoC and Dependency Injection
+
+NPM uses DI in terms of creating a dependency list and so on.  
+DI is more than what NPM does => Essentially it creates a dependency-filled object out-of-the-gate so that the object instance is ready for you when you need it within the App.  
+
+Common Dependencies We Will Use in Class:
+
+- Thymeleaf: HTML is displayed in common web browsers as static prototypes.
+- Spring Boot DevTools: Live Reload and configs for dev.
+- Spring Web: RESTful WebApps with Apache Tomcat.
+
+### Tuesday Lab and Code Challenge
+
+#### Lab
+
+1. Use Spring Initializr, create a new App with artifact "songr" using Web and Thymeleaf.  
+1. Optionally use DevTools (live Reload and other goodies).  
+1. Use 'git init' to create new repo, add '.gitignore' etc.  
+1. Create a controller to create a hello route.  
+1. Create a route to turn words into UPPERCASE.
+1. Create and stylize a root 'spash' page, keep it basic.  
+1. Create an 'Album' class to act as a Model. It will have several properties including an imgurl.  
+1. Create a '/album' route that displays 3 hard-coded Albums.  
+1. Build tests for the Album class: Constructor, getters, setters.  
+1. Stretch goals. Review the assignment for details. Check out "query parameter" using the '?' indicator for help.  
+
+*Note*: Images go into the resources folder in the project hierarchy.  
 
 ## Footer
 
