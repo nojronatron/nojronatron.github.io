@@ -95,7 +95,7 @@ src main java com.ProjectName.Name => Add a '$name$Controller' file.
 ##### CSS
 
 Yes BOOTSTRAP CAN BE USED!!
-Import Bootstrap to Spring MVC:
+Import Bootstrap to Spring MVC: 
 
 Resource: [Bootstrap CSS in Spring MVC on StackOverflow](https://stackoverflow.com/questions/22693452/bootstrap-with-spring-mvc)  
 
@@ -113,9 +113,10 @@ For now: Make all Controllers using public access modifiers.
 Process:
 
 1. Set the request method
-2. Set either a Response Body or Use A Model (do both is allowed)
+2. Set either a Response Body or use A Model:
 
     - '@ResponseBody'  
+    - 'return "tempateName";'  
 
 3. Set up a View for the results to be sent to (else WhiteLabel Error)
 
@@ -185,7 +186,7 @@ Common Dependencies We Will Use in Class:
 
 #### Lab
 
-1. Use Spring Initializr, create a new App with artifact "songr" using Web and Thymeleaf.  
+1. Use Spring Initializr, create a new App with artifact "songr" using Web and Thymeleaf. If "songr" is missing, the Lab is *not done right*.  
 1. Optionally use DevTools (live Reload and other goodies).  
 1. Use 'git init' to create new repo, add '.gitignore' etc.  
 1. Create a controller to create a hello route.  
@@ -194,7 +195,7 @@ Common Dependencies We Will Use in Class:
 1. Create an 'Album' class to act as a Model. It will have several properties including an imgurl.  
 1. Create a '/album' route that displays 3 hard-coded Albums.  
 1. Build tests for the Album class: Constructor, getters, setters.  
-1. Stretch goals. Review the assignment for details. Check out "query parameter" using the '?' indicator for help.  
+1. Stretch goals. Review the assignment for details. Check out "query parameters" which use '?' indicator, which URL Params are just the *path* itself.  
 1. Follow the Grading Rubric that specifies what *needs* to be accomplished!  
 
 *Note*: Images go into the resources folder in the project hierarchy.  
