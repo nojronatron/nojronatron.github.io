@@ -195,8 +195,20 @@ Common Dependencies We Will Use in Class:
 1. Create a '/album' route that displays 3 hard-coded Albums.  
 1. Build tests for the Album class: Constructor, getters, setters.  
 1. Stretch goals. Review the assignment for details. Check out "query parameter" using the '?' indicator for help.  
+1. Follow the Grading Rubric that specifies what *needs* to be accomplished!  
 
 *Note*: Images go into the resources folder in the project hierarchy.  
+
+#### Code Challenge 11
+
+Create a pseudo Queue that implements a standard Stack interface.  
+Create a pseudo Stack that implements a standard Queue interface.  
+
+Challenges include limited functionality use.  
+
+Hint: Use TWO Stack instances.  
+
+*Note*: Tests are required in this Code Challenge.  
 
 ## Footer
 
