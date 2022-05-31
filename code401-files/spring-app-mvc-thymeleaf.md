@@ -4,9 +4,9 @@ Notes taken while reading the reference materials.
 
 ## References
 
-https://spring.io/guides/gs/serving-web-content/
+Serving Web Content by [spring.io guides](https://spring.io/guides/gs/serving-web-content/)  
 
-https://www.thymeleaf.org/doc/articles/springmvcaccessdata.html
+Thymeleaf by [thymeleaf.org docus](https://www.thymeleaf.org/doc/articles/springmvcaccessdata.html)  
 
 ## Springboot
 

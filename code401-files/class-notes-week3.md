@@ -95,7 +95,7 @@ src main java com.ProjectName.Name => Add a '$name$Controller' file.
 ##### CSS
 
 Yes BOOTSTRAP CAN BE USED!!
-Import Bootstrap to Spring MVC: 
+Import Bootstrap to Spring MVC: TBD
 
 Resource: [Bootstrap CSS in Spring MVC on StackOverflow](https://stackoverflow.com/questions/22693452/bootstrap-with-spring-mvc)  
 
