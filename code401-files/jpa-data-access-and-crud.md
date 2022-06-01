@@ -53,7 +53,7 @@ Annotations overview:
 
 ### Main
 
-SpringAPplication.run() is Springs under-the-covers execution member for the usual 'main()' entrypoint of this App.  
+'SpringApplication.run()` is Springs under-the-covers execution member for the usual 'main()' entrypoint of this App.  
 No Web.xml file needed any longer!  
 
 ### Logger Factory
@@ -123,11 +123,13 @@ Pageable object has members: Page size, Current page number, and Sorting.
 Provides methods like 'flushing' and 'persistence context' and 'delete records in a batch'.  
 Interface dnables the following functionality:
 
+```java
 findAll with overload findAll(Sort sort)
 save(Iterable<? extends T> entities)
 flush()
 saveAndFlush(T entity)
-deleteInBatch(Iterale<T> entities)
+deleteInBatch(Iterate<T> entities)
+```
 
 Each method is directed toward operations upon single or collections of Entities *in a database*.  
 

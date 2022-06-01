@@ -211,6 +211,14 @@ Hint: Use TWO Stack instances.
 
 *Note*: Tests are required in this Code Challenge.  
 
+## Wednesday Morning Discussion
+
+RESTful Routing with Spring MVC.  
+PostgreSQL as a relational DB.  
+JPA - Persistence API? Persist data into the DB.  
+JDBC - Connects to Postgres local or remote.  
+DB Connection String required (like everywhere else).  
+
 ## Footer
 
 Return to [Parent Readme.md](../README.html)  
