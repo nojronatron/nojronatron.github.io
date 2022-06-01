@@ -48,7 +48,8 @@ The following are reading and research notes taken during, and in preparation fo
 
 ### ASD Additional References and Notes
 
-[ ] Class Notes [Week Two](./code401-files/class-notes-week2.html)  
+[ ] Class Notes [Week Three](./code401-files/class-notes-week3.html)  
+[~] Class Notes [Week Two](./code401-files/class-notes-week2.html)  
 [~] Class Notes [Week One](./code401-files/class-notes-week1.html)  
 [~] Partner Power Hour [Rover](./power-hour-notes/pph-rover.html)  
 [~] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
