@@ -311,6 +311,21 @@ Apt is the primary software manager utility: `apt get install $package`
 DPKG is the *underlying package management system*: `dpkg -i $deb_package`  
 As stated at AskUbuntu.com: `dpkg => apt-get, aptitude => Synaptic, Software Center`  
 
+#### Updating The Local Apt Repo
+
+The Local Apt Repo is usually stored in `/etc/apt/sources.list.d/pgdg.list`  
+
+```sh
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+```
+
+Common code execution:
+
+1. Update local apt repo with latest info *from the source*
+1. Optionally add an asc key
+1. 'sudo apt-get update'
+1. 'sudo apt-get -y install $package_name'
+
 ### Manage Software Packages
 
 Installed packages will probably have an entry in $PATH that should be interrogated.  
