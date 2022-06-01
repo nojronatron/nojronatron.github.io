@@ -221,6 +221,12 @@ DB Connection String required (like everywhere else).
 
 Midterm Prep starts on Monday 1-Jun-22.
 
+### PostgreSQL
+
+Linux info follows:
+
+- Once installed, launch PSQL using this line in SH/ZSH: `sudo -u postgres psql`  
+
 ### Weds SongR Code Reviews
 
 `@RequestMapping("/path")` is OPTIONAL and should only be used if all other functionality in the Controller should be *behind* this mapping path decorator.  
@@ -275,7 +281,7 @@ JDBC provides CRUD Services (to abstract-away the Database Interfacee?).
 Services:
 
 - Repository (JDBC) as a service.
-- AutoWire
+- AutoWire: Dependency Injection package. Use `@Autowired`  
 
 Dependency Injection:
 
@@ -307,8 +313,8 @@ Once installed, set up a new SuperUser with your known password so you have acce
 1. Update Controller to use the JPA Repo and set up CRUD methods
 1. Update Application.Properties with:
 
-- JPA:  
-- JDBC: DB Connection?
+- JPA: Provides implementation of CRUD functionality  
+- JDBC: Wrapper around JPA with connectionstring configuration  
 - PostGres:  
 
 ### Add Dependencies
@@ -329,7 +335,27 @@ application.properties:
 - #heroku: jdbc:postgresql://heroku//5678
 - #also a jpa dependency
 
-After udpating Build.Gradle run `./gradlew build` to suck in the changes.  
+After udpating Build.Gradle run `./gradlew build` to bring in the changes.  
+
+### Redirect View
+
+Define a Controller method with a return type of RedirectView.  
+And then the return statement: `return new RedirectView("/");`  
+
+### Wednesday Work ToDo
+
+Code Challenge 12: stack-queue-animal-shelter.  
+Manage Dequeue and Re-Enqueue animals.  
+Whiteboard this prior to doing ANY CODE.  
+
+### Wednesday Lab RESTful Routing
+
+File application.properties should NOT be pushed to GitHub.  
+Variable management will be necessary.  
+For now just gitignore it and shared GH pullers need to have their own application.properties.  
+Update Album so it can be stored in a database.  
+`<form action="/" method="post">...` tells the Submit event where to send the data.  
+*Call for TA help* and get through this so that this *does not become a blocking lab*!  
 
 ## Footer
 

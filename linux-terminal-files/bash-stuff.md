@@ -226,8 +226,8 @@ Print count of matching lines: `-c`
 Print name of each file containing the match: `-l` (normally used when grep is invoked with wildcards in file arg)  
 Print the number before each line that matches: `-n`  
 Recursive (all files in given pathspec): `-r`  
-
-Regex: Follow standard regex rules, incluidng Multipliers and Anchors.  
+BEFORE context and AFTER context: `-B 4 -A 4` prints 4 lines prior-to and following the match.  
+Regex: Follow standard regex rules, including Multipliers and Anchors.  
 
 *Note*: Check out [regularexpressions101](https://regex101.com/) for an easy tool to test RegEx before you 'buy' results. :-)  
 
@@ -314,12 +314,13 @@ As stated at AskUbuntu.com: `dpkg => apt-get, aptitude => Synaptic, Software Cen
 #### Updating The Local Apt Repo
 
 The Local Apt Repo is usually stored in `/etc/apt/sources.list.d/pgdg.list`  
+An example repo update will look something like this (for postgresQL):  
 
 ```sh
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 ```
 
-Common code execution:
+Common steps to update Apt and Install from new sources:
 
 1. Update local apt repo with latest info *from the source*
 1. Optionally add an asc key
@@ -343,6 +344,10 @@ Show list of running processes and IDs: `ps`
 Put currently running process onto a background (paused) thread: `[CTRL] + z`  
 List current background processes: `jobs`  
 Move background process to foreground: `fg $job_number`  
+List ALL services, running AND not running: `service --status-all`  
+Use grep to find specific not/running: `service --status-all | grep '\[+\]'`  
+List services using systemctl: `systemctl list-units`  
+Check a specific service state using ps: `ps -ef | grep postgres`  
 
 ### Specialized Tools
 
