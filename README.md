@@ -14,17 +14,19 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 ## Code 401 Things I Want To Learn More About
 
-[ ] Interfaces: See OOP, Inheritance, Interfaces (below)  
+[ ] Spring MVC especially SQL and other APIs  
+[X] Interfaces: See OOP, Inheritance, Interfaces (below)  
 [ ] Proper and efficient installation of a specified JDK in Linux  
 [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a pet project  
 [ ] Trees and Decision Trees have perplexed me for a while I'd like to get over that  
 [ ] Configuring Linux and Windows to support "IDEA ." to open IntelliJ at current directory  
-[ ] How do I know when it is best to use Generics? Right from the beginning?  
+[X] How do I know when it is best to use Generics? Right from the beginning, especially if not sure of type that will be used.  
 
 ## Advanced Software Development
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
+[ ] Read Class12 [Accessing Data with JPA and Spring Data CRUD](./code401-files/jpa-data-access-and-crud.html)  
 [ ] Read Class11 [Spring App, Spring MVC and ThymeLeaf](./code401-files/spring-app-mvc-thymeleaf.html)  
 [ ] Read about [Stacks and Queues](./code401-files/stacks-and-queues.html)  
 [X] Read Class09 [HTTP Request Lifecycle and HTTP Request using Spring for Java](./code401-files/java-and-http.html)  

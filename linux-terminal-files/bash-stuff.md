@@ -329,6 +329,10 @@ Put currently running process onto a background (paused) thread: `[CTRL] + z`
 List current background processes: `jobs`  
 Move background process to foreground: `fg $job_number`  
 
+### Specialized Tools
+
+Image Converter: `convert $input_file_path.img -quality nn $output_file_path.ext`
+
 ## References
 
 A great deal of the basics were gleened from [Ryan's Tutorials](https://ryanstutorials.net/linuxtutorial)  
