@@ -454,6 +454,10 @@ Fat vs. Skinny Controllers:
 1. Add PostMapping to define the path: `@PostMapping("/path")` preceding the method to call when POST (in this example) is called `public RedirectView methodName(args){ new-up an object, supply args to give it props, then return (a redirect?)}`
 1. When implementing Entities that have relationships with each other, add `@AutoWired` to define the Properties that are the Repositories (local and remote), and use the ParentRepository's `.findByName(String)` (or find by ID, etc), create a new Parent instance, then pass that in to the new Child instance, then call the child Repository to save the data e.g. `employeeRepository.save(newEmployee);`
 
+### Cascading
+
+Cascading Deletions can be done with `@Cascade`? TODO: Research for one of the stretch goals.  
+
 ### HTML Forms Review
 
 Names *must match* the expected input variable names.  
