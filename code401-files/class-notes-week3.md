@@ -239,7 +239,7 @@ Postgres instructions:
 
 ```sh
 /l; # returns a list of databases
-CREATE DATABSE name # creates a new database named 'name'
+CREATE DATABASE name # creates a new database named 'name'
 ```
 
 ### Weds SongR Code Reviews
@@ -314,7 +314,7 @@ Autowired: Part of DI system in Spring
 
 ### PostGres
 
-PGAdmin => GUI Administrative tool for PostGres SQL  
+PGAdmin => GUI Administrative tool for PostGres SQL [installation instructions](https://www.pgadmin.org/download/pgadmin-4-apt/)  
 PosteGresQL => PSQL is like PGAdmin  
 ORD: Object Relational Database => Extends SQL (the language)  
 JPA will be used to handle all the SQL Language details!  
@@ -371,6 +371,98 @@ For now just gitignore it and shared GH pullers need to have their own applicati
 Update Album so it can be stored in a database.  
 `<form action="/" method="post">...` tells the Submit event where to send the data.  
 *Call for TA help* and get through this so that this *does not become a blocking lab*!  
+
+## Thursday Class Notes
+
+This stuff is hard but we've done it before. - Alex, basically
+
+### Songr Lab Review
+
+Focus on the Songr Controller.  
+Wiring-up the Controller with the DB is complicated: Lots of moving parts:
+
+- The View aka html page
+- The Spring Model
+- Our Entity
+- Database
+- Repository between Entity and Database (extends JPARepository), providing the Methods to talk with the DB
+
+Thymeleaf is an MPA framework: Multi-page.  
+React is an SPA framework: Single-page.  
+
+### BigO Conversation
+
+Big O [CheatSheet](https://www.bigocheatsheet.com/)  
+
+- Constant: Same space, same time, everytimg => O(1) => If statements, single-line executables w/o calling other methods.  
+- Linear: Increasing space and/or time => O(n) => Loops of all sorts.  
+- Logarithmic: Decreasing space and/or time => O(log(n)) => Binary Search Tree, AVL Tree, etc.  
+- All others are worse! Increasing space and/or time => O(n log(n)), O(n^2), O(2^n) etc => Some sorting algorithms and a junky "skip list".  
+
+### Code Review Songr
+
+Image Tag `<img/>` *must include a closing slash*.  
+JPA turns *your* Class into an Entity.  
+Your classes only need to be attributed as `@Entity` when it needs to be database related data.  
+An Entity needs an `@Id` and the type is the Type that the Id column *values* are stored as (Long enables a HUGE number of item IDs).  
+Extending `JpaRepository<T, U>` enables utilizing methods in the Repository, by calling *your defined Repository*.  
+A *Repository* represents a *Table* in your database!  
+Repository-to-table relationship is a one-to-one relationship.  
+
+### Integration Testing Comments
+
+SpringBoot Test: `@SpringBootTest`  
+Moch MVC: An un-real MVC version of an MVC, emulating YOUR IMPLEMENTAION. Decorate with `@AutoConfigureMockMvc`  
+Autowired: Dependancy Injection `@Autowired` preceding the `Type var_name;` statement.  
+The Baeldung reading assignment walks through Integration Testing in Spring.  
+Define each test the same way as before.  
+The 'Action' will be done *on a Mock* e.g. `mockMvc.perform(get("/")).andDo(print()).andExpect(content().string(containsString("<h1>exact text match</h1>")));`
+Display data on console within a test: `print()`  
+Assert for a condition: `.andExpect(condition_expression)`  
+Check the returned content from the mock: `content()`  
+Test that content contains a specific String: `string(containsString(substring))`  
+
+### WRRC For Spring MVC Stuff
+
+`View <--> Controller Classes <--> Database <==> [Tables]`  
+
+### Database Design
+
+1. Identity One:Many relationships and Many:Many relationships and One:One relationships.
+1. One:One => Contextually similar data can be stored in the same table.
+1. One:Many => Create an FK in the Many-side table that points to the One-side table's ID column. Start with the PARENT e.g. One store has Many employees.
+1. Many:Many => Extract a "lookup table" that stores foreign keys so the "lookups" can happen both ways.
+1. Create one Model for each Table in the Database and apply `@Entity`, `@Id`, `@GeneratedValue(key=val)` to make them Identities.
+1. Apply relationships e.g. an Entity Property `List<Employee> employees;` and decorate it with Attribute `@OneToMay(mappedBy|cascade|others...="stringStoreName")`
+1. Apply the 'other side' relationship by adding decorator `@ManyToOne` followed by the child-Entity Property e.g. `SalmonCookiesStore salmonCookiesStore;`
+1. Create one Repository for each Table in the Database: Create new Class and call it class_to_storeRepository, extends `JpaRepository<ConcreteClass, ID-Type>{ // only add custom queries in here}` e.g. Store repo and Employee repo.
+1. Tell the child Class which Parent Class to be a member of, by entering the Parent Type and parameter into the Child's Constructor then assign it to the `@ManyToOne StoreNameProp storeName;`
+
+### Controller Discussion
+
+Fat vs. Skinny Controllers:
+
+- Are your Controller classes doing more than they were intended to?
+- Can a Controller be broken-up into multiple Controllers to separate responsibilities?
+- Can a Controller be broken-up to separate CONTEXT of purpose?
+- Weigh the benefit of separating responsibilities vs. having a bazillion controllers managing minute detail.  
+
+-- -
+
+1. Controllers are decorated with `@Controller` attribute.  
+1. Autowire the Repository as the 1st Property in the Controller Class: `@Autowired` followed by `thingClassRepository thingClassRepositoryName;`  
+1. Add PostMapping to define the path: `@PostMapping("/path")` preceding the method to call when POST (in this example) is called `public RedirectView methodName(args){ new-up an object, supply args to give it props, then return (a redirect?)}`
+1. When implementing Entities that have relationships with each other, add `@AutoWired` to define the Properties that are the Repositories (local and remote), and use the ParentRepository's `.findByName(String)` (or find by ID, etc), create a new Parent instance, then pass that in to the new Child instance, then call the child Repository to save the data e.g. `employeeRepository.save(newEmployee);`
+
+### Cascading
+
+Cascading Deletions can be done with `@Cascade`? TODO: Research for one of the stretch goals.  
+
+### HTML Forms Review
+
+Names *must match* the expected input variable names.  
+You *must* use `for=forName` and make it equal to `id=forName` in order to capture data from, and supply data to, input elements.  
+Use `type="hidden"` to track specific variables that must be maintained for submission (for a preloaded Form, right?).  
 
 ## Footer
 
