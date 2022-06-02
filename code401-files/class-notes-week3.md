@@ -239,7 +239,7 @@ Postgres instructions:
 
 ```sh
 /l; # returns a list of databases
-CREATE DATABSE name # creates a new database named 'name'
+CREATE DATABASE name # creates a new database named 'name'
 ```
 
 ### Weds SongR Code Reviews
@@ -424,11 +424,27 @@ The Baeldung reading assignment walks through Integration Testing in Spring.
 
 1. Identity One:Many relationships and Many:Many relationships and One:One relationships.
 1. One:One => Contextually similar data can be stored in the same table.
-1. One:Many => Create an FK in the Many-side table that points to the One-side table's ID column.  
+1. One:Many => Create an FK in the Many-side table that points to the One-side table's ID column. Start with the PARENT e.g. One store has Many employees.
 1. Many:Many => Extract a "lookup table" that stores foreign keys so the "lookups" can happen both ways.
-1. Create one Model for each Table in the Database.
-1. Create one Repository for each Table in the Database.
-1. a
+1. Create one Model for each Table in the Database and apply `@Entity`, `@Id`, `@GeneratedValue(key=val)` to make them Identities.
+1. Apply relationships e.g. an Entity Property `List<Employee> employees;` and decorate it with Attribute `@OneToMay(mappedBy|cascade|others...="stringStoreName")`
+1. Apply the 'other side' relationship by adding decorator `@ManyToOne` followed by the child-Entity Property e.g. `SalmonCookiesStore salmonCookiesStore;`
+1. Create one Repository for each Table in the Database: Create new Class and call it class_to_storeRepository, extends `JpaRepository<ConcreteClass, ID-Type>{ // only add custom queries in here}`
+
+### Controller Discussion
+
+Fat vs. Skinny Controllers:
+
+- Are your Controller classes doing more than they were intended to?
+- Can a Controller be broken-up into multiple Controllers to separate responsibilities?
+- Can a Controller be broken-up to separate CONTEXT of purpose?
+- Weigh the benefit of separating responsibilities vs. having a bazillion controllers managing minute detail.  
+
+-- -
+
+1. Controllers are decorated with `@Controller` attribute.  
+1. Autowire the Repository as the 1st Property in the Controller Class: `@Autowired` followed by `thingClassRepository thingClassRepositoryName;`  
+1. Add PostMapping to define the path: `@PostMapping("/path")` preceding the method to call when POST (in this example) is called `public RedirectView methodName(args){ new-up an object, supply args to give it props, then return (a redirect?)}`
 
 ## Footer
 
