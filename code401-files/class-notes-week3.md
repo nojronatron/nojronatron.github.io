@@ -314,7 +314,7 @@ Autowired: Part of DI system in Spring
 
 ### PostGres
 
-PGAdmin => GUI Administrative tool for PostGres SQL  
+PGAdmin => GUI Administrative tool for PostGres SQL [installation instructions](https://www.pgadmin.org/download/pgadmin-4-apt/)  
 PosteGresQL => PSQL is like PGAdmin  
 ORD: Object Relational Database => Extends SQL (the language)  
 JPA will be used to handle all the SQL Language details!  
@@ -374,7 +374,61 @@ Update Album so it can be stored in a database.
 
 ## Thursday Class Notes
 
+This stuff is hard but we've done it before. - Alex, basically
 
+### Songr Lab Review
+
+Focus on the Songr Controller.  
+Wiring-up the Controller with the DB is complicated: Lots of moving parts:
+
+- The View aka html page
+- The Spring Model
+- Our Entity
+- Database
+- Repository between Entity and Database (extends JPARepository), providing the Methods to talk with the DB
+
+Thymeleaf is an MPA framework: Multi-page.  
+React is an SPA framework: Single-page.  
+
+### BigO Conversation
+
+Big O [CheatSheet](https://www.bigocheatsheet.com/)  
+
+- Constant: Same space, same time, everytimg => O(1) => If statements, single-line executables w/o calling other methods.  
+- Linear: Increasing space and/or time => O(n) => Loops of all sorts.  
+- Logarithmic: Decreasing space and/or time => O(log(n)) => Binary Search Tree, AVL Tree, etc.  
+- All others are worse! Increasing space and/or time => O(n log(n)), O(n^2), O(2^n) etc => Some sorting algorithms and a junky "skip list".  
+
+### Code Review Songr
+
+Image Tag `<img/>` *must include a closing slash*.  
+JPA turns *your* Class into an Entity.  
+Your classes only need to be attributed as `@Entity` when it needs to be database related data.  
+An Entity needs an `@Id` and the type is the Type that the Id column *values* are stored as (Long enables a HUGE number of item IDs).  
+Extending `JpaRepository<T, U>` enables utilizing methods in the Repository, by calling *your defined Repository*.  
+A *Repository* represents a *Table* in your database!  
+Repository-to-table relationship is a one-to-one relationship.  
+
+### Integration Testing Comments
+
+SpringBoot Test: `@SpringBootTest`  
+Moch MVC: An un-real MVC version of an MVC, emulating YOUR IMPLEMENTAION. Decorate with `@AutoConfigureMockMvc`  
+Autowired: Dependancy Injection `@Autowired` preceding the `Type var_name;` statement.  
+The Baeldung reading assignment walks through Integration Testing in Spring.  
+
+### WRRC For Spring MVC Stuff
+
+`View <--> Controller Classes <--> Database <==> [Tables]`  
+
+### Database Design
+
+1. Identity One:Many relationships and Many:Many relationships and One:One relationships.
+1. One:One => Contextually similar data can be stored in the same table.
+1. One:Many => Create an FK in the Many-side table that points to the One-side table's ID column.  
+1. Many:Many => Extract a "lookup table" that stores foreign keys so the "lookups" can happen both ways.
+1. Create one Model for each Table in the Database.
+1. Create one Repository for each Table in the Database.
+1. a
 
 ## Footer
 
