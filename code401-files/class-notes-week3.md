@@ -211,6 +211,167 @@ Hint: Use TWO Stack instances.
 
 *Note*: Tests are required in this Code Challenge.  
 
+## Wednesday Morning Discussion
+
+RESTful Routing with Spring MVC.  
+PostgreSQL as a relational DB.  
+JPA - Persistence API? Persist data into the DB.  
+JDBC - Connects to Postgres local or remote.  
+DB Connection String required (like everywhere else).  
+
+Midterm Prep starts on Monday 1-Jun-22.
+
+### PostgreSQL
+
+Linux info follows:
+
+1. Verify installation using `psql --version` or `which psql`  
+1. Once installed, launch PSQL using this line in SH/ZSH: `sudo -u postgres psql`  
+
+On my Ubuntu 20.04 system, psql installed to:
+
+- Data Dir: /var/lib/postgresql/14/main
+- Ident File: /etc/postgresql/14/main/pg_ident.conf
+
+There are other config files that will be added here when I rediscover them.
+
+Postgres instructions:
+
+```sh
+/l; # returns a list of databases
+CREATE DATABSE name # creates a new database named 'name'
+```
+
+### Weds SongR Code Reviews
+
+`@RequestMapping("/path")` is OPTIONAL and should only be used if all other functionality in the Controller should be *behind* this mapping path decorator.  
+Schema and Class are similar, however they are syntactically different:  
+
+- Schema: Context is related to database use.
+- Class: Object-oriented programming related.
+- Entity: Describes a Table in a Relational DB (SQL). Usually a decorated Class.  
+
+### Salmon Cookies Demo
+
+Rest architecture allows interacting with other REST APIs.  
+Architectural *constraints* are put in place.  
+Client Server architecture => made RESTful via HTTP.  
+Stateless: No data is stored between Req-Res.  
+
+No `@RequestMapping("/...")` path in his SalmonCookiesStoresController.  
+`th:each` enables iterating through an array of Attributes passed-in by the Controller.  
+
+Persisting Data: PJA  
+RESTful methods: Get, Post, Put, Delete  
+
+- Read One => ID needed
+- Update One => ID needed
+- Delete One => ID needed
+
+To implement CRUD operations we will need to:
+
+- Update the Model (delivery method for data between Controller and View)
+- Update the Album Class (to represent the data in the DB)
+- Implement the DB Tables and transport (via JSON)
+
+JPA: Java Persistence API, retains/persists data.  
+JPA belongs on our Spring MVC Controller(s).  
+Other persistence APIs persist data between refresh, app close, caching data across sessions, cookies, and many more.  
+ORM: Object Relational Mapping => Describes relationships within a DB.  
+ORM Hibernate: ORM Framework for use with Java, Sring.  
+
+*Recall*: Frameworks have *constraints*, unless Libraries that do not.  
+
+ORM Hibernate enables similar functionality to Mongoose:
+
+- findByOne
+- findByAll
+- save
+- etc
+
+JDBC: Java Database Controller => Makes it easy to implement repositories for our DB.  
+JDBC belongs between JPA/Controller and the Database.  
+JDBC provides CRUD Services (to abstract-away the Database Interfacee?).  
+
+Services:
+
+- Repository (JDBC) as a service.
+- AutoWire: Dependency Injection package. Use `@Autowired`  
+
+Dependency Injection:
+
+- Create a Singleton instance of a service (the repo) to only require as needed
+- Ensures that only one instance exists and only as needed
+
+Create a Repository:
+
+1. Add new Package witin your java com.name.project
+1. Create a new Interface that extends JpaRepository
+1. Import your Entity into this repository Package
+
+Beans: Injected service representations withh nccionality e.g. repo methods and access.  
+Autowired: Part of DI system in Spring
+
+### PostGres
+
+PGAdmin => GUI Administrative tool for PostGres SQL  
+PosteGresQL => PSQL is like PGAdmin  
+ORD: Object Relational Database => Extends SQL (the language)  
+JPA will be used to handle all the SQL Language details!  
+JDBC connects JPA to PostGres.  
+Once installed, set up a new SuperUser with your known password so you have access.  
+
+### Steps to Update Project to Use DB
+
+1. Update the model: Setup Entity with JPA, and ID (generated value), and add a default CTOR
+1. Create a Repo with custom CRUD queries
+1. Update Controller to use the JPA Repo and set up CRUD methods
+1. Update Application.Properties with:
+
+- JPA: Provides implementation of CRUD functionality  
+- JDBC: Wrapper around JPA with connectionstring configuration  
+- PostGres:  
+
+### Add Dependencies
+
+*Do*: Use SpringInitializr to simplify this process.  
+
+Build.Gradle:
+
+- PostGres as a runtimeOnly
+
+application.properties:
+
+- spring.datasource.url
+- spring.datasource.username
+- spring.datasource.password
+- spring.jpa.hibernate.dll-auto=update
+- spring.jpa.generate-dll=true
+- #heroku: jdbc:postgresql://heroku//5678
+- #also a jpa dependency
+
+After udpating Build.Gradle run `./gradlew build` to bring in the changes.  
+
+### Redirect View
+
+Define a Controller method with a return type of RedirectView.  
+And then the return statement: `return new RedirectView("/");`  
+
+### Wednesday Work ToDo
+
+Code Challenge 12: stack-queue-animal-shelter.  
+Manage Dequeue and Re-Enqueue animals.  
+Whiteboard this prior to doing ANY CODE.  
+
+### Wednesday Lab RESTful Routing
+
+File application.properties should NOT be pushed to GitHub.  
+Variable management will be necessary.  
+For now just gitignore it and shared GH pullers need to have their own application.properties.  
+Update Album so it can be stored in a database.  
+`<form action="/" method="post">...` tells the Submit event where to send the data.  
+*Call for TA help* and get through this so that this *does not become a blocking lab*!  
+
 ## Footer
 
 Return to [Parent Readme.md](../README.html)  

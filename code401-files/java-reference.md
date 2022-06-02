@@ -36,11 +36,19 @@ tasks.named: Defines main class for the app
 
 ### Gradle Run
 
-Run your app from within the PWD to view *app* output and other task results `> ./gradlew run`  
+Run your app from within the PWD to view *app* output and other task results `./gradlew run`  
+
+Run Spring MVC from the command line using: `./gradle bootRun`  
 
 ### Gradle Build
 
-Build your app from within the PWD and view *task* output: `> ./gradlew build`  
+Build your app from within the PWD and view *task* output: `./gradlew build`  
+
+To force a full refresh, if that task is available in the gradle config use: `./gradlew clean` and then: `./gradlew build`
+
+### Run Tests
+
+Execute tests from the Project root directory: `./gradlew test`  
 
 ## Classes
 
