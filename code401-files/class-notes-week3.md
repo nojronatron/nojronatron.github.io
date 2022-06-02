@@ -372,6 +372,10 @@ Update Album so it can be stored in a database.
 `<form action="/" method="post">...` tells the Submit event where to send the data.  
 *Call for TA help* and get through this so that this *does not become a blocking lab*!  
 
+## Thursday Class Notes
+
+
+
 ## Footer
 
 Return to [Parent Readme.md](../README.html)  
