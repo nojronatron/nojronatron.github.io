@@ -429,7 +429,8 @@ The Baeldung reading assignment walks through Integration Testing in Spring.
 1. Create one Model for each Table in the Database and apply `@Entity`, `@Id`, `@GeneratedValue(key=val)` to make them Identities.
 1. Apply relationships e.g. an Entity Property `List<Employee> employees;` and decorate it with Attribute `@OneToMay(mappedBy|cascade|others...="stringStoreName")`
 1. Apply the 'other side' relationship by adding decorator `@ManyToOne` followed by the child-Entity Property e.g. `SalmonCookiesStore salmonCookiesStore;`
-1. Create one Repository for each Table in the Database: Create new Class and call it class_to_storeRepository, extends `JpaRepository<ConcreteClass, ID-Type>{ // only add custom queries in here}`
+1. Create one Repository for each Table in the Database: Create new Class and call it class_to_storeRepository, extends `JpaRepository<ConcreteClass, ID-Type>{ // only add custom queries in here}` e.g. Store repo and Employee repo.
+1. Tell the child Class which Parent Class to be a member of, by entering the Parent Type and parameter into the Child's Constructor then assign it to the `@ManyToOne StoreNameProp storeName;`
 
 ### Controller Discussion
 
@@ -445,6 +446,7 @@ Fat vs. Skinny Controllers:
 1. Controllers are decorated with `@Controller` attribute.  
 1. Autowire the Repository as the 1st Property in the Controller Class: `@Autowired` followed by `thingClassRepository thingClassRepositoryName;`  
 1. Add PostMapping to define the path: `@PostMapping("/path")` preceding the method to call when POST (in this example) is called `public RedirectView methodName(args){ new-up an object, supply args to give it props, then return (a redirect?)}`
+1. When implementing Entities that have relationships with each other, add `@AutoWired` to define the Properties that are the Repositories (local and remote), and use the ParentRepository's `.findByName(String)` (or find by ID, etc), create a new Parent instance, then pass that in to the new Child instance, then call the child Repository to save the data e.g. `employeeRepository.save(newEmployee);`
 
 ## Footer
 
