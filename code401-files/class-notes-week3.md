@@ -225,7 +225,22 @@ Midterm Prep starts on Monday 1-Jun-22.
 
 Linux info follows:
 
-- Once installed, launch PSQL using this line in SH/ZSH: `sudo -u postgres psql`  
+1. Verify installation using `psql --version` or `which psql`  
+1. Once installed, launch PSQL using this line in SH/ZSH: `sudo -u postgres psql`  
+
+On my Ubuntu 20.04 system, psql installed to:
+
+- Data Dir: /var/lib/postgresql/14/main
+- Ident File: /etc/postgresql/14/main/pg_ident.conf
+
+There are other config files that will be added here when I rediscover them.
+
+Postgres instructions:
+
+```sh
+/l; # returns a list of databases
+CREATE DATABSE name # creates a new database named 'name'
+```
 
 ### Weds SongR Code Reviews
 
