@@ -415,6 +415,12 @@ SpringBoot Test: `@SpringBootTest`
 Moch MVC: An un-real MVC version of an MVC, emulating YOUR IMPLEMENTAION. Decorate with `@AutoConfigureMockMvc`  
 Autowired: Dependancy Injection `@Autowired` preceding the `Type var_name;` statement.  
 The Baeldung reading assignment walks through Integration Testing in Spring.  
+Define each test the same way as before.  
+The 'Action' will be done *on a Mock* e.g. `mockMvc.perform(get("/")).andDo(print()).andExpect(content().string(containsString("<h1>exact text match</h1>")));`
+Display data on console within a test: `print()`  
+Assert for a condition: `.andExpect(condition_expression)`  
+Check the returned content from the mock: `content()`  
+Test that content contains a specific String: `string(containsString(substring))`  
 
 ### WRRC For Spring MVC Stuff
 
@@ -447,6 +453,12 @@ Fat vs. Skinny Controllers:
 1. Autowire the Repository as the 1st Property in the Controller Class: `@Autowired` followed by `thingClassRepository thingClassRepositoryName;`  
 1. Add PostMapping to define the path: `@PostMapping("/path")` preceding the method to call when POST (in this example) is called `public RedirectView methodName(args){ new-up an object, supply args to give it props, then return (a redirect?)}`
 1. When implementing Entities that have relationships with each other, add `@AutoWired` to define the Properties that are the Repositories (local and remote), and use the ParentRepository's `.findByName(String)` (or find by ID, etc), create a new Parent instance, then pass that in to the new Child instance, then call the child Repository to save the data e.g. `employeeRepository.save(newEmployee);`
+
+### HTML Forms Review
+
+Names *must match* the expected input variable names.  
+You *must* use `for=forName` and make it equal to `id=forName` in order to capture data from, and supply data to, input elements.  
+Use `type="hidden"` to track specific variables that must be maintained for submission (for a preloaded Form, right?).  
 
 ## Footer
 
