@@ -86,7 +86,78 @@ An iteration is entered until Breadth is emptied:
 
 ## Binary vs K-ary Trees
 
+Binary means 2, so Binary Tree Nodes are limited to K=2.  
+Binary Trees allow insertions wherever a node will fit.  
+Sorting is not a primary concern with Binary Trees.  
 
+### K-ary Trees
+
+K-ary Trees *can* have more tha 2 children per Node.  
+Traversing is similar to Breadth First Traversal => Push Nodes into a queue but move DOWN the list of children of length k.  
+*NO LONGER* checking for null at left and right children.  
+Start from the Root and Enqueue it.  
+Dequeue the Root and Enqueue it's Children.  
+
+### K-ary Tree Code
+
+BreadthFirst accepts a Root Node as input.  
+A new Queue called Breadth is instantiated.  
+Root is Enqueued to Breadth.  
+Iterate so long as Breadth is NOT empty:  
+
+1. Front is assigned the value of a Dequeued Breadth Node.
+1. Front.value is returned.
+1. An iterator Enqueues Front's Child Nodes into the Breadth Queue.
+1. Rinse, Repeat through all Nodes.
+
+## Adding a Node
+
+Several Strategies, but basically there is not hard-and-fast rule about organizing or sorting while adding Nodes into a Binary Tree.  
+
+One Strategy:
+
+- Fill all CHILD Node spots from top-down utilizing Breadth-first Traversal.
+- During BFTraversal find first Node that does NOT have all its Children and insert new Node there.
+- Child slots are filled from Left-to-Right.  
+
+To Specify a location where a Node should be placed:
+
+1. Reference teh New Node to Create
+1. Reference the Parent Node which the new Node will be Child to
+
+### BigO Notation
+
+Searching: O(n)  
+Inserting: O(n)  
+
+Breadth-First Traversal worst-case scenario will be O(w) where w=largest width of the Tree.  
+
+### Perfect Binary Tree
+
+Every non-Leaf Node has exactly 2 Child Nodes.  
+Max-width for a perfect binary tree is 2^(h-1) where h=height.  
+You can consider the height of the tree to be log(n) where n=number of Nodes.  
+
+## The BST
+
+A Binary Search Tree has structure attached to it.  
+Organization is to place values smaller than Root to the left, and values larger than Root to the right.  
+
+### Searching a BST
+
+Pretty fast.  
+Compare the Node you are searching for against Root.  
+Value less than Root? Search Root.left.  
+Value more than Root? Search Root.right.  
+
+Utilize a While Loop to search a BST with the exit condition being a Leaf Node or the value Match.  
+
+### BST BigO
+
+Searching a BST is an O(h) operation where h=height or long(n) where n=number of nodes in BST.  
+BST Insertion operations are same as Serach => O(h).  
+An "unbalanced" BST search could be as bad as O(n).  
+BigO Space Complexity of BST Search is O(1), because not additional space is allocated.  
 
 ## Footer
 
