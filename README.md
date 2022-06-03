@@ -26,10 +26,11 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
-[ ] Read Class13 [One to Many in Spring and Integration Testing](./code401-files/one-to-many-and-integration-testing.html)  
-[ ] Read Class12 [Accessing Data with JPA and Spring Data CRUD](./code401-files/jpa-data-access-and-crud.html)  
-[ ] Read Class11 [Spring App, Spring MVC and ThymeLeaf](./code401-files/spring-app-mvc-thymeleaf.html)  
-[ ] Read about [Stacks and Queues](./code401-files/stacks-and-queues.html)  
+[ ] Read Class15 [Trees](./code401-files/treeeeeees.html)  
+[X] Read Class13 [One to Many in Spring and Integration Testing](./code401-files/one-to-many-and-integration-testing.html)  
+[X] Read Class12 [Accessing Data with JPA and Spring Data CRUD](./code401-files/jpa-data-access-and-crud.html)  
+[X] Read Class11 [Spring App, Spring MVC and ThymeLeaf](./code401-files/spring-app-mvc-thymeleaf.html)  
+[X] Read about [Stacks and Queues](./code401-files/stacks-and-queues.html)  
 [X] Read Class09 [HTTP Request Lifecycle and HTTP Request using Spring for Java](./code401-files/java-and-http.html)  
 [X] Read Class08 [DRY, Rule of Three, Dont Need It, and MVP](./code401-files/dry-three-mvp.html)  
 [X] Read Class06 [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html)  
