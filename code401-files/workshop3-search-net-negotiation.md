@@ -87,6 +87,8 @@ Remember:
 
 - You have experiences and ideas and things to offer and share.
 - Build relationships though learning about them and finding ways to connect.  
+- A new connection doesn't have to have an end result!  
+- People *like* to talk about there experiences *and provide advice*!  
 
 At Networking Events:
 
@@ -98,25 +100,75 @@ At Networking Events:
 - Learn the art of small talk: Questions, common ground, reveal something, find passions
 - Linked-in with others where you find common interests.
 - Follow-up, then follow-up on your follow-up!
+- Meeting and making *some connection* with at least *one person* could be enough!  
+
+### Determine
+
+[ ] What are my biggest concerns?  
+[ ] Build my own plan to get mentored. 
+[ ] Reach out to those who can offer what *I* want.  
+[ ] Find people to ask (see Best Practices below).  
+[ ] Use Zoom, 30min meeting, *I* drive agenda, start and end on time.  
+
+## Offer Process and Negotiation
+
+Salaries will be lower in areas where cost of living is lower.  
+Learn what the average salaries are for the position I am interviewing for.  
+What is *my* bottom line?  
+Code Fellows graduates average offer salary? Check the website.  
+Be confident!  
+Ops Skills, Software Skills.  
+If an offer has been made, then they employer *wants you there*!  
+Most people do *not* negotiate.  
+Most (90%) of employers expect negotiation to happen.  
+More often than not (70%) a 5-10% increase during negotiation are accepted.  
+Only 38% of new grads are negotiating but success rate is 80% (Code Fellows statistic).  
+Schedule and paid time off are TOP TWO success-rate negotiation topics.  
+Figure out what their package is, and determine if it meets your expecations, and where it could get adjusted to suit.  
+Usually if the salary can get nailed down, then other area negotiations can follow.  
+Be very careful with stock options, they are definitely *not* a face-value proposition, especially for start-ups.  
+
+### Prepare to Negotiate
+
+Draw attention to why the application happened in the first place.  
+Do *not apologize* for talking about salary and benefits (keep confident posture too)!  
+Research data point = respect.  
+Large company salary research will help *me*.  
+Negotiate because *it is expected*.  
+Be excited, you are nearly there!  
+Remember, you will be expected to work hard *no matter what the negotiation results in*.  
+
+Low-balled salaries and benefits recipients 
+
+## Resources
+
+Better Business Bureau => Avoid scams, verify companies standing, etc.  
+See 401d12 Slack Channel for Dr.Robin's Links.  
+Networking Tips [For the Introvert](https://www.topresume.com/career-advice/networking-tips-for-introverts)  
+Online Networking [Like a Pro (Video)](https://youtu.be/lbKRJuTsucw)  
+[Eight Salary Negotiation Tips](https://zapier.com/blog/how-to-negotiate-salary/) from recruiters.  
+Tech-specific [Salary Negotiation Strategies](https://candor.co/guides/salary-negotiation)  
 
 ## Best Practices
 
 ATS: Keywords, formatting, phrases.  
 Be AVAILABLE!  
 Buid and maintain a connection with a company/employees.  
-Discover how to make the hiring manager's job easier!
+Discover how to make the hiring manager's job easier!  
 Subscribe to newsletters, blogs, and news alerts.  
 Write and review cover letters.  
-Don't worry if there isn't a specific job posting, there is evidence
-
-## Resources
-
-Better Business Bureau => Avoid scams, verify companies standing, etc.  
+Don't worry if there isn't a specific job posting, there is evidence.  
+*Leverage* the Code Fellows network: Instructors, PH Speakers, Campus Staff.  
+If I don't ask the question, I might not *ever* get an answer!  
 
 ## TODOs
 
-[ ] Define what my *idea position* looks like, write it down, edit as it evolves.  
+[ ] Define what my *ideal position* looks like, write it down, edit as it evolves.  
 [ ] Revisit Linkedin Job Search and use the Boolean Filters (2-3 saved searches, only 1 filtering exp level).  
+[ ] Linked requests in my network: If 1st failure, try again, but decide if person should *be* in my network if they cannot be an active participant in my own network.  
+[ ] Determine what salary I am looking for AND what other components of a package *are most important for me*.  
+[ ] Prepare for Behavioral Interviews (1hr interviewee, 1hr interviewer).  
+[ ] Ask to joing Dr. Robin's LinkedIn network.  
 
 ## Footer
 
