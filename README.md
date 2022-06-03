@@ -122,7 +122,7 @@ Do daily challenges or steps in FE/BE/Java paths at [Free Code Camp](https://www
 Consider a subscription to CodeAcademy to support [Continuous Learning](https://www.codecademy.com/)  
 SQL Bolt [Lessons In SQL](https://www.sqlbolt.com/)  
 
-## Remember To-do-s  
+## Remember TODOs  
 
 [ ] Bookmark additional resources  
 [ ] Present material as if to someone new to the industry  
