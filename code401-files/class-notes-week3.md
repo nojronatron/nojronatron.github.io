@@ -238,9 +238,13 @@ There are other config files that will be added here when I rediscover them.
 Postgres instructions:
 
 ```sh
-/l; # returns a list of databases
+\l # returns a list of databases
 CREATE DATABASE name # creates a new database named 'name'
+; # ends a command line if multi-lined or ambiguous
 ```
+
+1. In psql you can set the user password: `\password` then it will prompt for new password.  
+1. PGAdmin: Register new connection => localhost, database, user, and password (that matches psql one).
 
 ### Weds SongR Code Reviews
 
@@ -421,6 +425,7 @@ Display data on console within a test: `print()`
 Assert for a condition: `.andExpect(condition_expression)`  
 Check the returned content from the mock: `content()`  
 Test that content contains a specific String: `string(containsString(substring))`  
+Check out this [Hava Ham Crest Tutorial](http://hamcrest.org/JavaHamcrest/tutorial)  
 
 ### WRRC For Spring MVC Stuff
 

@@ -131,6 +131,10 @@ Verify Content-Type: `.andExpecte(content().contentType("application/json;charse
 
 Use "RestTemplate", "REST-assured", or some other concrete test Context to work around these limitations.  
 
+### HamCrest
+
+Bonus material [here](http://hamcrest.org/JavaHamcrest/tutorial)  
+
 ## Footer
 
 Back to [Root Readme.md](../README.md)  
