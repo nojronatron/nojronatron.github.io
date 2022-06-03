@@ -53,10 +53,44 @@ Be strategic.
 Spend time learning about mission, vision, products, etc.  
 Find out what the company culture is like.  
 
+### Cover Letter
+
+Follow instructions to the tee.  
+Show that you can communicate and write.  
+
+#### Add Value Proposition
+
+Offer details feature suggestion.  
+find/describe a bug in thei product or wesite.  
+check for bug bounty programs like hackerone.  
+Make PR to their public Github repo.  
+Find a syntax error on their website.  
+Write a conde that illustrates a suggested change or fix.  
+
+## Networking
+
+In the Tech community, people are willing to invest in other's success.  
+Networking has a bad reputation though: Networking events w/ no real connection; networking creates shallow connections.  
+Trditionally people believe networking must be a fully-fledged relationship - it doesn't.  
+Hiring managers say "...do you know anybody who would be good for this position?"  
+
+Networking is NOT:
+
+- A sales pitch.
+- Collecting business cards, phone numbers, etc.
+- Being disingenuous.
+- Dismissing people.
+- Taking without giving!
+
 ## Best Practices
 
 ATS: Keywords, formatting, phrases.  
 Be AVAILABLE!  
+Buid and maintain a connection with a company/employees.  
+Discover how to make the hiring manager's job easier!
+Subscribe to newsletters, blogs, and news alerts.  
+Write and review cover letters.  
+Don't worry if there isn't a specific job posting, there is evidence
 
 ## Resources
 
