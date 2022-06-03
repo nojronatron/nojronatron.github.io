@@ -33,21 +33,39 @@ Only 1-2% of these types of searches yield an interview.
 There are so many "job boards" that high-volume is what most job seekers do.  
 Employers pay for these job posting board publishings.  
 There will be 100's if not thousands of people applying for these positions.  
+No cover letter needed, although those that *do* ask for one will have specific requirements so be sure to follow it exactly.  
 
 #### Application Tracking System
 
 ATS => Designed to *eliminate* resumes that do not meet specified requirements.  
 Recruiters then filter-out more.  
 So 500 applications => 200 post ATS => 40 accepted by Recruiter => 3-6 selected for phone inteviews => 2-4 for interview.  
+Use Boolean search strings: AND, OR, and NOT.  
+Remote, in-office, or hybrid?  
+What title am I looking for?  
+Am I looking for a specific company?  
+2-7 and 8-15 day range is good enough; 30+ days you should consider job is filled.  
 
 ### Targeted
 
-Use Boolean search strings: AND, OR, and NOT.  
+Create an account with a company you are stalking! Follow them on social media, etc.  
+Be strategic.  
+Spend time learning about mission, vision, products, etc.  
+Find out what the company culture is like.  
 
+## Best Practices
+
+ATS: Keywords, formatting, phrases.  
+Be AVAILABLE!  
 
 ## Resources
 
 Better Business Bureau => Avoid scams, verify companies standing, etc.  
+
+## TODOs
+
+[ ] Define what my *idea position* looks like, write it down, edit as it evolves.  
+[ ] Revisit Linkedin Job Search and use the Boolean Filters (2-3 saved searches, only 1 filtering exp level).  
 
 ## Footer
 
