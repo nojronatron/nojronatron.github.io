@@ -81,6 +81,23 @@ Networking is NOT:
 - Being disingenuous.
 - Dismissing people.
 - Taking without giving!
+- Happening under only a single circumstance!
+
+Remember:
+
+- You have experiences and ideas and things to offer and share.
+- Build relationships though learning about them and finding ways to connect.  
+
+At Networking Events:
+
+- Start before you need it  => find people in your immediate viscinity.
+- Start with an existing base.
+- Take on a Host or Greeter role.
+- Have different pitches ready.
+- Try "how can I help" approach.
+- Learn the art of small talk: Questions, common ground, reveal something, find passions
+- Linked-in with others where you find common interests.
+- Follow-up, then follow-up on your follow-up!
 
 ## Best Practices
 
