@@ -505,9 +505,9 @@ Recursion: Depth First Search (DFS) is a Recursive traversal method. Vertically 
 
 Pre- In- and Post-Order methods describe your data logic:
 
-- Pre = Before: Get Value, Traverse Left, then Traverse Right.
-- Post = After: Traverse Left, then Traverse Right, then Get Value.
-- In = Middle: Traverse Left, Get Value, then Traverse Right.
+- Pre = Before: Get Value, Traverse Left, then Traverse Right => Root value will be returned FIRST.
+- In = Middle: Traverse Left, Get Value, then Traverse Right => Root value will be returned in the MIDDLE.
+- Post = After: Traverse Left, then Traverse Right, then Get Value => Root value will be returned LAST.
 
 ## Footer
 
