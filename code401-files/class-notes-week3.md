@@ -471,6 +471,43 @@ Use `type="hidden"` to track specific variables that must be maintained for subm
 
 ## Friday Discussion on Trees
 
+Heap memory: How the computer stores data in RAM. Nodes of data insert themselves into the Heap.  
+Queue: The most important rule is FIFO.  
+Stack: The most important rule is LIFO.  
+Nodes: This really could be anything, but the properties and functionality of Top, Front, Rear, and Push/Pop, Enqueue/Dequeue, are all capabilities that are referred to as Nodes, but *do not have to be*.  
+
+### Tree Components
+
+Trees Have-A:
+
+- Root: The top Node in a Tree structure
+- Path (branch): A link between Nodes
+- Leaves: A Node that has no child Nodes a.k.a. the "end Nodes"
+
+Other terminology:
+
+- Parent: A Node that has one or more Children
+- Child: A Node that has exactly one Parent
+- Edges: The visual connection between Nodes
+- Acyclic: There are no cyclic paths within the Tree e.g. Only child Nodes are referenced
+
+### BigO Tree Review
+
+Time: Big O(h) => Height
+Space: Big O(w) => Width
+
+### Traversal Methods
+
+Iteration: Breadth First Search (BFS) is an Iterative traversal method. Horizoantally traversing the nodes.  
+Recursion: Depth First Search (DFS) is a Recursive traversal method. Vertically traversing the nodes.  
+
+*Always* traverse child nodes from Parent's Left-to-Right.  
+
+Pre- In- and Post-Order methods describe your data logic:
+
+- Pre = Before: Get Value, Traverse Left, then Traverse Right.
+- Post = After: Traverse Left, then Traverse Right, then Get Value.
+- In = Middle: Traverse Left, Get Value, then Traverse Right.
 
 ## Footer
 
