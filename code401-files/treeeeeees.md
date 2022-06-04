@@ -84,6 +84,17 @@ An iteration is entered until Breadth is emptied:
 1. if front Left is NOT null enqueue front.left
 1. if front.right is NOT null enqueue front.right
 
+#### In-Class Breadth First Notes
+
+1. Queue your Root note
+1. Enter a while loop until Queue is empty
+1. Deque the Node
+1. Enqueue Node.left
+1. Enqueue Node.right
+1. Push Node value to storage array
+1. No Left? No dequeue
+1. No Right? No dequeue
+
 ## Binary vs K-ary Trees
 
 Binary means 2, so Binary Tree Nodes are limited to K=2.  
