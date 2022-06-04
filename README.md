@@ -121,8 +121,9 @@ The Event Loop - Video [YouTube.com](https://www.youtube.com/watch?v=8aGhZQkoFbQ
 Do daily challenges or steps in FE/BE/Java paths at [Free Code Camp](https://www.freecodecamp.org/)  
 Consider a subscription to CodeAcademy to support [Continuous Learning](https://www.codecademy.com/)  
 SQL Bolt [Lessons In SQL](https://www.sqlbolt.com/)  
+Reg Braithwaite on [Github Task List in Markdown](https://github.blog/2014-04-28-task-lists-in-all-markdown-documents/)  
 
-## Remember To-do-s  
+## Remember TODOs  
 
 [ ] Bookmark additional resources  
 [ ] Present material as if to someone new to the industry  

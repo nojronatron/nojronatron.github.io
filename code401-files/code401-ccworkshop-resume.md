@@ -106,7 +106,11 @@ Steps will be in classroom Slack.
 ## Resources
 
 Action Verbs by [Harvard University](https://hls.harvard.edu/dept/opia/job-search-toolkit/action-verbs/)  
-Action Verby by [Yale University](https://cdn.ocs.yale.edu/wp-content/uploads/sites/77/2020/05/Resume_Action_Verbs.doc)  
+Action Verbs by [Yale University](https://cdn.ocs.yale.edu/wp-content/uploads/sites/77/2020/05/Resume_Action_Verbs.doc)  
+How to build an [Elevator Pitch](https://www.topresume.com/career-advice/5-tips-for-delivering-the-perfect-elevator-pitch)  
+Interview Introductions and your [Personal Pitch](https://targetjobs.co.uk/careers-advice/networking/273687-interview-introductions-how-to-perfect-your-personal-pitch)  
+Top 5 LinedIn [Profile Tips Video](https://youtu.be/BcfGWi8Qywk)  
+Best 15 [LinkedIn Profile Tips](https://www.scienceofpeople.com/linkedin-profile-tips/)  
 
 ## TODOs
 
