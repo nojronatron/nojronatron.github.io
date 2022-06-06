@@ -141,6 +141,10 @@ AuthRepo: The interface that hosts the DB access methods:
 
 postgres SQL type DB.
 
+##### Live Coding Notes
+
+
+
 ## TODOs
 
 -[ ] Keep hacking away at missing assignments *this week*
