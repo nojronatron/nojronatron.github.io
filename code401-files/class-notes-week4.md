@@ -143,7 +143,27 @@ postgres SQL type DB.
 
 ##### Live Coding Notes
 
+Having git issues? How is your repository set up? Are you sharing projects within the same git repo?
 
+Steps taken during live coding:
+
+1. Project structure: Select the correct JDK version in Initializr *that you have on your dev machine*!
+1. Make sure your IDE is starting up at the actual PROJECT ROOT.
+1. build.gradle: starter jpa, starter typeleaf, starte we, boot devtoops, starter test, postgresql
+1. Update Application.properties to include datasource.url, datasource.username, datasource.password, jpa.generate-dll, jpa.hibernate.dll, hiddenmetho.filter.enabled
+1. PGAdmin4: Create the necessary Database (if using an existing one DROP EXISTING TABLES).
+1. When building, make sure a 'build successful' actually results.
+1. build a proof-of-life html template page: index.html (new file => html, or new file => ! [Tab])
+1. add a signup.html file and write a Form action with the signup path
+1. add a login.html file and write a Form action with login path
+1. Build and check for errors: Missing datasource, etc
+1. test the home route and verify your index.html page appears!
+1. 
+
+Remember:
+
+- Put html in STATIC folder only if you do not need a PATH for it but browser can go direct to the file.
+- Dynamic web pages can only be accessed via paths (Controllers) will NOT render from the URL address bar.
 
 ## TODOs
 
