@@ -106,6 +106,16 @@ DO NOT add Spring Security to our existing Labs => Start a new lab instead.
 
 ### Lab Preview
 
+Class 14 Lab due today.
+
+Use the code (below) as a baseline to developing this lab.
+
+Don't direct people to a route UNTIL THEY ARE LOGGED ON.
+
+Do NOT use Spring Security today.
+
+Use Thymeleaf w/ 'Model' and avoid using "User" as the name of your user object.
+
 #### MVC
 
 ##### Views
@@ -167,7 +177,7 @@ Steps taken during live coding:
 1. Use .equals() to compare object.password with _password parameter.
 1. Implement hashed passwords using BCrypt: 'BCrypt.hashpw(password, BCrypt.gensalt(int: hash_rounds));' and then update the new site user password to be the hashed_password.
 1. Back to login Controller route, update the if statement: 'if((userFromDB == null) || (!BCrypt.checkpw(_password, userFromDB.password)) return new RedirectView("/login");' otherwise user gets sent to home route "/". Use parenthesis to force the evaluations to be expressions so they operate in the correct order.
-1. 
+1. Verify your user and hashed-passwd logic for redirecting to Home or Login again.
 
 Remember:
 
@@ -177,11 +187,24 @@ Remember:
 - Spring MVC includes a class called Class that is the transport for '@Entity' annotated classes so that passing data between Controllers and the dynamic template pages.
 - Use 'gradle refresh' after adding dependencies!
 
+#### Code Challenge 16
+
+Find maximum value within a binary tree.
+
+Tip: Try to track the maximum value *within recursion*.
+
+Can be partnered on one-your-own.
+
+### Team Prep Work Today
+
+Planning for all the usual Midterm/Final Presentation preparatory work.
+
 ## TODOs
 
 -[ ] Keep hacking away at missing assignments *this week*
 -[ ] Create a GH Gist with stuff like Application.properties template
 -[ ] RETRO every day, and once per week: What can I regurgitate without looking up? What concepts do I have trouble with? Were there any blockers that I need help with?
+-[ ] CodeChallenge 14: Do for bonus points! Pair-up to make it easier!
 
 ## Footer
 
