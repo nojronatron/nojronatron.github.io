@@ -157,9 +157,9 @@ Having git issues? How is your repository set up? Are you sharing projects withi
 
 Steps taken during live coding:
 
-1. Project structure: Select the correct JDK version in Initializr *that you have on your dev machine*!
+1. Set Project structure and configs using Initializer: Select the correct JDK version *that you have on your dev machine*
+1. build.gradle: starter jpa, starter tymeleaf, spring web, spring boot devtools, starter test, postgresql
 1. Make sure your IDE is starting up at the actual PROJECT ROOT.
-1. build.gradle: starter jpa, starter typeleaf, starte we, boot devtoops, starter test, postgresql
 1. Update Application.properties to include datasource.url, datasource.username, datasource.password, jpa.generate-dll, jpa.hibernate.dll, hiddenmetho.filter.enabled
 1. PGAdmin4: Create the necessary Database (if using an existing one DROP EXISTING TABLES).
 1. When building, make sure a 'build successful' actually results.
@@ -170,11 +170,12 @@ Steps taken during live coding:
 1. test the home route and verify your index.html page appears!
 1. build an Auth Controller using '@Controller': '@GetMapping(/route)' with method returning the dynamic/template html page
 1. Create a SiteUser class that includes '@Entity' and import javax.persistence.Entity. Add properties including a '@Id' (java persistence ID) and '@GeneratedValue' with a strategy to auto-generate and increment the ID.
-1. Implement a repository, extending JpaRepository, and pass-in the Model and type of the ID property.
-1. build-out '@PostMapping(/route)' entries to enable posting to the dynamic website. Use method return type 'RedirectView' so that on a 'login' route, and credential test returns true, the next-loaded page (redirect page) will be the splace page (e.g. User is "in" the application). Dont forget CTORs and getters+setters.
+1. Implement a repository, extending JpaRepository, and pass-in the Model and type of the ID property. Dont forget CTORs and getters+setters.
+1. build-out '@PostMapping(/route)' entries to enable posting to the dynamic website. Use method return type 'RedirectView' so that on a 'login' route, and credential test returns true, the next-loaded page (redirect page) will be the splash page (e.g. User is "in" the application).
 1. Back in the Repository class definition, set up the CRUD command and supply the Class property you are searching for: TYPE findByUser(username)
 1. Update the Controller to test the password vs what is in the database and return the redirect view (to the page the user can access only if logged on).
 1. Use .equals() to compare object.password with _password parameter.
+1. Add BCrypt to the build.gradle file, dependencies section.
 1. Implement hashed passwords using BCrypt: 'BCrypt.hashpw(password, BCrypt.gensalt(int: hash_rounds));' and then update the new site user password to be the hashed_password.
 1. Back to login Controller route, update the if statement: 'if((userFromDB == null) || (!BCrypt.checkpw(_password, userFromDB.password)) return new RedirectView("/login");' otherwise user gets sent to home route "/". Use parenthesis to force the evaluations to be expressions so they operate in the correct order.
 1. Verify your user and hashed-passwd logic for redirecting to Home or Login again.
