@@ -292,8 +292,10 @@ Steps:
 1. Logout page too: ... .and().logout()
 1. On successful logout send user to login: ... .logoutSuccessUrl("/login")
 1. Registration Page: We have createUser route "/signup". Create a template HTML for this page, add a Form with proper names and IDs so the username and password (and anything else) are captured for setup new user route.
-1. Login Page: Similar to Registration Page but for login of an existing, valid user.
-1. Auth with HttpServletRequest (later): Add this method to the AppController. Autowire the HttpServletRequest so that it is available to the entire Controller. 
+1. Login Page: Similar to Registration Page but for login of an existing, valid user. This will override the built-in login page that Spring Security deployed when we initialized the project.
+1. Auth with HttpServletRequest (later): Add this method to the AppController. Autowire the HttpServletRequest and name it 'request' so that it is available to the entire Controller. authWith
+
+*Note*: There is no POST TO LOGIN because it is all in WebSecurityConfig.java => '.loginPath("/login")'
 
 ## TODOs
 
