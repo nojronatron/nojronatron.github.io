@@ -27,9 +27,10 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
--[ ] Read Class16 [Spring Auth and Security](./code401-files/spring-auth-n-z.html)  
+-[ ] Read Class17 [Apring Boot and OAuth2](./code401-files/spring-oauth-tutorial.html)  
+-[X] Read Class16 [Spring Auth and Security](./code401-files/spring-auth-n-z.html)  
 -[X] Read Class15 [Trees](./code401-files/treeeeeees.html)  
--[ ] Read Class14 [Password Hashing and BCrypt](./code401-files/passwd-hashing-bcrypt.html)  
+-[X] Read Class14 [Password Hashing and BCrypt](./code401-files/passwd-hashing-bcrypt.html)  
 -[X] Read Class13 [One to Many in Spring and Integration Testing](./code401-files/one-to-many-and-integration-testing.html)  
 -[X] Read Class12 [Accessing Data with JPA and Spring Data CRUD](./code401-files/jpa-data-access-and-crud.html)  
 -[X] Read Class11 [Spring App, Spring MVC and ThymeLeaf](./code401-files/spring-app-mvc-thymeleaf.html)  
@@ -58,8 +59,8 @@ The following are reading and research notes taken during, and in preparation fo
 -[ ] Class Notes [Week Four](./code401-files/class-notes-week4.html)  
 -[X] Class Notes [Week Three](./code401-files/class-notes-week3.html)  
 -[X] Class Notes [Week Two](./code401-files/class-notes-week2.html)  
--[~] Class Notes [Week One](./code401-files/class-notes-week1.html)  
--[~] Partner Power Hour [Rover](./power-hour-notes/pph-rover.html)  
+-[X] Class Notes [Week One](./code401-files/class-notes-week1.html)  
+-[X] Partner Power Hour [Rover](./power-hour-notes/pph-rover.html)  
 -[~] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
 -[~] Study [Guide](./code401-files/java-reference.html)  
 

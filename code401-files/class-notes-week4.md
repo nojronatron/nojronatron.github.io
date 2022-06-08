@@ -200,6 +200,103 @@ Can be partnered on one-your-own.
 
 Planning for all the usual Midterm/Final Presentation preparatory work.
 
+## Tuesday 7Jun22
+
+ALWAYS keep working within MVP and Features:
+
+- MVP: The most basic functionality
+- Features: Bolt-on capabilities to the MVP
+
+Apply this thinking to Labs.
+
+### Team Prep Comments
+
+Try to get your MVP small enough that it is complete by EOD Tuesday.
+
+If Tuesday MVP is reached *then* bolt-on smaller feature add-ons and continue with documentation and testing.
+
+Not all conflict involves emotions, so check yourself and your situation, and communicate concerns and bring solutions to the table.
+
+There are 4 total preps.
+
+Project Prep 2 is PROJECT IDEAS.
+
+### Code Review
+
+Tree Max
+
+Review the very basics of [Unit Tests](https://codefellows.github.io/common_curriculum/data_structures_and_algorithms/Challenge_Testing)
+
+### Using Cookies in Spring
+
+*Note*: Case sensitivity is in play!!
+
+Use Developer Tools > Application > Storage > Cookies: To see set cookie details e.g. JSessionID (aka SessionID) and Value etc.
+
+Need to add a Model for the AuthenticationController to be able to properly authenticate a user.
+
+1. HttpServletRequest request must be added to the controller path `@PostMapping("loginWithSecretPage")`
+1. SetAttribute on this session: Binds an object to a session using the specified name. `session.setAttribute("username", username)`
+1. `HttpSession session = request.getsession()` comes from httpservletrequest?
+1. `session.invalidate()` breaks the session cookie info so they cannot be replaced (logs out the user).
+1. Hide cookie usage via `server.servlet.sesion.tracking-modes="cookie"` ??? (look for Alex's future update on this).
+
+### Spring Security Demo
+
+Create an authenticated server.
+
+New gradle project, NOT MAVEN.
+
+Setup using Spring Security:
+
+1. Initializr with postgres, spring boot, spring security, etc.
+1. Verify application.properties is set up.
+1. Do a build to verify all is good. User-generated security password is provided. Use this default built-in form, but YOU need to update it by implementing the 'what to do' after form login.
+
+#### Beans
+
+Spring transforms @Service, @Entity, and @Controller into "Beans".
+
+These are DI'd components that make up the Spring "Application Context".
+
+Singleton: Only instantiate an object ONE TIME throughout the life of the application.
+
+Beans exist for the life of the application, each Bean its own unique service/state, until the App shuts down.
+
+Repositories *are also Beans*, so just use the '@Autowired' annotation to access it from other Classes!
+
+*Note*: Variables MUST be named consistently!
+
+Spring Beans: @Autowired, @Component, @Service, @ => All beans go away when the App is closed!
+
+Steps:
+
+1. Set up a user model and repo: 'model.AppUser' with properties: username, password, and add @Entity and @Id @GeneratedValue, and be sure to use private fields and getters/setters EXCEPT for Id. Also add constructors.
+1. Create Repo: 'repository.AppRepository' and set it as an interface that 'extends JPARepository<AppUser, Long> { // custom query like findByUsername(String username);}'
+1. Create a controller for that model: New Class controller.AppController, add four routes: get to login, get to signup, post to login, and post to login. Remember to use '@Controller' and '@AutoWired' and '@GetMapping' and '@PostMapping' decorators.
+1. In the Post to Signup path, ensure the method grabs the username and password, then '@AutoWire' it (makes it a bean so it is a service available and DRY is followed).
+1. Save the new user (with hashed passwd) to the repository.
+1. UserDetailsServiceImpl implements UserDetailsService => Createa  new Package called 'config.UserDetailsServiceImpl' of type Class. Then *implement the method(s)*.
+1. Implement UserDetails on the ApplicationUser class (there are 5 of them) and Booleans all return true.
+1. Summary: WebSecurityConfig extends WebSecurityConfigurerAdapter. Create a new configs.WebSecuityConfig Class that extends WebSecurityConfigurerAdapter. Also add @Configuration and @EnableWebSecurity. Continues on next step...
+1. Implement the @AutoWired annotation and set variable type UserDetailsServiceImp userDetailsService. NExt step...
+1. Create public PasswordEncoder passwordEncoder method, takes no params. Enable BCryptPasswordEncoder as a variable (it already implemnets PasswordEncoder) so it can be returned within the method and returns bCryptPasswordEncoder. Continue...
+1. Make this method a Bean with '@Bean', then add '@Autowired PasswordEncoder passwordEncoder' which *injects the singleton Bean into the class so it is usable within those methods*, THEN just use 'passwordEncoder' to .encode(passwd) or .decode(passwd).
+1. Override configure(AuthenticationManagerBuilder) with 'auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());'
+1. Configure security via HttpSecurity: Override configure(HttpSecurity http) and implement CORS, CSRF, URL Maters, Form Login, and Logout. Continue
+1. CORS to configure access from outside your network: http.cors().disable() // were not sharing outside of our network
+1. CSRF Cross Site Reference Forging: 'http.csrf().disable().authroizeRequests().antMatchers("/").permitAll()' // will not allow requests to come in as you unless they come from specific routes defined in out site but this specific config just allows anonymous access to root
+1. CSRF for other routes: ... .antMatchers("/permitPath1", "/permitPath2", ...).permitAll()
+1. Tie-together chained configuration with '.and()'
+1. Form Login location config: ... .loginPath("/loginPath")
+1. Logout page too: ... .and().logout()
+1. On successful logout send user to login: ... .logoutSuccessUrl("/login")
+1. Registration Page: We have createUser route "/signup". Create a template HTML for this page, add a Form with proper names and IDs so the username and password (and anything else) are captured for setup new user route.
+1. Login Page: Similar to Registration Page but for login of an existing, valid user. This will override the built-in login page that Spring Security deployed when we initialized the project.
+1. Auth with HttpServletRequest (later): Add this method to the AppController. Autowire the HttpServletRequest and name it 'request' so that it is available to the entire Controller. authWith
+
+*Note*: There is no POST TO LOGIN because it is all in WebSecurityConfig.java => '.loginPath("/login")'
+
 ## TODOs
 
 -[ ] Keep hacking away at missing assignments *this week*
