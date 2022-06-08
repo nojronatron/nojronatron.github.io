@@ -352,6 +352,49 @@ All of the above is *baked in to Spring Security* and is fairly basic.
 -[ ] TODO: Get my app up and running, commit and update yesterday's Lab submission THEN move-on to the rest of the app.
 -[ ] TODO: Reference baeldung dates-in-thymeleaf page for help with managing Date objects in your Thymeleaf website including formatting.
 
+### Profile Page Controllers and Setup
+
+*Note*: When using `@GetMapping("/path/{id}")` => setup the controller method with a `@PathVariable Long Id` in the params list.
+
+1. Principal p only saves session information, usually "username".
+1. Principal has other functionality, but in the @GettMapping parameters list, it allows asking the MODEL (Entity) to get data from it.
+1. Within a controller: Work with the session information, and THEN make call(s) to the DB for user (Principal, now Entity) information.
+1. Utilize a 'th:if' to verify a 'user != null' as conditional to display/not the user information on the page.
+1. Forms only support POST actions be default? PUT method, required by Thymeleaf, add spring.mvc.hiddenmethod to include PUT.
+
+### Create Custom 404 Page
+
+1. Home controller, for practice, set a path that will throw a 404, for e.g. on the "/" route...see next step.
+1. Decorate a new nested class `@ResponseStatus(value=HttpStatus.NOT_FOUND)` and extend the appropriate Exception type e.g. ResourceNotFoundException extending RuntimeException (super).
+1. Disable Spring MVC Default Error page (application.config).
+1. Customize a page for the '/error' route that captures data sent by the Exception.
+
+### Thymeleaf Fragments
+
+Analogous to React Components!
+
+Set up a fragment html page with frags for use elsewhere: TH:FRAGMENT => Enables identifying the type of frag? e.g. `...th:fragment="nav-header"...`
+
+Utilize a fragment within a different page: 'th:replace="/fragment/fragpage :: element"'
+
+A Redirect is just a path (?).
+
+Thymeleaf Temporals: Enables formatting Time and Date objects.
+
+### Code Challenge Tree-Fizz-Buzz
+
+1. Whiteboard this
+1. K-ary trees: Input existing tree; Output NEW TREE
+1. K-ary NODES must be used
+1. Iterative or recursive? Your choice
+1. TRAVERSE THE TREE!
+1. How to build the tree looking like original but with the new values?
+
+### Project Prep #3
+
+1. Repo and tooling.
+1. Meet with Alex for pitching MVPs.
+1. Follow tasks to build the repo.
 
 ## TODOs
 
