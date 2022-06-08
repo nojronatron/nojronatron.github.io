@@ -297,6 +297,36 @@ Steps:
 
 *Note*: There is no POST TO LOGIN because it is all in WebSecurityConfig.java => '.loginPath("/login")'
 
+## Wednesday 8Jun22 Notes
+
+### Morning Discussion
+
+Mid-term Team Project chat.
+
+Teams tell Alex when they want to stand-up meet, and this can be scheduled day-of.
+
+Spring Security authz to content (conditional rendering).
+
+Security software: Don't dev it yourself, use what exists, has been well tested, and what big corporations are using.
+
+Bruce Schneier chit-chat.
+
+Bug Bounties: Finding bugs can turn into cash! [bugcrowd](https://www.bugcrowd.com)
+
+### Code Review Breadth First
+
+Tips:
+
+- Use a queue to track "where we are in the tree" while dealing with other nodes.
+- Ensuring a tracking queue is loaded prior to entering the while loop is critical, otherwise while loop exits right away.
+- Front node must ALWAYS be dequeued prior to grabbing its value so that it doesn't stay in the queue and get counted again.
+
+O(n) Stuff:
+
+- Whenever there are lists, arrays, collections, etc, that is an O(n) operation.
+- When there are multiple lists, queues, stacks, etc, that is an O(n+n+...) which boils down to O(n).
+
+
 ## TODOs
 
 -[ ] Keep hacking away at missing assignments *this week*
