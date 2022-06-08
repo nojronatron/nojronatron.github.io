@@ -320,11 +320,37 @@ Tips:
 - Use a queue to track "where we are in the tree" while dealing with other nodes.
 - Ensuring a tracking queue is loaded prior to entering the while loop is critical, otherwise while loop exits right away.
 - Front node must ALWAYS be dequeued prior to grabbing its value so that it doesn't stay in the queue and get counted again.
+- The Breadth Algorithm is a sub-tree logic loop, because it only deals with one parent, and however many children it has.
 
 O(n) Stuff:
 
 - Whenever there are lists, arrays, collections, etc, that is an O(n) operation.
 - When there are multiple lists, queues, stacks, etc, that is an O(n+n+...) which boils down to O(n).
+
+### Authorization
+
+The [Spring Security Cheat Sheet](https://github.com/nojronatron/seattle-code-java-401d12/blob/main/SpringSecurityCheatSheet.md) can be followed to help get Spring Security set up and implemented.
+
+Separate Controllers to manage specific tasks i.e. User Creation actions, Authenticated actions, Unauthenticated actions, specific paths, etc.
+
+Principal: The authenticated user or object. A User Principal in this case.
+
+Threading: One user per thread => Only that thread's user will be handled in the auth/action workflow.
+
+When creating a Controller Mapping, take in args Principal p and Model m and test p != null before taking action on the args.
+
+On a path HTML where a Controller Mapping has a principal params:
+
+- Add thymeleaf to allow passing values between Controller and Template page using "TH:" attributes.
+- Use 'm.addAttribute("name", name)' so that ThymeLeaf TH can utilize it e.g. `th:text="${name}"`
+- When authenticated, only certain Paths have access (web security config file defines this and routes user to the specific Controller handler).
+- Logout button calls '/logout' path that web security config file filters as a 'close this session and go to this un-auth path' workflow.
+
+All of the above is *baked in to Spring Security* and is fairly basic.
+
+-[ ] Today's Lab (Class 17) will build on yesterday's (CodeFellowship).
+-[ ] TODO: Get my app up and running, commit and update yesterday's Lab submission THEN move-on to the rest of the app.
+-[ ] TODO: Reference baeldung dates-in-thymeleaf page for help with managing Date objects in your Thymeleaf website including formatting.
 
 
 ## TODOs
