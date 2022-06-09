@@ -297,6 +297,105 @@ Steps:
 
 *Note*: There is no POST TO LOGIN because it is all in WebSecurityConfig.java => '.loginPath("/login")'
 
+## Wednesday 8Jun22 Notes
+
+### Morning Discussion
+
+Mid-term Team Project chat.
+
+Teams tell Alex when they want to stand-up meet, and this can be scheduled day-of.
+
+Spring Security authz to content (conditional rendering).
+
+Security software: Don't dev it yourself, use what exists, has been well tested, and what big corporations are using.
+
+Bruce Schneier chit-chat.
+
+Bug Bounties: Finding bugs can turn into cash! [bugcrowd](https://www.bugcrowd.com)
+
+### Code Review Breadth First
+
+Tips:
+
+- Use a queue to track "where we are in the tree" while dealing with other nodes.
+- Ensuring a tracking queue is loaded prior to entering the while loop is critical, otherwise while loop exits right away.
+- Front node must ALWAYS be dequeued prior to grabbing its value so that it doesn't stay in the queue and get counted again.
+- The Breadth Algorithm is a sub-tree logic loop, because it only deals with one parent, and however many children it has.
+
+O(n) Stuff:
+
+- Whenever there are lists, arrays, collections, etc, that is an O(n) operation.
+- When there are multiple lists, queues, stacks, etc, that is an O(n+n+...) which boils down to O(n).
+
+### Authorization
+
+The [Spring Security Cheat Sheet](https://github.com/nojronatron/seattle-code-java-401d12/blob/main/SpringSecurityCheatSheet.md) can be followed to help get Spring Security set up and implemented.
+
+Separate Controllers to manage specific tasks i.e. User Creation actions, Authenticated actions, Unauthenticated actions, specific paths, etc.
+
+Principal: The authenticated user or object. A User Principal in this case.
+
+Threading: One user per thread => Only that thread's user will be handled in the auth/action workflow.
+
+When creating a Controller Mapping, take in args Principal p and Model m and test p != null before taking action on the args.
+
+On a path HTML where a Controller Mapping has a principal params:
+
+- Add thymeleaf to allow passing values between Controller and Template page using "TH:" attributes.
+- Use 'm.addAttribute("name", name)' so that ThymeLeaf TH can utilize it e.g. `th:text="${name}"`
+- When authenticated, only certain Paths have access (web security config file defines this and routes user to the specific Controller handler).
+- Logout button calls '/logout' path that web security config file filters as a 'close this session and go to this un-auth path' workflow.
+
+All of the above is *baked in to Spring Security* and is fairly basic.
+
+-[ ] Today's Lab (Class 17) will build on yesterday's (CodeFellowship).
+-[X] TODO: Get my app up and running, commit and update yesterday's Lab submission THEN move-on to the rest of the app.
+-[ ] TODO: Reference baeldung dates-in-thymeleaf page for help with managing Date objects in your Thymeleaf website including formatting.
+
+### Profile Page Controllers and Setup
+
+*Note*: When using `@GetMapping("/path/{id}")` => setup the controller method with a `@PathVariable Long Id` in the params list.
+
+1. Principal p only saves session information, usually "username".
+1. Principal has other functionality, but in the @GettMapping parameters list, it allows asking the MODEL (Entity) to get data from it.
+1. Within a controller: Work with the session information, and THEN make call(s) to the DB for user (Principal, now Entity) information.
+1. Utilize a 'th:if' to verify a 'user != null' as conditional to display/not the user information on the page.
+1. Forms only support POST actions be default? PUT method, required by Thymeleaf, add spring.mvc.hiddenmethod to include PUT.
+
+### Create Custom 404 Page
+
+1. Home controller, for practice, set a path that will throw a 404, for e.g. on the "/" route...see next step.
+1. Decorate a new nested class `@ResponseStatus(value=HttpStatus.NOT_FOUND)` and extend the appropriate Exception type e.1. ResourceNotFoundException extending RuntimeException (super).
+1. Disable Spring MVC Default Error page (application.config).
+1. Customize a page for the '/error' route that captures data sent by the Exception.
+
+### Thymeleaf Fragments
+
+Analogous to React Components!
+
+Set up a fragment html page with frags for use elsewhere: TH:FRAGMENT => Enables identifying the type of frag? e.g. `...th:fragment="nav-header"...`
+
+Utilize a fragment within a different page: 'th:replace="/fragment/fragpage :: element"'
+
+A Redirect is just a path (?).
+
+Thymeleaf Temporals: Enables formatting Time and Date objects.
+
+### Code Challenge Tree-Fizz-Buzz
+
+1. Whiteboard this
+1. K-ary trees: Input existing tree; Output NEW TREE
+1. K-ary NODES must be used
+1. Iterative or recursive? Your choice
+1. TRAVERSE THE TREE!
+1. How to build the tree looking like original but with the new values?
+
+### Project Prep #3
+
+1. Repo and tooling.
+1. Meet with Alex for pitching MVPs.
+1. Follow tasks to build the repo.
+
 ## TODOs
 
 -[ ] Keep hacking away at missing assignments *this week*
