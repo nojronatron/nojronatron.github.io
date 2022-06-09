@@ -349,7 +349,7 @@ On a path HTML where a Controller Mapping has a principal params:
 All of the above is *baked in to Spring Security* and is fairly basic.
 
 -[ ] Today's Lab (Class 17) will build on yesterday's (CodeFellowship).
--[ ] TODO: Get my app up and running, commit and update yesterday's Lab submission THEN move-on to the rest of the app.
+-[X] TODO: Get my app up and running, commit and update yesterday's Lab submission THEN move-on to the rest of the app.
 -[ ] TODO: Reference baeldung dates-in-thymeleaf page for help with managing Date objects in your Thymeleaf website including formatting.
 
 ### Profile Page Controllers and Setup
@@ -365,7 +365,7 @@ All of the above is *baked in to Spring Security* and is fairly basic.
 ### Create Custom 404 Page
 
 1. Home controller, for practice, set a path that will throw a 404, for e.g. on the "/" route...see next step.
-1. Decorate a new nested class `@ResponseStatus(value=HttpStatus.NOT_FOUND)` and extend the appropriate Exception type e.g. ResourceNotFoundException extending RuntimeException (super).
+1. Decorate a new nested class `@ResponseStatus(value=HttpStatus.NOT_FOUND)` and extend the appropriate Exception type e.1. ResourceNotFoundException extending RuntimeException (super).
 1. Disable Spring MVC Default Error page (application.config).
 1. Customize a page for the '/error' route that captures data sent by the Exception.
 
