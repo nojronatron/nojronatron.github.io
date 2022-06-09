@@ -27,6 +27,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
+-[ ] Read Class18 [Many to many and a reading about security](./code401-files/many-many-security.html)  
 -[ ] Read Class17 [Spring Boot and OAuth2](./code401-files/spring-oauth-tutorial.html)  
 -[X] Read Class16 [Spring Auth and Security](./code401-files/spring-auth-n-z.html)  
 -[X] Read Class15 [Trees](./code401-files/treeeeeees.html)  
