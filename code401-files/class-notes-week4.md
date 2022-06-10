@@ -396,6 +396,23 @@ Thymeleaf Temporals: Enables formatting Time and Date objects.
 1. Meet with Alex for pitching MVPs.
 1. Follow tasks to build the repo.
 
+## Friday Morning Notes
+
+Remember things we've learned about and used these last four weeks:
+
+- Classes, Interfaces, Abstraction, and Inheritance
+- Primatives and Classes
+- Datastructures, Trees, Stacks, and Queues
+- Back-end services, APIs, REST, CRUD, and Databases e.g. PostgresQL
+- Methods, Properties, Constructors
+- ArrayLists and other built-in Java classes
+
+### Midterm Guidance
+
+Alex will help tweak MVP.
+
+
+
 ## TODOs
 
 [ ] Keep hacking away at missing assignments *this week*
