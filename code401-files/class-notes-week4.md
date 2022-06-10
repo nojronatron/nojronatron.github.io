@@ -455,7 +455,17 @@ Threads:
 - Multi-threading: Users that have made a request to the website are managed individually be threads from a thread pool.
 - Threads: Do NOT talk to each other, and do not know about each other at all.
 - Principal: When instantiating this object, we are really saying "get me the currently authenticated user via their thread aka session". JPA, Hibernate, PostgresQL, and Spring enable managing this easily with *Principal*.
-- 
+- HTTPSecurity config item '.defaultSuccessUrl()' => redirects users after SUCCESSFUL login.
+
+Roles:
+
+- Set a ROLE within the Entity's Properties: "USER", "ADMIN", "EDITOR", etc
+- Apply Roles within Thymeleaf to turnary in/out components.
+
+Many-to-Many:
+
+
+
 ## TODOs
 
 [ ] Keep hacking away at missing assignments *this week*
