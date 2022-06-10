@@ -456,6 +456,7 @@ Threads:
 - Threads: Do NOT talk to each other, and do not know about each other at all.
 - Principal: When instantiating this object, we are really saying "get me the currently authenticated user via their thread aka session". JPA, Hibernate, PostgresQL, and Spring enable managing this easily with *Principal*.
 - HTTPSecurity config item '.defaultSuccessUrl()' => redirects users after SUCCESSFUL login.
+- Tests (with an if statement) if principal equals null => This means the current thread/session user is NOT AUTHENTICATED and you can either throw and Exception or handle the situation without allowing access to the RedirectView return.
 
 Roles:
 
@@ -464,7 +465,24 @@ Roles:
 
 Many-to-Many:
 
+- Enum: IS NOT AN ARRAY.
+- Cannot add an array to a table => A table IS an array, after all.
+- Use '@ManyToMany(mappedBy="table_name")` decorator on the Property that will have a many-to-many relationship.
+- Use '@ManyToMany @JoinTable(name=temp_join_table_name etc...' to assign the Property as a many-to-many relationship on the OTHER SIDE (see example code below).
+- Always set your getters and setters, especially with Join Tables.
+- Add a '@PutMapping("path/{id}")' to decorate the method in the Controller that will handle 'managing users'.
+- Addititional processing can happen after verifying principal is authenticated, for example: find the user per currently logged in user principal.username, then finding another user with the passed-in Id, getting the many-to-many object(s) that should be associated by the '@ManyToMany' attribute. THIS MIGHT BE WRONG.
+- The result will be a table on the SQL Server that represents records in the relation table.
 
+```java
+@ManyToMany 
+@JoinTable(
+  name=temp_join_table_name, 
+  joinColumns={@JoinColumn(name=table_to_join)}, 
+  InverseJoinColumns={@JoinColumn(name=other_table_to_join
+  )}) 
+Set<Type> property_name;
+```
 
 ## TODOs
 
