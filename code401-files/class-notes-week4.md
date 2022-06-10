@@ -411,8 +411,51 @@ Remember things we've learned about and used these last four weeks:
 
 Alex will help tweak MVP.
 
+### Interview Demos
 
+30-minute technical interviews will be happening in coming weeks.
 
+### K-ary Tree Review
+
+- Traversing a tree is an O(h) aka O(n) operation
+- Make sure Big-O analysis also takes into account helper functions
+- Iteration and Recursion is *always at least* O(n)
+- K-ary Node is type T
+- K-ary Tree is type T
+- Logic helper function, traversal helper function, and main executor function
+- Expects an Integer-type Node tree input, but will return a String-type Node tree
+- LEAF Nodes *have zero children*
+- K-ary Trees with a "temp = new Node..." clause Big O(1) N times so Big O(n)
+- Use a Method/Execution Stack depiction to track recursive method calls
+
+### Big-O
+
+- A conditional is one
+- Recursive functions are
+- Calling an O(1) function N times is still O(1)
+- Creating a new Node is likely an O(1)
+- Getters/Setters (in this k-ary case) are O(1)
+- ForEach iterator is O(n) *in every case*
+- If within a method, and finding Big-O of a method you are already inside of: O(n)
+- Big-O in Time: Does the statement take the same amount of time *every time*? Then it is O(1)
+- Big-O in Time: We don't care exactly how many lines of code, other than if the lines are being called over-and-over again (n) or being called again per a number of times (n^2)
+
+A decent recursion discussion on [Stack Overflow](https://stackoverflow.com/questions/13467674/determining-complexity-for-recursive-functions-big-o-notation)
+
+### MVC Lab and Many-To-Many
+
+Lab Details:
+
+- Route '/User/{id}': ANY unauthenticated user should have access to this.
+- Route '/profile': Only currently AUTHenticated user will have access to this and framework object Principal is involved.
+
+Threads:
+
+- Request Cloud: The abstract thing that represents all requests coming into a website, representing asynchronous actions and events.
+- Multi-threading: Users that have made a request to the website are managed individually be threads from a thread pool.
+- Threads: Do NOT talk to each other, and do not know about each other at all.
+- Principal: When instantiating this object, we are really saying "get me the currently authenticated user via their thread aka session". JPA, Hibernate, PostgresQL, and Spring enable managing this easily with *Principal*.
+- 
 ## TODOs
 
 [ ] Keep hacking away at missing assignments *this week*
