@@ -30,10 +30,10 @@ On the other side (the foreign Entity) the `@Entity` and `@Table...` and `@ManyT
 
 ### ManyToMany JoinTable and JoinColumn Annotations
 
--[ ] Use `@ManyToMany` on both Entities to create the relationship.
--[ ] The 'owning' side of the relationship is `@JoinTable` annotation Class.
--[ ] The Join code defines how the tables are related following `@JoinTable` annotation.
--[ ] Use the 'mappedBy' attributes indicates this Class is the foreign table.
+[ ] Use `@ManyToMany` on both Entities to create the relationship.
+[ ] The 'owning' side of the relationship is `@JoinTable` annotation Class.
+[ ] The Join code defines how the tables are related following `@JoinTable` annotation.
+[ ] Use the 'mappedBy' attributes indicates this Class is the foreign table.
 
 ### Testing a ManyToMany Relationship
 

@@ -348,9 +348,9 @@ On a path HTML where a Controller Mapping has a principal params:
 
 All of the above is *baked in to Spring Security* and is fairly basic.
 
--[ ] Today's Lab (Class 17) will build on yesterday's (CodeFellowship).
--[X] TODO: Get my app up and running, commit and update yesterday's Lab submission THEN move-on to the rest of the app.
--[ ] TODO: Reference baeldung dates-in-thymeleaf page for help with managing Date objects in your Thymeleaf website including formatting.
+[ ] Today's Lab (Class 17) will build on yesterday's (CodeFellowship).
+[X] TODO: Get my app up and running, commit and update yesterday's Lab submission THEN move-on to the rest of the app.
+[ ] TODO: Reference baeldung dates-in-thymeleaf page for help with managing Date objects in your Thymeleaf website including formatting.
 
 ### Profile Page Controllers and Setup
 
@@ -398,10 +398,10 @@ Thymeleaf Temporals: Enables formatting Time and Date objects.
 
 ## TODOs
 
--[ ] Keep hacking away at missing assignments *this week*
--[ ] Create a GH Gist with stuff like Application.properties template
--[ ] RETRO every day, and once per week: What can I regurgitate without looking up? What concepts do I have trouble with? Were there any blockers that I need help with?
--[ ] CodeChallenge 14: Do for bonus points! Pair-up to make it easier!
+[ ] Keep hacking away at missing assignments *this week*
+[ ] Create a GH Gist with stuff like Application.properties template
+[ ] RETRO every day, and once per week: What can I regurgitate without looking up? What concepts do I have trouble with? Were there any blockers that I need help with?
+[ ] CodeChallenge 14: Do for bonus points! Pair-up to make it easier!
 
 ## Footer
 
