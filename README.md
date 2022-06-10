@@ -14,102 +14,103 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 ## Code 401 Things I Want To Learn More About
 
--[ ] JUnit Tests: Why do they pass by default, without asserts or any code?  
--[ ] Wiring Repositories in Spring.  
--[ ] Spring MVC especially SQL and other DB APIs.  
--[X] Interfaces: See OOP, Inheritance, Interfaces (below).  
--[ ] Proper and efficient installation of a specified JDK in Linux.  
--[ ] When and why would I choose to develop in Java vs C# or Python e.g. for a pet project.  
--[x] Trees and Decision Trees have perplexed me for a while I'd like to get over that.  
--[ ] Configuring Linux and Windows to support "IDEA ." to open IntelliJ at current directory.  
--[X] How do I know when it is best to use Generics? Right from the beginning, especially if not sure of type that will be used.  
+[X] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.  
+[ ] Wiring Repositories in Spring.  
+[ ] Spring MVC especially SQL and other DB APIs.  
+[X] Interfaces: See OOP, Inheritance, Interfaces (below).  
+[ ] Proper and efficient installation of a specified JDK in Linux.  
+[ ] When and why would I choose to develop in Java vs C# or Python e.g. for a pet project.  
+[X] Trees and Decision Trees have perplexed me for a while I'd like to get over that.  
+[ ] Configuring Linux and Windows to support "IDEA ." to open IntelliJ at current directory.  
+[X] How do I know when it is best to use Generics? Right from the beginning, especially if not sure of type that will be used.  
 
 ## Advanced Software Development
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
--[ ] Read Class18 [Many to many and a reading about security](./code401-files/many-many-security.html)  
--[ ] Read Class17 [Spring Boot and OAuth2](./code401-files/spring-oauth-tutorial.html)  
--[X] Read Class16 [Spring Auth and Security](./code401-files/spring-auth-n-z.html)  
--[X] Read Class15 [Trees](./code401-files/treeeeeees.html)  
--[X] Read Class14 [Password Hashing and BCrypt](./code401-files/passwd-hashing-bcrypt.html)  
--[X] Read Class13 [One to Many in Spring and Integration Testing](./code401-files/one-to-many-and-integration-testing.html)  
--[X] Read Class12 [Accessing Data with JPA and Spring Data CRUD](./code401-files/jpa-data-access-and-crud.html)  
--[X] Read Class11 [Spring App, Spring MVC and ThymeLeaf](./code401-files/spring-app-mvc-thymeleaf.html)  
--[X] Read about [Stacks and Queues](./code401-files/stacks-and-queues.html)  
--[X] Read Class09 [HTTP Request Lifecycle and HTTP Request using Spring for Java](./code401-files/java-and-http.html)  
--[X] Read Class08 [DRY, Rule of Three, Dont Need It, and MVP](./code401-files/dry-three-mvp.html)  
--[X] Read Class06 [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html)  
--[X] Read about [Linked Lists](./code401-files/bigo-linkedlists.html)  
--[X] Read Class04 [OOP, Classes, Bin-Dec-Hex](./code401-files/oop-classes-bindechex.html)  
--[X] Read Class03 [Handling Exceptions, Java Scanner, and Objects vs Primatives](./code401-files/java-exceptions-scanner.html)  
--[X] Read Class02 [Java Packages and Loops](./code401-files/read401-02-java.html)  
--[X] Read Class01 [Java Basics Compiling and Java Doc Refs](./code401-files/read401-01-java.html)  
+[ ] Read Class19 [Purely Functional Programming - Wikipedia Article](./code401-files/pure-func-prog-wiki.html)  
+[ ] Read Class18 [Many to many and a reading about security](./code401-files/many-many-security-read.html)  
+[ ] Read Class17 [Spring Boot and OAuth2](./code401-files/spring-oauth-tutorial.html)  
+[X] Read Class16 [Spring Auth and Security](./code401-files/spring-auth-n-z.html)  
+[X] Read Class15 [Trees](./code401-files/treeeeeees.html)  
+[X] Read Class14 [Password Hashing and BCrypt](./code401-files/passwd-hashing-bcrypt.html)  
+[X] Read Class13 [One to Many in Spring and Integration Testing](./code401-files/one-to-many-and-integration-testing.html)  
+[X] Read Class12 [Accessing Data with JPA and Spring Data CRUD](./code401-files/jpa-data-access-and-crud.html)  
+[X] Read Class11 [Spring App, Spring MVC and ThymeLeaf](./code401-files/spring-app-mvc-thymeleaf.html)  
+[X] Read about [Stacks and Queues](./code401-files/stacks-and-queues.html)  
+[X] Read Class09 [HTTP Request Lifecycle and HTTP Request using Spring for Java](./code401-files/java-and-http.html)  
+[X] Read Class08 [DRY, Rule of Three, Dont Need It, and MVP](./code401-files/dry-three-mvp.html)  
+[X] Read Class06 [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html)  
+[X] Read about [Linked Lists](./code401-files/bigo-linkedlists.html)  
+[X] Read Class04 [OOP, Classes, Bin-Dec-Hex](./code401-files/oop-classes-bindechex.html)  
+[X] Read Class03 [Handling Exceptions, Java Scanner, and Objects vs Primatives](./code401-files/java-exceptions-scanner.html)  
+[X] Read Class02 [Java Packages and Loops](./code401-files/read401-02-java.html)  
+[X] Read Class01 [Java Basics Compiling and Java Doc Refs](./code401-files/read401-01-java.html)  
 
 ### ASD Class Reminders
 
--[ ] Make your projects *client ready* aka visually appealing to anyone *[CodeFellows Prework]*  
--[ ] A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)  
--[ ] Passion and [Perseverence](./code401-files/passion-perseverence.html)  
--[ ] Believe [you can](./code401-files/tedx-believe-u-can-improve.html)  
--[ ] Upgrade Skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)  
--[ ] Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/bash-stuff.html)  
--[ ] SQL Statement [Reference](./code401-files/sql-statements-ref.html)  
+[ ] Make your projects *client ready* aka visually appealing to anyone *[CodeFellows Prework]*  
+[ ] A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)  
+[ ] Passion and [Perseverence](./code401-files/passion-perseverence.html)  
+[ ] Believe [you can](./code401-files/tedx-believe-u-can-improve.html)  
+[ ] Upgrade Skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)  
+[ ] Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/bash-stuff.html)  
+[ ] SQL Statement [Reference](./code401-files/sql-statements-ref.html)  
 
 ### ASD Additional References and Notes
 
--[ ] Class Notes [Week Four](./code401-files/class-notes-week4.html)  
--[X] Class Notes [Week Three](./code401-files/class-notes-week3.html)  
--[X] Class Notes [Week Two](./code401-files/class-notes-week2.html)  
--[X] Class Notes [Week One](./code401-files/class-notes-week1.html)  
--[X] Partner Power Hour [Rover](./power-hour-notes/pph-rover.html)  
--[~] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
--[~] Study [Guide](./code401-files/java-reference.html)  
+[ ] Class Notes [Week Four](./code401-files/class-notes-week4.html)  
+[X] Class Notes [Week Three](./code401-files/class-notes-week3.html)  
+[X] Class Notes [Week Two](./code401-files/class-notes-week2.html)  
+[X] Class Notes [Week One](./code401-files/class-notes-week1.html)  
+[X] Partner Power Hour [Rover](./power-hour-notes/pph-rover.html)  
+[~] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
+[~] Study [Guide](./code401-files/java-reference.html)  
 
 ## Intermediate Software Development
 
 The following are reading and research notes taken during, and in preparation for Code301 Intermediate Software Development:
 
--[X] Read15 [Authentication](./code301-files/authentication.html)  
--[X] Read14 [Diversity in Tech](./code301-files/diversity-in-tech.html)  
--[X] Read13 More about [CRUD](./code301-files/crud-crud-notes.html)  
--[X] Read12 Crud Rest [Status Codes](./code301-files/crud-rest-statuscodes.html)  
--[X] Read11 [Mongo and Mongoose](./code301-files/mongo-and-mongoose.html)  
--[X] Read10 JS and [Memory Usage](./code301-files/js-mem-usage.html)  
--[X] Read09 [Node Modules and Functional Programming](./code301-files/nodemodules-funcproging.html)  
--[X] Read08 [API Design](./code301-files/api-design.html)  
--[X] Read07 [Queries and REST](./code301-files/queries-rest-api.html)  
--[X] Read06 About [NodeJS and Pair Programming](./code301-files/node-and-pairprog.html)  
--[X] Read05 Thinking in React and Higher Order Functions [readings](./code301-files/reactthink-higherorderfuncs.html)  
--[X] Read04 [React and Forms](./code301-files/react-and-forms.html)  
--[X] Read03 [Funcs As Props](./code301-files/funcs-as-props.html)  
--[X] Read02 [State and Props](./code301-files/read02.html)  
--[X] Read01 [Intro to React and Components](./code301-files/read01.html)  
--[X] Dive Into [React](./code301-files/dive-into-react.html)  
--[X] System Setup [Notes](./code301-files/setup-notes.html)  
--[X] ES6 [Arrow Functions](./code301-files/arrow-functions.html)  
--[X] ES6 [Classes](./code301-files/es6-classes.html)  
--[X] JS Conf Session: The Event Loop [Video Notes](./code301-files/event-loop-video.html)  
--[X] Components and React [Notes and Quiz](./code301-files/components-react.html)  
+[X] Read15 [Authentication](./code301-files/authentication.html)  
+[X] Read14 [Diversity in Tech](./code301-files/diversity-in-tech.html)  
+[X] Read13 More about [CRUD](./code301-files/crud-crud-notes.html)  
+[X] Read12 Crud Rest [Status Codes](./code301-files/crud-rest-statuscodes.html)  
+[X] Read11 [Mongo and Mongoose](./code301-files/mongo-and-mongoose.html)  
+[X] Read10 JS and [Memory Usage](./code301-files/js-mem-usage.html)  
+[X] Read09 [Node Modules and Functional Programming](./code301-files/nodemodules-funcproging.html)  
+[X] Read08 [API Design](./code301-files/api-design.html)  
+[X] Read07 [Queries and REST](./code301-files/queries-rest-api.html)  
+[X] Read06 About [NodeJS and Pair Programming](./code301-files/node-and-pairprog.html)  
+[X] Read05 Thinking in React and Higher Order Functions [readings](./code301-files/reactthink-higherorderfuncs.html)  
+[X] Read04 [React and Forms](./code301-files/react-and-forms.html)  
+[X] Read03 [Funcs As Props](./code301-files/funcs-as-props.html)  
+[X] Read02 [State and Props](./code301-files/read02.html)  
+[X] Read01 [Intro to React and Components](./code301-files/read01.html)  
+[X] Dive Into [React](./code301-files/dive-into-react.html)  
+[X] System Setup [Notes](./code301-files/setup-notes.html)  
+[X] ES6 [Arrow Functions](./code301-files/arrow-functions.html)  
+[X] ES6 [Classes](./code301-files/es6-classes.html)  
+[X] JS Conf Session: The Event Loop [Video Notes](./code301-files/event-loop-video.html)  
+[X] Components and React [Notes and Quiz](./code301-files/components-react.html)  
 
 ## Foundations of Software Development
 
 The following are reading and research notes taken during, and in preparation for Code201 Foundations of Software Development:
 
--[x] Class-01 [HTML Process, Design, and Layout; JS The Art of Programming](./code201-files/class-01.html)  
--[x] Class-02 [HTML Text and Intro to CSS; JS Decision Loops (part 1)](./code201-files/class-02.html)  
--[x] Class-03 [HTML Lists and Boxes; JS Basic Instructions and Decision Loops (part 2)](./code201-files/class-03.html)  
--[x] Class-04 [HTML Structure, HTML Layout, and JS Functions](./code201-files/class-04.html)  
--[x] Class-05 [Images, Color, and Text in HTML and CSS](./code201-files/class-05.html)  
--[x] Class-06 [JS Functions, Methods, Objects; The Document Object Model](./code201-files/class-06.html)  
--[x] Class-07 [HTML Chpt 6 Tables; JS Chpt 3 Function, Methods, and Objects](./code201-files/class-07.html)  
--[x] Class-08 [HTML Chpt 15: CSS Layouts (revisited)](./code201-files/class-08.html)  
--[x] Class-09 [HTML Chpt 7 Forms, Chpt 14, Lists Tables Forms, JS Chpt 6 Events](./code201-files/class-09.html)  
--[x] Class-10 [JS Chpt. 10 Error Handling and Debugging](./code201-files/class-10.html)  
--[x] Read-11 [HTML Chpt.16, 19, 9, and MDN Article on Video and Audio APIs](./code201-files/read-11.html)  
--[x] Read-12 [ChartJS and Canvas API](./code201-files/read-12.html)  
--[x] Read-13 [The Past Present and Future of Local Storage for Web Applications](./code201-files/read-13.html)  
--[x] Read-14 Multiple Articles, see links in [read-14](./code201-files/read-14.html)  
+[X] Class-01 [HTML Process, Design, and Layout; JS The Art of Programming](./code201-files/class-01.html)  
+[X] Class-02 [HTML Text and Intro to CSS; JS Decision Loops (part 1)](./code201-files/class-02.html)  
+[X] Class-03 [HTML Lists and Boxes; JS Basic Instructions and Decision Loops (part 2)](./code201-files/class-03.html)  
+[X] Class-04 [HTML Structure, HTML Layout, and JS Functions](./code201-files/class-04.html)  
+[X] Class-05 [Images, Color, and Text in HTML and CSS](./code201-files/class-05.html)  
+[X] Class-06 [JS Functions, Methods, Objects; The Document Object Model](./code201-files/class-06.html)  
+[X] Class-07 [HTML Chpt 6 Tables; JS Chpt 3 Function, Methods, and Objects](./code201-files/class-07.html)  
+[X] Class-08 [HTML Chpt 15: CSS Layouts (revisited)](./code201-files/class-08.html)  
+[X] Class-09 [HTML Chpt 7 Forms, Chpt 14, Lists Tables Forms, JS Chpt 6 Events](./code201-files/class-09.html)  
+[X] Class-10 [JS Chpt. 10 Error Handling and Debugging](./code201-files/class-10.html)  
+[X] Read-11 [HTML Chpt.16, 19, 9, and MDN Article on Video and Audio APIs](./code201-files/read-11.html)  
+[X] Read-12 [ChartJS and Canvas API](./code201-files/read-12.html)  
+[X] Read-13 [The Past Present and Future of Local Storage for Web Applications](./code201-files/read-13.html)  
+[X] Read-14 Multiple Articles, see links in [read-14](./code201-files/read-14.html)  
 
 ## Reference Links
 
@@ -132,6 +133,6 @@ Reg Braithwaite on [Github Task List in Markdown](https://github.blog/2014-04-28
 
 ## Remember TODOs  
 
--[ ] Bookmark additional resources  
--[ ] Present material as if to someone new to the industry  
--[ ] Cite sources with links when directly quoting  
+[ ] Bookmark additional resources  
+[ ] Present material as if to someone new to the industry  
+[ ] Cite sources with links when directly quoting  
