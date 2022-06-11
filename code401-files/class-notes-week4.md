@@ -396,6 +396,94 @@ Thymeleaf Temporals: Enables formatting Time and Date objects.
 1. Meet with Alex for pitching MVPs.
 1. Follow tasks to build the repo.
 
+## Friday Morning Notes
+
+Remember things we've learned about and used these last four weeks:
+
+- Classes, Interfaces, Abstraction, and Inheritance
+- Primatives and Classes
+- Datastructures, Trees, Stacks, and Queues
+- Back-end services, APIs, REST, CRUD, and Databases e.g. PostgresQL
+- Methods, Properties, Constructors
+- ArrayLists and other built-in Java classes
+
+### Midterm Guidance
+
+Alex will help tweak MVP.
+
+### Interview Demos
+
+30-minute technical interviews will be happening in coming weeks.
+
+### K-ary Tree Review
+
+- Traversing a tree is an O(h) aka O(n) operation
+- Make sure Big-O analysis also takes into account helper functions
+- Iteration and Recursion is *always at least* O(n)
+- K-ary Node is type T
+- K-ary Tree is type T
+- Logic helper function, traversal helper function, and main executor function
+- Expects an Integer-type Node tree input, but will return a String-type Node tree
+- LEAF Nodes *have zero children*
+- K-ary Trees with a "temp = new Node..." clause Big O(1) N times so Big O(n)
+- Use a Method/Execution Stack depiction to track recursive method calls
+
+### Big-O
+
+- A conditional is one
+- Recursive functions are
+- Calling an O(1) function N times is still O(1)
+- Creating a new Node is likely an O(1)
+- Getters/Setters (in this k-ary case) are O(1)
+- ForEach iterator is O(n) *in every case*
+- If within a method, and finding Big-O of a method you are already inside of: O(n)
+- Big-O in Time: Does the statement take the same amount of time *every time*? Then it is O(1)
+- Big-O in Time: We don't care exactly how many lines of code, other than if the lines are being called over-and-over again (n) or being called again per a number of times (n^2)
+
+A decent recursion discussion on [Stack Overflow](https://stackoverflow.com/questions/13467674/determining-complexity-for-recursive-functions-big-o-notation)
+
+### MVC Lab and Many-To-Many
+
+Lab Details:
+
+- Route '/User/{id}': ANY unauthenticated user should have access to this.
+- Route '/profile': Only currently AUTHenticated user will have access to this and framework object Principal is involved.
+
+Threads:
+
+- Request Cloud: The abstract thing that represents all requests coming into a website, representing asynchronous actions and events.
+- Multi-threading: Users that have made a request to the website are managed individually be threads from a thread pool.
+- Threads: Do NOT talk to each other, and do not know about each other at all.
+- Principal: When instantiating this object, we are really saying "get me the currently authenticated user via their thread aka session". JPA, Hibernate, PostgresQL, and Spring enable managing this easily with *Principal*.
+- HTTPSecurity config item '.defaultSuccessUrl()' => redirects users after SUCCESSFUL login.
+- Tests (with an if statement) if principal equals null => This means the current thread/session user is NOT AUTHENTICATED and you can either throw and Exception or handle the situation without allowing access to the RedirectView return.
+
+Roles:
+
+- Set a ROLE within the Entity's Properties: "USER", "ADMIN", "EDITOR", etc
+- Apply Roles within Thymeleaf to turnary in/out components.
+
+Many-to-Many:
+
+- Enum: IS NOT AN ARRAY.
+- Cannot add an array to a table => A table IS an array, after all.
+- Use '@ManyToMany(mappedBy="table_name")` decorator on the Property that will have a many-to-many relationship.
+- Use '@ManyToMany @JoinTable(name=temp_join_table_name etc...' to assign the Property as a many-to-many relationship on the OTHER SIDE (see example code below).
+- Always set your getters and setters, especially with Join Tables.
+- Add a '@PutMapping("path/{id}")' to decorate the method in the Controller that will handle 'managing users'.
+- Addititional processing can happen after verifying principal is authenticated, for example: find the user per currently logged in user principal.username, then finding another user with the passed-in Id, getting the many-to-many object(s) that should be associated by the '@ManyToMany' attribute. THIS MIGHT BE WRONG.
+- The result will be a table on the SQL Server that represents records in the relation table.
+
+```java
+@ManyToMany 
+@JoinTable(
+  name=temp_join_table_name, 
+  joinColumns={@JoinColumn(name=table_to_join)}, 
+  InverseJoinColumns={@JoinColumn(name=other_table_to_join
+  )}) 
+Set<Type> property_name;
+```
+
 ## TODOs
 
 [ ] Keep hacking away at missing assignments *this week*
