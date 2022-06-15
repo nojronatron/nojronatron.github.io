@@ -66,6 +66,7 @@ The following are reading and research notes taken during, and in preparation fo
 [X] Partner Power Hour [Rover](./power-hour-notes/pph-rover.html)  
 [~] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
 [~] Study [Guide](./code401-files/java-reference.html)  
+[ ] [Deploying Springboot to Heroku](./code401-files/heroku-deploy-spring.html)  
 
 ## Intermediate Software Development
 
