@@ -1,9 +1,5 @@
 # Lessons Learned Deploying Springboot to Heroku
 
-## References
-
-Heroku [Dev Center](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku)
-
 ## Content
 
 Set up apt with Heroku cli's latest deb:
@@ -86,6 +82,8 @@ Postgres DB is *automatically provisioned* for Java apps that have a dependency 
 
 ## Thursday 16-Jun
 
+[stackfellows-wip Heroku Activity](https://dashboard.heroku.com/apps/stackfellows-wip/activity)
+
 ### Stuff I Did That Seemed To Make Things Work
 
 1. Add `system.properties` file to project root and added `java.runtime.version=17` (solves "Invalid source release")
@@ -109,6 +107,33 @@ It is not clear to me whether/if any/all of these have made a difference:
 Once Heroku's postgres addon is included in the App config, the necessary VARs were added automatically by Heroku.
 
 The automatic postgres VARs include the username and password to the postgres installation, and its path!
+
+## References
+
+Spring Docs: [System Environment Property Source](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/env/SystemEnvironmentPropertySource.html)
+
+Heroku Dev Center: [Config Vars](https://devcenter.heroku.com/articles/config-vars)
+
+Tom Gregory dot Com: [Get Going With Gradle Course (1 hour)](https://learn.tomgregory.com/courses/get-going-with-gradle)
+
+Stack Overflow: [Error Connecting to PostgresQL with Spring](https://stackoverflow.com/questions/68850665/failed-connection-when-trying-for-heroku-postgresql-with-spring)
+
+Spring dot IO guides: [Gradle](https://spring.io/guides/gs/gradle/)
+
+Arose 13's [Heroku Spring Gradle Example](https://github.com/arose13/Heroku-Spring-Gradle_Example/blob/master/build.gradle)
+
+Heroku Dev Central: [Secure Java Web App for Production](https://devcenter.heroku.com/articles/preparing-a-java-web-app-for-production-on-heroku)
+
+Heroku Dev Center: [Deploying  Spring Boot Apps to Heroku](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku)
+
+Heroku Dev Center: [Proc File](https://devcenter.heroku.com/articles/procfile)
+
+Heroku Dev Center: [Deploying Gradle Apps to Heroku](https://devcenter.heroku.com/articles/deploying-gradle-apps-on-heroku)
+
+Heroku Dev Center: [Default Web Process Type for Java](https://devcenter.heroku.com/articles/java-support#default-web-process-type)
+
+[Heroku Postgres](https://elements.heroku.com/addons/heroku-postgresql)
+
 
 ## Footer
 
