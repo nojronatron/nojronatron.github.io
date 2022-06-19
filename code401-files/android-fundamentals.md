@@ -16,7 +16,7 @@ Projects hosted on Google Play deploy optimized APK's that contain resources and
 
 The Android OS:
 
-- Is a Linex-based OS
+- Is a Linux-based OS
 - Treats Apps as other Users
 - Sandboxes all installed Apps, running as virtual machines
 - Assigns unique ID's to each user and App
@@ -63,9 +63,7 @@ An activity can be implemented as a subclass of `Activity` class.
 
 ### Services
 
-A general-purpose entry point.
-
-Keeps App running in backround.
+A general-purpose entry point, keeps App running in backround.
 
 Performs long-running operations and remote process work.
 
@@ -73,8 +71,72 @@ No UI, but *can* manage media and streams e.g. music, network, etc.
 
 An Activity can start and bind to a Service in order to interact with it.
 
-Started Service: Stays running until work is completed. A UI-interactive App will be prioritized to keep running; Background Services are generally non-interactive, so could be killed if RAM is needed.
+#### Started Services
 
+Stay running until work is completed.
+
+A UI-interactive App will be prioritized to keep running; Background Services are generally non-interactive, so could be killed if RAM is needed.
+
+#### Bound Services
+
+Another App or Service has requested a service to start-up, so the spun-up service is Bound to the parent that started it.
+
+Bound Services are maintained at the same priority level (interactive or background) as the App or Service it is bound to.
+
+Good side effects include ability to set notification listeners, live wallpapers, and much more.
+
+See the [Services Developers Guide](https://developer.android.com/guide/components/services) for more.
+
+### Broadcast Receivers
+
+Enables system to deliver events to App outside of user flow.
+
+System-wide broadcast announcements are received by all Apps even if not currently running.
+
+Apps can initiate broadcasts.
+
+Status Bar notify area has Broadcast Receivers.
+
+The BroadcastReceiver class delivers broadcasts as Intent objects.
+
+### Content Providers
+
+Manages shared app data sets, stored in many persistent-storage types.
+
+A fine-grained security model allows controlling what Apps have access to the persistent data.
+
+Temporary authorization grants (URI Grants) are made depending on these security permissions.
+
+The `ContentProvider` class must implement APIs enabling other Apps to perform transactions.
+
+See the [Conent Providers Developers Guide](https://developer.android.com/guide/topics/providers/content-providers)
+
+Any App can start any other App Component. The example given was your app leveraging an existing Camera App, so your App doesn't have to implement the Camera function, just ask the existing Camera App to return a photo when done.
+
+Android Apps do *not* have a single entry point e.g. `Main()` function.
+
+### Activating Components
+
+An `Intent` is used to activate Activities, Services, and Broadcast Receivers.
+
+An Intent is asynchronous and binds components to each other at runtime.
+
+Intent objects request an action from other compeonts, regardless of who owns the component.
+
+Activities can return results as an Intent object, which could contain a URI pointing to a containing object/item.
+
+ContentProvider is not activiated by Intent objects, rather when targeted by ContentResolver.
+
+ContentResolver is the go-between for ContentProvider, adding abstraction.
+
+Activating types of Components:
+
+1. Pass an `Intent` to `startActivity()` or to `startActivityForResult()`
+1. Use `JobScheduler` (API 21+) or Pass an `Intent` to `startService()` and then to `bindService()`
+1. Initiate a Broadcast with `sendBroadcast(intent)` or `sendOrderedBroadcast(intent)` or `sendStickyBroadcast(intent)`
+1. Query a content provider with a `query()` "on a" `ContentResolver`
+
+Using [Intents and Intent Filters](https://developer.android.com/guide/components/intents-filters)
 
 ## The Manifest File
 
@@ -87,7 +149,7 @@ Started Service: Stays running until work is completed. A UI-interactive App wil
 
 ## References
 
-Androide developers guide to [Android Fundamentals](https://developer.android.com/guide/components/fundamentals)
+Android developers guide to [Android Fundamentals](https://developer.android.com/guide/components/fundamentals)
 
 ## Footer
 
