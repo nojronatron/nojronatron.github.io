@@ -142,8 +142,8 @@ Using [Intents and Intent Filters](https://developer.android.com/guide/component
 
 Must be at the root of the app project directory: `AndroidManifest.xml`
 
-- Declares all components within an App
-- ID's user permissions required by the APp
+- Declares all components, including Activities, within an App
+- ID's user permissions required by the App
 - Minimum API Level rqeuired by App
 - Hardware and Software features used/required by App (Camera, BTLE, etc)
 - List of other APIs the App needs to be linked against (meaning what?)
@@ -156,6 +156,43 @@ All App components must be declared using Elements (some examples):
 - `<provider>` For content providers
 
 ### Component Capabilities
+
+*Note*: When starting a service with an Intent, make sure it is an eplicite Intent. Starting with an implicit Intent is a security vulnerability. With API 21+, calling bindService() on an implicit intent throws an Exception.
+
+Intent Filters: Include an `<intent-filter>` to set Activity Capabilities, which allows the App to respond to intents from other APps.
+
+Declare intent filters as a child when declaring the Components.
+
+Enables the App to start an Activity that creates a smooth user interaction like in the e.g. opening a new Email from the Email app.
+
+### Declaring App Requirements
+
+A profile for types of devices supported by the App.
+
+Declared alongsite the software requirements in manifest file.
+
+System does not use the info, but external services read them for filtering purposes.
+
+Declares API Level necessary to support the App.
+
+Build.Gradle contents:
+
+```sh
+android {
+  ...
+  defaultConfig {
+    ...
+    minSdkVersion 26
+    targetSdkVersion 29
+  }
+}
+```
+
+When Gradle builds, entries in the build.gradle file override (and over write) these properties if they are in the Manifest File.
+
+Attribute `required` can be set to true, or false if the dependency is optional.
+
+Check out the [Device Compatibility](https://developer.android.com/guide/practices/compatibility) Document.
 
 ## App Resources
 
