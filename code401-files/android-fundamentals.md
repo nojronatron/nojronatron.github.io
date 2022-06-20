@@ -50,7 +50,7 @@ Entry point for interacting with a user e.g. screen with user interface.
 
 Together, multiple activities create a User Experience.
 
-Activities can interact if given permission to do so.
+Activities can interact, if given permission to do so.
 
 Activities:
 
@@ -132,7 +132,7 @@ ContentResolver is the go-between for ContentProvider, adding abstraction.
 Activating types of Components:
 
 1. Pass an `Intent` to `startActivity()` or to `startActivityForResult()`
-1. Use `JobScheduler` (API 21+) or Pass an `Intent` to `startService()` and then to `bindService()`
+1. Use `JobScheduler` (API 21+) or pass an `Intent` to `startService()` and then to `bindService()`
 1. Initiate a Broadcast with `sendBroadcast(intent)` or `sendOrderedBroadcast(intent)` or `sendStickyBroadcast(intent)`
 1. Query a content provider with a `query()` "on a" `ContentResolver`
 
@@ -140,6 +140,22 @@ Using [Intents and Intent Filters](https://developer.android.com/guide/component
 
 ## The Manifest File
 
+Must be at the root of the app project directory: `AndroidManifest.xml`
+
+- Declares all components within an App
+- ID's user permissions required by the APp
+- Minimum API Level rqeuired by App
+- Hardware and Software features used/required by App (Camera, BTLE, etc)
+- List of other APIs the App needs to be linked against (meaning what?)
+
+All App components must be declared using Elements (some examples):
+
+- `<application android:icon...>` Icon ID'ing the app
+- `<activity android:name_fqdn android:label...>` Class name of Activity subclass and user-visible label for it e.g. "Camera"
+- `<receiver>` For Broadcast Receivers
+- `<provider>` For content providers
+
+### Component Capabilities
 
 ## App Resources
 
