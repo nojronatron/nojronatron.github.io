@@ -223,7 +223,9 @@ Product-Quality App [Guide to App Architecture](https://developer.android.com/to
 ## Things I Want To Know More About
 
 [ ] How to accept user input and gestures.
+
 [ ] How to interact with externally connected devices.
+
 [ ] How to leverage Bluetooth.
 
 ## References
