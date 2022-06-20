@@ -133,7 +133,7 @@ Back Stack: Arrangement of activities, LIFO storage.
 
 ### Lifecycle of Task in Back Stack
 
-Activities are store in the Back Stack in LIFO order:
+Activities are stored in the Back Stack in LIFO order:
 
 1. Device HomeScreen.
 1. App Alpha is launched (now foreground).
@@ -162,6 +162,82 @@ When the user returns to the 'warm state' App, the Activity Stack with all Activ
 *Note*: Retaining an Activities in a Background State for long periods, or with many other Apps running, increases the likelihood it will be destroyed to recover RAM.
 
 Multi-Window Environments are allowed and the system manages Tasks (or groups of Tasks) on a per-window bases.
+
+Changing Activities from LIFO to a custom reactivation or start-of-activity is possible:
+
+- The `<activity>` manifest element with flags in the Intent to pass`startActivity()`
+
+Activity element attributes:
+
+- 'taskAffinity'
+- 'launchMode'
+- 'allowTaskReparenting'
+- 'clearTaskOnLaunch'
+- 'alwaysRetainTaskState'
+- 'finishOnTaskLaunch'
+
+Principal Intent Flags:
+
+- FLAG_ACTIVITY_NEW_TASK: Start Activity in new Task.
+- FLAG_ACTIVITY_CLEAR_TOP: Don't create a new Activity instance if current is at top of the Back Stack.
+- FLAG_ACTIVITY_SINGLE_TOP: Destroy all other Activities on top, bringing this one to the top. Often used with FLAG_ACTIVITY_NEW_TASK to locate Activity and put in place where it can be leveraged/used.
+
+*Note*: For the most part, Activity back-stack LIFO behavior should *not* be changed.
+
+### Launch Modes
+
+Use the Manifest file: Specify how Activity should associate with Tasks when it starts.
+
+Use Intent Flags: Include in Intent that declares how/whether new Activity should associate with current task when calling 'startActivity()'.
+
+A parent Activity that starts a child Activity has precedence over *how* the child Activity is associated with Tasks.
+
+### Manifest File Launch Mode Keywords
+
+Specify how Activity should associate with a Task via `launchMode` attrib in `<activity>` elements.
+
+Launch Modes definable in `launchMode` attribute:
+
+- standard: Default.
+- singleTop: If 'TOP' then Intent routed through `onNewIntent()`, else new Activity is put on top of Back Stack.
+- singleTask: (seems like it forces unique Activity affinities and could destroy existing Activities high in the Back Stack).
+- singleInstance: Same as singleTask BUT no Activities are launched into the Task. Any Activities this one opens are done in a spearate task.
+- singleInstancePerTask: Activity must be root Activity of the Task, so can be the only one. Multiple instances can be launched using various Flags.
+
+### Define Launch Modes Using Intent Flags
+
+Doing this modifies default association on an Activity to its Task.
+
+See the section [Background and Foreground Tasks](#background-and-foreground-tasks) above for the Intent Flags to use.
+
+### Handle Affinities
+
+An *affinity* is synonymous with preference or owned-by.
+
+Activities started by same App have affinity to each other.
+
+Affinity can be changed for an Activity in element `<activity>` by using `taskAffinity(String)` attribute.
+
+Affinities are set and altered by either of the following:
+
+- FLAG_ACTIVITY_NEW_TASK
+- Set attribute `allowTaskReparenting` to true
+
+Use `taskAffinity(String)` to be sure a multi-App APK assigns the affinity in a logical way for your package.
+
+### Clear the Back Stack
+
+This is an automated process and all Tasks can be cleared except the Root Activity (assumes User abandonment).
+
+Set attributes to alter the default behavior:
+
+- `alwaysRetainTaskState`: True in root Activity to block default behavior.
+- `clearTaskOnLaunch`: True clears down to the Root Activity when Task is NAV'd away then user returns to it, forcing initial state upon user return.
+- `finishOnTaskLaunch`: Focused on single Activity (not entire Task), and causes Activity to finish (except Root Activity) when set to true. User NAV'd away then return, the Task is no longer present => disallows user to return to the launched Task.
+
+### Start a Task
+
+Use Intent Filter `android.intent.action.MAIN` to specify an entry point for a task, and include `android.intent.category.LAUNCHER` as the Category specification.
 
 ## Footer
 
