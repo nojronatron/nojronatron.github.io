@@ -220,6 +220,12 @@ Product-Quality App [Guide to App Architecture](https://developer.android.com/to
 
 [Develop Apps with Kotlin](https://www.udacity.com/course/ud9012)
 
+## Things I Want To Know More About
+
+[ ] How to accept user input and gestures.
+[ ] How to interact with externally connected devices.
+[ ] How to leverage Bluetooth.
+
 ## References
 
 Android developers guide to [Android Fundamentals](https://developer.android.com/guide/components/fundamentals)
