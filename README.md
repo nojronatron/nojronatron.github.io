@@ -28,6 +28,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
+[ ] Read Class27 [Android Key Value Data, Espresso, and Tasks](./code401-files/android-kvd-espresso-tasks.html)  
 [ ] Read Class26 [Android Component Fundamentals](./code401-files/android-fundamentals.html)  
 
 -=[Midterm Break]=-
