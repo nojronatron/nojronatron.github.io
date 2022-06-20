@@ -218,10 +218,13 @@ Product-Quality App [Guide to App Architecture](https://developer.android.com/to
 
 ## Additional Resources
 
+[Develop Apps with Kotlin](https://www.udacity.com/course/ud9012)
 
 ## References
 
 Android developers guide to [Android Fundamentals](https://developer.android.com/guide/components/fundamentals)
+
+*Note*: Additional Resources are witin the above referenced document.
 
 ## Footer
 
