@@ -196,6 +196,25 @@ Check out the [Device Compatibility](https://developer.android.com/guide/practic
 
 ## App Resources
 
+Code, images, audio files, UI components, and more are part of App Resources.
+
+Enables updating at the component level instead of the entire App.
+
+SDK Build Tools define unique IDs to ref Resources from App Code, etc, defined in XML.
+
+Resource IDs are assigned names.
+
+Alternate Resources can be defined, to support multiple device configurations.
+
+File system location: `res/*` e.g. `res/values-fr/` for French String Values.
+
+User's language settings are set this way.
+
+There are qualifiers that are strings that enable capabilities like auto-rotation UI layout changes.
+
+Device Configuration and [Providing Resources](https://developer.android.com/guide/topics/resources/providing-resources)
+
+Product-Quality App [Guide to App Architecture](https://developer.android.com/topic/libraries/architecture/guide)
 
 ## Additional Resources
 
