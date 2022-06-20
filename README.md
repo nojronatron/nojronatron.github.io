@@ -64,6 +64,7 @@ The following are reading and research notes taken during, and in preparation fo
 
 ### ASD Additional References and Notes
 
+[ ] Class Notes [Week Six](./code401-files/class-notes-week6.html)  
 [X] Class Notes [Week Four](./code401-files/class-notes-week4.html)  
 [X] Class Notes [Week Three](./code401-files/class-notes-week3.html)  
 [X] Class Notes [Week Two](./code401-files/class-notes-week2.html)  
@@ -82,7 +83,7 @@ The following are reading and research notes taken during, and in preparation fo
 [X] Read13 More about [CRUD](./code301-files/crud-crud-notes.html)  
 [X] Read12 Crud Rest [Status Codes](./code301-files/crud-rest-statuscodes.html)  
 [X] Read11 [Mongo and Mongoose](./code301-files/mongo-and-mongoose.html)  
-[X] Read10 JS and [Memory Usage](./code301-files/js-mem-usage.html)  
+[X] Read10 [JS and Memory Usage](./code301-files/js-mem-usage.html)  
 [X] Read09 [Node Modules and Functional Programming](./code301-files/nodemodules-funcproging.html)  
 [X] Read08 [API Design](./code301-files/api-design.html)  
 [X] Read07 [Queries and REST](./code301-files/queries-rest-api.html)  
@@ -116,7 +117,7 @@ The following are reading and research notes taken during, and in preparation fo
 [X] Read-11 [HTML Chpt.16, 19, 9, and MDN Article on Video and Audio APIs](./code201-files/read-11.html)  
 [X] Read-12 [ChartJS and Canvas API](./code201-files/read-12.html)  
 [X] Read-13 [The Past Present and Future of Local Storage for Web Applications](./code201-files/read-13.html)  
-[X] Read-14 Multiple Articles, see links in [read-14](./code201-files/read-14.html)  
+[X] Read-14 [Google Learns About Teams, and CSS Transforms, Transitions, and Animations](./code201-files/read-14.html)  
 
 ## Reference Links
 
@@ -125,7 +126,7 @@ Career Launch Strategy [Notes](./code201-files/CareerLaunchStrategy.html)
 Power Hour Sessions [Notes](./power-hour-notes/readme.html)  
 Linux and Terminal/Bash Reading [Notes](./linux-terminal/readme.html)  
 Image Placeholder Generator: [place-hold.it](https://place-hold.it)  
-Build and Test Code befor edeployment in [CodePen](https://codepen.io/)  
+Build and Test Code before deployment in [CodePen](https://codepen.io/)  
 Find, Support, Hire Creatives: [Dribbble](https://dribbble.com/)  
 Design Inspiration: [Designspiration](https://www.designspiration.com/)  
 Color Palette Designer: [Paletton.com](https://paletton.com/)  
@@ -136,6 +137,13 @@ Do daily challenges or steps in FE/BE/Java paths at [Free Code Camp](https://www
 Consider a subscription to CodeAcademy to support [Continuous Learning](https://www.codecademy.com/)  
 SQL Bolt [Lessons In SQL](https://www.sqlbolt.com/)  
 Reg Braithwaite on [Github Task List in Markdown](https://github.blog/2014-04-28-task-lists-in-all-markdown-documents/)  
+Online JS Book [Eloquent Javascript by Marjin Haverbeke](https://eloquentjavascript.net/)  
+Science Of People article [15 Science-based Public Speaking Tips...](https://www.scienceofpeople.com/public-speaking-tips/)  
+Whiteboarding with [Miro](https://www.miro.com)  
+Software Engineering Practice and Help at [Geeks for Geeks](https://www.geeksforgeeks.org/)  
+JS2021 Survey by Sacha Greif and others [State of ... surveys including JS Frameworks and CSS](https://2021.stateofjs.com/)  
+B is for [Bootstrap](https://getbootstrap.com/docs/3.4/)  
+[React Bootstrap](https://react-bootstrap.github.io/)  
 
 ## Remember TODOs  
 
