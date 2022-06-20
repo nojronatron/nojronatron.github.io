@@ -33,6 +33,18 @@ Apps can be configured to share the same VM, but they must also have same ID and
 
 Apps that need/want access to the compass/location, bluetooth etc, must be provided permission to access those system services.
 
+## Configure Developer Options
+
+For running your code on your own phone (prior to publishing).
+
+Physical Debugging can be accomplished via USB or WiFi.
+
+Enable Developer Options on the Android device by opening Settings > System > About Phone > Build Number, and tap it 7 times.
+
+Enable USB Debugging in Settings > Developer Options > USB Debugging (on/off).
+
+Developer Options Info from [Android Developer](https://developer.android.com/studio/debug/dev-options_)
+
 ## App Components
 
 Four different app components:
@@ -144,7 +156,7 @@ Must be at the root of the app project directory: `AndroidManifest.xml`
 
 - Declares all components, including Activities, within an App
 - ID's user permissions required by the App
-- Minimum API Level rqeuired by App
+- Minimum and Target API Level required by App
 - Hardware and Software features used/required by App (Camera, BTLE, etc)
 - List of other APIs the App needs to be linked against (meaning what?)
 
@@ -154,6 +166,10 @@ All App components must be declared using Elements (some examples):
 - `<activity android:name_fqdn android:label...>` Class name of Activity subclass and user-visible label for it e.g. "Camera"
 - `<receiver>` For Broadcast Receivers
 - `<provider>` For content providers
+
+*Note*: There is a difference between minimum SDK and target SDK. Build.Gradle has these settings. More information in [About Targeting SDKs and APIs](https://developer.android.com/google/play/requirements/target-sdk)
+
+*Also Note*: Android level and API level are related e.g. Android 11 (API 30) and Android 12 (API 31), as seen in About Targeting SDKs and APIs.
 
 ### Component Capabilities
 

@@ -4,13 +4,15 @@ Notes taken while attending Power Hour sessions - videos and/or in-person events
 
 ## Index
 
-S. Russert - [Dream to Job](./srussert-dream-job-disney.html)
+S. Russert - [From Dream to Job](./srussert-dream-job-disney.html)
 
 The 7 C's of [Cyber Security](power-hour-notes/pph-sevenc-security.html)
 
-Refresher (or clarification) on [Loops](loops-refresher.html)  
+Refresher (or clarification) on [Loops](loops-refresher.html)
 
-[Data Structures and Algorithms](data-structures-algos.html)  
+Data Structures and Algorithms[Talk](./data-structures-algos.html)
+
+PPH [Rover.com](./pph-rover.html)
 
 ## Important  
 
