@@ -28,9 +28,13 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
-[ ] Read Class19 [Purely Functional Programming - Wikipedia Article](./code401-files/pure-func-prog-wiki.html)  
-[ ] Read Class18 [Many to many and a reading about security](./code401-files/many-many-security-read.html)  
-[ ] Read Class17 [Spring Boot and OAuth2](./code401-files/spring-oauth-tutorial.html)  
+[ ] Read Class26 [Android Component Fundamentals](./code401-files/android-fundamentals.html)  
+
+-=[Midterm Break]=-
+
+[X] Read Class19 [Purely Functional Programming - Wikipedia Article](./code401-files/pure-func-prog-wiki.html)  
+[X] Read Class18 [Many to many and a reading about security](./code401-files/many-many-security-read.html)  
+[X] Read Class17 [Spring Boot and OAuth2](./code401-files/spring-oauth-tutorial.html)  
 [X] Read Class16 [Spring Auth and Security](./code401-files/spring-auth-n-z.html)  
 [X] Read Class15 [Trees](./code401-files/treeeeeees.html)  
 [X] Read Class14 [Password Hashing and BCrypt](./code401-files/passwd-hashing-bcrypt.html)  
@@ -59,14 +63,14 @@ The following are reading and research notes taken during, and in preparation fo
 
 ### ASD Additional References and Notes
 
-[ ] Class Notes [Week Four](./code401-files/class-notes-week4.html)  
+[X] Class Notes [Week Four](./code401-files/class-notes-week4.html)  
 [X] Class Notes [Week Three](./code401-files/class-notes-week3.html)  
 [X] Class Notes [Week Two](./code401-files/class-notes-week2.html)  
 [X] Class Notes [Week One](./code401-files/class-notes-week1.html)  
 [X] Partner Power Hour [Rover](./power-hour-notes/pph-rover.html)  
 [~] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
-[~] Study [Guide](./code401-files/java-reference.html)  
-[ ] [Deploying Springboot to Heroku](./code401-files/heroku-deploy-spring.html)  
+[~] Java Study [Guide](./code401-files/java-reference.html)  
+[~] [Deploying Springboot to Heroku](./code401-files/heroku-deploy-spring.html)  
 
 ## Intermediate Software Development
 
