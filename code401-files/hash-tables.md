@@ -143,6 +143,112 @@ Ways to handle Collisions:
 
 ## HackerEarth Hash Tables Notes
 
+Uniquely ID's an object from a group of objects.
+
+- Students assigned a unique ID, used to retrieve data about them.
+- Books assigned a unique number, used to find location of book in the library, if the book is checked out, etc.
+
+Use a hashing algorithm to define and utilize keys that are large or complex.
+
+Ideal Hash Tables will store data within their structure evenly/smoothly.
+
+Recommended 2-step Hashing:
+
+1. Convert element into an int with a hash function.
+1. Store the element int othe hash table for quick retreival using the result of int modulo size_of_array.
+
+Suggested hashing algorithm:
+
+```sh
+hash = hashfunc(key)
+index = hash % array_size
+```
+
+### Hash Functions Should Be
+
+1. Easy to compute: Must not become an algorithm itself.
+1. Uniformly distribute data into a structure: Should not result in clustering.
+1. Fewest Possible Collisions: Avoid collisions to avoid increasing bucket sizes thereby reducing speed of the hash table processing.
+
+### Hash Function Should Do's
+
+Use Prime Numbers in the calculation, like '599', to reduce the probability of collisions.
+
+Use key * prime modulu size_of_array to further segregate similar data.
+
+The larger the backing storage structure, the better the modulus will do at returning an empty index.
+
+### Hash Table
+
+Stores KVPs.
+
+Leverages a Hash Function to find values based on keys, and find locations to store KVPs.
+
+The *average* time required to search for an element in a reasonably well designed hash table is O(1).
+
+### Collision Resolution Techniques
+
+#### Separate Chaining / Open Chaining
+
+Commonly used.
+
+Uses Linked Lists.
+
+Each bucket *is* a Linked List if it contains data at all.
+
+KVP's with same hash-function output values (hash codes) get stored, in-order, within the Linked List bucket.
+
+Worst-case scenario is when all entries are inserted into the same linked list.
+
+#### Linear Probing / Open Addressing / Closed Hashing
+
+All entry records are stored in the array itself.
+
+When a collision occurs, a *Probe Sequence* is followed until the an empty index is located.
+
+Probe Sequence:
+
+- Followed while traversing through entries in collision avoidance routine.
+- Alters intervals between successive entry slots in the probes.
+- An empty index indicates an unused slot that can then be used.
+
+Linear Probing: Use a fixed count to traverse beyond any collided slot.
+
+Linear Probing Algorithm example:
+
+```sh
+index = index % hash_table_size     # 1st try collides
+index = (index + 1) % hash_table_size # might also collide so
+index = (index + 1) % hash_table_size # ...etc
+```
+
+*Note*: This technique could also force your Search and Get methods to run additional code in order to find the stored value.
+
+#### Quadratic Probing
+
+Similar to Linear Probing but interval is increased dramatically between collision detected slots.
+
+```sh
+index = index % hash_table_size             # collision
+index = (index + pow(1, 2) % hash_table_size) # might also collide
+index = (index + pow(2, 2) % hash_table_size) # etc
+```
+
+When using Quadratic Probing you must be certain the underlying array size is large enough that the hashing algorithm will likely find an open spot.
+
+*Note*: This technique could also force your Search and Get methods to run additional code in order to find the stored value.
+
+### Double Hashing
+
+Similar to Linear Probing but the interval between successive probes is computing using a second hash function.
+
+Example probing sequence pseducode:
+
+```sh
+index = ((index + 1) * indexH) % hash_table_size # might collide
+index = ((index + 2) * indexH) % hash_table_size # etc
+```
+
 ## Anything From Wikipedia That Seems Useful
 
 ## Footer
