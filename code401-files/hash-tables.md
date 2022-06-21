@@ -222,7 +222,7 @@ index = (index + 1) % hash_table_size # might also collide so
 index = (index + 1) % hash_table_size # ...etc
 ```
 
-*Note*: This technique could also force your Search and Get methods to run additional code in order to find the stored value.
+*Jon Note*: This technique could also force your Search and Get methods to run additional code in order to find the stored value.
 
 #### Quadratic Probing
 
@@ -236,7 +236,7 @@ index = (index + pow(2, 2) % hash_table_size) # etc
 
 When using Quadratic Probing you must be certain the underlying array size is large enough that the hashing algorithm will likely find an open spot.
 
-*Note*: This technique could also force your Search and Get methods to run additional code in order to find the stored value.
+*Jon Note*: This technique could also force your Search and Get methods to run additional code in order to find the stored value.
 
 ### Double Hashing
 
@@ -249,7 +249,24 @@ index = ((index + 1) * indexH) % hash_table_size # might collide
 index = ((index + 2) * indexH) % hash_table_size # etc
 ```
 
+*Jon Note*: This technique could also force your Search and Get methods to run additional code in order to find the stored value.
+
+### Applications for Hash Tables
+
+- Implement associative arrays, where indices are arbitrary strings or complicated objects.
+- Database indexing.
+- Caching data in front of a DB or other service where data I/O is slower than in memory.
+- Representing objects e.g. languages like Perl, Pythin, JS, and Ruby, etc.
+- Sets: Storing *only* unique values into table(s).
+- Transposition Table: Complex hash table stores info about data table sections that have been searched *[Wikipedia]*.
+
 ## Anything From Wikipedia That Seems Useful
+
+There are multiple re-hashing techniques that can be utilized to resize an existing hash table.
+
+Some re-hashing methods perform the re-hasing session against the entire table, others do so proportionally and during usual operation.
+
+One method that could be implemented is to have an old-new-hashcode algorithm where a new hashing algorithm is implemented and the add and search functions that call data after table is incrementally increased use the newer algorithm, but the data blocks not yet touched do not.
 
 ## Footer
 
