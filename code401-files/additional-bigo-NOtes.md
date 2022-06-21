@@ -52,7 +52,17 @@ Constant Time & Linear Space => Ask the question "Will stack space be included w
 
 Do not try to memorize the shape of code, you need to *know* what is actually going on.
 
-If `log(n)`? Binary search!
+If `log(n)`? Algorithm is a Binary search!
+
+Always remove leading constants.
+
+Remove any 'n' variables that scale less quickly than ones that have already been analyzed e.g. `O(n^2 + n)` is equivalent to `O(n^2)`.
+
+### Comment
+
+I found it interesting that Space can always be purchased but Time cannot, so Time is where most focus is placed in algorithm analysis.
+
+This is probably true most of the time and there are definitely scenarios where Space is non-negotiable, and non-expandable, so both need to be considered and balanced.
 
 ## Kyle Talks About BigO
 
@@ -68,7 +78,17 @@ What is the *core portion* of your algorithm?
 
 How many times does the core of your algorithm execute, based on how many inputs there are?
 
+#### Compare Input Size to Algorithm Run Characteristics
 
+If the input size is 200, and the algorithm runs the core portion 200 times, the execution scales 1:1 with the input, the analysis is O(n).
+
+Multi-variable inputs should be added together so O(n + m).
+
+If for each input a segment of code is executed multiple times (e.g. nested loop) then analysis is O(n * m), exponential growth => O(n^2).
+
+Space: Input same length as output? Space complexity is O(1).
+
+Space: Adding storage and/or outputs? O(n^2) due to output being many time larger than the input, and will grow much faster as input grows.
 
 ## Footer
 

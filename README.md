@@ -73,6 +73,7 @@ The following are reading and research notes taken during, and in preparation fo
 [~] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
 [~] Java Study [Guide](./code401-files/java-reference.html)  
 [~] [Deploying Springboot to Heroku](./code401-files/heroku-deploy-spring.html)  
+[ ] Additional Notes On [BigO Notation]()  
 
 ## Intermediate Software Development
 
