@@ -102,6 +102,24 @@ When should I think about using a Map?
 - When using data structures that are not a tree or some sort of in/out stack or queue.
 - When interacting with, storing, and querying unstructured data.
 
+Random Accessing map items (for add or update):
+
+- `int value = map.contains(key) ? map.get(key) : default_value;`
+- contains method could be different syntax.
+
+Assignment:
+
+- Implement a hashtable
+- Implement the basic API functions (get, set, contains, keys, and hash)
+- Collisions must be handled in get and set (could be sloppy or nice e.g. rehashing etc)
+- Optionally: Track size of the hashtable
+- Returning collection of keys will require some tips/hints searching
+- Optionally: Create an interface to force implementation
+- Single Responsibility
+- Write Tests
+- Document
+- Catch errors
+
 ### Key Takeaways
 
 Big-O Analysis is not the be-all, end-all:
