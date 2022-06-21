@@ -28,6 +28,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
+[ ] Read Class28 [RecyclerView for Displaying Lists of Data](./code401-files/recyclerview-for-lists.md)  
 [ ] Read Class27 [Android Key Value Data, Espresso, and Tasks](./code401-files/android-kvd-espresso-tasks.html)  
 [ ] Read Class26 [Android Component Fundamentals](./code401-files/android-fundamentals.html)  
 
