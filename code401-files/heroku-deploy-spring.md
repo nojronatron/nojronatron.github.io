@@ -134,6 +134,16 @@ Heroku Dev Center: [Default Web Process Type for Java](https://devcenter.heroku.
 
 [Heroku Postgres](https://elements.heroku.com/addons/heroku-postgresql)
 
+## Heroku Postgres Stuff
+
+> heroku pg:psql
+
+
+## Random Snippets here
+
+Heroku DATABASE_URL: postgres://pqskdaargkkfri:16000d36cf0a21f22155a279dee5bfba4f9fc3004a0678229946d2ce99b195d4@ec2-52-73-184-24.compute-1.amazonaws.com:5432/d2kall4uhuucg2
+
+*Note*: If only one DB exists then it will be connected by default.
 
 ## Footer
 
