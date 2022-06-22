@@ -138,6 +138,43 @@ Pigeonholing Algo:
 
 - Ceiling(n/b) aka round-up result of (num_pigeons / num_coops)
 
+## Weds Class Notes
+
+### Android Development Overview
+
+- Android Studio (IntelliJ for Android dev)
+- WYSIWIG editor built-in
+
+Bring-forward learnings from Code 301 e.g. React and Components.
+
+### Intro To Android Studio
+
+We are going to build "Task Master" project that will build upon
+
+Do lots of exercising with UI Constraints to experience how they impact the UI in the emulator.
+
+There will be times you will need to CLI-kill the emulator: Find PID, use kill command. Emulator has the PID.
+
+Event Listeners: `onClick()` etc. They do not handle everything for you, but will be used a lot for Android development.
+
+Vocabulary:
+
+- Emulator: Virtual device, not a replacement for a physical device but is a handy stand-in.
+- Activities: Analogous to an MVC View.
+- MPA/SPA: Multi-page Application (Thymeleaf/MVC) and Single-page Application (React).
+- Fragments: SPA uses these reusable blocks of code to dynamically render a page to a single Activity.
+- 
+
+### Hash Maps
+
+Sets and Maps are like really big arrays.
+
+Hash Maps are in best-case O(1), and lookup based on keys is very effecient even with very large data sets.
+
+Do *not* just overwrite data, use collision handling (chaining etc) to deal with duplicate keys.
+
+Handling collisions will be a *requirement* going forward.
+
 ## Footer
 
 Return to [root readme](../README.html)
