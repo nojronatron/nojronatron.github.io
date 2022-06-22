@@ -160,13 +160,14 @@ Event Listeners: `onClick()` etc. They do not handle everything for you, but wil
 Vocabulary:
 
 - Emulator: Virtual device, not a replacement for a physical device but is a handy stand-in.
-- Activities: Analogous to an MVC View.
+- Activities: Analogous to an MVC View, but more closely related to MVVM (Model-View-ViewModel). Data can be passed between Activities.
 - MPA/SPA: Multi-page Application (Thymeleaf/MVC) and Single-page Application (React).
 - Fragments: SPA uses these reusable blocks of code to dynamically render a page to a single Activity.
 - Intents: Routes Between Activities.
 - Extra: Another thing related to Intents that we might not work with.
 - Component Tree: 
 - Espresso: Integration Testing.
+- Content Provider: Stretch goal in a later lab, otherwise AWS technologies will be used in most cases.
 
 Today:
 
@@ -176,6 +177,118 @@ Today:
 - All Tasks: ??
 - Stretch Goal: Style the app!
 - MUST build an APK and TEST IT (emulator to install and open).
+
+### Android Project
+
+Package Names MUST BE UNIQUE.
+
+Select an "Empty Activity".
+
+API Level: Check out apilevels.com to see API Level utilization.
+
+Level 24 is a good balance between features and coverage.
+
+No legacy Android.Support files/libraries will be necessary.
+
+OnCreate method: Just launches the current Activity.
+
+Directory 'res/layout': Create new Activities in here.
+
+Directory 'res/values': Contains XML files. 'strings.xml' is the most important one and will get quite large.
+
+Directory 'res/values/themes': Overall App look and feel, including all Activities.
+
+Directory 'manifests': AndroidManifest.xml defines where resources can be found including online APK, theme selector, icon seelctor, etc.
+
+AndroidManifest also defines Activities and intent-filter actions and categories. These are largely auto-generated.
+
+Tests: Uses AndroidJUnit4.
+
+Unittests: Test your methods internally to validate your logic.
+
+Android Tests: Interactivity of Views (did it display?) and Buttons (did it display? Was it clicked?).
+
+Build.Gradle: There are 2 of them:
+
+- build.grade (Module): Usually the one that will get updated, very similar to the one we've been using with our Java apps.
+- build.gradle (Project): Plugins and Task Clean are only defaults in this top-level 'default' config file.
+
+In the Module build.gradle:
+
+- Update 'compileOptions' from '{ sourceCompatibility JavaVersion.VERSION_1.8 }' to '{ sourceCompatibility JavaVersion.VERSION_11 }'
+
+MainActivity.java: Where Main app logic is implemented in code.
+
+activity_main.xml is where the UI is defined.
+
+Use DeviceManager to create or select existing devices. Be sure to match your configured API Level here too!
+
+System Images must be downloaded locally in order to run an emulator for specific devices (takes time to D/L and intsall).
+
+Layout Constraints: Determine an item that will be an "anchor" element, and then drag *constraints* from other items to it. There are other ways to go about it, but this method is fairly simple and effective.
+
+Use IDs! Set the 'id' in camelCase so that the UI elements will be properly addressable. Use semantic id naming.
+
+Chains: Use these to chain-together elements to enable various layout spacings, horizontal/vertical constraints, etc.
+
+Constraint Layout: Make sure you *stay* in this layout type, for the duration of this class.
+
+Text View: For *displaying* text.
+
+All other Text Palette items besides Text View are *input type* elements.
+
+RecyclerView: A List.
+
+FragmentContainerView: Frags go in here.
+
+ScrollView: More view available below/beside your view.
+
+Switch: Utilize Boolean type to manage/receive these settings.
+
+Containers: Various collection view and interactive elements. Spinner is an up/down spin-view of a collection of data.
+
+Most of the work in these Labs will deal with the UI.
+
+Lifecycle of Android App UI elements: onCreate, onDestroy, onStart, onStop. These Activity Lifecycle items will be discussed in more detail during the week. Android Developers Documentation has details on Activity Lifecycles.
+
+#### Event Listeners
+
+Review: How to create and adding an Event Listener:
+
+1. Get a UI element by ID.
+1. Anonymous function call/event listener.
+1. Callback function OnClick.
+1. Do stuff witin the Callback function.
+
+Create your own callback method in Java to handle events:
+
+1. For this example we will be working within the onCreate() method.
+1. Button submitButton = MainActivity.this.findViewById(R.id.) (location of the XML defining the UI we are working with)
+
+#### Developing Activities
+
+In this example:
+
+1. Create a button and give it an appropriate ID and name.
+1. Create a new Activity and name it, and set it to not auto-launch.
+1. Add items to the new activity for create a new page with element constraints.
+1. Open the new Activity java code and build modular code just like we've been doing up to now.
+1. Update Main Activity, onCreate method, implement an Event Listener and Handler per instructions above.
+1. Set the EventHandler method using 'setOnClickListener'
+
+Use an Arrow Function e.g.:
+
+```java
+orderFormButton.setOnClickListener(v -> {
+  Intent intentItem = new Intent(MainActivity.this, DestinationActivity.class);
+}); // this enables forward and backward navigation
+```
+
+Intents are a lot like HTML's Anchor tag => Take user to a different view or page.
+
+Naming Convention (camelCase and descriptiveness) is important!
+
+Event Listeners and Handlers need to be created at App start.
 
 ### A Look Ahead
 
