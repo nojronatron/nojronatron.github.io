@@ -290,6 +290,32 @@ Naming Convention (camelCase and descriptiveness) is important!
 
 Event Listeners and Handlers need to be created at App start.
 
+Note: The Activity that we routed to can route the user *back* to the previous activity using Event Handlers and Callbacks.
+
+#### Various Errors Will Appear in the IDE
+
+Click the Fix command on each Warning to set new Static Data into the XML.
+
+Google Play Store *requires* that all of these are cleared.
+
+#### Building an APK
+
+Build Menu > Build Bundles and APKs > Build APK(s).
+
+These are dumped into folder 
+
+#### Kill Emulator
+
+```sh
+ps -ax | grep emulator
+kill nnnn
+```
+
+```powershell
+get-process emulator
+stop-process -Name $name_from_above_command
+```
+
 ### A Look Ahead
 
 Week 1: Android basics.
