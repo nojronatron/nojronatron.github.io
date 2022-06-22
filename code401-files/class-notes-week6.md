@@ -149,7 +149,7 @@ Bring-forward learnings from Code 301 e.g. React and Components.
 
 ### Intro To Android Studio
 
-We are going to build "Task Master" project that will build upon
+We are going to build "Task Master" project that will build upon for the remainder of this course.
 
 Do lots of exercising with UI Constraints to experience how they impact the UI in the emulator.
 
@@ -163,7 +163,37 @@ Vocabulary:
 - Activities: Analogous to an MVC View.
 - MPA/SPA: Multi-page Application (Thymeleaf/MVC) and Single-page Application (React).
 - Fragments: SPA uses these reusable blocks of code to dynamically render a page to a single Activity.
-- 
+- Intents: Routes Between Activities.
+- Extra: Another thing related to Intents that we might not work with.
+- Component Tree: 
+- Espresso: Integration Testing.
+
+Today:
+
+- Add 3 Activities.
+- Homepage: Match the wireframe. Color scheme and exact layout is up to you but simply get this 1st round to look like the Lab.
+- Add a Task: 2 inputs and 1 button. NO DATA PROCESSING, just UI and Event Handlers.
+- All Tasks: ??
+- Stretch Goal: Style the app!
+- MUST build an APK and TEST IT (emulator to install and open).
+
+### A Look Ahead
+
+Week 1: Android basics.
+
+Week 2: AWS Amplify, then try push to GooglePlay Store.
+
+Week 3: File Storage, Location, and Mine? AWS? Launching other Apps from out App.
+
+Week 4: Analytics and Lectures, as well as monetization of mobile apps, as well as OSS contributing.
+
+Week 5: Final Presentations Week!
+
+About 3 to 7 AWS technologies will be discussed throughout.
+
+Consider getting AWS Certificates post-Code 401, but don't forget having completed school work to *prove* your knowledge.
+
+Consider MOB PROGRAMMING and DEBUGGING to help get through various blockers/issues throughout these weeks.
 
 ### Hash Maps
 
