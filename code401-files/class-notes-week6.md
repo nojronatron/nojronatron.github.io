@@ -348,6 +348,24 @@ Handling collisions will be a *requirement* going forward.
 
 TODO: Fix the Neighborhood ZipCode Record type so that the GH tests stop failing!
 
+### Android Dev Testing
+
+MUST run emulator to do integration / UI testing.
+
+Standard unittests can be run, but only against non-UI components and members.
+
+### Android Dev Thursday
+
+Intents: Routes between activities.
+
+Preferences: Simple data storage for (settings?).
+
+Espresso: Click-test testing in Android Studio.
+
+Action Bar: The header bar the the Activities, located in the Theme definition, and can be shut-off/hidden.
+
+
+
 ## Footer
 
 Return to [root readme](../README.html)
