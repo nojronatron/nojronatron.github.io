@@ -73,6 +73,7 @@ Hash Collision
 - Pidgeonholing: 4 pidgeons, 3 coupes => will multiple pidgeons be in a single coup? Yes. If n > k then at least 1 k will have n > 1 items in it.
 - To avoid this use an Array, Linked List, or Balanced Tree to add data instances to the index.
 - Resizing is an option, but "book keeping" under the covers is a somewhat expensive operation.
+- A collision *could be useful* so consider whether you want to detect collisions explicitly and whether it should be handled in some special way (example: Finding duplicate entries => maybe exit with a return type? Throw something? Record the incident and continue?).
 
 Hash Index Implementations
 
@@ -164,12 +165,14 @@ Vocabulary:
 - MPA/SPA: Multi-page Application (Thymeleaf/MVC) and Single-page Application (React).
 - Fragments: SPA uses these reusable blocks of code to dynamically render a page to a single Activity.
 - Intents: Routes Between Activities.
-- Extra: Another thing related to Intents that we might not work with.
-- Component Tree: 
+- Extra: Transient storage that is bound to the lifecycle of an Activity (between onCreate and onDestroy?) and perhaps changed a lot.
+- Component Tree: Lists the elements and UI components and their IDs within an Activity. Espresso Tests *heavily depend* on this.
 - Espresso: Integration Testing.
 - Content Provider: Stretch goal in a later lab, otherwise AWS technologies will be used in most cases.
+- Shared Preferences: Survive App close and re-open.
+- Parseable: Storage capability for more complex data (but still not large) e.g. Collections.
 
-Today:
+Wednesday:
 
 - Add 3 Activities.
 - Homepage: Match the wireframe. Color scheme and exact layout is up to you but simply get this 1st round to look like the Lab.
@@ -249,7 +252,11 @@ Containers: Various collection view and interactive elements. Spinner is an up/d
 
 Most of the work in these Labs will deal with the UI.
 
-Lifecycle of Android App UI elements: onCreate, onDestroy, onStart, onStop. These Activity Lifecycle items will be discussed in more detail during the week. Android Developers Documentation has details on Activity Lifecycles.
+Lifecycle of Android App UI elements: onCreate, onDestroy, onStart, onStop.
+
+These Activity Lifecycle items will be discussed in more detail during the week.
+
+Android Developers Documentation has details on [Activity Lifecycles (diagram)](https://developer.android.com/reference/android/app/Activity#activity-lifecycle)
 
 #### Event Listeners
 
@@ -390,8 +397,8 @@ Text Elements are based on TWO DIFFERENT CLASSES and READONLY or READ-WRITE beha
 ##### Shared Preferences Setup
 
 1. Remember to set an id to every element added to the UI.
-1. Utilize a public static final TYPE property to create a KEY to associate with KVP to store in preferenceEditor.
-1. Declare 'SharedPreferences preferences;'
+1. Declare a public static final TYPE property to create a KEY to associate with KVP to store in preferenceEditor.
+1. Declare 'SharedPreferences preferences;' as a Class Property.
 1. Create shared preferences instance 'PreferenceManager.getDefaultSharedPreferences(this);'
 1. Get Save button 'Button userSaveButton = findViewById(R.id.BUTTON_ID);
 1. Use onClick (see code detail below).
@@ -407,10 +414,30 @@ userSaveButton.setOnClickListener(new View.OnClickListener() {
     // grab the edit text for nickname
     EditText userNicknameText = findViewById(R.id.USER_NAME_INPUT_ID);
     String userNicknameString = userNicknameText.getText().toString();
-    preferenceEditor.putString(USER_NICKNAME_TAG, userNicknameString);
+
+    // userNicknameString will be the KEY in SharedStorage
+    preferenceEditor.putString(USER_NICKNAME_TAG, userNicknameString); 
     preferenceEditor.apply(); // DO NOT FORGET THIS ELSE NOTHING SAVES!!
   }
 });
+```
+
+##### Shared Preferences Consumption
+
+1. init shared prep
+1. get the value
+1. set the returned value to a view Element
+
+```java
+// after the Class declaration
+SharedPreferences preferences;
+
+// within a method that needs to grab this data
+preferences = PreferenceManager.getDefaultSharedPreferences(this);
+String userNickname = preferences.getString(UserSettingsActivity.USER_NICKNAME_TAG, "No Nickname");
+TextView userNicknameText = findViewById(R.id.ELEMENT_ID);
+
+// the rest of the method and class code...
 ```
 
 ##### Toasts
@@ -428,6 +455,34 @@ Snackbar.make(findViewById(R.id.ELEMENT_ID))
 ##### Device File Explorer
 
 Check out 'data.com.yourthing.packagename' to view cached data including 'Shared Preferences'.
+
+#### Android Activity Lifecycle
+
+Check out [The Activity Lifecycle on Android Developers](https://developer.android.com/guide/components/activities/activity-lifecycle)
+
+Check out the [diagram](https://developer.android.com/reference/android/app/Activity#activity-lifecycle)
+
+Only run when the View first loads: 'onCreate()' => ONLY runs the very first time a View is loaded and launched.
+
+Runs when the View is resumed: 'onResume()' => When going BACK to a View
+
+#### Android Extras
+
+These are used to send things along with Intents.
+
+#### Android Values Strings
+
+Use 'strings.xml' in res/values directory to store regularly used strings e.g. for UI element text.
+
+### Espresso Testing Intro
+
+1. Emulator MUST BE RUNNING.
+1. Run > Record Espresso Test, do NOT force close it.
+1. Click items (slowly) and watch the Record Your Test viewer load with the UI navigation commands.
+1. Add an Assertion Statement e.g.: Does a text box have the correct text in it? Do the expected element(s) exist on-screen?
+1. Save and allow installing the test dependencies.
+
+The test is then written for you!
 
 ## Footer
 
