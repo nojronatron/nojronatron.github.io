@@ -180,7 +180,7 @@ Today:
 
 ### Android Project
 
-Package Names MUST BE UNIQUE.
+Package Names MUST BE UNIQUE, and must start capitalized.
 
 Select an "Empty Activity".
 
@@ -343,6 +343,10 @@ Hash Maps are in best-case O(1), and lookup based on keys is very effecient even
 Do *not* just overwrite data, use collision handling (chaining etc) to deal with duplicate keys.
 
 Handling collisions will be a *requirement* going forward.
+
+## Thursday 24-June Notes
+
+TODO: Fix the Neighborhood ZipCode Record type so that the GH tests stop failing!
 
 ## Footer
 
