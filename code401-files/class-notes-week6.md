@@ -138,6 +138,216 @@ Pigeonholing Algo:
 
 - Ceiling(n/b) aka round-up result of (num_pigeons / num_coops)
 
+## Weds Class Notes
+
+### Android Development Overview
+
+- Android Studio (IntelliJ for Android dev)
+- WYSIWIG editor built-in
+
+Bring-forward learnings from Code 301 e.g. React and Components.
+
+### Intro To Android Studio
+
+We are going to build "Task Master" project that will build upon for the remainder of this course.
+
+Do lots of exercising with UI Constraints to experience how they impact the UI in the emulator.
+
+There will be times you will need to CLI-kill the emulator: Find PID, use kill command. Emulator has the PID.
+
+Event Listeners: `onClick()` etc. They do not handle everything for you, but will be used a lot for Android development.
+
+Vocabulary:
+
+- Emulator: Virtual device, not a replacement for a physical device but is a handy stand-in.
+- Activities: Analogous to an MVC View, but more closely related to MVVM (Model-View-ViewModel). Data can be passed between Activities.
+- MPA/SPA: Multi-page Application (Thymeleaf/MVC) and Single-page Application (React).
+- Fragments: SPA uses these reusable blocks of code to dynamically render a page to a single Activity.
+- Intents: Routes Between Activities.
+- Extra: Another thing related to Intents that we might not work with.
+- Component Tree: 
+- Espresso: Integration Testing.
+- Content Provider: Stretch goal in a later lab, otherwise AWS technologies will be used in most cases.
+
+Today:
+
+- Add 3 Activities.
+- Homepage: Match the wireframe. Color scheme and exact layout is up to you but simply get this 1st round to look like the Lab.
+- Add a Task: 2 inputs and 1 button. NO DATA PROCESSING, just UI and Event Handlers.
+- All Tasks: ??
+- Stretch Goal: Style the app!
+- MUST build an APK and TEST IT (emulator to install and open).
+
+### Android Project
+
+Package Names MUST BE UNIQUE, and must start capitalized.
+
+Select an "Empty Activity".
+
+API Level: Check out apilevels.com to see API Level utilization.
+
+Level 24 is a good balance between features and coverage.
+
+No legacy Android.Support files/libraries will be necessary.
+
+OnCreate method: Just launches the current Activity.
+
+Directory 'res/layout': Create new Activities in here.
+
+Directory 'res/values': Contains XML files. 'strings.xml' is the most important one and will get quite large.
+
+Directory 'res/values/themes': Overall App look and feel, including all Activities.
+
+Directory 'manifests': AndroidManifest.xml defines where resources can be found including online APK, theme selector, icon seelctor, etc.
+
+AndroidManifest also defines Activities and intent-filter actions and categories. These are largely auto-generated.
+
+Tests: Uses AndroidJUnit4.
+
+Unittests: Test your methods internally to validate your logic.
+
+Android Tests: Interactivity of Views (did it display?) and Buttons (did it display? Was it clicked?).
+
+Build.Gradle: There are 2 of them:
+
+- build.grade (Module): Usually the one that will get updated, very similar to the one we've been using with our Java apps.
+- build.gradle (Project): Plugins and Task Clean are only defaults in this top-level 'default' config file.
+
+In the Module build.gradle:
+
+- Update 'compileOptions' from '{ sourceCompatibility JavaVersion.VERSION_1.8 }' to '{ sourceCompatibility JavaVersion.VERSION_11 }'
+
+MainActivity.java: Where Main app logic is implemented in code.
+
+activity_main.xml is where the UI is defined.
+
+Use DeviceManager to create or select existing devices. Be sure to match your configured API Level here too!
+
+System Images must be downloaded locally in order to run an emulator for specific devices (takes time to D/L and intsall).
+
+Layout Constraints: Determine an item that will be an "anchor" element, and then drag *constraints* from other items to it. There are other ways to go about it, but this method is fairly simple and effective.
+
+Use IDs! Set the 'id' in camelCase so that the UI elements will be properly addressable. Use semantic id naming.
+
+Chains: Use these to chain-together elements to enable various layout spacings, horizontal/vertical constraints, etc.
+
+Constraint Layout: Make sure you *stay* in this layout type, for the duration of this class.
+
+Text View: For *displaying* text.
+
+All other Text Palette items besides Text View are *input type* elements.
+
+RecyclerView: A List.
+
+FragmentContainerView: Frags go in here.
+
+ScrollView: More view available below/beside your view.
+
+Switch: Utilize Boolean type to manage/receive these settings.
+
+Containers: Various collection view and interactive elements. Spinner is an up/down spin-view of a collection of data.
+
+Most of the work in these Labs will deal with the UI.
+
+Lifecycle of Android App UI elements: onCreate, onDestroy, onStart, onStop. These Activity Lifecycle items will be discussed in more detail during the week. Android Developers Documentation has details on Activity Lifecycles.
+
+#### Event Listeners
+
+Review: How to create and adding an Event Listener:
+
+1. Get a UI element by ID.
+1. Anonymous function call/event listener.
+1. Callback function OnClick.
+1. Do stuff witin the Callback function.
+
+Create your own callback method in Java to handle events:
+
+1. For this example we will be working within the onCreate() method.
+1. Button submitButton = MainActivity.this.findViewById(R.id.) (location of the XML defining the UI we are working with)
+
+#### Developing Activities
+
+In this example:
+
+1. Create a button and give it an appropriate ID and name.
+1. Create a new Activity and name it, and set it to not auto-launch.
+1. Add items to the new activity for create a new page with element constraints.
+1. Open the new Activity java code and build modular code just like we've been doing up to now.
+1. Update Main Activity, onCreate method, implement an Event Listener and Handler per instructions above.
+1. Set the EventHandler method using 'setOnClickListener'
+
+Use an Arrow Function e.g.:
+
+```java
+orderFormButton.setOnClickListener(v -> {
+  Intent intentItem = new Intent(MainActivity.this, DestinationActivity.class);
+}); // this enables forward and backward navigation
+```
+
+Intents are a lot like HTML's Anchor tag => Take user to a different view or page.
+
+Naming Convention (camelCase and descriptiveness) is important!
+
+Event Listeners and Handlers need to be created at App start.
+
+Note: The Activity that we routed to can route the user *back* to the previous activity using Event Handlers and Callbacks.
+
+#### Various Errors Will Appear in the IDE
+
+Click the Fix command on each Warning to set new Static Data into the XML.
+
+Google Play Store *requires* that all of these are cleared.
+
+#### Building an APK
+
+Build Menu > Build Bundles and APKs > Build APK(s).
+
+These are dumped into folder 
+
+#### Kill Emulator
+
+```sh
+ps -ax | grep emulator
+kill nnnn
+```
+
+```powershell
+get-process emulator
+stop-process -Name $name_from_above_command
+```
+
+### A Look Ahead
+
+Week 1: Android basics.
+
+Week 2: AWS Amplify, then try push to GooglePlay Store.
+
+Week 3: File Storage, Location, and Mine? AWS? Launching other Apps from out App.
+
+Week 4: Analytics and Lectures, as well as monetization of mobile apps, as well as OSS contributing.
+
+Week 5: Final Presentations Week!
+
+About 3 to 7 AWS technologies will be discussed throughout.
+
+Consider getting AWS Certificates post-Code 401, but don't forget having completed school work to *prove* your knowledge.
+
+Consider MOB PROGRAMMING and DEBUGGING to help get through various blockers/issues throughout these weeks.
+
+### Hash Maps
+
+Sets and Maps are like really big arrays.
+
+Hash Maps are in best-case O(1), and lookup based on keys is very effecient even with very large data sets.
+
+Do *not* just overwrite data, use collision handling (chaining etc) to deal with duplicate keys.
+
+Handling collisions will be a *requirement* going forward.
+
+## Thursday 24-June Notes
+
+TODO: Fix the Neighborhood ZipCode Record type so that the GH tests stop failing!
+
 ## Footer
 
 Return to [root readme](../README.html)
