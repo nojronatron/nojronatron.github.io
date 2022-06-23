@@ -484,6 +484,12 @@ Use 'strings.xml' in res/values directory to store regularly used strings e.g. f
 
 The test is then written for you!
 
+## References
+
+Raul: logcat [Colors](https://stackoverflow.com/questions/39993867/android-studio-logcat-colors/39993868#39993868)
+
+Raul: more logcat [Stuff](https://developer.android.com/studio/debug/am-logcat)
+
 ## Footer
 
 Return to [root readme](../README.html)
