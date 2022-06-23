@@ -104,7 +104,7 @@ When should I think about using a Map?
 
 Random Accessing map items (for add or update):
 
-- `int value = map.contains(key) ? map.get(key) : default_value;`
+- Example: `int value = map.contains(key) ? map.get(key) : default_value;`
 - contains method could be different syntax.
 
 Assignment:
@@ -364,7 +364,70 @@ Espresso: Click-test testing in Android Studio.
 
 Action Bar: The header bar the the Activities, located in the Theme definition, and can be shut-off/hidden.
 
+#### Android Dev Thursday Talk
 
+Activities: The Views and/or Forms that display information on the screen and provide interactive elements like buttons and textboxes and labels.
+
+MainActivity (the first form you see).
+
+Shared Preferences: Persistent, local storage, accessible from 2 fully-functional, separate Apps. Similar associative behavior is Facebook and the Messenger apps. User-info, configs (light/dark mode), etc are commonly stored here. Do NOT store large data items here.
+
+Extras => Intents: Transitive Storage.
+
+Rooms: The "database on your phone". Meant to store larger data sets.
+
+AWS/Cloud Storage: Even larger datasets and complex information should be stored in the cloud.
+
+Rename MainActivity to HomeActivity (refactor) so it is more semantically understandable.
+
+Recommend creating an "activities" package to place all Activities into so they are well organized.
+
+Text Elements are based on TWO DIFFERENT CLASSES and READONLY or READ-WRITE behaviors:
+
+- Text display element: TextView.
+- TextEdit elements: All the other "text" elements.
+
+##### Shared Preferences Setup
+
+1. Remember to set an id to every element added to the UI.
+1. Utilize a public static final TYPE property to create a KEY to associate with KVP to store in preferenceEditor.
+1. Declare 'SharedPreferences preferences;'
+1. Create shared preferences instance 'PreferenceManager.getDefaultSharedPreferences(this);'
+1. Get Save button 'Button userSaveButton = findViewById(R.id.BUTTON_ID);
+1. Use onClick (see code detail below).
+1. Get nickname (see code detail below).
+1. Put nickname in the preference editor.
+
+```java
+userSaveButton.setOnClickListener(new View.OnClickListener() {
+  @Override
+  public void onClick(View view) {
+    // set up the editor
+    SharedPreferences.Editor preferenceEditor = preferences.edit();
+    // grab the edit text for nickname
+    EditText userNicknameText = findViewById(R.id.USER_NAME_INPUT_ID);
+    String userNicknameString = userNicknameText.getText().toString();
+    preferenceEditor.putString(USER_NICKNAME_TAG, userNicknameString);
+    preferenceEditor.apply(); // DO NOT FORGET THIS ELSE NOTHING SAVES!!
+  }
+});
+```
+
+##### Toasts
+
+```java
+Toast.makeText(UserSEttingsActivity.this, "Settings saved!", Toast.LENGTH_SHORT).show();
+```
+
+##### Snackbars
+
+```java
+Snackbar.make(findViewById(R.id.ELEMENT_ID))
+```
+
+##### Device File Explorer
+
+Check out 'data.com.yourthing.packagename' to view cached data including 'Shared Preferences'.
 
 ## Footer
 
