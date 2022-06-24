@@ -35,6 +35,8 @@ Data visualization can provide lots of near & real-time information on a situati
 
 Models and machine learning is heavily relied on to gather the situational data.
 
+Fast-paced, possibly agile-concepts-based company.
+
 Experience in the military, and land or sea or air engagement tactics.
 
 Anduril is actively looking for early-career developers, and in August will see new-grad and internship positions (about 100).
@@ -48,6 +50,12 @@ Front-end engineers, robotics and sensor systems engineers, computer vision and 
 Seattle area, S.California, and a few other integrated customers (1 in Mass). Internships are paid.
 
 Will provide training to cross-language ramp-up.
+
+Early-stage, mission-based company, so be-ready to roll up your sleeves and tackle any/all issues.
+
+Grit was mentioned several times as a candidate feature they are looking for.
+
+No remote opportunities, exactly, there are flexible options.
 
 ## Footer
 

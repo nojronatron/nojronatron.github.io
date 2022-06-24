@@ -593,6 +593,72 @@ Make Entries TAP-able:
 3. OnClick event listeners must be set on the Bindings, not on the View Element.
 4. Include a putExtra() method to store the productName (grabbed by its position, previously) and then call callingActivity.startActivity(goToOrderFormIntent).
 
+## Dr. Robin Behavior, Interviews, and Strategies
+
+### 7 Steps from grad to employment
+
+Graduation => Employment
+
+1. Finish 401
+2. Look for work => When you start looking is up to you but *do not languish*. Take time off, but get back to the routine ASAP.
+3. Send Stellar Resume to employers => Select *great* projects to showcase; describe who you are and what you know.
+4. Leverage your network.
+5. Technical Interviews.
+6. Meet the team => Behavioral questions, learn about the org, pitch yourself. At this point *you are being seriously considered*. Will *I* fit in this space? Can I hit the ground running?
+7. Receive an Offer =>
+8. Negotiation => DO NOT SHY AWAY from this, speak up for yourself and counter at least once, then decide to continue with offer negotiations, or thank them and move on.
+
+### GTM Strategy
+
+- What is my value proposition? Sell myself, I am it.
+- Tech is a creative space.
+- Two primary concerns are Financial and Interpersonal.
+- I have the skills to do the work that somebody else is willing to pay to get done.
+
+### Behavioral Interviews
+
+A series of questions and/or scenarios, that have you explain how you handle situations.
+
+- challenges with co-workers
+- disagreements with supervisor
+- changed deadline
+- working with someone who is difficult to work with (punctuality, different ideas/perspectives)
+
+Considered to be the best predictor of future behavior.
+
+It's really a conversation about past experiences.
+
+- work related
+- non-work experiences
+
+Practice the STAR Method to *become ready* to handle these questions.
+
+Remember that the Results part of the STAR method is an opportunity to elaborate on what was learned, takeaways, etc.
+
+Common Questions:
+
+- Tell me about yourself? This is your pitch!
+- Strengths & weaknesses
+- How I fit in a company
+- Chance(s) to take the lead
+- Went above and beyond
+- Experience of failure, mistake, challenge
+
+Tell me about a time when you had the chance to take the lead.
+
+Situation: 
+Task: 
+Action: 
+Results: 
+
+Advice:
+
+- Keep yourself at the center of the story
+- Avoid sensationalism which could take away from your Actions and Results
+- Keep the story compelling, but short
+- Allow the interviewer an opportunity to ask *more* about your response
+- If you cannot share an exact experience, use "that has not been my experience, but here is what I would do..."
+
 ## References
 
 Raul: logcat [Colors](https://stackoverflow.com/questions/39993867/android-studio-logcat-colors/39993868#39993868)
