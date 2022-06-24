@@ -406,25 +406,28 @@ Text Elements are based on TWO DIFFERENT CLASSES and READONLY or READ-WRITE beha
 1. Put nickname in the preference editor.
 
 ```java
-userSaveButton.setOnClickListener(new View.OnClickListener() {
-  @Override
-  public void onClick(View view) {
-    // set up the editor
-    SharedPreferences.Editor preferenceEditor = preferences.edit();
-    // grab the edit text for nickname
-    EditText userNicknameText = findViewById(R.id.USER_NAME_INPUT_ID);
-    String userNicknameString = userNicknameText.getText().toString();
+public class ... {
+  // set up the editor
+  SharedPreferences.Editor preferenceEditor = preferences.edit();
 
-    // userNicknameString will be the KEY in SharedStorage
-    preferenceEditor.putString(USER_NICKNAME_TAG, userNicknameString); 
-    preferenceEditor.apply(); // DO NOT FORGET THIS ELSE NOTHING SAVES!!
-  }
-});
+  userSaveButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+      // grab the edit text for nickname
+      EditText userNicknameText = findViewById(R.id.USER_NAME_INPUT_ID);
+      String userNicknameString = userNicknameText.getText().toString();
+
+      // userNicknameString will be the KEY in SharedStorage
+      preferenceEditor.putString(USER_NICKNAME_TAG, userNicknameString); 
+      preferenceEditor.apply(); // DO NOT FORGET THIS ELSE NOTHING SAVES!!
+    }
+  });
+}
 ```
 
 ##### Shared Preferences Consumption
 
-1. init shared prep
+1. init shared prefs
 1. get the value
 1. set the returned value to a view Element
 
