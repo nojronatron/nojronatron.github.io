@@ -588,6 +588,10 @@ Next Set of Steps:
 
 Make Entries TAP-able:
 
+1. In ProductListRecyclerViewAdpater class, clean up the RecyclerView.Adapter references to actually use ProductListRecyclerViewAdapter. Update remaining methods that need to use the ProductListViewHolder in Params etc.
+2. Hand-in the Activity Context. In MainActivity, supply Context to the ProductListRecyclerViewAdapter, by adding 'this' to the params list (which causes red lines). Set a Field of type Context called 'callingActivity' and add Context to the CTOR so calling methods can include the Context with the method call.
+3. OnClick event listeners must be set on the Bindings, not on the View Element.
+4. Include a putExtra() method to store the productName (grabbed by its position, previously) and then call callingActivity.startActivity(goToOrderFormIntent).
 
 ## References
 
