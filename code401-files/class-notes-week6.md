@@ -508,6 +508,8 @@ Tip: Arrays are usually a good go-to starting point for storage and/or returns, 
 
 ### Android Development Recycler Views and More
 
+Android Studios [Recycler View](https://developer.android.com/guide/topics/ui/layout/recyclerview)
+
 A Recycler View is similar to HTML tags UL and OL.
 
 Only loads what it can display, rendered through fragments.
@@ -518,6 +520,64 @@ A Fragment contains the actual data.
 
 Actual data will be stored in an Array (or other Collection).
 
+ScrollView: Loads ALL DATA AT ONCE, so it could heavy.
+
+#### Set A TextView Into A Fragment
+
+1. Add a RecyclerView to the Activity where you want it to belong in WYSIWYG, give it a good ID.
+2. Create a method to grab a reference to the RecyclerView.
+3. Set the Layout Manager of the RecyclerView to a LinearLayoutManager.
+4. Set the Layout Manager horiz/vert scrolling behavior.
+
+```java
+// 2. Create a method to grab a reference to the RecyclerView
+private void setUpProductListRecyclerView() {
+  RecyclerView productListRecyclerView = findViewById(R.id.productListRecyclerView);
+  // 3. Set the layout manager of the RecyclerView to a LinearLayoutManager
+  //    REMEMBER TO ADD the Context, which is usually the Activity you are currently in.
+  RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+
+  // 4. Set the Layout Manager horiz/vertical scrolling behavior
+  productListRecyclerView.setLayoutManager(layoutManager);
+
+  // 6. Bring in the ProductsListRecyclerViewApdater
+  ProductListRecyclerViewAdapter adapter = new ProductListRecyclerViewAdapter();
+
+  // 7. Set the adapter RecyclerView
+  productListRecyclerView.setAdapter(adapter);
+
+}
+```
+
+5. Create a new ProductListRecyclerView Class.
+
+```java
+public class ProductListRecyclerViewAdapter extends RecyclerView.adapter {
+  // Implement all 3 methods required by the Interface/Abstract Class
+  ...
+}
+```
+
+6. Back to the setUpProductListRecyclerView method, bring-in the ProductListRecyclerViewApapter.
+7. Set the adapter RecyclerView in setUpProductListRecyclerView method.
+8. Make a FragmentClass called "fragment.ProductListFragment" using a "Blank Fragment template.
+9. COMMENT-OUT any Params statements, and any code statements that rely on them.
+10. Open the Fragment in the DesignView and name it appropriately, set up layout_width and layout_height, and supply it an ID that makes sense. There are no constraints like an Activity would have. Enter FrameLayout tool and CHANGE the Fragment from Frame Layout? to a "Constraint Layout".
+11. Go back into the Adapter Class and edit the onCreateViewHolder() method to 'Inflate the Fragment'.
+
+```java
+// 11. Inflating a Fragment
+public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  // Dealing with a Layout so R.layout instead of Id
+  View productFragment = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_product_list, parent, attachedToRoot=false);
+  // 13. Attach Fragment to ViewHolder within the onCreateViewHolder() method in ProductListRecyclerViewAdapter.
+  return new ProductListViewHolder(productFragment);
+}
+```
+
+12. Create a ViewHolder class to hold a Fragment called ProductListViewHolder *inside* ProductListRecyclerViewAdapter. Include a default CTOR that accepts a View type param, and update the super() statement if you've changed the param name.
+13. Attach Fragment to ViewHolder within the onCreateViewHolder() method in ProductListRecyclerViewAdapter.
+14. Configure ProductListViewHolder.getItemCount() method to return hard-coded Integer 100 (for testing purposes).
 
 ## References
 
