@@ -487,6 +487,38 @@ Use 'strings.xml' in res/values directory to store regularly used strings e.g. f
 
 The test is then written for you!
 
+## Friday 24 June
+
+### Code Challenge Whiteboard Discussion
+
+Using shortcuts in the whiteboard is okay so long as you are vocalizing what these shortcuts mean e.g. while in an interview.
+
+The right-tree might have duplicate values within itself! Solution: Use a SET to force uniqueness, or otherwise implement a way to avoid duplicates in your output.
+
+Use the heading Questions/Edge Cases:
+
+- Do I already know already how to do what I'm about to ask?
+- Make sure you have the ability to talk-through what built-in functions do before you use/ask about them.
+- Always ask about value types including signed vs unsigned numbers.
+- Always *go back to this section while whiteboarding to add items while working through the design process.
+
+Question: When hashmapping Numbers, is a colliding value guaranteed to be a duplicate?
+
+Tip: Arrays are usually a good go-to starting point for storage and/or returns, rather than creating a custom object, or dealing with Dicts, Sets, etc.
+
+### Android Development Recycler Views and More
+
+A Recycler View is similar to HTML tags UL and OL.
+
+Only loads what it can display, rendered through fragments.
+
+A View Holder encapsulates a Fragment.
+
+A Fragment contains the actual data.
+
+Actual data will be stored in an Array (or other Collection).
+
+
 ## References
 
 Raul: logcat [Colors](https://stackoverflow.com/questions/39993867/android-studio-logcat-colors/39993868#39993868)
