@@ -579,6 +579,16 @@ public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int
 13. Attach Fragment to ViewHolder within the onCreateViewHolder() method in ProductListRecyclerViewAdapter.
 14. Configure ProductListViewHolder.getItemCount() method to return hard-coded Integer 100 (for testing purposes).
 
+Next Set of Steps:
+
+1. Create a Data Class e.g. Product, and include a CTOR, Field(s), and GET/SETters.
+2. Create Data Items and store them into a ListArray. These just represent data that would come from any data source e.g. a DB.
+3. In ProductListRecyclerViewAdapter create a field as a Collection of e.g. Products, create a CTOR with the product param.
+4. Bind data items to Fragments inside of ViewHolders within method onBindViewHolder(). (see Class Code Repo for the TextView holder code that goes in here). Include a codeblock that will call products.get(position).getName() and assign the output to String productName. 'productFragementTextView.setText(position + ". " + productName);'. Also include  in getItemCount() method 'return products.size()'.
+
+Make Entries TAP-able:
+
+
 ## References
 
 Raul: logcat [Colors](https://stackoverflow.com/questions/39993867/android-studio-logcat-colors/39993868#39993868)
