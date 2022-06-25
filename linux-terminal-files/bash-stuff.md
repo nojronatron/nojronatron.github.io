@@ -299,8 +299,9 @@ WhereIs: Like 'which' but includes lib and man file locations: `whereis code`
 Search for files based on many properties: Modified, permissions, owners, symlinks, directory, filename, and rwx permissions.
 
 ```sh
-find . -name 'my_file.txt' -type f
-find /home/username/Downloads -name '*tar*' -type f
+find . -name 'my_file.txt' -type f # find 'my_file.txt' file starting from here
+find /home/username/Downloads -name '*tar*' -type f # find files containing 'tar' in name starting in Downloads
+find . -name "jdk" -type d # find jdk directory starting from here
 ```
 
 ### Interrogating Hardware
