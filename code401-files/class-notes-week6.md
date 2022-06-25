@@ -487,6 +487,177 @@ Use 'strings.xml' in res/values directory to store regularly used strings e.g. f
 
 The test is then written for you!
 
+## Friday 24 June
+
+### Code Challenge Whiteboard Discussion
+
+Using shortcuts in the whiteboard is okay so long as you are vocalizing what these shortcuts mean e.g. while in an interview.
+
+The right-tree might have duplicate values within itself! Solution: Use a SET to force uniqueness, or otherwise implement a way to avoid duplicates in your output.
+
+Use the heading Questions/Edge Cases:
+
+- Do I already know already how to do what I'm about to ask?
+- Make sure you have the ability to talk-through what built-in functions do before you use/ask about them.
+- Always ask about value types including signed vs unsigned numbers.
+- Always *go back to this section while whiteboarding to add items while working through the design process.
+
+Question: When hashmapping Numbers, is a colliding value guaranteed to be a duplicate?
+
+Tip: Arrays are usually a good go-to starting point for storage and/or returns, rather than creating a custom object, or dealing with Dicts, Sets, etc.
+
+### Android Development Recycler Views and More
+
+Android Studios [Recycler View](https://developer.android.com/guide/topics/ui/layout/recyclerview)
+
+A Recycler View is similar to HTML tags UL and OL.
+
+Only loads what it can display, rendered through fragments.
+
+A View Holder encapsulates a Fragment.
+
+A Fragment contains the actual data.
+
+Actual data will be stored in an Array (or other Collection).
+
+ScrollView: Loads ALL DATA AT ONCE, so it could heavy.
+
+#### Set A TextView Into A Fragment
+
+1. Add a RecyclerView to the Activity where you want it to belong in WYSIWYG, give it a good ID.
+2. Create a method to grab a reference to the RecyclerView.
+3. Set the Layout Manager of the RecyclerView to a LinearLayoutManager.
+4. Set the Layout Manager horiz/vert scrolling behavior.
+
+```java
+// 2. Create a method to grab a reference to the RecyclerView
+private void setUpProductListRecyclerView() {
+  RecyclerView productListRecyclerView = findViewById(R.id.productListRecyclerView);
+  // 3. Set the layout manager of the RecyclerView to a LinearLayoutManager
+  //    REMEMBER TO ADD the Context, which is usually the Activity you are currently in.
+  RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+
+  // 4. Set the Layout Manager horiz/vertical scrolling behavior
+  productListRecyclerView.setLayoutManager(layoutManager);
+
+  // 6. Bring in the ProductsListRecyclerViewApdater
+  ProductListRecyclerViewAdapter adapter = new ProductListRecyclerViewAdapter();
+
+  // 7. Set the adapter RecyclerView
+  productListRecyclerView.setAdapter(adapter);
+
+}
+```
+
+5. Create a new ProductListRecyclerView Class.
+
+```java
+public class ProductListRecyclerViewAdapter extends RecyclerView.adapter {
+  // Implement all 3 methods required by the Interface/Abstract Class
+  ...
+}
+```
+
+6. Back to the setUpProductListRecyclerView method, bring-in the ProductListRecyclerViewApapter.
+7. Set the adapter RecyclerView in setUpProductListRecyclerView method.
+8. Make a FragmentClass called "fragment.ProductListFragment" using a "Blank Fragment template.
+9. COMMENT-OUT any Params statements, and any code statements that rely on them.
+10. Open the Fragment in the DesignView and name it appropriately, set up layout_width and layout_height, and supply it an ID that makes sense. There are no constraints like an Activity would have. Enter FrameLayout tool and CHANGE the Fragment from Frame Layout? to a "Constraint Layout".
+11. Go back into the Adapter Class and edit the onCreateViewHolder() method to 'Inflate the Fragment'.
+
+```java
+// 11. Inflating a Fragment
+public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  // Dealing with a Layout so R.layout instead of Id
+  View productFragment = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_product_list, parent, attachedToRoot=false);
+  // 13. Attach Fragment to ViewHolder within the onCreateViewHolder() method in ProductListRecyclerViewAdapter.
+  return new ProductListViewHolder(productFragment);
+}
+```
+
+12. Create a ViewHolder class to hold a Fragment called ProductListViewHolder *inside* ProductListRecyclerViewAdapter. Include a default CTOR that accepts a View type param, and update the super() statement if you've changed the param name.
+13. Attach Fragment to ViewHolder within the onCreateViewHolder() method in ProductListRecyclerViewAdapter.
+14. Configure ProductListViewHolder.getItemCount() method to return hard-coded Integer 100 (for testing purposes).
+
+Next Set of Steps:
+
+1. Create a Data Class e.g. Product, and include a CTOR, Field(s), and GET/SETters.
+2. Create Data Items and store them into a ListArray. These just represent data that would come from any data source e.g. a DB.
+3. In ProductListRecyclerViewAdapter create a field as a Collection of e.g. Products, create a CTOR with the product param.
+4. Bind data items to Fragments inside of ViewHolders within method onBindViewHolder(). (see Class Code Repo for the TextView holder code that goes in here). Include a codeblock that will call products.get(position).getName() and assign the output to String productName. 'productFragementTextView.setText(position + ". " + productName);'. Also include  in getItemCount() method 'return products.size()'.
+
+Make Entries TAP-able:
+
+1. In ProductListRecyclerViewAdpater class, clean up the RecyclerView.Adapter references to actually use ProductListRecyclerViewAdapter. Update remaining methods that need to use the ProductListViewHolder in Params etc.
+2. Hand-in the Activity Context. In MainActivity, supply Context to the ProductListRecyclerViewAdapter, by adding 'this' to the params list (which causes red lines). Set a Field of type Context called 'callingActivity' and add Context to the CTOR so calling methods can include the Context with the method call.
+3. OnClick event listeners must be set on the Bindings, not on the View Element.
+4. Include a putExtra() method to store the productName (grabbed by its position, previously) and then call callingActivity.startActivity(goToOrderFormIntent).
+
+## Dr. Robin Behavior, Interviews, and Strategies
+
+### 7 Steps from grad to employment
+
+Graduation => Employment
+
+1. Finish 401
+2. Look for work => When you start looking is up to you but *do not languish*. Take time off, but get back to the routine ASAP.
+3. Send Stellar Resume to employers => Select *great* projects to showcase; describe who you are and what you know.
+4. Leverage your network.
+5. Technical Interviews.
+6. Meet the team => Behavioral questions, learn about the org, pitch yourself. At this point *you are being seriously considered*. Will *I* fit in this space? Can I hit the ground running?
+7. Receive an Offer =>
+8. Negotiation => DO NOT SHY AWAY from this, speak up for yourself and counter at least once, then decide to continue with offer negotiations, or thank them and move on.
+
+### GTM Strategy
+
+- What is my value proposition? Sell myself, I am it.
+- Tech is a creative space.
+- Two primary concerns are Financial and Interpersonal.
+- I have the skills to do the work that somebody else is willing to pay to get done.
+
+### Behavioral Interviews
+
+A series of questions and/or scenarios, that have you explain how you handle situations.
+
+- challenges with co-workers
+- disagreements with supervisor
+- changed deadline
+- working with someone who is difficult to work with (punctuality, different ideas/perspectives)
+
+Considered to be the best predictor of future behavior.
+
+It's really a conversation about past experiences.
+
+- work related
+- non-work experiences
+
+Practice the STAR Method to *become ready* to handle these questions.
+
+Remember that the Results part of the STAR method is an opportunity to elaborate on what was learned, takeaways, etc.
+
+Common Questions:
+
+- Tell me about yourself? This is your pitch!
+- Strengths & weaknesses
+- How I fit in a company
+- Chance(s) to take the lead
+- Went above and beyond
+- Experience of failure, mistake, challenge
+
+"Tell me about a time when you had the chance to take the lead."
+
+Respond in the format: Situation, Task, Action, Results.
+
+Advice:
+
+- Keep yourself at the center of the story
+- Avoid sensationalism which could take away from your Actions and Results
+- Keep the story compelling, but short
+- Allow the interviewer an opportunity to ask *more* about your response
+- If you cannot share an exact experience, use "that has not been my experience, but here is what I would do..."
+- Results should include something about what you learned from the experience
+- Answer questions in a way that tells the interviewer about you and your strengths
+
 ## References
 
 Raul: logcat [Colors](https://stackoverflow.com/questions/39993867/android-studio-logcat-colors/39993868#39993868)
