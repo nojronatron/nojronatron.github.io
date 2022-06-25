@@ -644,12 +644,9 @@ Common Questions:
 - Went above and beyond
 - Experience of failure, mistake, challenge
 
-Tell me about a time when you had the chance to take the lead.
+"Tell me about a time when you had the chance to take the lead."
 
-Situation: 
-Task: 
-Action: 
-Results: 
+Respond in the format: Situation, Task, Action, Results.
 
 Advice:
 
@@ -658,6 +655,8 @@ Advice:
 - Keep the story compelling, but short
 - Allow the interviewer an opportunity to ask *more* about your response
 - If you cannot share an exact experience, use "that has not been my experience, but here is what I would do..."
+- Results should include something about what you learned from the experience
+- Answer questions in a way that tells the interviewer about you and your strengths
 
 ## References
 
