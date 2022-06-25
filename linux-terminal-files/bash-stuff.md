@@ -289,6 +289,20 @@ Find the size of directories in pwd: `du -sh ./*`
 Disk space utilization report: `df -h`  
 Find files modified within last 24 hours in a specified directory: `find $directory -mtime -1`  
 
+#### More About Finding Files
+
+Which: Finds where a command lives `which code`
+WhereIs: Like 'which' but includes lib and man file locations: `whereis code`
+
+##### Find
+
+Search for files based on many properties: Modified, permissions, owners, symlinks, directory, filename, and rwx permissions.
+
+```sh
+find . -name 'my_file.txt' -type f
+find /home/username/Downloads -name '*tar*' -type f
+```
+
 ### Interrogating Hardware
 
 List PCI Hardware/Driver info: `lspci` or `lspci -k` or `lspci -nnk`  
@@ -364,9 +378,14 @@ Image Converter: `convert $input_file_path.img -quality nn $output_file_path.ext
 ## References
 
 A great deal of the basics were gleened from [Ryan's Tutorials](https://ryanstutorials.net/linuxtutorial)  
+
 Specific grep, filter, and some other commands were copied from Ryan's Tutorials' [Linux Cheatsheet](https://ryanstutorials.net/linuxtutorial/cheatsheet.php) and [Grep Cheatsheet](https://ryanstutorials.net/linuxtutorial/cheatsheetgrep.php) and whenever possible, variables were changed to protect the innocent.  
+
 Apt and DPKG details were gleened from [this AskUbuntu.com article](https://askubuntu.com/questions/40779/how-do-i-install-a-deb-file-via-the-command-line)  
+
 [TechRepublic](https://www.techrepublic.com/article/how-to-add-an-openpgp-repository-key-now-that-apt-key-is-deprecated/) discusses adding an openGPG key, now that apt-key is deprecated.  
+
+[ChrisJean.com](https://chrisjean.com/4-great-tools-to-find-files-quickly-in-ubuntu/) for tips on 'which' and 'find' tools.
 
 ## Footer
 
