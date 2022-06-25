@@ -48,7 +48,7 @@ Quote Around Spaces or get frustrated (your choice).
   - Ex: `ls spacey folder name` returns an error.  
   - Ex: `ls 'spacey folder name'` works.  
 
-### Escape Characters
+### Linux Escape Characters
 
 Use a backslash `\` to escape (nullify) the special meaning of reserved characters like spaces e.g.:  
 
@@ -60,7 +60,7 @@ user@bash: pwd
 /home/toor/My Music
 ```
 
-### Linux MANuals
+## Linux MANuals
 
 Invoke `man` command followed by the command name you want information about to get an on-screen instruction MANual.  
 Exit MAN pages by pressing `q` on the keyboard.  
@@ -72,7 +72,7 @@ To search terms WITHIN a MAN page display: `/ <search_term>` then press `n` for 
 To execute a script in a different directory: `sh> (cd /dir/where/script/is/ ; sh script-name.sh [args])`  
 Doing this will contain the script execution within the child SH process, and if the script forces closure at the end, you won't lose your existing SH session.  
 
-## Operations in Linux
+## File Operations in Linux
 
 ### List Files
 
@@ -125,6 +125,19 @@ Absolute paths start with a forward slash `/` e.g.: `/etch`
 Relative paths identify a location 'relative' to the pwd and will not begin with a forward slash i.e. `../project/code401` is one folder 'back' from pwd and one folder 'forward' from the 'project' folder.  
 Home path is `~` which is equivalent to `\home\$username`  
 
+### Use Wildcards
+
+Zero or more characters: `*`  
+Single character: `?`  
+A range of characters: `[]`  
+List files in the pwd whose 1st character is a 'Q' or 'q', 2nd character is within the range 0-9, 3rd character is within the range 0-3, and any number of other character following: `ls [Qq][0-9][0-3]*`  
+Not: `^`  
+
+*Note about Not*: As the first character within a range wildcard causes the filter to eliminate files that match that first character range wildcard characters.  
+*Remember*: Wildcards affect the entire pathspec, which includes directories and filenames and file extensions.  
+
+## Text Exiting in Linux
+
 ### Nano Text Editor
 
 My favorite when in Bash/ZSH.  
@@ -172,17 +185,6 @@ Grep is used to filter data for viewing: `grep`
 
 *Note*: See more grep usage in [Grepping](#grepping)  
 
-### Use Wildcards
-
-Zero or more characters: `*`  
-Single character: `?`  
-A range of characters: `[]`  
-List files in the pwd whose 1st character is a 'Q' or 'q', 2nd character is within the range 0-9, 3rd character is within the range 0-3, and any number of other character following: `ls [Qq][0-9][0-3]*`  
-Not: `^`  
-
-*Note about Not*: As the first character within a range wildcard causes the filter to eliminate files that match that first character range wildcard characters.  
-*Remember*: Wildcards affect the entire pathspec, which includes directories and filenames and file extensions.  
-
 ## Use Piping and Redirection
 
 Redirect Standard Out (STDOUT) to a file: `>`  
@@ -199,24 +201,16 @@ wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /us
 sudo wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | sudo tee /usr/share/keyrings/adoptium.asc
 ```
 
-### Semicolons
+## Chaining Commands with Semicolons
 
 Use semicolons to chain commands together.  
 Essentially, it will run commands, in order, immediately after each previous command returns.
 Does not conditionally manage any previous command's succees (or failure) code e.g. 0 (pass) or non-0 (fail).  
 See [this StackOverflow question and its responses for more](https://stackoverflow.com/questions/25669540/what-is-the-difference-between-double-ampersand-and-semicolon-in-linux)  
 
-### Use Filters
+## Get All The Things
 
-When displaying or searching file contents, it can be helpful to filter the results to minimize clutter.  
-
-Show the first n lines: `head -n number`  
-Show the last n lines: `tail -n number`  
-Sort lines in a given way:  `sort`  
-Word Count, including characters and lines: `wc`  
-Search for a given pattern: `grep`  
-
-### Get the things with Grepping
+### Grepping
 
 Run grep with extended regex: `egrep` or `grep -E`  
 Ignore case: `-i`  
@@ -230,6 +224,18 @@ BEFORE context and AFTER context: `-B 4 -A 4` prints 4 lines prior-to and follow
 Regex: Follow standard regex rules, including Multipliers and Anchors.  
 
 *Note*: Check out [regularexpressions101](https://regex101.com/) for an easy tool to test RegEx before you 'buy' results. :-)  
+
+### Use Filters
+
+When displaying or searching file contents, it can be helpful to filter the results to minimize clutter.  
+
+Show the first n lines: `head -n number`  
+Show the last n lines: `tail -n number`  
+Sort lines in a given way:  `sort`  
+Word Count, including characters and lines: `wc`  
+Search for a given pattern: `grep`  
+
+## System Stuff
 
 ### Permissions
 
@@ -260,7 +266,7 @@ Change Permissions on a file (meaning everything): `chmod [permissions] [filespe
 Get version (long): `uname`  
 Get specific Linux kernel version and type: `uname -sr`  
 
-#### Environment Variables
+### Environment Variables
 
 Environment variables like `PATH=` are stored in `/etc/environment`, as well as `.zshrc` and `.config` files, often in the user profile area (but there could be others).  
 Update Alternatives: `update-alternatives --list java` displays path to java JDK.  
@@ -269,7 +275,7 @@ Display a specific environment variable: `printenv VAR_NAME`  e.g. `printenv JAV
 Display the existing PATH environment variable: `echo $PATH`  
 Update $PATH with a new entry: `export PATH=$PATH:/opt/package/example/bin`  
 
-#### Environment Variable Hierarchy
+### Environment Variable Hierarchy
 
 Loading variables in the current context becomes the 'parent context' set of variables.  
 If the parent (e.g. ZSH) launches another shell, its variables are then pushed to the child process.  
@@ -301,7 +307,21 @@ Device Message Logs: `sudo dmesg`
 Messages in Logs related to network(s): `sudo dmesg | grep iwl`  
 Network Manager Log: `sudo journalctl -b 0 -u NetworkManager`  
 
-### Install Software
+### Manage Processes
+
+Cancel a running operation: `[CTRL] + C`  
+Cancel a *process* by its ID: `kill $process_id`  
+Force canceling a 'stubborn' process: `kill $process_id -9`  
+Show list of running processes and IDs: `ps`  
+Put currently running process onto a background (paused) thread: `[CTRL] + z`  
+List current background processes: `jobs`  
+Move background process to foreground: `fg $job_number`  
+List ALL services, running AND not running: `service --status-all`  
+Use grep to find specific not/running: `service --status-all | grep '\[+\]'`  
+List services using systemctl: `systemctl list-units`  
+Check a specific service state using ps: `ps -ef | grep postgres`  
+
+## Install Software
 
 Config files are generally stored in `/etc`  
 Commonly used program binaries are stored in `/bin`  
@@ -311,7 +331,7 @@ Apt is the primary software manager utility: `apt get install $package`
 DPKG is the *underlying package management system*: `dpkg -i $deb_package`  
 As stated at AskUbuntu.com: `dpkg => apt-get, aptitude => Synaptic, Software Center`  
 
-#### Updating The Local Apt Repo
+### Updating The Local Apt Repo
 
 The Local Apt Repo is usually stored in `/etc/apt/sources.list.d/pgdg.list`  
 An example repo update will look something like this (for postgresQL):  
@@ -335,21 +355,9 @@ List existing packages: `dpkg -l $package_name_in_single_quotes`
 Remove a package: `dpkg -r $package_name`  
 Purge remaining package artifacts: `dpkg -P $package_name`  
 
-### Manage Processes
+## Specialized Tools
 
-Cancel a running operation: `[CTRL] + C`  
-Cancel a *process* by its ID: `kill $process_id`  
-Force canceling a 'stubborn' process: `kill $process_id -9`  
-Show list of running processes and IDs: `ps`  
-Put currently running process onto a background (paused) thread: `[CTRL] + z`  
-List current background processes: `jobs`  
-Move background process to foreground: `fg $job_number`  
-List ALL services, running AND not running: `service --status-all`  
-Use grep to find specific not/running: `service --status-all | grep '\[+\]'`  
-List services using systemctl: `systemctl list-units`  
-Check a specific service state using ps: `ps -ef | grep postgres`  
-
-### Specialized Tools
+### Image Converter
 
 Image Converter: `convert $input_file_path.img -quality nn $output_file_path.ext`
 
