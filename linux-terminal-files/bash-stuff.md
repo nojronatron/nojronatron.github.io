@@ -281,6 +281,31 @@ Loading variables in the current context becomes the 'parent context' set of var
 If the parent (e.g. ZSH) launches another shell, its variables are then pushed to the child process.  
 To force specific variables into the child process, bash for example: `zsh> VAR_ONE="Foo" VAR_TWO="BAR" sh` would load child process 'sh' with those two additional enironemnt variables preceeding it.  
 
+### Aliases
+
+Configure aliases to common commands, scripts, and executables to make your Linux SH (ZSH etc) life simpler.
+
+To see a list of existing aliases in shell: `alias`
+
+ZSH Aliasing:
+
+- Option 1: Update .zshrc by adding a line somewhere near (but not at) the end using keyword alias name=path_to_script_or_binary.
+- Option 2: Update ZSH_CUSTOM folder to include a list of custom Aliases for your profile.
+
+Add an alias for IntelliJ IDEA:
+
+1. Use find to locate file 'idea.sh' (or check JetBrains Toolbox for info on where it might be).
+2. Add the following line to .zshrc before final 'export' declarations: `alias idea="~/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/nnn.mmmm.vv/bin/idea.sh`
+3. Restart your shell.
+4. Traverse to the Java project directory and type: `idea .` and your project will open.
+
+Add an alias for AndroidStudio:
+
+1. Locate file "studio.sh" probably off your home directory (or see JetBrains ToolBox if you installed Android Studio that way).
+2. Add the path to an alias and name it something like: `androidstudio': `alias androidstudio=$STEP_1_PATH`
+3. Restart your shell.
+4. Traverse to the Android project directory and type: `androidstudio .` and your project will open.
+
 ### Interrogate Files and Disk
 
 Beyond creating, copying, moving, and deleting files, use these commands to manage the file *system* and disks.  
