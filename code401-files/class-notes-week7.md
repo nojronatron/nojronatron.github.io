@@ -56,7 +56,44 @@ Rooms Setup:
 - Same place, optionally add testImplementation
 - Gradle re-sync is *required*
 
+Create Entities to model the data:
 
+- New java class
+- Remember to add getters and setters
+
+Create an ENUM if one is necessary:
+
+- New file, name + '.java' extension.
+- Include package pointing to the package that the Entities will be stored in.
+- See java snippet example below.
+
+```java
+// package reference here
+public enum EnumName { 
+  CATEGORY1("category1"), 
+  CATEGORY2("category2"); 
+  private final String someString; 
+  // CTOR
+  // getters, setters
+  // @Override toString() or other overrides and custom methods as necessary
+  }
+```
+
+Implement the Enum in the entity:
+
+- As a Field: `EnumName enumName;`
+- Add a getter and setter for all Fields including the Enum.
+
+Adding Entity Decorators:
+
+- '@Entity' at the class level.
+- Add an ID Field except "Primary Key": `@PrimaryKey(autoGenerate=true)`
+
+
+
+## TODOs
+
+[ ] Android Studio: Create a macro to do common things like: Font resize/zoom.
 
 ## Footer
 
