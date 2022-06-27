@@ -66,7 +66,8 @@ The following are reading and research notes taken during, and in preparation fo
 
 ### ASD Additional References and Notes
 
-[ ] Class Notes [Week Six](./code401-files/class-notes-week6.html)  
+[ ] Class Notes [Week Seven](./code401-files/class-notes-week7.html)  
+[X] Class Notes [Week Six](./code401-files/class-notes-week6.html)  
 [X] Class Notes [Week Four](./code401-files/class-notes-week4.html)  
 [X] Class Notes [Week Three](./code401-files/class-notes-week3.html)  
 [X] Class Notes [Week Two](./code401-files/class-notes-week2.html)  
