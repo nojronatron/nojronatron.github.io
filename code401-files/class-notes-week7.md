@@ -32,12 +32,13 @@ The DAO does "get entities", and persists data back to the DB.
 
 Entities is the same as before, Classes with annotations and GET/SETters.
 
+*Emulator Requirement*: Must set the phone Emulator API to (32?).
+
 See [Android Developer Docs](https://developer.android.com/training/data-storage/room#java)
 
 Database Inspector:
 
 - Requires API 26 or Higher
-- ...
 
 SQL Lite:
 
@@ -87,7 +88,7 @@ Implement the Enum in the entity:
 Adding Entity Decorators:
 
 - '@Entity' at the class level.
-- Add an ID Field except "Primary Key": `@PrimaryKey(autoGenerate=true)`
+- Add an ID Field and set as "Primary Key": `@PrimaryKey(autoGenerate=true)`
 
 Create a DAO for the Entities:
 
@@ -98,7 +99,7 @@ Create a DAO for the Entities:
 1. Decorate a FindAll method with @Query: `@Query("SELECT * FROM Entity ORDER BY field ASC") public List<Product> findAll();`
 1. Decorate a FindByAnId method with @Query: `@Query("SELECT * FROM Entity WHERE id = :id") public Entity findById(Long id);`
 
-DAO will use GENERICS!
+An DAO can use GENERICS!
 
 - "One Purpose DAO" will force a single Entity by Type.
 - Utilizing a Generic could enable DRY, single-use interface methods.
