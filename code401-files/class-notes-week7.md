@@ -217,7 +217,33 @@ Code Challenge: Time box to no more than 2 hours! (me):
 
 Lab 29: Room => Task Model and Room, Add Task Form, updates to Home and Details pages. Stretch goals (2, optional).
 
+## Tuesday Morning
+
+All AWS, today and tomorrow.
+
+Host mobile apps using AWS Amplify.
+
+### Insertion Sort Whiteboard Review
+
+When you write "Edge Case" on your technical whiteboard, think of it like this: "What are the 'edges' of the data/inputs and outputs that my function has to deal with?"
+
+Always good to include a step-through.
+
+Use colors to identify areas of a step-through such as iterations the step-through step is in.
+
+Remember to add test-case handling in your pseudocode.
+
+### Merge-Sort Code Challenge
+
+Make sure you whiteboard this! Even if coding doesn't happen, have a whiteboard ready for Weds morning discussion.
+
+### AWS Amplify Part 1
+
+
+
 ## TODOs
+
+[ ] TaskMaster: How to alter the background colors on Activities.
 
 [ ] Android Studio: Create a macro to do common things like: Font resize/zoom.
 
