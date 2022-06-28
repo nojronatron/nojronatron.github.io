@@ -28,6 +28,8 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
+[ ] Read Class31 [AWS Amplify](./code401-files/aws-amplify.html)  
+[ ] Read Class29 [Android Rooms](./code401-files/android-rooms.html)  
 [ ] Read HASHTABLES [Hash Tables](./code401-files/hash-tables.html)  
 [ ] Read Class28 [RecyclerView for Displaying Lists of Data](./code401-files/recyclerview-for-lists.html)  
 [ ] Read Class27 [Android Key Value Data, Espresso, and Tasks](./code401-files/android-kvd-espresso-tasks.html)  
@@ -66,7 +68,8 @@ The following are reading and research notes taken during, and in preparation fo
 
 ### ASD Additional References and Notes
 
-[ ] Class Notes [Week Six](./code401-files/class-notes-week6.html)  
+[ ] Class Notes [Week Seven](./code401-files/class-notes-week7.html)  
+[X] Class Notes [Week Six](./code401-files/class-notes-week6.html)  
 [X] Class Notes [Week Four](./code401-files/class-notes-week4.html)  
 [X] Class Notes [Week Three](./code401-files/class-notes-week3.html)  
 [X] Class Notes [Week Two](./code401-files/class-notes-week2.html)  
