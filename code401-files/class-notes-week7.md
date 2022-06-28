@@ -239,7 +239,78 @@ Make sure you whiteboard this! Even if coding doesn't happen, have a whiteboard 
 
 ### AWS Amplify Part 1
 
+There are dozens of AWS Cloud Services, many devs know 1, we will have experience with 4 by the time we graduate.
 
+AWS is a collection of APIs and platforms to provide services.
+
+SNS: Automate (or manual) message-sending service.
+
+Elastic Beanstalk: Like Heroku but charges money.
+
+Can create a budged in the Billing Console > Budgets window, and make sure it applies to *all AWS Services*.
+
+*Note*: A budget and alerts in AWS Billing Console has been set up!
+
+#### Remove ROOM
+
+1. build.gradle: Remove ROOM references.
+1. Remove TaskManager Database class: Say yes to removing the references.
+1. Delete the DAO Class implementation (TasksDao.java).
+1. Model: Remove '@entity' and primary key annotations from the model class(es).
+1. Enter each Activity and remove references to Database Variables.
+1. It might be necessary to refactor some custom methods in order to remove the database references completely, so comment-out code and leave TODOs for what needs to be revisited.
+1. The TypeConverter might have a problem because it was annotated along with the DB and Room stuff.
+1. Consider doing an Emulator "Wipe" command by closing the Emulator and selecing the 'Wipe Data' menu item in the emulated phone's entry in the Device Manager.
+
+#### AWS Amplify Management CLI
+
+Read the docs on how to [download and install](https://docs.amplify.aws/cli/)
+
+Commands:
+
+- status:
+- add: Add category item, like API or other AWS Service.
+- push: Push to cloud.
+- console:
+- publish: Publish bits in cloud to service.
+
+##### Create an IAM User
+
+1. Logon as Root user.
+1. Open the Identity and Access Management view > Users
+1. Download the AWS Amplify CLI
+
+*Note*: AdministrativeAccess-Amplify is selected by default, DE-SELECT IT and just select AdministrativeAccess.
+
+*Note*: DOWNLOAD the CSV of the newly created users. This will be necessary in the AWS CLI console when logging in.
+
+#### Setup AWS Amplify on TaskManager
+
+Update build.gradle scripts at the Project level and the App level to support AWS Amplify.
+
+The AWS Amplify getting started document has a list of items that must be added to the Project's build.gradle.
+
+#### GraphQL
+
+Checkout the graphql.org [Learn Files](https://graphql.org/learn/queries/)
+
+GraphQL notes:
+
+- Depth Level can be adjusted beyond 2.
+
+#### Lambdas
+
+Detects specific ACTIONS, and perform processing when the Action occurs.
+
+### Tuesday Assignments
+
+[ ] Write at least 3 Espresso Tests.
+
+[ ] Merge-sort: Whiteboard completely. Coding is your choice.
+
+## References
+
+Wikipedia article [Amazon Web Services](https://en.wikipedia.org/wiki/Amazon_Web_Services)  
 
 ## TODOs
 
