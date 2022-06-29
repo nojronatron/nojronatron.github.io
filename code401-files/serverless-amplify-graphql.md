@@ -83,6 +83,28 @@ Common Serverless Frameworks and Architectures:
 
 ## Amazon AWS Amplify
 
+Purpose-built tools and features.
+
+FE Web and Mobile full-stack apps on AWS.
+
+Configure web, mobile, backend for your app, visually, with content management.
+
+Tools:
+
+- Amplify Studio: Build full-stack App FE+BE visually.
+- Amplify Libraries: Conenct App to existing services (Cognito, S3, etc)
+- Amplify CLI: Manage Amplify from your local terminal.
+- Amplify Hosting: Host website or content.
+
+Use Cases:
+
+- User Authentication: Plug-in your app to gain AuthN and user controls.
+- Build Backend Data Model.
+- Visually build App UI and Backend.
+- Host progressive webapp or static website.
+
+AWS Amplify [Docs](https://docs.amplify.aws/)
+
 ## Data Modeling
 
 ## Footer
