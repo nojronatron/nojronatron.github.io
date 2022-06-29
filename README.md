@@ -28,6 +28,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
+[ ] Read Class32 [Serverless, AWS Amplify, and GraphQL](./code401-files/serverless-amplify-graphql.html)  
 [ ] Read Class31 [AWS Amplify](./code401-files/aws-amplify.html)  
 [ ] Read Class29 [Android Rooms](./code401-files/android-rooms.html)  
 [ ] Read HASHTABLES [Hash Tables](./code401-files/hash-tables.html)  
