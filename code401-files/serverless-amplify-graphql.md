@@ -48,8 +48,38 @@ Functions As A Service (FaaS):
 - Invokation-based billint.
 - Event-driven.
 - "Instantaneously" scalable.
+- Independent, Logical functions.
+- Stateless.
+- Ephemeral: Spin-up, do work, shut-down.
+- Optional: Can be invoked manually.
+- Managed entirely by CSP.
 
+Serverless Solution Example:
 
+- Web Server: Amazon S3 simple web server service.
+- Lambda Function(s): Logging and data access (DB, JSON...) functions can be built as Functions.
+- Security Token Service (STS): Temporary AWS credentials (API Key + Secret) for App users. Enables invoking Lambdas.
+- User Authentication DB: AWS Cognito provides sign-up, sign-in to mobile and web apps. Allows OAuth or custom Ident Systems.
+- Client App: UI, client-side rendering w/ JS and/or static HTML.
+- Databse: AWS DynamoDB (NoSQL DB). Optional for serverless.
+
+Common Serverless Frameworks and Architectures:
+
+- Javascript, Python, Golang
+- Apex: JS
+- ClaudiaJS
+- Sparta (Golang)
+- Gordon (JS)
+- Zappa (Python)
+- Up (JS, Python, Golang, Crystal)
+
+### Links to Serverless Resource Materials
+
+[Serverless Examples](https://github.com/serverless/examples?ref=hackernoon.com)
+
+[Anaibol Awesome-serverless](https://github.com/anaibol/awesome-serverless?ref=hackernoon.com)
+
+[Build serverless contact form for static websites](https://hackernoon.com/building-serverless-contact-form-for-static-websites-b0e622d5a035?ref=hackernoon.com)
 
 ## Amazon AWS Amplify
 
