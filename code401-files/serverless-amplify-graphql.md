@@ -105,7 +105,108 @@ Use Cases:
 
 AWS Amplify [Docs](https://docs.amplify.aws/)
 
-## Data Modeling
+## Data Modeling With GraphQL
+
+There are a bunch of code snippets throughout this article.
+
+AWS Amplify automatically creates:
+
+- Dynamo DB
+- GraphQL types (@model directive in schema => @hasOne, @hasMany, @belongsTo, @manyToMany)
+
+Setup Tables:
+
+1. `type Name @model { content: Type }`
+1. `amplify push`
+
+Queries:
+
+Queries look like a JSON-related plain text file with a heierarchy.
+
+Example query:
+
+```sh
+query QueryAllThings {
+  listThings() {
+    things {
+      items {
+        id
+        content
+        createdAt
+        updatedAt
+      }
+    }
+  }
+}
+# Lists all 'things' (and their fields/properties?)
+```
+
+Primary Key:
+
+Configure by using `@model` directive and id will be automatic and primary.
+
+Mark a 2nd field with `@primaryKey` to specify *it* as the actual primary key.
+
+*Cannot change* primary key without deleting/recreating DB table.
+
+Sort Keys:
+
+Use `ID!` without `@primaryKey()` directive.
+
+Secondary Index:
+
+Underlying datasource is DynamoDB, a KVP type NoSQL DB.
+
+Model access patterns with secondary indices with `@index` directive.
+
+Hash Key: Strict equality tester.
+
+Sort Key: Comparisons including GT, LT, non-strict-equals, starts/ends with, and between operations.
+
+`sortKeyFields: ["fieldName"],` is used within the `@index` directive.
+
+Relationships Between Models:
+
+Uni-directional 1:1 releationship between 2 models: `@hasOne`
+
+One-direction 1:N relationship between 2 models: `@hasMany`
+
+Has One or Has Many bi-directionsl relationship: `@belongsTo`
+
+Join-Tables between 2 models for N:N relationships: `@manyToMany`
+
+*Note*: Avoid circular relationships between uni-directional relationship tables, or uni- and many- relationship tables.
+
+Bi-directional HasOne and HasMany relationships can be configured.
+
+Default Field Values:
+
+Use `@default` directive for scalar type fields e.g. int, string, etc.
+
+An example from *[Amplify Docs]*:
+
+```sh
+type Todo @model {
+  content: String @default(value: "My new Todo")
+}
+```
+
+Rename and Disable:
+
+Can be done to GraphQL queries, mutations, and supscriptions with name overrides, and nulling a value.
+
+Other Comments:
+
+- Custom queries can be created.
+- Lambda functions can be used for queries.
+- Edit timestamp fields 'updatedAt' and 'createdAt' to custom names like 'createdOn' and 'updatedOn'.
+
+### How It Works
+
+See the bottom section of the site labeled [How It Works](https://docs.amplify.aws/cli/graphql/data-modeling/#create-multiple-relationships-between-two-models) for details on:
+
+- Using the '@model' directive.
+- TypeDefinition of '@model' directive.
 
 ## Footer
 
