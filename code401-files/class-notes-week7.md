@@ -304,9 +304,68 @@ Detects specific ACTIONS, and perform processing when the Action occurs.
 
 ### Tuesday Assignments
 
-[ ] Write at least 3 Espresso Tests.
+- [X] Write at least 3 Espresso Tests.
 
-[ ] Merge-sort: Whiteboard completely. Coding is your choice.
+- [X] Merge-sort: Whiteboard completely. Coding is your choice.
+
+## Wednesday 29-June
+
+Is Data CIA? Stored Confidentiality, with Integrity, and Available?
+
+Cloud Pros:
+
+- Accessibility
+- Security
+- Automation
+- Scalability
+- Save space on local
+- No hardware in my house/managing own servers
+
+CLoud Cons:
+
+- Malicious code
+- Latency
+- Needs INTERNET
+
+### Integrating AWS With Android App
+
+After installing Amplify, additional folders are put in your Project.
+
+GraphQL will also add folder and files including a Schema json, queries, etc.
+
+step to convert from Room to Amplify w/ GraphQL:
+
+1. deleted db and daos
+1. delete your model
+1. remove all annotations and imports from your files
+1. add amplify dependinces into gradle
+1. add atskmasteramplifyapplication to extend app
+1. put amplify config into above app file
+1. update graphql schema (then api update on cli, after success then push w/o conflict resolution)
+1. run amplify codefen models to generate them locally
+1. delete old model and convert every usage in your app
+1. every dao usage needs to be converted to aplify api usage
+1. change recyclerviewadapter to have better string output
+
+### Wednesday Lab
+
+Add Task Form, refactor your homepage recyclerview, and get Amplify up and running.
+
+Remove Enum from the project, add a hard-coded list of Strings that represent all the categories.
+
+Spinner code might have to be altered to utilize the list instead.
+
+Remember to utilize onResume property to ensure re-vising views are updated with Amplify + Dynamo latest data.
+
+### Code Challenge Quick Sort
+
+No deductions for late submissions.
+
+Most complex of all sort algorithms.
+
+JS Array.sort() uses Quicksort.
+
+Quicksort is a common interview question.
 
 ## References
 
