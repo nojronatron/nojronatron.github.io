@@ -399,6 +399,42 @@ JS Array.sort() uses Quicksort.
 
 Quicksort is a common interview question.
 
+## Thursday June-30
+
+AWS and Billing:
+
+- Check this regularly.
+- Set notifications/alerts so billing activity isn't missed.
+- Free Tier lasts for 1yr or reaching max threshold, whichever comes first.
+- Relational DB is one place that is likely to accumulate charges.
+
+### Quicksort Whiteboard Review and Comments
+
+Final Technical Whiteboard and Interviews will require camera on.
+
+Put your working screen under the camera so your face is head-on with the camera feed.
+
+Pivot:
+
+- There are a few ways to approach this, some will pick a worst-case starting point, others will do better.
+- Consider the pivot point (partition method?) as a statistically likely good spot to start.
+- Middle or a randomly selected integer might keep the algorithm from picking the worst case scenario.
+
+Managing Quicksort Temporary Placeholders:
+
+- Use a Stack.
+- Quicksort in-place.
+- Tightly-scoped local variables e.g. Temp.
+
+Variable LOW is used to track how many values are less than the PIVOT point.
+
+### Relational Data in GraphQL
+
+One => Many and Many => One
+
+*Note*: Many to Many is a Left-Join SQL in the end.
+
+
 ## References
 
 Wikipedia article [Amazon Web Services](https://en.wikipedia.org/wiki/Amazon_Web_Services)  
