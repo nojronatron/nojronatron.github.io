@@ -302,7 +302,7 @@ Add an alias for IntelliJ IDEA:
 Add an alias for AndroidStudio:
 
 1. Locate file "studio.sh" probably off your home directory (or see JetBrains ToolBox if you installed Android Studio that way).
-2. Add the path to an alias and name it something like: `androidstudio': `alias androidstudio=$STEP_1_PATH`
+2. Add the path to an alias and name it something like: `androidstudio': ` alias androidstudio=$STEP_1_PATH`
 3. Restart your shell.
 4. Traverse to the Android project directory and type: `androidstudio .` and your project will open.
 
@@ -400,6 +400,35 @@ Purge remaining package artifacts: `dpkg -P $package_name`
 ### Image Converter
 
 Image Converter: `convert $input_file_path.img -quality nn $output_file_path.ext`
+
+### Compress, Zip, Tar Files for Archiving
+
+*NOTE*: This Section Is Under Development
+
+Tar
+
+Tempate (from tar --usage): `tar [options] -C DIR -f ARCHIVE [--exclude=PATTERN]
+
+Template: `tar -c [-f ARCHIVE] [OPTIONS] [File...]`
+
+Example to create a tar from target directory to named directory: `tar -c directory.tar.gz -zvf file_list`
+
+- c => Create
+- z => gzip, gunzip, or unzip
+- v => verbose file list
+- f => file or device ARCHIVE (name)
+
+EXCLUDE FILES while TARing: Insert `--exclude=PATTERN` before source directory.
+
+RECURSION: Automatic. It is the default behavior of TAR. Use `--norecursion` to turn it off.
+
+TAR References:
+
+GZIP Manual at [Gnu.org](https://www.gnu.org/software/tar/manual/html_node/gzip.html)
+
+[Ubuntu Tar Reference](https://manpages.ubuntu.com/manpages/xenial/en/man1/tar.1.html)
+
+ *NOTE*: End of under dev section
 
 ## References
 

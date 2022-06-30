@@ -304,9 +304,100 @@ Detects specific ACTIONS, and perform processing when the Action occurs.
 
 ### Tuesday Assignments
 
-[ ] Write at least 3 Espresso Tests.
+- [X] Write at least 3 Espresso Tests.
 
-[ ] Merge-sort: Whiteboard completely. Coding is your choice.
+- [X] Merge-sort: Whiteboard completely. Coding is your choice.
+
+## Wednesday 29-June
+
+Is Data CIA? Stored Confidentiality, with Integrity, and Available?
+
+Cloud Pros:
+
+- Accessibility
+- Security
+- Automation
+- Scalability
+- Save space on local
+- No hardware in my house/managing own servers
+
+CLoud Cons:
+
+- Malicious code
+- Latency
+- Needs INTERNET
+
+### Integrating AWS With Android App
+
+After installing Amplify, additional folders are put in your Project.
+
+GraphQL will also add folder and files including a Schema json, queries, etc.
+
+step to convert from Room to Amplify w/ GraphQL:
+
+1. deleted db and daos
+1. delete your model
+1. remove all annotations and imports from your files
+1. add amplify dependinces into gradle
+1. add atskmasteramplifyapplication to extend app
+1. put amplify config into above app file
+1. update graphql schema (then api update on cli, after success then push w/o conflict resolution)
+1. run amplify codefen models to generate them locally
+1. delete old model and convert every usage in your app
+1. every dao usage needs to be converted to aplify api usage
+1. change recyclerviewadapter to have better string output
+
+From Instructor Alex:
+
+```java
+  // Steps for adding Amplify to your app
+  // 1. Remove Room from your app
+  //   1A. Delete the Gradle Room dependencies in app's (lower-level) build.gradle
+  //   1B. Delete database class
+  //   1C. Delete DAO class
+  //   1D. Remove `@Entity` and `@PrimaryKey` annotations from the Product model class
+  //   1E: Delete the database variables and instantiation from each Activity that uses them
+  //   1F: Comment out DAO usages in each Activity that uses them
+  // 2. Make an IAM user
+  // 3. Run `amplify configure`
+  // 4. Add Amplify Gradle dependencies in build.gradle files
+  // 5. Run `amplify init`
+  // 6. Run `amplify add api` (or `amplify update api`)
+  // 7. Run `amplify push`
+  // 8. Change model in "amplify/backend/api/amplifyDatasource/schema.graphql" to match your app's model
+  // 9. Run `amplify api update` -> Disable conflict resolution
+  // 10. Run `amplify push --allow-destructive-graphql-schema-updates`
+  // 11. Run `amplify codegen models`
+  // 12A. Add an application class that extends Application and configures Amplify
+  // 12B. Put the application class name in your AndroidManifest.xml
+  // 12C. Uninstall the app on your emulator
+  // 13. Convert every usage of model classes to use Amplify generated models in app/src/main/java/com/amplifyframework/datastore/generated/model
+  //   13A. Instantiate classes using builder
+  //   13B. Get data elements via getters (if you aren't already)
+  // 14. Convert all DAO usages to Amplify.API calls
+  // 15. Update RecyclerView adapter's collection via runOnUiThread()
+  // 16. Fix date output in RecyclerView items
+```
+
+### Wednesday Lab
+
+Add Task Form, refactor your homepage recyclerview, and get Amplify up and running.
+
+Remove Enum from the project, add a hard-coded list of Strings that represent all the categories.
+
+Spinner code might have to be altered to utilize the list instead.
+
+Remember to utilize onResume property to ensure re-vising views are updated with Amplify + Dynamo latest data.
+
+### Code Challenge Quick Sort
+
+No deductions for late submissions.
+
+Most complex of all sort algorithms.
+
+JS Array.sort() uses Quicksort.
+
+Quicksort is a common interview question.
 
 ## References
 
