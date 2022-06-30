@@ -434,10 +434,100 @@ One => Many and Many => One
 
 *Note*: Many to Many is a Left-Join SQL in the end.
 
+Use the schema.graphql file to build new table(s).
+
+Create a new 'type', name it, and utilize directives '@model', '@auth' etc.
+
+```java
+type Contact @model @auth(rules: [{allow:public}]) {
+  id: ID!
+  email: String!
+  fullName: String
+  products: [Product] @hasMany(indexName: "byContact", fields: ["id"])
+}
+```
+
+Update Product to enable the FK relationship:
+
+```java
+type Product @model @auth(rules: [{allow:public}]) {
+  id: ID!
+  name: String!
+  description: String
+  dataCreate: AWSDateTime
+  productCategory: String
+  contactId: ID! @index(name: "byContact", sortKeyFields: ["name"])
+  contactPerson: Contact @belongsTo(fields: ["contactId"])
+}
+```
+
+*Note*: Relationship descriptions API has been updated a little, is similar, but a lot cleaner.
+
+When done editing Schema:
+
+1. Update CodeGenModels 'amplify codegen models' in Amplify CLI.
+1. Run 'amplify status' in the CLI.
+1. Run 'amplify push' and answer the quesions according to your app requirements.
+1. View the results in Amplify Admin UI after the PUSH operation completes.
+
+When creating a new entity (Amplify Class) after setting up the schema:
+
+1. Assign a variable of type that is the name of the Schema model.
+1. The value will be a ModelName.buildeer() with chained commands that set the Fields, rather than using a CTOR.
+1. Call Amplify.API.mutate() with args and callback handlers to call ModelMutation.create(variable_created_in_first_step).
+
+Amplify uses 'success' as a callback function.
+
+Inside an Amplify success callback add:
+
+- Create nice logging output `Log.i(string title, string message);`
+- Process data such as creating a collection of model data from the DB.
+- This works for filling a Spinner with data! Use code inside the onCreate() method to fill the spinner.
+
+*Note*: Review ApiModelname.java to see what the params are needed for Queries and Scaler methods!!
+
+### Completable Future
+
+Similar to JS Promises, which are asynchronous methods.
+
+Asynchronous is *not* procedural programming.
+
+Asynchronous will take whatever time the longest call takes.
+
+Synchronous will take the SUM OF ALL CALLS in order.
+
+CompletableFuture is an asynchronous package.
+
+`CompletableFuture<List<MyModel>> thingFuture = null;`
+
+Closing methods are necesary: To resolve the CompletableFuture (e.g. tell it to complete) you must include '.complete(arg)'.
+
+You *must* complete a CompletableFuture otherwise your app will hang, so Exceptions *must be handled*.
+
+CompletableFuture Exceptions receive 2 params, the output (if processing completed) and the exception that was thrown.
+
+To capture the exception write the 3rd parameter like:
+
+```java
+failure -> {
+  mymodelFuture.complete(null);
+  Log.e(String logTitle, String customMessage);
+}
+```
+
+### Other AWS Services
+
+Cognito
+
+DynamoDB
+
+S3
 
 ## References
 
 Wikipedia article [Amazon Web Services](https://en.wikipedia.org/wiki/Amazon_Web_Services)  
+
+Pseudocode Reference from [CSC Calpoly Institute](https://users.csc.calpoly.edu/~jdalbey/SWE/pdl_std.html)
 
 ## TODOs
 
