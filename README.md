@@ -14,14 +14,16 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 ## Code 401 Things I Want To Learn More About
 
+[ ] Applying themes (style, color, etc) to Android UI, simply and easily.
+[ ] Handling exceptions and execption types in asynchronous programming in Java.
 [X] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.  
 [ ] Wiring Repositories in Spring.  
-[ ] Spring MVC especially SQL and other DB APIs.  
+[X] Spring MVC especially SQL and other DB APIs.  
 [X] Interfaces: See OOP, Inheritance, Interfaces (below).  
 [ ] Proper and efficient installation of a specified JDK in Linux.  
-[ ] When and why would I choose to develop in Java vs C# or Python e.g. for a pet project.  
+[ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
 [X] Trees and Decision Trees have perplexed me for a while I'd like to get over that.  
-[ ] Configuring Linux and Windows to support "IDEA ." to open IntelliJ at current directory.  
+[X] Configuring Linux and Windows to support "IDEA ." to open IntelliJ at current directory.  
 [X] How do I know when it is best to use Generics? Right from the beginning, especially if not sure of type that will be used.  
 
 ## Advanced Software Development
