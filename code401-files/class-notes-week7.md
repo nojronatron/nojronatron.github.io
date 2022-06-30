@@ -192,6 +192,8 @@ Set Up a Spinner Element:
 
 *Tracking Element IDs*: Use the XML to more rapidly find and copy/past IDs, rather than the rendered UI.
 
+*Required*: You must get a reference to the Spinner UI element in order to do anything with it.
+
 #### Snackbar
 
 Belayed until another time.
@@ -486,6 +488,10 @@ Inside an Amplify success callback add:
 
 *Note*: Review ApiModelname.java to see what the params are needed for Queries and Scaler methods!!
 
+Grabbing a stream of a collection and filter it for a selected item (comparisonObj) and return it as an instance, else throw a specific exception:
+
+`myModel.stream().filter(c -> c.getter().equals(comparisonObj)).findAny().orElseThrow(RuntimeException::new);`
+
 ### Completable Future
 
 Similar to JS Promises, which are asynchronous methods.
@@ -514,6 +520,23 @@ failure -> {
   Log.e(String logTitle, String customMessage);
 }
 ```
+
+Another CompletableFuture exception type: InterruptedException.
+
+*Note*: You might run into a 'null reference exception' when using CompletableFuture calls. How to deal with this? TBD
+
+### Thursday Lab
+
+Advice:
+
+- Consider the logic you will need in order to view items from the DB filtered by specific Fields and Values (conditional rendering).
+- You will be adding Teams so be sure to build-out the schema accordingly, with Queries and Mutations methods.
+
+### Thursday Partnered Code Challenge
+
+MUST BE PAIRED.
+
+Treat as if this is the final technical interview.
 
 ### Other AWS Services
 
