@@ -14,29 +14,39 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 ## Code 401 Things I Want To Learn More About
 
-[ ] Applying themes (style, color, etc) to Android UI, simply and easily.
-[ ] Handling exceptions and execption types in asynchronous programming in Java.
-[X] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.  
-[ ] Wiring Repositories in Spring.  
-[X] Spring MVC especially SQL and other DB APIs.  
-[X] Interfaces: See OOP, Inheritance, Interfaces (below).  
-[ ] Proper and efficient installation of a specified JDK in Linux.  
-[ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
-[X] Trees and Decision Trees have perplexed me for a while I'd like to get over that.  
-[X] Configuring Linux and Windows to support "IDEA ." to open IntelliJ at current directory.  
-[X] How do I know when it is best to use Generics? Right from the beginning, especially if not sure of type that will be used.  
+- [ ] Android: Implementing and managing data from a DB in a Spinner.
+- [ ] Applying themes (style, color, etc) to Android UI, simply and easily.  
+- [ ] Handling exceptions and execption types in asynchronous programming in Java.  
+- [X] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.  
+- [ ] Wiring Repositories in Spring.  
+- [X] Spring MVC especially SQL and other DB APIs.  
+- [X] Interfaces: See OOP, Inheritance, Interfaces (below).  
+- [ ] Proper and efficient installation of a specified JDK in Linux.  
+- [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
+- [X] Trees and Decision Trees have perplexed me for a while I'd like to get over that.  
+- [X] Configuring Linux and Windows to support "IDEA ." to open IntelliJ at current directory.  
+- [X] How do I know when it is best to use Generics? Right from the beginning, especially if not sure of type that will be used.  
 
 ## Advanced Software Development
 
 The following are reading and research notes taken during, and in preparation for Code401 Java:
 
+[ ] Read GRAPHS [Code Fellows Curriculum on Graphs](./code401-files/graphs.html)
+
 [ ] Read Class33 [Relationships in GraphQL and AWS Amplify and CompletableFuture in Java](./code401-files/graphqlhasmanyconns-completablefuture.html)  
+
 [ ] Read Class32 [Serverless, AWS Amplify, and GraphQL](./code401-files/serverless-amplify-graphql.html)  
+
 [ ] Read Class31 [AWS Amplify](./code401-files/aws-amplify.html)  
+
 [ ] Read Class29 [Android Rooms](./code401-files/android-rooms.html)  
+
 [ ] Read HASHTABLES [Hash Tables](./code401-files/hash-tables.html)  
+
 [ ] Read Class28 [RecyclerView for Displaying Lists of Data](./code401-files/recyclerview-for-lists.html)  
+
 [ ] Read Class27 [Android Key Value Data, Espresso, and Tasks](./code401-files/android-kvd-espresso-tasks.html)  
+
 [ ] Read Class26 [Android Component Fundamentals](./code401-files/android-fundamentals.html)  
 
 -=[Midterm Break]=-

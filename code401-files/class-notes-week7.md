@@ -192,6 +192,8 @@ Set Up a Spinner Element:
 
 *Tracking Element IDs*: Use the XML to more rapidly find and copy/past IDs, rather than the rendered UI.
 
+*Required*: You must get a reference to the Spinner UI element in order to do anything with it.
+
 #### Snackbar
 
 Belayed until another time.
@@ -399,9 +401,180 @@ JS Array.sort() uses Quicksort.
 
 Quicksort is a common interview question.
 
+## Thursday June-30
+
+AWS and Billing:
+
+- Check this regularly.
+- Set notifications/alerts so billing activity isn't missed.
+- Free Tier lasts for 1yr or reaching max threshold, whichever comes first.
+- Relational DB is one place that is likely to accumulate charges.
+
+### Quicksort Whiteboard Review and Comments
+
+Final Technical Whiteboard and Interviews will require camera on.
+
+Put your working screen under the camera so your face is head-on with the camera feed.
+
+Pivot:
+
+- There are a few ways to approach this, some will pick a worst-case starting point, others will do better.
+- Consider the pivot point (partition method?) as a statistically likely good spot to start.
+- Middle or a randomly selected integer might keep the algorithm from picking the worst case scenario.
+
+Managing Quicksort Temporary Placeholders:
+
+- Use a Stack.
+- Quicksort in-place.
+- Tightly-scoped local variables e.g. Temp.
+
+Variable LOW is used to track how many values are less than the PIVOT point.
+
+### Relational Data in GraphQL
+
+One => Many and Many => One
+
+*Note*: Many to Many is a Left-Join SQL in the end.
+
+Use the schema.graphql file to build new table(s).
+
+Create a new 'type', name it, and utilize directives '@model', '@auth' etc.
+
+```java
+type Contact @model @auth(rules: [{allow:public}]) {
+  id: ID!
+  email: String!
+  fullName: String
+  products: [Product] @hasMany(indexName: "byContact", fields: ["id"])
+}
+```
+
+Update Product to enable the FK relationship:
+
+```java
+type Product @model @auth(rules: [{allow:public}]) {
+  id: ID!
+  name: String!
+  description: String
+  dataCreate: AWSDateTime
+  productCategory: String
+  contactId: ID! @index(name: "byContact", sortKeyFields: ["name"])
+  contactPerson: Contact @belongsTo(fields: ["contactId"])
+}
+```
+
+*Note*: Relationship descriptions API has been updated a little, is similar, but a lot cleaner.
+
+When done editing Schema:
+
+1. Update CodeGenModels 'amplify codegen models' in Amplify CLI.
+1. Run 'amplify status' in the CLI.
+1. Run 'amplify push' and answer the quesions according to your app requirements.
+1. View the results in Amplify Admin UI after the PUSH operation completes.
+
+When creating a new entity (Amplify Class) after setting up the schema:
+
+1. Assign a variable of type that is the name of the Schema model.
+1. The value will be a ModelName.buildeer() with chained commands that set the Fields, rather than using a CTOR.
+1. Call Amplify.API.mutate() with args and callback handlers to call ModelMutation.create(variable_created_in_first_step).
+
+```java
+// sample code from Taskmaster project
+Task task = Task.builder()
+  .title(newTaskTitle)
+  .body(newTaskDescription)
+  .state(newTaskStatus)
+  .build();
+```
+
+Amplify uses 'success' as a callback function.
+
+Inside an Amplify success callback add:
+
+- Create nice logging output `Log.i(string title, string message);`
+- Process data such as creating a collection of model data from the DB.
+- This works for filling a Spinner with data! Use code inside the onCreate() method to fill the spinner.
+
+```java
+// sample code from Taskmaster project
+Log.i("", "Entered incrementTaskCounter lambda.");
+TextView successText = AddTask.this.findViewById(R.id.submittedText);
+
+// aws amplify graphql insert method
+Amplify.API.mutate(
+  ModelMutation.create(teamAlpha),
+  response -> Log.i("HomeActivity", "Added Team with id: " + response.getData().getId()),
+  error -> Log.e("HomeActivity", "Failed to create new Team", error)
+);
+
+finish(); // necessary to exit the lambda
+```
+
+*Note*: Review ApiModelname.java to see what the params are needed for Queries and Scaler methods!!
+
+Grabbing a stream of a collection and filter it for a selected item (comparisonObj) and return it as an instance, else throw a specific exception:
+
+`myModel.stream().filter(c -> c.getter().equals(comparisonObj)).findAny().orElseThrow(RuntimeException::new);`
+
+### Completable Future
+
+Similar to JS Promises, which are asynchronous methods.
+
+Asynchronous is *not* procedural programming.
+
+Asynchronous will take whatever time the longest call takes.
+
+Synchronous will take the SUM OF ALL CALLS in order.
+
+CompletableFuture is an asynchronous package.
+
+`CompletableFuture<List<MyModel>> thingFuture = null;`
+
+Closing methods are necesary: To resolve the CompletableFuture (e.g. tell it to complete) you must include '.complete(arg)'.
+
+You *must* complete a CompletableFuture otherwise your app will hang, so Exceptions *must be handled*.
+
+CompletableFuture Exceptions receive 2 params, the output (if processing completed) and the exception that was thrown.
+
+To capture the exception write the 3rd parameter like:
+
+```java
+failure -> {
+  mymodelFuture.complete(null);
+  Log.e(String logTitle, String customMessage);
+}
+```
+
+Another CompletableFuture exception type: InterruptedException.
+
+*Note*: You might run into a 'null reference exception' when using CompletableFuture calls. How to deal with this? TBD
+
+### Thursday Lab
+
+Advice:
+
+- Consider the logic you will need in order to view items from the DB filtered by specific Fields and Values (conditional rendering).
+- You will be adding Teams so be sure to build-out the schema accordingly, with Queries and Mutations methods.
+
+### Thursday Partnered Code Challenge
+
+MUST BE PAIRED.
+
+Treat as if this is the final technical interview.
+
+### Other AWS Services
+
+Cognito
+
+DynamoDB
+
+S3
+
 ## References
 
 Wikipedia article [Amazon Web Services](https://en.wikipedia.org/wiki/Amazon_Web_Services)  
+
+Pseudocode Reference from [CSC Calpoly Institute](https://users.csc.calpoly.edu/~jdalbey/SWE/pdl_std.html)
 
 ## TODOs
 
