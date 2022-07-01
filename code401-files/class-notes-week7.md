@@ -478,6 +478,15 @@ When creating a new entity (Amplify Class) after setting up the schema:
 1. The value will be a ModelName.buildeer() with chained commands that set the Fields, rather than using a CTOR.
 1. Call Amplify.API.mutate() with args and callback handlers to call ModelMutation.create(variable_created_in_first_step).
 
+```java
+// sample code from Taskmaster project
+Task task = Task.builder()
+  .title(newTaskTitle)
+  .body(newTaskDescription)
+  .state(newTaskStatus)
+  .build();
+```
+
 Amplify uses 'success' as a callback function.
 
 Inside an Amplify success callback add:
@@ -485,6 +494,21 @@ Inside an Amplify success callback add:
 - Create nice logging output `Log.i(string title, string message);`
 - Process data such as creating a collection of model data from the DB.
 - This works for filling a Spinner with data! Use code inside the onCreate() method to fill the spinner.
+
+```java
+// sample code from Taskmaster project
+Log.i("", "Entered incrementTaskCounter lambda.");
+TextView successText = AddTask.this.findViewById(R.id.submittedText);
+
+// aws amplify graphql insert method
+Amplify.API.mutate(
+  ModelMutation.create(teamAlpha),
+  response -> Log.i("HomeActivity", "Added Team with id: " + response.getData().getId()),
+  error -> Log.e("HomeActivity", "Failed to create new Team", error)
+);
+
+finish(); // necessary to exit the lambda
+```
 
 *Note*: Review ApiModelname.java to see what the params are needed for Queries and Scaler methods!!
 
