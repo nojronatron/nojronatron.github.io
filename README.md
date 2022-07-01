@@ -14,8 +14,9 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 ## Code 401 Things I Want To Learn More About
 
-[ ] Applying themes (style, color, etc) to Android UI, simply and easily.
-[ ] Handling exceptions and execption types in asynchronous programming in Java.
+-[ ] Android: Implementing and managing data from a DB in a Spinner.  
+[ ] Applying themes (style, color, etc) to Android UI, simply and easily.  
+[ ] Handling exceptions and execption types in asynchronous programming in Java.  
 [X] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.  
 [ ] Wiring Repositories in Spring.  
 [X] Spring MVC especially SQL and other DB APIs.  
