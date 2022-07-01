@@ -570,6 +570,58 @@ DynamoDB
 
 S3
 
+## Friday Class Notes
+
+### Career Coaching Workshop
+
+1. Graduate!
+2. Targeted Job Search.
+3. Stellar Resume.
+4. Informational/Recruitment Call. You might be asked for your target salary range.
+5. On-site Interview. Tell me about yourself? Elevator pitch! Remain calm so knowledge access is possible.
+6. Receive an offer! Prepare to decide whether to walk-away or how to accept.
+7. Negotiation => Job Offer!
+
+### Technical Spruce-up
+
+GitHub:
+
+- Keep doing what I'm doing.
+- Employing a bot to make my commit history more green is not my gig.
+- Enable Private Contributions.
+- After 401, make non-showcase repositories private, but pin your *best projects*.
+- Update your README at the root of your dashboard! (See HexxKing's repo on this topic).
+
+### Tools and Online Editors for Collaborating and Proving
+
+[replit.com](https://replit.com/)
+
+[CodePen](https://codepen.io/)
+
+Google on [Sandboxing Code](https://developers.google.com/code-sandboxing)
+
+[code sandbox](https://codesandbox.io/)
+
+[HackerRank](https://www.hackerrank.com/)
+
+[CoderPad](https://coderpad.io/)
+
+Code Fellows advice to set up [GoogleDocs for Technical Interview](https://www.codefellows.org/blog/setting-up-google-docs-for-technical-interview-happiness/)
+
+[Leetcode](https://leetcode.com/)
+
+[CodeWars](https://www.codewars.com/)
+
+### Graphs
+
+Lots of examples of Graphs, generally, in the world.
+
+Graph are interconnected data structures.
+
+Nodes in Graphs are called Vertices.
+
+*Note*: Try to stick with the accepted terminology so everyone is on the same page especially Vertices vs Nodes.
+
 ## References
 
 Wikipedia article [Amazon Web Services](https://en.wikipedia.org/wiki/Amazon_Web_Services)  
