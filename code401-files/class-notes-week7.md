@@ -594,25 +594,27 @@ GitHub:
 
 ### Tools and Online Editors for Collaborating and Proving
 
-[replit.com](https://replit.com/)
+- [X] [replit.com](https://replit.com/)
 
-[CodePen](https://codepen.io/)
+- [ ] [CodePen](https://codepen.io/)
 
-Google on [Sandboxing Code](https://developers.google.com/code-sandboxing)
+- [X] Google on [Sandboxing Code](https://developers.google.com/code-sandboxing)
 
-[code sandbox](https://codesandbox.io/)
+- [ ] [code sandbox](https://codesandbox.io/)
 
-[HackerRank](https://www.hackerrank.com/)
+- [X] [HackerRank](https://www.hackerrank.com/)
 
-[CoderPad](https://coderpad.io/)
+- [ ] [CoderPad](https://coderpad.io/)
 
-Code Fellows advice to set up [GoogleDocs for Technical Interview](https://www.codefellows.org/blog/setting-up-google-docs-for-technical-interview-happiness/)
+- [X] Code Fellows advice to set up [GoogleDocs for Technical Interview](https://www.codefellows.org/blog/setting-up-google-docs-for-technical-interview-happiness/)
 
-[Leetcode](https://leetcode.com/)
+- [X] [Leetcode](https://leetcode.com/)
 
-[CodeWars](https://www.codewars.com/)
+- [X] [CodeWars](https://www.codewars.com/)
 
 ### Graphs
+
+These notes supplement [reading notes on graphs](graphs.html) in this repo.
 
 Lots of examples of Graphs, generally, in the world.
 
@@ -621,6 +623,50 @@ Graph are interconnected data structures.
 Nodes in Graphs are called Vertices.
 
 *Note*: Try to stick with the accepted terminology so everyone is on the same page especially Vertices vs Nodes.
+
+Root: The starting vertex when analysing and traversing a graph.
+
+Potential Connections: Edges are connections, and Graphs have neighbors via edges. But not all Vertices are connected directly to all others.
+
+Neighbor: Currently-adjacent Vertex.
+
+Degree: Number of edges connected to a Vertex.
+
+Traversals:
+
+- Trees: Unidirectional traveling across edges between vertices.
+- Graphs: Could be undirected, or directed unidirectional or potentially multi-directional.
+
+Cyclic vs Acyclic:
+
+- Cyclic means traversals can visit the same vertices multiple times.
+- Acyclic means traversals are one-way and usually neighbor vertices are not visited more than ones.
+
+Edges can have Weight:
+
+- Relates the cost or importance, depending on the problem domain.
+- Enables evaluating "best path" or paths between vertices.
+
+### Code Challenge for Friday
+
+Graph Implementation!
+
+- add a node.
+- add edge => Create a custom method addBidirectionalEdge() to help out.
+- get nodes.
+- get neighbors.
+- traverse graph.
+- size: return total vertices in the graph.
+
+Remember left and right? These are edges!
+
+Reference all edges like done in the kAry Tree!
+
+Find vertices via Breadth First Traversal and return the collection.
+
+Consider using a hashset or set to track visited vertices.
+
+lucy-gelderloos
 
 ## References
 
