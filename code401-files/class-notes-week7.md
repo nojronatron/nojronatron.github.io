@@ -570,6 +570,102 @@ DynamoDB
 
 S3
 
+## Friday Class Notes
+
+### Career Coaching Workshop
+
+1. Graduate!
+2. Targeted Job Search.
+3. Stellar Resume.
+4. Informational/Recruitment Call. You might be asked for your target salary range.
+5. On-site Interview. Tell me about yourself? Elevator pitch! Remain calm so knowledge access is possible.
+6. Receive an offer! Prepare to decide whether to walk-away or how to accept.
+7. Negotiation => Job Offer!
+
+### Technical Spruce-up
+
+GitHub:
+
+- Keep doing what I'm doing.
+- Employing a bot to make my commit history more green is not my gig.
+- Enable Private Contributions.
+- After 401, make non-showcase repositories private, but pin your *best projects*.
+- Update your README at the root of your dashboard! (See HexxKing's repo on this topic).
+
+### Tools and Online Editors for Collaborating and Proving
+
+- [X] [replit.com](https://replit.com/)
+
+- [ ] [CodePen](https://codepen.io/)
+
+- [X] Google on [Sandboxing Code](https://developers.google.com/code-sandboxing)
+
+- [ ] [code sandbox](https://codesandbox.io/)
+
+- [X] [HackerRank](https://www.hackerrank.com/)
+
+- [ ] [CoderPad](https://coderpad.io/)
+
+- [X] Code Fellows advice to set up [GoogleDocs for Technical Interview](https://www.codefellows.org/blog/setting-up-google-docs-for-technical-interview-happiness/)
+
+- [X] [Leetcode](https://leetcode.com/)
+
+- [X] [CodeWars](https://www.codewars.com/)
+
+### Graphs
+
+These notes supplement [reading notes on graphs](graphs.html) in this repo.
+
+Lots of examples of Graphs, generally, in the world.
+
+Graph are interconnected data structures.
+
+Nodes in Graphs are called Vertices.
+
+*Note*: Try to stick with the accepted terminology so everyone is on the same page especially Vertices vs Nodes.
+
+Root: The starting vertex when analysing and traversing a graph.
+
+Potential Connections: Edges are connections, and Graphs have neighbors via edges. But not all Vertices are connected directly to all others.
+
+Neighbor: Currently-adjacent Vertex.
+
+Degree: Number of edges connected to a Vertex.
+
+Traversals:
+
+- Trees: Unidirectional traveling across edges between vertices.
+- Graphs: Could be undirected, or directed unidirectional or potentially multi-directional.
+
+Cyclic vs Acyclic:
+
+- Cyclic means traversals can visit the same vertices multiple times.
+- Acyclic means traversals are one-way and usually neighbor vertices are not visited more than ones.
+
+Edges can have Weight:
+
+- Relates the cost or importance, depending on the problem domain.
+- Enables evaluating "best path" or paths between vertices.
+
+### Code Challenge for Friday
+
+Graph Implementation!
+
+- add a node.
+- add edge => Create a custom method addBidirectionalEdge() to help out.
+- get nodes.
+- get neighbors.
+- traverse graph.
+- size: return total vertices in the graph.
+
+Remember left and right? These are edges!
+
+Reference all edges like done in the kAry Tree!
+
+Find vertices via Breadth First Traversal and return the collection.
+
+Consider using a hashset or set to track visited vertices.
+
 ## References
 
 Wikipedia article [Amazon Web Services](https://en.wikipedia.org/wiki/Amazon_Web_Services)  
