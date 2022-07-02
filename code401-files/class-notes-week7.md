@@ -666,8 +666,6 @@ Find vertices via Breadth First Traversal and return the collection.
 
 Consider using a hashset or set to track visited vertices.
 
-lucy-gelderloos
-
 ## References
 
 Wikipedia article [Amazon Web Services](https://en.wikipedia.org/wiki/Amazon_Web_Services)  

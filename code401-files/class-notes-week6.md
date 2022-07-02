@@ -664,6 +664,15 @@ Raul: logcat [Colors](https://stackoverflow.com/questions/39993867/android-studi
 
 Raul: more logcat [Stuff](https://developer.android.com/studio/debug/am-logcat)
 
+How to answer behavioral questions [on YouTube](https://youtu.be/IV30jAw7dxA)
+
+Behavioral interview dos and donts by [MyPerfectResume.com](https://www.myperfectresume.com/career-center/interviews/prep/11-crucial-behavioral-dos-and-donts)
+
+[Smart Strategies](https://www.job-hunt.org/smart-behavioral-interview-answers/) for behavioral questions.
+
+Glassdoor [How to prepare for the interview](https://www.glassdoor.com/blog/guide/how-to-prepare-for-a-behavioral-interview/)
+
+
 ## Footer
 
 Return to [root readme](../README.html)

@@ -212,8 +212,4 @@ B is for [Bootstrap](https://getbootstrap.com/docs/3.4/)
 
 Free [Google Fonts](https://fonts.google.com/)
 
-## Remember TODOs  
-
-[ ] Bookmark additional resources  
-[ ] Present material as if to someone new to the industry  
-[ ] Cite sources with links when directly quoting  
+[CSS-Tricks](https://css-tricks.com/) by Digital Ocean
