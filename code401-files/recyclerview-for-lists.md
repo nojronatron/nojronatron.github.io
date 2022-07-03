@@ -55,7 +55,17 @@ Requirements to defining the Adapter:
 
 1. Override onCreateViewHolder(): Creates and inits ViewHolder and View (no data binding here).
 1. Override onBindViewHolder(): Fetch and associate ViewHolder with fetched data.
-1. Override getItemCount(): 
+1. Override getItemCount(): RecyclerView calls this to track size of dataset for determining "bottom" of the list.
+
+Also:
+
+- Implement an XML FrameLayout file e.g. 'text_row_item.xml' that defines width, height, margin, and gravity.
+- Implement FameLayout.TextView xml with a unique ID, width, height, and text `@string/element_text`.
+- Create a local private Field to store the dataset.
+- Extend RecyclerView (detailed code [here](https://developer.android.com/guide/topics/ui/layout/recyclerview#java)).
+- Create getTextView() method to review a TextView based on specific view R.id.textView tag.
+- Initialize the Custom Adapter with the Dataset; CTOR sets dataset to local private dataset field.
+- Implement `@Override` methods onCreateViewHolder, onBindViewHolder, and getItemCount.
 
 ## Footer
 
