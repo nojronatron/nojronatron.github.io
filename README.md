@@ -29,7 +29,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 ## Advanced Software Development
 
-The following are reading and research notes taken during, and in preparation for Code401 Java:
+The following are reading and research notes taken during, and in preparation for Code401 Java. Review these after class discusion, and then again after attempts to implement the lab(s) or code challenge(s):
 
 - [ ] Read Class34 [Publishing your Android App](./code401-files/pub-android-google.html) to Google Store
 
