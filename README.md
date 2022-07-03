@@ -6,15 +6,15 @@ A collection of notes taken while attending Code Fellows CODE curriculum classes
 
 Reference [links](#reference-links)  
 
-Code 401 - [Advanced Software Development - Java](#advanced-software-development)  
+Code 401 - [Advanced Software Development - Java](#advanced-software-development)
 
-Code 301 - [Intermediate Software Development](#intermediate-software-development)  
+Code 301 - [Intermediate Software Development](#intermediate-software-development)
 
-Code 201 - [Foundations of Software Development](#foundations-of-software-development)  
+Code 201 - [Foundations of Software Development](#foundations-of-software-development)
 
 ## Code 401 Things I Want To Learn More About
 
-- [ ] Android: Implementing and managing data from a DB in a Spinner.
+- [ ] Android: Implementing and managing data from a DB in a Spinner (happening now).
 - [ ] Applying themes (style, color, etc) to Android UI, simply and easily.  
 - [ ] Handling exceptions and execption types in asynchronous programming in Java.  
 - [X] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.  
@@ -29,25 +29,27 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 ## Advanced Software Development
 
-The following are reading and research notes taken during, and in preparation for Code401 Java:
+The following are reading and research notes taken during, and in preparation for Code401 Java. Review these after class discusion, and then again after attempts to implement the lab(s) or code challenge(s):
 
-[ ] Read GRAPHS [Code Fellows Curriculum on Graphs](./code401-files/graphs.html)
+- [ ] Read Class34 [Publishing your Android App](./code401-files/pub-android-google.html) to Google Store
 
-[ ] Read Class33 [Relationships in GraphQL and AWS Amplify and CompletableFuture in Java](./code401-files/graphqlhasmanyconns-completablefuture.html)
+- [X] Read GRAPHS [Code Fellows Curriculum on Graphs](./code401-files/graphs.html)
 
-[ ] Read Class32 [Serverless, AWS Amplify, and GraphQL](./code401-files/serverless-amplify-graphql.html)
+- [X] Read Class33 [Relationships in GraphQL and AWS Amplify and CompletableFuture in Java](./code401-files/graphqlhasmanyconns-completablefuture.html)
 
-[ ] Read Class31 [AWS Amplify](./code401-files/aws-amplify.html)
+- [X] Read Class32 [Serverless, AWS Amplify, and GraphQL](./code401-files/serverless-amplify-graphql.html)
 
-[ ] Read Class29 [Android Rooms](./code401-files/android-rooms.html)
+- [X] Read Class31 [AWS Amplify](./code401-files/aws-amplify.html)
 
-[ ] Read HASHTABLES [Hash Tables](./code401-files/hash-tables.html)
+- [ ] Read Class29 [Android Rooms](./code401-files/android-rooms.html)
 
-[ ] Read Class28 [RecyclerView for Displaying Lists of Data](./code401-files/recyclerview-for-lists.html)
+- [X] Read HASHTABLES [Hash Tables](./code401-files/hash-tables.html)
 
-[ ] Read Class27 [Android Key Value Data, Espresso, and Tasks](./code401-files/android-kvd-espresso-tasks.html)
+- [ ] Read Class28 [RecyclerView for Displaying Lists of Data](./code401-files/recyclerview-for-lists.html)
 
-[ ] Read Class26 [Android Component Fundamentals](./code401-files/android-fundamentals.html)
+- [X] Read Class27 [Android Key Value Data, Espresso, and Tasks](./code401-files/android-kvd-espresso-tasks.html)
+
+- [X] Read Class26 [Android Component Fundamentals](./code401-files/android-fundamentals.html)
 
 -=[Midterm Break]=-
 
@@ -105,7 +107,7 @@ The following are reading and research notes taken during, and in preparation fo
 
 ### ASD Additional References and Notes
 
-- [ ] Class Notes [Week Seven](./code401-files/class-notes-week7.html)
+- [X] Class Notes [Week Seven](./code401-files/class-notes-week7.html)
 - [X] Class Notes [Week Six](./code401-files/class-notes-week6.html)
 - [X] Class Notes [Week Four](./code401-files/class-notes-week4.html)
 - [X] Class Notes [Week Three](./code401-files/class-notes-week3.html)
@@ -115,7 +117,7 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
 - [X] Java Study [Guide](./code401-files/java-reference.html)  
 - [X] [Deploying Springboot to Heroku](./code401-files/heroku-deploy-spring.html)  
-- [ ] Additional Notes On [BigO Notation](https://www.bigocheatsheet.com/)
+- [X] Additional Notes On [BigO Notation](https://www.bigocheatsheet.com/)
 
 ## Intermediate Software Development
 
