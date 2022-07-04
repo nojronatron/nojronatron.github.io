@@ -6,88 +6,63 @@ A collection of notes taken while attending Code Fellows CODE curriculum classes
 
 Reference [links](#reference-links)  
 
-Code 401 - [Advanced Software Development - Java](#advanced-software-development)
+Code 401 - [Advanced Software Development - Java](#advanced-software-development)  
 
-Code 301 - [Intermediate Software Development](#intermediate-software-development)
+Code 301 - [Intermediate Software Development](#intermediate-software-development)  
 
-Code 201 - [Foundations of Software Development](#foundations-of-software-development)
+Code 201 - [Foundations of Software Development](#foundations-of-software-development)  
 
 ## Code 401 Things I Want To Learn More About
 
-- [ ] Android: Implementing and managing data from a DB in a Spinner (happening now).
+- [ ] GENERICS: Implement them from the beginning, but I am still struggling with them so can [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) [JavaPoint](https://www.javatpoint.com/generics-in-java) or [Baeldung](https://www.baeldung.com/java-generics) help me.  
+- [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)).  
+- [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
 - [ ] Applying themes (style, color, etc) to Android UI, simply and easily.  
-- [ ] Handling exceptions and execption types in asynchronous programming in Java.  
-- [X] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.  
+- [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
 - [ ] Wiring Repositories in Spring.  
+- [X] Proper and efficient installation of a specified JDK in Linux: Use JetBrains Tools box for IntelliJ installations; Use DEB install for Linux without JetBrains; Use Zip for Windows, put files where you want them, update JAVAHOME reference.
+- [X] [Handling exceptions and exception types](./code401-files/java-exceptions-scanner.html) in asynchronous programming in Java.  
+- [X] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.  
 - [X] Spring MVC especially SQL and other DB APIs.  
 - [X] Interfaces: See OOP, Inheritance, Interfaces (below).  
-- [ ] Proper and efficient installation of a specified JDK in Linux.  
-- [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
 - [X] Trees and Decision Trees have perplexed me for a while I'd like to get over that.  
 - [X] Configuring Linux and Windows to support "IDEA ." to open IntelliJ at current directory.  
-- [X] How do I know when it is best to use Generics? Right from the beginning, especially if not sure of type that will be used.  
 
 ## Advanced Software Development
 
 The following are reading and research notes taken during, and in preparation for Code401 Java. Review these after class discusion, and then again after attempts to implement the lab(s) or code challenge(s):
 
-- [ ] Read Class34 [Publishing your Android App](./code401-files/pub-android-google.html) to Google Store
-
+- [X] Read Class34 [Publishing Your Android App](./code401-files/google-apppubguide.md)
 - [X] Read GRAPHS [Code Fellows Curriculum on Graphs](./code401-files/graphs.html)
-
 - [X] Read Class33 [Relationships in GraphQL and AWS Amplify and CompletableFuture in Java](./code401-files/graphqlhasmanyconns-completablefuture.html)
-
 - [X] Read Class32 [Serverless, AWS Amplify, and GraphQL](./code401-files/serverless-amplify-graphql.html)
-
 - [X] Read Class31 [AWS Amplify](./code401-files/aws-amplify.html)
-
-- [ ] Read Class29 [Android Rooms](./code401-files/android-rooms.html)
-
+- [X] Read Class29 [Android Rooms](./code401-files/android-rooms.html)
 - [X] Read HASHTABLES [Hash Tables](./code401-files/hash-tables.html)
-
-- [ ] Read Class28 [RecyclerView for Displaying Lists of Data](./code401-files/recyclerview-for-lists.html)
-
+- [X] Read Class28 [RecyclerView: Displaying Lists of Data](./code401-files/recyclerview-for-lists.html)
 - [X] Read Class27 [Android Key Value Data, Espresso, and Tasks](./code401-files/android-kvd-espresso-tasks.html)
-
 - [X] Read Class26 [Android Component Fundamentals](./code401-files/android-fundamentals.html)
 
 -=[Midterm Break]=-
 
-[X] Read Class19 [Purely Functional Programming - Wikipedia Article](./code401-files/pure-func-prog-wiki.html)
-
-[X] Read Class18 [Many to many and a reading about security](./code401-files/many-many-security-read.html)
-
-[X] Read Class17 [Spring Boot and OAuth2](./code401-files/spring-oauth-tutorial.html)
-
-[X] Read Class16 [Spring Auth and Security](./code401-files/spring-auth-n-z.html)
-
-[X] Read Class15 [Trees](./code401-files/treeeeeees.html)
-
-[X] Read Class14 [Password Hashing and BCrypt](./code401-files/passwd-hashing-bcrypt.html)
-
-[X] Read Class13 [One to Many in Spring and Integration Testing](./code401-files/one-to-many-and-integration-testing.html)
-
-[X] Read Class12 [Accessing Data with JPA and Spring Data CRUD](./code401-files/jpa-data-access-and-crud.html)
-
-[X] Read Class11 [Spring App, Spring MVC and ThymeLeaf](./code401-files/spring-app-mvc-thymeleaf.html)
-
-[X] Read about [Stacks and Queues](./code401-files/stacks-and-queues.html)
-
-[X] Read Class09 [HTTP Request Lifecycle and HTTP Request using Spring for Java](./code401-files/java-and-http.html)
-
-[X] Read Class08 [DRY, Rule of Three, Dont Need It, and MVP](./code401-files/dry-three-mvp.html)
-
-[X] Read Class06 [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html)
-
-[X] Read about [Linked Lists](./code401-files/bigo-linkedlists.html)
-
-[X] Read Class04 [OOP, Classes, Bin-Dec-Hex](./code401-files/oop-classes-bindechex.html)
-
-[X] Read Class03 [Handling Exceptions, Java Scanner, and Objects vs Primatives](./code401-files/java-exceptions-scanner.html)
-
-[X] Read Class02 [Java Packages and Loops](./code401-files/read401-02-java.html)
-
-[X] Read Class01 [Java Basics Compiling and Java Doc Refs](./code401-files/read401-01-java.html)
+- [X] Read Class19 [Purely Functional Programming - Wikipedia Article](./code401-files/pure-func-prog-wiki.html)
+- [X] Read Class18 [Many to many and a reading about security](./code401-files/many-many-security-read.html)
+- [X] Read Class17 [Spring Boot and OAuth2](./code401-files/spring-oauth-tutorial.html)
+- [X] Read Class16 [Spring Auth and Security](./code401-files/spring-auth-n-z.html)
+- [X] Read Class15 [Trees](./code401-files/treeeeeees.html)
+- [X] Read Class14 [Password Hashing and BCrypt](./code401-files/passwd-hashing-bcrypt.html)
+- [X] Read Class13 [One to Many in Spring and Integration Testing](./code401-files/one-to-many-and-integration-testing.html)
+- [X] Read Class12 [Accessing Data with JPA and Spring Data CRUD](./code401-files/jpa-data-access-and-crud.html)
+- [X] Read Class11 [Spring App, Spring MVC and ThymeLeaf](./code401-files/spring-app-mvc-thymeleaf.html)
+- [X] Read about [Stacks and Queues](./code401-files/stacks-and-queues.html)
+- [X] Read Class09 [HTTP Request Lifecycle and HTTP Request using Spring for Java](./code401-files/java-and-http.html)
+- [X] Read Class08 [DRY, Rule of Three, Dont Need It, and MVP](./code401-files/dry-three-mvp.html)
+- [X] Read Class06 [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html)
+- [X] Read about [Linked Lists](./code401-files/bigo-linkedlists.html)
+- [X] Read Class04 [OOP, Classes, Bin-Dec-Hex](./code401-files/oop-classes-bindechex.html)
+- [X] Read Class03 [Handling Exceptions, Java Scanner, and Objects vs Primatives](./code401-files/java-exceptions-scanner.html)
+- [X] Read Class02 [Java Packages and Loops](./code401-files/read401-02-java.html)
+- [X] Read Class01 [Java Basics Compiling and Java Doc Refs](./code401-files/read401-01-java.html)
 
 ### ASD Class Reminders
 
