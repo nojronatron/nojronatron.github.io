@@ -178,12 +178,75 @@ Classes that implement interface java.lang.AutoCloseable are eligible for use in
 
 In situations where Try-with-Resources is not possible (Classes do not implemnet java.lang.AutoCloseable), utilize a Finally code block that executes the closing function(s) necessary regardless of whether or not an exception is thrown.  
 
-#### Surpressing Exceptions
+#### Supressing Exceptions
 
 Supression happens when a separate exception is thrown within a Try block that is within a Try-with-Resources block.  
 Suppressed exceptoins can be retreived by calling `Throwable.getSuppressed` from the exception thrown *by the try block*.  
 
-#### Unchecked Exceptions - The DRAMA
+#### Checked Exceptions - Detail
+
+Represent errors outside of coding errors e.g. File IO cannot find a file because it does not exist.
+
+Checked Exceptions are verified at *compile-time*.
+
+Declare Checked Exceptions with the 'throws' keyword at the definition of a method.
+
+```java
+private static void checkedExceptionWithThrows() throws FileNotFoundException {
+    File file = new File("not_existing_file.txt");
+    FileInputStream stream = new FileInputStream(file);
+}
+```
+
+Example above lifted from [Baeldung.com](https://www.baeldung.com/java-checked-unchecked-exceptions)
+
+Common checked expections:
+
+- IOException
+- SQLException
+- ParseException
+
+Checked Exceptions inherit from parent class Exception.
+
+Creating a new Exception can be done through inheritance e.g. `public class MySillyCustomException extends Exception {...}`.
+
+#### Unchecked Exceptions - Detail
+
+These are program-logic errors.
+
+Unchecked Exceptions are *not* verified at compile-time.
+
+Do *not* declare unchecked exceptions using the 'throws' keyword in a method.
+
+Common Unchecked Exceptions include:
+
+- NullPointerException
+- ArrayIndexOutOfBoundsException
+- IllegalArgumentException
+
+RuntimeException Class is the superclass of all *unchecked exception*.
+
+Extend RuntimeException to create a custom UncheckedException:
+
+```java
+public class MySillyUncheckedException extends RuntimeException {...}
+```
+
+#### When To Use Checked and Unchecked
+
+Use to separate error-handling code from regular code.
+
+Per Oracle documentation:
+
+- Unchecked Exceptions should occur when the caller cannot be expected to (or is not able to) do anything to recover.
+- Checked Exceptions should occur when the caller can *reasonably* be expected to recover from the condition.
+
+For Example:
+
+- If the user inputted filepath is invalid, throw a (possibly custom) *Checked Exception*.
+- If input filepath is *null* or an *empty string* throw and *Unchecked Exception* because there is a bug in the code.
+
+##### Unchecked Exceptions - DRAMA
 
 RuntimeExceptoin, Error, and their subclasses do *not* have to be caught by Try-Catch blocks in Java.  
 It is not necessarily *correct* to inherit your custom Exceptions from RuntimeException.  
@@ -209,6 +272,11 @@ Recommendations were lifted almost verbatim from [Unchecked Exceptions - The Con
 Try: Identifies code in which an exception could occur.  
 Catch: Identifies code that is an "exception handling" codeblock.  
 Finally: Identifies code that is *guaranteed to execute*, used for closing files, recovering resources, and performing other cleanup from anywhere in the previous code blocks.  
+
+## Additional References
+
+Baeldung [code repo](https://www.baeldung.com/java-checked-unchecked-exceptions) on Checked and Unchecked Exceptions.
+
 
 ## Footer
 
