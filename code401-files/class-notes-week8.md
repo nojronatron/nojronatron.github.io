@@ -131,13 +131,45 @@ Delete Process:
 1. Within the response lambda: LOG, then `Amplify.API.mutate()` and see code below for inner detail.
 
 ```java
-response -> {
-  ModelMutation.delete(response.getData()),
-  success -> Log.i(TAG, "message");
-  error -> Log.e(TAG, "message");
-}
+// setup a listener, create an Amplify API Query, get the data, then handle delete within a nested .response() lambda
+deleteButton.setOnClickListener(view -> {
+  Amplify.API.query(
+    ModelQuery.get(TaskModel.class, finalTaskId),
+    response -> {
+      Log.i(TAG, "message");
+      Amplify.API.mutate(
+        ModelMutation.delete(response.getData()),
+        success -> Log.i(TAG, "message"),
+        error -> Log.e(TAG, "message")
+      );
+    },
+    error -> Log.e(TAG, "message")
+  );
+  finish();
+})
 ```
 
+### Lab Goals Today
+
+1. Register for GooglePlay Developer account.
+1. Ensure the TaskMaster App can read & write to Amplify w/ GraphQL.
+
+### Code Challenge Class 34
+
+1. Find a peer and work through the whiteboard.
+1. Work through the rubrik.
+
+### Career Coaching Workshop: Presentation Prep
+
+1. Begin working through the presentation workshop slides.
+1. 7 slides + Title + Final side.
+
+### Career Accellerator Update
+
+Next Saturday will feature assignments that should be completed if interested in joining CAP.
+
+- Schedule a qualifying interview with Dr.Robin: Soft-skills/behavioral interview.
+- Discussion assignment (in Canvas) to ID what I will do to continue successful motivation and moving forward as a developer and attaining a job.
 
 ## TODOs
 
