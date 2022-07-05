@@ -30,7 +30,7 @@ Solved the Technical Problem:
 - You *must have a complete algorithm* to get points.
 - Solution was the best possible? Full 2 pts for using the correct datastructure, but any solution should get you a single point.
 
-Analyse the Proposed Solution:
+Analyze the Proposed Solution:
 
 - Step through the solution. Tell the interviewer what your code/algorithm is doing.
 - Reason your way through BigO, but points could be up to the interviewer.
@@ -43,6 +43,101 @@ Communicated Effectively Throughout:
 - Use time effectively: Get to writing the algorithm and the code as quickly as possible to get this full point.
 - Over/underconfidence: Be confident despite not knowing what is going on. Alternatively, don't be over-confident if you *do* know what is going on.
 - Readability of whiteboard: If it is difficult to separate different sections/boxed-in/illegible, clean it up for a free point.
+
+Keep In Mind:
+
+- You might be told to continue within a set of constraints - you must handle this situation gracefully and *go with it* as if a paying customer is telling you what they want.
+- Interviewer *wants to see your process*, and learn about your personality such as friendliness, engaging, performance under pressure.
+- If you use a built-in method, be prepared to talk about it - how it works, implications, etc.
+
+### Deploying Your App To GooglePlay
+
+Inclue images. Don't have to be exactly right but get the idea behind how the app operates.
+
+Screenshots: Include screenshots of your app "in action".
+
+Be aware that your app will get rated by users, bots, etc.
+
+Updated On: Be realistic but keep it regular. A stale app might not look too good to some users.
+
+Starting an App as "free" cannot easily be changed to "paid" later. Consider starting the app as "Paid" to make transition to "Free" easier.
+
+Android App Bundle: AAB file extension. `app-debug.aab`: Drag this file into the App Bundles upload screen.
+
+> MUST create a signing key and sign the bundle in order for GooglePlay to allow publishing to the store.
+
+Generate a key in the "Generate Signed Bundle or APK" modal.
+
+- Be sure to retain the signed key location.
+- Generate a Release.
+
+Multiple AAB files can be uploaded to the Release workflow.
+
+Release Name will get updated when you upload your signed AAB.
+
+Release Notes should be updated though.
+
+Always update documentation when content in the App changes.
+
+There is a Set Up Your App workflow that you should follow:
+
+- App Access: Set restrictions for *user access* (AuthN, AuthZ) to your application.
+- Set up Ads settings, if the App has Ads.
+- Content Ratings: Add a spam-ready email and supply responses to categorization etc, of your app. Review the listed ratings for other countries.
+- Target Audience and Content: Not much to note here.
+- Privacy Policy: Need a privacy policy URL. Fill out the app-privacy-policy-generator.firebaseapp.com website to generate one.
+- Enter target-age for the app.
+- COVID Contact/Status Tracing App: Need to state yay/nay.
+- Data Safety: Will walk you through required disclosures of how your app handles user data types. *Be sure to read this*!
+- NewsApp? No, unless it is.
+- App Category:
+- Store Listing:
+- Contact Details:
+- Create new Release:
+- Test/testing Actors and Groups:
+
+Main Store Listing:
+
+- Description
+- app icon (creative commons license or similar *required*).
+- Feature Graphic and App Icon sizing are included.
+- App screenshots. Inclue at least 4 (to be considered for spotlighting).
+
+Testing:
+
+- Closed: Set up an App to be tested by specific users.
+- Cannot select a 1.0 version number. App-level build.gradle must be edited prior to producing an AAB file for closed testing.
+- Open: Select where users can be open testers of your App.
+
+In Summary:
+
+1. Set aside several hours to get this all organized.
+1. Set up your app must be completed first.
+1. Set up the App as free, or later on a Payments Profile can be added to monetize the App.
+1. Release your app.
+
+Google Play Store will tell you when things are wrong or not ready for publication.
+
+### Using Deletes with GraphQL and Amplify
+
+CUD: Create, Update, Delete. Part of CRUD.
+Query: The READ part of CRUD.
+
+Delete Process:
+
+1. Send instance details using Intent Extras.
+1. Get the ID of the item you want to delete.
+1. Query the DB to get the instance by ID.
+1. Within the response lambda: LOG, then `Amplify.API.mutate()` and see code below for inner detail.
+
+```java
+response -> {
+  ModelMutation.delete(response.getData()),
+  success -> Log.i(TAG, "message");
+  error -> Log.e(TAG, "message");
+}
+```
+
 
 ## TODOs
 
