@@ -171,6 +171,79 @@ Next Saturday will feature assignments that should be completed if interested in
 - Schedule a qualifying interview with Dr.Robin: Soft-skills/behavioral interview.
 - Discussion assignment (in Canvas) to ID what I will do to continue successful motivation and moving forward as a developer and attaining a job.
 
+### Post-Interview Debrief
+
+Areas where I need to improve:
+
+- Review the problem domain while working through it.
+- Once I have agreed to inputs, outputs, handling, etc, I need to stick with that agreement.
+- In the problem depiction, separate input(s) and output(s) so they are clear.
+- A Binary Search Tree *is* sorted, so verify this (with a question) and then utilize that knowledge to find what is being asked for.
+- Write pseudocode in place of an algorithm.
+- Casing: Don't mix snake, Pascal, and camelCase in the code. Stick with one throughout.
+- Ensure the *best possible solution* is used.
+
+Remember Big(O) in time:
+
+- O(1) is constant time.
+- O(n) is Linear Time (increases linearly with inputs).
+- O(n log n) is logarithmic Time (increases more than linearly but less than exponentially).
+- O(n^2) is exponential time (increases exponentially with inputs).
+
+Trees:
+
+- Breadth-first Traversal: Uses a Queue (breadth is horizontal, so is a Queue depiction).
+- Depth-first Traversal: Uses a Stack (or the call stack using recursion) to walk down the left then up the right children of all nodes (Deptch is a vertical operation, Stacks are vertically aligned depictions).
+
+## Weds 6-July
+
+### Authentication Considerations In General
+
+Going to need the following:
+
+- A registration page where a user can add a username, email, and create their own custom password.
+- A login page with username or email and password.
+- Functionality to store a password securely (hashing, salt + hash, etc).
+- A LOGOUT button.
+- Conditional rendering to determine if/when to display either Login or Logout buttons.
+
+Great functionality to have:
+
+- Once a user has registered, the login page pre-populates the username/email address the user added.
+
+### Amplify and Authentication
+
+OAuth is only supported in JS (for "social sign-in"), not for AndroidStudio.
+
+### Amazon Cognito
+
+Identity Pools are free of charge: Sign-up, login, logout, and verification.
+
+IAM Authenticates Developers that manage data, processes, etc.
+
+Cognito Authenticates END USERS.
+
+Cognito can also be used for Authorization.
+
+User Pools:
+
+- Managed service for all users within an app.
+- Is essentially OAuth (?)
+
+
+### Logging
+
+Check System logging files in `/var/log`!
+
+App logs will probably be in the installation directory of the App itself.
+
+Advice:
+
+- [ ] Always find out where file-based logs are stored for the app (service, etc) you are working on.
+- [ ] Review the logs to see what they look like.
+- [ ] Understand the types of error logging: Info, Warn, Error, Debug, Verbose... others.
+- [ ] Get a grasp on how to utilize the Logging utility so you can add to the logs in your custom methods.
+
 ## TODOs
 
 - [ ] Practice traversing data structures to prep for interviews.
