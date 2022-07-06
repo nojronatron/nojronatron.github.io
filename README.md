@@ -32,7 +32,8 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java. Review these after class discusion, and then again after attempts to implement the lab(s) or code challenge(s):
 
-- [X] Read Class34 [Publishing Your Android App](./code401-files/google-apppubguide.md)
+- [ ] Read Class36 [Amplify and Cognito](./code401-files/amplify-cognito.html)
+- [X] Read Class34 [Publishing Your Android App](./code401-files/google-apppubguide.html)
 - [X] Read GRAPHS [Code Fellows Curriculum on Graphs](./code401-files/graphs.html)
 - [X] Read Class33 [Relationships in GraphQL and AWS Amplify and CompletableFuture in Java](./code401-files/graphqlhasmanyconns-completablefuture.html)
 - [X] Read Class32 [Serverless, AWS Amplify, and GraphQL](./code401-files/serverless-amplify-graphql.html)
