@@ -344,6 +344,7 @@ It is also possible to test that the exception handling is passing on the interr
 
 Baeldung [code repo](https://www.baeldung.com/java-checked-unchecked-exceptions) on Checked and Unchecked Exceptions.
 Baeldung on [Threads and InterruptedException](https://www.baeldung.com/java-interrupted-exception)
+Java Docs on [ExecutionException](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutionException.html)
 
 ## Footer
 
