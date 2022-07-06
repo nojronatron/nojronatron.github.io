@@ -273,10 +273,78 @@ Try: Identifies code in which an exception could occur.
 Catch: Identifies code that is an "exception handling" codeblock.  
 Finally: Identifies code that is *guaranteed to execute*, used for closing files, recovering resources, and performing other cleanup from anywhere in the previous code blocks.  
 
+### How To Handle InterruptedException
+
+Notes while interpreting this [Baeldung](https://www.baeldung.com/java-interrupted-exception) article.
+
+Multi-threaded Exception handling class.
+
+Multiple theads are executed simultaneously.
+
+Main Thread: The usual, default starting Java thread - main().
+
+Threads run in the same memory space (lightweight) and can communicate amongst themselves.
+
+Thread Lifecycle:
+
+1. Start => is Runnable AKA New thread
+1. Runnable => scheduling via `.start()` results in Running
+1. Running state branches: Wait for Lock, Sleep/Wait, and Stop/Exit.
+1. If Wait For Lock => Blocked until Lock Acquired, meaning cannot access code currently used by another thread, when released then return this thead to Runnable.
+1. If Sleep/Wait => Enters this state from `.wait()` method call or signal from another thread. Waiting until Notify/Resume called then return to Runnable.
+1. If Stop/Exit => Transition to Terminated state. Terminated could be an abnormal exit state.
+
+InterruptedException is thrown when a thread is interrupted from SLEEP or BLOCKED (possibly others).
+
+InterruptedException is a *checked exception*, so blocking operations will throw it.
+
+Interrupts: A *request* framework that allows thread to ask other threads if it can execute now. Also indicats to the Thread to 'stop current activity and do other work'.
+
+InterruptedException can be thrown via methods:
+
+- sleep()
+- join()
+- wait()
+- put() - of a BlockingQueue
+- take() - of a BlockingQueue
+
+Thread class methods dealing with Interrupts:
+
+```java
+public void interrup() { ... } // allows asking to interrupt this thread
+public boolean isInterrupted() { ... } // ask if thread has been interrupted
+public static boolean interrupted() { ... }
+```
+
+Credits for Java code *[Baeldung Interruption Methods in Threads (see References)]*. Comments are mine.
+
+InterruptStatus Flag: A boolean Field in each thread representing the status. Set by Thread.interrupt().
+
+Scheduling: This is JVM-dependent. JVM versions and OS type will alter exactly how interrupts are implemented.
+
+Deadlock: A situation where code does not handle Thread Interrupts properly.
+
+Strategies to avoid deadlock:
+
+- Propagate InterruptException up the call stack. Use 'throws' keywords to each method, indicating to the calling method that it needs to handle the thrown exception. Causing method could not-catch or could re-throw to the caller.
+- If Thread is in state "runnable" the Exception cannot be propagated, instead the interruption must be preserved. See Baeldung code for example code.
+- Utilize custom Exception handling: An example of this is to close resources before terminating the thread.
+
+#### Capturing Exceptions Especially in Tests
+
+Utilize a lambda to call the throwable and store the return value of 'assertThrows' in an Exception type variable.
+
+```java
+Exception actualException = assertThrows(MyCustomExceptionClass.class, () -> sut.throwMyException());
+assertTrue(expectedException, actualException);
+```
+It is also possible to test that the exception handling is passing on the interrupted status, but using a custom method that throws the exceptoin type and testing for boolean True or False.
+
 ## Additional References
 
 Baeldung [code repo](https://www.baeldung.com/java-checked-unchecked-exceptions) on Checked and Unchecked Exceptions.
-
+Baeldung on [Threads and InterruptedException](https://www.baeldung.com/java-interrupted-exception)
+Java Docs on [ExecutionException](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutionException.html)
 
 ## Footer
 
