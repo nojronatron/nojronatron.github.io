@@ -230,6 +230,93 @@ User Pools:
 - Managed service for all users within an app.
 - Is essentially OAuth (?)
 
+Cognito will be another AWS "Category: API".
+
+Check out [my getting started with Cognito reading notes](./amplify-cognito.html)
+
+### Steps
+
+1. `amplify add auth`
+1. Use Email to signing.
+1. Advanced settings? No (for now).
+1. `amplify push`: Builds local backend resources and provisions in the cloud.
+1. `amplify publish`: Builds local backedn and frontend resources and prvosions.
+1. Implement Amplify addplugin statements to your code (entrypoint? HomeActivity?) onCreate() to get ref on AWSCognito.
+1. Implement Cognito registration statement(s) to your code (right after the previous step code).
+
+Remember: Intents are used to move user to a new Activity (see [my notes on Component Activation](./android-fundamentals.md#activating-components)).
+
+Note: Amplify.Auth has a bunch of built-in methods. EXPLORE THESE, as some of them allow 3rd party auth methods like facebook, etc.
+
+Remember: When dealing with Amplify *you must use a builder* e.g. `AuthSignUpOptions.builder()`, and builders use chained-methods to configure e.g. `AuthUserAttributeKey.email()`. End with `.build()`, a comma, then `success -> {log}, failure -> {log}` sub-block.
+
+### Cognito AWS Web UI
+
+Go here to see the users that have registered.
+
+Displays details about registered users.
+
+Password details, hashes, etc, is not easily available.
+
+Login experience can be configured here as well.
+
+### How To Get Nickname To Display
+
+Use Fetch User Attributes.
+
+Can add this to onResume lifecycle method.
+
+```java
+public void fetchUserDetails() {
+  // remember: this is running in a single thread so UI update requires special handling
+  String nickname = ""; // this could be a global variable
+  Amplify.Auth.fetchUserAttributes( // note: .fetchAuthSession could be used in similar way but not for this
+    success -> {
+      // log result of fetching user attribs
+      for (AuthUserAttribute authAttrib: success) {
+        if (authAttrib.getKey().getKeyString().equals("nickname")) {
+          String userNickname = authAttrib.getValue();
+            runOnUiThread(() -> {
+              ((TextView)findViewById(R.id.id_of_view)).setText(userNickname); // casting required if not grabbed earlier
+            });
+        }
+      }
+    },
+    failure -> { // log this failure state with info }
+  )
+}
+```
+
+Functionality: If email address is 'verified' is a good place to implement authorization within the App.
+
+### Implementing Login and Logout Buttons
+
+1. Create method called something like handleSignIn.
+1. Implement Amplify.AUTH code in it.
+1. Call handleSignIn from onCreate.
+
+Handle Conditional Rendering
+
+1. Create a new method called setupLoginLogoutButtons or something similar.
+1. Consider whether to call setupLoginLogoutButtons at onCreate and/or onResume lifecycle method(s).
+1. Instantiate a new authUser using Amplify.Auth.getCurrentUser();
+1. If authUser is null get a ref to the Login Button and set its visibility to visible e.g. View.VISIBLE.
+1. Same for the logout button BUT View.INVISIBLE.
+1. If authUser is NOT null, get a ref to the Login Button and make it View.INVISIBLE.
+1. Same for the logout button BUT VIew.VISIBLE.
+
+Conditional Rendering Activities
+
+1. Perhaps implement a specific Registration and Login Activity(ies).
+1. Do an authentication check before executing `setContentView(R.layout.activity_name)`.
+
+### Testing
+
+Espresso Tests are optional but *encouraged*.
+
+Unittests are not required, but *encouraged*.
+
+Do manual testing though, to verify authentication is operational.
 
 ### Logging
 
