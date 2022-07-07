@@ -331,6 +331,200 @@ Advice:
 - [ ] Understand the types of error logging: Info, Warn, Error, Debug, Verbose... others.
 - [ ] Get a grasp on how to utilize the Logging utility so you can add to the logs in your custom methods.
 
+## Thursday 7July Notes
+
+### S3 Storage
+
+Simple Storage Service.
+
+Buckets of snakes (objects representing data).
+
+DynamoDB: AWS's noSQL DB with relational capabilities overlayed.
+
+- Relationships can be mapped.
+- Max size 400kiB for data pages.
+- Able to CRUD data, especially UPDATE.
+- Designed for low-latency, sustained performance.
+
+S3 By Comparison:
+
+- CanNOT update, only replace.
+- Max size 5 TB.
+- No indexing, no search/queries, no transactions, etc.
+- More like a hashmap: Need to send a Key to retreive stored Objects.
+- Can throttle your network transactions.
+- Is "bursty" meaning performance is not tuned for low-latency.
+
+Three out of Four steps to show an image are ASYNCHRONOUS:
+
+1. Select an image.
+1. Upload to S3.
+1. Link to Data.
+1. Display Image.
+
+JS uses Promises and async/await.
+
+Java uses CompletableFuture which is a more complete solution that Promises.
+
+Uses `.complete()` a CompletableFuture otherwise an async call will remain incomplete in the Stack.
+
+There is a *lot* of boilerplate code to write to get this working so modularize a lot.
+
+### LL and Tree Traversals Review
+
+#### Linked List
+
+Single LL Traversal:
+
+- Use a while loop to iterate through the LLNodes.
+- Loop condition should be `Current != null`.
+- Problem Domain logic goes within this iterating code block.
+- Next node is found through assigning: `current = current.next`.
+
+#### Trees
+
+Binary Tree vs. Binary Search Tree
+
+BST:
+
+- Is sorted.
+- Everything to the left of the parent is LESS THAN value of Root.
+- Everything to the right of the parent is MORE THAN value of Root.
+- Be sure to depict it properly when drawing.
+
+### Technical Interviewing Advice
+
+It is okay to talk about an iteration / traversal without addressing the problem domain logic when depicting how the solution will work.
+
+However, the logic that occurs inside the looping structure ("under the while" in the depiction model) must also be visualized.
+
+It is okay to ask the interviewer if you can use a library object to utilize Queue or Stack. If they ask what you need then tell them the specific methods and functionality you are looking for.
+
+If unable to use a Library-based Queue or Stack, then use recursion.
+
+Ask the interviewer how the data is coming in to the algorithm to determine whether balancing is necessary.
+
+Consider initialize the value of Root/Head as the comparison value.
+
+Find a root by thinking about Preorder, Inorder, and Postorder: Beginning, Middle, or End of an array (in the end).
+
+#### DFS vs BFS
+
+DFS: Depth First Search
+
+Preorder: Logic FIRST, children LAST.
+
+Inorder: Left child FIRST, Logic SECOND, Right child LAST.
+
+Postorder: Children FIRST, Logic LAST.
+
+#### Recusion
+
+Types:
+
+- Implicit: Calls itself.
+- Explicit: Call the recursion from a helper method.
+
+Whenever a recursive function calls itself, put the calling method on the Stack (represent with a value if possible).
+
+### Android Image Picking Actvity
+
+Intents can be used to do more than just navigate between Activities.
+
+An ImageSelector can be launched using an Intent.
+
+Android ImagePicker has an onTap functionality.
+
+Develop an impagePickerResultLauncher that is triggered by onActivityResult event handler lambda.
+
+OnActivityResult should:
+
+- Open local image as an input stream.
+- Call custom method uploadInputStreamtoS3(InputStream).
+
+uploadInputStreamToS3(InputStream) should:
+
+1. Upload the image to S3 AND capture the S3 Bucket Key.
+1. Store the S3 Bucket Key by calling another custom method saveProductKey(String s3Key).
+
+saveProductKey(String) should:
+
+1. Store key to DynamoDB.
+
+Flow Summary:
+
+- Use intents to get to the image picker.
+- Use lambda callbacks to chain-together functions.
+- Open the file and prep for streaming.
+- Upload stream to S3 and capture the Key.
+- Store the S3 Key to DynamoDB.
+
+
+
+*Note*: Recommend grabbing the image, streaming it to S3, then lastly displaying it on the local device.
+
+### Applying S3 Storage to Android Apps
+
+`amplify status`
+
+`amplify add storage`
+
+Respond:
+
+- Content type
+- Write a friendly name for the resource
+- bucket name should be left at default UUID
+- Auth users only (guests should be selected for special situations only)
+- Create/update read delete
+- no Lambda Triggers
+
+`amplify push`
+
+Insert S3 dependencies ABOVE AuthCongnito in App:build.gradle.
+
+Sync Gradle files.
+
+Add the AWSS3StoragePlugin() into your Entrypoint Activity.
+
+#### Upload A File To Bucket
+
+Create a new method to perform a file upload.
+
+Utilize:
+
+Init a test filename using String filename and File Type.
+
+Try-Catch: Buffered Writer to append strings to a new file and be sure to `.close()` the buffer.
+
+S3 expects a key aka the file reference:
+
+- Must store that key ourselves so that we can get to the file later.
+- S3 does NOT have any Query or Search functionality, nor does it return a Key for you.
+
+Implement Amplify.Storage:
+
+Amplify.Storage.uploadFile arguments are: String key, File local, Consumer<StorageUploadFileResult> onSuccess, Consumer<StorageException> onError
+
+```java
+Amplify.Storage.uploadFile(
+// no NULLs are allowed
+  testFileS3Key,
+  testFile,
+  success -> Log.i(TAG, SUCCESS_MESSAGE),
+  failure -> Log.e(TAG. FAILURE_MESSAGE)
+);
+```
+
+#### S3 Amplify Security
+
+Amplify will be allowed to do the things that are configured when implementing it in your project.
+
+This means the "Amplify App" has S3 access, whether or not Cognito has authenticated a user of your App.
+
+It is *up to the developer* to implement user-properties and access logic along with IAM and the S3 File Key to enforce access permissions / authorization.
+
+#### Download A File From Bucket
+
 ## TODOs
 
 - [ ] Practice traversing data structures to prep for interviews.
