@@ -459,9 +459,33 @@ Flow Summary:
 - Upload stream to S3 and capture the Key.
 - Store the S3 Key to DynamoDB.
 
-
-
 *Note*: Recommend grabbing the image, streaming it to S3, then lastly displaying it on the local device.
+
+### Android Intents
+
+When using Intents to select an item and launch a new Activity:
+
+1. Get the KEY of the item that was selected. This could require a completable future call to a distant DB.
+1. Set up the Activity to be called to collect and use the Key via Intent Extra. A CompletableFuture call might be necessary to call a distant DB to hydrate the object instance using the Key.
+1. Just pass-in the Key as an Intent Extra when setting up and calling the Intent to load the next Activity.
+
+Use Intent.ACTION_GET_CONTENT: ??
+
+Using `ActivityResultLauncher<Intent>`:
+
+- Ensure to make this a `CompletableFuture<T>` at the global Class level.
+- MUST be initialized within `onCreate()` method *with a value* otherwise will *always be null*.
+
+Using `Intent.EXTRA_MIME_TYPES`:
+
+- MIME types must match for web servers to understand how to handle data.
+- AndroidStudiod uses this to only allow JPG or PNG files.
+
+Activity Result:
+
+- Must register for one using `registerForActivityResult()`
+- Must add ActivityResultContracts as a Contract.
+- Must include a Callback method for the method to call when it is done doing its work.
 
 ### Applying S3 Storage to Android Apps
 
@@ -503,7 +527,7 @@ S3 expects a key aka the file reference:
 
 Implement Amplify.Storage:
 
-Amplify.Storage.uploadFile arguments are: String key, File local, Consumer<StorageUploadFileResult> onSuccess, Consumer<StorageException> onError
+Amplify.Storage.uploadFile arguments are: String key, File local, `Consumer<StorageUploadFileResult> onSuccess, Consumer<StorageException> onError`
 
 ```java
 Amplify.Storage.uploadFile(
@@ -524,6 +548,8 @@ This means the "Amplify App" has S3 access, whether or not Cognito has authentic
 It is *up to the developer* to implement user-properties and access logic along with IAM and the S3 File Key to enforce access permissions / authorization.
 
 #### Download A File From Bucket
+
+*Note*: Lab37 preview and work will be on Monday the 11th.
 
 ## TODOs
 
