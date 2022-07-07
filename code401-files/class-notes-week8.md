@@ -171,6 +171,166 @@ Next Saturday will feature assignments that should be completed if interested in
 - Schedule a qualifying interview with Dr.Robin: Soft-skills/behavioral interview.
 - Discussion assignment (in Canvas) to ID what I will do to continue successful motivation and moving forward as a developer and attaining a job.
 
+### Post-Interview Debrief
+
+Areas where I need to improve:
+
+- Review the problem domain while working through it.
+- Once I have agreed to inputs, outputs, handling, etc, I need to stick with that agreement.
+- In the problem depiction, separate input(s) and output(s) so they are clear.
+- A Binary Search Tree *is* sorted, so verify this (with a question) and then utilize that knowledge to find what is being asked for.
+- Write pseudocode in place of an algorithm.
+- Casing: Don't mix snake, Pascal, and camelCase in the code. Stick with one throughout.
+- Ensure the *best possible solution* is used.
+
+Remember Big(O) in time:
+
+- O(1) is constant time.
+- O(n) is Linear Time (increases linearly with inputs).
+- O(n log n) is logarithmic Time (increases more than linearly but less than exponentially).
+- O(n^2) is exponential time (increases exponentially with inputs).
+
+Trees:
+
+- Breadth-first Traversal: Uses a Queue (breadth is horizontal, so is a Queue depiction).
+- Depth-first Traversal: Uses a Stack (or the call stack using recursion) to walk down the left then up the right children of all nodes (Deptch is a vertical operation, Stacks are vertically aligned depictions).
+
+## Weds 6-July
+
+### Authentication Considerations In General
+
+Going to need the following:
+
+- A registration page where a user can add a username, email, and create their own custom password.
+- A login page with username or email and password.
+- Functionality to store a password securely (hashing, salt + hash, etc).
+- A LOGOUT button.
+- Conditional rendering to determine if/when to display either Login or Logout buttons.
+
+Great functionality to have:
+
+- Once a user has registered, the login page pre-populates the username/email address the user added.
+
+### Amplify and Authentication
+
+OAuth is only supported in JS (for "social sign-in"), not for AndroidStudio.
+
+### Amazon Cognito
+
+Identity Pools are free of charge: Sign-up, login, logout, and verification.
+
+IAM Authenticates Developers that manage data, processes, etc.
+
+Cognito Authenticates END USERS.
+
+Cognito can also be used for Authorization.
+
+User Pools:
+
+- Managed service for all users within an app.
+- Is essentially OAuth (?)
+
+Cognito will be another AWS "Category: API".
+
+Check out [my getting started with Cognito reading notes](./amplify-cognito.html)
+
+### Steps
+
+1. `amplify add auth`
+1. Use Email to signing.
+1. Advanced settings? No (for now).
+1. `amplify push`: Builds local backend resources and provisions in the cloud.
+1. `amplify publish`: Builds local backedn and frontend resources and prvosions.
+1. Implement Amplify addplugin statements to your code (entrypoint? HomeActivity?) onCreate() to get ref on AWSCognito.
+1. Implement Cognito registration statement(s) to your code (right after the previous step code).
+
+Remember: Intents are used to move user to a new Activity (see [my notes on Component Activation](./android-fundamentals.md#activating-components)).
+
+Note: Amplify.Auth has a bunch of built-in methods. EXPLORE THESE, as some of them allow 3rd party auth methods like facebook, etc.
+
+Remember: When dealing with Amplify *you must use a builder* e.g. `AuthSignUpOptions.builder()`, and builders use chained-methods to configure e.g. `AuthUserAttributeKey.email()`. End with `.build()`, a comma, then `success -> {log}, failure -> {log}` sub-block.
+
+### Cognito AWS Web UI
+
+Go here to see the users that have registered.
+
+Displays details about registered users.
+
+Password details, hashes, etc, is not easily available.
+
+Login experience can be configured here as well.
+
+### How To Get Nickname To Display
+
+Use Fetch User Attributes.
+
+Can add this to onResume lifecycle method.
+
+```java
+public void fetchUserDetails() {
+  // remember: this is running in a single thread so UI update requires special handling
+  String nickname = ""; // this could be a global variable
+  Amplify.Auth.fetchUserAttributes( // note: .fetchAuthSession could be used in similar way but not for this
+    success -> {
+      // log result of fetching user attribs
+      for (AuthUserAttribute authAttrib: success) {
+        if (authAttrib.getKey().getKeyString().equals("nickname")) {
+          String userNickname = authAttrib.getValue();
+            runOnUiThread(() -> {
+              ((TextView)findViewById(R.id.id_of_view)).setText(userNickname); // casting required if not grabbed earlier
+            });
+        }
+      }
+    },
+    failure -> { // log this failure state with info }
+  )
+}
+```
+
+Functionality: If email address is 'verified' is a good place to implement authorization within the App.
+
+### Implementing Login and Logout Buttons
+
+1. Create method called something like handleSignIn.
+1. Implement Amplify.AUTH code in it.
+1. Call handleSignIn from onCreate.
+
+Handle Conditional Rendering
+
+1. Create a new method called setupLoginLogoutButtons or something similar.
+1. Consider whether to call setupLoginLogoutButtons at onCreate and/or onResume lifecycle method(s).
+1. Instantiate a new authUser using Amplify.Auth.getCurrentUser();
+1. If authUser is null get a ref to the Login Button and set its visibility to visible e.g. View.VISIBLE.
+1. Same for the logout button BUT View.INVISIBLE.
+1. If authUser is NOT null, get a ref to the Login Button and make it View.INVISIBLE.
+1. Same for the logout button BUT VIew.VISIBLE.
+
+Conditional Rendering Activities
+
+1. Perhaps implement a specific Registration and Login Activity(ies).
+1. Do an authentication check before executing `setContentView(R.layout.activity_name)`.
+
+### Testing
+
+Espresso Tests are optional but *encouraged*.
+
+Unittests are not required, but *encouraged*.
+
+Do manual testing though, to verify authentication is operational.
+
+### Logging
+
+Check System logging files in `/var/log`!
+
+App logs will probably be in the installation directory of the App itself.
+
+Advice:
+
+- [ ] Always find out where file-based logs are stored for the app (service, etc) you are working on.
+- [ ] Review the logs to see what they look like.
+- [ ] Understand the types of error logging: Info, Warn, Error, Debug, Verbose... others.
+- [ ] Get a grasp on how to utilize the Logging utility so you can add to the logs in your custom methods.
+
 ## TODOs
 
 - [ ] Practice traversing data structures to prep for interviews.
