@@ -48,7 +48,7 @@ The following are reading and research notes taken during, and in preparation fo
 -=[Midterm Break]=-
 
 - [X] Read Class19 [Purely Functional Programming - Wikipedia Article](./code401-files/pure-func-prog-wiki.html)
-- [X] Read Class18 [Many to many and a reading about security](./code401-files/many-many-security-read.html)
+- [X] Read Class18 [Many to many and a reading about security](./code401-files/spring-many-many-security.html)
 - [X] Read Class17 [Spring Boot and OAuth2](./code401-files/spring-oauth-tutorial.html)
 - [X] Read Class16 [Spring Auth and Security](./code401-files/spring-auth-n-z.html)
 - [X] Read Class15 [Trees](./code401-files/treeeeeees.html)
@@ -72,7 +72,7 @@ The following are reading and research notes taken during, and in preparation fo
 
 [ ] A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)
 
-[ ] Passion and [Perseverence](./code401-files/passion-perseverence.html)
+[ ] Passion and [Perserverence](./code401-files/passion-perserverence.html)
 
 [ ] Believe [you can](./code401-files/tedx-believe-u-can-improve.html)
 

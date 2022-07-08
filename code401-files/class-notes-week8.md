@@ -422,10 +422,10 @@ Postorder: Children FIRST, Logic LAST.
 
 Types:
 
-- Implicit: Calls itself.
-- Explicit: Call the recursion from a helper method.
+- Single or Multiple Recursion: One or more calls to the method itself.
+- Implicit Recursion: Recursive method calls another method that calls the recursive method.
 
-Whenever a recursive function calls itself, put the calling method on the Stack (represent with a value if possible).
+While whiteboarding, whenever a recursive function calls itself, put the calling method on the Stack (represent with a value if possible).
 
 ### Android Image Picking Actvity
 
@@ -459,7 +459,7 @@ Flow Summary:
 - Upload stream to S3 and capture the Key.
 - Store the S3 Key to DynamoDB.
 
-*Note*: Recommend grabbing the image, streaming it to S3, then lastly displaying it on the local device.
+*PRoject Goal*: Grab the image, stream it to S3, then display it on the local device.
 
 ### Android Intents
 
