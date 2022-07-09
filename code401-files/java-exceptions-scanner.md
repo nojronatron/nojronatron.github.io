@@ -338,6 +338,7 @@ Utilize a lambda to call the throwable and store the return value of 'assertThro
 Exception actualException = assertThrows(MyCustomExceptionClass.class, () -> sut.throwMyException());
 assertTrue(expectedException, actualException);
 ```
+
 It is also possible to test that the exception handling is passing on the interrupted status, but using a custom method that throws the exceptoin type and testing for boolean True or False.
 
 ## Additional References

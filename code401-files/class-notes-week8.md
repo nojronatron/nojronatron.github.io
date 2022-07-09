@@ -570,7 +570,7 @@ It is *up to the developer* to implement user-properties and access logic along 
 
 ## Friday Notes
 
-### Read Storage Access Framework
+### Storage Access Framework Reading Notes
 
 Open files using storage access framework [android developers documentation](https://developer.android.com/guide/topics/providers/document-provider)
 
@@ -616,6 +616,25 @@ Control Flow:
 
 `App => OPEN_DOC || CREATE_DOC => System UI (picker) => DriveDocProvider || UsbDocProvider || CloudDocProvider`
 
+System Picker: Asks registered providers for matching content roots when an Intent fires that includes filters e.g. "openable files of MIME type 'image'".
+
+System Picker: Provides a standard UI regardless of which register provider (or providers) and responding to the Intent, including Cloud, USB, or local storage types.
+
+### Storage Access Framework Write a Client App
+
+Invoke an Intent to retreive a file from another app:
+
+Android 4.3 and earlier: ACTION_PICK, ACTION_GET_CONTENT
+
+Android 4.4 API 19 and up: ACTION_OPEN_DOCUMENT, and the above Intents.
+
+Android 5.0 API 21 and up: ACTION_OPEN_DOCUMENT_TREE, and the above Intents.
+
+ACTION_GET_CONTENT: Read or import data, such as a single image file.
+
+ACTION_OPEN_DOCUMENT: Long-term, persistent access, such as a photo-editing app.
+
+Checkout [android/storage-samples Github](https://github.com/android/storage-samples/tree/main/StorageProvider) for code samples.
 
 ## TODOs
 
