@@ -53,7 +53,7 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] Read Class16 [Spring Auth and Security](./code401-files/spring-auth-n-z.html)
 - [X] Read Class15 [Trees](./code401-files/treeeeeees.html)
 - [X] Read Class14 [Password Hashing and BCrypt](./code401-files/passwd-hashing-bcrypt.html)
-- [X] Read Class13 [One to Many in Spring and Integration Testing](./code401-files/one-to-many-and-integration-testing.html)
+- [X] Read Class13 [One to Many in Spring and Integration Testing](./code401-files/spring-onetomany-and-integrationtesting.html)
 - [X] Read Class12 [Accessing Data with JPA and Spring Data CRUD](./code401-files/jpa-data-access-and-crud.html)
 - [X] Read Class11 [Spring App, Spring MVC and ThymeLeaf](./code401-files/spring-app-mvc-thymeleaf.html)
 - [X] Read about [Stacks and Queues](./code401-files/stacks-and-queues.html)
