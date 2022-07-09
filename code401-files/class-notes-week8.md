@@ -422,10 +422,10 @@ Postorder: Children FIRST, Logic LAST.
 
 Types:
 
-- Implicit: Calls itself.
-- Explicit: Call the recursion from a helper method.
+- Single or Multiple Recursion: One or more calls to the method itself.
+- Implicit Recursion: Recursive method calls another method that calls the recursive method.
 
-Whenever a recursive function calls itself, put the calling method on the Stack (represent with a value if possible).
+While whiteboarding, whenever a recursive function calls itself, put the calling method on the Stack (represent with a value if possible).
 
 ### Android Image Picking Actvity
 
@@ -459,7 +459,7 @@ Flow Summary:
 - Upload stream to S3 and capture the Key.
 - Store the S3 Key to DynamoDB.
 
-*Note*: Recommend grabbing the image, streaming it to S3, then lastly displaying it on the local device.
+*PRoject Goal*: Grab the image, stream it to S3, then display it on the local device.
 
 ### Android Intents
 
@@ -486,6 +486,23 @@ Activity Result:
 - Must register for one using `registerForActivityResult()`
 - Must add ActivityResultContracts as a Contract.
 - Must include a Callback method for the method to call when it is done doing its work.
+
+### A Quick Note About GraphQL Schema To Support S3
+
+For the Labs a change will be made that will associate an S3 Bucket storage file with a Task. In order to support this in the TaskMaster app, a GraphQL Schema change is required.
+
+In my case, I added `imagepath: String` to the Task Entity.
+
+This requires an update to the GraphQL schema on the back-end:
+
+```sh
+amplify push
+# continue? Yes
+# update code for your updated GraphQL API? Yes
+# Generate GraphQL statements (Queries, Mutations, Subscriptions) based on schema types (this will overwrite existing)? Yes
+```
+
+*Note*: Schema changes might not be immediately visible in the console and could require adding a new item (or edit an existing one) before the column shows.
 
 ### Applying S3 Storage to Android Apps
 
@@ -550,6 +567,74 @@ It is *up to the developer* to implement user-properties and access logic along 
 #### Download A File From Bucket
 
 *Note*: Lab37 preview and work will be on Monday the 11th.
+
+## Friday Notes
+
+### Storage Access Framework Reading Notes
+
+Open files using storage access framework [android developers documentation](https://developer.android.com/guide/topics/providers/document-provider)
+
+SAF (Storage Access Framework) introduced in Android 4.4 (API Level 19).
+
+Browse and open documents, images, other file types, across storage providers.
+
+Standardized file browsing UI.
+
+Implement 'DocumentsProvider' to gain storage access functionality.
+
+SAF includes:
+
+- DocumentsProvider: Implement a Document Provider as a subclass to DocumentsProvider. Built-in document providers include Downloads, Images, and Videos.
+- Client app: Custom app invokes ACTION_CREATE_DOCUMENT, ACTION_OPEN_DOCUMENT, and ACTION_OPEN_DOCUMENT_TREE *Intent* actions. Receives files returned by document providers.
+- Picker: UI allows access to files from all document providers (filtered by client apps search parameters).
+
+SAF Features:
+
+- Browse content from all document providers.
+- Enables long-term, persistent access to docs managed by document provider, including Add, Edit, Save, and Delete operations.
+- Multi-user support and USB/transient storage provider support.
+
+Within DocumentsProvider files paths follow traditional file hierarchy.
+
+COLUMN_ROOT_ID: Points to a doc/directory representing contents under that root.
+
+Root of path is a single document, which can point to N other documents, in a cascading 1:N relationship hierarchy.
+
+COLUMN_DOCUMENT_ID: Must be unique. This ID represents a single file or directory. This is used as part of the persistent URI "grant".
+
+Document Properties: Openable with specific MIME type; Traversable (directory, MIME_TYPE_DIR) with additional documents list.
+
+Document Capabilities: Described by COLUMN_FLAGS:
+
+- FLAG_SUPPORTS_WRITE
+- FLAG_SUPPORTS_DELETE
+- FLAG_SUPPORTS_THUMBNAIL
+
+COLUMN_DOCUMENT_ID can be included in multiple directories.
+
+Control Flow:
+
+`App => OPEN_DOC || CREATE_DOC => System UI (picker) => DriveDocProvider || UsbDocProvider || CloudDocProvider`
+
+System Picker: Asks registered providers for matching content roots when an Intent fires that includes filters e.g. "openable files of MIME type 'image'".
+
+System Picker: Provides a standard UI regardless of which register provider (or providers) and responding to the Intent, including Cloud, USB, or local storage types.
+
+### Storage Access Framework Write a Client App
+
+Invoke an Intent to retreive a file from another app:
+
+Android 4.3 and earlier: ACTION_PICK, ACTION_GET_CONTENT
+
+Android 4.4 API 19 and up: ACTION_OPEN_DOCUMENT, and the above Intents.
+
+Android 5.0 API 21 and up: ACTION_OPEN_DOCUMENT_TREE, and the above Intents.
+
+ACTION_GET_CONTENT: Read or import data, such as a single image file.
+
+ACTION_OPEN_DOCUMENT: Long-term, persistent access, such as a photo-editing app.
+
+Checkout [android/storage-samples Github](https://github.com/android/storage-samples/tree/main/StorageProvider) for code samples.
 
 ## TODOs
 

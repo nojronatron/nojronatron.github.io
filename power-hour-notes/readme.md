@@ -4,6 +4,8 @@ Notes taken while attending Power Hour sessions - videos and/or in-person events
 
 ## Index
 
+Ryan Pedersen from [](./pph-rpedersen.html)
+
 Andrew F from [Anduril Industries](./pph-fijan-andurilindust.html)
 
 Russert [From Dream to Job](./srussert-dream-job-disney.html)

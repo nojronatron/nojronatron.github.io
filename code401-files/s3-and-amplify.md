@@ -80,7 +80,7 @@ To use:
 1. supply a deployment region (cannot be changed)
 1. upload data to the bucket as "objects"
 
-Objects have Keys: Unique IDs for each objects in the Buckets.
+Objects have Keys: Unique IDs for each object in the Buckets.
 
 Versioning allows retaining multiple object versions in same bucket.
 
@@ -95,7 +95,7 @@ Buckets and Objects start out private. Permissions to access can be granted thro
 
 Unlimited objects per bucket.
 
-Limit 100 Buckets per account (Service Quota setting).
+Limit 100 Buckets per account (Service Quota setting - can request more).
 
 Access buckets using https protocol URIs.
 
@@ -115,7 +115,7 @@ Object ID is derived from: Bucket, Object Key, optional Version ID, creating a d
 
 ### S3 Versioning
 
-Existing Objects will have version=null when Versioning added; new Objects will get new versioning scheme IDs.
+Existing Objects will have `version=null` when Versioning added; new Objects will get new versioning scheme IDs.
 
 ### Bucket Policy
 
@@ -131,9 +131,9 @@ Wildcards are allowed in Bucket Policies.
 
 Named network endpoints.
 
-Access Policies allow/deny enpoint access.
+Access Policies allow/deny endpoint access.
 
-Endpoings are attached to buckets for GetObject and PutObject operations.
+Endpoints are attached to buckets for GetObject and PutObject operations.
 
 Access Points can be associated with a specific Virtual Private Cloud (VPC).
 

@@ -44,7 +44,7 @@ Supports:
 - Manage Users
 - GraphQL, REST, API => AWS Appsync or API Gateway
 - Functions
-- CI/Cd
+- CI/CD
 - Content Management
 - Analytics
 - Code/Pull Request Reviews
