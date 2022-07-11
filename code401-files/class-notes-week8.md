@@ -566,7 +566,86 @@ It is *up to the developer* to implement user-properties and access logic along 
 
 #### Download A File From Bucket
 
-*Note*: Lab37 preview and work will be on Monday the 11th.
+*Note*: Lab37 preview and work will be on Monday the 11th (appended below).
+
+### Mondy 11 July Continuation Notes
+
+Overview of methods:
+
+1. Activity Result Launcher opens local file as an InputStream, calls UploadInputStream method.
+2. UploadInputStreamToS3 using InputStream filedata then calls SaveProduct using String S3Key.
+3. SaveProduct using String S3Key.
+
+In Alex's demo, method 1 called method 2, method 2 called method 3.
+
+Remember: Android Activity Lifecycle must be utilize properly to get S3 interoperation working properly. For example, OnResume is most commonly used, but OnCreate and OnClear? are also used to initialize/set and clean-up before and after using the App.
+
+CompletableFuture must be:
+
+- Set up as a global variable set to null.
+- Initialized within OnCreate lifecycle method and NOT onResume and NOT a click handler or else it will fail.
+- Supplied with a value when used to avoid NULL exception.
+- Completed! If this is forgetten, the CompletableFuture will *never complete* and no value.
+
+ImagePicker:
+
+- Is a built-in Activity.
+- Must use Intents to move between Activities, includuing accessing ImagePicker.
+- Extras: Additional information sent to an Activity along with an Intent.
+
+Allow/Deny Lists:
+
+- Always easier to set requirements on an AllowList.
+- Utilize an AllowList to select the correct MIME types.
+
+ActivityResultLauncher:
+
+- Instantiate a new variable globally.
+- In onCreate supply it with a value.
+- Later on it will be called (?completed?)??
+
+Intents:
+
+- Have Launch method.
+- Have other Methods.
+- There was a bunch of stuff going on here regarding the FilePicker module that involved Intents and some weird method-ish code that I'll need to review.
+
+Success:
+
+- There are data Fields within the Success Callback Handler.
+- TODO: Figure out how to acquire the necessary Field(s) (could be a collection) and use those variable(s) in a Log.i method call.
+
+S3 Storage Key:
+
+- For purposes of this Lab, go ahead and create a global variable to initialize an S3Key for temporary storage within the Activity where it will be acquired.
+
+Whenever calling on AWS Storage Services:
+
+- Need a Key.
+- Need an Input Stream
+- Need a Success Callback
+- Need a Failure Callback
+- In the case of Amplify: `Amplify.Storage.uploadInputStream(filename, filestream, success -> {}, failure -> {});`
+- Always log the Success Callback
+
+File Access Advice Within a Success Callback Function:
+
+- Wrap the call to reading/writing a file within a Try-Catch structure.
+- Prior to the try block, set the file variable to null so it can be compared (null vs has value).
+- The Catch block could catch any Exception, but FileNotFoundException is a good bet.
+- Log.e (for Errors) should be called in the Catch block.
+- When using an InputSteam: It *cannot be reused* inside of the Success Callback so a new one must be instantiated (probably with Null).
+- A Stream can be considered a type of Queue: Once you pop the next "chunk" off the Stream, it is no longer in the Stream (it is Dequeued).
+
+Image Viewer:
+
+- Just another UI element.
+- Set content to its display the same way as done with TextView and other Elements.
+
+If your Amplify Key expires (these steps need validation):
+
+- amplify api update: change API key to have longer expiration dates
+- amplify push
 
 ## Friday Notes
 
