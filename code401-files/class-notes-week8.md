@@ -642,10 +642,43 @@ Image Viewer:
 - Just another UI element.
 - Set content to its display the same way as done with TextView and other Elements.
 
-If your Amplify Key expires (these steps need validation):
+If your Amplify Key expires (these steps need validation, I probably wrote them down incorrectly):
 
 - amplify api update: change API key to have longer expiration dates
 - amplify push
+
+Saving an item:
+
+- Must take in a key, either by params or from global Class storage.
+- With Amplify you MUST work with their Builder, there is *no updating*.
+- With Amplify, it is always expecting a fresh object or set of objects in a clean Collection.
+
+1. Setup a collection of objects to be stored.
+1. Grab the item(s) from the UI Element that has the Field data.
+1. Implement a try-catch upon a CompletableFuture of a List of the Class that needs to be stored.
+1. In the try block call the UI element to get the value(s).
+1. In the catch block(s) track for InterruptedException and Exceution Exception.
+1. Build an item to save and utilize the output of completableFUture.get() and `.stream().filter(item -> item.getField().equals(comparison_item)).findAny().orElseThrow(RuntimeException::new);`
+1. ...more steps...wifi issues dropped my knowledge stream here.
+
+InterruptedExecption: Ensure the Thread STOPS execution if this is thrown: `Thread.currentThread().interrupt()`. Be sure to log this.
+
+ExecutionException: This is simply to report that a Thread was interrupted while trying to execute, so log it also.
+
+Amplify Download File:
+
+1. Create a variable to capture result of calling `Amplify.Storage.downloadFile()`
+1. Inside parens param 1: `s3ImageKey`
+1. Inside parens param 2: `new File(getApplication().getFilesDir(), s3IimageKey)`
+1. Inside parens param 3 & 4: success and failure callback functions with logging.
+1. Success callback: Need to find ImageViewer Element by ID, then use BitmapFactory.decodeFile() to get file path.
+
+Android UI Workflow Logic Considerations:
+
+- When completing a task, decide whether to Toast, or on-screen Element message, or refreshing the current Activity, etc.
+- Review the problem domain, goals of the MVP, and user experience, in order to determine what the best logic and UI experience path should be taken.
+- OnCreate, OnResume, and the Activity's .finish() method should be considered.
+- Activity Intents, local storage, SharedPreferences, File streams, and remove DB data/entities should also be considered.
 
 ## Friday Notes
 
