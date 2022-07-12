@@ -94,7 +94,28 @@ Before Writing Code, permissions requests must be updated:
 1. Within the listener assign results from object 'location' to get Lat, Lon, Speed, Altitude, Time, and many others. Lat and Lon are of type 'Long'.
 1. `ActivityCompat.checkSelfPermission()` requires a context (this), and a `Manifest.permission.TAG_OF_PERMISSION_TO_QUERY`.
 
-## Final Project
+*Note*: The live demo coding session resulted in an error situation. Basic solution required:
+
+- Opening GoogleMaps and allowing Location Access.
+- Restarting the App with the new Permissions settings.
+
+#### Location Resources
+
+Android Developers Blog [New Location APIs](https://android-developers.googleblog.com/2017/06/reduce-friction-with-new-location-apis.html)
+
+Android Developers [Last Known Location](https://developer.android.com/training/location/retrieve-current#BestEstimate)
+
+Android Developers [Network Connections](https://developer.android.com/training/basics/network-ops/connecting)
+
+Android Developers [Declare Dependencies](https://developers.google.com/android/guides/setup#declare-dependencies)
+
+Android Developers [Retrieve Current Location From Play Services](https://developer.android.com/training/location/retrieve-current#play-services)
+
+Android Develoeprs [Location Requests](https://developers.google.com/android/reference/com/google/android/gms/location/LocationRequest)
+
+## TODOs
+
+- [ ] Review Lambda methods in Java re: how 'context' is handled vs named methods.
 
 ## Footer
 
