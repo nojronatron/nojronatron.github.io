@@ -80,6 +80,19 @@ Request Location Updates:
 
 - Enables regular updates when the Device is moving.
 
+Before Writing Code, permissions requests must be updated:
+
+1. Go into `AndroidManifest.xml`. Multiple permissions can be edited here.
+1. Add `<uses=permission>` tags for one or both of `ACCESS_FINE_LOCATION` and `ACCESS_COARSE_LOCATION`. Don't ask for high precision unless the App really needs it.
+1. Run & Debug will reinstall app. Reinstalling App is required whenever permissions are changed.
+1. Implement a completable future
+1. Programmatically request permissions via requestPermissions as a new String[] that contains the `Manifest.permissions.PERMISSION_NAME_TAG` comma-delimited list.
+1. Call fusedLocationClient to get application context via LocationServices.getFusedLocationProviderClient
+1. Execute `fusedLocationClient.getLastLocation()` and chain-on `.addOnSuccessListener()`
+1. Use an if statement to determine if ActivityCompat.checkSelfPermission() returns as expected.
+1. Implement a listener that executes (sometime) depending on success or failure getting the location. Basically, checking what Allow Permission(s) the App has.
+1. Within the listener assign results from object 'location' to get Lat, Lon, Speed, Altitude, Time, and many others. Lat and Lon are of type 'Long'.
+1. `ActivityCompat.checkSelfPermission()` requires a context (this), and a `Manifest.permission.TAG_OF_PERMISSION_TO_QUERY`.
 
 ## Final Project
 

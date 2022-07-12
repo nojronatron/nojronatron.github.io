@@ -12,7 +12,7 @@ Utilize `getLastLocation()` to acquire location information from Fused Location 
 
 ## Overview of Steps
 
-1. App Dev project must include Google Play Services. Download this via SDK Manager and add the Library to the Project.
+1. ~~App Dev project must include Google Play Services. Download this via SDK Manager and add the Library to the Project.~~ deprecated.
 1. Apps using location must "request location permissions" from Android.
 1. Create Location Services Client within the onCreate() method `fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);`
 1. Getting last known location of the device via `getLastLocation()` method which returns a Task.
