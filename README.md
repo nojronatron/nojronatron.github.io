@@ -14,6 +14,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 ## Code 401 Things I Want To Learn More About
 
+- [ ] Using 'cursor' in Java.
 - [ ] GENERICS: Implement them from the beginning, but I am still struggling with them so can [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) [JavaPoint](https://www.javatpoint.com/generics-in-java) or [Baeldung](https://www.baeldung.com/java-generics) help me.  
 - [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)).  
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
@@ -32,6 +33,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java. Review these after class discusion, and then again after attempts to implement the lab(s) or code challenge(s):
 
+- [ ] Read Class39 [Android Location](./code401-files/android-location.html)
 - [ ] Read Class37 [Amplify and Amazon S3](./code401-files/s3-and-amplify.html)
 - [ ] Read Class36 [Amplify and Cognito](./code401-files/amplify-cognito.html)
 - [X] Read Class34 [Publishing Your Android App](./code401-files/google-apppubguide.html)
@@ -68,23 +70,24 @@ The following are reading and research notes taken during, and in preparation fo
 
 ### ASD Class Reminders
 
-[ ] Make your projects *client ready* aka visually appealing to anyone *[CodeFellows Prework]*
+> Make your projects *client ready* aka visually appealing to anyone *[CodeFellows Prework]*
 
-[ ] A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)
+> A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)
 
-[ ] Passion and [Perserverence](./code401-files/passion-perserverence.html)
+> Passion and [Perserverence](./code401-files/passion-perserverence.html)
 
-[ ] Believe [you can](./code401-files/tedx-believe-u-can-improve.html)
+> Believe [you can](./code401-files/tedx-believe-u-can-improve.html)
 
-[ ] Upgrade Skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)
+> Upgrade Skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)
 
-[ ] Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/bash-stuff.html)
+> Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/bash-stuff.html)
 
-[ ] SQL Statement [Reference](./code401-files/sql-statements-ref.html)
+> SQL Statement [Reference](./code401-files/sql-statements-ref.html)
 
 ### ASD Additional References and Notes
 
-- [ ] Class Notes [Week Eight](./code401-files/class-notes-week8.html)
+- [ ] Class Notes [Week Nine](./code401-files/class-notes-week9.html)
+- [X] Class Notes [Week Eight](./code401-files/class-notes-week8.html)
 - [X] Class Notes [Week Seven](./code401-files/class-notes-week7.html)
 - [X] Class Notes [Week Six](./code401-files/class-notes-week6.html)
 - [X] Class Notes [Week Four](./code401-files/class-notes-week4.html)
