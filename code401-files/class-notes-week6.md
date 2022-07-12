@@ -443,10 +443,12 @@ TextView userNicknameText = findViewById(R.id.ELEMENT_ID);
 // the rest of the method and class code...
 ```
 
-##### Toasts
+##### Toast
+
+A Toast is an animated UI element that slides up from the bottom of the screen containing an informational message for the user, and after a predetermined period of time, animates sliding back down off the bottom of the device screen.
 
 ```java
-Toast.makeText(UserSEttingsActivity.this, "Settings saved!", Toast.LENGTH_SHORT).show();
+Toast.makeText(UserSettingsActivity.this, "Settings saved!", Toast.LENGTH_SHORT).show();
 ```
 
 ##### Snackbars

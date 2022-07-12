@@ -14,6 +14,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 ## Code 401 Things I Want To Learn More About
 
+- [ ] Using 'cursor' in Java.
 - [ ] GENERICS: Implement them from the beginning, but I am still struggling with them so can [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) [JavaPoint](https://www.javatpoint.com/generics-in-java) or [Baeldung](https://www.baeldung.com/java-generics) help me.  
 - [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)).  
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
