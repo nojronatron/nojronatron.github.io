@@ -4,13 +4,13 @@ Notes taken while attending Power Hour sessions - videos and/or in-person events
 
 ## Index
 
-Ryan Pedersen from [](./pph-rpedersen.html)
+Ryan Pedersen from [Microsoft](./pph-rpedersen.html)
 
 Andrew F from [Anduril Industries](./pph-fijan-andurilindust.html)
 
 Russert [From Dream to Job](./srussert-dream-job-disney.html)
 
-The 7 C's of [Cyber Security](power-hour-notes/pph-sevenc-security.html)
+The 7 C's of [Cyber Security](./pph-sevenc-security.html)
 
 Refresher (or clarification) on [Loops](loops-refresher.html)
 
