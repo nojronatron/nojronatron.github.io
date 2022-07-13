@@ -33,6 +33,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java. Review these after class discusion, and then again after attempts to implement the lab(s) or code challenge(s):
 
+- [ ] Read Class43 [OSS Contributing](./code401-files/open-source.html)
 - [ ] Read Class39 [Android Location](./code401-files/android-location.html)
 - [ ] Read Class37 [Amplify and Amazon S3](./code401-files/s3-and-amplify.html)
 - [ ] Read Class36 [Amplify and Cognito](./code401-files/amplify-cognito.html)
