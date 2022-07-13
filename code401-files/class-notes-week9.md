@@ -140,6 +140,8 @@ GitHub "Trending" repos: Could be a good resource, but sometimes the trend is al
 
 #### For the OSS Lab
 
+Go to the FirstContributions repo - a directory of OSS projects that have potentially good first issues for new OSS contributors.
+
 What is a good contribution?
 
 - Small bug fix in a noteable OSS project.
@@ -149,6 +151,25 @@ What is a good contribution?
 
 *Do not* write fluff documentation. Ever.
 
+### Root Cause Analysis
+
+RCA -> Scientific method to analyse WHY something happened, external causal factors, and the timeline in which the problem occurs.
+
+Troublshooting
+
+- Documenting the problem: Log
+- When did the problem occur? At what point are things fine vs when they are no longer *fine*. Breakpoints are a good tool in this regard.
+- Distinguish between the root cause, and other external factors.
+
+There are 5 Why's of RCA:
+
+- WHY is this thing dead?
+- WHY is what it depends on not functioning?
+- WHY is what that thing depends on broken?
+- WHY was the part allowed to stay in place beyond its useful life?
+- WHY was the maintenance schedule not followed? This is the root cause, but cascades to the 1st WHY.
+
+RCA Reference by [Wikipedia](https://en.wikipedia.org/wiki/Five_whys)
 
 ## TODOs
 
