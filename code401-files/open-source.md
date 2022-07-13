@@ -38,7 +38,13 @@ There are multiple links to OSS contributing resources and tips, as well as a li
 
 > Even non-code oriented contributions are encouraged with OSS. For example: Feature suggestions, finding bugs, and updating or improving documentation.
 
-> 
+## Call For Code
+
+CallForCode.org has partnered with IBM and many other tech companies to promote developing solutions for the greater good.
+
+Global projects that promote and enable diversity, equality, and inclusion are highlighted.
+
+CallForCode provides assistance to contributors, and there are also pay-out awards for completing projects within the scope of their call to actioni initiatives.
 
 ## Interesting Contrib Opportunities
 
