@@ -113,6 +113,43 @@ Android Developers [Retrieve Current Location From Play Services](https://develo
 
 Android Develoeprs [Location Requests](https://developers.google.com/android/reference/com/google/android/gms/location/LocationRequest)
 
+## Wednesday 13Jul22
+
+### About OSS and Contributing
+
+Transparency is very important in development.
+
+OSS isn't just about free, it can be licensed and sold.
+
+Many eyes on OSS can make it better.
+
+Proprietary software can be constricted/restrictive in ways that do not support the community.
+
+OSS contributions can (and should) be highlighted on your resume, and definitely in your GitHub/repositories.
+
+Some OSS repos will have guidance for new contributors. Look for a "want to contribute?" button or link, or a search filter.
+
+Check GitHub Issue labels:
+
+- "good first issue"
+- "backlog" - indicates not enough time to work on these
+- "docs" - help improve documentation
+- "feature requests" - look for discussions around these to help get started
+
+GitHub "Trending" repos: Could be a good resource, but sometimes the trend is all the possible "good first issue" items are already solved.
+
+#### For the OSS Lab
+
+What is a good contribution?
+
+- Small bug fix in a noteable OSS project.
+- Fix/Add unit test in nateable OSS project.
+- Fix an issue in a hobby project.
+- Three separate small documentation contributions in separate projects OR 3 doc updates in a single LARGE project.
+
+*Do not* write fluff documentation. Ever.
+
+
 ## TODOs
 
 - [ ] Review Lambda methods in Java re: how 'context' is handled vs named methods.
