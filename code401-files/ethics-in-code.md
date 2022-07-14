@@ -8,6 +8,32 @@ ACM.org [Code of Ethics and Professional Practice](https://ethics.acm.org/code-o
 
 FreeCodeCamp: [The Code I'm Still Ashamed Of](https://www.freecodecamp.org/news/the-code-im-still-ashamed-of-e4c021dff55e) by Bill Sourour
 
+## Ethics In The Workplace
+
+### The Code Bill Sourour Is Still Ashamed Of
+
+Ref: FreeCodeCamp: [The Code I'm Still Ashamed Of](https://www.freecodecamp.org/news/the-code-im-still-ashamed-of-e4c021dff55e) by Bill Sourour
+
+Key Takeaways:
+
+- I may one day be asked to code something unethical and/or deceitful. How will I deal with this type of situation?
+- As a developer, I might be the last line of defense, protecting clients (or the public) from an unethical or possibly illegal product or service.
+- If something bad happens to a customer, client, user... what responsibility will I need to take for it? How are ways that I could prevented it? Was I able to see this outcome ahead of time, and did I chose to act on that foresight?
+- What if appropriate security considerations are not taken into account, and the software project becames compromised, causing harm to others? What steps can I take to reduce the likelihood of this situation?
+- I have a responsibility to pay attention to activities around me, project requirements in front of me, and to speak up if I believe there are questionable things goinig on. I should seek help and find the correct ethical, morally just solution.
+
+These are all questions that I intend to keep close as I grow in my software developer engineering career.
+
+### Microsoft Employees Protest ICE Contract
+
+Ref: [MSFT Employees Protest ICE Contract](https://web.archive.org/web/20211124172013/https://www.nytimes.com/2018/06/19/technology/tech-companies-immigration-border.html)
+
+2017 through this year have been pretty turbulent in tech and politics. When an ICE policy put in place by the US Government was separating immigrant families during processing at the border, there was plenty of backlash (and denial). Microsoft had a contract with ICE to provide AI and data processing solutions. A group of MSFT employees wrote a letter explaining their frustration with the situation and demanding change. A part of the letter included terminology from the ACM Code of Ethics: "...those creating powerful technology have to ensure what they build is used for good, and not for harm..." *[Article: MSFT Employees Protest ICE Contract, Internet Archive, NY Times Article, accessed 13-July-22]*
+
+The letter was not in vain as the CEO Satya Nadella and also Brad Smith posted memos and blog posts (respectively) stating immigration policy changes were necessary, and MSFT was not working with the government on programs in question. Other tech companies were also speaking out, employees and leadership.
+
+I think this demonstrates the power of technical professionals - employees in any industry, really - to be able to speak up and stand for what is right. These examples show how I can have an impact by applying the code of ethics, and working with my team mates and co-workers to affect positive, equitable, and just change in tech.
+
 ## ACM Code of Ethics, Conduct
 
 Consider a code of ethics to be *inspirational*.
@@ -143,33 +169,7 @@ What steps can I take to be sure to utilize my netowrk of experts when I am work
 
 Am I considering everything necessary to ensure safe, reliable, useful quality software at reasonable cost (and in a reasonable time)?
 
-## Ethics In The Workplace
-
-### The Code Bill Sourour Is Still Ashamed Of
-
-Ref: FreeCodeCamp: [The Code I'm Still Ashamed Of](https://www.freecodecamp.org/news/the-code-im-still-ashamed-of-e4c021dff55e) by Bill Sourour
-
-Key Takeaways:
-
-- I may one day be asked to code something unethical and/or deceitful. How will I deal with this type of situation?
-- As a developer, I might be the last line of defense, protecting clients (or the public) from an unethical or possibly illegal product or service.
-- If something bad happens to a customer, client, user... what responsibility will I need to take for it? How are ways that I could prevented it? Was I able to see this outcome ahead of time, and did I chose to act on that foresight?
-- What if appropriate security considerations are not taken into account, and the software project becames compromised, causing harm to others? What steps can I take to reduce the likelihood of this situation?
-- I have a responsibility to pay attention to activities around me, project requirements in front of me, and to speak up if I believe there are questionable things goinig on. I should seek help and find the correct ethical, morally just solution.
-
-These are all questions that I intend to keep close as I grow in my software developer engineering career.
-
-### Microsoft Employees Protest ICE Contract
-
-Ref: [MSFT Employees Protest ICE Contract](https://web.archive.org/web/20211124172013/https://www.nytimes.com/2018/06/19/technology/tech-companies-immigration-border.html)
-
-2017 through this year have been pretty turbulent in tech and politics. When an ICE policy put in place by the US Government was separating immigrant families during processing at the border, there was plenty of backlash (and denial). Microsoft had a contract with ICE to provide AI and data processing solutions. A group of MSFT employees wrote a letter explaining their frustration with the situation and demanding change. A part of the letter included terminology from the ACM Code of Ethics: "...those creating powerful technology have to ensure what they build is used for good, and not for harm..." *[Article: MSFT Employees Protest ICE Contract, Internet Archive, NY Times Article, accessed 13-July-22]*
-
-The letter was not in vain as the CEO Satya Nadella and also Brad Smith posted memos and blog posts (respectively) stating immigration policy changes were necessary, and MSFT was not working with the government on programs in question. Other tech companies were also speaking out, employees and leadership.
-
-I think this demonstrates the power of technical professionals - employees in any industry, really - to be able to speak up and stand for what is right. These examples show how I can have an impact by applying the code of ethics, and working with my team mates and co-workers to affect positive, equitable, and just change in tech.
-
-### Ethics In Technology Reference Articles
+## Ethics In Technology Reference Articles
 
 [Googles censored search engine](https://www.vox.com/2018/8/17/17704526/google-dragonfly-censored-search-engine-china)
 
@@ -191,7 +191,7 @@ Solve For Interesting.com [Big Data is our Generation's Civil Rights Issue](http
 
 Scientific American [Will Democracy Survive Big Data and AI?](https://www.scientificamerican.com/article/will-democracy-survive-big-data-and-artificial-intelligence/)
 
-### Tech Company Principles
+### Tech Company Principles Links
 
 Microsoft [Responsible AI](https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1%3aprimaryr6)
 
