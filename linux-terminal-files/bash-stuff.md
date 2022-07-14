@@ -401,9 +401,7 @@ Purge remaining package artifacts: `dpkg -P $package_name`
 
 Check out [yarnpkg.com](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable)
 
-### Image Converter
-
-Image Converter: `convert $input_file_path.img -quality nn $output_file_path.ext`
+Also [Linuxize.com](https://linuxize.com/post/how-to-install-yarn-on-ubuntu-20-04/)
 
 Ensure you are in the project root.
 
@@ -411,7 +409,7 @@ Install globally: `npm install --global yarn`
 
 Check version: `yarn --version` (currently 1.22.19)
 
-New Project: `yarn init`
+New Project: `yarn init [project-name]`
 
 Add dependency:
 
@@ -424,6 +422,10 @@ Upgrade: `yarn upgrade [package]`
 Remove dependency: `yarn remove [package]`
 
 Install/upgrade all dependencies: `yarn install`
+
+### Image Converter
+
+Image Converter: `convert $input_file_path.img -quality nn $output_file_path.ext`
 
 ### Compress, Zip, Tar Files for Archiving
 
