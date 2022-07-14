@@ -38,6 +38,103 @@ When necessary, the code acts as a guide for remediation for violations.
 
 ### Professional Leadership Principles
 
+- Computing work should be done while maintaining concern for the good of the public.
+- Accept responsibilities associated with technical orgs and their impact on broader society.
+- Manage people and resources to enhance quality of working life.
+- Support and share processes and policies that support principles of the code.
+- Encourage and enable professional growth in organization's members.
+- Modify and retire systems with care.
+- Systems that become integrated into societal infrastructure should be recognized and taken special care of.
+
+*Jon's Added Note: People, processes, and the environemntal impacts should be carefully considered when retiring systems.
+
+### Compliance With The Code
+
+Uphold, promote, and respoct principles of the code.
+
+Treat violations as inconsistent with membership in ACM.
+
+### Summary
+
+Having a written and agreed-upon set of guiding principles can help teams and organizations create better work environments, better products and services, and avoid common pitfalls of closed system processes, while embracing and encouraging diversity, engagement, and creativity for the better of everyone.
+
+## In Practice
+
+Eight guiding principles of software engineers committed to health, safety and welfare of the public, and making analysis, specification, design, development, testing, and maintenance of software a beneficial and respectable profession.
+
+Consider the following aspects in what you do:
+
+- The Public.
+- Client and Employer.
+- Product.
+- Judgment.
+- Management.
+- Profession.
+- Colleagues.
+- Self.
+
+### Ask Yourself How You Want To Act And Perceived
+
+Doing good? Or harm?
+
+Enable or influence others to do good or harm?
+
+Am I continuing to make software engineering a respectec and beneficial profession?
+
+Are my actions definitely in accordance with the spirit of the above principles? Is there reason to beleive they are not?
+
+Am I considering who might be affected by my work, and *how*?
+
+Am I considering my health, safety, and welfare? What about that of others?
+
+Are my actions fulfilling ethical obligations, or ignoring them?
+
+Is the consideration of the public being taken into appropriate account?
+
+What about privacy - am I taking appropriate steps to protect privacy and PII?
+
+Am I considering the wide variety of users of the product or service I am developing? Especially those with disabilities, or economic or other disadvantages?
+
+What actions am I taking to be forthright about my own limitations in experience or education?
+
+Is it legal to use the software or package I plan to use?
+
+What steps do I need to take, if any, to ensure documents and other collateral are approved, and am I seeking the correct, authoritative approving body?
+
+Am I documenting everything necessary to support my reasoning for why a project could be failing or otherwise has a significant issue, so my employer or stakeholder/owner?
+
+Am I performing work that is in direct competition to my current employer(s) or those working with or for me?
+
+Have I identified Intellectual Property and other information that either should not be used without permission or payment, and am I protecting the IP in accordance with licenses, contracts, and the law?
+
+Am I acheiving the goal of high quality?
+
+How are quality, cost, and time interacting in my work, and is it responsible? Are my actions taking in to account clients, stakeholders, and the public, as well as myself?
+
+Am I identifying ethical, economic, cultural, legal, and environmental issues related to my project(s)?
+
+Do I fully understand the specifications for software that I am working on?
+
+*[Jon Rumsey Asks]*: "And what does this really mean to me, and to all the other principles? Weigh accordingly."
+
+Are the project specifications documented? Do they meet clients and user's requirements?
+
+Have I tested and "debugged" the application or service adequately?
+
+Is there adequate documentation covering critical aspects of problems and solutions in the software?
+
+What steps am I taking to ensure data integrity, and is it being kept up-to-date?
+
+What is my plan to manage maintenance of the project going forward, and how am I going to ensure it is treated similarly to a new system?
+
+What steps can I take to maintain professional objectivity when reviewing other's work?
+
+How can I maintain a reasonable "watch" for illegal activities and conflicts of interest related to my project work?
+
+What can I do to ensure my project management is fair, just, ethical, and inclusive throughout the life of the project?
+
+Who should be given what work, based only on their experience, education, and interest/committment level, and how can I avoid assigning work improperly or inneffectively?
+
 
 ## Footer
 
