@@ -33,6 +33,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java. Review these after class discusion, and then again after attempts to implement the lab(s) or code challenge(s):
 
+- [ ] Read Class44 [Ethics and Code of Conduct](./code401-files/ethics-in-code.html)
 - [ ] Read Class43 [OSS Contributing](./code401-files/open-source.html)
 - [X] Read Class39 [Android Location](./code401-files/android-location.html)
 - [X] Read Class37 [Amplify and Amazon S3](./code401-files/s3-and-amplify.html)
