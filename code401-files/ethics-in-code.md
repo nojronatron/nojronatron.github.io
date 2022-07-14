@@ -135,6 +135,30 @@ What can I do to ensure my project management is fair, just, ethical, and inclus
 
 Who should be given what work, based only on their experience, education, and interest/committment level, and how can I avoid assigning work improperly or inneffectively?
 
+How can I be sure to deliver realistic, quantitative estimates of cost, scheduling, personnel, quality, and outcomes on projects I work on or own?
+
+What actions can I take to "advance the integrity and reputation of the profession consistent with the public interest"? *[ACM Ethics, Engineering Code]*
+
+What steps can I take to be sure to utilize my netowrk of experts when I am working outside my own area of high competency?
+
+Am I considering everything necessary to ensure safe, reliable, useful quality software at reasonable cost (and in a reasonable time)?
+
+## The Code Bill Sourour Is Still Ashamed Of
+
+Key Takeaways:
+
+- I may one day be asked to code something unethical and/or deceitful. How will I deal with this situation?
+- As a developer, I might be the last line of defense, protecting clients (or the public) from an unethical or possibly illegal product or service.
+- If something bad happens to a customer, client, user... what responsibility will I need to take for it? How are ways that I could prevented it? Was I able to see this outcome ahead of time, and did I chose to act on that foresight?
+
+These are all questions that I intend to keep close as I grow in my software developer engineering career.
+
+## Additional Resources To Review
+
+[Googles censored search engine](https://www.vox.com/2018/8/17/17704526/google-dragonfly-censored-search-engine-china)
+
+[Amazon Workers Demand End to LE Contracts w/ Facial Recognition](https://gizmodo.com/amazon-workers-demand-jeff-bezos-cancel-face-recognitio-1827037509)
+
 
 ## Footer
 
