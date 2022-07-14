@@ -33,10 +33,11 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java. Review these after class discusion, and then again after attempts to implement the lab(s) or code challenge(s):
 
+- [ ] Read Class44 [Ethics and Code of Conduct](./code401-files/ethics-in-code.html)
 - [ ] Read Class43 [OSS Contributing](./code401-files/open-source.html)
-- [ ] Read Class39 [Android Location](./code401-files/android-location.html)
-- [ ] Read Class37 [Amplify and Amazon S3](./code401-files/s3-and-amplify.html)
-- [ ] Read Class36 [Amplify and Cognito](./code401-files/amplify-cognito.html)
+- [X] Read Class39 [Android Location](./code401-files/android-location.html)
+- [X] Read Class37 [Amplify and Amazon S3](./code401-files/s3-and-amplify.html)
+- [X] Read Class36 [Amplify and Cognito](./code401-files/amplify-cognito.html)
 - [X] Read Class34 [Publishing Your Android App](./code401-files/google-apppubguide.html)
 - [X] Read GRAPHS [Code Fellows Curriculum on Graphs](./code401-files/graphs.html)
 - [X] Read Class33 [Relationships in GraphQL and AWS Amplify and CompletableFuture in Java](./code401-files/graphqlhasmanyconns-completablefuture.html)
@@ -95,7 +96,7 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] Class Notes [Week Three](./code401-files/class-notes-week3.html)
 - [X] Class Notes [Week Two](./code401-files/class-notes-week2.html)
 - [X] Class Notes [Week One](./code401-files/class-notes-week1.html)
-- [X] Partner Power Hour [Rover](./power-hour-notes/pph-rover.html)
+- [X] Partner Power Hour [Index](./power-hour-notes/readme.html)
 - [X] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
 - [X] Java Study [Guide](./code401-files/java-reference.html)  
 - [X] [Deploying Springboot to Heroku](./code401-files/heroku-deploy-spring.html)  

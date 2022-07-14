@@ -50,6 +50,10 @@ CallForCode provides assistance to contributors, and there are also pay-out awar
 
 - [ ] Sequence TubeMap by VGTeam: [Form fields are weirdly wide now](https://github.com/vgteam/sequenceTubeMap/issues/149)
 
+> A reference to a bootstrap variant the above project uses [reactstrap](https://reactstrap.github.io/?path=/docs/components-forms--input)
+
+> Create React App [Getting Started Doc](https://create-react-app.dev/docs/deployment/)
+
 ## Footer
 
 Return to [Root README](../README.html)
