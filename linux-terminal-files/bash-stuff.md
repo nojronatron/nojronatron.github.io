@@ -397,9 +397,33 @@ Purge remaining package artifacts: `dpkg -P $package_name`
 
 ## Specialized Tools
 
+### Yarn
+
+Check out [yarnpkg.com](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable)
+
 ### Image Converter
 
 Image Converter: `convert $input_file_path.img -quality nn $output_file_path.ext`
+
+Ensure you are in the project root.
+
+Install globally: `npm install --global yarn`
+
+Check version: `yarn --version` (currently 1.22.19)
+
+New Project: `yarn init`
+
+Add dependency:
+
+> `yarn add [package]`
+> `yarn add [package]@[version]`
+> `yarn add [package]@[tag]`
+
+Upgrade: `yarn upgrade [package]`
+
+Remove dependency: `yarn remove [package]`
+
+Install/upgrade all dependencies: `yarn install`
 
 ### Compress, Zip, Tar Files for Archiving
 
