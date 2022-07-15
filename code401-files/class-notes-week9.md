@@ -266,9 +266,43 @@ Software Development is More Than Solving Coding Problems:
 - No code: No points; Some code: Some points.
 - No Algorithm? No BigO; Talk about BigO while visualizing and algorithm writing? Some points.
 
+## Fiday Morning Discussion
+
+Sorting out how to manage an 8-person dev team for finals week.
+
+Amplify: Requires a single PUSH person and a trust of IAM user password(s).
+
+Rooms: Device-specific data, does not integrate with Amplify, S3, or Cognito, but avoids IAM complexities.
+
+Advice:
+
+- Make sure the data model is 100% set and understood by everyone.
+- We must make sure that *everyone* is on the *same page* regarding data models.
+- It is all our own individual responsibility to contribute to this project.
+- Success often looks a lot like failure.
+
+Talking About Requirements:
+
+- Track workouts and BMI involves: user input, display.
+- Track history of workouts: Data in-flow and updates.
+- Inspirational Quotes: Requires research to understand it well enough to estimate the work. We could consider users making their own inspirational quotes.
+- Alex needs to see a feature task take advantage of GPS, Image, and/or Gyroscope, or all three.
+
+TODOs:
+
+- Translate the user stories into technical requirements.
+- Implement pair programming for certain.
+- Mob-programming could work but is difficult via remote.
+- Consider some sort of data structure to store DailyInfo, and/or an archival process or expiration date on the data (1 per day, 365 days per year, etc).
+- Ensure Enums have descriptive keys so that "Low" Activity Level means something to the user.
+- Ensure required data is asked for and also required in the schema.
+- Sanitize inputs. Do not allow inputs, especially file uploads, that are not what you want/expect.
+- Talk about flow of the app from a user perspective, e.g. new user must sign-up, then must login, then is shown their home page... then the user activity could spider-out from there.
+
 ## TODOs
 
 - [ ] Review Lambda methods in Java re: how 'context' is handled vs named methods.
+- [ ] Identify who will talk about what during the final project presentation.
 
 ## Footer
 
