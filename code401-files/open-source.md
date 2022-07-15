@@ -54,6 +54,74 @@ CallForCode provides assistance to contributors, and there are also pay-out awar
 
 > Create React App [Getting Started Doc](https://create-react-app.dev/docs/deployment/)
 
+## IVG Sequence Tube Map
+
+This project is a React App that uses Yarn (instead of NPM), react-strap, CSS, React-Bootstrap, and some other styling frameworks to produce an appealing UI where scientific gene-folding data can be uploaded an a "tube map" is rendered on-screen.
+
+There is an open Issue marked as a Good First Issue that mentions an unexpected layout problem with some of the Form Inputs.
+
+After a little research I determined the cause could be:
+
+- A major version update occurred in several style and layout orientated packages, just prior to the Issue being created.
+- Inconsistent use of styling elements and properties between components.
+- A mix of CSS, reactstrap, react-bootstrap, and react-select were applied.
+- Some duplicate styling framework components applied between parent and child React Components.
+
+### Root Cause Analysis
+
+1. Why are the input boxes (drop-down/select and text inputs) stacked on top of each other vertically instead of side-by-side as one of the codebase owners expected.
+1. Why have the Input elements in HeaderForm Component rendered within a Container structure (i.e. a Grid) that includes Rows and Cols that have built-in and custom CSS applied.
+1. Why are some components that are rendered within the HeaderForm Component also have various styling frameworks (and potentially CSS) applied to them.
+1. Why aren't there constraints to the width of the input elements, such as tighter column spacing, or direct CSS application impacting their size?
+1. TBD
+
+There is more work to do here, and this is a work in progress.
+
+### General Hierarchy
+
+The React App Components in this project are as follows from Parent, through all children:
+
+```text
+App
+ |
+HeaderForm
+  |
+DataPositionFormRow
+| | | |
+| | | PathNameFormRow
+| | |
+| | BedRegionsFormRow
+| |
+| FileUploadFormRow
+|                  |
+MountedDataFormRow |
+|                  |
+[ SelectionDropdown ]
+```
+
+*Note* that the grandchild Component is utilized by 2 different parent components.
+
+### Build And Test
+
+They recomment compiling VG in order to import sample (and actual) data for dev and test.
+
+Since I am focusing on a UI design issue, I won't worry about VG right now.
+
+1. Fork the repo.
+1. Clone to local.
+1. CD into project
+1. 'yarn install'
+1. 'yarn build'
+1. 'yarn serve'
+
+Dev and Test Cycles
+
+1. For most changes, it is necessary to re-run 'yarn build'.
+1. In order to render the website on your local browser, you will need to run 'yarn serve'.
+1. Open your browser to localhost:3000 and the main page should render.
+
+*Note*: If you haven't built since the last change, your changes might not take effect!
+
 ## Footer
 
 Return to [Root README](../README.html)

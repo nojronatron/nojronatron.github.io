@@ -231,6 +231,41 @@ Suggested Execution Pattern (subject to everything, and ask questions as needed 
 1. Write actual code.
 1. If there is still time clean things up and ask questions about the solution to discover if more work or additional cleanup is necessary.
 
+## Thursday 14July
+
+### Early Morning Discussion
+
+Imposter Syndrome comments:
+
+- Strings of failures lead to success.
+- When stressed out, clear, logical thought cannot happen.
+- Review past work and view substantial change that has happened since then.
+
+Software Development is More Than Solving Coding Problems:
+
+- You and the private company you work for are responsible for the content that is published.
+- There is no easy solution to managing moral and ethical challenges in professional life.
+- Sometimes the code you DO NOT WRITE is what is unethical or otherwise goes against good engineering conduct guidelines.
+- Software engineers are creating and designing the applications that others use to do what they do. This includes doctors, law enforcement, governments, and construction, etc.
+- Be prepared to learn from your mistakes, rapidly. Take responsibility for what you do and say.
+- It can be hard to do the right thing, but it is important to do it *anyway*.
+- What world do I want to live in? Why not push to earn it - to make it happen?
+
+### CAP Program
+
+- [ ] Resume approval by instructor.
+- [ ] Schedule a behavioral interview.
+
+### Technical Interview Advice
+
+- Break down the problem domain into smaller parts.
+- Ask the question: What datastructure could be used with the input data?
+- How could the input data be traversed?
+- Remember to at least *mention*: Testing, BigOh.
+- Remember to at least *code a method* that at least *begins to address the problem*.
+- No code: No points; Some code: Some points.
+- No Algorithm? No BigO; Talk about BigO while visualizing and algorithm writing? Some points.
+
 ## TODOs
 
 - [ ] Review Lambda methods in Java re: how 'context' is handled vs named methods.
