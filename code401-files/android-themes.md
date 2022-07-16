@@ -138,7 +138,178 @@ Apply a "light" theme to a single Activity:
 </manifest>
 ```
 
+If a view supports only some of the attributes declared in the style only those are applied.
 
+### Apply Different Theme to Specific Activity
+
+To modify theme for *specific view and its child views* at API Level 21 through v22.1: Specify `android:theme` attribute to view in Layout file.
+
+## Style Hierarchy
+
+Ways to set attributes:
+
+- Directly in a layout
+- Apply style to a View
+- Apply Theme to a Layout
+- Set attributes *programatically*
+
+Advice:
+
+- Use themes and styles as much as possible for consistency
+- Attributes specified in multiple places may not show, depending on on hierarchical precedence
+
+Hierarchical Precedence:
+
+1. Apply character- or paragraph-level styling via text spans to `TextView`-derived classes
+1. Applying attributes programmatically
+1. Applying individual attributes directly to a View
+1. Applying a style to a View
+1. Default styling
+1. Applying a theme to a collection of Views, an activity, or your entire app
+1. Applying certain View-specific styling, such as setting a `TextAppearance` on a `TextView`
+
+For example:
+
+- Applying attributes programmatically overrides style applied to a View
+- Applying individual attributes directly to a view overrides default and theme-based stylings
+
+## Limitations and TextAppearance
+
+A View can have but one single style applied to it.
+
+`TextAppearance` attribute act similarly to Style
+
+```xml
+<TextView
+  ...
+  android:textAppearance="@android:style/TextAppearance.Material.Headline"
+  android:text="Foo Bar!" />
+```
+
+Using `TextAppearance` leaves a View's *style* available for use.
+
+Applying text attributes *directly* to  the View (or via a Style) the `TextAppearance` values will be overridden.
+
+THere are subsets of styling attributes offered through `TextView`. See [TextAppearance](https://developer.android.com/guide/topics/ui/look-and-feel/themes#textappearance) subsection for details.
+
+## Customize the Default Theme
+
+Material design theme is apply to App by default upon project creation.
+
+Material design theme is defined in `styles.xml` file.
+
+Material design theme extends a suport library theme and overrides `appbar` and `floating action button` elements.
+
+Color Resources are found in the project's `res/values/colors.xml` file.
+
+Use the `Material Color Tool` to preview colors prior to applying them.
+
+After previesing the colors, update values in `res/cavlues/colors.xml`:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--   color for the app bar and other primary UI elements -->
+    <color name="colorPrimary">#3F51B5</color>
+
+    <!--   a darker variant of the primary color, used for
+           the status bar (on Android 5.0+) and contextual app bars -->
+    <color name="colorPrimaryDark">#303F9F</color>
+
+    <!--   a secondary color for controls like checkboxes and text fields -->
+    <color name="colorAccent">#FF4081</color>
+</resources>
+```
+
+Once this is updated, override whatever other styles needed.
+
+```xml
+<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    ...
+    <item name="android:windowBackground">@color/activityBackground</item>
+</style>
+```
+
+Look at [R.styleable](https://developer.android.com/reference/android/R.styleable#Theme) theme table for a lookup of standard attributes that make up a complete theme.
+
+*Remember*: All Views support *XML attributes from the base `View` class*.
+
+### Add Version Specific Styles
+
+This is possible by adding another `styles.xml` file in the `values` directory that includes the resource version qualifier:
+
+`res/values/styles.xml`: Themes for all versions
+`res/values-v21/styles.xml`: Themes for API level 21+ only
+
+Themes in `values-v21/styles.xml` can inherit from `values/styles.xml` extending the base theme and adding version-specific styles.
+
+See the subsection [Add Version Specific Styles](https://developer.android.com/guide/topics/ui/look-and-feel/themes#Versions).
+
+### Customize Widget Styles
+
+Button is an example of a Widget.
+
+`Widget.AppCompat.Button` is how it can be styled.
+
+Apply a 'Borderless" style to all Button widgets:
+
+```xml
+<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+  <item name="buttonsStyle">@style/Widget.AppCompat.Button.Borderless</item>
+  ...
+</style>
+```
+
+## Start An Activity With An Animation
+
+This animates the transition between Views.
+
+Transitions:
+
+- enter: Determins how views in an activity enter the scene. Explode transitions from the outside inward.
+- exit: How view in an activity exit the scene. Explode transitions from the center outward.
+- shared elements: How views shared between activities transition. Translates and scales the image smoothly between activities.
+
+Enter and Exit Transitions:
+
+- Explode: Move view in/out from center of the scene.
+- Slide: Move views int/out from edges of the scene.
+- Fade: Add/Remove View from the scene by changing opacity.
+
+Transitions that support `Visibility` class can be used as enter or exit transitions.
+
+Transition class [API](https://developer.android.com/reference/android/transition/Transition)
+
+Shared Element Transitions:
+
+- changeBounds: Animates changes in layout bounds of target views.
+- changeClipBounds: Animate changes in clip bounds of target views.
+- changeTransform: Animates changes in scale and rotation of target views.
+- changeImageTransform: Animates changes in size and scale of target images.
+
+### Check System Version
+
+Requires Android 5.0 or higher.
+
+```java
+// Check if we're running on Android 5.0 or higher
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+    // Apply activity transition
+} else {
+    // Swap without transition
+}
+```
+
+### Custom Transitions
+
+1. Enable window content transitions with `android:windowActivityTransitions` attribute when defining a style that inherits from 'material theme'.
+1. Specify enter or exit or shared element transitions in style definition.
+
+See sample code in [Specify Custom Transitions](https://developer.android.com/training/transitions/start-activity#custom-trans) sub-section.
+
+### Start An Activity With Transitions
+
+This is covered in [Start An Activity Using Transitions](https://developer.android.com/training/transitions/start-activity#start-transition) sub-section.
 
 ## Footer
 
