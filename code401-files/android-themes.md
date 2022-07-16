@@ -54,7 +54,7 @@ Themes use same semantic style names, so light/dark switching does *not* require
 
 To create a style, follow these steps, repeat for each style to create:
 
-1. edit `res/vlues/styles.xml`
+1. edit `res/values/styles.xml`
 1. add `<item>` element for each style attribute to define
 1. `name` in each item specifies an attribute name; `value` in each item specifies the value to apply to that attribute
 1. use `parent=` to identify the parent element for the style name to *extend* (see below)
@@ -194,7 +194,7 @@ THere are subsets of styling attributes offered through `TextView`. See [TextApp
 
 ## Customize the Default Theme
 
-Material design theme is apply to App by default upon project creation.
+Material design theme is applied to App by default upon project creation.
 
 Material design theme is defined in `styles.xml` file.
 
