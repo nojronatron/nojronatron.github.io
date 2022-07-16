@@ -9,11 +9,13 @@ Been there for 11 years.
 Role includes:
 
 - Financial Ledger teams manager.
-- SWE writing code to allow other people time off.
+- Roles include team management, to an SWE writing code to allow other people time off.
 
-Title: Principal Software Engineer Manager
+Title: Principal Software Engineering Manager
 
 Life-long technologist (TRS Color-80).
+
+Worked with a guy named Howard, developing software for 3D Graphics cards.
 
 Internal team!
 
