@@ -36,6 +36,7 @@ The following are reading and research notes taken during, and in preparation fo
 - [ ] Read Class44 [Ethics and Code of Conduct](./code401-files/ethics-in-code.html)
 - [ ] Read Class43 [OSS Contributing](./code401-files/open-source.html)
 - [X] Read Class39 [Android Location](./code401-files/android-location.html)
+- [ ] Read Class38 [Intent Filters and Implicit vs Explicit Intents](./code401-files/intent-filters-implicit-explicit.html)
 - [X] Read Class37 [Amplify and Amazon S3](./code401-files/s3-and-amplify.html)
 - [X] Read Class36 [Amplify and Cognito](./code401-files/amplify-cognito.html)
 - [X] Read Class34 [Publishing Your Android App](./code401-files/google-apppubguide.html)

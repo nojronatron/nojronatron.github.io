@@ -70,16 +70,22 @@ After a little research I determined the cause could be:
 ### Root Cause Analysis
 
 1. Why are the input boxes (drop-down/select and text inputs) stacked on top of each other vertically instead of side-by-side as one of the codebase owners expected.
-1. Why have the Input elements in HeaderForm Component rendered within a Container structure (i.e. a Grid) that includes Rows and Cols that have built-in and custom CSS applied.
-1. Why are some components that are rendered within the HeaderForm Component also have various styling frameworks (and potentially CSS) applied to them.
+1. Why have the Input elements in HeaderForm Component rendered within a Container structure (i.e. a Grid) that includes Rows and Cols that have built-in and custom CSS applied?
+1. Why are some components that are rendered within the HeaderForm Component using different frameworks for styling?
 1. Why aren't there constraints to the width of the input elements, such as tighter column spacing, or direct CSS application impacting their size?
-1. TBD
+1. Why isn't there a specification document for the layout of this "main page" of the Application?
 
-There is more work to do here, and this is a work in progress.
+Some Causal Factors discovered through investigation:
+
+- SelectionDropDown.js on line 33 specifies a min-width of 100%, however this applies to a few drop-downs only and not the Select elements.
+- Various bootstrap-ish frameworks apply specific widths, marging, and display types through M=margin, P=padding, D=display, W=WIidth, etc.
+- HeaderForm.js on line 466 enforces `<Container fluid = {true}>` which definitely impacts the length and arrangement of the input elements.
+- There is a nesting of input elements: Some of them do not appear unless a parent element selects a particular option item, for example: Selecting 'File' from the top drop-down will change-out the following input elements with those necessary to upload or select a file.
+- Form elements are spread across components: HeaderForm.js and a few others (TBD), but not FormGroup elements are ever implemented (not absolutely sure of the impact this has but is something to investigate).
 
 ### General Hierarchy
 
-The React App Components in this project are as follows from Parent, through all children:
+The React App Components in this project are as follows from Parent, through all children (Note: needs to be revamped it is wrong):
 
 ```text
 App
