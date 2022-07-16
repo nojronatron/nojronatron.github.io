@@ -20,7 +20,8 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
 - [ ] Applying themes (style, color, etc) to Android UI, simply and easily.  
 - [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
-- [ ] Wiring Repositories in Spring.  
+- [ ] Wiring Repositories in Spring.
+- [ ] How to best implement [Style and Themes](./code401-files/android-themes.html) to your Android App.
 - [X] Proper and efficient installation of a specified JDK in Linux: Use JetBrains Tools box for IntelliJ installations; Use DEB install for Linux without JetBrains; Use Zip for Windows, put files where you want them, update JAVAHOME reference.
 - [X] [Handling exceptions and exception types](./code401-files/java-exceptions-scanner.html) in asynchronous programming in Java.  
 - [X] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.  
