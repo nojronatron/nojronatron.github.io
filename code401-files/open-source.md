@@ -56,16 +56,22 @@ CallForCode provides assistance to contributors, and there are also pay-out awar
 
 ## IVG Sequence Tube Map
 
-This project is a React App that uses Yarn (instead of NPM), react-strap, CSS, React-Bootstrap, and some other styling frameworks to produce an appealing UI where scientific gene-folding data can be uploaded an a "tube map" is rendered on-screen.
+This project is a React App that uses Yarn (instead of NPM), react-strap, CSS, and some other styling frameworks to produce an appealing UI where scientific gene-folding data can be uploaded to the site and a "tube map" will be rendered on-screen.
 
-There is an open Issue marked as a Good First Issue that mentions an unexpected layout problem with some of the Form Inputs.
+There is an open Issue marked as a Good First Issue that mentions an unexpected layout problem with some of the Form Inputs:
 
-After a little research I determined the cause could be:
+- Expected: Form fields should not be so long (beyond the rest of the content).
+- Expected? Form fields should be in horizontal row across the screen, or 1-2 rows on desktop screen sizes?
+- Actual: Form fields are stacked on top of each other and span the width of the screen?
+- If the viewport size is reduced, should the form fields stack vertically?
+- What if the form fields lengths are shrunk but are stacked vertically instead?
 
-- A major version update occurred in several style and layout orientated packages, just prior to the Issue being created.
+After a little research I found some areas that need some exploration to determine root cause:
+
+- A major version update occurred in several style and layout orientated packages in a recent PR, which sprung the creation of the GH Issue.
 - Inconsistent use of styling elements and properties between components.
-- A mix of CSS, reactstrap, react-bootstrap, and react-select were applied.
-- Some duplicate styling framework components applied between parent and child React Components.
+- A mix of CSS, reactstrap, react-bootstrap, and react-select were applied, which could have unexpected side effects.
+- Duplicate styling framework components applied between parent and child React Components could have unexpected side effects.
 
 ### Root Cause Analysis
 
@@ -75,37 +81,35 @@ After a little research I determined the cause could be:
 1. Why aren't there constraints to the width of the input elements, such as tighter column spacing, or direct CSS application impacting their size?
 1. Why isn't there a specification document for the layout of this "main page" of the Application?
 
-Some Causal Factors discovered through investigation:
+Some interesting discoveries through investigation:
 
-- SelectionDropDown.js on line 33 specifies a min-width of 100%, however this applies to a few drop-downs only and not the Select elements.
-- Various bootstrap-ish frameworks apply specific widths, marging, and display types through M=margin, P=padding, D=display, W=WIidth, etc.
-- HeaderForm.js on line 466 enforces `<Container fluid = {true}>` which definitely impacts the length and arrangement of the input elements.
-- There is a nesting of input elements: Some of them do not appear unless a parent element selects a particular option item, for example: Selecting 'File' from the top drop-down will change-out the following input elements with those necessary to upload or select a file.
-- Form elements are spread across components: HeaderForm.js and a few others (TBD), but not FormGroup elements are ever implemented (not absolutely sure of the impact this has but is something to investigate).
+- Downgrading bootstrap, reactstrap, and react-select by removing the lock files and editing package.json to point to pre-PR versions then rebuilding did not have a significant effect on the stated problem.
+- Various bootstrap-ish frameworks apply specific widths, merging, and display types through M=margin, P=padding, D=display, W=Width etc are used, which is fine, just needed to review what they were doing.
+- HeaderForm.js on line 466 enforces `<Container fluid = {true}>` which *definitely impacts* the length and arrangement of the input elements. Removing this shrinks-down the form fields but Warning "vg view failed" display still spans entire viewport width, which is HeaderForm.js line 427.
+- `{errorDiv}` needs to be inside the root container of the return statement (HeaderForm.js at about line 464).
+- SelectionDropDown.js line 33 forces a minWidth of 100% and removing that setting causes the *options* in the drop-down to be shortened but the parent drop-down is still super wide, so that setting *should not be edited* as far as I can tell.
+- SelectionDropdown.js has very deep, programmatically assigned style properties on line 11 `const styles={...}` could this be forcing the drop-downs to be longer than necessary (but, see previous bullet, and there there isn't evidence it is making a positive difference when adjusted).
+- There is a nesting of input elements: Some of them do not appear unless a parent element selects a particular option item, for example: Selecting 'File' from the top drop-down will change-out the following input elements with those necessary to upload or select a file. This is just an effect of the flags i.e. `mountedFilesFlag && ( {JSX...} )`
+- Form elements are spread across components: HeaderForm.js and a few others (see React Hierarchy depiction, below). FormGroup elements are not implemented and, if done correctly, *could* impact display for force in-line, if all placed within the same FormGroup or a specific attribute that has this effect.
+- App.css rule `.dropdown` has a property `width: 100%;` that could be forcing drop-down elements to be too long??
+
+### ACP PR Solution 17-July-22
+
+The Header information was overflowing the container in main view. There are several awkward rendering issues, none of them severe, but the main one was a massive overflow.
+
+It was not entirely clear whether the repo owner wanted the form fields to be horizontally (in-line) or not, and attempting to make them that was had some complexities in the way the CSS is utilized, and also how the form fields operate as there are a bunch of dependencies. For example, selecting a different data source actually changes which fields are displayed, and each one has a slightly different implementation when it comes to layout and design.
+
+The team working on this project utilized multiple CSS/SCSS UI design packages and there are implications to using those that made reorganizting the form fields very difficult. I was able to get the form fields to shrink-down to within the general overall page-width without otherwise impacting the look-and-feel.
+
+I'n not convinced that changing the layout of the form fields to in-line will be easy to do, but I might take another stab at it when I get some more React and Bootstrap experience under my belt.
 
 ### General Hierarchy
 
-The React App Components in this project are as follows from Parent, through all children (Note: needs to be revamped it is wrong):
+The React App Components in this project are arranged (best I could tell) as follows:
 
-```text
-App
- |
-HeaderForm
-  |
-DataPositionFormRow
-| | | |
-| | | PathNameFormRow
-| | |
-| | BedRegionsFormRow
-| |
-| FileUploadFormRow
-|                  |
-MountedDataFormRow |
-|                  |
-[ SelectionDropdown ]
-```
+![SVG Tubemap React Component Hierarchy (reverse-engineered)](./images/TubeMapReactComponentHierarchy(reverseEngineered).jpg)
 
-*Note* that the grandchild Component is utilized by 2 different parent components.
+![SVG Tubemap React Site Rendering (assembled from React Components)](./images/TubeMapReactSiteRendering(pseudoAssembledFromReactComponents).jpg)
 
 ### Build And Test
 
@@ -125,6 +129,8 @@ Dev and Test Cycles
 1. For most changes, it is necessary to re-run 'yarn build'.
 1. In order to render the website on your local browser, you will need to run 'yarn serve'.
 1. Open your browser to localhost:3000 and the main page should render.
+
+*Note*: Review the project [README](https://github.com/vgteam/sequenceTubeMap) for additional tips of dev and test deployments on local.
 
 *Note*: If you haven't built since the last change, your changes might not take effect!
 
