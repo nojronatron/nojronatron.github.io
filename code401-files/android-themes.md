@@ -24,13 +24,21 @@ Status Bar and Window background are "non-view elements" and Themes *can apply* 
 
 ## Themes vs Styles
 
+Both Styles and Themes use same `<style>` syntax.
+
+Think of Styles and Themes as KPVs: Keys are attributes; Values are resources.
+
 ### Styles
 
 Can apply to specified items like Buttons.
 
+View Attributes that apply to a single type of widget. *[medium.com article, linked in resources]*
+
 Are lists can be set in the Layout file.
 
 Extract all attributes from Style to use them across multiple widgets.
+
+Can consider Styles to be a Map of type view attributes and resource values.
 
 ### Themes
 
