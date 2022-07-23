@@ -201,3 +201,5 @@ B is for [Bootstrap](https://getbootstrap.com/docs/3.4/)
 Free [Google Fonts](https://fonts.google.com/)
 
 [CSS-Tricks](https://css-tricks.com/) by Digital Ocean
+
+Curriculum [Refs](./code401-files/general-codefellows-refs.html)
