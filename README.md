@@ -12,10 +12,14 @@ Code 301 - [Intermediate Software Development](#intermediate-software-developmen
 
 Code 201 - [Foundations of Software Development](#foundations-of-software-development)  
 
+## Things I Want To Learn About
+
+- [ ] Mocking for unit testing in AndroidStudio.
+
 ## Code 401 Things I Want To Learn More About
 
 - [ ] Using 'cursor' in Java.
-- [ ] GENERICS: Implement them from the beginning, but I am still struggling with them so can [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) [JavaPoint](https://www.javatpoint.com/generics-in-java) or [Baeldung](https://www.baeldung.com/java-generics) help me.  
+- [ ] GENERICS: Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java) and then work through [Baeldung](https://www.baeldung.com/java-generics) to help me.  
 - [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)).  
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
 - [ ] Applying themes (style, color, etc) to Android UI, simply and easily.  
@@ -34,11 +38,11 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 The following are reading and research notes taken during, and in preparation for Code401 Java. Review these after class discusion, and then again after attempts to implement the lab(s) or code challenge(s):
 
-- [ ] Read Class42 [Googles AdMob and Monetization Guide](./code401-files/google-admob-monetization.html)
-- [ ] Read Class44 [Ethics and Code of Conduct](./code401-files/ethics-in-code.html)
-- [ ] Read Class43 [OSS Contributing](./code401-files/open-source.html)
+- [X] Read Class42 [Googles AdMob and Monetization Guide](./code401-files/google-admob-monetization.html)
+- [X] Read Class44 [Ethics and Code of Conduct](./code401-files/ethics-in-code.html)
+- [X] Read Class43 [OSS Contributing](./code401-files/open-source.html)
 - [X] Read Class39 [Android Location](./code401-files/android-location.html)
-- [ ] Read Class38 [Intent Filters and Implicit vs Explicit Intents](./code401-files/intent-filters-implicit-explicit.html)
+- [X] Read Class38 [Intent Filters and Implicit vs Explicit Intents](./code401-files/intent-filters-implicit-explicit.html)
 - [X] Read Class37 [Amplify and Amazon S3](./code401-files/s3-and-amplify.html)
 - [X] Read Class36 [Amplify and Cognito](./code401-files/amplify-cognito.html)
 - [X] Read Class34 [Publishing Your Android App](./code401-files/google-apppubguide.html)
