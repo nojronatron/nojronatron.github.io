@@ -4,7 +4,7 @@ A collection of notes taken while attending Code Fellows CODE curriculum classes
 
 ## Table of Contents
 
-Reference [links](#reference-links)  
+Continuing [Ed](#things-i-want-to-learn-about)
 
 Code 401 - [Advanced Software Development - Java](#advanced-software-development)  
 
@@ -12,12 +12,13 @@ Code 301 - [Intermediate Software Development](#intermediate-software-developmen
 
 Code 201 - [Foundations of Software Development](#foundations-of-software-development)  
 
+Reference [links](#reference-links)  
+
 ## Things I Want To Learn About
 
+Continuing Research [Index of Learnings and Notes](./continuing-education/readme.html)
+
 - [ ] Mocking for unit testing in AndroidStudio.
-
-## Code 401 Things I Want To Learn More About
-
 - [ ] Using 'cursor' in Java.
 - [ ] GENERICS: Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java) and then work through [Baeldung](https://www.baeldung.com/java-generics) to help me.  
 - [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)).  
@@ -32,7 +33,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 - [X] Spring MVC especially SQL and other DB APIs.  
 - [X] Interfaces: See OOP, Inheritance, Interfaces (below).  
 - [X] Trees and Decision Trees have perplexed me for a while I'd like to get over that.  
-- [X] Configuring Linux and Windows to support "IDEA ." to open IntelliJ at current directory.  
+- [X] Configuring Linux and Windows to support "IDEA ." to open IntelliJ at current directory.
 
 ## Advanced Software Development
 
