@@ -16,7 +16,7 @@ Reference [links](#reference-links)
 
 ## Things I Want To Learn About
 
-Continuing Research [Index of Learnings and Notes](./continuing-education/readme.html)
+Continuing Research [Index of Learnings and Notes](./continuing-education/conted-index.html)
 
 - [ ] Mocking for unit testing in AndroidStudio.
 - [ ] Using 'cursor' in Java.
