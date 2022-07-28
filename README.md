@@ -23,17 +23,20 @@ Continuing Research [Index of Learnings and Notes](./continuing-education/conted
 - [ ] GENERICS: Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java) and then work through [Baeldung](https://www.baeldung.com/java-generics) to help me.  
 - [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)).  
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
-- [ ] Applying themes (style, color, etc) to Android UI, simply and easily.  
 - [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
 - [ ] Wiring Repositories in Spring.
-- [ ] How to best implement [Style and Themes](./code401-files/android-themes.html) to your Android App.
+- [X] How to implement [Style and Themes](./code401-files/android-themes.html) to your Android App.
 - [X] Proper and efficient installation of a specified JDK in Linux: Use JetBrains Tools box for IntelliJ installations; Use DEB install for Linux without JetBrains; Use Zip for Windows, put files where you want them, update JAVAHOME reference.
 - [X] [Handling exceptions and exception types](./code401-files/java-exceptions-scanner.html) in asynchronous programming in Java.  
 - [X] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.  
 - [X] Spring MVC especially SQL and other DB APIs.  
-- [X] Interfaces: See OOP, Inheritance, Interfaces (below).  
+- [X] Interfaces: See [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html).  
 - [X] Trees and Decision Trees have perplexed me for a while I'd like to get over that.  
-- [X] Configuring Linux and Windows to support "IDEA ." to open IntelliJ at current directory.
+- [X] Configuring Linux and Windows to support "IDEA ." to open IntelliJ [at current directory](./linux-terminal-files/bash-stuff.html###aliases).
+
+## Retros
+
+[Post Code Fellows Retros](./continuing-education/retro-blargh.md)
 
 ## Advanced Software Development
 
@@ -96,7 +99,7 @@ The following are reading and research notes taken during, and in preparation fo
 
 ### ASD Additional References and Notes
 
-- [ ] Class Notes [Week Nine](./code401-files/class-notes-week9.html)
+- [X] Class Notes [Week Nine](./code401-files/class-notes-week9.html)
 - [X] Class Notes [Week Eight](./code401-files/class-notes-week8.html)
 - [X] Class Notes [Week Seven](./code401-files/class-notes-week7.html)
 - [X] Class Notes [Week Six](./code401-files/class-notes-week6.html)
