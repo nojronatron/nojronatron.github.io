@@ -136,7 +136,7 @@ Not: `^`
 *Note about Not*: As the first character within a range wildcard causes the filter to eliminate files that match that first character range wildcard characters.  
 *Remember*: Wildcards affect the entire pathspec, which includes directories and filenames and file extensions.  
 
-## Text Exiting in Linux
+## Text Editing in Linux
 
 ### Nano Text Editor
 
