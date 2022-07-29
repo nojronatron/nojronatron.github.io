@@ -1,5 +1,15 @@
 # Occasional Retrospective Notes
 
+## Thursday 28-July-2022
+
+Building Java Projects in GitHub using GH Actions. There is a template in github repo 'actions/starter-workflows' that is a good starter. Originally I copied an existing yml file from a CodeFellows example, but that was designed for a slightly different environment and project, so I had to modify it. There were a couple issues:
+
+1. gradlew could not be found. This was probably because I was forcing a CHDIR in the yml file and I didn't need to.
+1. gradlew could not be executed. In Linux, file permissions are managed using bits for Read, Write, eXecute, etc. Windows does as well but it is a little different. In my yml I defined an Ubuntu environment for building and testing, so permissions could be a problem. Git has the ability to set permissions via `git update-index --chmod=` and to add eXecute permissions append `+x` to the end.
+1. The last change that was required was to set the JDK compatibility level to 11, instead of 17 (not supported in GH Actions?).
+
+Earlier today was a Code 401 instructor's panel where they discussed current content in those classes. There was a good amount of discussion around C#/DotNet, and TypeScript (which is starting to make inroads to the JS class due to increased use in the industry). There was also good discussion around strategies to deal with learning to code, especially JS, such as breaking down the problem in words, and writing solutions as comments rather than code, and then worry about coding the problem once an algorithm appears to solve the problem at hand.
+
 ## Wednesday 27-July-2022
 
 Today I passed the final technical interview at Code Fellows and am officially an alum! Certificate is due in a week or so!
