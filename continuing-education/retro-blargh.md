@@ -1,5 +1,32 @@
 # Occasional Retrospective Notes
 
+## Friday 29-July-2022
+
+At some point in the future, I'll want to change-up this format to something like a more formal blog article. I haven't decided yet what it will be, other than not a massively long MD file with a FILO stack of entries.
+
+I finished up the Zip Linked Lists code challenge review by performing a mock whiteboard interview within a 45 minute period and then adding the whiteboard to the solution. This is not really sustainable in that it will cause a tremendous number of repositories to appear in my GH profile with little benefit (to anyone), so I plan to set up separate code challenge repositories for various languages.
+
+Related, I worked my way through a CodeWars challenge in javascript (which I haven't written much of lately). I followed the general rubrik outlined by Code Fellows for a technical interview and produced reasonable code that passed the default CodeWars unit tests. Not that that is everything! So this prompted me to create a new js-specific code challenge repository, so this a future efforts will have a place to live.
+
+Somehow I decided today was a good day to look up how to add emojis to markdown files. There are at least two ways:
+
+- If supported, just use colon-surrounding syntax i.e. `:smile:`
+- Point to the appropriate API using image placeholder syntax i.e. `![smiley](url-to-smiley-emoji)`
+
+For example:
+
+`:smile:` in supported markdown interpreters results in a :smile:
+
+`!["smiley"](https://github.githubassets.com/images/icons/emoji/unicode/1f603.png?v8)` results in a vvv large smiley vvv
+
+!["smiley"](https://github.githubassets.com/images/icons/emoji/unicode/1f603.png?v8)
+
+Here are a couple of references with more info:
+
+[Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet#smileys--emotion)
+
+Markdownguide.org's [Extended Syntax guide](https://www.markdownguide.org/extended-syntax/#overview)
+
 ## Thursday 28-July-2022
 
 Building Java Projects in GitHub using GH Actions. There is a template in github repo 'actions/starter-workflows' that is a good starter. Originally I copied an existing yml file from a CodeFellows example, but that was designed for a slightly different environment and project, so I had to modify it. There were a couple issues:
