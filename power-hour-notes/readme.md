@@ -18,6 +18,8 @@ Data Structures and Algorithms[Talk](./data-structures-algos.html)
 
 PPH [Rover.com](./pph-rover.html)
 
+Communicating Under [Stress](./comms-under-stress.html)  
+
 ## Important  
 
 All notes within are for my personal benefit and do not represent official curriculum.  
