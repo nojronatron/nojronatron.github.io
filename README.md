@@ -18,6 +18,7 @@ Reference [links](#reference-links)
 
 Continuing Research [Index of Learnings and Notes](./continuing-education/conted-index.html)
 
+- [ ] CSS 3: When overlapped objects must have a transparency or alternate color assignment, what CSS property should be used? See [cssbattle 15](https://cssbattle.dev/play/15) for an example.
 - [ ] Mocking for unit testing in AndroidStudio.
 - [ ] Using 'cursor' in Java.
 - [ ] GENERICS: Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java) and then work through [Baeldung](https://www.baeldung.com/java-generics) to help me.  
