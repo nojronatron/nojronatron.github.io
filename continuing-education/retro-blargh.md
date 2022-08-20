@@ -8,7 +8,7 @@ Battle #2, Eye Of The Tiger #16 is pretty great. I couldn't finish it in 10 minu
 
 1. When using `display: flex;` always try `margin: auto;` in the child box to center it easily
 1. Creating circular-ish items (think eyelid, teardrop, etc) use `border-radius: {top-left} {top-right} {bottom-right} {bottom-left}` in that order to control each corner
-1. Margin properties are collapsed into a single line similar to border and border-radius: `margin: {top} {right} {bottom} {left}`
+1. Margin properties can be short-handed into a single line similar to border and border-radius: `margin: {top} {right} {bottom} {left}`
 1. Rotating a box with `transform: rotate(ndeg);` will make your margin-adjusting efforts confusing - just remember the previous take-away (tilt your head)
 
 A decent overview of [flex box](https://www.youtube.com/watch?v=fYq5PXgSsbE).
