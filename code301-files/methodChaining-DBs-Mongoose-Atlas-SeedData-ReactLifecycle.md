@@ -25,7 +25,8 @@ let result = str.split('')
 
 ## Lab 10 Review
 
-Roger took one for the team (GitHub)[https://github.com/RogerMReyes]  
+Roger took one for the team [GitHub](https://github.com/RogerMReyes)  
+
 Important Tidbits:
 
 - Server `.env` file must include API Keys as well as the PORT for server to run on.
@@ -190,19 +191,10 @@ Do *not* clone partners repo until end of the week.
 
 Functionality needed to have a fully functional database.  
 
-Create:  
+Create: Add a new record to a DB, similar to 'POST'.  
 Read: Similar to REST 'GET'.  
-Update:  
-Delete:  
-
-## Stuff to Track
-
-These are access refs to Raul's Mongo deployment:  
-
-- DB_URL=mongodb+srv://jonRumsey:GltUVFv1np2qiFNB@cluster0.fpr2e.mongodb.net/canofbooks?retryWrites=true&w=majority
-
-7:04 PM | Today
-- bvRvY4R8S4PmsPdo
+Update: Change a value within an existing DB record, similar to 'PUT' (update or replace) or 'PATCH' (modify).  
+Delete: Remove an existing record from a DB, similar to 'DELETE'.  
 
 ## Jon TODOs
 
