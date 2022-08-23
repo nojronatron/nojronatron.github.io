@@ -143,7 +143,6 @@ Profiles.js => Retains usernames (maybe more?)
 - Make sure 'how to build' steps are included in readme.md at a level that any Code 301 student could follow and successfully deploy  
 - Project Reports: Retros, in QandA form, for the project, and they are fully confidential only to instructional staff  
 
-
 ## Jon TODOs
 
 [ ] Read about passing "options" via `Mongoose.findByIdAndUpdate(id, body, options)`: This is what differentiates between a PUT and a PATCH.  
