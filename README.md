@@ -165,7 +165,7 @@ Career Launch Strategy [Notes](./code201-files/CareerLaunchStrategy.html)
 
 Power Hour Sessions [Notes](./power-hour-notes/pph-index.html)
 
-My own Linux and Terminal/Bash ~~Reading~~ learning [Notes](./linux-terminal/linux-reference.html)
+My own Linux and Terminal/Bash ~~Reading~~ learning [Notes](./linux-terminal-files/linux-reference.html)
 
 Image Placeholder Generator: [place-hold.it](https://place-hold.it)
 
