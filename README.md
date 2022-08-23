@@ -135,7 +135,7 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] Day 11 Notes: [Method chaining, Mongo and NoSQL Databases, Mongoose, Seeding data, and the React Lifecycle](./code301-files/methodChaining-DBs-Mongoose-Atlas-SeedData-ReactLifecycle.html)  
 - [X] Day 12 Notes: [More RegEx, Map Keys vs MongoDB IDs, React Routes, CRUD, CORS, and Authentication](./code301-files/moreRegex-keyIdxAndMongoIdx-reactRoutes-CRUD-CORS-Auth.html)  
 - [X] Day 13 Notes: [array includes, array every, fe-be setup from clone, ExpressJS Heroku and Netlify hints, ThunderClient](./code301-files/includes-every-setupSystemFromClone-expressHints-HerokuNetlifyHints-ThunderClient.html)  
-- [X] Day 14 Notes: This was Assessment Day where the only assignment was to properly clean-up a MERN-stack deployment and make specific improvements. I passed!
+- [X] Day 14 Notes: [Dr. Robin on DEI and some pre-assessment comments](./code301-files/drRobin-TechPerspective-AssessmentSetup.html)
 - [X] Day 15 Notes: [JS Anonymous methods, using PUT with MongoDB, Authx including Auth0](./code301-files/anonyMethods-usingPUT-AuthN-AuthZ-OAuth-Auth0.html)
 
 ## Foundations of Software Development
