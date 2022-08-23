@@ -302,7 +302,7 @@ Add an alias for IntelliJ IDEA:
 Add an alias for AndroidStudio:
 
 1. Locate file "studio.sh" probably off your home directory (or see JetBrains ToolBox if you installed Android Studio that way).
-2. Add the path to an alias and name it something like: `androidstudio': ` alias androidstudio=$STEP_1_PATH`
+2. Add the path to an alias and name it something like: `androidstudio ` alias androidstudio=$STEP_1_PATH`
 3. Restart your shell.
 4. Traverse to the Android project directory and type: `androidstudio .` and your project will open.
 

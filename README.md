@@ -108,7 +108,7 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] Class Notes [Week Three](./code401-files/class-notes-week3.html)
 - [X] Class Notes [Week Two](./code401-files/class-notes-week2.html)
 - [X] Class Notes [Week One](./code401-files/class-notes-week1.html)
-- [X] Partner Power Hour [Index](./power-hour-notes/readme.html)
+- [X] Partner Power Hour [Index](./power-hour-notes/pph-index.html)
 - [X] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
 - [X] Java Study [Guide](./code401-files/java-reference.html)  
 - [X] [Deploying Springboot to Heroku](./code401-files/heroku-deploy-spring.html)  
@@ -143,7 +143,7 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] Day 2 Notes: [React, Get/Set State, Bootstrap and CSS, Turnary Op, and Netlify](./code301-files/react-state-styling-turnary-netlify.html)  
 - [X] Day 3 Notes: [Build React, import components, using Grid, passing data, arrow functions, and modals](./code301-files/build-import-grid-passdata-arrowf-modals.html)  
 - [X] Day 4 Notes: [Debug React code, filters, sorting, create React App, ListGroup, Forms, onSubmit, and Bootstrap CSS](./code301-files/badReact-filter-sort-createApp-listGroup-forms-onSubmit-bootstrap.html)  
-- [X] Day 5 Notes: []()  
+- [X] Day 5 Notes: [Events, React Data from imports or parents or state, Reduce, WRRC modeling](./code301-files/events-reactData-reduce-wrrc.html)  
 - [X] Day 6 Notes: []()  
 - [X] Day 7 Notes: []()  
 - [X] Day 8 Notes: []()  
@@ -180,9 +180,9 @@ Mozilla Developers Network [Reference Docs](https://developer.mozilla.org/en-US/
 
 Career Launch Strategy [Notes](./code201-files/CareerLaunchStrategy.html)
 
-Power Hour Sessions [Notes](./power-hour-notes/readme.html)
+Power Hour Sessions [Notes](./power-hour-notes/pph-index.html)
 
-My own Linux and Terminal/Bash ~~Reading~~ learning [Notes](./linux-terminal/readme.html)
+My own Linux and Terminal/Bash ~~Reading~~ learning [Notes](./linux-terminal/linux-reference.html)
 
 Image Placeholder Generator: [place-hold.it](https://place-hold.it)
 
