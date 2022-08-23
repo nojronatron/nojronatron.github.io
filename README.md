@@ -138,7 +138,22 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] ES6 [Arrow Functions](./code301-files/arrow-functions.html)
 - [X] ES6 [Classes](./code301-files/es6-classes.html)
 - [X] JS Conf Session: The Event Loop [Video Notes](./code301-files/event-loop-video.html)
-- [X] Components and React [Notes and Quiz](./code301-files/components-react.html)
+- [X] Components and React [Notes and Quiz](./code301-files/components-react.html)  
+- [X] Day 1 Notes: [Hoisting, Arrow Functions, Classes, Functional React and React Setup](./code301-files/robin-hoist-arrowf-classes-react.html)  
+- [X] Day 2 Notes: [React, Get/Set State, Bootstrap and CSS, Turnary Op, and Netlify](./code301-files/react-state-styling-turnary-netlify.html)  
+- [X] Day 3 Notes: [Build React, import components, using Grid, passing data, arrow functions, and modals](./code301-files/build-import-grid-passdata-arrowf-modals.html)  
+- [X] Day 4 Notes: [Debug React code, filters, sorting, create React App, ListGroup, Forms, onSubmit, and Bootstrap CSS](./code301-files/badReact-filter-sort-createApp-listGroup-forms-onSubmit-bootstrap.html)  
+- [X] Day 5 Notes: []()  
+- [X] Day 6 Notes: []()  
+- [X] Day 7 Notes: []()  
+- [X] Day 8 Notes: []()  
+- [X] Day 9 Notes: []()  
+- [X] Day 10 Notes: []()  
+- [X] Day 11 Notes: []()  
+- [X] Day 12 Notes: []()  
+- [X] Day 13 Notes: []()  
+- [X] Day 14 Notes: []()  
+- [X] Day 15 Notes: []()
 
 ## Foundations of Software Development
 
