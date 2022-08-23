@@ -146,7 +146,7 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] Day 5 Notes: [Events, React Data from imports or parents or state, Reduce, WRRC modeling](./code301-files/events-reactData-reduce-wrrc.html)  
 - [X] Day 6 Notes: [](./code301-files/portfolio-passByValRef-REST-Axios-asyncAwait-apiKeys-envFile-errHandling.html)  
 - [X] Day 7 Notes: [](./code301-files/reactBootstrap-stringMethods-cors-heroku-expressjs-nodemon.html)  
-- [X] Day 8 Notes: []()  
+- [X] Day 8 Notes: [](./code301-files/regex-backEndApiServer-routes-listeners-heroku.html)  
 - [X] Day 9 Notes: []()  
 - [X] Day 10 Notes: []()  
 - [X] Day 11 Notes: []()  
