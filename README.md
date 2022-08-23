@@ -133,7 +133,7 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] Day 9 Notes: [Filter function, Objects and Key-Value-Pairs, Modularizing functional code, using Params Objects](./code301-files/filterFunc-objects-kvps-modularizedCode-paramsObject.html)  
 - [X] Day 10 Notes: [Object Keys and Values, URL Handling, Error Handling, Modularization, Caching, and Promises](./code301-files/objKeysVals-URLHandling-ErrHandling-Modularization-caching-promises.html)  
 - [X] Day 11 Notes: [Method chaining, Mongo and NoSQL Databases, Mongoose, Seeding data, and the React Lifecycle](./code301-files/methodChaining-DBs-Mongoose-Atlas-SeedData-ReactLifecycle.html)  
-- [X] Day 12 Notes: []()  
+- [X] Day 12 Notes: [More RegEx, Map Keys vs MongoDB IDs, React Routes, CRUD, CORS, and Authentication](./code301-files/moreRegex-keyIdxAndMongoIdx-reactRoutes-CRUD-CORS-Auth.html)  
 - [X] Day 13 Notes: []()  
 - [X] Day 14 Notes: []()  
 - [X] Day 15 Notes: []()
