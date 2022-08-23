@@ -4,6 +4,7 @@ A collection of continuing education, research notes, and references.
 
 ## Table of Contents
 
+- [ ] Review "read01 and read02" in 301 class notes regarding React, State, Props, and Components.
 - [ ] Review Javascript "hoisting". My understanding is lacking but it keeps coming up in discussions, articls, and podcasts.
 - [ ] [Unit testing](android-studio-testing.html) in Android Studio.
 - [ ] React Lifecycle: I have a vague recollection of how this works but need to review for an upcoming project.
