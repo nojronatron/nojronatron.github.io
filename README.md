@@ -134,8 +134,8 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] Day 10 Notes: [Object Keys and Values, URL Handling, Error Handling, Modularization, Caching, and Promises](./code301-files/objKeysVals-URLHandling-ErrHandling-Modularization-caching-promises.html)  
 - [X] Day 11 Notes: [Method chaining, Mongo and NoSQL Databases, Mongoose, Seeding data, and the React Lifecycle](./code301-files/methodChaining-DBs-Mongoose-Atlas-SeedData-ReactLifecycle.html)  
 - [X] Day 12 Notes: [More RegEx, Map Keys vs MongoDB IDs, React Routes, CRUD, CORS, and Authentication](./code301-files/moreRegex-keyIdxAndMongoIdx-reactRoutes-CRUD-CORS-Auth.html)  
-- [X] Day 13 Notes: []()  
-- [X] Day 14 Notes: []()  
+- [X] Day 13 Notes: [array includes, array every, fe-be setup from clone, ExpressJS Heroku and Netlify hints, ThunderClient](./code301-files/includes-every-setupSystemFromClone-expressHints-HerokuNetlifyHints-ThunderClient.html)  
+- [X] Day 14 Notes: This was Assessment Day where the only assignment was to properly clean-up a MERN-stack deployment and make specific improvements. I passed!
 - [X] Day 15 Notes: []()
 
 ## Foundations of Software Development
