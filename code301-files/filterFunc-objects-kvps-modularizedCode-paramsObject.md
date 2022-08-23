@@ -1,4 +1,4 @@
-# Day 8 Notes
+# Day 9 Notes
 
 ## Thoughts and Contemplations
 
@@ -120,3 +120,7 @@ axios.get(url, { params })...
 ```
 
 See the class repo for the full example.  
+
+## Footer
+
+Return to [root readme](../README.html)
