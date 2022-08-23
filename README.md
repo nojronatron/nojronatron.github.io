@@ -18,6 +18,7 @@ Reference [links](#reference-links)
 
 Continuing Research [Index of Learnings and Notes](./continuing-education/conted-index.html)
 
+- [ ] JS Promises: I need to brush up on Promises.
 - [ ] CSS 3: When overlapped objects must have a transparency or alternate color assignment, what CSS property should be used? See [cssbattle 15](https://cssbattle.dev/play/15) for an example.
 - [ ] Mocking for unit testing in AndroidStudio.
 - [ ] Using 'cursor' in Java.
@@ -148,7 +149,7 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] Day 7 Notes: [React-bootstrap, String methods, CORS, Heroku, Expressjs, and NodeMon](./code301-files/reactBootstrap-stringMethods-cors-heroku-expressjs-nodemon.html)  
 - [X] Day 8 Notes: [Regex, Back-end API Server, Routes, Listeners, and more Heroku](./code301-files/regex-backEndApiServer-routes-listeners-heroku.html)  
 - [X] Day 9 Notes: [Filter function, Objects and Key-Value-Pairs, Modularizing functional code, using Params Objects](./code301-files/filterFunc-objects-kvps-modularizedCode-paramsObject.html)  
-- [X] Day 10 Notes: []()  
+- [X] Day 10 Notes: [Object Keys and Values, URL Handling, Error Handling, Modularization, Caching, and Promises](./code301-files/objKeysVals-URLHandling-ErrHandling-Modularization-caching-promises.html)  
 - [X] Day 11 Notes: []()  
 - [X] Day 12 Notes: []()  
 - [X] Day 13 Notes: []()  
