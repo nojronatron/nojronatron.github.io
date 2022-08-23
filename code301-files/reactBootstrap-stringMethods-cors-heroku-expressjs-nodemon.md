@@ -219,4 +219,4 @@ Right now my top strength is my ability and willingness to help out my team memb
 
 I think maintaining my professional links is one of the areas where I need to improve on. Figure out a way to promote my maintenance of these links, beyond immediate needs.  
 
-That's all for now.  
+That's all for now.

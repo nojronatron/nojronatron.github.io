@@ -142,9 +142,10 @@ this.setState({
   cats: [...this.state.cats, cat],
 })
 ```
+
 ### Jon TODOs
 
 [ ] Update .env and .env.sample TO MATCH in Lab Front-end code.  
-[ ]Fix-up componentDidMount() to only call the getBooks async function, rather than have it doing the setState itself.  
+[ ] Fix-up componentDidMount() to only call the getBooks async function, rather than have it doing the setState itself.  
 [ ] Verify we are using `react: ^17.0.1`  
 [ ] Review *hoisting* because this is becoming a common item to *know* in order to avoid problems with ordering methods and calls to those methods in React.  

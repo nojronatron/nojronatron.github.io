@@ -18,23 +18,6 @@ Reference [links](#reference-links)
 
 Continuing Research [Index of Learnings and Notes](./continuing-education/conted-index.html)
 
-- [ ] CSS 3: When overlapped objects must have a transparency or alternate color assignment, what CSS property should be used? See [cssbattle 15](https://cssbattle.dev/play/15) for an example.
-- [ ] Mocking for unit testing in AndroidStudio.
-- [ ] Using 'cursor' in Java.
-- [ ] GENERICS: Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java) and then work through [Baeldung](https://www.baeldung.com/java-generics) to help me.  
-- [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)).  
-- [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
-- [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
-- [ ] Wiring Repositories in Spring.
-- [X] How to implement [Style and Themes](./code401-files/android-themes.html) to your Android App.
-- [X] Proper and efficient installation of a specified JDK in Linux: Use JetBrains Tools box for IntelliJ installations; Use DEB install for Linux without JetBrains; Use Zip for Windows, put files where you want them, update JAVAHOME reference.
-- [X] [Handling exceptions and exception types](./code401-files/java-exceptions-scanner.html) in asynchronous programming in Java.  
-- [X] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.  
-- [X] Spring MVC especially SQL and other DB APIs.  
-- [X] Interfaces: See [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html).  
-- [X] Trees and Decision Trees have perplexed me for a while I'd like to get over that.  
-- [X] Configuring Linux and Windows to support "IDEA ." to open IntelliJ [at current directory](./linux-terminal-files/bash-stuff.html###aliases).
-
 ## Retros
 
 [Post Code Fellows Retros](./continuing-education/retro-blargh.md)
@@ -108,7 +91,7 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] Class Notes [Week Three](./code401-files/class-notes-week3.html)
 - [X] Class Notes [Week Two](./code401-files/class-notes-week2.html)
 - [X] Class Notes [Week One](./code401-files/class-notes-week1.html)
-- [X] Partner Power Hour [Index](./power-hour-notes/readme.html)
+- [X] Partner Power Hour [Index](./power-hour-notes/pph-index.html)
 - [X] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
 - [X] Java Study [Guide](./code401-files/java-reference.html)  
 - [X] [Deploying Springboot to Heroku](./code401-files/heroku-deploy-spring.html)  
@@ -131,14 +114,29 @@ The following are reading and research notes taken during, and in preparation fo
 - [X] Read05 Thinking in React and Higher Order Functions [readings](./code301-files/reactthink-higherorderfuncs.html)
 - [X] Read04 [React and Forms](./code301-files/react-and-forms.html)
 - [X] Read03 [Funcs As Props](./code301-files/funcs-as-props.html)
-- [X] Read02 [State and Props](./code301-files/read02.html)
-- [X] Read01 [Intro to React and Components](./code301-files/read01.html)
+- [X] Read02 [State and Props](./code301-files/read-state-and-props.html)
+- [X] Read01 [Intro to React and Components](./code301-files/read-intro-to-React-and-Components.html)
 - [X] Dive Into [React](./code301-files/dive-into-react.html)
 - [X] System Setup [Notes](./code301-files/setup-notes.html)
 - [X] ES6 [Arrow Functions](./code301-files/arrow-functions.html)
 - [X] ES6 [Classes](./code301-files/es6-classes.html)
 - [X] JS Conf Session: The Event Loop [Video Notes](./code301-files/event-loop-video.html)
-- [X] Components and React [Notes and Quiz](./code301-files/components-react.html)
+- [X] Components and React [Notes and Quiz](./code301-files/components-react.html)  
+- [X] Day 1 Notes: [Hoisting, Arrow Functions, Classes, Functional React and React Setup](./code301-files/robin-hoist-arrowf-classes-react.html)  
+- [X] Day 2 Notes: [React, Get/Set State, Bootstrap and CSS, Turnary Op, and Netlify](./code301-files/react-state-styling-turnary-netlify.html)  
+- [X] Day 3 Notes: [Build React, import components, using Grid, passing data, arrow functions, and modals](./code301-files/build-import-grid-passdata-arrowf-modals.html)  
+- [X] Day 4 Notes: [Debug React code, filters, sorting, create React App, ListGroup, Forms, onSubmit, and Bootstrap CSS](./code301-files/badReact-filter-sort-createApp-listGroup-forms-onSubmit-bootstrap.html)  
+- [X] Day 5 Notes: [Events, React Data from imports or parents or state, Reduce, WRRC modeling](./code301-files/events-reactData-reduce-wrrc.html)  
+- [X] Day 6 Notes: [Portolio project, passing by value and reference, REST, Axios, Async-Await, API Keys, Env files, and Error Handling](./code301-files/portfolio-passByValRef-REST-Axios-asyncAwait-apiKeys-envFile-errHandling.html)  
+- [X] Day 7 Notes: [React-bootstrap, String methods, CORS, Heroku, Expressjs, and NodeMon](./code301-files/reactBootstrap-stringMethods-cors-heroku-expressjs-nodemon.html)  
+- [X] Day 8 Notes: [Regex, Back-end API Server, Routes, Listeners, and more Heroku](./code301-files/regex-backEndApiServer-routes-listeners-heroku.html)  
+- [X] Day 9 Notes: [Filter function, Objects and Key-Value-Pairs, Modularizing functional code, using Params Objects](./code301-files/filterFunc-objects-kvps-modularizedCode-paramsObject.html)  
+- [X] Day 10 Notes: [Object Keys and Values, URL Handling, Error Handling, Modularization, Caching, and Promises](./code301-files/objKeysVals-URLHandling-ErrHandling-Modularization-caching-promises.html)  
+- [X] Day 11 Notes: [Method chaining, Mongo and NoSQL Databases, Mongoose, Seeding data, and the React Lifecycle](./code301-files/methodChaining-DBs-Mongoose-Atlas-SeedData-ReactLifecycle.html)  
+- [X] Day 12 Notes: [More RegEx, Map Keys vs MongoDB IDs, React Routes, CRUD, CORS, and Authentication](./code301-files/moreRegex-keyIdxAndMongoIdx-reactRoutes-CRUD-CORS-Auth.html)  
+- [X] Day 13 Notes: [array includes, array every, fe-be setup from clone, ExpressJS Heroku and Netlify hints, ThunderClient](./code301-files/includes-every-setupSystemFromClone-expressHints-HerokuNetlifyHints-ThunderClient.html)  
+- [X] Day 14 Notes: [Dr. Robin on DEI and some pre-assessment comments](./code301-files/drRobin-TechPerspective-AssessmentSetup.html)
+- [X] Day 15 Notes: [JS Anonymous methods, using PUT with MongoDB, Authx including Auth0](./code301-files/anonyMethods-usingPUT-AuthN-AuthZ-OAuth-Auth0.html)
 
 ## Foundations of Software Development
 
@@ -165,9 +163,9 @@ Mozilla Developers Network [Reference Docs](https://developer.mozilla.org/en-US/
 
 Career Launch Strategy [Notes](./code201-files/CareerLaunchStrategy.html)
 
-Power Hour Sessions [Notes](./power-hour-notes/readme.html)
+Power Hour Sessions [Notes](./power-hour-notes/pph-index.html)
 
-My own Linux and Terminal/Bash ~~Reading~~ learning [Notes](./linux-terminal/readme.html)
+My own Linux and Terminal/Bash ~~Reading~~ learning [Notes](./linux-terminal/linux-reference.html)
 
 Image Placeholder Generator: [place-hold.it](https://place-hold.it)
 
