@@ -261,6 +261,67 @@ The Outlet Component will return a KVP and any Component that uses 'useOutletCon
 
 This can be useful when there are several components and shared layouts.
 
+#### Shared Routes, Alternate Route Rendering
+
+Use multiple Routes statement lists!
+
+Example: When a side-bar needs to display a route link that is customized, or duplicated, from the list of links that is defined in the current Layout.
+
+```javascript
+// inside the return fragment...
+<Routes>
+  <Route path="/items" element={<h1>Custom Content</h1>} />
+</Routes>
+<nav>
+// ...items within the nav element...
+</nav>
+<Routes>
+  <Route> path="/" element={<Home />} />
+  <Route path="/items" element={<ItemLayout />}>
+  // etc...
+  </Route>
+</Routes>
+</>
+```
+
+Think of this as being a hard-coded content-specific route.
+
+#### Nest Routes Inside Other Routes
+
+Separate some routes into a set of routes of their own!
+
+1. Create a new Functional Component and import routes.
+1. Save the defined Routes.
+1. Go to the Routes within the other Component, and include a `/*` in the parent Path.
+
+The 'path/*' matches any routes that follow it, so the existing Routes now looks up the nested Routes.
+
+### Custom Hook Using Javascript
+
+Use useRoutes: `useRoutes([...])`
+
+Give an array of objects to useRoutes in javascript:
+
+```javascript
+let el = useRoutes([
+  {
+    path: String,
+    element: <Component />,
+    children: [
+      {
+        index: boolean,
+        element: <Component />
+      },
+    ],
+  }
+]);
+
+```
+
+Skips using JSX in favor of javascript.
+
+The parameter is an array of objects with arrays of children.
+
 ## Footer
 
 Return to [conted index](./conted-index.html)
