@@ -75,3 +75,20 @@ function App() {
   )
 }
 ```
+
+Define routes inside the Routes component.
+
+## The Hash Router
+
+Instead of storing a URL as a normal URL, it stores a hashed-version of a URL.
+
+A URL that includes a `#` hash character is not really a route, but Hash Router allows and manages it properly.
+
+Not recommended by Kyle *[of WebDevSimplified]*, but it exists.
+
+## The History Router
+
+Enables using Back and Forward routing buttons to navigate the webapp.
+
+Most of the time this is not necessary *and* it is unstable (currently Aug 2022 version).
+
