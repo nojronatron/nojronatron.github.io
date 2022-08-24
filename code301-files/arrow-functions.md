@@ -35,7 +35,7 @@ Not-so-good Aspects:
 
 About using 'this' keyword with functions and arrow functions:
 
-- Arrow Functions maintain context. For example, an object with an arrow function that is instantiated will be able to access the parent object's parameters.
+- Arrow Functions maintain the context of *where they are defined*. For example, an object with an arrow function that is instantiated will be able to access the parent object's parameters.
 - JS Functions maintain the 'this' context *of the calling function or codeblock* rather than where the function itself is defined, which can result in a blank return value.
 
 ### How To Construct Arrow Functions
