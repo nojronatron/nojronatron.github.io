@@ -318,9 +318,47 @@ let el = useRoutes([
 
 ```
 
-Skips using JSX in favor of javascript.
+Now use `{el}` to render the js defined routes!
+
+Same effect as using JSX, but using pure javascript instead.
 
 The parameter is an array of objects with arrays of children.
+
+## Navigation
+
+### Link Element
+
+Link to="path" replace: Replaces the history with the path defined in the Link element.
+
+Without replace, history allows the Back button to go back to the previous page.
+
+With replace, history is overwritten and the Back button does *not* go back to the previous page.
+
+### Reload Document
+
+Reloads the *entire page* instead of just the Router defined section.
+
+### Link State
+
+Supports using a `state={}` statement that erases the URL bar link address.
+
+### NavLink
+
+Multiple properties:
+
+ClassName
+
+Style: Can contain a function.
+
+Children
+
+#### NavLink Style Commands
+
+isActive: The default if not defined.
+
+isActive can be customized e.g.: `style={({isActive}) -> { return expression }}`
+
+
 
 ## Footer
 

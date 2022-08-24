@@ -14,7 +14,7 @@ Code 201 - [Foundations of Software Development](#foundations-of-software-develo
 
 Reference [links](#reference-links)  
 
-## Things I Want To Learn About
+## Things I Want To Learn More About
 
 Continuing Research [Index of Learnings and Notes](./continuing-education/conted-index.html)
 
@@ -77,7 +77,7 @@ The following are reading and research notes taken during, and in preparation fo
 
 > Upgrade Skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)
 
-> Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/bash-stuff.html)
+> Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/linux-reference.html)
 
 > SQL Statement [Reference](./code401-files/sql-statements-ref.html)
 
