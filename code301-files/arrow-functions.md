@@ -28,11 +28,15 @@ Not-so-good Aspects:
 
 - Cannot be used as Constructors.  
 - Cannot have line breaks in the definition.  
-- Cannot use 'this'. Assume 'this' in an arrow function means 'Window'.  
 - Should NOT be used as prototype or other methods; They do not *have* a prototype property.  
 - Not able to use Yield return type within its body; *however* child-functions within the codeblock *can* use Yield. Arrow Functions cannot be used as 'Generators' because of this Yield statement limitation.  
 - Not suitable for 'call', 'apply', and 'bind' methods. These 'add.' methods change the scope of a method call using 'obj' as the first or only parameter in their params list.
 - Arrow Functions might alter order-of-operations, so *be aware* when using these together.  
+
+About using 'this' keyword with functions and arrow functions:
+
+- Arrow Functions maintain context. For example, an object with an arrow function that is instantiated will be able to access the parent object's parameters.
+- JS Functions maintain the 'this' context *of the calling function or codeblock* rather than where the function itself is defined, which can result in a blank return value.
 
 ### How To Construct Arrow Functions
 
@@ -84,7 +88,7 @@ function randomNumber() {
 randomNum = () => Math.random;
 ```
 
-#### Parens and Parameters
+#### Parens and Params
 
 Parenthesis are required to contain the input parameters, or no parameters at all.
 
@@ -142,6 +146,20 @@ Arrow Functions are useful for many purposes including:
 - Simplified single-line functions.
 - Event hanlders.
 - Callbacks.
+
+An example Event Handler registration using an Arrow Function:
+
+```javascript
+// JS Function method:
+document.addEventListener('click', function() {
+  console.log('Click');
+})
+
+// Arrow Function method:
+document.addEventListener('click', () => console.log('Click'));
+```
+
+Neat!
 
 #### Summarized Configurations
 
