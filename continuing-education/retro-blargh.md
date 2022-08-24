@@ -1,5 +1,74 @@
 # Occasional Retrospective Notes
 
+## Wednesday 24-Aug-2022
+
+While updating my notes organization yesterday, I also added some emojis that did not work at first. Some investigating revealed that I didn't have the correct plug-ins selected. Some references that lead me to the correct solution:
+
+GitHub Docs on [Publishing GH Pages using Actions](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
+
+GitHub Docs on [Using Jekyll with GH Pages](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll)
+
+Jeykyll's GH [README](https://github.com/jekyll/jemoji) defining the jemoji plugin.
+
+Jekyll Docs on [Plugins](https://jekyllrb.com/docs/plugins/)
+
+Sounds like Jekyll-themed GH Pages can be locally tested, which might require some Ruby knowledge - I didn't look too deeply into this as there are more important things for me to research and practice right now.
+
+Technical Interviewing exercise: I attempted to complete a Stack-related technical interview question but could not complete the discussion and solution design within 40 minutes. This is not uncommon for me. So I took an additional 40 mins or so to try and create a Stack using Node just to see if I could do it using [replit.com](replit.com), and I could! Following is the code I wrote:
+
+```javascript
+'use strict';
+
+// node class constructor
+class Node {
+  constructor(value) {
+    this.data = value;
+    this.next = null;
+  }
+}
+
+// stack class constructor
+class Stack {
+  constructor() {
+    this.top = null;
+    this.nodeCount = 0;
+    this.isEmpty = true;
+  }
+  push(value) {
+    // node or item is added FILO to this stack and returns nothing
+    let newNode = new Node(value);
+    if (!this.isEmpty) {
+      newNode.next = this.top;
+    } 
+    this.top = newNode;
+    this.nodeCount = this.nodeCount + 1;
+    this.isEmpty = this.nodeCount < 1;
+  }
+  pop() {
+    // returns the TOP node or item (LIFO) from the stack
+    if (this.isEmpty) {
+      return "Stack is empty";
+    }
+    let tempNode = this.top;
+    this.top = tempNode.next;
+    this.nodeCount = this.nodeCount - 1;
+    this.isEmpty = this.nodeCount < 1;
+    return tempNode.data;
+  }
+  peek() {
+    // returns a copy of the value at TOP node without removing it
+    if (this.isEmpty) {
+      return "Stack is empty";
+    }
+    return this.top.data;
+  }
+}
+```
+
+While this is not fully vetted (unit tests etc), the properties are updated correctly, and the pop(), peek(), and push() functions operate as expected.
+
+The technical interview question was to track the maximum value within a Stack, so I worked on some code to implement that feature.
+
 ## Tuesday 23-Aug-2022
 
 After some meetings with Ryan about our MERN-stack project, I decided it would be a good idea to brush-up on various topics so I am primed for planning and development, especially React and CSS/Bootstrap. While I was browsing around my Code Fellows notes, I realized I did a terrible job of organizing my reading notes and in-class notes, so I reorganized them a bit. Several topics were missing altogether, others were incomplete, incoherent, or just not-quite-done. For some of these items I simply went in to the documentation, referenced authoritative materials, and made necessary edits, updates, and additions. For those topics that are missing, I'll have to create new documentation notes - one example is ReactRouter - which will be added to my [cont-ed index of topics](./conted-index.html).
