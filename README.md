@@ -26,76 +26,121 @@ Continuing Research [Index of Learnings and Notes](./continuing-education/conted
 
 The following are reading and research notes taken during, and in preparation for Code401 Java. Review these after class discusion, and then again after attempts to implement the lab(s) or code challenge(s):
 
-- [X] Read Class42 [Googles AdMob and Monetization Guide](./code401-files/google-admob-monetization.html)
-- [X] Read Class44 [Ethics and Code of Conduct](./code401-files/ethics-in-code.html)
-- [X] Read Class43 [OSS Contributing](./code401-files/open-source.html)
-- [X] Read Class39 [Android Location](./code401-files/android-location.html)
-- [X] Read Class38 [Intent Filters and Implicit vs Explicit Intents](./code401-files/intent-filters-implicit-explicit.html)
-- [X] Read Class37 [Amplify and Amazon S3](./code401-files/s3-and-amplify.html)
-- [X] Read Class36 [Amplify and Cognito](./code401-files/amplify-cognito.html)
-- [X] Read Class34 [Publishing Your Android App](./code401-files/google-apppubguide.html)
-- [X] Read GRAPHS [Code Fellows Curriculum on Graphs](./code401-files/graphs.html)
-- [X] Read Class33 [Relationships in GraphQL and AWS Amplify and CompletableFuture in Java](./code401-files/graphqlhasmanyconns-completablefuture.html)
-- [X] Read Class32 [Serverless, AWS Amplify, and GraphQL](./code401-files/serverless-amplify-graphql.html)
-- [X] Read Class31 [AWS Amplify](./code401-files/aws-amplify.html)
-- [X] Read Class29 [Android Rooms](./code401-files/android-rooms.html)
-- [X] Read HASHTABLES [Hash Tables](./code401-files/hash-tables.html)
-- [X] Read Class28 [RecyclerView: Displaying Lists of Data](./code401-files/recyclerview-for-lists.html)
-- [X] Read Class27 [Android Key Value Data, Espresso, and Tasks](./code401-files/android-kvd-espresso-tasks.html)
-- [X] Read Class26 [Android Component Fundamentals](./code401-files/android-fundamentals.html)
+:spiral_notepad: Read Class42 [Googles AdMob and Monetization Guide](./code401-files/google-admob-monetization.html)
+
+:spiral_notepad: Read Class44 [Ethics and Code of Conduct](./code401-files/ethics-in-code.html)
+
+:spiral_notepad: Read Class43 [OSS Contributing](./code401-files/open-source.html)
+
+:spiral_notepad: Read Class39 [Android Location](./code401-files/android-location.html)
+
+:spiral_notepad: Read Class38 [Intent Filters and Implicit vs Explicit Intents](./code401-files/intent-filters-implicit-explicit.html)
+
+:spiral_notepad: Read Class37 [Amplify and Amazon S3](./code401-files/s3-and-amplify.html)
+
+:spiral_notepad: Read Class36 [Amplify and Cognito](./code401-files/amplify-cognito.html)
+
+:spiral_notepad: Read Class34 [Publishing Your Android App](./code401-files/google-apppubguide.html)
+
+:spiral_notepad: Read GRAPHS [Code Fellows Curriculum on Graphs](./code401-files/graphs.html)
+
+:spiral_notepad: Read Class33 [Relationships in GraphQL and AWS Amplify and CompletableFuture in Java](./code401-files/graphqlhasmanyconns-completablefuture.html)
+
+:spiral_notepad: Read Class32 [Serverless, AWS Amplify, and GraphQL](./code401-files/serverless-amplify-graphql.html)
+
+:spiral_notepad: Read Class31 [AWS Amplify](./code401-files/aws-amplify.html)
+
+:spiral_notepad: Read Class29 [Android Rooms](./code401-files/android-rooms.html)
+
+:spiral_notepad: Read HASHTABLES [Hash Tables](./code401-files/hash-tables.html)
+
+:spiral_notepad: Read Class28 [RecyclerView: Displaying Lists of Data](./code401-files/recyclerview-for-lists.html)
+
+:spiral_notepad: Read Class27 [Android Key Value Data, Espresso, and Tasks](./code401-files/android-kvd-espresso-tasks.html)
+
+:spiral_notepad: Read Class26 [Android Component Fundamentals](./code401-files/android-fundamentals.html)
 
 -=[Midterm Break]=-
 
-- [X] Read Class19 [Purely Functional Programming - Wikipedia Article](./code401-files/pure-func-prog-wiki.html)
-- [X] Read Class18 [Many to many and a reading about security](./code401-files/spring-many-many-security.html)
-- [X] Read Class17 [Spring Boot and OAuth2](./code401-files/spring-oauth-tutorial.html)
-- [X] Read Class16 [Spring Auth and Security](./code401-files/spring-auth-n-z.html)
-- [X] Read Class15 [Trees](./code401-files/treeeeeees.html)
-- [X] Read Class14 [Password Hashing and BCrypt](./code401-files/passwd-hashing-bcrypt.html)
-- [X] Read Class13 [One to Many in Spring and Integration Testing](./code401-files/spring-onetomany-and-integrationtesting.html)
-- [X] Read Class12 [Accessing Data with JPA and Spring Data CRUD](./code401-files/jpa-data-access-and-crud.html)
-- [X] Read Class11 [Spring App, Spring MVC and ThymeLeaf](./code401-files/spring-app-mvc-thymeleaf.html)
-- [X] Read about [Stacks and Queues](./code401-files/stacks-and-queues.html)
-- [X] Read Class09 [HTTP Request Lifecycle and HTTP Request using Spring for Java](./code401-files/java-and-http.html)
-- [X] Read Class08 [DRY, Rule of Three, Dont Need It, and MVP](./code401-files/dry-three-mvp.html)
-- [X] Read Class06 [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html)
-- [X] Read about [Linked Lists](./code401-files/bigo-linkedlists.html)
-- [X] Read Class04 [OOP, Classes, Bin-Dec-Hex](./code401-files/oop-classes-bindechex.html)
-- [X] Read Class03 [Handling Exceptions, Java Scanner, and Objects vs Primatives](./code401-files/java-exceptions-scanner.html)
-- [X] Read Class02 [Java Packages and Loops](./code401-files/read401-02-java.html)
-- [X] Read Class01 [Java Basics Compiling and Java Doc Refs](./code401-files/read401-01-java.html)
+:card_index: Read Class19 [Purely Functional Programming - Wikipedia Article](./code401-files/pure-func-prog-wiki.html)
+
+:card_index: Read Class18 [Many to many and a reading about security](./code401-files/spring-many-many-security.html)
+
+:card_index: Read Class17 [Spring Boot and OAuth2](./code401-files/spring-oauth-tutorial.html)
+
+:card_index: Read Class16 [Spring Auth and Security](./code401-files/spring-auth-n-z.html)
+
+:card_index: Read Class15 [Trees](./code401-files/treeeeeees.html)
+
+:card_index: Read Class14 [Password Hashing and BCrypt](./code401-files/passwd-hashing-bcrypt.html)
+
+:card_index: Read Class13 [One to Many in Spring and Integration Testing](./code401-files/spring-onetomany-and-integrationtesting.html)
+
+:card_index: Read Class12 [Accessing Data with JPA and Spring Data CRUD](./code401-files/jpa-data-access-and-crud.html)
+
+:card_index: Read Class11 [Spring App, Spring MVC and ThymeLeaf](./code401-files/spring-app-mvc-thymeleaf.html)
+
+:card_index: Read about [Stacks and Queues](./code401-files/stacks-and-queues.html)
+
+:card_index: Read Class09 [HTTP Request Lifecycle and HTTP Request using Spring for Java](./code401-files/java-and-http.html)
+
+:card_index: Read Class08 [DRY, Rule of Three, Dont Need It, and MVP](./code401-files/dry-three-mvp.html)
+
+:card_index: Read Class06 [OOP, Inheritance, Interfaces](./code401-files/oop-inhrtnce-intfaces.html)
+
+:card_index: Read about [Linked Lists](./code401-files/bigo-linkedlists.html)
+
+:card_index: Read Class04 [OOP, Classes, Bin-Dec-Hex](./code401-files/oop-classes-bindechex.html)
+
+:card_index: Read Class03 [Handling Exceptions, Java Scanner, and Objects vs Primatives](./code401-files/java-exceptions-scanner.html)
+
+:card_index: Read Class02 [Java Packages and Loops](./code401-files/read401-02-java.html)
+
+:card_index: Read Class01 [Java Basics Compiling and Java Doc Refs](./code401-files/read401-01-java.html)
 
 ### ASD Class Reminders
 
-> Make your projects *client ready* aka visually appealing to anyone *[CodeFellows Prework]*
+:arrow_right: Make your projects *client ready* aka visually appealing to anyone *[CodeFellows Prework]*
 
-> A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)
+:arrow_right: A Kinder and Gentler [Philosophy](./code401-files/kinder-gentler-philo.html)
 
-> Passion and [Perserverence](./code401-files/passion-perserverence.html)
+:arrow_right: Passion and [Perserverence](./code401-files/passion-perserverence.html)
 
-> Believe [you can](./code401-files/tedx-believe-u-can-improve.html)
+:arrow_right: Believe [you can](./code401-files/tedx-believe-u-can-improve.html)
 
-> Upgrade Skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)
+:arrow_right: Upgrade Skills with [Deliberate Practice](./code401-files/upg-skills-with-practice.html)
 
-> Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/linux-reference.html)
+:arrow_right: Review Linux bash/cmdline [Tools and Usage](./linux-terminal-files/linux-reference.html)
 
-> SQL Statement [Reference](./code401-files/sql-statements-ref.html)
+:arrow_right: SQL Statement [Reference](./code401-files/sql-statements-ref.html)
 
 ### ASD Additional References and Notes
 
-- [X] Class Notes [Week Nine](./code401-files/class-notes-week9.html)
-- [X] Class Notes [Week Eight](./code401-files/class-notes-week8.html)
-- [X] Class Notes [Week Seven](./code401-files/class-notes-week7.html)
-- [X] Class Notes [Week Six](./code401-files/class-notes-week6.html)
-- [X] Class Notes [Week Four](./code401-files/class-notes-week4.html)
-- [X] Class Notes [Week Three](./code401-files/class-notes-week3.html)
-- [X] Class Notes [Week Two](./code401-files/class-notes-week2.html)
-- [X] Class Notes [Week One](./code401-files/class-notes-week1.html)
-- [X] Partner Power Hour [Index](./power-hour-notes/pph-index.html)
-- [X] Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
-- [X] Java Study [Guide](./code401-files/java-reference.html)  
-- [X] [Deploying Springboot to Heroku](./code401-files/heroku-deploy-spring.html)  
-- [X] Additional Notes On [BigO Notation](https://www.bigocheatsheet.com/)
+:crayon: Class Notes [Week Nine](./code401-files/class-notes-week9.html)
+
+:crayon: Class Notes [Week Eight](./code401-files/class-notes-week8.html)
+
+:crayon: Class Notes [Week Seven](./code401-files/class-notes-week7.html)
+
+:crayon: Class Notes [Week Six](./code401-files/class-notes-week6.html)
+
+:crayon: Class Notes [Week Four](./code401-files/class-notes-week4.html)
+
+:crayon: Class Notes [Week Three](./code401-files/class-notes-week3.html)
+
+:crayon: Class Notes [Week Two](./code401-files/class-notes-week2.html)
+
+:crayon: Class Notes [Week One](./code401-files/class-notes-week1.html)
+
+:memo: Partner Power Hour [Index](./power-hour-notes/pph-index.html)
+
+:memo: Java Naming Conventions [Reference](./code401-files/java-naming-conv-ref.html)  
+
+:memo: Java Study [Guide](./code401-files/java-reference.html)  
+
+:memo: [Deploying Springboot to Heroku](./code401-files/heroku-deploy-spring.html)  
+
+:memo: Additional Notes On [BigO Notation](https://www.bigocheatsheet.com/)
 
 ## Intermediate Software Development
 
@@ -159,54 +204,56 @@ The following are reading and research notes taken during, and in preparation fo
 
 ## Reference Links
 
-Mozilla Developers Network [Reference Docs](https://developer.mozilla.org/en-US/docs/Web)
+:link: Mozilla Developers Network [Reference Docs](https://developer.mozilla.org/en-US/docs/Web)
 
-Career Launch Strategy [Notes](./code201-files/CareerLaunchStrategy.html)
+:link: Career Launch Strategy [Notes](./code201-files/CareerLaunchStrategy.html)
 
-Power Hour Sessions [Notes](./power-hour-notes/pph-index.html)
+:link: Power Hour Sessions [Notes](./power-hour-notes/pph-index.html)
 
-My own Linux and Terminal/Bash ~~Reading~~ learning [Notes](./linux-terminal-files/linux-reference.html)
+:crayon: Linux and Terminal/Bash ~~Reading~~ learning [Notes](./linux-terminal-files/linux-reference.html)
 
-Image Placeholder Generator: [place-hold.it](https://place-hold.it)
+:link: Image Placeholder Generator: [place-hold.it](https://place-hold.it)
 
-Build and Test Code before deployment in [CodePen](https://codepen.io/)
+:link: Build and Test Code before deployment in [CodePen](https://codepen.io/)
 
-Find, Support, Hire Creatives: [Dribbble](https://dribbble.com/)
+:link: Find, Support, Hire Creatives: [Dribbble](https://dribbble.com/)
 
-Design Inspiration: [Designspiration](https://www.designspiration.com/)
+:link: Design Inspiration: [Designspiration](https://www.designspiration.com/)
 
-Color Palette Designer: [Paletton.com](https://paletton.com/)
+:link: Color Palette Designer: [Paletton.com](https://paletton.com/)
 
-Digital Ocean's CSS Tricks: [CSS-Tricks.com](https://css-tricks.com/)
+:link: Digital Ocean's CSS Tricks: [CSS-Tricks.com](https://css-tricks.com/)
 
-Web.Dev - Learn about CSS: [Web.Dev](https://web.dev/learn/css/layout/)
+:link: Web.Dev - Learn about CSS: [Web.Dev](https://web.dev/learn/css/layout/)
 
-The Event Loop - Video [YouTube.com](https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf)
+:link: The Event Loop - Video [YouTube.com](https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf)
 
-Do daily challenges or steps in FE/BE/Java paths at [Free Code Camp](https://www.freecodecamp.org/)
+:link: Do daily challenges and get guidance on FE/BE/Java paths at [Free Code Camp](https://www.freecodecamp.org/)
 
-Consider a subscription to CodeAcademy to support [Continuous Learning](https://www.codecademy.com/)
+:memo: Consider a subscription to CodeAcademy to support [Continuous Learning](https://www.codecademy.com/)
 
-SQL Bolt [Lessons In SQL](https://www.sqlbolt.com/)
+:link: SQL Bolt [Lessons In SQL](https://www.sqlbolt.com/)
 
-Reg Braithwaite on [Github Task List in Markdown](https://github.blog/2014-04-28-task-lists-in-all-markdown-documents/)
+:link: Reg Braithwaite on [Github Task List in Markdown](https://github.blog/2014-04-28-task-lists-in-all-markdown-documents/)
 
-Online JS Book [Eloquent Javascript by Marjin Haverbeke](https://eloquentjavascript.net/)
+:link: Online JS Book [Eloquent Javascript by Marjin Haverbeke](https://eloquentjavascript.net/)
 
-Science Of People article [15 Science-based Public Speaking Tips...](https://www.scienceofpeople.com/public-speaking-tips/)
+:link: Science Of People article [15 Science-based Public Speaking Tips...](https://www.scienceofpeople.com/public-speaking-tips/)
 
-Whiteboarding with [Miro](https://www.miro.com)
+:link: Whiteboarding with [Miro](https://www.miro.com)
 
-Software Engineering Practice and Help at [Geeks for Geeks](https://www.geeksforgeeks.org/)
+:link: Software Engineering Practice and Help at [Geeks for Geeks](https://www.geeksforgeeks.org/)
 
-JS2021 Survey by Sacha Greif and others [State of ... surveys including JS Frameworks and CSS](https://2021.stateofjs.com/)
+:link: JS2021 Survey by Sacha Greif and others [State of ... surveys including JS Frameworks and CSS](https://2021.stateofjs.com/)
 
-B is for [Bootstrap](https://getbootstrap.com/docs/3.4/)
+:link: B is for [Bootstrap](https://getbootstrap.com/docs/3.4/)
 
-[React Bootstrap](https://react-bootstrap.github.io/)
+:link: [React Bootstrap](https://react-bootstrap.github.io/)
 
-Free [Google Fonts](https://fonts.google.com/)
+:link: Free [Google Fonts](https://fonts.google.com/)
 
-[CSS-Tricks](https://css-tricks.com/) by Digital Ocean
+:link: Nice Icons by [Font Awesome](https://fontawesome.com/)
 
-Curriculum [Refs](./code401-files/general-codefellows-refs.html)
+:link: [CSS-Tricks](https://css-tricks.com/) by Digital Ocean
+
+:link: Curriculum [Refs](./code401-files/general-codefellows-refs.html)
