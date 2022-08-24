@@ -358,7 +358,56 @@ isActive: The default if not defined.
 
 isActive can be customized e.g.: `style={({isActive}) -> { return expression }}`
 
+1. Create a styles.css file.
+1. Since 'active' is default, create an active class selector and assign properties e.g. `color: red;`
+1. Import styles.css => `import './styles.css'`
+1. Active links will be colored red now!
 
+Parent Link element *will remain active* when child routes are selected.
+
+To stop this from happening, add attribute `end` to the parent route element.
+
+### Navigate Component
+
+Automatically redirects to another page.
+
+`<Navigate to|replace|state />`
+
+What about form submission?
+
+Use the `useNaviage` hook.
+
+1. Import it `import {Navigate, useNavigate} from 'react-router-dom';`
+2. Add the Navigate element e.g. in a new Component:
+
+```javascript
+// import statements including useNavigate hook
+export function NotFound() {
+  const navigate = useNavigate();
+  useEffect(()=> {
+    setTimeout(()=> {
+      navigate("/", { })
+    }, 1000); // milliseconds
+  }, [])
+  return <h1>NotFound</h1>
+}
+```
+
+The 'navigate' property takes two parameters: to (path) and replace attribute.
+
+'useEffect(arrowFunc)' is the proper way to wrap a function in React here.
+
+Using a -1 instead of a textual path in the navigate() params will cause the browser to go "back" to the previous page (after 1 second per the above code).
+
+#### Data Storage With Navigation
+
+In addition to useParams():
+
+- useState => Can access state object(s) for use in the URL parameter: `?n=10`
+- useSearchParams => Pulls values via search parameters, replacing useState
+- state => `navigate(path, {state: String})` which will persist data through navigation to the next page that is loaded
+
+Use 'state' to show a message based on what page the user was on previously.
 
 ## Footer
 
