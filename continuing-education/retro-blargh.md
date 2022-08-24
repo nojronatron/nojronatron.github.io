@@ -1,5 +1,9 @@
 # Occasional Retrospective Notes
 
+## Tuesday 23-Aug-2022
+
+After some meetings with Ryan about our MERN-stack project, I decided it would be a good idea to brush-up on various topics so I am primed for planning and development, especially React and CSS/Bootstrap. While I was browsing around my Code Fellows notes, I realized I did a terrible job of organizing my reading notes and in-class notes, so I reorganized them a bit. Several topics were missing altogether, others were incomplete, incoherent, or just not-quite-done. For some of these items I simply went in to the documentation, referenced authoritative materials, and made necessary edits, updates, and additions. For those topics that are missing, I'll have to create new documentation notes - one example is ReactRouter - which will be added to my [cont-ed index of topics](./conted-index.html).
+
 ## Saturday 20-Aug-2022
 
 Despite telling myself I wouldn't do much "techie" stuff today, here I am working through CSSBattles.

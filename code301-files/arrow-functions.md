@@ -28,11 +28,15 @@ Not-so-good Aspects:
 
 - Cannot be used as Constructors.  
 - Cannot have line breaks in the definition.  
-- Cannot use 'this'. Assume 'this' in an arrow function means 'Window'.  
 - Should NOT be used as prototype or other methods; They do not *have* a prototype property.  
 - Not able to use Yield return type within its body; *however* child-functions within the codeblock *can* use Yield. Arrow Functions cannot be used as 'Generators' because of this Yield statement limitation.  
 - Not suitable for 'call', 'apply', and 'bind' methods. These 'add.' methods change the scope of a method call using 'obj' as the first or only parameter in their params list.
 - Arrow Functions might alter order-of-operations, so *be aware* when using these together.  
+
+About using 'this' keyword with functions and arrow functions:
+
+- Arrow Functions maintain the context of *where they are defined*. For example, an object with an arrow function that is instantiated will be able to access the parent object's parameters.
+- JS Functions maintain the 'this' context *of the calling function or codeblock* rather than where the function itself is defined, which can result in a blank return value.
 
 ### How To Construct Arrow Functions
 
@@ -59,7 +63,34 @@ bar (myWord);
 'FOO-FOO bar.'
 ```
 
-#### Parens and Parameters
+### Transform a JS Function to an Arrow Function
+
+ES 6.0 defines a function as a variable that uses the keyword 'function', followed by parentheses for a parameters list, followed by a code block.
+
+Arrow Functions:
+
+- Do NOT use the keyword 'function'.
+- Parenthesis are necessary but could be empty, or have 1 or more params.
+- An expression without braces and without a 'return' keyword, but automatically returns the result of the expression.
+- Code Block contains executable code within braces, ending with the 'return' keyword.
+
+Example:
+
+```javascript
+function randomNumber() {
+  return Math.random;
+}
+```
+
+...can be rewritten as an arrow function:
+
+```javascript
+randomNum = () => Math.random;
+```
+
+#### Parens and Params
+
+Parenthesis are required to contain the input parameters, or no parameters at all.
 
 ```javascript
 (parm1, parm2) => expression
@@ -70,6 +101,10 @@ bar (myWord);
 ```
 
 #### Braces and Code Blocks
+
+Braces are *not* required for single statement expressions that do not overflow to the next line.
+
+- The return is *implied*.
 
 Multi-line statements *require*:
 
@@ -98,11 +133,33 @@ Straight from *[MDN, 'Arrow_functions']*:
 params => ({foo: "a"}) // returns object {foo: 'a'}
 ```
 
-#### Other Advances Purposes
+Object Literals have many uses, including:
 
 - Rest Parameters. There might be many of them.  
 - Default Parameters. Some inputs should default if not assigned.  
-- Destructuring within params. *An advanced topic* to me.  
+- Destructuring within params.  
+
+#### Advanced Uses
+
+Arrow Functions are useful for many purposes including:
+
+- Simplified single-line functions.
+- Event hanlders.
+- Callbacks.
+
+An example Event Handler registration using an Arrow Function:
+
+```javascript
+// JS Function method:
+document.addEventListener('click', function() {
+  console.log('Click');
+})
+
+// Arrow Function method:
+document.addEventListener('click', () => console.log('Click'));
+```
+
+Neat!
 
 #### Summarized Configurations
 
@@ -116,16 +173,16 @@ Parentheses:
 
 ```javascript
 /* zero parameters requires parens */
-alpha = () => `Hello World!`;
+const alpha = () => `Hello World!`;
 
 /* multiple params requires parens */
-let bravo = (name, age) => `${name} is ${age} years old.`;
+const bravo = (name, age) => `${name} is ${age} years old.`;
 
 /* single param does not require parens */
-let charlie = name => `Her name is ${name}.`;
+const charlie = name => `Her name is ${name}.`;
 
 /* surround object literal with parens */
-let delta = (name, age) => ({
+const delta = (name, age) => ({
   name: name,
   age: age,
 });
@@ -134,7 +191,7 @@ let delta = (name, age) => ({
 Braces:  
 
 - Do *not* use when following the arrow with a single code statement.  
-- Use when *multiple* code statements are needed in the implicit return and *include* the *return statement*.  
+- Use when *multiple* statements are needed in the code block and *include* the *return statement*.  
 
 ```javascript
 /* single code statement does not require braces */
@@ -151,12 +208,17 @@ let foxtrot = (length, width) => {
 
 ## Caniuse.com Summary Notes
 
-Support for ES6 Arrow Functions is pretty vast, even on mobile and specialy platforms.  
+Support for ES6 Arrow Functions is pretty vast, even on mobile and specialty platforms.  
 
-*Note*: IE (of course) and Opera Mini are two outliers as they do not support it.
+*Note*: IE (of course) and Opera Mini are two outliers as they do not support arrow functions.
 
-Reference: [caniuse.com](https://www.caniuse.com)  
-Reference: [MDN Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)  
+## References
+
+[caniuse.com](https://www.caniuse.com)
+
+[MDN Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+
+WebDevSimplified [ES6 Arrow Functions Tutorial on Youtube](https://www.youtube.com/watch?v=h33Srr5J9nY)
 
 ## Footer
 

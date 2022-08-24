@@ -111,11 +111,43 @@ How does the child component invoke a method that was passed to it from a parent
 
 ## Lifting State
 
+React [Lifting UP State](https://reactjs.org/docs/lifting-state-up.html)  
+
+Recommendation: Lift the shared State up to their closest common ancestor.
+
+Shared State is data that multiple Components need access to.
+
+Shared State should be owned by a single Parent component that will be the "source of truth" for the state that child components need.
+
+*Remember*: Props are *read only* so do not try to edit them. Instead, look to an owning Component for the data and consider using a callback function to handle state change only if necessary.
+
+*Remember*: When this.setState() is called, the render() function is called and the Component refreshes.
+
+### Lifting State Key Takeaways
+
+Maintain a single source of truth for any data that changes.
+
+- The owning Component should need its state data to render properly.
+- If other Components need the data, rely on top-down data flow to acquire the data.
+
+Use custom logic to transform state data as props.
+
+- Utilize custom conversion functions in the owning Component.
+- Leverage passing functions as props with event listeners so child Components can call the converter function(s).
+
+Data that can be derived from either props *or* state should *not* be in State.
+
+- Store a single value and use a converter function to update the state depending on which value type is needed. In other words, calculate "other values" as necessary.
+
+Utilize 'React Developer Tools' to inspect Props.
+
+- Follow data up the chain of Props.
+- Gain visibility into what changes which data, and where it does it.
+- Simplifies finding the Component responsible for updating State.
 
 ## Other Reference Links
 
-React [Tutorial](https://reactjs.org/tutorial/tutorial.html)  
-React [Lifting UP State](https://reactjs.org/docs/lifting-state-up.html)  
+React [Tutorial](https://reactjs.org/tutorial/tutorial.html)
 
 ## Footer
 
