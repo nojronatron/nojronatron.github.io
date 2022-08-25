@@ -4,10 +4,8 @@ A collection of continuing education, research notes, and references.
 
 ## Table of Contents
 
+- [ ] Java: Investigate [Rest-assured](https://rest-assured.io/)[rest-assured github](https://github.com/rest-assured/rest-assured/wiki/GettingStarted) - a test framework library 'for REST built on HTTPBuilder' for Java.
 - [ ] Investigate [replit.com](https://replit.com)'s unit testing tool.
-- [X] Get up to speed on React Router: [react-router-dom](./react-router-dom-notes.html) and react-router-native (which I won't cover here...at least not yet).
-- [ ] Review "read01 and read02" in 301 class notes regarding React, State, Props, and Components.
-- [ ] Review Javascript "hoisting". My understanding is lacking but it keeps coming up in discussions, articles, and podcasts.
 - [ ] [Unit testing](android-studio-testing.html) in Android Studio.
 - [ ] React Lifecycle: I have a vague recollection of how this works but need to review for an upcoming project.
 - [ ] JS Promises: I need to brush up on Promises.
@@ -19,6 +17,9 @@ A collection of continuing education, research notes, and references.
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
 - [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
 - [ ] Wiring Repositories in Spring.
+- [X] Get up to speed on React Router: [react-router-dom](./react-router-dom-notes.html) and react-router-native (which I won't cover here...at least not yet).
+- [X] Review 301 class notes regarding React, State, Props, and Components.
+- [X] Review Javascript "hoisting". My understanding is lacking but it keeps coming up in discussions, articles, and podcasts.
 - [X] How to implement [Style and Themes](./code401-files/android-themes.html) to your Android App.
 - [X] Proper and efficient installation of a specified JDK in Linux: Use JetBrains Tools box for IntelliJ installations; Use DEB install for Linux without JetBrains; Use Zip for Windows, put files where you want them, update JAVAHOME reference.
 - [X] [Handling exceptions and exception types](./code401-files/java-exceptions-scanner.html) in asynchronous programming in Java.  

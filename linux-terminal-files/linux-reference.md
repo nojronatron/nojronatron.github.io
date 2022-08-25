@@ -235,6 +235,22 @@ Sort lines in a given way:  `sort`
 Word Count, including characters and lines: `wc`  
 Search for a given pattern: `grep`  
 
+## Server Services
+
+### CUPS Printing System
+
+Developed by Apple Inc. for macOS and *nix OSes.
+
+Cannonical includes it with Ubuntu 18.x and above.
+
+Check out the Web [GUI](http://localhost:631/) for administration.
+
+Check version and architecture: `dpkg -l cups-browsed`
+
+View device info: `lpstat -v`
+
+*Note*: At midnight the CUPS Logging mechanism 'rolls over' and a CUPS reset is initiated, which causes a [popup notification every night at midnight](https://bugs.launchpad.net/ubuntu/+source/cups-filters/+bug/1869981). There is a way to work around this (basically stop forced CUPS daemon restart) but there is no harm in allowing the restart to be executed.
+
 ## System Stuff
 
 ### Permissions
@@ -470,4 +486,4 @@ Apt and DPKG details were gleened from [this AskUbuntu.com article](https://asku
 
 ## Footer
 
-Return to [Readme](../README.html)  
+Return to [Root readme](../README.html)  

@@ -1,5 +1,11 @@
 # Occasional Retrospective Notes
 
+Semi-regular notes taken during my software developer journey.
+
+## Thursday 25-Aug-2022
+
+As happens on most days when I leave my Linux box powered-on overnight, a Printer Added popup appears in the notification area on the desktop. This hasn't been a problem, but my curiosity about it got me researching. It's pretty simple: The CUPS service is restarted at about midnight daily in order to 'roll the log file'. There is a [bug](https://bugs.launchpad.net/ubuntu/+source/cups-filters/+bug/1869981) filed with Cannonical with discussion, and the basic result is there is not a problem per se, and it can be worked around.
+
 ## Wednesday 24-Aug-2022
 
 While updating my notes organization yesterday, I also added some emojis that did not work at first. Some investigating revealed that I didn't have the correct plug-ins selected. Some references that lead me to the correct solution:
