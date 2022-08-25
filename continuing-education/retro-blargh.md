@@ -67,7 +67,54 @@ class Stack {
 
 While this is not fully vetted (unit tests etc), the properties are updated correctly, and the pop(), peek(), and push() functions operate as expected.
 
-The technical interview question was to track the maximum value within a Stack, so I worked on some code to implement that feature.
+The technical interview question was to track the maximum value within a Stack, so I worked on some code to implement that feature. Below is the additional code:
+
+```javascript
+// the code above...
+  maxVal() {
+    let arr = [];
+    let result = this.peek();
+    while (!this.isEmpty) {
+      let temp = this.pop();
+      result = temp > result ? temp : result;
+      arr.push(temp);
+    }
+    for (let idx=arr.length - 1; idx >= 0; idx--){
+      this.push(arr[idx]);
+    }
+    return result;
+  }
+// end of class definition
+```
+
+The code was all developed using a real dry-erase board and replit. Testing the code required `console.log()` and replit breakpoints and their built-in debugger. Here is the rest of the code:
+
+```javascript
+let myStack = new Stack();
+let emptyStack = myStack.isEmpty;
+console.log("Created stack. emptyStack? ", emptyStack);
+myStack.push(100);
+emptyStack = myStack.isEmpty;
+console.log("Pushed a value. emptyStack? ", emptyStack);
+let stackPeek = myStack.peek();
+console.log("Peeking the stack, value is: ", stackPeek);
+let popResult = myStack.pop();
+console.log("popResult: ", popResult);
+emptyStack = myStack.isEmpty;
+console.log("emptyStack? ", emptyStack);
+myStack.push(3);
+myStack.push(2);
+myStack.push(5);
+myStack.push(1);
+myStack.push(4);
+console.log("stack empty should be false: ", myStack.isEmpty);
+console.log("peek should be 4: ", myStack.peek());
+console.log("maxVal should be 5: ", myStack.maxVal());
+console.log("stack empty should be false: ", myStack.isEmpty);
+console.log("peek should be 4: ", myStack.peek());
+```
+
+That will be it for today. There is plenty more to do (of course), and never enough time.
 
 ## Tuesday 23-Aug-2022
 
