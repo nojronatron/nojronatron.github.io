@@ -4,7 +4,45 @@ Semi-regular notes taken during my software developer journey.
 
 ## Thursday 25-Aug-2022
 
-As happens on most days when I leave my Linux box powered-on overnight, a Printer Added popup appears in the notification area on the desktop. This hasn't been a problem, but my curiosity about it got me researching. It's pretty simple: The CUPS service is restarted at about midnight daily in order to 'roll the log file'. There is a [bug](https://bugs.launchpad.net/ubuntu/+source/cups-filters/+bug/1869981) filed with Cannonical with discussion, and the basic result is there is not a problem per se, and it can be worked around.
+As happens on most days when I leave my Linux box powered-on overnight, a Printer Added popup appears in the notification area on the desktop. This hasn't been a problem, but my curiosity about it got me researching. It's pretty simple: The CUPS service is restarted at about midnight daily in order to 'roll the log file'. There is a [bug](https://bugs.launchpad.net/ubuntu/+source/cups-filters/+bug/1869981) filled with Cannonical with discussion, and the basic result is there is not a problem per se, and it can be worked around.
+
+I realized, after reviewing yesterday's technical interview problem js solution, that I failed to nullify a node within the `pop()` method. While this is not a problem per se, it is best practice to nullify objects so the memory is freed. For managed code the object will get garbage collected when all references to it are removed. The larger the code base, the more important this design practice becomes in terms of memory efficiency, so is a good habit to get into now.
+
+```javascript
+// updated pop() method code
+  pop() {
+    // returns the TOP node or item (LIFO) from the stack
+    if (this.isEmpty) {
+      return "Stack is empty";
+    }
+    let tempNode = this.top;
+    this.top = tempNode.next;
+    this.nodeCount = this.nodeCount - 1;
+    this.isEmpty = this.nodeCount < 1;
+    tempNode.next = null; // orphan tempNode from the Stack for cleanliness' sake
+    return tempNode.data;
+  }
+```
+
+My Stack's `isEmpty()` method is relying on a hidden nodeCount property to compute a boolean return when called. Looking at a best practice pseudo code example, I could instead just check to see if 'head' is null, and so long as I manage the 'head' node reference properly, `isEmpty()` should always return correctly and without throwing.
+
+```javascript
+// updated isEmpty() method code
+class Stack {
+  constructor() {
+    this.top = null;
+    // this.nodeCount = 0; // this is no longer necessary
+    // this.isEmpty = true;
+  }
+  isEmpty() {
+    return this.top === null;
+  }
+  // this.nodeCount operations removed from any methods that have it
+  // this.isEmpty interrogations are replaced with this.isEmpty()
+  // any code where this.isEmpty is calculated should instead point to this.isEmpty()
+```
+
+Earlier this morning I read an update from SalesForce about Heroku free products pricing changes. Yep, that's right, those free Dynos and Postgres instances you've been using for all these year might become charged services. Check out Heroku's Blog Article [Heroku's Next Chapter](https://blog.heroku.com/next-chapter) for information from Bob Wise, GM and EVP at SalesForce. Thankfully, no immediate action is needed, but sometime in October I'll need to revisit my Heroku instances and figure out what will be going away and what will stay.
 
 ## Wednesday 24-Aug-2022
 
