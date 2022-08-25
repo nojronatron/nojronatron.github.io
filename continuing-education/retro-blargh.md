@@ -114,6 +114,8 @@ console.log("stack empty should be false: ", myStack.isEmpty);
 console.log("peek should be 4: ", myStack.peek());
 ```
 
+Just now I noticed that replit has a 'unit tests' tool! Something else to check out for sure.
+
 That will be it for today. There is plenty more to do (of course), and never enough time.
 
 ## Tuesday 23-Aug-2022

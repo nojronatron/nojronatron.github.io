@@ -4,7 +4,8 @@ A collection of continuing education, research notes, and references.
 
 ## Table of Contents
 
-- [ ] Get up to speed on React Router: [react-router-dom](./react-router-dom-notes.html) and react-router-native (which I won't cover here...at least not yet).
+- [ ] Investigate [replit.com](https://replit.com)'s unit testing tool.
+- [X] Get up to speed on React Router: [react-router-dom](./react-router-dom-notes.html) and react-router-native (which I won't cover here...at least not yet).
 - [ ] Review "read01 and read02" in 301 class notes regarding React, State, Props, and Components.
 - [ ] Review Javascript "hoisting". My understanding is lacking but it keeps coming up in discussions, articles, and podcasts.
 - [ ] [Unit testing](android-studio-testing.html) in Android Studio.
