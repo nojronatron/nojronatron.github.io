@@ -1,5 +1,178 @@
 # Occasional Retrospective Notes
 
+Semi-regular notes taken during my software developer journey.
+
+## Thursday 25-Aug-2022
+
+As happens on most days when I leave my Linux box powered-on overnight, a Printer Added popup appears in the notification area on the desktop. This hasn't been a problem, but my curiosity about it got me researching. It's pretty simple: The CUPS service is restarted at about midnight daily in order to 'roll the log file'. There is a [bug](https://bugs.launchpad.net/ubuntu/+source/cups-filters/+bug/1869981) filled with Cannonical with discussion, and the basic result is there is not a problem per se, and it can be worked around.
+
+I realized, after reviewing yesterday's technical interview problem js solution, that I failed to nullify a node within the `pop()` method. While this is not a problem per se, it is best practice to nullify objects so the memory is freed. For managed code the object will get garbage collected when all references to it are removed. The larger the code base, the more important this design practice becomes in terms of memory efficiency, so is a good habit to get into now.
+
+```javascript
+// updated pop() method code
+  pop() {
+    // returns the TOP node or item (LIFO) from the stack
+    if (this.isEmpty) {
+      return "Stack is empty";
+    }
+    let tempNode = this.top;
+    this.top = tempNode.next;
+    this.nodeCount = this.nodeCount - 1;
+    this.isEmpty = this.nodeCount < 1;
+    tempNode.next = null; // orphan tempNode from the Stack for cleanliness' sake
+    return tempNode.data;
+  }
+```
+
+My Stack's `isEmpty()` method is relying on a hidden nodeCount property to compute a boolean return when called. Looking at a best practice pseudo code example, I could instead just check to see if 'head' is null, and so long as I manage the 'head' node reference properly, `isEmpty()` should always return correctly and without throwing.
+
+```javascript
+// updated isEmpty() method code
+class Stack {
+  constructor() {
+    this.top = null;
+    // this.nodeCount = 0; // this is no longer necessary
+    // this.isEmpty = true;
+  }
+  isEmpty() {
+    return this.top === null;
+  }
+  // this.nodeCount operations removed from any methods that have it
+  // this.isEmpty interrogations are replaced with this.isEmpty()
+  // any code where this.isEmpty is calculated should instead point to this.isEmpty()
+```
+
+Earlier this morning I read an update from SalesForce about Heroku free products pricing changes. Yep, that's right, those free Dynos and Postgres instances you've been using for all these year might become charged services. Check out Heroku's Blog Article [Heroku's Next Chapter](https://blog.heroku.com/next-chapter) for information from Bob Wise, GM and EVP at SalesForce. Thankfully, no immediate action is needed, but sometime in October I'll need to revisit my Heroku instances and figure out what will be going away and what will stay.
+
+Back to code! I failed another technical interview challenge (couldn't complete in 40 minutes, and was doing it wrong anyway) so I attempted to solve it without a time limit on my physical dry-erase board, and then punished myself :wink: by writing out the code in javascript.
+
+I started with a Node class, similar to a linked list Node, but this will be used in a Queue class.
+
+```javascript
+class Node {
+  constructor(data) {
+    this.value = data;
+    this.next = null;
+  }
+}
+```
+
+Then built the Queue class with count, front, and back properties, and functions isEmpty, getCount, peek, enqueue, and dequeue.
+
+```javascript
+class Queue {
+  constructor() {
+    this.count = 0;
+    this.front = null;
+    this.back = null;
+  }
+  isEmpty() {
+    return this.front === null;
+  }
+  getCount() {
+    return this.count;
+  }
+  peek() {
+    if (this.front === null) {
+      return null;
+    } else {
+      return this.front.value;
+    }
+  }
+  enqueue(data) {
+    let newNode = new Node(data);
+    // case 1: no nodes in queue
+    if (this.front === null &&
+        this.front === this.back) {
+      this.front = newNode;
+      this.back = this.front;
+      this.count = 1;
+      return;
+      }
+    // case 2: 1 node in queue
+    if (this.front !== null &&
+       this.front === this.back) {
+      this.back = newNode;
+      this.front.next = this.back;
+      this.count++;
+      return;
+     }
+    // case 3: more than 1 node in queue
+    this.back.next = newNode;
+    this.back = newNode;
+    this.count++;
+  }
+  dequeue() {
+    if (this.isEmpty()) {
+      return null;
+    }
+    let temp = this.front;
+    this.front = this.front.next;
+    temp.next = null;
+    this.count--;
+    return temp.value;
+  }
+}
+```
+
+Next up is the duck-duck-goose function code. Code Fellows utilized arrow functions for their datastructures and algorithms training assignments, so I followed suit.
+
+The important part of the code starts with the Queue instantiation and loading from the input array. From there the main processing code is pretty short and sweet, but entails two iterating structures, which is not always the most efficient algorithm in BigO.
+
+The worst-case BigO of Time for duckDuckGoose() is probably O(n * k). Thankfully, the Queue datastructure has a O(1) in time and O(1) in space for all of its operations so total time through each iteration is fairly fast and lean.
+
+BigO in space for duckDuckGoose() is more like O(n) because the entire input array is stuffed into the Queue O(1) storage at a time for every item in the array.
+
+```javascript
+const duckDuckGoose = (arr, k) => {
+  // test for null and empty cases here
+  if (!Array.isArray(arr) || !Number.isInteger(k)) {
+    return null;
+  }
+  if (arr.length < 1 || k === 0) {
+    return null;
+  }
+  if (arr.length === 1) {
+    return arr[0];
+  }
+  if (k === 1) {
+    return arr.at(-1);
+  }
+  // end null empty test returns
+  if (k < 0) {
+    k = Math.abs(k);
+  }
+  
+  let myQueue = new Queue();
+  // enqueue the array!
+  for (let idx=0; idx < arr.length; idx++) {
+    myQueue.enqueue(arr[idx]);
+  }
+
+  // main processing
+  while (myQueue.getCount() > 1) {
+    for (let jdx=1; jdx < k; jdx++) {
+      myQueue.enqueue(myQueue.dequeue());
+    }
+    myQueue.dequeue(); // this should be the kth item
+  }
+
+  // return result
+  return myQueue.dequeue();
+}
+```
+
+It's not always necessary to code all of the edge case tests (depends on your interviewer I guess), but I decided to do it to exercise my software test engineer skills.
+
+Next I wrote some exercises starting with the example case, and added a bunch of edge case inputs and a few larger input cases. Below is the base example case:
+
+```javascript
+let result = duckDuckGoose(['a', 'b', 'c', 'd', 'e'], 3);
+console.log('result a-e, 3: ', result);
+```
+
+In the end the challenge isn't really that hard, in fact it was easier to write it using a Queue (including coding the queue in full) than it was to try and solve it will various types of for and while loops.
+
 ## Wednesday 24-Aug-2022
 
 While updating my notes organization yesterday, I also added some emojis that did not work at first. Some investigating revealed that I didn't have the correct plug-ins selected. Some references that lead me to the correct solution:
