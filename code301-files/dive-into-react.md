@@ -4,15 +4,16 @@
 
 ### Table of Contents
 
-High Level [Points](#high-level-points)  
-The [UI](#the-ui)  
-React [Objects](#react-creates-objects)  
-React is a [Library](#react-is-a-library)  
-Component [Architecture](#component-architecture)  
-[Data Flow](#component-trees-and-data-flow)  
-Component Leve [State](#component-level-state)  
-[Quiz](#quiz)  
-Information Source: Zac Gordon on [YouTube](https://www.youtube.com/watch?v=FRjlF74_EZk&ab_channel=ZacGordon)  
+- High Level [Points](#high-level-points)
+- The [UI](#the-ui)
+- React [Objects](#react-creates-objects)
+- React is a [Library](#react-is-a-library)
+- Component [Architecture](#component-architecture)
+- [Data Flow](#component-trees-and-data-flow)
+- Component Level [State](#component-level-state)
+- [Quiz](#quiz)
+- Information Source: Zac Gordon on [YouTube](https://www.youtube.com/watch?v=FRjlF74_EZk&ab_channel=ZacGordon)
+- Setting up a blank [React Site](#blank-react-site-setup)
 
 ### High Level Points
 
@@ -58,6 +59,36 @@ Child branches can call a function in Root in order to update the data.
 
 Passing data requires component (or tree branch) nesting.  
 Data flow only passes *down* from a component to its children.  
+
+## Blank React Site Setup
+
+ReactJS.org [Create New React App](https://reactjs.org/docs/create-a-new-react-app.html)
+
+- Single-page webapp setup: Use NPX and NPM (see next subsection).
+- Server-rendered App: [NextJS Official Guide](https://nextjs.org/learn/foundations/about-nextjs).
+- Static React Website with React Components: [GatsbyJS Official Documentation](https://www.gatsbyjs.com/docs/).
+- Other Toolchains: Neutrino, Nx, Parcel, or Razzle.
+
+### Single-page Webapp Setup
+
+Node version 14.0.0 or newer.
+
+NPM version 5.6 or newer.
+
+Execute: `npx create-react-app {appname}`
+
+CD to the 'appname' directory.
+
+Execute: `npm start` and your single-page webapp will start!
+
+To run in Production Mode: `npm run build` from the project root directory.
+
+### Shortcuts
+
+Key-combo => Code-generated
+
+rfc => react function component
+rcc => react class component
 
 ## Quiz
 
