@@ -71,17 +71,21 @@ ReactJS.org [Create New React App](https://reactjs.org/docs/create-a-new-react-a
 
 ### Single-page Webapp Setup
 
-Node version 14.0.0 or newer.
+Requirements:
 
-NPM version 5.6 or newer.
+- Node version 14.0.0 or newer.
+- NPM version 5.6 or newer.
 
-Execute: `npx create-react-app {appname}`
+Do:
 
-CD to the 'appname' directory.
-
-Execute: `npm start` and your single-page webapp will start!
+1. Execute: `npx create-react-app {dir}`
+1. CD to 'dir'.
+1. Recommended: `npm install` to ensure packages are up to date.
+1. Execute: `npm start` and your single-page webapp will start!
 
 To run in Production Mode: `npm run build` from the project root directory.
+
+Note: There could be reason to execute `npm audit fix --force` to update some packages. This is up to you to figure out.
 
 ### Shortcuts
 
