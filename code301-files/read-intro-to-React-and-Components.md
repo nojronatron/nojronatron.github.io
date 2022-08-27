@@ -7,8 +7,8 @@ Read and take notes from the following resources:
 [X] React Tutorial through Passing Data Through [Props](https://reactjs.org/tutorial/tutorial.html)  
 [X] React Docs [Hello World](https://reactjs.org/docs/hello-world.html)  
 [X] React Docs [Introducing JSX](https://reactjs.org/docs/introducing-jsx.html)  
-[ ] React Docs [Rendering Elements](https://reactjs.org/docs/rendering-elements.html)  
-[ ] React Docs [Components and Props](https://reactjs.org/docs/components-and-props.html)  
+[X] React Docs [Rendering Elements](https://reactjs.org/docs/rendering-elements.html)  
+[X] React Docs [Components and Props](https://reactjs.org/docs/components-and-props.html)  
 
 ## Component Based Architecture
 
@@ -16,7 +16,7 @@ See [components-react.md](./components-react.html).
 
 ## Props and How To Use Them
 
-See [components-react.md](./components-react.md).  
+See [components-react.md](./read-state-and-props.html).  
 
 ## React Tutorial Passing Data Through Props
 
@@ -153,7 +153,7 @@ JSX can contain child tags:
 ```javascript
 const element = (
   <div>
-    <h1>Title</ht>
+    <h1>Title</h1>
     <p>Lorem ipsum...</p>
   </div>
 );
@@ -202,7 +202,7 @@ React elements:
 - Represent a portion of the UI at a single point in time.  
 - Can be stateful components, to avoid calling root.render() over and over again.  
 
-### Only Updates When Necessary
+### Only Updates What Is Necessary
 
 React DOM compares an element (and its children) and applies only updates needed to bring DOM up-to-date with the current React DOM representation.  
 Duplicate tree nodes that haven't changes *are not rendered again*.  
@@ -217,6 +217,42 @@ Duplicate tree nodes that haven't changes *are not rendered again*.
 - Extending React.Component creates a 'Component Class'.  
 - *Must* define 'render()' in a react.Component subclass, all others are *optional*.  
 - In React, code resuse is achieved through composition (instead of inheritance).  
+
+Example of a simple, valid React Functional Component:
+
+```javascript
+function HelloWorld(props) {
+  <h1>Hello World! Props are {props.name}</h1>;
+}
+```
+
+Example of a React Class Component, build using ES6 Class:
+
+```javascript
+class HelloWorld extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}!</h1>;
+  }
+}
+```
+
+### Component Composition
+
+Components can refer to other Components in their output.
+
+The same Component can be used in a dialog, button, screen, or form.
+
+Components can be split into smaller Components.
+
+Name Components from 'their own point of view rather than the context in which it is being used' *[ReactJS.org, Components and Props]*.
+
+### Rules
+
+Always name Components with a starting capitalized letter.
+
+DOM Tags start with a lower-case letter.
+
+Props are *read only* so your Component can NOT edit them.
 
 ### Component Lifecycle
 
@@ -258,16 +294,13 @@ Called when there is an error in rendering (or lifecycle method or constructor o
 - static getDerivedStateFromError()  
 - componentDidCatch()  
 
-#### Other APIs
-
-## Bonus Material
-
 ### Tips and Tactics
 
 - React Elements are first-class javascript objects so they can be passed around as parameters.  
 - To ensure an onClick or other event are called only when the event occurs (instead of when rendering), use an Arrow Function as the onClick() parameter.  
 - Install ReactDevTools to add the ability to inspect React Components and to Profile the React application.  
-- Avoid modifying an existing array, instead call 'Array.slice()' to create a copy of the array and then use the values as necessary.  
+- Avoid modifying an existing array, instead call 'Array.slice()' to create a copy of the array and then use the values as necessary.
+- Even better than `Array.slice()` is to use the spread operator `[...]` to expand an array into a new variable and work with that. Once done, copy the new array into the original input array or just return the copied-and-edited-array to the calling function.
 
 ### Array Map
 
