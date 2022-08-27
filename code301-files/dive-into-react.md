@@ -60,7 +60,7 @@ Child branches can call a function in Root in order to update the data.
 Passing data requires component (or tree branch) nesting.  
 Data flow only passes *down* from a component to its children.  
 
-## Blank React Site Setup
+## React Site Setup
 
 ReactJS.org [Create New React App](https://reactjs.org/docs/create-a-new-react-app.html)
 
@@ -69,7 +69,7 @@ ReactJS.org [Create New React App](https://reactjs.org/docs/create-a-new-react-a
 - Static React Website with React Components: [GatsbyJS Official Documentation](https://www.gatsbyjs.com/docs/).
 - Other Toolchains: Neutrino, Nx, Parcel, or Razzle.
 
-### Single-page Webapp Setup
+### Single-page Web App Setup
 
 Requirements:
 
@@ -86,6 +86,25 @@ Do:
 To run in Production Mode: `npm run build` from the project root directory.
 
 Note: There could be reason to execute `npm audit fix --force` to update some packages. This is up to you to figure out.
+
+### Adding React to an Existing Project Repo
+
+Following the "Single-page webapp setup" instructions will do a lot of work. If you try to run this command within a project folder where you already have a README.md file, amongst many others, NPX will refuse to execute.
+
+There is a possible work-around, depending on how many files would collide and how much cleanup work you want to do:
+
+1. Ensure your current project directory has been 'git initialized' and is on a dev branch.
+1. Create a new project directory.
+1. Follow create-react-app instructions for a new Web App.
+1. Copy all (root) folder files except for 'package-lock.json' and paste them into your existing project.
+1. Copy all files from the following folders: (root), src, and public to your existing project directory. Add new files, decide how to merge existing files.
+1. Delete 'package-lock.json'.
+1. Edit 'package.json' and change the "name" element to your existing project name. If there are other places where the project name is not correct, go ahead and fix it.
+1. Back at the terminal execute `npm install` to add and update the 'node_modules' folder.
+1. When done, deal with any issues you are concerned about (security fixes, min-version issues, etc).
+1. Run the React App using `npm start` and it should run as expected. Debug as necessary.
+
+At any point thereafter you can delete the new project directory, as the files are no longer necessary.
 
 ### Shortcuts
 
