@@ -2,6 +2,32 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 27-Aug-2022
+
+Reactjs oh-my!
+
+I'm glad I started fiddling with React, javascript, and CSS these last few days. Today's adventure was trying to get a React site looking okay and passing props around. Looking back at issues and resolutions:
+
+When importing a collection of data using a json file:
+
+1. Be sure it is directly in the 'src' folder. A sub-folder or some other part of the React project folder hierarchy will not work.
+1. Ensure the json collection is a collection starting with '[' and ending with ']', and also be sure to make all collection items objects using braces, separated by commas.
+1. File contents do not need to be loaded into state in order to use them. They can be passed as props e.g. `<GameBoard wordlist={words} />`
+
+When using React-Bootstrap, be sure to:
+
+1. Install it: `npm install react-bootstrap bootstrap`
+1. Import it in the root file: `import 'bootstrap/dist/css/bootstrap.min.css';`
+1. Import the specific Bootstrap Component(s) you want to use on the Component you want to use it in `import { Container, Row, Col } from 'react-bootstrap';`
+
+Track Keys and Values when passing a collection as props:
+
+1. Review [React Keys](https://reactjs.org/docs/lists-and-keys.html#keys)
+1. The Parent Component should specify the key attribute inside the array (inside a Map function).
+1. The Child Component that uses the passed-in props does *not* need to reference props.key, only props.value (whatever value is).
+
+Lastly, whenever it is not clear whether data is being passed around or what it looks like in-flight, use console.log and check it out at run time.
+
 ## Friday 26-Aug-2022
 
 After finishing some tasks around the house, I jumped right in to a 40 minute technical interview challenge. This one was summing odd numbers in a binary tree. It tests the interviewee's understanding on binary trees, including traversal and Node data structures. Whiteboarding these challenges in Miro (and similar apps) is quite difficult because there is an additional interface layer between me and the depiction I'm attempting to draw and layout. When working on a real, in-person, dry-erase board, it is much easier to erase, correct, and draw-out the brainstorming and ideation. Granted, one benefit of Miro (and similar) is duplication of complex drawings is super fast!
