@@ -20,7 +20,13 @@ When using React-Bootstrap, be sure to:
 1. Import it in the root file: `import 'bootstrap/dist/css/bootstrap.min.css';`
 1. Import the specific Bootstrap Component(s) you want to use on the Component you want to use it in `import { Container, Row, Col } from 'react-bootstrap';`
 
-If not sure whether data is being passed around or what it looks like in-flight, use console.log and check it out at run time.
+Track Keys and Values when passing a collection as props:
+
+1. Review [React Keys](https://reactjs.org/docs/lists-and-keys.html#keys)
+1. The Parent Component should specify the key attribute inside the array (inside a Map function).
+1. The Child Component that uses the passed-in props does *not* need to reference props.key, only props.value (whatever value is).
+
+Lastly, whenever it is not clear whether data is being passed around or what it looks like in-flight, use console.log and check it out at run time.
 
 ## Friday 26-Aug-2022
 
