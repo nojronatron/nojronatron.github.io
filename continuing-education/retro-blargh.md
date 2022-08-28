@@ -14,6 +14,13 @@ When importing a collection of data using a json file:
 1. Ensure the json collection is a collection starting with '[' and ending with ']', and also be sure to make all collection items objects using braces, separated by commas.
 1. File contents do not need to be loaded into state in order to use them. They can be passed as props e.g. `<GameBoard wordlist={words} />`
 
+When using React-Bootstrap, be sure to:
+
+1. Install it: `npm install react-bootstrap bootstrap`
+1. Import it in the root file: `import 'bootstrap/dist/css/bootstrap.min.css';`
+1. Import the specific Bootstrap Component(s) you want to use on the Component you want to use it in `import { Container, Row, Col } from 'react-bootstrap';`
+
+If not sure whether data is being passed around or what it looks like in-flight, use console.log and check it out at run time.
 
 ## Friday 26-Aug-2022
 
