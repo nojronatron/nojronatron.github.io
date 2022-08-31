@@ -19,6 +19,23 @@ To check my work (because testing ones self is dubious) opened a [replit](https:
 
 It was time consuming to write all of this out, but exercising my mind to get to the correct solution is important. I find myself questioning the code I write before, during, and after I write it (before testing it). Perhaps its the test engineer in me.
 
+The next challenge was from [CodeWars](codewars.com) using javascript. In 40 minutes I completed whiteboarding Kata "Testing 1-2-3" and got very close to a solution. Below are some retrospective commments:
+
+1. Array.prototype.length is a property, not a function/method.
+1. Indexing into an array is zero-based so do not change the beginning iterator in a for loop unless you really really need to.
+1. Next time consider using `Array.prototype.map( (element, idx)=> { return ... });` and increment idx value within the string concatenation (or template literal).
+1. Concatenating strings in javascript using template literal requires `${}` placeholders and *back ticks* (e.g. code fencing characters).
+
+```javascript
+// template literals
+let var1 = 1;
+let var2 = 2;
+let var3 = var1 + var2;
+let myString = `${var1} plus ${var2} equals ${var3}`;
+```
+
+Considering my internal anxiety coding with javascript, not all that bad really.
+
 ## Saturday 27-Aug-2022
 
 Reactjs oh-my!
