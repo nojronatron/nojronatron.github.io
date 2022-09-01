@@ -2,6 +2,40 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 31-Aug-2022
+
+It has been a busy start to the week. Not all of my activities have been code-related, unfortunately. Several tasks related to volunteer activities came up and I decided to concentrate efforts there to try and meet some deadlines in the coming weeks.
+
+At any rate, I took time this morning to respond to a few interview questions and practiced speaking them aloud in an effort to gain my confidence and organize my thoughts, preparing for when the interviewing starts.
+
+This morning I completed a technical interview challenge: Sum Odd Values in a Binary Tree. Ending (self) score was 34/40 (32 is passing). I was able to depict the problem domain, inputs and expected output, testing approach and basic test cases, write an algorithm and analyze it in Big O notation, as well as write pretty-close-to-working javascript code (minus a few syntactical errors).
+
+To check my work (because testing ones self is dubious) opened a [replit](https://replit.com/@JonRumsey/SumOddNumsInBinaryTree#index.js) to validate my code. Note that I had to create classes to meet the requirements of the challenge:
+
+- MyBinaryNode: For the Binary Tree class
+- MyBinaryTree: For creating and storing the initial input
+- MyNode: For the MyQueue class
+- MyQueue: For breadth-first traversal
+
+It was time consuming to write all of this out, but exercising my mind to get to the correct solution is important. I find myself questioning the code I write before, during, and after I write it (before testing it). Perhaps its the test engineer in me.
+
+The next challenge was from [CodeWars](codewars.com) using javascript. In 40 minutes I completed whiteboarding Kata "Testing 1-2-3" and got very close to a solution. Below are some retrospective commments:
+
+1. Array.prototype.length is a property, not a function/method.
+1. Indexing into an array is zero-based so do not change the beginning iterator in a for loop unless you really really need to.
+1. Next time consider using `Array.prototype.map( (element, idx)=> { return ... });` and increment idx value within the string concatenation (or template literal).
+1. Concatenating strings in javascript using template literal requires `${}` placeholders and *back ticks* (e.g. code fencing characters).
+
+```javascript
+// template literals
+let var1 = 1;
+let var2 = 2;
+let var3 = var1 + var2;
+let myString = `${var1} plus ${var2} equals ${var3}`;
+```
+
+Considering my internal anxiety coding with javascript, not all that bad really.
+
 ## Saturday 27-Aug-2022
 
 Reactjs oh-my!
