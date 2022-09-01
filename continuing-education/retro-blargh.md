@@ -8,6 +8,13 @@ This morning I worked on a [LeetCode](https://www.leetcode.com) challenge, mediu
 
 Meanwhile, EnigmaBay had a meeting to discuss moving the project forward. We chatted about color schemes, icons, CSS, Bootstrap, and SASS, React Router, and the React Component hierarchy we want to implement. Very productive! We start developing the layout and basic design of the website today.
 
+ESLint with React was reporting some errors and warnings that were unexpected. After reinstalling eslinter and learning there is a plug-in specifically for React, I installed that too. Two elements needed to be udpated in the eslintrc.json file:
+
+1. "extends" element needed to be updated to a collection that included both "eslint:recommended" and "plugin:react/recommended"
+1. "parserOptions" element needed "sourceType": "module" added
+
+Now linting seems to be working as expected.
+
 ## Wednesday 31-Aug-2022
 
 It has been a busy start to the week. Not all of my activities have been code-related, unfortunately. Several tasks related to volunteer activities came up and I decided to concentrate efforts there to try and meet some deadlines in the coming weeks.
