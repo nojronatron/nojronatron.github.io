@@ -4,8 +4,6 @@ A collection of notes taken while attending Code Fellows CODE curriculum classes
 
 ## Table of Contents
 
-Continuing [Ed](#things-i-want-to-learn-about)
-
 Code 401 - [Advanced Software Development - Java](#advanced-software-development)  
 
 Code 301 - [Intermediate Software Development](#intermediate-software-development)  
