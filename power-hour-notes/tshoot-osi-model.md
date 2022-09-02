@@ -33,6 +33,29 @@ Divide and Conquer
 
 - Pick-and-choose a layer that *might* be source of the problem
 
+How well can you articulate the problem?
+
+- Talking through the issue will help you to see the gaps in understanding of the problem
+
+Try to select a tactic to resolve the problem.
+
+- top-to-bottom
+- bottom-to-top
+
+Implement tests
+
+- Will help find boundaries of the problem
+- Will help confirm when the problem has the resolved
+
+Review results
+
+- A desired result might not be the full solution
+- False Negative: Results come back, but not as anticipated
+
+Tools for Troubleshooting
+
+- Utilize tools that are proper for the environment the problem is in
+- WiFi network? Access a wifi router or WAP logs for hints
 
 ## Footer
 
