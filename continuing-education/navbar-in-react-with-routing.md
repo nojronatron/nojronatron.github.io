@@ -2,7 +2,11 @@
 
 Key takeaways and code samples from the video.
 
-## Example navbar
+- Creating navigation without using react-router causes the entire page to refresh
+- Without react-router additional logic must be coded to manage page selection and load
+- Using react-router ...
+
+## Example Navbar Without Router
 
 Is a header with a site title and nav items in it.
 
@@ -12,7 +16,7 @@ Is a header with a site title and nav items in it.
 1. Add list items that contain the name and href to the target page
 1. Once the navbar is done create pages to navigate to
 
-## Using React Router
+### Adding Nav Logic
 
 In the top-level component (e.g. App) add `window.location` to get the URL of the page that was navigated to.
 
@@ -48,7 +52,7 @@ function App() {
 }
 ```
 
-## Marking Links as Active in Navbar
+### Marking Links as Active in Navbar
 
 Make the currently selected Nav item highlighted after clicking:
 
@@ -59,8 +63,7 @@ Make the currently selected Nav item highlighted after clicking:
 1. The LI child anchor tag will have attributes as so: `href={href} {...props}`
 1. Anchor tag content will be `{children}`
 
-## Without Any Router At All
-
+Note: This logic will need to be replaced if using react-router-dom and `useMatch` hook or `useResolvedPath` hook.
 
 ## Navbar CSS Styling Suggestions
 
@@ -116,6 +119,50 @@ Style the links so they change appearance when hovered vs. non-hovered:
   background-color: #different-background-color;  //  when hovered alters the background color for contrast
 }
 ```
+
+## Using React-Router
+
+1. npm install react-router-dom
+1. Import Browser Router in index.js: `import { BrowserRouter } from 'react-router-dom';`
+1. Wrap the entire App with `<BrowserRouter>` open and close elements.
+1. Import BrowserRouter 'Route, and Routes' components App.js.
+1. Any custom routing logic created in App.js can be removed.
+1. After `<Navbar />` component in return fragment, include `<Routes>` and `<Route>` tags (see example code below).
+1. Add additional `<Route path="" element="">` tags and attributes for each navigation route desired.
+1. Replace any Anchor tags in the Navbar component with a `<Link>` Component from react-router-dom;
+1. Replace `href` with `to` anywhere an Anchor has been replaced with a Link component.
+
+```javascript
+function App() {
+  return (
+    <>
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={ <Home /> } />
+        </Routes>
+      </div>
+    </>
+  );
+}
+```
+
+### Utilize React Router Matching
+
+1. In Navbar component import 'useMatch' and 'useResolvedPath' hooks.
+1. Write `useResolvedPath` in place of `window.location.pathname`.
+1. Pass-in the `to` property to the CustomLink function and bring it down to the useResolvedPath() parameter.
+1. Assign useRespovedPath(to) to a variable within the CustomLink function
+1. Assign `useMatch({path: resolvedPath.pathname, end: true})` result to another variable within the CustomLink function.
+1. Note: `end: true` forces matching to occur through an entire path and may/not be necessary.
+
+Now only the Component that is navigated to re-renders fully, the rest of the page does not unless there are changees like :active and :hover.
+
+### Absolute and Relative Paths
+
+An absolute path is one that describes the path location from the root.
+
+A relative path describes only the page name itself, ignoring parent components of the full path.
 
 ## Pages to Navigate To
 
