@@ -4,6 +4,7 @@ A collection of continuing education, research notes, and references.
 
 ## Table of Contents
 
+- [ ] React [NavBar with Router](./navbar-in-react-with-routing.html) notes from [WebDevSimplified - How to create a navbar in react with routing](https://www.youtube.com/watch?v=SLfhMt5OUPI)
 - [ ] Java: Investigate [Rest-assured](https://rest-assured.io/)[rest-assured github](https://github.com/rest-assured/rest-assured/wiki/GettingStarted) - a test framework library 'for REST built on HTTPBuilder' for Java.
 - [ ] Investigate [replit.com](https://replit.com)'s unit testing tool.
 - [ ] [Unit testing](android-studio-testing.html) in Android Studio.
