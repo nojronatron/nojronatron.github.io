@@ -14,8 +14,25 @@ Friday was busy with lots of tasks in lots of areas, including software. Most of
 - Using 'd-flex' in Bootstrap is similar to declaring a flex-box. Applying this to a Grid Column can help with responsive design. Adding on to this, additional properties like 'justify-content-evenly' match-up well with CSS flex-box.
 - Bootstrap also has width 'w' and height 'h' elements, and these can be applied to boxes as well as an `<img >` tag by setting its class e.g. `class="mw-100"`.
 - Leverage `<div>` tags rather than `<p>` and other block or inline tags to improve control over customization. Otherwise, override each tag style, or better yet import a CSS reset file and define your own tag style defaults.
+- Centering content both horizontally AND vertically is easily accomplished with flexbox. See the css and html code example below:
 
-For responsive design, and allowing viewability on varying sized browser windows, use 'vw' and 'em' units instead. There is a lot more to it, and many resources exist that dive deeper into the why and how.
+```css
+.parent {
+  height: 100%;
+  display: flex;
+  align-items: center; // horizontal centering
+  justify-content: center; // vertical centering
+  padding: .25rem; // your choice
+}
+```
+
+```html
+<div class="parent">{text}</div>
+```
+
+For responsive design, and allowing viewability on varying sized browser windows, try using 'vw', 'em', and 'rem' (relative em) units. Be aware that font styles and browser-zoom levels might cause unexpected results. There is a lot to this, and many resources exist that dive deeper into how to get responsive design working well.
+
+After battling with Bootstrap for a little longer, I was reminded how difficult styling websites can be when mixing it with CSS, because Bootstrap implements margin, padding, and box-sizing automatically, which makes some CSS styling ineffective. I keep going back and forth between "stick with pure CSS!" and "stick with just using Bootstrap" and there is never a winning decision, it is always a draw. At least for the purposes of the current project, the time spent fiddling with style is just practice time anyway, and much of the styling wil be revamped completely as the project moves forward.
 
 ## Thursday 1-Sep-2022
 
