@@ -6,7 +6,13 @@ Semi-regular notes taken during my software developer journey.
 
 I don't know where the time goes! Actually, plenty of it is spent doing research, learning about aspects of coding, taking care of things around my home and neighborhood, and volunteering in my community. Most recent community volunteer event was Tuesday where the ham radio emcomm team worked on a local repeater system to try and improved its coverage of the service area. No towers were climbed, and progress was made.
 
+Things I've been working on include:
 
+- Added planning and design work for EnigmaBay's React project, including a code review and PR approval and subsequent merge to main.
+- Preparing for a volunteer event the weekend of Sept 12th.
+- Cleaning up the yard, as there is a lot of loose grass clippings and other trimmings laying around. What fun.
+
+Today and on Monday I spent a few hours doing interview preparation activities, mostly working with behavioral questions, but also looking at some software developer openings around the area. There was a post on a bulletin board I frequent about a remote job opening that could be interesting. The OP works for the company and stated the entry requirements might look very high, but the hiring managers are likely to accept more junior developers for the role. Some of the entry requirements include C#, Azure, SQL, Git, and Selenium -- all of which are things I have experience with. I have some research to do.
 
 ## Sunday 3-Sep-2022
 
