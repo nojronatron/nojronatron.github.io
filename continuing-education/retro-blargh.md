@@ -6,6 +6,39 @@ Semi-regular notes taken during my software developer journey.
 
 Continuing with the Java code challenges, I completed working on the core functionality of the Tree libraries. The K-Ary Tree was challening enough, and once I figured out to just stick with making "a tree of nodes" rather than a specific tree Class things got a lot easier.
 
+I bumped into an interesting reference for using Java Generics at codejava.net called [18 Java Collections and Generics Best Practices](https://www.codejava.net/java-core/collections/18-java-collections-and-generics-best-practices). Although many points did not apply to what I was working on a the time, it looks like there is plenty to study and work toward understanding in the future:
+
+1. Choosing the right collections.
+1. Use interface types when declaring collections.
+1. Use generic type and diamond operator.
+1. Specifying initial capacity of collection.
+1. Prefer isEmpty() over size().
+1. Return an empty collection instead of null.
+1. Use the Enhanced For Loop or a While statement instead of classic For Loop.
+1. Using a lambda expression? Try to use a forEach().
+1. Override equals() and hashCode() propertly.
+1. Correctly implement Comparable interface.
+1. Using utility classes Arrays and Collections.
+1. Using Stream API on Collections.
+1. Prefer concurrent Collections over synchronized wrappers.
+1. Using 3rd party Collections libraries.
+1. Eliminate unchecked warnings.
+1. Favor generic Types.
+1. Favor generic Methods.
+1. Use bounded wildcards to increase API flexibility.
+
+Check out the site for details.
+
+I've already implemented a few of these, and am working toward using generic Types more often and handling unchecked warnings (rather than ignoring or avoiding them).
+
+I could use more practice with generic methods and lambda expressions with forEach(), but I'm pretty regularly using the diamond operator and Enhanced For and While iterating structures.
+
+The Stream API is still a dark art and I just need to gain some experience with it and I should be able to grok it.
+
+When developing in C-sharp, I tend to implement Equals() and HashCode() overrides, but in Java I have not been doing so (and I could stand to do so for the exercise).
+
+As I learn more about these best practices and start implementing them, I'm sure I have more notes and comments to make here and elsewhere.
+
 ### Recursive Functions
 
 While working through the Binary Search Tree Node class, I realized there was still a challenge ahead with recursive functions if I wanted to use them. Because recursive functions pop-off the Call Stack automatically when they exit, any of their data also disappears, never to be seen again. Passing data between recursive calls is possible, but tricky. But I wanted to be able to return an in-order list of values within a BST, so I had to figure this out.
