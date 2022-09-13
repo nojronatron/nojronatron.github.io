@@ -2,6 +2,61 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 13-Sept-2022
+
+Continuing with the Java code challenges, I completed working on the core functionality of the Tree libraries. The K-Ary Tree was challening enough, and once I figured out to just stick with making "a tree of nodes" rather than a specific tree Class things got a lot easier.
+
+### Recursive Functions
+
+While working through the Binary Search Tree Node class, I realized there was still a challenge ahead with recursive functions if I wanted to use them. Because recursive functions pop-off the Call Stack automatically when they exit, any of their data also disappears, never to be seen again. Passing data between recursive calls is possible, but tricky. But I wanted to be able to return an in-order list of values within a BST, so I had to figure this out.
+
+Key takeaways:
+
+- In the class that owns the recursive function, create private variable of whatever necessary type, for storing values (or references, whichever you need) as they are processed.
+- Within the recursive function, decide where "processing" of the node (or current item) needs to happen. In the case of In-Order, it is between the LeftChild and RightChild IF statements.
+- When processing the node, value, or item, simply call `this.storage` (or whatever it is named at the Class level) and add (or otherwise append) to it from the recursive call.
+- It doesn't matter that the processing happens after the call to get the Left Child, because every call to the recursive function will *have to execute the processing code* for each child.
+- Remove any return type requirements as the return will not be necessary - the calling function will have to query `this.storage` to get the data the recursive function outputs.
+
+Working code:
+
+```java
+public class MyNodeClass {
+  // fields
+  private List<Integer> values;
+
+  // methods getLeft(), getRight(), and .getValue()
+
+  private boolean inOrderTraversal(MyNodeClass root) {
+      if (root.getLeft() != null) {
+          inOrderTraversal(root.getLeft());
+      }
+
+      // process root node here
+      this.values.add(root.getValue());
+
+      if (root.getRight() != null) {
+          inOrderTraversal(root.getRight());
+      }
+
+      return true;
+  }
+
+  public String callingFunction(MyNodeClass root) {
+    this.values = new ArrayList<>();
+    StringBuilder result = new StringBuilder(); // for example
+    MyNodeClass tempNode = this; // critical to enabling access to this.values
+
+    if (this.inOrderTraversal(tempNode)) {
+      // process the results within this.values
+    }
+    return result;
+  }
+}
+```
+
+Not really that difficult nor complex... just took a while to wrap my brain around the problem enough to work a viable solution.
+
 ## Monday 12-Sept-2022
 
 Now that I'm back from my volunteer event, I have some work to do. It's time to revisit K-ary Trees and Binary Search Trees. Coding these up and writing unit tests for these might take a minute, but I'm looking forward to reviewing these data structures and finding key takaway points for future use.
