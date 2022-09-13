@@ -2,6 +2,29 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 12-Sept-2022
+
+Now that I'm back from my volunteer event, I have some work to do. It's time to revisit K-ary Trees and Binary Search Trees. Coding these up and writing unit tests for these might take a minute, but I'm looking forward to reviewing these data structures and finding key takaway points for future use.
+
+### Java Generics
+
+I've battled with these before and I did so again today. For future reference, I need to remember the following to help guide me to a solution, faster:
+
+1. Utilize an interface if you have to. This will set up a constraining rule that limits (or enforces) the types are actually supported within the class or class member.
+1. Remember to separate type template placeholders for reference types, versus reference type's value(s) they might be holding.
+1. Start with a completely non-generic class so it is easy to tell where the template placeholder types should go.
+1. When certain methods do not easily support being generisized, consider moving the functionality closer to the expected/intended type(s), perhaps up the inheritance chain or via a new class that supports inheritance and/or inherits from another, similar class.
+
+### Data Structures
+
+Often times I struggle with taking instructions a little too literally. This causes me to try again and again to get code to work where it really shouldn't (see [Java Generics, above]{#java-generics}) or is above my skill level to complete in an efficient way. It will help me to remember that when writing code becomes difficult or I keep re-writing code and coming to a dead end, there are better ways to approach and resolve the problem:
+
+1. Stop. Take a break and think about the problem that needs to be solved, logically.
+1. Write out the problem domain and ask some questions about it to better describe the problem to solve, and perhaps uncover some ways to solve it.
+1. Break out a diagramming or drawing app (or an actual dry-erase board) and try solving it through diagrams and simplified steps.
+
+My experiences at Code Fellows taught me the importance of breaking down a problem into the smallest possible bits, and working through each individual component carefully. This should help keep me from "coding in circles" and instead, finding a solution that I can then write tests for and start coding, and move forward.
+
 ## Friday 9-Sept-2022
 
 Today I have a volunteer event scheduled that will keep me busy through Sunday. Before that, I coded the Code Challenge and wrote a test for it and it passes! There are probably a few other tests to write to ensure the code is functional in all the expected ways including failure cases, while will be developed over time. For now, I'm calling the code challenge exercise a success, and can safely say that I passed the challenge per the rubric scoring system.
