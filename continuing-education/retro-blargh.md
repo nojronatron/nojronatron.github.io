@@ -2,6 +2,93 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 13-Sept-2022
+
+Continuing with the Java code challenges, I completed working on the core functionality of the Tree libraries. The K-Ary Tree was challening enough, and once I figured out to just stick with making "a tree of nodes" rather than a specific tree Class things got a lot easier.
+
+### Recursive Functions
+
+While working through the Binary Search Tree Node class, I realized there was still a challenge ahead with recursive functions if I wanted to use them. Because recursive functions pop-off the Call Stack automatically when they exit, any of their data also disappears, never to be seen again. Passing data between recursive calls is possible, but tricky. But I wanted to be able to return an in-order list of values within a BST, so I had to figure this out.
+
+Key takeaways:
+
+- In the class that owns the recursive function, create private variable of whatever necessary type, for storing values (or references, whichever you need) as they are processed.
+- Within the recursive function, decide where "processing" of the node (or current item) needs to happen. In the case of In-Order, it is between the LeftChild and RightChild IF statements.
+- When processing the node, value, or item, simply call `this.storage` (or whatever it is named at the Class level) and add (or otherwise append) to it from the recursive call.
+- It doesn't matter that the processing happens after the call to get the Left Child, because every call to the recursive function will *have to execute the processing code* for each child.
+- Remove any return type requirements as the return will not be necessary - the calling function will have to query `this.storage` to get the data the recursive function outputs.
+
+Working code:
+
+```java
+public class MyNodeClass {
+  // fields
+  private List<Integer> values;
+
+  // methods getLeft(), getRight(), and .getValue()
+
+  private boolean inOrderTraversal(MyNodeClass root) {
+      if (root.getLeft() != null) {
+          inOrderTraversal(root.getLeft());
+      }
+
+      // process root node here
+      this.values.add(root.getValue());
+
+      if (root.getRight() != null) {
+          inOrderTraversal(root.getRight());
+      }
+
+      return true;
+  }
+
+  public String callingFunction(MyNodeClass root) {
+    this.values = new ArrayList<>();
+    StringBuilder result = new StringBuilder(); // for example
+    MyNodeClass tempNode = this; // critical to enabling access to this.values
+
+    if (this.inOrderTraversal(tempNode)) {
+      // process the results within this.values
+    }
+    return result;
+  }
+}
+```
+
+Not really that difficult nor complex... just took a while to wrap my brain around the problem enough to work a viable solution.
+
+## Monday 12-Sept-2022
+
+Now that I'm back from my volunteer event, I have some work to do. It's time to revisit K-ary Trees and Binary Search Trees. Coding these up and writing unit tests for these might take a minute, but I'm looking forward to reviewing these data structures and finding key takaway points for future use.
+
+### Java Generics
+
+I've battled with these before and I did so again today. For future reference, I need to remember the following to help guide me to a solution, faster:
+
+1. Utilize an interface if you have to. This will set up a constraining rule that limits (or enforces) the types are actually supported within the class or class member.
+1. Remember to separate type template placeholders for reference types, versus reference type's value(s) they might be holding.
+1. Start with a completely non-generic class so it is easy to tell where the template placeholder types should go.
+1. When certain methods do not easily support being generisized, consider moving the functionality closer to the expected/intended type(s), perhaps up the inheritance chain or via a new class that supports inheritance and/or inherits from another, similar class.
+
+### Data Structures
+
+Often times I struggle with taking instructions a little too literally. This causes me to try again and again to get code to work where it really shouldn't (see [Java Generics, above]{#java-generics}) or is above my skill level to complete in an efficient way. It will help me to remember that when writing code becomes difficult or I keep re-writing code and coming to a dead end, there are better ways to approach and resolve the problem:
+
+1. Stop. Take a break and think about the problem that needs to be solved, logically.
+1. Write out the problem domain and ask some questions about it to better describe the problem to solve, and perhaps uncover some ways to solve it.
+1. Break out a diagramming or drawing app (or an actual dry-erase board) and try solving it through diagrams and simplified steps.
+
+My experiences at Code Fellows taught me the importance of breaking down a problem into the smallest possible bits, and working through each individual component carefully. This should help keep me from "coding in circles" and instead, finding a solution that I can then write tests for and start coding, and move forward.
+
+### Trees
+
+Up until today I have been thinking of Trees as a separate class or structure than Tree Nodes. This has caused some issues:
+
+1. When challenged with a problem that includes a Tree data structure, I tend to worry about the complexity of development multiple classes to solve the problem, and the limited time-space to write algorithms and code, this slows me down.
+1. When implementing a generic data structure, separating Tree from the Node causes complexities with the Generics (see [Java Generics, above](#java-generics)). Developing a Tree Node as its own class with all the necessary functionality helps to overcome setting type placeholders and allows managing Node Data (values) without all the code gymnastics.
+
+It is probably better for me if I think of Trees as a Node that might/not have child nodes. Any Tree Node should have the functionality necessary to get/set its value, one or more children, and know how to traverse, and be generic for all types that it could store.
+
 ## Friday 9-Sept-2022
 
 Today I have a volunteer event scheduled that will keep me busy through Sunday. Before that, I coded the Code Challenge and wrote a test for it and it passes! There are probably a few other tests to write to ensure the code is functional in all the expected ways including failure cases, while will be developed over time. For now, I'm calling the code challenge exercise a success, and can safely say that I passed the challenge per the rubric scoring system.
