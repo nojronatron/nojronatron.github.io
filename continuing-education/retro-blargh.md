@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 14-Sept-2022
+
+Multiple other tasks consumed quite a bit of my day, and I managed to do some studying for interviewing, as well as knock out a code challenge session.
+
+The code challenge was to find the most common word "in a book". The input would be a String containing lots of words, punctuation, and spaces. This detailed analysis was lacking in my 40-minute time-limited exercise, which slowed my progress. It was pretty clear that I needed to use some sort of Collection that would help me determine duplicate items, but I didn't quite get the right selection. If I had walked through the data structure and how it is traversed, I would have discovered helpful facts that I could have used in designing a solving algorithm.
+
+When approaching code challenges, I need to remember to:
+
+- Break down the problem further, by describing the input in as basic terms as possible.
+- Analyze the selected data structure for how it is used including traversal.
+- If the start of my solution looks to be too complicated, consider where the complexity is entering the solution because the correct solution should be *easy*, not hard.
+
 ## Tuesday 13-Sept-2022
 
 Continuing with the Java code challenges, I completed working on the core functionality of the Tree libraries. The K-Ary Tree was challening enough, and once I figured out to just stick with making "a tree of nodes" rather than a specific tree Class things got a lot easier.
