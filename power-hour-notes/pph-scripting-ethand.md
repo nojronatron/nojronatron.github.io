@@ -22,8 +22,15 @@ Lower-level languages: "Closer" to the hardware, and generally less abstracted, 
 
 Write your code plans in Pseudocode so it is portable to any other language.
 
+Function Fragility: Dependencies on global or other variables and states.
 
+- Pass-in values that the function will use.
+- Avoid hard-coding values that functions will use individually.
+
+Reusability reduces costs, and minimizes fragility.
 
 ## Footer
+
+Following this session, I had a nice discussion with Ethan about the presentation and a few other topics.
 
 Return to [pph-index.md](./pph-index.html)
