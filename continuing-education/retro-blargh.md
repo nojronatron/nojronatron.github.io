@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 16-Sept-2022
+
+Wow did this week go by quickly, I can't believe it's friday already!
+
 ## Tuesday 13-Sept-2022
 
 Continuing with the Java code challenges, I completed working on the core functionality of the Tree libraries. The K-Ary Tree was challening enough, and once I figured out to just stick with making "a tree of nodes" rather than a specific tree Class things got a lot easier.
