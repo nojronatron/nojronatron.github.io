@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 20-Sept-2022
+
+Reviewing React facts and usage this morning, here are some key takeaways:
+
+- React utilizes a syntax called JSX to simplify writing HTML and javascript. Any js expression is allowed in JSX.
+- React is basically a layer between the DOM and the developer, where JSX syntax is transformed into DOM CreateElement and other statements.
+- Use arrow-function syntax when passing functions or event handlers as props. This avoids having the function fire when the page renders.
+
 ## Monday 19-Sept-2022
 
 Put some effort into the javascript project today. Some key takeaways follow.
