@@ -2,7 +2,74 @@
 
 Semi-regular notes taken during my software developer journey.
 
-## Friday 16-Sept-2022
+## Monday 19-Sept-2022
+
+Put some effort into the javascript project today. Some key takeaways follow.
+
+React:
+
+1. Use React Function Components as much as possible, until the Component *absolutely needs to maintain its own State*.
+1. React Function Components are just javascript functions, so adding a parameter to the function allows the function to utilize it as input.
+1. *Avoid* chaning the input parameter(s) within the Functional Component code blocks... they are read-only.
+1. React Function Components are simple, and must contain a return statement.
+1. React Class Components must extend React.Component and have a *render function* with a return statement.
+1. When defining props (in a functional component for example), remember to set the PropTypes at the end of the Component to avoid type mis-match errors. See the example code below.
+
+```javascript
+// import statements
+import PropTypes from 'prop-types';
+
+export default function MyFunction(props) {
+  return (
+    <div className={props.styleclass}>{props.message}</div>
+  );
+}
+MyFunction.propTypes = {
+  styleclass: PropTypes.string,
+  message: PropTypes.string
+};
+```
+
+[React State and Lifecycle, react-js documents](https://reactjs.org/docs/state-and-lifecycle.html)
+
+[Components and Props, react-js documents](https://reactjs.org/docs/components-and-props.html)
+
+[Type checking with PropTypes, react-js documents](https://reactjs.org/docs/typechecking-with-proptypes.html)
+
+Bootstrap:
+
+1. Bootstrap and react-bootstrap have built-in color themes.
+1. Color themes can be applied to bootstrap components fairly easily, like with the Warning, or by using the SASS Theming system on just about any element.
+1. It is possible to use your own colors and backgrounds on Bootstrap components, just as you normally would using CSS and your own elements.
+
+[Color customizations and theme system, from getbootstrap.com](https://getbootstrap.com/docs/5.2/customize/color/)
+
+CSS:
+
+1. Remember `display: flex` ? Then remember to also set 'height', 'align-items', and 'justify-content' in the parent container to make your life easy arranging content in the child box.
+1. Be careful with class naming schemes and multiple CSS files. Class names can *clash* and produce unexpected rendering. Remember, importing multiple CSS files ends up creating one large CSS file under the covers.
+1. Enable CSS variables to do stuff like create a single CSS file with all the theme-based color designations (see example below).
+
+```css
+:root {
+  // selects all elements
+  --primary-main-color: #12AE55;
+  --secondary-main-color: #0055FF;
+  --shadow-color: #112233;
+}
+```
+
+To use these variable colors just call them using the 'var(--named-variable)'.
+
+```css
+element {
+  color: var(--primary-main-color);
+}
+```
+
+[Using variables in css from MDN web docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+
+## Friday 16-Sept-2022 thru Sunday 18-Sept-2022
 
 Wow did this week go by quickly, I can't believe it's friday already! Earlier this week I tackled another Java Code Challenge. It actually tackled me, so I had to do some research and due-dilligence to figure it out. Essentially the problem was I did not identify the correct data structure, or rather I picked the correct data structure *but for the wrong reason* and so I couldn't determine how to utilize it within the time limit.
 
