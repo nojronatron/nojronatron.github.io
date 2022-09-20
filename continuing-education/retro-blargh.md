@@ -10,8 +10,32 @@ Reviewing React facts and usage this morning, here are some key takeaways:
 - React is basically a layer between the DOM and the developer, where JSX syntax is transformed into DOM CreateElement and other statements.
 - Use arrow-function syntax when passing functions or event handlers as props. This avoids having the function fire when the page renders.
 - Components remember their state when it is defined in its Constructor. Call 'super' when defining the constructor of a subclass.
+- Before changing data in State, copy the element(s) you want to change, change them, and then use setState to replace the elements. Otherwise the component will reload unexpectedly and State might become corrupted. Calling `slice()` is a good function to copy an array in State, and the spread operator `...` will also work on Arrays and Objects.
+- Design any logic functions to process a single element or state. This will simplify the logic and allow returning a meaningful result to the calling function.
 
 Arrow Function used for an onClick event: `onClick={() => this.setState({value: 'X'})}`
+
+Passing a function via props:
+
+```javascript
+// in the parent class
+handleClick(i) {
+  const squares = this.state.squares.slice();
+  if (calculateWinner(squares) || squares[i]) {
+    return;
+  }
+}
+    
+// in the parent class render statement
+<MyComponent
+  onClick={() => this.handleClick(i)}
+/>
+
+// inside MyComponent
+<Button
+  onClick={props.onClick}
+  >Click me</Button>
+```
 
 ## Monday 19-Sept-2022
 
