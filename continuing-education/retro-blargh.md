@@ -2,13 +2,70 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 20-Sept-2022
+
+Reviewing React facts and usage this morning, here are some key takeaways:
+
+- React utilizes a syntax called JSX to simplify writing HTML and javascript. Any js expression is allowed in JSX.
+- React is basically a layer between the DOM and the developer, where JSX syntax is transformed into DOM CreateElement and other statements.
+- Use arrow-function syntax when passing functions or event handlers as props. This avoids having the function fire when the page renders.
+- Components remember their state when it is defined in its Constructor. Call `super()` when defining the constructor of a subclass.
+- React elements are first-class JavaScript objects and can be passed around as parameters in React apps.
+- When building lists dynamically, which is often done with `Array.map()`, assign a proper key to each item. It only needs to be unique between Components and their siblings.
+- React dis-allows storing `key` items in State; they are used internally by React. Simply assign them in your code i.e. using `map()` and move along.
+- Components reload when state is changed. Before changing data in State: copy the element(s), edit their value(s), then use `setState{}` to replace them. Calling `slice()` is a good method for copying an array from State. The spread operator `...` will also work to copy Arrays and Objects from State.
+- When `setState{}` is called, only the items specified within the braces are changed in State, the rest remain unchanged.
+- Pushing into an array is usual, but consider using `concat()` because it does not mutuate the original array. This makes it compatible with State operations.
+- Design logic functions to process a single element or state. This will simplify the logic and allow returning a meaningful result to the calling function.
+- Remember, javascript functions can be declared and used in React *just like they are in javascript and node*. Use this to your advantage to further componentize the solution and for code reuse.
+
+Arrow Function used for an onClick event: `onClick={() => this.setState({value: 'X'})}`
+
+Passing a function via props:
+
+```javascript
+// in the parent class
+handleClick(i) {
+  const squares = this.state.squares.slice();
+  if (calculateWinner(squares) || squares[i]) {
+    return;
+  }
+}
+    
+// in the parent class render statement
+<MyComponent
+  onClick={() => this.handleClick(i)}
+/>
+
+// inside MyComponent
+<Button
+  onClick={props.onClick}
+  >Click me</Button>
+```
+
+---
+
+Here is a neat little [React js tutorial](https://reactjs.org/tutorial/tutorial.html), and at the end some code challenges are posed. I started working through these because I was feeling like I was a little too rusty with React to make effective progress on the Enigma Bay project.
+
+- [X] Display the location for each move in the format (col, row) in the move history list. This took a minute to sort out *where* the data needed to be added, but once I realized the index of the clicked Square was maintained in the callback, and the coordinates needed to be tied to move history, I figured it out.
+
+  ![tic-tac-toe add click coordinates to history buttons](./images/react-tac-toe-coords-history.jpg)
+
+- [ ] Bold the currently selected item in the move list.
+- [ ] Rewrite Board to use two loops to make the squares instead of hardcoding them.
+- [ ] Add a toggle button that lets you sort the moves in either ascending or descending order.
+- [ ] When someone wins, highlight the three squares that caused the win.
+- [ ] When no one wins, display a message about the result being a draw.
+
+---
+
 ## Monday 19-Sept-2022
 
 Put some effort into the javascript project today. Some key takeaways follow.
 
 React:
 
-1. Use React Function Components as much as possible, until the Component *absolutely needs to maintain its own State*.
+1. Use React Function Components as much as possible, unless a Component *absolutely needs to maintain its own State*, then it should be a Class Component.
 1. React Function Components are just javascript functions, so adding a parameter to the function allows the function to utilize it as input.
 1. *Avoid* chaning the input parameter(s) within the Functional Component code blocks... they are read-only.
 1. React Function Components are simple, and must contain a return statement.
@@ -52,7 +109,7 @@ CSS:
 
 ```css
 :root {
-  // selects all elements
+  /* selects all elements */
   --primary-main-color: #12AE55;
   --secondary-main-color: #0055FF;
   --shadow-color: #112233;
