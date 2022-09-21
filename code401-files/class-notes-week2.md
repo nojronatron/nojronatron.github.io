@@ -434,7 +434,8 @@ Design:
 - Import GSON: `import com.google.gson.Gson;`
 - Rebuild: Reset Gradle (use a build command) to ensure build.gradle changes are picked up.
 - Test => resources directory: Allows Tests easy access to the files during test writing and execution.
-- Read-in a file: 
+
+Read-in a file:
 
 1. Define a Try-Catch to wrap-around the following (or use 'throws IOException' at method definition).  
 2. Find filepath: `File myFile = new File("./app/src/test/resources/JSON.json");`  
@@ -506,10 +507,6 @@ PUT, PATCH, and DELTE: Action methods that require data to be sent TO the API.
 - Describe the Schema of what you are expecting to get back from the REST Call.
 - If the JSON data contains collections, your Schema will need to include `ArrayList<T>` and nested Classes that define T in order to fully model the JSON data.
 
-Heads: Linked Lists.  
-Tops: Stacks have these.  
-Front: Queues have these.  
-
 ### Recursion
 
 There are two methods of traversal:
@@ -517,74 +514,18 @@ There are two methods of traversal:
 1. Iteration: Loops, While, ...
 2. Recursion: Function calls itself Directly or Indirectly  
 
-A function that calls itself is a Recursive Function.  
-Direct Recursion: Method calls itself.  
-*Remember*: The Call Stack is a LIFO system and recursive functions take advantage of that.  
-Indirect recursion: A helper function is called by the 1st function that recurse-calls from there.  
-*Note*: At every single iteration the base-case MUST BE TESTED.  
-Base Case: Tells recursion when to stop.  
-Recursion does *not* allow 'break' and 'return' statements.  
+A function that calls itself is a Recursive Function.
 
-## JB Tellez Stacks and Queues
+- Direct Recursion: Method calls itself, directly.
 
-Execution or Call Stack: First In Last Out frames. It's a stack!  
-Getting back to something is pretty easy in a stack, compared to a willy-nilly random pile. 
-When the Call Stack is empty, the program is over / closed.  
-Queues are First In First Out: Formally ordered front to back.  
-With queues you put things in the front, and take things out of back/end?  
+*Remember*: The Call Stack is a LIFO system and recursive functions take advantage of that.
 
-### Terminology
+- Indirect recursion: A helper function is called by the 1st function that recurse-calls from there.
 
-Stack
+*Note*: At every single iteration the base-case MUST BE TESTED.
 
-- Consisted of Nodes, similar to (or the same) as LinkedList Nodes.
-- PUSH: Only puts things on TOP of the stack. Handles VALUES *only*!
-- POP: Remove the last-in item from the "top" of the stack. *Could* throw an exception if stack is empty/null, but depends on the implementation.
-- IsEmpty: Check the Stack if it is empty *before* trying to Pop it. Can use Try-Catch and handle any exception would be an implementation.
-- Top: The top of the stack.  
-- Peek: What's there at the top of the stack, without Popping it.
-
-FILO
-
-- First In Last Out
-- Same a LIFO just flipped around
-- The Top's Next is the Node that USED TO BE THE TOP
-
-Pseudo Code for Push and Pop: See the DS&A Class-10 => resources => stacks_and_queues.md
-
-*Important*: Be sure to update the this.top property with PUSH and POP operations:
-
-- Top: private property that tracks the last-in Node reference, or null if there are no nodes
-- Initial state of Stack: Empty list.head needs to be set to null
-- Implement an isEmpty method to test the state of this.top and return true if null, false if has Node
-- Push: Newly created node.next points to head, and then head is pointed to newly created Node
-- Pop: head Node value is stored, then head pointer is moved to head.next, then value is returned to the user
-- Implement a peek method to return the value of top only if isEmpty is false
-
-Queue
-
-- Queues have *two ends*: Front and Rear
-- FIFO: First In First Out
-- Enqueue: Nodes are items that are added to the *rear* of the queue
-- Dequeue: Remove the FRONT Node from the QUEUE
-- Front: Same as Rear when there is only one Node. Always the "next" node ready to be DEQUEUEd
-- Rear: The last Node that was ENQUEUEd into the Queue
-- Peek: Preview the value of the FRONT Node
-- IsEmpty: Return True if QUEUE size is 0, False if > 0
-
-The Next property of each Node points *toward the Rear* and *toward the Enqueue side* of the Queue.  
-Rear.next will always equal NULL.  
-
-### Calendar Planning
-
-Due Today:
-
-1. Prep work: Career Coaching Personal Pitch and Stage Fright assignments  
-2. Code Challenge: Partner interviews  
-3. Lab: Partners to call an API (Quote APIs). Refactor any code from previous lab to prepare for this lab  
-4. 9am Friday Zoom: Dr. Robin; 1215 Power-Hour Session; 2pm Zoom: Stacks and Queues with JB Tellez; Feedback assignment(s) too
-5. Monday: NO CLASS
-6. Networking appointments are coming due: 1:1 in-person or remote, outside of this class. Targeted company interview counts!  
+- Base Case: Tells recursion when to stop.
+- Recursion does *not* allow 'break' and 'return' statements.
 
 ## Footer
 
