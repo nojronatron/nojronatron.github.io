@@ -9,14 +9,15 @@ Reviewing React facts and usage this morning, here are some key takeaways:
 - React utilizes a syntax called JSX to simplify writing HTML and javascript. Any js expression is allowed in JSX.
 - React is basically a layer between the DOM and the developer, where JSX syntax is transformed into DOM CreateElement and other statements.
 - Use arrow-function syntax when passing functions or event handlers as props. This avoids having the function fire when the page renders.
-- Components remember their state when it is defined in its Constructor. Call 'super' when defining the constructor of a subclass.
+- Components remember their state when it is defined in its Constructor. Call `super()` when defining the constructor of a subclass.
 - React elements are first-class JavaScript objects and can be passed around as parameters in React apps.
 - When building lists dynamically, which is often done with `Array.map()`, assign a proper key to each item. It only needs to be unique between Components and their siblings.
-- React dis-allows storing 'key' items in State; they are used internally by React.
-- Components reload when state is changed. Before changing data in State: copy the element(s), edit their value(s), then use setState to replace them. Calling `slice()` is a good function to copy an array in State. The spread operator `...` will also work to copy Arrays and Objects.
+- React dis-allows storing `key` items in State; they are used internally by React. Simply assign them in your code i.e. using `map()` and move along.
+- Components reload when state is changed. Before changing data in State: copy the element(s), edit their value(s), then use `setState{}` to replace them. Calling `slice()` is a good method for copying an array from State. The spread operator `...` will also work to copy Arrays and Objects from State.
 - When `setState{}` is called, only the items specified within the braces are changed in State, the rest remain unchanged.
-- Pushing into an array is usual, but consider using `concat()` because it does not mutuate the original array. This makes in compatible with State operations.
+- Pushing into an array is usual, but consider using `concat()` because it does not mutuate the original array. This makes it compatible with State operations.
 - Design logic functions to process a single element or state. This will simplify the logic and allow returning a meaningful result to the calling function.
+- Remember, javascript functions can be declared and used in React *just like they are in javascript and node*. Use this to your advantage to further componentize the solution and for code reuse.
 
 Arrow Function used for an onClick event: `onClick={() => this.setState({value: 'X'})}`
 
@@ -108,7 +109,7 @@ CSS:
 
 ```css
 :root {
-  // selects all elements
+  /* selects all elements */
   --primary-main-color: #12AE55;
   --secondary-main-color: #0055FF;
   --shadow-color: #112233;
