@@ -80,6 +80,10 @@ The following are reading and research notes taken during, and in preparation fo
 
 :card_index: Read about [Stacks and Queues](./code401-files/stacks-and-queues.html)
 
+:card_index: Review Stacks and Queues [overview by JB](./code401-files/class-notes-week2.md#JB-Tellez-Stacks-and-Queues)
+
+:card_index: Workshop on [professional coaching](./code401-files/professional-coaching-workshop.html)
+
 :card_index: Read Class09 [HTTP Request Lifecycle and HTTP Request using Spring for Java](./code401-files/java-and-http.html)
 
 :card_index: Read Class08 [DRY, Rule of Three, Dont Need It, and MVP](./code401-files/dry-three-mvp.html)

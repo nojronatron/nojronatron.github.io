@@ -10,6 +10,8 @@ Matt Raio [Troubleshooting using the OSI Model](./tshoot-osi-model.html)
 
 Ryan Pedersen from [Microsoft](./pph-rpedersen.html)
 
+Life Coach Tips from [Micha G-P](./life-coach-tips.html)
+
 Andrew F from [Anduril Industries](./pph-fijan-andurilindust.html)
 
 Russert [From Dream to Job](./srussert-dream-job-disney.html)
