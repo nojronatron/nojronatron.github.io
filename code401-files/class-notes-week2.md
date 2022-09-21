@@ -349,11 +349,36 @@ SOLID: A set of principles.
 
 ### SOLID Principles
 
-Single Responsibility:  
-Open-Closed:  
-Liskov Substitution:  
-Interface Segregation:  
-Dependency Inversion:  
+Robert C. Martin and Michael Feathers are credited with building these principles while developing software design patterns.
+
+Single Responsibility: A class should have one job. There should only be one reason to change.
+
+- Reduces test cases.
+- Lowers dependencies and "coupling".
+- Smaller, more simply organized classes result.
+
+Open-Closed: Open for extension, Closed for modification.
+
+- Stop modification of existing code, which could introduce new bugs.
+- Only modify existing code *to fix bugs*.
+- Extend classes to build-out functionality/features.
+
+Liskov Substitution: Related to polymorphism.
+
+- "If class A is a subtype of class B, then class B can be replaced by class A without disrupting program behavior."
+- Rework models into interfaces that will handle differences in types, so they are polymorphically adaptable.
+
+Interface Segregation: Larger interfaces should be split into smaller ones.
+
+- Implementing classes only need to be concerned with methods that are of interest to them directly.
+- Developing smaller, more specific interfaces allows defining smarter contracts that are more easily maintained and better describe required functionality.
+
+Dependency Inversion: Decouple software modules, and depend on abstractions.
+
+- When defining specific Types for a Class Field, instead use an interface to support changing requirements but still meet the internal requirements of the Class holding the Field.
+- Decouple Classes by using abstraction to allow using any test framework.
+
+This section was completed by taking notes from [Baeldung.com article on solid principles](https://www.baeldung.com/solid-principles)
 
 ### Team Concepts
 
@@ -390,27 +415,26 @@ Relational checking a-la: 'Where foreignKey = itemId'
 
 ### Wednesday GSON and JSON
 
-GSON is an external package.  
-Google Script Object Notation.  
-JUnitJupiter is an external package.  
-The gradle config has a dependency codeblock that defines the required packages for build (and test).  
-JSON is consumed via several ways: Files, Internet, Resources (e.g. libraries, DBs, etc).  
-JSON is fast and thin compared to other data types.  
-Serialization: Translate INTO JSON format. Makes it easier to XMIT data via the web/network.  
-Deserialization: Extract the data from JSON format into an Object or Collection of Objects.  
-JSON is plaintext, therefore a String, and WYSIWYG.  
+GSON is an external package: Google Script Object Notation.
 
-Lab Goal today: Read-in a JSON file.  
+- The gradle config has a dependency codeblock that defines the required packages for build (and test).
+- JSON is consumed via several ways: Files, Internet, Resources (e.g. libraries, DBs, etc).
+- JSON is fast and thin compared to other data types.
+- Serialization: Translate INTO JSON format. Makes it easier to XMIT data via the web/network.
+- Deserialization: Extract the data from JSON format into an Object or Collection of Objects.
+- JSON is plaintext, therefore a String, and WYSIWYG.
 
-Do this using GSON.  
+Lab Goal today: Read-in a JSON file using GSON.
+
 When reading-in JSON, you will need to have a Class instance to push the imported data into (members etc).  
 
-Design:  
-App imports Files: `implementation 'com.google.code.gson:n.n.n'` => add this (and more) to build.gradle  
-import GSON: `import com.google.gson.Gson;`  
-Rebuild: Reset Gradle (use a build command) to ensure build.gradle changes are picked up.  
-test => resources directory: Allows Tests easy access to the files during test writing and execution.  
-Read-in a file:  
+Design:
+
+- App imports Files: `implementation 'com.google.code.gson:n.n.n'` => add this (and more) to build.gradle.
+- Import GSON: `import com.google.gson.Gson;`
+- Rebuild: Reset Gradle (use a build command) to ensure build.gradle changes are picked up.
+- Test => resources directory: Allows Tests easy access to the files during test writing and execution.
+- Read-in a file: 
 
 1. Define a Try-Catch to wrap-around the following (or use 'throws IOException' at method definition).  
 2. Find filepath: `File myFile = new File("./app/src/test/resources/JSON.json");`  
@@ -465,21 +489,23 @@ Two primery methods of getting data from APIs:
 
 #### RESTful Commands
 
-GET: Query, no payload (data) is sent to the API but response is required.  
-PUT, PATCH, and DELTE: Action methods that require data to be sent TO the API.  
+GET: Query, no payload (data) is sent to the API but response is required.
+
+PUT, PATCH, and DELTE: Action methods that require data to be sent TO the API.
 
 ### Advice Going Forward
 
-Use '_inputName' to name your method input parameters.  
-Use '_recursiveFunc' to name your recursive functions.  
-Utilize HTTP Status Codes in your REST calls so they are more easily testable.  
-Use Baeldung's examples to put together REST operations in Java.  
-Always put Stream Reader types inside of a Try-with-resources e.g. `try (BufferedReader responseReader = new BufferedReader(args)) {...}`: This auto-closes (garbage-collects) the enclosed resources automatically.  
-Define Methods to return things like StringBuffer so the caller gets the data wholesale.  
-Try to return HttpConnection types in your methods so the caller can utilize the response codes, etc.  
-Case Sensitivity between JSON object parameters and Class properties MUST MATCH.  
-Describe the Schema of what you are expecting to get back from the REST Call.  
-If the JSON data contains collections, your Schema will need to include `ArrayList<T>` and nested Classes that define T in order to fully model the JSON data.  
+- Use '_inputName' to name your method input parameters.
+- Use '_recursiveFunc' to name your recursive functions.
+- Utilize HTTP Status Codes in your REST calls so they are more easily testable.
+- Use Baeldung's examples to put together REST operations in Java.
+- Always put Stream Reader types inside of a Try-with-resources e.g. `try (BufferedReader responseReader = new BufferedReader(args)) {...}`: This auto-closes (garbage-collects) the enclosed resources automatically.
+- Define Methods to return things like StringBuffer so the caller gets the data wholesale.
+- Try to return HttpConnection types in your methods so the caller can utilize the response codes, etc.
+- Case Sensitivity between JSON object parameters and Class properties MUST MATCH.
+- Describe the Schema of what you are expecting to get back from the REST Call.
+- If the JSON data contains collections, your Schema will need to include `ArrayList<T>` and nested Classes that define T in order to fully model the JSON data.
+
 Heads: Linked Lists.  
 Tops: Stacks have these.  
 Front: Queues have these.  
@@ -498,6 +524,56 @@ Indirect recursion: A helper function is called by the 1st function that recurse
 *Note*: At every single iteration the base-case MUST BE TESTED.  
 Base Case: Tells recursion when to stop.  
 Recursion does *not* allow 'break' and 'return' statements.  
+
+## JB Tellez Stacks and Queues
+
+Execution or Call Stack: First In Last Out frames. It's a stack!  
+Getting back to something is pretty easy in a stack, compared to a willy-nilly random pile. 
+When the Call Stack is empty, the program is over / closed.  
+Queues are First In First Out: Formally ordered front to back.  
+With queues you put things in the front, and take things out of back/end?  
+
+### Terminology
+
+Stack
+
+- Consisted of Nodes, similar to (or the same) as LinkedList Nodes.
+- PUSH: Only puts things on TOP of the stack. Handles VALUES *only*!
+- POP: Remove the last-in item from the "top" of the stack. *Could* throw an exception if stack is empty/null, but depends on the implementation.
+- IsEmpty: Check the Stack if it is empty *before* trying to Pop it. Can use Try-Catch and handle any exception would be an implementation.
+- Top: The top of the stack.  
+- Peek: What's there at the top of the stack, without Popping it.
+
+FILO
+
+- First In Last Out
+- Same a LIFO just flipped around
+- The Top's Next is the Node that USED TO BE THE TOP
+
+Pseudo Code for Push and Pop: See the DS&A Class-10 => resources => stacks_and_queues.md
+
+*Important*: Be sure to update the this.top property with PUSH and POP operations:
+
+- Top: private property that tracks the last-in Node reference, or null if there are no nodes
+- Initial state of Stack: Empty list.head needs to be set to null
+- Implement an isEmpty method to test the state of this.top and return true if null, false if has Node
+- Push: Newly created node.next points to head, and then head is pointed to newly created Node
+- Pop: head Node value is stored, then head pointer is moved to head.next, then value is returned to the user
+- Implement a peek method to return the value of top only if isEmpty is false
+
+Queue
+
+- Queues have *two ends*: Front and Rear
+- FIFO: First In First Out
+- Enqueue: Nodes are items that are added to the *rear* of the queue
+- Dequeue: Remove the FRONT Node from the QUEUE
+- Front: Same as Rear when there is only one Node. Always the "next" node ready to be DEQUEUEd
+- Rear: The last Node that was ENQUEUEd into the Queue
+- Peek: Preview the value of the FRONT Node
+- IsEmpty: Return True if QUEUE size is 0, False if > 0
+
+The Next property of each Node points *toward the Rear* and *toward the Enqueue side* of the Queue.  
+Rear.next will always equal NULL.  
 
 ### Calendar Planning
 
