@@ -10,8 +10,13 @@ Reviewing React facts and usage this morning, here are some key takeaways:
 - React is basically a layer between the DOM and the developer, where JSX syntax is transformed into DOM CreateElement and other statements.
 - Use arrow-function syntax when passing functions or event handlers as props. This avoids having the function fire when the page renders.
 - Components remember their state when it is defined in its Constructor. Call 'super' when defining the constructor of a subclass.
-- Before changing data in State, copy the element(s) you want to change, change them, and then use setState to replace the elements. Otherwise the component will reload unexpectedly and State might become corrupted. Calling `slice()` is a good function to copy an array in State, and the spread operator `...` will also work on Arrays and Objects.
-- Design any logic functions to process a single element or state. This will simplify the logic and allow returning a meaningful result to the calling function.
+- React elements are first-class JavaScript objects and can be passed around as parameters in React apps.
+- When building lists dynamically, which is often done with `Array.map()`, assign a proper key to each item. It only needs to be unique between Components and their siblings.
+- React dis-allows storing 'key' items in State; they are used internally by React.
+- Components reload when state is changed. Before changing data in State: copy the element(s), edit their value(s), then use setState to replace them. Calling `slice()` is a good function to copy an array in State. The spread operator `...` will also work to copy Arrays and Objects.
+- When `setState{}` is called, only the items specified within the braces are changed in State, the rest remain unchanged.
+- Pushing into an array is usual, but consider using `concat()` because it does not mutuate the original array. This makes in compatible with State operations.
+- Design logic functions to process a single element or state. This will simplify the logic and allow returning a meaningful result to the calling function.
 
 Arrow Function used for an onClick event: `onClick={() => this.setState({value: 'X'})}`
 
@@ -36,6 +41,10 @@ handleClick(i) {
   onClick={props.onClick}
   >Click me</Button>
 ```
+
+Resources:
+
+[React js tutorial documentation](https://reactjs.org/tutorial/tutorial.html)
 
 ## Monday 19-Sept-2022
 
