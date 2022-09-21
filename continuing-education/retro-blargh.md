@@ -42,9 +42,21 @@ handleClick(i) {
   >Click me</Button>
 ```
 
-Resources:
+---
 
-[React js tutorial documentation](https://reactjs.org/tutorial/tutorial.html)
+Here is a neat little [React js tutorial](https://reactjs.org/tutorial/tutorial.html), and at the end some code challenges are posed. I started working through these because I was feeling like I was a little too rusty with React to make effective progress on the Enigma Bay project.
+
+- [X] Display the location for each move in the format (col, row) in the move history list. This took a minute to sort out *where* the data needed to be added, but once I realized the index of the clicked Square was maintained in the callback, and the coordinates needed to be tied to move history, I figured it out.
+
+  ![tic-tac-toe add click coordinates to history buttons](./images/react-tac-toe-coords-history.jpg)
+
+- [ ] Bold the currently selected item in the move list.
+- [ ] Rewrite Board to use two loops to make the squares instead of hardcoding them.
+- [ ] Add a toggle button that lets you sort the moves in either ascending or descending order.
+- [ ] When someone wins, highlight the three squares that caused the win.
+- [ ] When no one wins, display a message about the result being a draw.
+
+---
 
 ## Monday 19-Sept-2022
 
@@ -52,7 +64,7 @@ Put some effort into the javascript project today. Some key takeaways follow.
 
 React:
 
-1. Use React Function Components as much as possible, until the Component *absolutely needs to maintain its own State*.
+1. Use React Function Components as much as possible, unless a Component *absolutely needs to maintain its own State*, then it should be a Class Component.
 1. React Function Components are just javascript functions, so adding a parameter to the function allows the function to utilize it as input.
 1. *Avoid* chaning the input parameter(s) within the Functional Component code blocks... they are read-only.
 1. React Function Components are simple, and must contain a return statement.
