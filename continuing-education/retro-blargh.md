@@ -2,6 +2,25 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 21-Sept-2022
+
+React challenges, continued!
+
+I completed the challenge of making the currently selected move text bold (see the checklist below for a screen snip). The code was fairly easy, but it requires an understanding of the backing State and data, and also an ability to leverage boolean logic to selecte and apply CSS to an element.
+
+```javascript
+<button 
+  onClick={() => this.jumpTo(move)} 
+  className={this.state.stepNumber === move ? 'selectedBold' : ''}
+>{desc}</button>
+```
+
+```css
+.selectedBold {
+  font-weight: 700;
+}
+```
+
 ## Tuesday 20-Sept-2022
 
 Reviewing React facts and usage this morning, here are some key takeaways:
@@ -51,7 +70,10 @@ Here is a neat little [React js tutorial](https://reactjs.org/tutorial/tutorial.
 
   ![tic-tac-toe add click coordinates to history buttons](./images/react-tac-toe-coords-history.jpg)
 
-- [ ] Bold the currently selected item in the move list.
+- [X] Bold the currently selected item in the move list.
+
+![tic-tac-toe bold text of currently selected item in move list](./images/react-tac-toe-bold-current-move.png)
+
 - [ ] Rewrite Board to use two loops to make the squares instead of hardcoding them.
 - [ ] Add a toggle button that lets you sort the moves in either ascending or descending order.
 - [ ] When someone wins, highlight the three squares that caused the win.
