@@ -2,6 +2,57 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 21-Sept-2022
+
+React challenges, continued!
+
+I completed the challenge of making the currently selected move text bold (see the checklist below for a screen snip). The code was fairly easy, but it requires an understanding of the backing State and data, and also an ability to leverage boolean logic to select and apply CSS to an element.
+
+```javascript
+<button 
+  onClick={() => this.jumpTo(move)} 
+  className={this.state.stepNumber === move ? 'selectedBold' : ''}
+>{desc}</button>
+```
+
+```css
+.selectedBold {
+  font-weight: 700;
+}
+```
+
+The next challenge proved to be much more difficult, but I finally figured it out. The Board component had a hard-coded render statement that explicitly set the row element and each "tile" element, and the challenge was to convert that into a pair of loops that would generate the tiles on the fly, instead. Scroll down to see the challenges and the solutions.
+
+In summary:
+
+- An 'outer' and an 'inner' loop structure were necessary.
+- Breaking down the problem into two simple, distinct functions helped solve it.
+- Leveraging arrays and JSX syntax it was possible to inject Squares within DIVs that created rows around them.
+- Despite using an array, it was not necessary to use a `map()` or `forEach()` to prepare data for rendering in the `render()` function.
+- React requires Keys on all elements that are generated so that React can find them in the DOM later. This was accomplished by adding `key={}` to functions `renderSquare()` and `setRows()`.
+
+```javascript
+  renderSquare(i) {
+    return (
+      <Square
+        value={this.props.squares[i]}
+        onClick={() => this.props.onClick(i)}
+        key={i}
+      />
+    );
+  }
+
+  setRows() {
+    const rows = [];
+    for (let rowId=0; rowId<3; rowId++){
+      rows.push(
+        <div className="board-row" key={rowId}>{this.setTiles(rowId)}</div>
+      )
+    }
+    return rows;
+  }
+```
+
 ## Tuesday 20-Sept-2022
 
 Reviewing React facts and usage this morning, here are some key takeaways:
@@ -49,10 +100,16 @@ Here is a neat little [React js tutorial](https://reactjs.org/tutorial/tutorial.
 
 - [X] Display the location for each move in the format (col, row) in the move history list. This took a minute to sort out *where* the data needed to be added, but once I realized the index of the clicked Square was maintained in the callback, and the coordinates needed to be tied to move history, I figured it out.
 
-  ![tic-tac-toe add click coordinates to history buttons](./images/react-tac-toe-coords-history.jpg)
+  > ![tic-tac-toe add click coordinates to history buttons](./images/react-tac-toe-coords-history.jpg)
 
-- [ ] Bold the currently selected item in the move list.
-- [ ] Rewrite Board to use two loops to make the squares instead of hardcoding them.
+- [X] Bold the currently selected item in the move list.
+
+  > ![tic-tac-toe bold text of currently selected item in move list](./images/react-tac-toe-bold-current-move.png)
+
+- [X] Rewrite Board to use two loops to make the squares instead of hardcoding them.
+
+  > ![Two loops in the code automate creating the board](./images/react-tac-toe-two-loops-build-board.png)
+
 - [ ] Add a toggle button that lets you sort the moves in either ascending or descending order.
 - [ ] When someone wins, highlight the three squares that caused the win.
 - [ ] When no one wins, display a message about the result being a draw.
