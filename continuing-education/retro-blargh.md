@@ -100,15 +100,15 @@ Here is a neat little [React js tutorial](https://reactjs.org/tutorial/tutorial.
 
 - [X] Display the location for each move in the format (col, row) in the move history list. This took a minute to sort out *where* the data needed to be added, but once I realized the index of the clicked Square was maintained in the callback, and the coordinates needed to be tied to move history, I figured it out.
 
-  ![tic-tac-toe add click coordinates to history buttons](./images/react-tac-toe-coords-history.jpg)
+  > ![tic-tac-toe add click coordinates to history buttons](./images/react-tac-toe-coords-history.jpg)
 
 - [X] Bold the currently selected item in the move list.
 
-![tic-tac-toe bold text of currently selected item in move list](./images/react-tac-toe-bold-current-move.png)
+  > ![tic-tac-toe bold text of currently selected item in move list](./images/react-tac-toe-bold-current-move.png)
 
 - [X] Rewrite Board to use two loops to make the squares instead of hardcoding them.
 
-![Two loops in the code automate creating the board](./images/react-tac-toe-two-loops-build-board.png)
+  > ![Two loops in the code automate creating the board](./images/react-tac-toe-two-loops-build-board.png)
 
 - [ ] Add a toggle button that lets you sort the moves in either ascending or descending order.
 - [ ] When someone wins, highlight the three squares that caused the win.
