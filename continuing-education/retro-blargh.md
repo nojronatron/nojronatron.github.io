@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 23-Sept-2022
+
+Back to React! Some key takeaways when developing a site that requires some initial processing to display a page:
+
+- Create purely functional Components (code snippet 'rfc' in VSCode) to do highly focused bits of work.
+- Rely on those to get the results you need *prior to the return() statement* in your main Component's `render() {}` function.
+- Pay attention to the data schema. If data is imported and there are data fields you don't need, then don't include them. Use `map()` or `filter()` function to get what you *do need*.
+- Passing data as props is one thing, but learn how to pass style information as props so that style can be managed by parent and grand-parent components as needed.
+
+On another topic, some of my Code Fellows student-friends are at their 401-level finals week. I won't be able to see it live but I'm looking forward to seeing a video of what they did!
+
 ## Thursday 22-Sept-2022
 
 Worked on React again. Had some difficulty figuring out how to pull-in data, process it, and then set it into state. When setting State the Component reloads, causing timing issues. I should have been concentrating on passing functions as props anyway (that was more the goal), and handling the input data properly to begin with. In a future revision of this project, there will be a back-end API server that will manage gathering the correct data, processing it, and returning a data set that can then be set into State.
