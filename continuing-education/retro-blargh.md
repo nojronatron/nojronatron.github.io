@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 24-Sept-2022
+
+I attended a seminar by Mica Goebig, where she discussed confidence issues, as well as managing fear and self-doubt. 
+
 ## Friday 23-Sept-2022
 
 Back to React! Some key takeaways when developing a site that requires some initial processing to display a page:
