@@ -30,14 +30,6 @@ LinkedIn: in/michagoebig
 
 ## Keys to Confidence
 
-1. Choose to create confidence.
-1. Choose to *not* pay attention to your brain and not believe everything your brain is telling you.
-1. Remember to breathe. Oxygen and 'micro breaks' will help you collect your thoughts and remain/calm down.
-
-Confidence is something *you can choose to create*.
-
-## Steps to Confidence
-
 1. Guage: Confidence is a story we tell ourselves. We tell ourselves stories all the time, why not tell one of confidence?
 1. Convey: Confidence is recallable. How to feel this when I go into another situation?
 1. Embark: Be prepared for the challenge and ready.
@@ -64,6 +56,14 @@ Review these question *every week*:
 - What didn't go well? Again, no more than 1 page.
 - What would I do differently? Think about trying things differently if possible. At this point you can determine if the "didn't go well" are just "life" and things you don't have control over.
 - Reward Yourself! When you complete something hard, follow it up with some positive emotional experience(s).
+
+## Final Comments
+
+1. Choose to create confidence.
+1. Choose to *not* pay attention to your brain and not believe everything your brain is telling you.
+1. Remember to breathe. Oxygen and 'micro breaks' will help you collect your thoughts and remain/calm down.
+
+Confidence is something *you can choose to create*.
 
 ## Footer
 

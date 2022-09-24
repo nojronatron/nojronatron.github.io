@@ -4,7 +4,13 @@ Semi-regular notes taken during my software developer journey.
 
 ## Saturday 24-Sept-2022
 
-I attended a seminar by Mica Goebig, where she discussed confidence issues, as well as managing fear and self-doubt. 
+I attended a seminar by Mica Goebig, where she discussed confidence issues, as well as managing fear and self-doubt. Her business is geared towards women, poc, etc. Her advice in this session was easily transportable to just about anybody. My takeaways to boosting my confidence are:
+
+- I need to continue making advances, no matter how small or big.
+- Regular retrospectives of my tasks, behavior, etc will help me better understand myself and make improvements.
+- Whenever challenges are overcome, I should take time out to celebrate it.
+
+
 
 ## Friday 23-Sept-2022
 
