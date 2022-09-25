@@ -4,13 +4,24 @@ Semi-regular notes taken during my software developer journey.
 
 ## Saturday 24-Sept-2022
 
+For the last several weeks I have wanted to work on my desk a bit. There are USB and audio extensions that were just hanging around on and about the desktop and it was... messy. So I took apart the dual-monitor mounting system, added the USB + Audio line housing to the foot of the mount, and put the system back together. While I was behind the desk I added a second power stick to shore-up power cables to the monitors and a few other things, and cleaned-up the USB, audio, and D-port cabling so everything is nice and tidy now. My *Uplift* desk is *so good*.
+
 I attended a seminar by Mica Goebig, where she discussed confidence issues, as well as managing fear and self-doubt. Her business is geared towards women, poc, etc. Her advice in this session was easily transportable to just about anybody. My takeaways to boosting my confidence are:
 
 - I need to continue making advances, no matter how small or big.
 - Regular retrospectives of my tasks, behavior, etc will help me better understand myself and make improvements.
 - Whenever challenges are overcome, I should take time out to celebrate it.
 
+This afternoon I put some time into the Lingo Bingo JS. Although development has slowed, I am completing tasks one-by-one, successfully, and things are coming together. Some things that went well:
 
+- I am gaining confidence with React and am able to build Functional and Class component types.
+- Leveraging CSS to make screen elements align and look nice is taking less time than it used to.
+- Troubleshooting React issues is easier today than I remember it being.
+
+Some things that need improvement:
+
+- It is important to work on the 'In Process' Trello cards so that they get addressed, rather than 'Todo' and 'Backlog' items that we have already decided should wait until later.
+- Styling: This is not top priority yet, but there is a mix of in-line, Bootstrap, and file-based styles utilized across the site. We need to consider if we want to continue this, or somehow address it so that styling does not get too complicate.
 
 ## Friday 23-Sept-2022
 
