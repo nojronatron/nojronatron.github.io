@@ -33,6 +33,18 @@ To Dos:
 1. Investigate how to iterate using CSS.
 1. Investigate if it is possible to apply property inheritance in pseudo-elements.
 
+One more challenge before I quit: Battle 3, 19 Cube. This was really tough!
+
+Key Takeaways:
+
+- I quickly figured out that transform properties were needed: `transform: translate(px,px) rotate(deg);`.
+- Once I figured out the 2 additional polygons were NOT rotated, I investigated an alternative and `transform: skewx(deg);` came to the rescue.
+- When a box is rotated and/or skewed, it becomes extremely difficult to position it because the X and Y axes are altered.
+
+I'm still not entirely sure I know the size of the center diamond shape, so it is extremely difficult to get the positioning right!
+
+Nevertheless, I *did* complete it with a 99.9% match, 598 character score! That's pretty good considering how little I have used rotate and skewx/skewy properties.
+
 ## Saturday 24-Sept-2022
 
 For the last several weeks I have wanted to work on my desk a bit. There are USB and audio extensions that were just hanging around on and about the desktop and it was... messy. So I took apart the dual-monitor mounting system, added the USB + Audio line housing to the foot of the mount, and put the system back together. While I was behind the desk I added a second power stick to shore-up power cables to the monitors and a few other things, and cleaned-up the USB, audio, and D-port cabling so everything is nice and tidy now. My *Uplift* desk is *so good*.
