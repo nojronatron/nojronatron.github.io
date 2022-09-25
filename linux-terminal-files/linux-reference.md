@@ -525,7 +525,21 @@ Install/upgrade all dependencies: `yarn install`
 
 ### Image Converter
 
-Image Converter: `convert $input_file_path.img -quality nn $output_file_path.ext`
+Help file usage template: `convert [options ...] file [[options ...] file ...] [options ...] file`
+
+More information can be found at [legacy.imagemagick.org/Usage/](https://legacy.imagemagick.org/Usage/).
+
+Convert Quality: `convert $input_file_path.img -quality nn $output_file_path.img` changes compression level on jpeg/miff/png.
+
+Resize: `convert -adaptive-resize 200x200` adjusts width and height using 'mesh interpolation' (limit to less than 50% larger or smaller otherwise use `-resize`).
+
+Scale an image: `convert -scale ${percentage}%`. A simplified version of `-resize`.
+
+Compress Image: `convert -compress type`
+
+Add a Caption: Consider creating a label instead. See the *Usage* link above for details.
+
+Vertical or horizontal flip: `convert -flip` or `convert -flop`, respectively.
 
 ### Compress, Zip, Tar Files for Archiving
 
