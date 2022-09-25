@@ -8,6 +8,7 @@ In my collaborative project 'LingoBingo js', there is a need to design an animat
 
 - Squished pill-shape with purple circles, one each at the left and right ends.
 - Two light-brown circles "squishing" the pill-shape; one above, and one below.
+- The title is "fidget spinner".
 
 Key takeaways:
 
@@ -17,6 +18,20 @@ Key takeaways:
 - At some point early on I was using `display: inline-block;` but changed it to `display: block;`. Inline-block seemed to artificially move the pseudo-elements vs. using block, which seemed to place the pseudo elements in a way I felt was expected.
 - In terms of css code required to meet the challenge, it *might* have been better to create 5 divs and use cascading techniques, since many of the elements ended up needed the same properties.
 - I started this challenge thinking "wow, can I even do this?" and ended with *100% match*!
+
+Next I completed Battle 2 Challenge 18 "Matrix", earning 600 pts for a 100% match... but it took 834 characters to do it. It makes me wonder:
+
+- Is there an iterating mechanism in CSS?
+- Could columns or a minimalist Grid method saved on characters?
+
+My initial idea was to use Divs with the `::before` and `::after` pseudo elements again, but I was concerned that I couldn't leverage property inheritance that way (may I can and I don't know it?).
+
+I stuck with Divs and used a class hierarchy to identify the 2 colored shapes, each column, and each row. I then applied `position: absolute`, `transform: translateX()`, and margin-top (for Y translation) to position every div specifically.
+
+To Dos:
+
+1. Investigate how to iterate using CSS.
+1. Investigate if it is possible to apply property inheritance in pseudo-elements.
 
 ## Saturday 24-Sept-2022
 
