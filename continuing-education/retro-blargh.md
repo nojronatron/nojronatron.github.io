@@ -22,11 +22,13 @@ Next up was behavioral questions practice. This really didn't take very long and
 
 The event was an Ops-301 final presentation. The students did really well, and it was interesting to see how they were solving problems like securing a network and wifi connectivity using VPNs, a capture portal, and AAA at the perimeter.
 
-Following that, I started-in on some more CSS learning. This time it is animations. The goal is to learn how to make an animated "celebration" happen on a web page under certain conditions. I'm going to need several things:
+Following that, I returned to CSS Animations. The goal is to learn how to make an animated "celebration" happen on a web page under certain conditions. I'm going to need several things:
 
-1. Knowledge of `@keyframes` and `animation` properties in CSS.
+1. Knowledge of and experience with `@keyframes` and `animation` properties in CSS.
 1. Some emojis and/or small thumbnail images or drawings representing fun party stuff (party poppers, streamers, cake slices, lollipops, etc) that will be animated on-screen.
 1. A design for how this will be implemented in the LingoBingo project.
+
+I made a little progress by deploying a new ReactJS website to use as the experimentation sandbox. More to do tomorrow.
 
 ## Sunday 25-Sept-2022
 
@@ -45,7 +47,7 @@ Key takeaways:
 - In terms of css code required to meet the challenge, it *might* have been better to create 5 divs and use cascading techniques, since many of the elements ended up needed the same properties.
 - I started this challenge thinking "wow, can I even do this?" and ended with *100% match*!
 
-Next I completed Battle 2 Challenge 18 "Matrix", earning 600 pts for a 100% match... but it took 834 characters to do it. It makes me wonder:
+Next I completed CSS Battle 2 Challenge 18 "Matrix", earning 600 pts for a 100% match... but it took 834 characters to do it. It makes me wonder:
 
 - Is there an iterating mechanism in CSS?
 - Could columns or a minimalist Grid method saved on characters?
