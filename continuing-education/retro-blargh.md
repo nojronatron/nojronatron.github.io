@@ -25,7 +25,7 @@ The event was an Ops-301 final presentation. The students did really well, and i
 Following that, I started-in on some more CSS learning. This time it is animations. The goal is to learn how to make an animated "celebration" happen on a web page under certain conditions. I'm going to need several things:
 
 1. Knowledge of `@keyframes` and `animation` properties in CSS.
-1. Some emojis and/or small thumbnail images or drawings representing fun party stuff (pary poppers, streamers, cake slices, lollipops, etc) that will be animated on-screen.
+1. Some emojis and/or small thumbnail images or drawings representing fun party stuff (party poppers, streamers, cake slices, lollipops, etc) that will be animated on-screen.
 1. A design for how this will be implemented in the LingoBingo project.
 
 ## Sunday 25-Sept-2022
