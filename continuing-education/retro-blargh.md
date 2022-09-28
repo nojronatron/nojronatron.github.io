@@ -2,6 +2,34 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 26-Sept-2022
+
+Today I started out working on a technical interview challenge question. This time the question was to make a function that accepted a String as input, and returned true if all the characters in the input string were unique. This time I was unable to complete all of the Code Fellows grading rubric items within 40 minutes, but that's ok. I was on the right track, implementing a method that uses a hashtable. Had I not spent so much time writing out the hashtable functionality during design time, I probably would have completed coding and a step through. Commonly, I pick the wrong level of detail (usually too much) for situations like these, and that is what happened this time. Another issue was I couldn't remember how Java's String methods were used to a) replace characters, and b) split a String into a character array. After the time was up, I opened up a new brach on my java-code-challenges repo and built-up the solution starting with my whiteboard notes, and going from there. Within about 2 hours I had a working solution, fully documented, with a full suite of unit tests.
+
+Takeaways:
+
+- I selected the most effecient solution (using a hashtable).
+- Inputs and Output depictions were correct and helped me walk through a partially functional algorithm.
+- Early on I wrote about my testing approach and several test cases, which prompted me to ask a few more questions about the problem domain, which helped later.
+- Drawing logic steps into boxes with true/false yes/no branching helped me complete the algorithm.
+- I need to ask if I am able to use existing language library data structures (like Hashtable), and be prepare to respond to interviewer questions about what I know. This way I don't waste time implementing those 'already implemented' structures if I don't really have to.
+- More practice is needed with Java String methods especially Replace, ReplaceAll, and toCharArray.
+- More practice is needed with simple RegEx like finding punctuation.
+
+A detailed readme with code analysis and links to the code and unit tests can be found [in the java-code-challenges repo](https://github.com/nojronatron/java-code-challenges/blob/main/docs/readme-uniqueCharsInString.md).
+
+Next up was behavioral questions practice. This really didn't take very long and I probably should have done 1 or 2 more, but there was an event coming up.
+
+The event was an Ops-301 final presentation. The students did really well, and it was interesting to see how they were solving problems like securing a network and wifi connectivity using VPNs, a capture portal, and AAA at the perimeter.
+
+Following that, I returned to CSS Animations. The goal is to learn how to make an animated "celebration" happen on a web page under certain conditions. I'm going to need several things:
+
+1. Knowledge of and experience with `@keyframes` and `animation` properties in CSS.
+1. Some emojis and/or small thumbnail images or drawings representing fun party stuff (party poppers, streamers, cake slices, lollipops, etc) that will be animated on-screen.
+1. A design for how this will be implemented in the LingoBingo project.
+
+I made a little progress by deploying a new ReactJS website to use as the experimentation sandbox. More to do tomorrow.
+
 ## Sunday 25-Sept-2022
 
 In my collaborative project 'LingoBingo js', there is a need to design an animation that happens when a user gets a Bingo. This is going to be a design challenge for me, since that is not my forte'. So to warm-up to the idea, I opened up [cssbattle.dev, battle number 2, item 17](https://cssbattle.dev/play/17). The image is somewhat complex:
@@ -19,7 +47,7 @@ Key takeaways:
 - In terms of css code required to meet the challenge, it *might* have been better to create 5 divs and use cascading techniques, since many of the elements ended up needed the same properties.
 - I started this challenge thinking "wow, can I even do this?" and ended with *100% match*!
 
-Next I completed Battle 2 Challenge 18 "Matrix", earning 600 pts for a 100% match... but it took 834 characters to do it. It makes me wonder:
+Next I completed CSS Battle 2 Challenge 18 "Matrix", earning 600 pts for a 100% match... but it took 834 characters to do it. It makes me wonder:
 
 - Is there an iterating mechanism in CSS?
 - Could columns or a minimalist Grid method saved on characters?
