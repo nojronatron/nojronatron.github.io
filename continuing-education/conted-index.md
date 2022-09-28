@@ -4,6 +4,7 @@ A collection of continuing education, research notes, and references.
 
 ## Table of Contents
 
+- [ ] Review Doubly Linked Lists, when to use them, and code-up a traversals for practice.
 - [ ] Review and gain experience with topics in [Best Practices With Generics And Collections](https://www.codejava.net/java-core/collections/18-java-collections-and-generics-best-practices) from codejava.net.
 - [ ] Java: Investigate [Rest-assured](https://rest-assured.io/) and [rest-assured github](https://github.com/rest-assured/rest-assured/wiki/GettingStarted) - a test framework library 'for REST built on HTTPBuilder' for Java.
 - [ ] Investigate [replit.com](https://replit.com)'s unit testing tool.
@@ -18,6 +19,7 @@ A collection of continuing education, research notes, and references.
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
 - [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
 - [ ] Wiring Repositories in Spring.
+- [X] Animating web elements using [CSS](./css-animations.html)
 - [X] React [NavBar with Router](./navbar-in-react-with-routing.html) notes from [WebDevSimplified - How to create a navbar in react with routing](https://www.youtube.com/watch?v=SLfhMt5OUPI)
 - [X] Get up to speed on React Router: [react-router-dom](./react-router-dom-notes.html) and react-router-native (which I won't cover here...at least not yet).
 - [X] Review 301 class notes regarding React, State, Props, and Components.
