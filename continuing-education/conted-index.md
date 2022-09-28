@@ -4,6 +4,7 @@ A collection of continuing education, research notes, and references.
 
 ## Table of Contents
 
+- [ ] Review Doubly Linked Lists, when to use them, and code-up a traversals for practice.
 - [ ] Review and gain experience with topics in [Best Practices With Generics And Collections](https://www.codejava.net/java-core/collections/18-java-collections-and-generics-best-practices) from codejava.net.
 - [ ] Java: Investigate [Rest-assured](https://rest-assured.io/) and [rest-assured github](https://github.com/rest-assured/rest-assured/wiki/GettingStarted) - a test framework library 'for REST built on HTTPBuilder' for Java.
 - [ ] Investigate [replit.com](https://replit.com)'s unit testing tool.
