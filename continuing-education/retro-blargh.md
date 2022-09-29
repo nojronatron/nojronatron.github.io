@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 29-Sept-2022
+
+I started today completing some housekeeping tasks - literally - so no technical work or exercises were done this morning.
+
+Back to the Java Code Challenge repository:
+
+
+
 ## Wednesday 28-Sept-2022
 
 There are never enough hours in a day to get things do:
