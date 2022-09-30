@@ -42,6 +42,8 @@ Ask questions to:
 
 - Determine what the starting point is.
 - Discover what an "end state" might be.
+- Determine "what type of" something is.
+- Find out what "that thing looks like" to the requestor/client.
 
 ## Handling Ambiguity
 
@@ -53,10 +55,26 @@ Communicate: Ask questions! State your assumptions *out loud*. Write-out your un
 
 Keep your cool: Good decisions don't come from a place of stress.
 
+## Mitigate Ambiguity
+
+Daily Standups: For the team specifically. Talk to each other.
+
+Documentation: Clarify in writing. Create a shared understanding.
+
+Clarify Requirements: Example scenarios. Reword the requirement. Ask open-ended questions. Start a discussion around the requirement(s).
+
+QA: Confirm functionality. Compare actual to what the requirements as asking for: User-acceptance testing.
+
+Show the Client: Demo the project. Do it early so the client can provide feedback and any changes can be made early and quickly.
+
 ## Key Takeaways
 
 - Do *not* assume that asking your question makes you look "dumb".
 - Open conversations rather than be fearful of asking a question.
+- Communicate MORE. Success in tech is *not possible* without asking questions, documenting ideas and expectations.
+- Diagrams can be helpful for the speaker and/or the audience.
+- Ask questions around input -> output. "If I give you input x, what would you expect the output to be?"
+- Confidence Level: A personal/professional, or group-level confidence in being able to meet a requirement. Use this as a yard-stick to determine readiness, or if more questions and refinement is necessary.
 
 ## Footer
 
