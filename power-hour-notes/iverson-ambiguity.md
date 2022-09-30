@@ -26,6 +26,38 @@ Unclear Goal: If looking at a spec/user story/etc does not define the work that 
 
 User stories should be refined into requirements for the current Sprint. Clarify User Stories regularly so that work items are well defined.
 
+In team collaboration (T-shooting, submitting requests, asking questions) there are plenty of opportunities for ambiguity to appear. My job is to ask questions and figure out the root cause of a problem, or what the actual ask is.
+
+Remember: I am not comfortable reporting ambiguous information to my manager, so it is my responsibility to dis-ambiguate so that I can articulate details to others (and be productive).
+
+Abiguity can result in:
+
+- Low productivity
+- Wasted time/effort
+- Creating the wrong thing
+- Inaccurate estimates
+- Missed deadlines
+
+Ask questions to:
+
+- Determine what the starting point is.
+- Discover what an "end state" might be.
+
+## Handling Ambiguity
+
+Accept it. Learn to navigate it. Build-up tolerance for it.
+
+Make uncomfortable decisions that might not be correct. It is *ok to fail*. Concentrate of *keeping moving forward*!
+
+Communicate: Ask questions! State your assumptions *out loud*. Write-out your understandings so others can read and consume them, and provide feedback and corrections to your assumptions.
+
+Keep your cool: Good decisions don't come from a place of stress.
+
+## Key Takeaways
+
+- Do *not* assume that asking your question makes you look "dumb".
+- Open conversations rather than be fearful of asking a question.
+
 ## Footer
 
 Back to [Root Readme.md](../README.html)  
