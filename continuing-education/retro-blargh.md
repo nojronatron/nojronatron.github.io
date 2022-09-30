@@ -2,6 +2,35 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 29-Sept-2022
+
+I started today completing some housekeeping tasks - literally - so no technical work or exercises were completed this morning. At least the house and yard are a tidied up a bit.
+
+Back to the Java Code Challenge: Browser Navigation History. I completed designing, implementing, and testing enhanced versions of Go, Forward, and Back methods. Confusing elements:
+
+1. Using a linked-list, it is most effecient to insert a new node at Head, so moving 'forward' through history move toward head.
+1. Moving foward through history means *decrementing an index* or traversing *previous* Node references (counter-intuitive).
+1. Chrome's Forward and Back buttons have a different "view" of the Browser history than `Chrome://history`! Figuring out which to follow (and why) caused me to develop *2* solutions to the code challenge.
+
+In retrospect:
+
+- When considering the problem domain, I need to ask *more questions* to better define the problem. I am too eager to get to solving the problem before I fully understand it.
+- Do not allow terms like 'forward' and 'back' pollute / distract from finding a viable algorithm design. Concentrate on the representations of those terms, and *how it translates to solving the problem*.
+
+There are a bunch of tasks now in my Trello board, one of them I haven't touched for several weeks: Java Project 'bitmap-transformer'. I'll take a peek at it and try to knock out something small before the day gets away from me.
+
+First things first: Can I build it? No, not with gradlew...and a few adjustments.
+
+- Problem: `gradlew` -> Command on found!
+- Solution: ZSH sees this as a label, not an executable file. Use `./` to prefix files in the current path.
+- Problem: `./gradlew` permission denied!
+- Solution: `sudo chmod +x ./gradlew`.
+- Solution? There is also `git update-index --chmod=+x gradlew` but that didn't seem to work - perhaps it needs the prefix for current directory also.
+
+It took a while but I started to figure out how the ImageBuffer class works, and the RGB / ARGB properties are handled internally. So I refactored and added to the existing code. Good news is it doesn't crash, and the arguments input to the App are accepted. Next step is to debug and find out why the output file is not written to disk. After that, find out if the image is changed at all, and if not, why not.
+
+But that will wait until tomorrow.
+
 ## Wednesday 28-Sept-2022
 
 There are never enough hours in a day to get things do:
