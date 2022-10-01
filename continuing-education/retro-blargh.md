@@ -2,6 +2,42 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 30-Sept-2022
+
+This morning I attempted another technical interview question and could not get code on the board before 40 minutes was up. I believe the overall design is *close*, but there is definitely a problem with the iterators and indexing. Using a Stack seems like a great idea though.
+
+Key takeaways:
+
+1. Remember that the Stack data structure has a Peek() method *and* an isEmpty() method. Be sure to consider their use and how they can help solve the problem at hand.
+1. When I'm struggling to deal with "cutting an array in half" and "iterating through the result(s)", just start drawing out an odd-count array and an even-count array and *work the problem until it is solved*. Do not just skip over it because it *will* bite later on.
+1. Developing a Stack's Pop() and Push() methods requires careful operation, depending on how many items (if any) are already in the Stack. Push: More than One? Only one? None? Pop: None? One? More than One? ...in those orders.
+1. When a method needs to raise an exception that means: *specify the exception in the method declaration* using the `throws` keyword.
+1. Before implementing generics, just use `Object`. Yes, un/boxing and various Casting calls will be necessary, but this will allow developing the solution rapidly, without getting hung up with Generics.
+1. When thinking about unit tests, especially with data structures that have linked Nodes, remember that an empty structure, a structure with a single item, and structures with few or many items may have slightly different behaviors, and those "boundaries" should be tested and are not really optional.
+1. Java's Char class *does* have `Character.toLowerCase(char)` *but* it is a little different than `String string = character.toString()` followed by `string.toLowerCase(Locale.ROOT)`. This might be worth reviewing a few times to get the hang of.
+1. Dividing an integer by 2 may cause a rounding error. I need to refamiliarize myself with what happens: Does it round UP or DOWN? (to be continued...)
+1. It is okay to pseudocode lots of placeholder variables that in real code won't be necessary (and might even be confusing), so try not to worry about that while tackling a technical interview question.
+
+This afternoon was a presentation by a Code Fellows alum and previously an instructor. She discussed the importance of, and how to work with, ambiguity.
+
+Key Takeaways:
+
+- You cannot get away from ambiguity, it is tech - it is life.
+- MANAGING ambiguity is where the rubber meets the road.
+- Asking questions is *critical* to working through ambiguity. Do *not* allow yourself (or anyone else) to say your question is not smart.
+- Sometimes we just don't know what we don't know, and occasionally we don't know it until it is too late or find out "in the end". This is going to happen so be prepared for it by allowing yourself to move on. It is not the end if/when this happens.
+- Use diagrams to help communicate your idea(s), or to help others guide you to answering questions.
+
+Ask questions to:
+
+- Determine what the starting point is.
+- Discover what an "end state" might be.
+- Determine "what type of" something is.
+- Find out what "that thing looks like" to the requestor/client.
+- Discovery inputs and outputs. These will help shape the "in between" that needs to be done.
+
+Well, that's time for today. Many other tasks stood-by while I got this sorted out, however these challenges are forcing me to break-down problems into very small parts, and think through solving each step in a sensible way. Back at it tomorrow!
+
 ## Thursday 29-Sept-2022
 
 I started today completing some housekeeping tasks - literally - so no technical work or exercises were completed this morning. At least the house and yard are a tidied up a bit.
