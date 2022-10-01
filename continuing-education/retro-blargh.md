@@ -2,6 +2,21 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 1-Oct-2022
+
+I spent some time figuring out how to install, configure, and utilize Jest. It's not that difficult really. Some key takeaways:
+
+- Non-strict comparisons (Equals) appear to be the default, and there chained methods that alter that behavior.
+- When comparing an object, like an array, use `isStrictlyEquals()` chained method.
+
+Jest supports:
+
+- Promises // asynchronous calls.
+- Mocking.
+- Web UI frameworks.
+
+I set up Jest on the Lingo Bingo project and submitted a PR with a couple of test files pointing to the purely functional modules. From here on out, it would be good to get unit tests written to any new PFM's or updates to existing ones.
+
 ## Friday 30-Sept-2022
 
 This morning I attempted another technical interview question and could not get code on the board before 40 minutes was up. I believe the overall design is *close*, but there is definitely a problem with the iterators and indexing. Using a Stack seems like a great idea though.
