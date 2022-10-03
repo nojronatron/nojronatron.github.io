@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 3-Oct-2022
+
+Updated the Trello and Whiteboard documentation for the LingoBingo project with ideas sparked from yesterday's conversation, and whatever occurred to me overnight.
+
+## Sunday 2-Oct-2022
+
+Met with my project cohort and reviewed the Trello board work items, updating and closing a few of them. There is a lingering issue of the full-page refresh when State is updated. Normally that wouldn't be a problem except the refresh causes the words to randomize again, which is a bug. We think that changing the location where the wordlist is imported and randomized will fix the problem, so I'll work on that and see what I can come up with. Ideas:
+
+1. Move the state to the level above the Gameboard. This makes sense from a few feature perspectives.
+1. Store the organized words into state and recall them once they are there, rather than from the randomizer.
+
 ## Saturday 1-Oct-2022
 
 I spent some time figuring out how to install, configure, and utilize Jest. It's not that difficult really. Some key takeaways:
@@ -15,7 +26,7 @@ Jest supports:
 - Mocking.
 - Web UI frameworks.
 
-I set up Jest on the Lingo Bingo project and submitted a PR with a couple of test files pointing to the purely functional modules. From here on out, it would be good to get unit tests written to any new PFM's or updates to existing ones.
+I set up Jest on the Lingo Bingo project and submitted a PR with a couple of test files pointing to the purely functional modules. From here on out, it would be good to get unit tests written to any new PFM's, or any updates to existing ones.
 
 ## Friday 30-Sept-2022
 
