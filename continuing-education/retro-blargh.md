@@ -17,6 +17,20 @@ We are going to have to figure out how to manage "Host" users vs. "Player" users
 
 Key takeaway: Trust myself a little more when it comes to solving problems related to React State.
 
+Code Challenges: I discovered that my solution to "Is Anagram" challenge was not quite right. Turns out the input was to be *2 strings* and the comparison is whether they are anagrams *of each other*. I might take on the challenge of fixing that in the near future.
+
+I attached another React Challenge: Add a toggle button that lets you sort the moves in either ascending or descending order. See entries from about 2 weeks ago for the full list and images of results.
+
+Key takeaways:
+
+- Create a new boolean State property that can be toggled, tracking ascending/descending order.
+- Define a variable to store the reverse-order of the list items. Since this was an array, use the built-in `.reverse()` method after using the spread operator `[...arr]` on existing items.
+- Create an event handler that simply toggles the sortAscending boolean: `!this.state.sortAscending,`.
+- Add a Button component to the rendered output and declare an *arrow function* as the 'onClick' argument: `onClick={()=>this.toggleDescending()}`.
+- An arrow function is *critical* so that this.state can be accessed within the event handler function.
+
+Fin!
+
 ## Sunday 2-Oct-2022
 
 Met with my project cohort and reviewed the Trello board work items, updating and closing a few of them. There is a lingering issue of the full-page refresh when State is updated. Normally that wouldn't be a problem except the refresh causes the words to randomize again, which is a bug. We think that changing the location where the wordlist is imported and randomized will fix the problem, so I'll work on that and see what I can come up with. Ideas:
@@ -249,9 +263,7 @@ Worked on React again. Had some difficulty figuring out how to pull-in data, pro
 
 Code Fellows held a Code 401 Instructor's Forum this afternoon. These are always fun, and are chock full of reminders about what the classes have to offer (and what I learned taking Java 401!). Also, the banter between the instructors is pretty good. Someone usually has a good tid-bit about the industry, new hot frameworks, or tips around contracting or freelancing.
 
-Speaking of which: I'm interesting in learning a little bit about:
-
-- [ ] [Tailwind C S S](https://tailwindcss.com/).
+Speaking of which: I'm interesting in learning a little bit about [Tailwind C S S](https://tailwindcss.com/). This has been added to my list of things I want to learn more about.
 
 Lastly, I worked through a couple behavioral questions this morning. It is getting easier to write these. I need to remember to speak these responses out loud so I get used to hearing the question asked, and hearing myself respond. During several of the Code Fellows class sessions, it was pointed out that having ready-to-go responses to many behavioral questions is good preparation for interviewing. The practice helps to releive anxiety, and makes for a more natural, relaxed, and focus response.
 
@@ -365,7 +377,11 @@ Here is a neat little [React js tutorial](https://reactjs.org/tutorial/tutorial.
 
   > ![Two loops in the code automate creating the board](./images/react-tac-toe-two-loops-build-board.png)
 
-- [ ] Add a toggle button that lets you sort the moves in either ascending or descending order.
+- [X] Add a toggle button that lets you sort the moves in either ascending or descending order.
+
+> ![Sort button added to game output](./images/react-tac-toe-sort-button.png)
+> ![Sort button clicked sorts descending history](./images/react-tac-toe-sort-button-clicked.png)
+
 - [ ] When someone wins, highlight the three squares that caused the win.
 - [ ] When no one wins, display a message about the result being a draw.
 
