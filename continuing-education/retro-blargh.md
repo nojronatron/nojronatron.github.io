@@ -29,7 +29,23 @@ Key takeaways:
 - Add a Button component to the rendered output and declare an *arrow function* as the 'onClick' argument: `onClick={()=>this.toggleDescending()}`.
 - An arrow function is *critical* so that this.state can be accessed within the event handler function.
 
-Fin!
+On to Java Code Challenges! Reviewing the isAnagram solution, it turns out I solved the *palindrome* problem instead of the anagram one. Granted, a palindrome *is* an anagram, there are a bunch of use cases that won't get solved by the isAnagram method I created. So I completed an update to the java code challenges repository that addresses that problem. There are now two classes - one for the Palindrome problem, another for the Anagram problem.
+
+Takeaways:
+
+- Pay closer attention to the problem domain. I shouldn't have missed the requirements of two string inputs, and it wouldn't have hurt to just Google (in this case) anagrams, to make sure I got it right to begin with.
+- Remember to use Enhanced For (Java; for-each in other languages) when I need to iterate through all items in a collection *but I don't need to know the exact index of each one*. It's simpler to code it this way and gets the same result w/o fear of an out of bounds or mis-typed variable.
+
+Also, when thinking about using Hash Table, recall that it:
+
+- Stores both Keys and Values.
+- Can return all keys.
+- Can return all values.
+- Can determine if a value is contained, or if a key is contained -- don't assume it is just the value that can be checked for!
+- Add and Delete are included in Hashtable that is included with the java libraries.
+- The hashtable might *not* solve the problem itself, but it can do the work of determining non-uniqueness in O(1) time with very little code.
+
+That's it for today.
 
 ## Sunday 2-Oct-2022
 
