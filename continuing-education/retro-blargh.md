@@ -36,6 +36,19 @@ boolean result = Pattern.matches(regex, inputParam);
 
 Responded to a behavioral interview question. This was in interesting one because it is basically asking what gets me exciting about software development. The basic answer is: solving problems, and watching unit tests pass, proving the problem is solved. There is more of course, but that is in the details of the answer I drew up and will refine.
 
+Final set of takeaways:
+
+- CodeFellows helped me to look up solutions to help me not get stuck.
+- Rotating an image in Java isn't too difficult, but requires a little fiddling with the Graphics2D and nBufferedImage classes.
+- Flipping an image is more difficult - AffineTransform class documentation is lacking info that I really need to help me understand how to use it.
+- AffineTransform leverages BufferedImage, but Graphics2D is not required.
+- Mirror and Rotate were easier to implement using existing libraries than they would have been to write my own.
+
+Last couple TODOs for the bitmap-transform project:
+
+- [ ] Add unit tests.
+- [ ] Add method documentation to the codefile.
+
 ## Monday 3-Oct-2022
 
 Updated the Trello and Whiteboard documentation for the LingoBingo project with ideas sparked from yesterday's conversation, and whatever occurred to me overnight.
