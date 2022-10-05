@@ -16,7 +16,9 @@ React Deployment Key Takeaways:
 - Follow README.md steps that React installs on your site for reminders and more info.
 - Removing default icons and components is fairly easy, just be sure to review `manifest.json` and make edits only as necessary.
 
-I wrote a new article about [CORS](./cors-review.html) so I could easily reference it later. This could help helpful on future web projects such as LingoBingo and other project ideas I have.
+While listending to the Syntax podcast, there was mention about CORS and CORS-related issues, so I took some notes. This lead to writing a new article about [CORS](./cors-review.html) so I could easily reference it later. This could help helpful on future web projects such as LingoBingo and other project ideas I have.
+
+My attempt at a 40-minute technical interview challenge ended with timer expired before I could finish writing java code. Completing the code, then writing about testing approach, and of course Big-O were necessary to ensure points capture. Later, this item will be added to the Java Code Challenges repository (just like the others) and must be re-attempted at a later date.
 
 ## Tuesday 4-Oct-2022
 
