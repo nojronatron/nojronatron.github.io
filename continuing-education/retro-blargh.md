@@ -2,6 +2,64 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 4-Oct-2022
+
+Back to the bitmap transformer project! Had I taken time to look into BufferedImage class back when I first did this assignment, I probably would have been able to complete it, or at least get one transform done (instead of none). Key takeaways:
+
+- ImageIO suports bmp, png, gif, and jpg filetypes except for `write()` method => *bmp is not supported*. To get around write, write a PNG file instead.
+- There are built-in draw and edit capabilities in the java library java.awt.Graphics that are good for drawing, filling, or adjusting the size of existing images.
+- SGOESCH has an interesting github project called [java image processing survival guide](https://github.com/sgoeschl/java-image-processing-survival-guide/blob/master/paper/README.md) that has some helpful info about Java and image processing, handling.
+
+If I ever want to show some regex skills, I'll need to become more familiar with [Pattern and Matcher](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html) classes in Java.
+
+- Import java.util.regex.Pattern.
+- Use the first codeblock for multi-use.
+- Use the second codeblock for single-invokation.
+
+Multi-use:
+
+```java
+String inputParam = "I contain letters and spaces.";
+String regex = "[a-zA-Z]";
+Pattern pattern = Pattern.compile(regex);
+Matcher matcher = pattern.matcher(inputParam);
+boolean result = matcher.matches();
+```
+
+Single-use:
+
+```java
+boolean result = Pattern.matches(regex, inputParam);
+```
+
+*Note*: The Oracle Java docs have a special set of REGEX rules that are *slightly* different than what I've seen elsewhere (e.g. regex101).
+
+Responded to a behavioral interview question. This was in interesting one because it is basically asking what gets me exciting about software development. The basic answer is: solving problems, and watching unit tests pass, proving the problem is solved. There is more of course, but that is in the details of the answer I drew up and will refine.
+
+Final set of takeaways:
+
+- CodeFellows helped me to look up solutions to help me not get stuck.
+- Rotating an image in Java isn't too difficult, but requires a little fiddling with the Graphics2D and BufferedImage classes.
+- Flipping an image is more difficult - AffineTransform class documentation is lacking info that I really need to help me understand how to use it.
+- AffineTransform leverages BufferedImage, but Graphics2D is not required.
+- Mirror and Rotate were easier to implement using existing libraries than they would have been to write my own.
+
+Last couple TODOs for the bitmap-transform project:
+
+- [ ] Add unit tests.
+- [ ] Add method documentation to the codefile.
+
+While I was checking in to a couple of ham radio nets, I decided to take a peek at the NWS API. Key takeaways:
+
+- There are requirements to connect, but no API Key nor cost for accessing the data.
+- They will throttle requests.
+- Be courteous - include your email in the User-Agent header.
+- Examples of working API calls are stored in my ThunderClient.
+
+I added some comments to my "Practice Boards" in Miro, as well as some added Cards and details to Trello for future projects based on using NWS API.
+
+That will be it for this very productive day!
+
 ## Monday 3-Oct-2022
 
 Updated the Trello and Whiteboard documentation for the LingoBingo project with ideas sparked from yesterday's conversation, and whatever occurred to me overnight.
