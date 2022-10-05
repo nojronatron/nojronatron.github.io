@@ -2,6 +2,10 @@
 
 CORS is a safety feature that restricts certain types of traffic between web apps and servers.
 
+In past projects I have run into CORS-related issues and it has taken lots of time to resolve these.
+
+This reference documentation is meant to be a high-level review of how and why CORS works, with links to references to more detail.
+
 ## Overview
 
 CORS: Cross Origin Resource Sharing [on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
@@ -84,7 +88,7 @@ XRH must include 'WithCredentials' flag (see code example) to allow cookie-setti
 
 This gets a little complicated. Check out the [example on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#requests_with_credentials) that details what is going on and why.
 
-## Preflight Requets with Credentials
+## Preflight Requests with Credentials
 
 Wildcard *not* allowed in 'Access-Control-Allow-Origin' response header.
 
@@ -98,7 +102,24 @@ Wildcard *not* allowed in 'Acces-Control-Allow-Methods' response header.
 
 Response header must have explicit allow methods list.
 
+## Third Party Cookies
 
+Subject to cookie policies.
+
+## HTTP Response Headers
+
+- access-control-allow-origin
+- access-control-expose-headers
+- access-control-max-age
+- access-control-allow-credentials
+- access-control-allow-methods
+- access-control-allow-headers
+
+## HTTP Request Headers
+
+- origin
+- access-control-request-method
+- access-control-request-headers
 
 ## General Notes
 
