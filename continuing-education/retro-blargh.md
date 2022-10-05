@@ -2,6 +2,20 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 5-Oct-2022
+
+At this point I've deployed a new React website a few times. If from here-on-out I continue doing React Web Dev, I'm sure it wouldn't be an issue to know how to deploy a new React site, or add React to an existing one. However, right now I have many different tasks on my self-assigned plate, from web dev, to Java dev, to software design, project management, and algorithm studies. This makes it difficult to be an expert in any one area, and I recognize the power of knowing React and web development so it is important to have some key takeaways to look back on.
+
+React Deployment Key Takeaways:
+
+- For a new site, ground-up: `npx new-react-app {project-name}`. CD to 'project-name' => Default React site with Git already initialized.
+- Install dependencies: `npm install` or specify: `npm install {module-name module2-name ...}`
+- Launch the React site: `npm start`
+- Deploy production-ready: `npm run build`
+- Execute defined tests in configured framework: `npm test`
+- Follow README.md steps that React installs on your site for reminders and more info.
+- Removing default icons and components is fairly easy, just be sure to review `manifest.json` and make edits only as necessary.
+
 ## Tuesday 4-Oct-2022
 
 Back to the bitmap transformer project! Had I taken time to look into BufferedImage class back when I first did this assignment, I probably would have been able to complete it, or at least get one transform done (instead of none). Key takeaways:
