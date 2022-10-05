@@ -16,6 +16,8 @@ React Deployment Key Takeaways:
 - Follow README.md steps that React installs on your site for reminders and more info.
 - Removing default icons and components is fairly easy, just be sure to review `manifest.json` and make edits only as necessary.
 
+I wrote a new article about [CORS](./cors-review.html) so I could easily reference it later. This could help helpful on future web projects such as LingoBingo and other project ideas I have.
+
 ## Tuesday 4-Oct-2022
 
 Back to the bitmap transformer project! Had I taken time to look into BufferedImage class back when I first did this assignment, I probably would have been able to complete it, or at least get one transform done (instead of none). Key takeaways:
