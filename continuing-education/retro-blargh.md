@@ -39,7 +39,7 @@ Responded to a behavioral interview question. This was in interesting one becaus
 Final set of takeaways:
 
 - CodeFellows helped me to look up solutions to help me not get stuck.
-- Rotating an image in Java isn't too difficult, but requires a little fiddling with the Graphics2D and nBufferedImage classes.
+- Rotating an image in Java isn't too difficult, but requires a little fiddling with the Graphics2D and BufferedImage classes.
 - Flipping an image is more difficult - AffineTransform class documentation is lacking info that I really need to help me understand how to use it.
 - AffineTransform leverages BufferedImage, but Graphics2D is not required.
 - Mirror and Rotate were easier to implement using existing libraries than they would have been to write my own.
