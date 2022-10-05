@@ -49,6 +49,17 @@ Last couple TODOs for the bitmap-transform project:
 - [ ] Add unit tests.
 - [ ] Add method documentation to the codefile.
 
+While I was checking in to a couple of ham radio nets, I decided to take a peek at the NWS API. Key takeaways:
+
+- There are requirements to connect, but no API Key nor cost for accessing the data.
+- They will throttle requests.
+- Be courteous - include your email in the User-Agent header.
+- Examples of working API calls are stored in my ThunderClient.
+
+I added some comments to my "Practice Boards" in Miro, as well as some added Cards and details to Trello for future projects based on using NWS API.
+
+That will be it for this very productive day!
+
 ## Monday 3-Oct-2022
 
 Updated the Trello and Whiteboard documentation for the LingoBingo project with ideas sparked from yesterday's conversation, and whatever occurred to me overnight.
