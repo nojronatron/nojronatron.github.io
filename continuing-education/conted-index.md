@@ -20,6 +20,7 @@ A collection of continuing education, research notes, and references.
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
 - [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
 - [ ] Wiring Repositories in Spring.
+- [X] Cross Origin Resource Sharing [CORS](./cors-review.html)
 - [X] Animating web elements using [CSS](./css-animations.html)
 - [X] React [NavBar with Router](./navbar-in-react-with-routing.html) notes from [WebDevSimplified - How to create a navbar in react with routing](https://www.youtube.com/watch?v=SLfhMt5OUPI)
 - [X] Get up to speed on React Router: [react-router-dom](./react-router-dom-notes.html) and react-router-native (which I won't cover here...at least not yet).
