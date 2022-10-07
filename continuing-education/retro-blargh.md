@@ -4,7 +4,9 @@ Semi-regular notes taken during my software developer journey.
 
 ## Friday 7-Oct-2022
 
-There are a couple of presentations I want to attend early this afternoon so I need to get productive, now!
+There are a couple of presentations I want to attend early this afternoon.
+
+First was refactoring: How and why. In essence, code smells will appear for many reasons, and it is important to try and refactor code to remove the code smells, making it more easily readable, less prone to bugs, and better performing.
 
 Started working through Lingo Bingo logic to determine when a Bingo has been attained. This will be in a dev branch and can get refactored and reworked as necessary.
 
