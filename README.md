@@ -204,6 +204,8 @@ The following are reading and research notes taken during, and in preparation fo
 
 ## Reference Links
 
+:link: Aseprite [Animated Sprite Editor and Pixel Art Tool](https://www.aseprite.org/)
+
 :link: Mozilla Developers Network [Reference Docs](https://developer.mozilla.org/en-US/docs/Web)
 
 :link: Career Launch Strategy [Notes](./code201-files/CareerLaunchStrategy.html)
