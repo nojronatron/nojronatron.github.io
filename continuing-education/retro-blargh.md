@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 7-Oct-2022
+
+There are a couple of presentations I want to attend early this afternoon so I need to get productive, now!
+
+Started working through Lingo Bingo logic to determine when a Bingo has been attained. This will be in a dev branch and can get refactored and reworked as necessary.
+
 ## Thursday 6-Oct-2022
 
 Bitmap Transformer Project: It took a bit longer than I thought it would, but I completed this project today! While writing up method descriptions I realized many methods were too busy, and some basic checks were not being done at all, or not very well. Also, while writing unit tests I realized there was some logical processing flow that didn't make sense, so some refactoring had to be done.
@@ -12,7 +18,7 @@ Key Takeaways:
 1. The Main entry point is a static method. That means instantiation is not required for entry. Other methods that App needs might need to be non-static, so take that into consideration when building a console app.
 1. In hindsight it would have been better to do more design planning for this project, and the general flow would have been better. For example, a better naming scheme for methods, and the order the methods needed to be called, and when the app would exit, would have been better designed.
 1. Exception handling was, exceptional, in the busy sort of sense. If I was to do this again I would try to track exception handling paths better so they were easier to track and manage during dev and test cycles.
-1. Building the app to run in IntelliJ IDEA is different than producing Artifacts (JAR files and errata) for execution outside of the IDE.
+1. Building the app to run in IntelliJ IDEA is different than producing Artifacts (JAR files and etc) for executing in a shell or terminal environment.
 1. Gradle is a different beast. It is easy to forget the requirements to get initialize, build, test, and run a project properly. Review notes in bitmap-transformer and other places to get through these challenges.
 1. Working with graphics is complex. Lots of math can be involved, and the existing Libraries in Java are not documented to my liking. At least docs existed and it was good that I found some example usages online and leveraged that code, then refactored it to apply to this project.
 1. A good hands-on test is to re-use the same file over-and-over when reading and writing files. Running Bitmap Transformer JAR against a bitmap file multiple times would fail after 1-2 transformations. Not sure why, and don't plan to persue it at this time, but this is something that could happen on other projects where file Create, Read, and Update operations are performed.
@@ -22,13 +28,14 @@ Behavioral questions: I addressed two of these today. One was a revisit, the oth
 
 Working through some Java concepts in ReplIt, I discovered that replit isn't really a great place to sandbox Java code. It seems to be unaware of basic Java libraries like Pattern and Matcher classes. So instead I spent a little time fiddling with JS arrow functions.
 
-Key Takeaways:
+Key Takeaways about Arrow Functions:
 
-- Are not methods, do not understand scope, 'this', and 'super'.
+- Are not methods.
+- Do not understand scope, 'this', and 'super', in the usual sense.
 - Cannot be used as constructors and are not able to use 'yield'.
 - CAN be treated like variables when used in the 'function body' format: `const result = (params) => { codeBlock; return value; }`.
 - Assigning the arrow function to a value allows calling it like `result(myParam)`.
-- Any necessary operations can be performed on the result directly.
+- Any necessary operations can be performed *directly* on the result.
 
 An example of what I threw together can be found on [ReplIt](https://replit.com/@JonRumsey/CoordinatesFun).
 
