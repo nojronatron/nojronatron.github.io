@@ -20,6 +20,18 @@ Key Takeaways:
 
 Behavioral questions: I addressed two of these today. One was a revisit, the other was one I hadn't responded to before.
 
+Working through some Java concepts in ReplIt, I discovered that replit isn't really a great place to sandbox Java code. It seems to be unaware of basic Java libraries like Pattern and Matcher classes. So instead I spent a little time fiddling with JS arrow functions.
+
+Key Takeaways:
+
+- Are not methods, do not understand scope, 'this', and 'super'.
+- Cannot be used as constructors and are not able to use 'yield'.
+- CAN be treated like variables when used in the 'function body' format: `const result = (params) => { codeBlock; return value; }`.
+- Assigning the arrow function to a value allows calling it like `result(myParam)`.
+- Any necessary operations can be performed on the result directly.
+
+An example of what I threw together can be found on [ReplIt](https://replit.com/@JonRumsey/CoordinatesFun).
+
 ## Wednesday 5-Oct-2022
 
 At this point I've deployed a new React website a few times. If from here-on-out I continue doing React Web Dev, I'm sure it wouldn't be an issue to know how to deploy a new React site, or add React to an existing one. However, right now I have many different tasks on my self-assigned plate, from web dev, to Java dev, to software design, project management, and algorithm studies. This makes it difficult to be an expert in any one area, and I recognize the power of knowing React and web development so it is important to have some key takeaways to look back on.
