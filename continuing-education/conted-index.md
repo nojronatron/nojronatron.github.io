@@ -4,6 +4,7 @@ A collection of continuing education, research notes, and references.
 
 ## Table of Contents
 
+- [ ] Learn about Flutter, a mobile framework. Bellingham Codes group mentioned it, along with some praise.
 - [ ] [Tailwind C S S](https://tailwindcss.com/).
 - [ ] Review Doubly Linked Lists, when to use them, and code-up a traversals for practice.
 - [ ] Review and gain experience with topics in [Best Practices With Generics And Collections](https://www.codejava.net/java-core/collections/18-java-collections-and-generics-best-practices) from codejava.net.
