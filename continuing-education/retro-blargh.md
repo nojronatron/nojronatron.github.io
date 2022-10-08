@@ -10,6 +10,15 @@ First was refactoring: How and why. In essence, code smells will appear for many
 
 Started working through Lingo Bingo logic to determine when a Bingo has been attained. This will be in a dev branch and can get refactored and reworked as necessary.
 
+Key Takeaways:
+
+- Jest will not tell you everything you need to know about a test failure, so don't expect it.
+- When Arrays or Objects are not supplying data the way you expect it, start at the data itself, then the first component to touch it, then the next component, and so-on.
+- Don't troubleshoot the Jest Test when the problem is deeper than "the test fails", go to the modules/functions under test!
+- When passing JS or ES6 Arrays as arguments to functions, use `.map()` and `.forEach()` to push data into an Array explicitly so there are no assumptions about A) the data getting added to the array, and B) the number of items the array will contain.
+- It paid off to build Jest Tests early on while developing these functions (there were 5 of them!), as the tests discovered *plenty* of issues with my original code attempts.
+- Worry less about making the code beautiful until *after* the code is passing unit tests and is 'done'... *then* refactor it.
+
 ## Thursday 6-Oct-2022
 
 Bitmap Transformer Project: It took a bit longer than I thought it would, but I completed this project today! While writing up method descriptions I realized many methods were too busy, and some basic checks were not being done at all, or not very well. Also, while writing unit tests I realized there was some logical processing flow that didn't make sense, so some refactoring had to be done.
