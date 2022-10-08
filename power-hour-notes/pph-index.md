@@ -4,6 +4,8 @@ Notes taken while attending Power Hour sessions - videos and/or in-person events
 
 ## Index
 
+Wes R [Patterns of Refactoring Code](./wesr-refactoring-patterns.html)
+
 Ethan D [Scripting: Turn problems into commands into tools](./pph-scripting-ethand.html)
 
 Matt Raio [Troubleshooting using the OSI Model](./tshoot-osi-model.html)
