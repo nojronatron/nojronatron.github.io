@@ -114,6 +114,8 @@ Put yourself in the position of the executives, where you have to figure out the
 
 Conversations about goals and alignments *might not be happening* further up the chain, even though *we believe they are happening*. Be a part of the solution to help make these conversations happen.
 
+Ask for course-corrections *for yourself* from management and executives, to spark the conversations and get hard information when possible.
+
 ## Footer
 
 Back to [root readme](../README.html)
