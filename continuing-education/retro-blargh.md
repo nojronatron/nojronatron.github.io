@@ -2,6 +2,20 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 8-Oct-2022
+
+Today I worked through writing the basics of a Graph Data Structure, and the traversal algorithms. I found an interesting slide deck for a computer science class at the UW [CSE 417: Algorithms and Computational Complexity](https://courses.cs.washington.edu/courses/cse417/12wi/notes/03graphs.pdf) that was helpful. It had an interesting quote from [Walter Ruzzo](https://homes.cs.washington.edu/~ruzzo/), Professor of Computer Science & Engineering and Adjunct Professor at the University of Washington.
+
+> "Never write an argument you are not convinced in because this may damage your brain." *[Ruzzo]*
+
+Some key takeaways:
+
+- (preliminary) The Adjacency List could be used as a Visited Nodes collection for traversals.
+- Graph Nodes need to store the Edge(s) that they connect to.
+- Each Edge is considered a directional path leading to another Graph Node.
+- An Edge could theoretically have a 'neighbor' that is the host Node itself, so maintaining a list of traversed nodes is necessary to prevent a iterating problem that this configuration could otherwise allow.
+- Assume that an Edge has a weight of 0 even if the problem domain doesn't require it.
+
 ## Friday 7-Oct-2022
 
 There are a couple of presentations I want to attend early this afternoon.
