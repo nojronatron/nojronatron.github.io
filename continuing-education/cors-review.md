@@ -125,6 +125,12 @@ Subject to cookie policies.
 
 Cookie Header can be considered a Credential!
 
+## Resources
+
+Cross Origin Resource Sharing [on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+
+[Web Dev Simplified: CORS in 6 minutes](https://www.youtube.com/watch?v=PNtFSVU-YTI)
+
 ## Footer
 
 Return to [root README](../README.html)

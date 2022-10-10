@@ -2,6 +2,21 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 9-Oct-2022
+
+Reviewed some of Ryan's code for the LingoBingo project. He's working on a play again button, so I reviewed the code, pulled in his changes and ran them, and sent him some feedback. That functionality will definitely be needed but it's not fully baked yet.
+
+On Friday I experienced some anxiety figuring out why some of my Jest Tests were failing, and others would appear to hang. There are key takeaways for Friday that cover most of the items but there was one remaining question: Do Jest Tests run in parallel? Behavior of `npm test` output and the errors I was seeing suggested that was the case, and today I verified it with some internet searching. According to www.oreilly.com and [a github facebook Jest issue 5818](https://github.com/facebook/jest/issues/5818). A read through provided some detail on how Jest operates.
+
+Key takeaway on Jest parallelism:
+
+> Assume Jest will run your tests in parallel. It might not, but unexpected side-effects will happen when assuming otherwise.
+
+After integrating my calculation components into the Lingo Bingo React project, it became clear that one of them needed to carry more weight, and provide better output, so I refactored it. This meant that the Jest tests had to be updated. This work is incomplete as of the end of tonight, so I'll pick it up tomorrow. Takeaways?
+
+- Build Components that actually help with their output rather than just transform inputs to some other outputs that require more processing.
+- That might not always be possible but it is helpful if a component is good at something, taking away the responsibility of the calling function or component to figure out what the output really means.
+
 ## Saturday 8-Oct-2022
 
 Today I worked through writing the basics of a Graph Data Structure, and the traversal algorithms. I found an interesting slide deck for a computer science class at the UW [CSE 417: Algorithms and Computational Complexity](https://courses.cs.washington.edu/courses/cse417/12wi/notes/03graphs.pdf) that was helpful. It had an interesting quote from [Walter Ruzzo](https://homes.cs.washington.edu/~ruzzo/), Professor of Computer Science & Engineering and Adjunct Professor at the University of Washington.
@@ -27,6 +42,7 @@ Started working through Lingo Bingo logic to determine when a Bingo has been att
 Key Takeaways:
 
 - Jest will not tell you everything you need to know about a test failure, so don't expect it.
+- Jest is most likely running the tests *in parallel*. There are heuristics that decide whether to run asynchronously or not. It is probably best to assume synchronous most of the time.
 - When Arrays or Objects are not supplying data the way you expect it, start at the data itself, then the first component to touch it, then the next component, and so-on.
 - Don't troubleshoot the Jest Test when the problem is deeper than "the test fails", go to the modules/functions under test!
 - When passing JS or ES6 Arrays as arguments to functions, use `.map()` and `.forEach()` to push data into an Array explicitly so there are no assumptions about A) the data getting added to the array, and B) the number of items the array will contain.
