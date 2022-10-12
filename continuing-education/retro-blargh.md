@@ -4,7 +4,13 @@ Semi-regular notes taken during my software developer journey.
 
 ## Wednesday 12-Oct-2022
 
+Watching Microsoft Ignite 2022 this morning, looking forward to hear what is next from Microsoft.
+
 GitHub Universe is set for November 9th and 10th 2022.
+
+Git tid-bit:
+
+`git commit -c {id}` allows updating a commit message for a commit with *id*.
 
 ## Tuesday 11-Oct-2022
 
