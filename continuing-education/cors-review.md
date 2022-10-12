@@ -111,7 +111,7 @@ Subject to cookie policies.
 - access-control-allow-origin
 - access-control-expose-headers
 - access-control-max-age
-- access-control-allow-credentials
+- access-control-allow-credentials (this means browser will automatically add credentials, unlike implementing credentials in code)
 - access-control-allow-methods
 - access-control-allow-headers
 
@@ -120,6 +120,78 @@ Subject to cookie policies.
 - origin
 - access-control-request-method
 - access-control-request-headers
+
+## Key Takeaways: Jake Achibald
+
+See [Resources](#resources) for the blog post where I took these key takeaways:
+
+- `Content-type`: Tells the server what content to except from the caller.
+- `X-Content-Type-Options: nosniff`: Header tells server to not parse content unless content-type is set. This covers lots of 'other origin' requests too, and led to protection called CORB.
+- `SameSite` cookie attribute: The 2nd site opts-in to cookies sent with the request (e.g. login state).
+- Frames presented a cross-site origin problem that led to the `same-origin` policy.
+- An origin is the web address *from the protocol through the domain including the port*, and is the 'referer' aka origin of the page that made the request.
+- `XMLHttpRequest` grew out of `new ActiveXObject('Microsoft.XMLHTTP')` and requires same-origin.
+- A 'site' is the domain name of an equivalent 'origin'.
+- There is something called a 'public suffix list' that all browsers use that helps distinguish between same-site and same-origin addresses.
+- Flash went with a resource opt-in model based on cross-domain XLM files that became difficult to manage (of course) and required multiple requests from callers.
+- If both sides had an opt-in, they can declare happy origins using `postMessage` -- this worked for frame-to-frame traffic.
+- Opt-in via HTTP Header `Access-Control-Allow-Origin: *` (used today).
+- Troubleshoot CORS issues: Open Network DevTools and look for `Sec-Fetch-Mode` header, which shows 'cors' or 'no-cors' (Chrome, Firefox).
+- To force non-cors to a cors request, implement `crossorigin` attribute e.g. `<link crossorigin rel="" href="" />`
+- CORS requests are by default made *without* credentials. Same-origin requests include cookies, or client certs, or Authorization header, or Set-Cookie.
+- Not all websites accept `origin` for all requests (e.g. WebSocket, POST, GET, etc) as it triggers a 'cors' flag so does not work.
+- All headers are case-insensitive keys, but *case sensitive* values.
+- Headers can be exposed (except protected ones like `Set-Cookie`). `Access-Control-Expose-Headers:` can be used with wildcard or certain header types.
+- Browser Caches have partitions for caching credentialed requests, although implementations are different.
+- There are additional implications with long-term caching. In short, change the URL/Name in `Access-Control-Allow-Origin` so the client gets a new header, rather than using the cached one.
+- When CDNs or browser cache reuses a response with private data, that data should be considered exposed: Non-cors fetch -> Response goes into cache -> cors fetch for same -> Cache returns original reponse. Include `Vary: Cookie` so that 'only cached version of this state of Cookie header match to original request can be served'. `Vary: Origin` can be used as a flag to indicate a cors request (but is not a guarantee). `Vary: Origin, Cookie` allows checking for *both* which can help work around this issue.
+- No private data? Use `Access-Control-Allow-Origin: *`.
+- Sometimes contains private data (per cookies)? Use both `Access-Control-Allow-Origin:*` and `Vary: Cookie`. This fixes browser and CDN Cache handling of cors requests with private data.
+- Avoid using `Access-Control-Allow-Origin: *` if serving secured data, else it *will* leak elsewhere as a caller can send it anywhere.
+
+### Adding Credentials
+
+Add credentials back in to CORS requests:
+
+Using "fetch": `const response = await fetch(url, { credentials: 'include', });`
+Using HTML: `<img crossorigin="use-credentials" src="" />`. Response must contain access control allow credentials and origin headers as well as 'Vary: Cookie Origin`!
+
+### Preflight
+
+Requests that browser API's *don't generally make*, it is an 'unusual request' from the perspective of cors.
+
+Request type determines 'usual': `GET`, `HEAD`, or `POST`.
+
+Request headers that are 'unusual': Headers not on a 'safelist'.
+
+Headers `Access-Control-Request-Method: ...` and `Access-Control-Request-Headers: item, item2, ...` with a method of `Options` are sent to the destination URL. No credentials are sent in preflight request.
+
+Preflight server response could be happy or not:
+
+happy:
+
+```text
+Access-Control-Max-Age: seconds-in-effect
+Access-Control-Allow-Methods: unusual-methods-to-allow
+Access-Control-Allow-Headers: unusual-headers-to-allow
+```
+
+FORBIDDEN LIST: Browser-controlled list of headers that are always stripped from cors requests.
+
+Preflight response must pass CORS check so status code must be in 200's and response headers must include:
+
+```text
+Access-Control-Allow-Origin
+Access-Control-Allow-Credentials: true
+```
+
+*Remember*: Access-Control-Allow-Credentials means *the browser* is *automatically* adding credentials to the request, *not* implemented custom headers!
+
+After Preflight response is received *then* the actual request can be sent.
+
+The post-preflight request *must also pass cors tests* or it will be forbidden or ignored.
+
+Note: HTTP Method names *might be case sensitive*, meaning the browser might require `Access-Control-Allow-Methods` names to be UPPER-CASED, else they will not pass the check. It is okay to duplicate the method name in Pascal-Case and UPPER-CASE in the same header.
 
 ## General Notes
 
@@ -130,6 +202,8 @@ Cookie Header can be considered a Credential!
 Cross Origin Resource Sharing [on MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 [Web Dev Simplified: CORS in 6 minutes](https://www.youtube.com/watch?v=PNtFSVU-YTI)
+
+[Jake Archibald's blog page](https://jakearchibald.com/2021/cors/)
 
 ## Footer
 

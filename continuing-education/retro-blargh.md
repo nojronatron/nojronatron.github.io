@@ -2,6 +2,19 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 11-Oct2022
+
+Another poster added a link to [Jake Archibald's blog page](https://jakearchibald.com/2021/cors/) that discusses *CORS* in historic detail. It's also pretty humorous. Key takeaways are stored in [cors-review](./cors-review.html). Key takeaways for right here:
+
+- Preflight not required for same origin, non-credentialed requests.
+- Preflight not required when headers include 'access-control-request-method' and 'access-control-request-headers' that are acceptable to the server.
+- Preflight is triggered for requests that are *not* GET, HEAD, or POST, and/or include unusual Headers or Methods.
+- Preflight is triggered when requests ask for headers *not on a safelist*.
+- CORS preflight and responses can be seen using DevTools, Network tab. Use it!
+- It is not good enough to just allow wildcards, as that will not override preflight requirements.
+- Browser and CDN caches can cause issues with CORS. Use `Vary: Cookie` and `Vary: Origin` to ensure caches do not send aged response instead of fresh one.
+- No private data? Use `Access-Control-Allow-Origin: *`.
+
 ## Monday 10-Oct-2022
 
 Seems like using `this.setState((prevStat) => {})` will alter the developer's approach to updating State under certain circumstances. For example, if a collection of items is already a property of State, and another property changes based on that collection, then updating the second property will not be possible in a single setState call.
