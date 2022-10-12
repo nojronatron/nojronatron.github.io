@@ -12,6 +12,8 @@ Git tid-bit:
 
 `git commit -c {id}` allows updating a commit message for a commit with *id*.
 
+What is an OKR? Objective and Key Result. OKRs enable setting and communicatingn goals and milestones.
+
 ## Tuesday 11-Oct-2022
 
 Another poster added a link to [Jake Archibald's blog page](https://jakearchibald.com/2021/cors/) that discusses *CORS* in historic detail. It's also pretty humorous. Key takeaways are stored in [cors-review](./cors-review.html). Key takeaways for right here:
