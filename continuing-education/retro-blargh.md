@@ -14,6 +14,9 @@ Git tid-bit:
 
 What is an OKR? Objective and Key Result. OKRs enable setting and communicatingn goals and milestones.
 
+- An objective is the focus of the work at hand; the achievement to unlock. These should be action orientated. The "what" to accomplish.
+- Key Results are milestones along the journey to the objectice. These should be time-bound, measurable, and specific. The big "hows" to accomplish.
+
 Scott Hanselman: Agressive-refresh is available is Chrome! Open DevTools then rClick the refresh button.
 
 - Normal Reload.
@@ -22,7 +25,11 @@ Scott Hanselman: Agressive-refresh is available is Chrome! Open DevTools then rC
 
 Individual SysInternals tools can be downloaded direct from internet file share :boom:`\\live.systeminternals.com`:boom:.
 
-Quite by accident I bumped into [cheeriojs/cheerio](https://github.com/cheeriojs/cheerio), an open source project that scrapes web pages and returns a tight, scaled-down DOM. [ikatyang's emoji cheat sheet](https://github.com/ikatyang/emoji-cheat-sheet) utilizes cheerio to create the list. Turns out there is a 'good first issue' item in the Cheeriojs repository, so I forked it for future inspection.
+During the break in MS Ignite sessions I worked on LingoBingojs. I updated information on a PR so that my partner could make some tweaks and the PR could be incorporated to main. We're getting pretty close to first MVP!
+
+Quite by accident I bumped into [cheeriojs/cheerio](https://github.com/cheeriojs/cheerio), an open source project that scrapes web pages and returns a tight, scaled-down DOM. [ikatyang's emoji cheat sheet](https://github.com/ikatyang/emoji-cheat-sheet) utilizes cheerio to create the list. Turns out there is a 'good first issue' item in the Cheeriojs repository, so I forked it for future inspection. This could be a good next opportunity to contribute to the OSS world.
+
+Back to MS Ignite, David Fowler and Damian Edwards shared some interesting ASP.Net 6 and DotNET 7 preview code and features. In the past, these sessions have been difficult to track. Now, with my retraining in software development, it made lots of sense up front! :brain: :smiley: :beer: :beer:
 
 ## Tuesday 11-Oct-2022
 
