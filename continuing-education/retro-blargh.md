@@ -20,6 +20,10 @@ Scott Hanselman: Agressive-refresh is available is Chrome! Open DevTools then rC
 - Hard Reload.
 - Empty Cache *and* Hard Reload.
 
+Individual SysInternals tools can be downloaded direct from internet file share :boom:`\\live.systeminternals.com`:boom:.
+
+Quite by accident I bumped into [cheeriojs/cheerio](https://github.com/cheeriojs/cheerio), an open source project that scrapes web pages and returns a tight, scaled-down DOM. [ikatyang's emoji cheat sheet](https://github.com/ikatyang/emoji-cheat-sheet) utilizes cheerio to create the list. Turns out there is a 'good first issue' item in the Cheeriojs repository, so I forked it for future inspection.
+
 ## Tuesday 11-Oct-2022
 
 Another poster added a link to [Jake Archibald's blog page](https://jakearchibald.com/2021/cors/) that discusses *CORS* in historic detail. It's also pretty humorous. Key takeaways are stored in [cors-review](./cors-review.html). Key takeaways for right here:
