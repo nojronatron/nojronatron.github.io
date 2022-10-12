@@ -204,6 +204,68 @@ Mark Russinovich:
 - Linters *can not* catch all of the memory management issues.
 - Rust is a great alternative to C/C++. The goal of Rust is to avoid coding issues related to memory e.g. local uninitialized variables.
 
+## Live Demoing ASP.NET Core and DotNET 7
+
+Presenters:
+
+- Damian Edwards, MSFT Principal PM Architect
+- David Fowler, MSFT Parner Software Architect
+
+'builder.Services' can have policies added in custom methods. E.g.: Custom rate-limiting.
+
+Custom cookies: Can be used to partition policies (limiters in the example they were showing). This can make it so that different sessions do not count toward each other. For rate-limiters, that means each session is rate-limited individually.
+
+Target-type 'new': C#11. If the type is already known, or the assignment is to a previously typed variable. E.g. `new() { props... }`, very much like JS Object Literal syntax.
+
+RequestLogging:
+
+- Usually coders buffer the request, gather all the info and stream it to the log, and also allow the request to get processed by the system.
+- Coders also do a lot of dancing with responses as well, just to get the response logged.
+- It is difficult to get these right as in: Stable, Secure, manages private data properly, and is Performant.
+- Also, streaming very large requests can be tricky or possibly dangerous to the health of the server.
+
+Better RequestLogging:
+
+- New feature `builder.Services.AddHttpLogging(()=>{});` from `useHttpLogging()`.
+- Leverages the WebApplicationBuilder middleware.
+- Captures Req and Res bodies!
+- Large Req and Res data is truncated so they don't overload the logfile(s).
+- Sounds like: Redacting private/secret data is done by default.
+- Log output format is MSFT standard so most log scrapers should be able to parse it natively.
+
+Output Cache
+
+- ResponseCaching allows devs to change caching behavior so a web element can force the browser to update a cached response. Browser refresh will still use local cache.
+- OuputCaching can be applied to endpoints directly, or by policy by defining rules and then apply them to things 'by name'.
+- Basically, cache handling is determined by the browser, the http server, and headers, and these two DotNET middleware libraries allow managing these easily.
+
+UseStatusCodePages
+
+- Formats status code pages for you.
+
+UseExceptionHandler
+
+- Used to have to implement what happens when an exception is thrown.
+- With this, a safe throw return is provided to the client!
+
+CustomizedProblemDetails
+
+- Method group that will allow setting a delegate via Options to define what the dev wants/needs.
+- Live-code implementation demonstrated adding a custom property.
+
+Startup Hooks
+
+- Set an env variable for your process to point to a dll before main runs!
+- Class has to be top-level with a public static entrypoint named `Initialize()`. Unclear if void return is required.
+- Configure launchSettings.json to point to DOTNET_STARTUP_HOOKS to point to the dll to call.
+
+DotNET Native AoT
+
+- Compile dotNet app down to a small, native executable.
+- AoT *uses* trimming.
+- Trimming removes the JIT and lots of added code cruft, so only the core, necessary services are included.
+- Check out Damian's [TrimmedToDo repo in GitHub](https://github.com/DamianEdwards/TrimmedTodo).
+
 ## Footer
 
 Return to [conted-index.md](./conted-index.html)
