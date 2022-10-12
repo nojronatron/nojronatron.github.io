@@ -2,7 +2,11 @@
 
 Semi-regular notes taken during my software developer journey.
 
-## Tuesday 11-Oct2022
+## Wednesday 12-Oct-2022
+
+GitHub Universe is set for November 9th and 10th 2022.
+
+## Tuesday 11-Oct-2022
 
 Another poster added a link to [Jake Archibald's blog page](https://jakearchibald.com/2021/cors/) that discusses *CORS* in historic detail. It's also pretty humorous. Key takeaways are stored in [cors-review](./cors-review.html). Key takeaways for right here:
 
