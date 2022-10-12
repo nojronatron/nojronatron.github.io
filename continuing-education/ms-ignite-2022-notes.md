@@ -172,6 +172,38 @@ Windows Desktop
 
 - Windows 365: Build PC in cloud and stream it to *any device*.
 
+## Sysinternals Tools Overview
+
+Mark Russinovich and Scott Hanselman
+
+SysInternals tools is over 26 years old and running!
+
+There are a few SysInternals tools that are now available on linux!
+
+ZoomIt was the target pair-programming session code!
+
+Resource Editor: Allows viewing hexcode of executables.
+
+Process Monitor: aka procmon. 'When in doubt, procmon'.
+
+- Windows doesn't have to be a blackbox.
+- SysInternals bring all that blackbox stuff into the forefront.
+- View how an executable was launched!
+- See the result of method calls in the binary itself.
+
+Pen and Touch Input was added in 2015!
+
+- There was a bug that was caused by an uninitialized variable. :astonished:
+
+Mark Russinovich:
+
+- No SysInternals source control until 2007. They used to pass around a zip file between developers!
+- "I am the unit tester". :astonished:
+- Running in Debug mode will crash (the type left-shift feature done live) due to off-screen boolean test. In Release mode the App won't crash because the false return (in a character printing library). As a developer, this type of thing is good to be aware of.
+- Anytime these tool(s) are wanted, just go to WebDAV site `\\live.sysinternals.com` and xcopy/download what is needed!
+- Linters *can not* catch all of the memory management issues.
+- Rust is a great alternative to C/C++. The goal of Rust is to avoid coding issues related to memory e.g. local uninitialized variables.
+
 ## Footer
 
 Return to [conted-index.md](./conted-index.html)
