@@ -121,6 +121,57 @@ Presenters:
 - Jared Spataro, MSFT Corp VP  of Modern Work
 - Caroline Stanford - MSFT Dir of Product Marketing Microsoft Teams
 
+Focus is on Microsoft 365 applications and features.
+
+- Productivity Paranoia: Leaders are not sure employees are being as productive as they could be.
+- People come to the office when it is worth the commute to be social with their teammates. Completing tasks can happen *anywhere*.
+
+Microsoft 365 App:
+
+- All existing tools.
+- Backed by MSFT Graph.
+
+MSFT Graph:
+
+- Relationships in content between Apps are presented within each App view.
+- Feed feature collects data and events into a schedule and day-viewer.
+
+Teams:
+
+- Remote, in person.
+- Synchronous and Asynchronous productivity.
+- Support to edit app data within Teams, without opening the App separately.
+- Premium version now GA.
+- Intelligent Recap: AI-assigned tasks during meetings, calls out important moments in meetings, and 40-launguage captioning.
+
+MSFT Designer
+
+- Uses AI to turn descriptions into web/publishable pages.
+
+Viva
+
+- Released last year.
+- Aligns employees around organizational goals and mission.
+- Built-in to Teams and Outlook.
+- Includes learning portal for skill building.
+- A communications channel.
+- Has social publishing capabilities e.g. employee blogs etc.
+
+MSFT Places
+
+- Help organize spaces for when employees come in to the office.
+- Enables collaborating in and out of the office.
+- Generate statistics on office space usage.
+
+Meta + MSFT
+
+- MS Teams integration into Meta Quest.
+- MS Teams meta avatars.
+
+Windows Desktop
+
+- Windows 365: Build PC in cloud and stream it to *any device*.
+
 ## Footer
 
 Return to [conted-index.md](./conted-index.html)
