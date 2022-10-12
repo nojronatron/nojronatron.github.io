@@ -81,5 +81,46 @@ Use lowcode and nocode tools to democratize technology to as many people as poss
 
 Example: Reduce actual labor hours building solutions to automate some or most of that effort using lowcode/nocode tools.
 
+Technology helps workers process and work with data to complete tasks and meet business goals. Adding AI can reduce friction (and time) to process completion.
+
+## Industrial Metaverse
+
+In a nutshell, design, build, and test industrial systems without laying a single brick.
+
+By avoiding building until bugs are worked out, expected and unexpected costs can be reduced, and impacts on teh environment are reduced.
+
+## Low- and Pro-code Tools
+
+Speakers:
+
+- Charles Lamanna, MSFT Corp VP Business Apps & Platform
+- Donovan Brown, MSFT Partner Program Manager in Azure CTO Incubator
+
+MS Cloud Developer Platform
+
+- GitHub Codespaces: Full dev environment in-browser from a GitHub repository.
+- GitHub CoPilot: AI Pair Programming.
+- Azure DevOps
+- GitHub Advanced Security for AzureDevOps: Secret, dependency, and code scanning, blocking shared creds into source control. Integrates with Defender for Cloud.
+- Azure Kubernetes: Scale cloud-native applications.
+- Azure Kubernetes Fleet Manager: Multi-cluster workload and services management layer.
+- Azure Container Apps: Built on Kubernetes, supporting code dev.
+- Power Platform: Use a connector (published API) to connect to existing dev environment.
+- Power Platform Managed Environments: Enable IT to manage low-code Apps (now GA). Control app lifecycle, flows, env publishing, policies, and licensing.
+- MS Dev Box: Dev VM in the cloud.
+- Azure Deployment Environments: Infrastructure in the cloud for dev and text deployments.
+- Azure CosmosDB: Developer-oriented db with NoSql support.
+- Azure AI: Vision, speech, language, and decision-making AI models via simple API calls. Integrates with Jupyter Notebooks, VS Code, TensorFlow, PyTorch, and other open-source frameworks.
+- Azure ML: Basic or advanced service solutions.
+- Azure LogicApps: Create workflows to automate feature development and deployment work.
+
+## Re-energizing the Workforce
+
+Presenters:
+
+- Jared Spataro, MSFT Corp VP  of Modern Work
+- Caroline Stanford - MSFT Dir of Product Marketing Microsoft Teams
 
 ## Footer
+
+Return to [conted-index.md](./conted-index.html)
