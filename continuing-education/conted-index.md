@@ -21,6 +21,7 @@ A collection of continuing education, research notes, and references.
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
 - [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
 - [ ] Wiring Repositories in Spring.
+- [ ] [MSFT Ignite October 2022](./ms-ignite-2022-notes.html) provides an overview of MSFT new and upcoming technical solutions, especially Azure services, MSFT 365, and integration with and around those platforms.
 - [X] Cross Origin Resource Sharing [CORS](./cors-review.html)
 - [X] Animating web elements using [CSS](./css-animations.html)
 - [X] React [NavBar with Router](./navbar-in-react-with-routing.html) notes from [WebDevSimplified - How to create a navbar in react with routing](https://www.youtube.com/watch?v=SLfhMt5OUPI)
