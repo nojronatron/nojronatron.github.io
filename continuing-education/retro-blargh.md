@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 13-Oct-2022
+
+Monitored MS Ignite sessions again today. Notes are stored at [MSIgnite 2022 Notes](./ms-ignite-2022-notes.html).
+
 ## Wednesday 12-Oct-2022
 
 Watching Microsoft Ignite 2022 this morning, looking forward to hear what is next from Microsoft.
