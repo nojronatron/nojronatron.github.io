@@ -407,6 +407,33 @@ Azure Deployment Environments
 - Yaml used to configure deployment.
 - Catalogs are created and made available to devs as deployment targets.
 
+## SQL and Data in Azure
+
+Anna Hoffman, MSFT Sr. Product Manager
+
+Sunetra Virdi, 'self' Sr. Product Manager
+
+Bob Ward, MSFT Principal Architect
+
+SQL Server 2022 is RC:
+
+- Enabled to connect with Azure.
+- Analytics over on-prem operation data.
+- MS Purview: Visibility over data estate.
+
+Performance Enhancements:
+
+- Sped up analytic queries.
+- Optimized plan forcing.
+- dbcompat 140+ memory grant feedback.
+- dbcompat 160: Parameter sensitive plan optimization, cadinality estimation feedback, degree of parallelism feedback (without recompile).
+- Some features require query storage to be enabled to take effect.
+
+Synapse:
+
+- Is like an umbrella UI that allows browsing schemas, data owners, and other SQL Server and Table metadata.
+- Data can be synced-in to Synapse SQL Tables and Dedicated Pools, allowing T-SQL querying of the data for basic or complex reporting on the data!
+
 ## Footer
 
 Return to [conted-index.md](./conted-index.html)
