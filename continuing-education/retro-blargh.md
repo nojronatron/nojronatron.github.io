@@ -8,6 +8,13 @@ Monitored MS Ignite sessions again today. Notes are stored at [MSIgnite 2022 Not
 
 MSFT has done a lot of work to enable remote development, and IT management of remote development resources, via the Azure cloud. Although it is very Visual Studio-centric, they did demostrate Maui features (cross-platform build, hot-reload, and an *android emulator*).
 
+I completed a React-Tac-Toe challenge: [Highlight Winning Tiles](#react-tac-toe). I updated the blargh article where the challenges are listed. Takeaways:
+
+- Analyze the output of functions to be sure I understand what it is they are returning.
+- Check for the closest Component to where the UI change needs to take place, and work backwards to the calling Component so that props can be back-traced properly.
+- Javascript does not have a 'Contains()' method. It has `Array.prototype.includes()`. :confounded:
+- One year ago I was not able to use code to change style on a website. Today *I can do it without much thought*!
+
 ## Wednesday 12-Oct-2022
 
 Watching Microsoft Ignite 2022 this morning, looking forward to hear what is next from Microsoft.
@@ -212,10 +219,10 @@ Final set of takeaways:
 - AffineTransform leverages BufferedImage, but Graphics2D is not required.
 - Mirror and Rotate were easier to implement using existing libraries than they would have been to write my own.
 
-Last couple TODOs for the bitmap-transform project:
+Last couple TODOs for the bitmap-transform project were completed on October 6th:
 
-- [ ] Add unit tests.
-- [ ] Add method documentation to the codefile.
+- [X] Add unit tests.
+- [X] Add method documentation to the codefile.
 
 While I was checking in to a couple of ham radio nets, I decided to take a peek at the NWS API. Key takeaways:
 
@@ -245,7 +252,7 @@ Key takeaway: Trust myself a little more when it comes to solving problems relat
 
 Code Challenges: I discovered that my solution to "Is Anagram" challenge was not quite right. Turns out the input was to be *2 strings* and the comparison is whether they are anagrams *of each other*. I might take on the challenge of fixing that in the near future.
 
-I attached another React Challenge: Add a toggle button that lets you sort the moves in either ascending or descending order. See entries from about 2 weeks ago for the full list and images of results.
+I attacked another React Challenge: Add a toggle button that lets you sort the moves in either ascending or descending order. See entries from about 2 weeks ago for the full list and images of results.
 
 Key takeaways:
 
@@ -605,6 +612,8 @@ handleClick(i) {
 
 ---
 
+### React-Tac-Toe
+
 Here is a neat little [React js tutorial](https://reactjs.org/tutorial/tutorial.html), and at the end some code challenges are posed. I started working through these because I was feeling like I was a little too rusty with React to make effective progress on the Enigma Bay project.
 
 - [X] Display the location for each move in the format (col, row) in the move history list. This took a minute to sort out *where* the data needed to be added, but once I realized the index of the clicked Square was maintained in the callback, and the coordinates needed to be tied to move history, I figured it out.
@@ -624,7 +633,10 @@ Here is a neat little [React js tutorial](https://reactjs.org/tutorial/tutorial.
 > ![Sort button added to game output](./images/react-tac-toe-sort-button.png)
 > ![Sort button clicked sorts descending history](./images/react-tac-toe-sort-button-clicked.png)
 
-- [ ] When someone wins, highlight the three squares that caused the win.
+- [X] When someone wins, highlight the three squares that caused the win.
+
+> ![Highlight three squares that caused the win](./images/react-tac-toe-highlight-winning-tiles.png)
+
 - [ ] When no one wins, display a message about the result being a draw.
 
 ---
