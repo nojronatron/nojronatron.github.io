@@ -266,6 +266,20 @@ DotNET Native AoT
 - Trimming removes the JIT and lots of added code cruft, so only the core, necessary services are included.
 - Check out Damian's [TrimmedToDo repo in GitHub](https://github.com/DamianEdwards/TrimmedTodo).
 
+## Windows: Building what matters
+
+Panos Paney Ex VP and Chief Product Officer hosts Windows Team leaders with discussion around Windows 11, new Surface Hardware, and Windows 365.
+
+Windows 365:
+
+- Cloud PC
+
+Security and Development and Devices:
+
+- Zero Trust
+- Software and hardware security protections
+- "Secure Core" PCs
+
 ## Footer
 
 Return to [conted-index.md](./conted-index.html)
