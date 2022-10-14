@@ -16,6 +16,8 @@ Key takeaways:
 - Build-out your own projects.
 - Work with coworkers asking for help etc.
 
+Tailwind CSS was mentioned again with lots of positive feedback and kudos. I have that on my list of things to investigate.
+
 ## Thursday 13-Oct-2022
 
 Monitored MS Ignite sessions again today. Notes are stored at [MSIgnite 2022 Notes](./ms-ignite-2022-notes.html).
