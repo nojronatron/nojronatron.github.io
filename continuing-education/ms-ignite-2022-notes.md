@@ -204,6 +204,14 @@ Mark Russinovich:
 - Linters *can not* catch all of the memory management issues.
 - Rust is a great alternative to C/C++. The goal of Rust is to avoid coding issues related to memory e.g. local uninitialized variables.
 
+Scott Hanselman: Agressive-refresh is available is Chrome! Open DevTools then rClick the refresh button.
+
+- Normal Reload.
+- Hard Reload.
+- Empty Cache *and* Hard Reload.
+
+Individual SysInternals tools can be downloaded direct from internet file share :boom:`\\live.systeminternals.com`:boom:.
+
 ## Live Demoing ASP.NET Core and DotNET 7
 
 Presenters:
@@ -265,6 +273,166 @@ DotNET Native AoT
 - AoT *uses* trimming.
 - Trimming removes the JIT and lots of added code cruft, so only the core, necessary services are included.
 - Check out Damian's [TrimmedToDo repo in GitHub](https://github.com/DamianEdwards/TrimmedTodo).
+
+## Windows: Building what matters
+
+Panos Paney Ex VP and Chief Product Officer hosts Windows Team leaders with discussion around Windows 11, new Surface Hardware, and Windows 365.
+
+Windows 365:
+
+- Cloud PC => Switch to Windows 365 desktop *from your current desktop*.
+- Downloadable as an App now, later will come with Windows 11.
+
+Security and Development and Devices:
+
+- Zero Trust.
+- Software and hardware security protections.
+- Secure Core :tm: PCs.
+
+Windows 11:
+
+- Protects user from sending credentials to an unusual or unexpected service.
+- Very high app compatibility and AppAssure to help resolve many common compatibility issues.
+
+## Inside Azure Innovations
+
+Speaker: Mark Russinovich
+
+200 datacenters with many more per year around the globe.
+
+Many of the following features and capabilities are not yet released - 'coming soon'.
+
+Cooling:
+
+- Air-cooled and liquid-cooled infrastructure is employed.
+- Typical server dissipates ~350W, so higher density can only be reached with liquid cooling.
+- Two-phase Immersion Cooling reduces failure rate, and no water in the system.
+
+Patching and fixups:
+
+- Hot Patch: Minor fixes but fast
+- Microcode updates: Reboot-less firmware updates!
+- Hypervisor hot restart: Enables installing new features w/o downtime. *Hypervisor state* is transfered from one server to another.
+
+Accelerated Offload Processing:
+
+- FPGA for programmable networking, storage IO.
+- SoC runs Linux to do be a management plane.
+- Free-up CPU load from handling IOs to data processing instead.
+
+Accelerated Networking with Serius Appliance:
+
+- Extreme performance VMs move to specific appliances.
+- Extreme performance network equipment host these higher requirement VMs.
+- Saves from having to install extreme-performance offloading equipment to every server in every rack.
+
+Offloading Block Storage:
+
+- SAN performance and management in the Cloud.
+- Azure Elastic SAN provides public cloud SAN (Volume groups, Volumes, Azure Storage).
+- Azure Storage is striped across many devices to increase overall bandwith.
+- SCSI devices projected into the VMs allowing SCSI performance.
+
+Containerization is the Future of the Cloud and Enterprise:
+
+- Serverless containerization, specifically.
+- Define an App, with container specs, give to public cloud, and let it run.
+- Azure Container Instances (ACI Service) allows creating many containers quickly. Scale up/down rapidly, over and over.
+- Containers are more rapid than full virtual machines, but groups of them require time to launch. Warm Pooling pre-warms containers.
+
+Confidential Computing:
+
+- Evolved from encrypting at rest data with keys, protecting data in transit via SSL + TLS.
+- Now protect data *in use*.
+- Hardware with encrypted memory, disallows anything outside the harware from getting access into the box.
+- Hashed code and policy comparisons are run to determine trusted services, and allow data transfer.
+- Mark mentioned [Confidential Computing Consortium](https://confidentialcomputing.io/) (also see Open Enclave SDK by MSFT).
+- Mark demoed protecting data sent to an ML Model on the public Azure cloud.
+- Azure KeyVault stores the keys, with new mHSM feature.
+
+Quantum Computing:
+
+- Mark overviewed existing capability and challenges with quantum qBit types.
+- Topological qubits: More stable, non-sized, fast qubits that might solve the 'million qubit problem'.
+- Too much deep stuff to document here, so in summary MSFT has tested a design that is the basis for a topological qubit, so work is well underway.
+
+GP Servers:
+
+- Customers were bringing very large workloads, especially database workloads, so MSFT built larger servers to try and meet the needs.
+
+## Supporting and Executing Remove Development
+
+Hardware:
+
+- Remote developers work on laptops received in the mail or their own equipment.
+- Might not have IT secure packages at all, or that work well with developer workstation environment.
+
+Dev Environments:
+
+- Could be local only, where projects could pollute each other.
+- Could be virtual/cloud based development, putting additional requirements on processing and network resources.
+
+Microsoft Dev Box:
+
+- Deploy and use Windows 11 desktops
+- OneDrive document synchronization.
+- Azure Deployment Environments provides services needed to work.
+- Removes processing from local workstation/laptop - all processing for build, debug, etc happen on the remote desktop in Azure.
+
+MS Dev Box with Maui:
+
+- Multi-platform build and deploy capabilities.
+- Simplified Project File for framework and architecture targeting.
+- Auto-scaling of svg files for mobile and desktop.
+- XAML Live Preview: Like DevTools in Chrome, Elements tab.
+- XAML Hot Reload: Changes in code are displayed in Live Preview.
+- Data Binding Diagnostics: Helps locate misspelled or misdirected data bindings.
+- Live Visual Tree: Tree view of XAML Live Preview.
+- Debug Android version of app: Within VS, or *on an Android emulator*.
+- Dev Tunnels: Private vpn-tunnel allows serving debug-mode code to remote devices including browsers and mobile.
+- VS now has markdown highlighting/linting, as well as live-preview.
+- Load Testing available in an isolated Azure environment (Deployment Environments).
+
+DevBox
+
+- Full machine for whatever dev environment including VSCode and Visual Studio.
+- Fully sandboxed.
+- Base images with pre-installed VS instances available.
+
+Azure Deployment Environments
+
+- Enables devs to deploy environments w/o subscription access.
+- Use template(s) to spin-up resources for the project.
+- Infrastructure-as-Code templates: Stored in GitHub repos as ARM Templates.
+- Yaml used to configure deployment.
+- Catalogs are created and made available to devs as deployment targets.
+
+## SQL and Data in Azure
+
+Anna Hoffman, MSFT Sr. Product Manager
+
+Sunetra Virdi, 'self' Sr. Product Manager
+
+Bob Ward, MSFT Principal Architect
+
+SQL Server 2022 is RC:
+
+- Enabled to connect with Azure.
+- Analytics over on-prem operation data.
+- MS Purview: Visibility over data estate.
+
+Performance Enhancements:
+
+- Sped up analytic queries.
+- Optimized plan forcing.
+- dbcompat 140+ memory grant feedback.
+- dbcompat 160: Parameter sensitive plan optimization, cadinality estimation feedback, degree of parallelism feedback (without recompile).
+- Some features require query storage to be enabled to take effect.
+
+Synapse:
+
+- Is like an umbrella UI that allows browsing schemas, data owners, and other SQL Server and Table metadata.
+- Data can be synced-in to Synapse SQL Tables and Dedicated Pools, allowing T-SQL querying of the data for basic or complex reporting on the data!
 
 ## Footer
 
