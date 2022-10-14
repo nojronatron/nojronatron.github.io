@@ -2,6 +2,20 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 14-Oct-2022
+
+Attempted a code challenge "convert integers into roman numerals". This was very difficult and I ended with a partial algorithm and will need to attempt it again.
+
+Attended a seminar on DevOps and AWS. Was very interesting and help re-kindle my interest in working with AWS, like in the Java 401 class.
+
+Key takeaways:
+
+- Continue to experiment with code and services.
+- DevOps might not be first job but is achievable with experience from Code Fellows.
+- Get a job as a back-end engineer.
+- Build-out your own projects.
+- Work with coworkers asking for help etc.
+
 ## Thursday 13-Oct-2022
 
 Monitored MS Ignite sessions again today. Notes are stored at [MSIgnite 2022 Notes](./ms-ignite-2022-notes.html).
