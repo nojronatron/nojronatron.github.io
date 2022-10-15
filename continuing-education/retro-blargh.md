@@ -2,6 +2,30 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 14-Oct-2022
+
+Attempted a code challenge "convert integers into roman numerals". This was very difficult and I ended with a partial algorithm and will need to attempt it again.
+
+Attended a seminar on DevOps and AWS. Was very interesting and help re-kindle my interest in working with AWS, like in the Java 401 class.
+
+Key takeaways:
+
+- Continue to experiment with code and services.
+- DevOps might not be first job but is achievable with experience from Code Fellows.
+- Get a job as a back-end engineer.
+- Build-out your own projects.
+- Work with coworkers asking for help etc.
+
+Tailwind CSS was mentioned again with lots of positive feedback and kudos. I have that on my list of things to investigate.
+
+Ryan and I updated some Lingo Bingo code and some PR's were merged in. So I moved forward with the "screen party" feature implementation. So far the integration of planned code into the gameboard was not too difficult. There is more work to do in the next few days to make it more awesome!
+
+As of right now, I have a streak of a solid month of contributing code to GitHub. Some of that is due to my endless typing in this retrospective markdown, however there are definitely some significant code updates and project completions:
+
+- Many contributions to EnigmaBay including code, unit tests, code reviews, and pull requests.
+- Lots of effort into describing data structures and algorithms, including code analysis, pseudocode, Java implementations and refactorings, and JUnit unit tests.
+- Completed BitmapTransformer! This was an early Lab assignment for Java Code 401 that I did not complete during class. I am proud of my effort to restart it from zero, and build it up through all the requirements, to a completed, functional console app!
+
 ## Thursday 13-Oct-2022
 
 Monitored MS Ignite sessions again today. Notes are stored at [MSIgnite 2022 Notes](./ms-ignite-2022-notes.html).
