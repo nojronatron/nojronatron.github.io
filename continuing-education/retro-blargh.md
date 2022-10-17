@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 17-Oct-2022
+
+Took a little bit of a break over the weekend. Some development and exploration was done, but not at the level of the previous month.
+
+Put some effort into learning CSS Variable usage:
+
+- Set up a custom pseudo-class: `:root {}`
+- Define variables using dash-dash prefixing: `--rgba-primary-0: rgba(36, 69, 146, 1);`
+- Call the variable to assign the element value using 'var()': `color: var(--rgba-primary-0);`
+
+I'm thinking there is probably a more robust way to implement this to simplify applying a theme to an entire webapp.
+
 ## Friday 14-Oct-2022
 
 Attempted a code challenge "convert integers into roman numerals". This was very difficult and I ended with a partial algorithm and will need to attempt it again.
