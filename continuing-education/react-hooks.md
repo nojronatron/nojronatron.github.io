@@ -8,7 +8,7 @@ Provide links to additional references as well as code snippets where possible.
 
 Hooks are new in v.16.8. Most recent project I am generally working with v.18+.
 
-Use React Features without writing a fully-blown class component.
+Hooks allow using React Features without writing a fully-blown class component.
 
 Sharing stateful logic is difficult and often requires wrapping Components with other Components in order to get desired results.
 
@@ -32,6 +32,148 @@ Hooks features include:
 - Refs
 
 Hooks can help reduce nesting in a React Tree.
+
+Hooks allow accessing State from within a Functional Component.
+
+Hooks can be reused within a Component.
+
+Do NOT call a Hook inside of a conditional. They must be called at the top of the Component.
+
+Components are just Functions. Hooks are just Function Calls. This enables creating custom Hoooks!
+
+Hooks as proposed by ReactJS: *[React Conf 2018 Presentation]*
+
+- Use all React features without a class.
+- Reuse stateful logic between components.
+- Opt-in and 100% backward compatible.
+
+## UseState
+
+Import: `import React, { useState } from 'react';`
+
+Leverage the Hook:
+
+```javascript
+export default function MyFunction(props) {
+  const [name, setName] = useState('MyName');
+  // declares a State with properties 'name' and 'setName'
+  // initializes 'name' with a value 'MyName' to start
+}
+```
+
+Reference an event handler:
+
+```javascript
+export default function MyFunction(props) {
+  const [name, setName] = useState('MyName');
+  
+  function handleNameChange(event) {
+    setName(event.target.value);
+  }
+  // no longer necessary to bind the event handler
+  // to a class in order to get access to it
+}
+```
+
+## Context
+
+Reading Context.
+
+Like global variables for a subtree.
+
+Allows reading current user language or visual theme.
+
+Import: `import { ThemeContext } from './context';`
+
+Enables using: `<ThemeContext.Consumer>` component.
+
+Example implementing a theme from a CSS file:
+
+```javascript
+import { ThemeContext } from './context';
+
+// inside of a class component...
+
+  return (
+    <ThemeContext.Consumer>
+      {theme => (
+        // theme is just a css class
+        <section classname={theme}>
+          // more jsx here
+        </section>
+      )}
+    </ThemeContext.Consumer>
+  );
+}
+```
+
+Similarly, `<LocaleContext.Consumer>` enables setting end-user language.
+
+UseContext Hook simplifies this somewhat.
+
+```javascript
+import React, { useContext } from 'react';
+import { ThemeContext } from './context';
+
+export default function MyFunction(props) {
+  const theme = useContext(ThemeContext);
+  // this reads context AND SUBSCRIBES to changes!
+
+  // more code
+  return {
+    <section className={theme}>
+      // more jsx here
+    </section>
+  }
+}
+```
+
+## UseEffect and Side Effects
+
+Import: `import React, { useEffect } from 'react';`
+
+Declare the effect inside the component definition to allow access to State/useState.
+
+UseEffect to display a variable to the active browser tab aka 'document title':
+
+```javascript
+import React, { useEffect } from 'react';
+
+export default function MyFuction(props) {
+  const [name, setName] = useState('Alpha');
+  
+  useEffect(()=>{
+    document.title = myNewTitle;
+  });
+
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
+}
+```
+
+Multple useEffects statements can be made for unrelated data properties.
+
+Any effect can optionally return a function. Call the function using an arrow function to encapsulate functions like `window.removeEventListener(name, callback)`.
+
+This of useEffect as 'componentDidMount', 'componentDidUpdate' among other lifecycle events.
+
+## Custom Hooks
+
+1. Develop a function as you normally would: `function useFuncname(){ ... return result }`
+2. Add a new const variable to store the output in the calling function: `const customResult = useFuncname();`
+
+Convention:
+
+- Call the function a custom hook by prefixing 'use'.
+- Assume the 'use' prefixed function is going to maintain some sort of State.
+
+Custom Hooks are javascript functions:
+
+- Can take zero to many arguments.
+- Can return one or zero types.
+
+Create your own abstractions without adding to "wrapper hell".
 
 ## Moving to Hooks
 
@@ -80,6 +222,8 @@ Functional w/ Hooks is fully compatible with Classes in the same React Tree.
 Reactjs.org [Hooks at a Glance](https://reactjs.org/docs/hooks-overview.html)
 
 Reactjs.org [Hooks API Reference](https://reactjs.org/docs/hooks-reference.html)
+
+React Conf 2017 [video on YouTube](https://www.youtube.com/watch?v=dpw9EHDh2bM)
 
 ## Footer
 
