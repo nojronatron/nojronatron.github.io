@@ -2,6 +2,26 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 18-Oct-2022
+
+Finished CSS cleanup from yesterday and built upon that by submitting a new PR to the Lingo Bingo project. Some display bugs were solved and general rules like avoiding in-line CSS and using classes or Bootstrap were implemented. The project is looking better!
+
+Next step is to finish working on devloping a theme for the color scheme. For now the effort might be overkill, but in the long run it will simplify implementing alternate themes, and perhaps user-configurable ones. Not an official feature right now but will be good experience to have.
+
+## Monday 17-Oct-2022
+
+Took a little bit of a break over the weekend. Some development and exploration was done, but not at the level of the previous month.
+
+Put some effort into learning CSS Variable usage:
+
+- Set up a custom pseudo-class: `:root {}`
+- Define variables using dash-dash prefixing: `--rgba-primary-0: rgba(36, 69, 146, 1);`
+- Call the variable to assign the element value using 'var()': `color: var(--rgba-primary-0);`
+
+I'm thinking there is probably a more robust way to implement this to simplify applying a theme to an entire webapp. Looking more into this subject, I started to see some style issues in the Lingo Bingo project, so I worked on fixing those. Some key takeaways recorded on [Sunday September 3rd](#sunday-3-sep-2022).
+
+I also watched a video where a guy developed a javascript version of the Minesweeper game. It only took him 55 minutes (of video time) to get the core elements of the game working, including a UI. He jumped back and forth between whiteboarding and coding, so it was interesting and inspirational!
+
 ## Friday 14-Oct-2022
 
 Attempted a code challenge "convert integers into roman numerals". This was very difficult and I ended with a partial algorithm and will need to attempt it again.
@@ -25,6 +45,8 @@ As of right now, I have a streak of a solid month of contributing code to GitHub
 - Many contributions to EnigmaBay including code, unit tests, code reviews, and pull requests.
 - Lots of effort into describing data structures and algorithms, including code analysis, pseudocode, Java implementations and refactorings, and JUnit unit tests.
 - Completed BitmapTransformer! This was an early Lab assignment for Java Code 401 that I did not complete during class. I am proud of my effort to restart it from zero, and build it up through all the requirements, to a completed, functional console app!
+
+I took a look at a few blog articles about theming, and it is pretty invovled. It might be worth the time to look for a package that will manage theming and end-user-selectable theming. Until then, a baseline theme using CSS will be implemented, and I will consider what to do about theming longer term.
 
 ## Thursday 13-Oct-2022
 
@@ -393,7 +415,7 @@ But that will wait until tomorrow.
 
 ## Wednesday 28-Sept-2022
 
-There are never enough hours in a day to get things do:
+There are never enough hours in a day:
 
 - What I need to get done.
 - What I want to get done.
@@ -673,7 +695,7 @@ React:
 
 1. Use React Function Components as much as possible, unless a Component *absolutely needs to maintain its own State*, then it should be a Class Component.
 1. React Function Components are just javascript functions, so adding a parameter to the function allows the function to utilize it as input.
-1. *Avoid* chaning the input parameter(s) within the Functional Component code blocks... they are read-only.
+1. *Avoid* chaining the input parameter(s) within the Functional Component code blocks... they are read-only.
 1. React Function Components are simple, and must contain a return statement.
 1. React Class Components must extend React.Component and have a *render function* with a return statement.
 1. When defining props (in a functional component for example), remember to set the PropTypes at the end of the Component to avoid type mis-match errors. See the example code below.
