@@ -2,6 +2,43 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 19-Oct-2022
+
+Researching Theming in React has tough. There are several articles that are very out-of-date, using older React techniques, are too vague for new developers, or the backing "see my github repo for the code" doesn't actually exist.
+
+What I did learn is using React Hooks is a thing, and it could be helpful in creating themes for a React website. I started [documenting some react hook takeaways](./react-hooks.html) for reference.
+
+React Hooks uses concepts that are pretty familiar, now that I am gaining a basic understanding of the design patterns of Hooks:
+
+- Functions are functions are functions, except when they are Classes.
+- State can be values stored in React, without using Classes at all.
+- Leveraging an existing Functional Component can be as simple as defining a custom Hook, and then calling the hook with valid arguments in React to manage state or perform complex logic.
+- The example of 'todosReducer()' custom function reminded me of 'Array.prototype.reduce()'.
+
+About 'Array.prototype.reduce()':
+
+- Input parameters are previousValue, currentValue.
+- Arrow function just points to the expression *to be performed on the inputs*.
+- The expression component '(previousValue + currentValue, ...' literally means 'replace the first input with the result of this expression'.
+- The expression component '...initialValue)' literally means 'replace the second input with the result of this expression'.
+
+```javascript
+// from mdn.org Array.prototype.reduce() documentation
+const array1 - [1, 2, 3, 4];
+const initialValue = 0;
+const sumWithInitial = array1.reduce(
+  (previousValue, currentValue) => previousValue + currentValue, initialValue
+);
+```
+
+Step Through::
+
+Iteration 1: (previousValue = initialValue = 0, currentValue = 1) => (0+1, 0)
+Iteration 2: (previousValue=1, currentValue=2) => (1+2, 0)
+Iteration 3: (previousValue=3, currenValue=3) => (3+3, 0)
+Iteration 3: (previousValue=6, currentValue=4) => (6+4, 0)
+Return: 10
+
 ## Tuesday 18-Oct-2022
 
 Finished CSS cleanup from yesterday and built upon that by submitting a new PR to the Lingo Bingo project. Some display bugs were solved and general rules like avoiding in-line CSS and using classes or Bootstrap were implemented. The project is looking better!
@@ -198,7 +235,8 @@ At this point I've deployed a new React website a few times. If from here-on-out
 
 React Deployment Key Takeaways:
 
-- For a new site, ground-up: `npx new-react-app {project-name}`. CD to 'project-name' => Default React site with Git already initialized.
+- For a new site, ground-up: `npx create-react-app {project-name}`. CD to 'project-name' => Default React site with Git already initialized.
+- There is also `npx new-react-app {project-name}` but that is a bit different.
 - Install dependencies: `npm install` or specify: `npm install {module-name module2-name ...}`
 - Launch the React site: `npm start`
 - Deploy production-ready: `npm run build`
@@ -206,7 +244,7 @@ React Deployment Key Takeaways:
 - Follow README.md steps that React installs on your site for reminders and more info.
 - Removing default icons and components is fairly easy, just be sure to review `manifest.json` and make edits only as necessary.
 
-While listending to the Syntax podcast, there was mention about CORS and CORS-related issues, so I took some notes. This lead to writing a new article about [CORS](./cors-review.html) so I could easily reference it later. This could help helpful on future web projects such as LingoBingo and other project ideas I have.
+The Syntax podcast mentioned CORS and CORS-related issues, so I took some notes. This lead to writing a new article about [CORS](./cors-review.html) so I could easily reference it later. This could help helpful on future web projects such as LingoBingo and other project ideas I have.
 
 My attempt at a 40-minute technical interview challenge ended with timer expired before I could finish writing java code. Completing the code, then writing about testing approach, and of course Big-O were necessary to ensure points capture. Later, this item will be added to the Java Code Challenges repository (just like the others) and must be re-attempted at a later date.
 
