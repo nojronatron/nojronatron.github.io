@@ -31,7 +31,7 @@ const sumWithInitial = array1.reduce(
 );
 ```
 
-Step-by-step:
+Step Through::
 
 Iteration 1: (previousValue = initialValue = 0, currentValue = 1) => (0+1, 0)
 Iteration 2: (previousValue=1, currentValue=2) => (1+2, 0)
