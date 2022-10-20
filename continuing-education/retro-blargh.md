@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 20-Oct-2022
+
+Continued research using React Hooks. Much of the documentation introduces the concept of Context and 'useContext' all in the same file. That's fine except those examples fail to demonstrate leveraging a defined context *across files* in a React hierarchy.
+
+Key Takeaways:
+
+- Define a context file that initializes 'MyContext' using `createContext(null)` and exports `{MyContext}`.
+- In the parent Component, import the custom Context component and set up a value that will be transferred via that Context.
+- Also in the parent, wrap child component(s) in a `<MyContext.Provider value={myValue}>`.
+- In the child component(s) import the custom Context component and assign the Context value to a variable by calling `useContext(MyContext)`.
+- Whenever the Context value(s) change, the child components that import it will render.
+
 ## Wednesday 19-Oct-2022
 
 Researching Theming in React has tough. There are several articles that are very out-of-date, using older React techniques, are too vague for new developers, or the backing "see my github repo for the code" doesn't actually exist.
