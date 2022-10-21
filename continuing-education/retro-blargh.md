@@ -28,6 +28,13 @@ Once I had spent a few hours with 'useContext' hook to get the hang of it, I too
 
 I attended the Bellingham Codes Software Forum, where plenty of good discussion around building websites using React and javascript, among other things. Afterwards, I had more good discussion with Ryan, another attendee, about navigating becoming a software developer.
 
+Some takeaways from the Software Forum discussions:
+
+- I really enjoyed talking about code, with developers from all backgrounds.
+- Just because your React hierarchy is getting large or complex is *not* an indication that it is wrong or otherwise bad.
+- Framer: A production-ready [Motion library for React](https://www.framer.com/developers/guides/).
+- [Inkscape-react](https://github.com/konsumer/inkscape-react#readme): Converts Inkscape images to React Components.
+
 ## Wednesday 19-Oct-2022
 
 Researching Theming in React has tough. There are several articles that are very out-of-date, using older React techniques, are too vague for new developers, or the backing "see my github repo for the code" doesn't actually exist.
