@@ -120,6 +120,8 @@ WebAIM.org
 
 Deque University (Dequeue Systems Inc)
 
+Gartner Reports provides information on Accessible-compliant or capable Services.
+
 ## Footer
 
 Return to [pp index](./pph-index.html)
