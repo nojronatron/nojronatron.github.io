@@ -1,6 +1,16 @@
 # Occasional Retrospective Notes
 
-Semi-regular notes taken during my software developer journey.
+Semi-regular notes taken during my software developer journey.y
+
+## Friday 21-Oct-2022
+
+Took some time out to do a technical interview practice challenge. Key takeaways:
+
+- I couldn't find a good datastructure to fit the problem, so could not find an efficient way to traverse and process the data.
+- Much of my time I focused on breaking down the problem and found that a Stack would be helpful.
+- I did manage to do a high-level Big-O analysis, but without stepping through a completed algorithm or pseudo/actual code, it is probably incorrect.
+
+Completed 2 behavioral questions. There are just a few more that I need to write out responses to, then I can start a serious review and better prepare for interviewing.
 
 ## Thursday 20-Oct-2022
 
