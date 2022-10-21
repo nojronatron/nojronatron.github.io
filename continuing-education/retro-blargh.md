@@ -1,6 +1,6 @@
 # Occasional Retrospective Notes
 
-Semi-regular notes taken during my software developer journey.y
+Semi-regular notes taken during my software developer journey.
 
 ## Friday 21-Oct-2022
 

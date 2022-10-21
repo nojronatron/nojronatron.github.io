@@ -104,8 +104,9 @@ Robust:
 - Navigation types are different: Linear, keyboard only, external hardware, software interpreting devices.
 - Language difference.
 - Processing times are different for all users.
+- Develop User Personas for different types of users with different navigation needs, devices, or other limitations to align features and usability to accessibility goals.
 
-100% Accessibility is not necessarily attainable:
+Note: 100% Accessibility is not necessarily attainable:
 
 - Keep progressing toward holistic accessibility.
 - There are plenty of corner-cases where accessibility might be difficult to attain, or not at all!
