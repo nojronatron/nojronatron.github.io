@@ -12,7 +12,11 @@ Key Takeaways:
 - In the parent Component, import the custom Context component and set up a value that will be transferred via that Context.
 - Also in the parent, wrap child component(s) in a `<MyContext.Provider value={myValue}>`.
 - In the child component(s) import the custom Context component and assign the Context value to a variable by calling `useContext(MyContext)`.
-- Whenever the Context value(s) change, the child components that import it will render.
+- Whenever the Context value(s) change, the child *components that import it will re-render*.
+
+Once I had spent a few hours with 'useContext' hook to get the hang of it, I took some time to work through some more CSS issues. Turns out there are areas where CSS and Bootstrap styling could be refined to make the GameBoard display more appealing. Right now it is a little weird in how the Tiles are sized and shaped, but the benefit of the CSS layout and using Bootstrap is the site is responsive to both desktop-sized and phone-sized screens.
+
+I attended the Bellingham Codes Software Forum, where plenty of good discussion around building websites using React and javascript, among other things. Afterwards, I had more good discussion with Ryan, another attendee, about navigating becoming a software developer.
 
 ## Wednesday 19-Oct-2022
 
