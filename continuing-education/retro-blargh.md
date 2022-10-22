@@ -2,6 +2,22 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 21-Oct-2022
+
+Took some time out to do a technical interview practice challenge. Key takeaways:
+
+- I couldn't find a good datastructure to fit the problem, so could not find an efficient way to traverse and process the data.
+- Much of my time I focused on breaking down the problem and found that a Stack would be helpful.
+- I did manage to do a high-level Big-O analysis, but without stepping through a completed algorithm or pseudo/actual code, it is probably incorrect.
+
+Completed 2 behavioral questions. There are just a few more that I need to write out responses to, then I can start a serious review and better prepare for interviewing.
+
+Attended a presentation session on web accessibility. I was aware there are standards out there providing guidance to make sites, services, products, and software accessible, but I wasn't aware just how far along those resources have come. Check out the W3C for details about the WCAG (Web Content Accessibility Guidelines) at all stages during the software development process. Doing so will bring the site/service/product closer to compliance, but the main point is to design for *inclusivity*.
+
+Saw presentations by Javascript Full Stack developers and they were using a package called [inquirer](https://www.npmjs.com/package/inquirer). It is a command-line interface for Node.js. They were using it to administratively update database entries, and manage services running on their backend infrastructures. This could be useful in future Node and Express projects! Turns out the class was instructed to do their projects *without any graphical user interface at all*, and use AWS Services for CRUD, authentication and authorization, and build custom API servers to manage their data calls. They all did really well!
+
+Went through the java-code-challenges repository to review properties, methods, traversals, and algorithmic complexities. There were a couple of errors, some points that needed refinement, and some reference links that needed to be updated, so I did that. Having that repository with all of the documentation included seems to be a good idea as I am able to easily review the information and refresh it in my mind. This actually raises my interest in coding, so it might be good to do these reviews earlier in the day so I can take advantage of that coding desire.
+
 ## Thursday 20-Oct-2022
 
 Continued research using React Hooks. Much of the documentation introduces the concept of Context and 'useContext' all in the same file. That's fine except those examples fail to demonstrate leveraging a defined context *across files* in a React hierarchy.
@@ -17,6 +33,13 @@ Key Takeaways:
 Once I had spent a few hours with 'useContext' hook to get the hang of it, I took some time to work through some more CSS issues. Turns out there are areas where CSS and Bootstrap styling could be refined to make the GameBoard display more appealing. Right now it is a little weird in how the Tiles are sized and shaped, but the benefit of the CSS layout and using Bootstrap is the site is responsive to both desktop-sized and phone-sized screens.
 
 I attended the Bellingham Codes Software Forum, where plenty of good discussion around building websites using React and javascript, among other things. Afterwards, I had more good discussion with Ryan, another attendee, about navigating becoming a software developer.
+
+Some takeaways from the Software Forum discussions:
+
+- I really enjoyed talking about code, with developers from all backgrounds.
+- Just because your React hierarchy is getting large or complex is *not* an indication that it is wrong or otherwise bad.
+- Framer: A production-ready [Motion library for React](https://www.framer.com/developers/guides/).
+- [Inkscape-react](https://github.com/konsumer/inkscape-react#readme): Converts Inkscape images to React Components.
 
 ## Wednesday 19-Oct-2022
 

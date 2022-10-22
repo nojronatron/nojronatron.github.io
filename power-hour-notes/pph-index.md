@@ -4,6 +4,8 @@ Notes taken while attending Power Hour sessions - videos and/or in-person events
 
 ## Index
 
+Web [Accessibility](web-accessibility-design-test.md), Design, Test, and usability.
+
 T Adlin [Aligning key people to help your project](./pph-tadlin-align-key-investors.html)
 
 Wes R [Patterns of Refactoring Code](./wesr-refactoring-patterns.html)
