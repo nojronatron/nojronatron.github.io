@@ -54,6 +54,8 @@ Testing is used to determine compliance:
 - User Testing.
 - Automated testing.
 
+Certification of Accessibility are available through IAAP (International Association of Accessibility Professionals) - WAS (Web Accessibility Specialist) [Certification](https://www.accessibilityassociation.org/s/wascertification)
+
 ## What Is Accessibility?
 
 Provides the ability for everyone to access products and services.
