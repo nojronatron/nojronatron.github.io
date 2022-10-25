@@ -2,6 +2,15 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 25-Oct-2022
+
+If I had an extra couple hours yesterday I would have completed implementing a CSS theme-selecting feature to Lingo Bingo earlier. This is exciting! I accomplished CSS magic with little help and lots of exploration and logically working through the problem on my own:
+
+- Utilized CSS Variables to define a set of colors. This was already set from several weeks ago, but made implementing a theme much easier, and will enable simplified code updates and management.
+- Leveraged property selectors on CSS Classes to define color, background, and border properties.
+- Enabled programmatic selection of these pre-defined CSS themes through a field in react class component code
+- Enabled programmatic selection of these pre-defined CSS themes through a local variable in react function component code.
+
 ## Monday 24-Oct-2022
 
 We've been looking to find a font or three to use for the Lingo Bingo project. Some resources were added to the Trello board so I read the article about Roboto and took a peek at [FontJoy](https://fontjoy.com/) to find some reasonable pairings. Will have to revisit this in the future with the goal of making a decision.
