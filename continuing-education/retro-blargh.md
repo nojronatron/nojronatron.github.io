@@ -13,6 +13,10 @@ If I had an extra couple hours yesterday I would have completed implementing a C
 
 The idea to use a CSS Class selector came from [css-tricks.com](https://css-tricks.com/creating-color-themes-with-custom-properties-hsl-and-a-little-calc/).
 
+I reviewed my latest code challenge attempt and there are problems with the pseudocode and the slightly altered actual Java code:
+
+1. Character class is a single String character, but is stored as an integer. So when casting a char of an integer (lets say 23) to an int, the *value* of the char is returned instead of the character as an int. Instead of casting the Character class to an Integer, I should first cast Character to a String, and then to an Integer.
+2. Creating temp variables should be done with a purpose, meaning they need to be used sometime later, and probably destroyed. This needs to get corrected to be sure that temporarily stored value is used.
 
 ## Monday 24-Oct-2022
 
