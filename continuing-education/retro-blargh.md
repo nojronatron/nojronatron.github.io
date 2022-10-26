@@ -2,6 +2,22 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 25-Oct-2022
+
+If I had an extra couple hours yesterday I would have completed implementing a CSS theme-selecting feature to Lingo Bingo earlier. This is exciting! I accomplished CSS magic with little help and lots of exploration and logically working through the problem on my own:
+
+- Utilized CSS Variables to define a set of colors. This was already set from several weeks ago, but made implementing a theme much easier, and will enable simplified code updates and management.
+- Leveraged property selectors on CSS Classes to define color, background, and border properties.
+- Enabled programmatic selection of these pre-defined CSS themes through a field in react class component code
+- Enabled programmatic selection of these pre-defined CSS themes through a local variable in react function component code.
+
+The idea to use a CSS Class selector came from [css-tricks.com](https://css-tricks.com/creating-color-themes-with-custom-properties-hsl-and-a-little-calc/).
+
+I reviewed my latest code challenge attempt and there are problems with the pseudocode and the slightly altered actual Java code:
+
+1. Character class is a single String character, but is stored as an integer. So when casting a char of an integer (lets say 23) to an int, the *value* of the char is returned instead of the character as an int. Instead of casting the Character class to an Integer, I should first cast Character to a String, and then to an Integer.
+2. Creating temp variables should be done with a purpose, meaning they need to be used sometime later, and probably destroyed. This needs to get corrected to be sure that temporarily stored value is used.
+
 ## Monday 24-Oct-2022
 
 We've been looking to find a font or three to use for the Lingo Bingo project. Some resources were added to the Trello board so I read the article about Roboto and took a peek at [FontJoy](https://fontjoy.com/) to find some reasonable pairings. Will have to revisit this in the future with the goal of making a decision.

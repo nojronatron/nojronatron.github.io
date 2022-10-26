@@ -6,6 +6,7 @@ A collection of continuing education, research notes, and references.
 
 ### Things I Want To Learn More About
 
+- [ ] Review the 'n+1 problem'. This has been mentioned multiple times recently in context with GraphQL.
 - [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
 - [ ] Learn about Flutter, a mobile framework. Bellingham Codes group mentioned it, along with some praise.
 - [ ] [Tailwind C S S](https://tailwindcss.com/).
