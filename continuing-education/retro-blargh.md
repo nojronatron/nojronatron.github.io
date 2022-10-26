@@ -11,6 +11,9 @@ If I had an extra couple hours yesterday I would have completed implementing a C
 - Enabled programmatic selection of these pre-defined CSS themes through a field in react class component code
 - Enabled programmatic selection of these pre-defined CSS themes through a local variable in react function component code.
 
+The idea to use a CSS Class selector came from [css-tricks.com](https://css-tricks.com/creating-color-themes-with-custom-properties-hsl-and-a-little-calc/).
+
+
 ## Monday 24-Oct-2022
 
 We've been looking to find a font or three to use for the Lingo Bingo project. Some resources were added to the Trello board so I read the article about Roboto and took a peek at [FontJoy](https://fontjoy.com/) to find some reasonable pairings. Will have to revisit this in the future with the goal of making a decision.
