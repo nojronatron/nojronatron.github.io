@@ -2,6 +2,26 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 26-Oct-2022
+
+Sometimes challenges are designed in a way that the candidate is very likely to fail. It doesn't matter if the wording is imprecise, wrong, or otherwise misleading. The idea behind code challenges is to determine:
+
+- How does the candidate problem solve?
+- What questions does the candidate ask to learn the size and shape of the problem?
+- What does the candidate do with the information provided by the answers to the questions?
+- Does the candidate use good communication skills to explain how they are solving the problem?
+- Does the candidates solution show logical steps solving small portions of the problem?
+- How does the candidate respond to challenging problems?
+- How does the candidate respond to failure?
+
+Here's an example of how to frustrate your candidate and see how they deal with it:
+
+- Provide a challenge that states the input will be an integer, but provide examples and imply the input will actually be a String.
+- Put restrictions on the challenge to avoid using built-in methods in the language of choice, and then explain the best solution uses built-in methods such as indexing into an Array.
+- Assert that the 'best solution' is O(1) in both space and time, despite the solution requiring one or more arrays pre-loaded with data AND utilizes at least one iterator to cycle through values in 2 different arrays.
+
+At any rate, it was fun to solve the challenge a few different ways. There are at least 2 other ways to solve the challenge but I am not going to pursue those today. I am glad I have the brain dumps, code, tests, and analysis to review in the future as I see fit.
+
 ## Tuesday 25-Oct-2022
 
 If I had an extra couple hours yesterday I would have completed implementing a CSS theme-selecting feature to Lingo Bingo earlier. This is exciting! I accomplished CSS magic with little help and lots of exploration and logically working through the problem on my own:
