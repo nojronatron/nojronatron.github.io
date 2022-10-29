@@ -4,7 +4,9 @@ Notes taken while attending Power Hour sessions - videos and/or in-person events
 
 ## Index
 
-Web [Accessibility](web-accessibility-design-test.md), Design, Test, and usability.
+A conversation about [24 years experience in tech](./bennett-12in4in24.html).
+
+Web [Accessibility](web-accessibility-design-test.html), Design, Test, and usability.
 
 T Adlin [Aligning key people to help your project](./pph-tadlin-align-key-investors.html)
 

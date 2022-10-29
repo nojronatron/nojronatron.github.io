@@ -2,6 +2,26 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 28-Oct-2022
+
+Attended a PPH Session today with a guy from Microsoft talking about his journey of 40 years in the tech industry, from C++ to Xamarin and C#, to Cloud Advocacy. Good session, enthusiastic guest, enlightening takeaways, and overall enjoyable. Turns out he has had a similar experience to mine, in having to leave a job due to a bad manager.
+
+Spent some time reviewing Cheerio and the more I look at it, the more I wonder if this is something I want to get involved with. I will give it some more time, to see what it can do. Also, having some experience with it should help me gain the context necessary to help solve that (8 year old!) Issue they have sitting there.
+
+Took some time out to sketch a REST and CRUD design for Lingo Bingo. This came to me relatively quickly including n-to-m relationships. We now have a draft outline of custom API server features, interactions with an external authentication service, a database service, and users based on authorization types.
+
+Revisited ExpressJS to jumpstart my memory on how this all works. It's nice that it is such a small, simple thing, but there are a lot of libraries that can be bolted-on that make it (highly extensible and capable) difficult. :smiley: Key takeaways so far:
+
+- Create the project folder and run `npm init`, responding to multiple questions to create a default package.json file.
+- Remember to `git init` so changes can be reverted, committed, and pushed to a remote repo.
+- To use the ExpressJS generator, use `npx express-generator`. This installs 'jade' as the default view engine (which will be deprecated from future versions and will require `--view=jade` to put it back).
+- Remember to `npm install`. Should be gut-reaction at this point (but it's not).
+- Execute `npm start` to run the Express server, regardless of exactly how you created it.
+- Package.json will have a pointer to the default 'entrypoint' file, so be sure that is correct/up-to-date.
+- NODEMON! When editing the config or code in an Express server, your changes *might not be reflected* without restarting `npm start`. Instead, do `npm install nodemon` and then execute `nodemon` and when changes are detected, Express is restarted automatically so changes are 'picked up' right away.
+
+Last thing to note: Working server side is making me smile a lot. I am excited to move to this server-side portion of the project!
+
 ## Thursday 27-Oct-2022
 
 Today I spent most of the day working through some older assignments in the data structures and algorithms repo. Key takeaways:
@@ -12,7 +32,7 @@ Today I spent most of the day working through some older assignments in the data
 - When adding lots of conditionals and/or testing for the same situation a lot in the same method, it is time to create a field and a method that sets that field, and then an 'escape hatch' code path that bypasses the method(s) or code blocks that do not need to run if the field is set a certain way. The code will be easier to read and simpler to debug.
 - I am proud of the design and coding of 'balancedBrackets', even as it was prior to refactoring it today. There were very few bugs, and most of the refactoring needed today was because I introduced a few more edge cases that I hadn't thought of before (or did and I avoided them because they were too much to think about at the time).
 
-I am celebrating my successess in these projects from months ago, and with my slight improvements today, along with implementing unit tests so the projects are verfiably stable and sensible. :fire: :firecracker: :fireworks: :grin:
+I am celebrating my successess in updating these months-old projects. :fire: :firecracker: :fireworks: :grin:
 
 ## Wednesday 26-Oct-2022
 
@@ -72,7 +92,7 @@ Re-attempted a technical interview challenge [see previous attempt notes below](
 
 Key takeaways:
 
-- There were integers involved: Ask questions about min/max values, negatives and zero, and what (if any) are valid inputs.
+- There were integers involved: Ask questions about min/max values, negatives and zero, and what (if any) are invalid inputs.
 - An input could have been an empty string, so early on I should have written a test for that so there would be something early on, instead of waiting until the very end writing test approach.
 - Input type was String (which was unexpected given the challenge name), so I need to immediately ask questions about handling all character types, not just the expected numeric types. What if the input was "12c4"?
 - Utilizing a Stack to store input in a LIFO order is helpful for cases like this one, and it was good to come up with that portion rapidly. Although I should have made a few distinct notes about Stacks e.g. push, pop, peek, isEmpty, and LIFO.
