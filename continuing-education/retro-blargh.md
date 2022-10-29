@@ -18,6 +18,9 @@ Revisited ExpressJS to jumpstart my memory on how this all works. It's nice that
 - Remember to `npm install`. Should be gut-reaction at this point (but it's not).
 - Execute `npm start` to run the Express server, regardless of exactly how you created it.
 - Package.json will have a pointer to the default 'entrypoint' file, so be sure that is correct/up-to-date.
+- NODEMON! When editing the config or code in an Express server, your changes *might not be reflected* without restarting `npm start`. Instead, do `npm install nodemon` and then execute `nodemon` and when changes are detected, Express is restarted automatically so changes are 'picked up' right away.
+
+Last thing to note: Working server side is making me smile a lot. I am excited to move to this server-side portion of the project!
 
 ## Thursday 27-Oct-2022
 
