@@ -6,6 +6,19 @@ Semi-regular notes taken during my software developer journey.
 
 Attended a PPH Session today with a guy from Microsoft talking about his journey of 40 years in the tech industry, from C++ to Xamarin and C#, to Cloud Advocacy. Good session, enthusiastic guest, enlightening takeaways, and overall enjoyable. Turns out he has had a similar experience to mine, in having to leave a job due to a bad manager.
 
+Spent some time reviewing Cheerio and the more I look at it, the more I wonder if this is something I want to get involved with. I will give it some more time, to see what it can do. Also, having some experience with it should help me gain the context necessary to help solve that (8 year old!) Issue they have sitting there.
+
+Took some time out to sketch a REST and CRUD design for Lingo Bingo. This came to me relatively quickly including n-to-m relationships. We now have a draft outline of custom API server features, interactions with an external authentication service, a database service, and users based on authorization types.
+
+Revisited ExpressJS to jumpstart my memory on how this all works. It's nice that it is such a small, simple thing, but there are a lot of libraries that can be bolted-on that make it (highly extensible and capable) difficult. :smiley: Key takeaways so far:
+
+- Create the project folder and run `npm init`, responding to multiple questions to create a default package.json file.
+- Remember to `git init` so changes can be reverted, committed, and pushed to a remote repo.
+- To use the ExpressJS generator, use `npx express-generator`. This installs 'jade' as the default view engine (which will be deprecated from future versions and will require `--view=jade` to put it back).
+- Remember to `npm install`. Should be gut-reaction at this point (but it's not).
+- Execute `npm start` to run the Express server, regardless of exactly how you created it.
+- Package.json will have a pointer to the default 'entrypoint' file, so be sure that is correct/up-to-date.
+
 ## Thursday 27-Oct-2022
 
 Today I spent most of the day working through some older assignments in the data structures and algorithms repo. Key takeaways:
