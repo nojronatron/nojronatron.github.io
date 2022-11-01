@@ -2,6 +2,28 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 31-Oct-2022
+
+Saturday featured a communications exercise through early afternoon, and then family time for the rest of the day.
+
+Sunday was a down-time day. I managed some documentation related to Saturday's post-exercise debriefing discussion, but largely it was an opportunity to decompress from a busy several weeks.
+
+Today I had a late start and decided to work on yaml skills. My java-code-challenges repository in GitHub is a good candidate to explore yaml files and will benefit me in assuring builds build and tests are passing before merging into main. I've looked at YAML before and it had confused me (still does). Today I was able to make progress and defined 2 files: One for on push and another for on PR.
+
+YAML key takeaways:
+
+- File extension '.yaml' or '.yml'.
+- Store in `./github/workflows/` directory of the repo.
+- On: Single or multiple events can be defined.
+- Branches, branches-ignore, paths, and paths-ignore: Refine *when* an Action is executed.
+- Can be scheduled (like CRON) or called by workflow and other events.
+
+Resources:
+
+- How to [build gradle projects with GH Actions](https://tomgregory.com/build-gradle-projects-with-github-actions/) by Tom Gregory.
+- [GH Docs: Trigger a Workflow](https://docs.github.com/en/actions/using-workflows/triggering-a-workflow).
+- [GH Docs: Filter matching pattern cheat-sheet](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#patterns-to-match-branches-and-tags).
+
 ## Friday 28-Oct-2022
 
 Attended a PPH Session today with a guy from Microsoft talking about his journey of 40 years in the tech industry, from C++ to Xamarin and C#, to Cloud Advocacy. Good session, enthusiastic guest, enlightening takeaways, and overall enjoyable. Turns out he has had a similar experience to mine, in having to leave a job due to a bad manager.
