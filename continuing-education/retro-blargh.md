@@ -2,6 +2,22 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 1-Nov-2022
+
+Hard to believe it is November already. I took time out yesterday and today to brain-dump everything I thought I knew about Stacks, Queues, Linked Lists, Hash Tables, Graphs, Trees, and sorting algorithms. Sorting Algorithms is different in that recently not much time has been spent studying them. Given my experience with the other data structures and algorithms, I feel like it is a good time to take on a merge-sort algorithm and just see how far I can get on my own.
+
+Key Takeaways - Problem Solving:
+
+- With some quiet, concentration time, a good amount of problem deconstruction could happen.
+- Two of my IF statements were written backwards, meaning I meant to test if one was greater than another, but wrote the test the wrong way.
+- No step-through of the algorithm or pseudocode allowed several bugs to get through to the Java implementation.
+
+Key Takeaways - Java Coding:
+
+- Java and its build tools and IntelliJ IDEA are very sensitive to namespaces (not surprising).
+- Namespaces must NOT include the work 'java' as a single term in the namespace, other than the reserved directory 'java' in the 'main' and 'test' branches of the Project. Namespace issues like this will block building and testing code with errors that are not helpful.
+- The best way to convert from a `List<T>` type to a `[]` type (e.g. `int[]`) is to Ehanced For loop through the List and assign values one at a time to the destination Array, index by index.
+
 ## Monday 31-Oct-2022
 
 Saturday featured a communications exercise through early afternoon, and then family time for the rest of the day.
