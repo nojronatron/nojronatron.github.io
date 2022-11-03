@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 3-Nov-2022
+
+Finished off the Rotate 3x3 Matrix code challenge from yesterday. Added a feature where it would rotate other sizes including non-equal sized rows and columns, so long as the input matrix x and y are 3 or longer.
+
+Walked through some documentation about deploying a server-side Node.js app to Azure. Documentation is pretty good and there is now a VS Code Extension (several actually) for Azure. It's worth noting that full Linux-based, Express.js server applications are supported, and MongoDB can be part of the Web App solution, too. This could work well for Lingo Bingo.
+
 ## Wednesday 2-Nov-2022
 
 Took some time out to attend a Microsoft Reactor presentation on Rust (of all things). Key takeaways:
