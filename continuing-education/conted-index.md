@@ -29,6 +29,7 @@ A collection of continuing education, research notes, and references.
 
 ### Notes And Takeaways from Research and Experience
 
+- [X] Deploy a [Node.js WebApp to Azure](deploy-express-azure.html).
 - [X] Cross Origin Resource Sharing [CORS](./cors-review.html)
 - [X] Animating web elements using [CSS](./css-animations.html)
 - [X] React [NavBar with Router](./navbar-in-react-with-routing.html) notes from [WebDevSimplified - How to create a navbar in react with routing](https://www.youtube.com/watch?v=SLfhMt5OUPI)
