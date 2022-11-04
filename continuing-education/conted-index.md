@@ -15,7 +15,6 @@ A collection of continuing education, research notes, and references.
 - [ ] Review and gain experience with topics in [Best Practices With Generics And Collections](https://www.codejava.net/java-core/collections/18-java-collections-and-generics-best-practices) from codejava.net.
 - [ ] Java: Investigate [Rest-assured](https://rest-assured.io/) and [rest-assured github](https://github.com/rest-assured/rest-assured/wiki/GettingStarted) - a test framework library 'for REST built on HTTPBuilder' for Java.
 - [ ] Investigate [replit.com](https://replit.com)'s unit testing tool.
-- [ ] [Unit testing](./android-studio-testing.html) in Android Studio.
 - [ ] React Lifecycle: I have a vague recollection of how this works but need to review for an upcoming project.
 - [ ] JS Promises: I need to brush up on Promises.
 - [ ] CSS 3: When overlapped objects must have a transparency or alternate color assignment, what CSS property should be used? See [cssbattle 15](https://cssbattle.dev/play/15) for an example.
@@ -26,10 +25,11 @@ A collection of continuing education, research notes, and references.
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
 - [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
 - [ ] Wiring Repositories in [Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa).
-- [ ] [MSFT Ignite October 2022](./ms-ignite-2022-notes.html) provides an overview of MSFT new and upcoming technical solutions, especially Azure services, MSFT 365, and integration with and around those platforms.
 
 ### Notes And Takeaways from Research and Experience
 
+- [X] [Unit testing](./android-studio-testing.html) in Android Studio.
+- [X] [MSFT Ignite October 2022](./ms-ignite-2022-notes.html) provides an overview of MSFT new and upcoming technical solutions, especially Azure services, MSFT 365, and integration with and around those platforms.
 - [X] Deploy a [Node.js WebApp to Azure](deploy-express-azure.html).
 - [X] Cross Origin Resource Sharing [CORS](./cors-review.html)
 - [X] Animating web elements using [CSS](./css-animations.html)
