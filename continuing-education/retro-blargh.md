@@ -8,6 +8,8 @@ Finished off the Rotate 3x3 Matrix code challenge from yesterday. Added a featur
 
 Walked through some documentation about deploying a server-side Node.js app to Azure. Documentation is pretty good and there is now a VS Code Extension (several actually) for Azure. It's worth noting that full Linux-based, Express.js server applications are supported, and MongoDB can be part of the Web App solution, too. This could work well for Lingo Bingo.
 
+MongoDB (local installation) was not playing nice so troubleshooting and reinstallation consumed a bit of my time. It's funny that although Mongo Org has lots of great documentation, they are pushing pretty hard for users to just use Mongo Atlas...which is what I'm going to do for most projects. I guess PostgreSQL will be the local DB platform for me? Maybe MySQL? We'll see.
+
 ## Wednesday 2-Nov-2022
 
 Took some time out to attend a Microsoft Reactor presentation on Rust (of all things). Key takeaways:
