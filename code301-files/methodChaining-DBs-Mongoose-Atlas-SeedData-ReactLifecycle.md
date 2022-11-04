@@ -63,9 +63,17 @@ There are also ORM systems: Object Relational Mapping.
 
 ### Mongoose
 
-Used as an ODM.  
-Schema: Diagram or template of what the data will look like.  
-?? (there is more here that I missed)
+Object Modeling for node.js
+
+- Used as an ODM.  
+- Schema: Diagram or template of what the data will look like.  
+- Model application data.
+- Type-casting included.
+- Data validation included.
+- Can build queries with Mongoose.
+- Can be used with 'business logic hooks'.
+
+Mongoose [quick start guide](https://mongoosejs.com/docs/index.html)
 
 ### Why Not Use an RDBMS
 
@@ -76,7 +84,7 @@ Right now everything is javascript (FE, BE, and DB).
 Database View: Shows overview, real time, metrics, collection, profiler, and more.  
 Connect: Database => Connect button => driver: node.js v4.0+. Copy the line of code into a `.env` file.  
 
-```md
+```text
 mongodb+srv://rumseytoor:<password>@cluster0.0gxux.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 ```
 
@@ -173,30 +181,17 @@ componentDidMount() {
 }
 ```
 
-### Lab 11 Setup and TODOs
-
-New Trello Board (clone so items can be checked-off and make it public).  
-Week-long partner.  
-Create a cooperative strategy to work on this lab (similar to 201 Final Project).  
-Remember to *use starter code for both FE and BE*! GitHub "Use This Template" is the key.  
-Wednesdays Code301 repo has a Bootstrap Carousel should be the guide for the FE.  
-One of each per team: BE Repo, FE Repo, Trello Board. One person will own at least one of each of these. Use FORK to get locally up-to-date versions of other repos. Be sure to agree on who will update the Trello board.  
-Definitely *do paired programming* throughout this project.  
-Timebox lab work to 4 hours then submit whatever you have accomplished.  
-If time permits after timebox and other assignments are completed *then* additional Lab work can happen.  
-Make your partners *GitHub Collaborators* so there is a single-truth repo everyone will work on.  
-Do *not* clone partners repo until end of the week.  
-
 ### CRUD
 
 Functionality needed to have a fully functional database.  
 
-Create: Add a new record to a DB, similar to 'POST'.  
-Read: Similar to REST 'GET'.  
-Update: Change a value within an existing DB record, similar to 'PUT' (update or replace) or 'PATCH' (modify).  
-Delete: Remove an existing record from a DB, similar to 'DELETE'.  
+- Create: Add a new record to a DB, similar to 'POST'.
+- Read: Similar to REST 'GET'.
+- Update: Change a value within an existing DB record, similar to 'PUT' (update or replace) or 'PATCH' (modify).
+- Delete: Remove an existing record from a DB, similar to 'DELETE'.
 
 ## Jon TODOs
 
-- Review Promises: They force an async behavior and return either 'response' or 'error'. A Promise is fulfilled and data is stuffed (as a parameter) via a Promise.resolve() function, otherwise Promise.reject(e) should be returned using a try-catch construct (handling a '.catch( arrow-func-to-handle-error-return )).  
-- Review: https://masteringjs.io/tutorials/mongoose/create  
+- Review Promises: They force an async behavior and return either 'response' or 'error'.
+- A Promise is fulfilled and data is stuffed (as a parameter) via a Promise.resolve() function, otherwise Promise.reject(e) should be returned using a try-catch construct (handling a '.catch( arrow-func-to-handle-error-return )).
+- Review this [mongoose tutorial](https://masteringjs.io/tutorials/mongoose/create)
