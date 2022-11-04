@@ -227,3 +227,7 @@ Deploy a [Node.js and MongoDB Web App](https://learn.microsoft.com/en-us/azure/a
 [MSFT Azure NodeJS Server Samples Repository](https://github.com/Azure-Samples/msdocs-javascript-nodejs-server).
 
 ## Footer
+
+Return to [conted index](./conted-index.html)
+
+Return to [ROOT README](../README.html)
