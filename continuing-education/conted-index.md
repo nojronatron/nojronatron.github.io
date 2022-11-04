@@ -6,6 +6,7 @@ A collection of continuing education, research notes, and references.
 
 ### Things I Want To Learn More About
 
+- [ ] Deploy Express.js and [MongoDB to Azure](deploy-express-mongodb-azure.html)
 - [ ] Review the 'n+1 problem'. This has been mentioned multiple times recently in context with GraphQL.
 - [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
 - [ ] Learn about Flutter, a mobile framework. Bellingham Codes group mentioned it, along with some praise.
@@ -29,6 +30,7 @@ A collection of continuing education, research notes, and references.
 
 ### Notes And Takeaways from Research and Experience
 
+- [X] Deploy a [Node.js WebApp to Azure](deploy-express-azure.html).
 - [X] Cross Origin Resource Sharing [CORS](./cors-review.html)
 - [X] Animating web elements using [CSS](./css-animations.html)
 - [X] React [NavBar with Router](./navbar-in-react-with-routing.html) notes from [WebDevSimplified - How to create a navbar in react with routing](https://www.youtube.com/watch?v=SLfhMt5OUPI)
