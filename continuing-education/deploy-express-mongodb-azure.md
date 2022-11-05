@@ -16,6 +16,10 @@ Config file shows where db files are stored. Mine is currently: `/var/lib/mongod
 
 'systemLog.verbosity' is an integer, default 0. Can be increased up to 5 (debug).
 
+## Setup for Deployment
+
+(tbd)
+
 ## References
 
 [MongoDB Configuration Options](https://docs.mongodb.org/manual/reference/configuraiton-options)
