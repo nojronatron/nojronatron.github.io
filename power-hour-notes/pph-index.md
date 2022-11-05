@@ -4,6 +4,8 @@ Notes taken while attending Power Hour sessions - videos and/or in-person events
 
 ## Index
 
+CSS Talk with [Brian](./bnation-css-stuff.html)
+
 A conversation about [24 years experience in tech](./bennett-12in4in24.html).
 
 Web [Accessibility](web-accessibility-design-test.html), Design, Test, and usability.
