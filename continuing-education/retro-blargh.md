@@ -2,13 +2,39 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 4-Nov-2022
+
+The local MongoDB installation needed to be removed from my main dev workstation, so that is now done. There were some Linux updates ready to install so I knocked those out too. After some additional research about Netlify vs. Azure App Service Web App. Before I do any more research, I need to deploy the LingoBingo website as-is to each and document the experience.
+
+Next was to review Hash Tables. I keep forgetting about a few important Fields and Methods:
+
+- IsEmpty(): Why not? Simplifies testing the data state in the Hash Table for a calling function.
+- Replace(K, V, newV): This shouldn't be so hard for me to remember, yet it is. There are definitely cases where this would be necessary.
+- Hashcode() and Equals() overrides: These might be required depending on whether the Key or Value has appropriate implementation for the use.
+- Has, Contains, and Includes: Sheesh. It is true that the implementation (whatever it ends up being called) should be able to return boolean for any K and any V. I want to be able to talk through what the implementation would be like.
+
+Pattern and Matcher classes:
+
+- Do not confuse these with `String.replace(regex, String)` or `String.replaceAll(regex, String)` which can be used to replace substrings within a larger string.
+- Use Pattern and Matcher to get a boolean answer as to whether the input matches the intended regex pattern.
+- Matcher can be used against many Pattern instances so that various filter options can be tested.
+- For example, Pattern and Matcher might be good at validating a phone number, but won't be helpful if substrings in a String need to be removed or replaced or extracted.
+
+Here's the suggested development pattern from Oracle Docs on Java:
+
+```java
+Pattern pattern = Pattern.compile("\sword\s");
+Matcher matcher = Pattern.matcher(Input_String);
+boolean result = matcher.matches();
+```
+
 ## Thursday 3-Nov-2022
 
 Finished off the Rotate 3x3 Matrix code challenge from yesterday. Added a feature where it would rotate other sizes including non-equal sized rows and columns, so long as the input matrix x and y are 3 or longer.
 
 Walked through some documentation about deploying a server-side Node.js app to Azure. Documentation is pretty good and there is now a VS Code Extension (several actually) for Azure. It's worth noting that full Linux-based, Express.js server applications are supported, and MongoDB can be part of the Web App solution, too. This could work well for Lingo Bingo.
 
-MongoDB (local installation) was not playing nice so troubleshooting and reinstallation consumed a bit of my time. It's funny that although Mongo Org has lots of great documentation, they are pushing pretty hard for users to just use Mongo Atlas...which is what I'm going to do for most projects. I guess PostgreSQL will be the local DB platform for me? Maybe MySQL? We'll see.
+MongoDB (local installation) was not playing nice so troubleshooting and reinstallation consumed a bit of my time. It's funny that although Mongo Org has lots of great documentation, they are pushing pretty hard for users to just use Mongo Atlas...which is what I'm going to do for most projects going forward. I guess PostgreSQL will be the local DB platform for me? Maybe MySQL? We'll see.
 
 ## Wednesday 2-Nov-2022
 
