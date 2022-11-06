@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 6-Nov-2022
+
+Reviewing Express.js this morning:
+
+- [X] Simple Routing.
+- [X] Static pages.
+- [X] Static pages with absolute path using path module.
+- [ ] OAuth integration.
+- [ ] Implementing server-side cache.
+
 ## Saturday 5-Nov-2022
 
 Survived the windstorm and power outages last night and this morning. Back to it!
