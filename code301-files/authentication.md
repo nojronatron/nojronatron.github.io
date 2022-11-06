@@ -42,7 +42,7 @@ What is the difference between authorization and authentication?
 
 What is Authorization Code Flow?  
 
-> For Auth0, it means authentication and authorization are handled in a single stream of activy that supports server-side, mobile, desktop, client-side, machine-to-machine, and devices.  
+> For Auth0, it means authentication and authorization are handled in a single stream of activity that supports server-side, mobile, desktop, client-side, machine-to-machine, and devices.  
 
 What is Authorization Code Flow with Proof Key for Code Exchange (PKCE)?  
 
