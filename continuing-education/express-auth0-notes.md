@@ -4,7 +4,18 @@ A collection of notes for future review about implementing Auth0 server-side for
 
 ## Requirements
 
-TBD
+1. Pick your technology. Client, Server, CLI, or other. Expressjs is listed among the options. Note: So is Java Spring Framework.
+1. Allowed Callback URLs. Example: 'http://localhost:3000/callback'
+1. Allowed Logout URLs. Example: 'http://localhost:3000'
+1. Install 'express-openid-connect' module (maintained by Auth0).
+1. Generate a 32-bit random hexadecimal secret using either `openssl rand -hex 32` or [GRC Password Generator](https://www.grc.com/passwords.htm).
+1. Configuration of the OpenID Auth Router.
+
+## Routing Considerations
+
+- Should any static routes be protected by authentication?
+- Will a '/profile' route bring-up a custom profile page for the logged-in user? Thunderclient shows return data from Auth0 that can be used to start building a page.
+- Using ThunderClient will show responses but does not have an interactive/rendering display so use the browser for interactive log-in activity.
 
 ## Application Settings
 
@@ -44,6 +55,36 @@ Always verify the Application's Advanced Settings, Endpoints has the correct ent
 - SAML Metadata URL
 - WsFederation Metadata URL
 - WsFederation Sign-in URL
+
+## Client ID and Client Secret
+
+Depending on the provider used for OAuth2, these may be named differently.
+
+These are required to enable fully-features OAuth2 integration with your app.
+
+## Keys
+
+Custom Developer Keys:
+
+- Unable to use custom logo in OAuth screen.
+- Cannot use SSO properly because callback is not to the tenant callback url of the provider.
+- User redirect from Rules will not work (/continue will fail).
+- Federated logout will fail.
+- Disabling (prompt=none) will not work.
+- SAML Responses will miss critical properties.
+- MFA will not work properly.
+
+Provider Options:
+
+- Google
+- GitHub
+- Facebook
+- LinkedIn
+- Twitter
+
+Your Own Developer Keys:
+
+- Check with each OAuth2 provider to acquire the keys.
 
 ## Footer
 
