@@ -4,13 +4,31 @@ Semi-regular notes taken during my software developer journey.
 
 ## Sunday 6-Nov-2022
 
-Reviewing Express.js this morning:
+Reviewing Express.js today:
 
 - [X] Simple Routing.
 - [X] Static pages.
 - [X] Static pages with absolute path using path module.
-- [ ] OAuth integration.
+- [X] OAuth integration.
 - [ ] Implementing server-side cache.
+
+Worked with Ryan on LingoBingo updates, PRs, code reviews... via GitHub, Email, and Slack. We are getting *very close*! He resolved several bugs and is moving things forward nicely.
+
+While exploring Express.js and Auth0, I discovered Auth0 provides profile information for free. It's not a lot of info and really only includes the user name, locale, email, and an access grant token that is only used in the current authentication session. However, my exploratory Express server didn't have a way to display the data in a user friendly way.
+
+Express.js and server-side HTML Key Takeaways:
+
+- Whenever protesting server-side data but pushing rendered html to a client, use a template engine or submit data to a template via fragments.
+- Jade is a templating engine, but has been deprecated in favor of Pug.
+- Pug takes a template file that is plain text, has reserved keywords for common elements, and uses `#{variableName}` to pass-in data.
+- Pug renders the template using a combination of `compileFile(path/to/pugfile.pug)` and `compiledFunction({ propertyName: variableName })`
+- In express, this can be sent to the caller via `res.send()`, just stuff the compiledFunction into the send parameter.
+
+Express.js Social ID Providers and Developer Keys:
+
+- The freebee Auth0 Developer Keys are useful for temporary testing, and not available in private cloud deployments.
+- A ClientID and ClientSecret are part of the Developer Keys set and should be obtained via the target provider (Google, GitHub, Twitter, etc).
+- Auth0 *will not show your custom logo* on the OAuth screen when using Developer Keys.
 
 ## Saturday 5-Nov-2022
 
