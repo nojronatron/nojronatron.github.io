@@ -6,6 +6,7 @@ A collection of continuing education, research notes, and references.
 
 ### Things I Want To Learn More About
 
+- [ ] Investigate [Cheerio](https://cheerio.js.org/) - notes [started here](cheerio.html)
 - [ ] [Auth0 with Express.js](express-auth0-notes.html)
 - [ ] Deploy Express.js and [MongoDB to Azure](deploy-express-mongodb-azure.html)
 - [ ] Review the 'n+1 problem'. This has been mentioned multiple times recently in context with GraphQL.
