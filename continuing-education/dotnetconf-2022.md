@@ -10,7 +10,9 @@
 
 ## The State of DotNET MAUI
 
-MAUI for DotNET 7 is now GA!
+MAUI => *M*ulti-platform *A*pplication *U*ser *I*nterface
+
+> MAUI for DotNET 7 is now GA!
 
 MAUI statistics:
 
@@ -49,6 +51,14 @@ New Features:
 - Tool Tips
 - Context Menus
 - Accessibility Improvements
+
+URL Routing:
+
+- DotNET MAUI supports this.
+- Overcomes navigation problems between Blazor, Mobile, and Desktop app types.
+- Desktop App buttons are *native* with built-in capability.
+
+About [.NET MAUI](https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui?view=net-maui-7.0)
 
 ## Container Apps
 
