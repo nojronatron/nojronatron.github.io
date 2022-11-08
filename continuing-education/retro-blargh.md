@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 7-Nov-2022
+
+Took some time out to respond to some interview questions before tackling [Cheerio](cheerio.html). It took much of the day to learn how to use Cheerio once I got an Express server running (which was key, really). Since I have been focusing on Express recently, I also reviewed the following packages since it was convenient to do so:
+
+- Jade (Pug)
+- Express Router
+- Morgan
+- DotEnv
+
+The one part of deploying Express that I didn't pay much attention to (but I should in the future) is using NPX vs NPM INIT and building by hand. The NPX initializer builds-out a deprecated templating library (Jade) and includes Express Router and lots of setup and sample files. This isn't a bad thing. In most cases though I think it would be good for me to build the server by hand and get more out of the experience.
+
 ## Sunday 6-Nov-2022
 
 Reviewing Express.js today:
