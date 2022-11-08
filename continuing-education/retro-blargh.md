@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 8-Nov-2022
+
+DotNET Conf 2022 starts today. Notes will be stored [elsewhere](./dotnetconf-2022.html).
+
 ## Monday 7-Nov-2022
 
 Took some time out to respond to some interview questions before tackling [Cheerio](cheerio.html). It took much of the day to learn how to use Cheerio once I got an Express server running (which was key, really). Since I have been focusing on Express recently, I also reviewed the following packages since it was convenient to do so:
