@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 9-Nov-2022
+
+More DotNET Conference 2022 video viewings and [note taking](./dotnetconf-2022.html).
+
+[SVG](svg-files.html) and [Playwright](playwright-notes.html) were mentioned.
+
 ## Tuesday 8-Nov-2022
 
 DotNET Conference 2022 starts today. Notes will be stored [elsewhere](./dotnetconf-2022.html).
