@@ -4,7 +4,9 @@ Semi-regular notes taken during my software developer journey.
 
 ## Tuesday 8-Nov-2022
 
-DotNET Conf 2022 starts today. Notes will be stored [elsewhere](./dotnetconf-2022.html).
+DotNET Conference 2022 starts today. Notes will be stored [elsewhere](./dotnetconf-2022.html).
+
+Between interesting DotNET Conference sessions I worked on java-code-challenges, implementing a Graph class and requisite unit tests.
 
 ## Monday 7-Nov-2022
 
