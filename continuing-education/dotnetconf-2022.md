@@ -2,11 +2,77 @@
 
 ## Index
 
+[WASM Improvments in DotNET7](#wasm-improvements-in-dotnet7)
+
 [The State of DotNET MAUI](#the-state-of-dotnet-maui)
 
 [Container Apps](#container-apps)
 
 [Azure Functions in DotNET](#azure-functions-in-dotnet)
+
+## WASM Improvements in DotNet7
+
+WASM => Web Assembly
+
+Key point: Blazor handles all of the DOM Manipulation, enabling development to concentrate on functionality and style.
+
+Runtime provides:
+
+- API Compatibility (browser and external as able)
+- Within constrained browser environment
+- Small download size
+
+WASM integration in DotNET support Blazor framework.
+
+DotNET enables full-stack webapp deployment using common frameworks and libraries.
+
+New in 7:
+
+- Enhanced debugging: Not the usual debugger because tunnels via JS debug proto in WASM.
+- Enhanced debugging: JustMyCode on/off in Visual Studio.
+- Enhanced debugging: Debug multi-dimensional arrays even in Hot Reload.
+- Enhanced debugging: Actual Call Stack method names now bubble-up to the CallStack view pane.
+- Hot reload improvement: Support for editing/changing types and values without stop/restart.
+- Enhanced web crypto
+- WASM SIMD and exception handling: Single Instructiom Multiple Data.
+- WASM AOT support: Ahead Of Time compilation: `dotnet workload install wasm-tools` (or tools-net6 for prior version).
+- WASM Experimental tooling: `dotnet workload install wasm-experimental`
+- Enahanced JS interop
+
+Enhanced JS Interop Features:
+
+- Strongly-typed by default.
+- Optimized for WASM execution.
+- No more IJSUnmarshalledRuntim (unless Blazor Hybrid).
+- JSImport => JS Functions into DotNET.
+- Proper EF 6.0 module utilized in DotNET 7.
+- JSExport => Allows calling methods across JS and DotNET. This is an [attribute] to send function returns from DotNET to JS.
+- Promise support is included.
+- JSHost.Invokeasync => Import JS Modules into DotNet Blazor.
+- './dotnet.js' to add library call support from JS to DotNET.
+
+App Project Template Support:
+
+- WASM Browser App
+- WASM Console App
+
+Multithreaded Support (preview):
+
+- Browsers usually single-threaded.
+- Thread emulation within WASM: `var thread = new thread(()=>{ processing... })`
+- Share memory with Shared Array Buffers.
+- Requires WASM-enable-threads.
+- Not supported in Blazor yet, limited to experimental templates only.
+
+Uno Platform DotNET 7 => Check out uplatform.uno for more info.
+
+Limitation on debugging WASM: Limited to Chromium-based (for now).
+
+WASI: Web Assembly System Interface.
+
+- Allows access to platform the RunTime runs on, in the context of WASM and web-based development.
+- Can be containerized to limit impact of possibly hostile code.
+- See [wasi.dev](https://wasi.dev/) for details.
 
 ## The State of DotNET MAUI
 
