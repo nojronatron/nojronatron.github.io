@@ -2,6 +2,25 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday and Friday 10 and 11-Nov-2022
+
+Thursday:
+
+- At least 4 hours working through volunteer communications and logistical planning.
+- Re-opened java-code-challenges and continued work implementing tests, squashing bugs, and refining functionality of the MyGraph class, nodes, and edges.
+- Revisited my C# project Initial Bearing Example. It is a DotNET 5 Project, which wasn't installed on my laptop so I edited the Project File so it is now DotNET 6.
+- Project Initial Bearing has some issues in the calculations but operationally the console messages are informative and the app is stable. Solving problems of distance and direction on the surface of a spherical shape are quite complex. I added this to my list of personal projects backlog.
+
+Friday:
+
+- [X] Spend some time working through interview preparation tasks.
+- [ ] Continue work refining Screen Party functionality, debugging.
+- [ ] Revisit Graph challenge, try to wrap it up before EOD.
+- [ ] It is 'Azure Friday': Review an episode.
+- [ ] End of week retro: Brain-dump what went well this week, and what needs improvement or could I have done differently?
+
+Meeting with Ryan about project Lingo Bingo has been rescheduled for Saturday 12-Nov.
+
 ## Wednesday 9-Nov-2022
 
 More DotNET Conference 2022 video viewings and [note taking](./dotnetconf-2022.html).
@@ -9,6 +28,11 @@ More DotNET Conference 2022 video viewings and [note taking](./dotnetconf-2022.h
 [SVG](svg-files.html) and [Playwright](playwright-notes.html) were mentioned.
 
 Completed some tasks for LingoBingo and prepped a test deployment of the latest changes to Netlify. Many of the tweaks I am encountering seem much easier to approach and deal with than in the past. :smiley: Progress! :fire:
+
+Lastly, I spent some time tweaking the Screen Party animations:
+
+- Tone-down the center star-eyed smiley animation so it's not quite so alarming.
+- Contain the animations within the borders of the existing viewport to eliminate the vertical scrollbar and reduce the amount of horizontal scrollbar that appears.
 
 ## Tuesday 8-Nov-2022
 
