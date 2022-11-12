@@ -14,12 +14,34 @@ Thursday:
 Friday:
 
 - [X] Spend some time working through interview preparation tasks.
-- [ ] Continue work refining Screen Party functionality, debugging.
+- [X] Continue work refining Screen Party functionality, debugging.
 - [ ] Revisit Graph challenge, try to wrap it up before EOD.
 - [ ] It is 'Azure Friday': Review an episode.
-- [ ] End of week retro: Brain-dump what went well this week, and what needs improvement or could I have done differently?
+- [X] End of week retro: Brain-dump what went well this week, and what needs improvement or could I have done differently?
+- [X] Power Hour and Presentation sessions at Code Fellows.
 
 Meeting with Ryan about project Lingo Bingo has been rescheduled for Saturday 12-Nov.
+
+GitHub Codespaces Sounds Interesting!
+
+- GitHub Universe was this week so some new features were released.
+- Cloud-based dev environment.
+- No local machine setup.
+- Develop, test, and deploy in a fully online environment.
+- Supports many common languages, and platforms
+- Is a Linux VM on Azure with its own Docker Container so it is fully isolated, with protected access.
+- Secure, forwarded port deployment (node app example).
+- Use VSCode locally to interact with CodeSpace! Also JetBrains IDE, VSCode Browser, and SSH via GitHub Cli.
+- Templates are available to quick-start an environment (but are billed only to Personal Accounts, not Organizations).
+- Free (to a limit), then billed monthly.
+
+CSS Animations can be tricky:
+
+- Absolute or Fixed display type? Both are effective, but Fixed takes the box *out of the usual flow* so the animation doesn't interfere with the rest of the page.
+- Animating fonts advice: Font sizes can get really large but too big might not be good for the overall experience.
+- Animating boxes: Assign a starting height and width of 0 and in the keyframes use auto.
+- Use `overflow: hidden` to keep objects from expanding the view port size when they spill over.
+- Animating fonts: Can use font-weight from 100-900 to make font thinner or thicker as part of the animation.
 
 ## Wednesday 9-Nov-2022
 
