@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 12-Nov-2022
+
+Met with Ryan on Lingo Bingo project and made lots of progress reviewing the Trello board:
+
+- Very close to MVP, just a few more items to knock out.
+- We have a potential customer that could be ready to use our app this winter.
+- Avoid adding authentication and authorization until post MVP.
+- Need to decide on a Netlify domain name so that when we hit MVP and push to the deploy branch the site is up and running.
+
+Reviewed an Azure Friday video on using Mongo and Cosmo DB via a local, virtualized developer instance of the services. Very cool!
+
 ## Thursday and Friday 10 and 11-Nov-2022
 
 Thursday:
@@ -16,7 +27,7 @@ Friday:
 - [X] Spend some time working through interview preparation tasks.
 - [X] Continue work refining Screen Party functionality, debugging.
 - [ ] Revisit Graph challenge, try to wrap it up before EOD.
-- [ ] It is 'Azure Friday': Review an episode.
+- [X] It is 'Azure Friday': Review an episode.
 - [X] End of week retro: Brain-dump what went well this week, and what needs improvement or could I have done differently?
 - [X] Power Hour and Presentation sessions at Code Fellows.
 
