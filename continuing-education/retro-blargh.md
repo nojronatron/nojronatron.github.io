@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 13-Nov-2022
+
+Completed Graph write-up, implementation, and full suite of unit tests. There are a few minor lingering items that I could revisit in the future as a means to jog my memory on this data structure and the algorithms used to traverse it.
+
+- [X] Revisit Graph challenge, try to wrap it up before EOD.
+
+Sorry Friday, it wasn't your day.
+
+The Lingo Bingo project continues to move forward, and we are marching ever closer to MVP launch!
+
 ## Saturday 12-Nov-2022
 
 Met with Ryan on Lingo Bingo project and made lots of progress reviewing the Trello board:
