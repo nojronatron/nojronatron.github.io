@@ -2,6 +2,21 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 14-Nov-2022
+
+Much of my day was spent working on volunteer work items, to clear the way for trainings, meetings, and exercises in 2023.
+
+Completed a code challenge, whiteboard session only. It took 70 minutes to complete all facets:
+
+- Define and refine the problem domain.
+- Depict inputs and outputs.
+- Design and write out an algorithms.
+- Create a step-through and walk through the algorithm to display operation, function.
+- Describe test approach and test cases.
+- Write Pseudocode.
+- Write code in my language of choice (Java this time).
+- Analyze the code using BigO notation.
+
 ## Sunday 13-Nov-2022
 
 Completed Graph write-up, implementation, and full suite of unit tests. There are a few minor lingering items that I could revisit in the future as a means to jog my memory on this data structure and the algorithms used to traverse it.
