@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 18-Nov-2022
+
+Reviewed current status of LingoBingo with Ryan. We have just a couple more work items to resolve and we are going to call MVP achieved! We will have more development sessions this weekend, most likely Sunday.
+
+There were a few other tasks I had to complete today for my volunteer work. This slowed my progress with everythingn dev related, but at least those tasks are sorted out and I can move on.
+
+
+
 ## Thursday 17-Nov-2022
 
 This week has been very busy. Unfortunately not all of it was busy in the ways I wanted it to be.
