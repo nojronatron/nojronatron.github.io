@@ -2,6 +2,28 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 18-Nov-2022
+
+Reviewed current status of LingoBingo with Ryan. We have just a couple more work items to resolve and we are going to call MVP achieved! We will have more development sessions this weekend, most likely Sunday.
+
+There were a few other tasks I had to complete today for my volunteer work. This slowed my progress with everythingn dev related, but at least those tasks are sorted out and I can move on.
+
+While exploring Cookies in ExpressJS, I ran across a scenario that I haven't considered before: Using Pug/Jade templates to design a submittable Form. This led to an older [blog post on 456Bereastreet.com](https://www.456bereastreet.com/archive/200711/use_the_label_element_to_make_your_html_forms_accessible/) that talks about including labels on forms for the sake of accessibility. Some key takeaways:
+
+- Labels associate form data with form elements.
+- Labels are used by screen readers to announce the form elements.
+- Labels:Form elements is 1:1
+- Lables:Forms is many:1
+- Button elements and Input element of type 'button' are already labeled (don't need to add one).
+- Implicit and explicit Label associations exist: Implicit = nested, Explicity = 'label for='
+- Label text *is clickable* which effectively increases the clickable area of a clickable element, like a small checkbox.
+- Use `div` or `fieldset` to wrap Form elements.
+- Match up the Input elements 'id=' attribute with the label's 'for=' attribute to bind the data.
+- Often the 'name=' attribute is named the same as the id and for attributes.
+- Use CSS to make visual adjustments to a label's text so it does not interfere with screen readers e.g. just put the label text following the label element, not another styling element wrapping the text.
+
+Continuing on, I found that there were intracacies of Pug and ExpressJS's Request and Response API's that I either don't have a good grasp of, or have otherwise forgotten how to use effectively, so I will need to review some of my prior work and de-clutter my learning environment to make better progress.
+
 ## Thursday 17-Nov-2022
 
 This week has been very busy. Unfortunately not all of it was busy in the ways I wanted it to be.
