@@ -2,6 +2,24 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 20-Nov-2022
+
+Continuing using express with postgresql from LogRocket blog. I was stuck on querying a single user by ID:
+
+- Must use REST verb 'GET' if that's how the binding is set.
+- A defined path of '/users/:id' for a GET means the URL is 'http://localhost:8080/path/path/user/n' where n is the ID to get.
+- Query Parameters in URLs are different and looke like 'http://localhost:8080/path?name=n&state=s' where n is a string and s is a string.
+
+Some other takeaways from the ExpressJS + PostgreSQL exercise:
+
+- SQL Queries tend to use arrays for the values that you intend to insert or mutate, even if it is just one item, so use brackets `[ ]` around the variable to insert.
+- Use parseInt(string, radix) to ensure a Number input is accepted as an integer, not a string.
+- Create a module to export functionality that is all related, for example GET Users, PUT User {}, and GET User/:id should all be exported using `module exports = { getUsers, getUser, addUser };` at the end of the file.
+- 'require' the exported module and have Express or ExpressRouter set a path and bind the required 'module.function' to the path.
+- Remember object deconstruction? Me neither. I mean, I do, but it isn't ever front of mind when it needs to be.
+
+LingoBingo MVP is live! Currently it is hosted on Netlify using built-in "ITU Phonetics" wordlist. We plan to set up the back end for the next version, and it will take some time to flesh out all the details.
+
 ## Saturday 19-Nov-2022
 
 While getting the computers set up for today, I ran across some older C# project files, mostly during and soon after Bellevue College classes a few years ago. So many exercises and some clever solutions to problems are hidden in there! I recall having difficulties dealing with Chars and Strings (conversions, slicing and splicing, and regex operations) during Code Fellows. This was very frustrating because I felt like I had solved those problems before, but I couldn't recall how to do it. Takeaways:
