@@ -13,6 +13,16 @@ Pug takeaways:
 
 I posted an answer to [a StackOverflow question](https://stackoverflow.com/questions/16970856/form-does-not-postback-when-submit-is-clicked-jade-node-js/74523674#74523674) that seemed to lack good answers, and it felt good to work through the problem, find a solution based on the original poster's code, and provide a structured, descriptive solution with a simple, tested code example. Hopefully it helps somebody. I had forgotten about being a StackOverflow member - probably because answers to questions are so common, and rarely is much additional information helpful (i.e. others that have answered have done a really good job). To update my profile, I added a slightly modified introductory statement, and inclduded a profile pic.
 
+As I get ideas and find a few extra minutes, I will update Miro (and Trello) with LingoBingo JS features for v.next.
+
+Express CRUD with Mongo Atlas takeaways (so far):
+
+- Set up Schema and Model either together or separately, then require them where necessary.
+- Build async functions to process actions on the Model(s).
+- Mongo Atlas supplies a connection string although the database name should be entered before '?retry...'.
+- Mongo DB table will be named after the Model name, and the data will be formatted according to the Model Schema.
+- Using dotenv config makes accessing and hiding a connection string pretty simple.
+
 ## Sunday 20-Nov-2022
 
 Continuing using express with postgresql from LogRocket blog. I was stuck on querying a single user by ID:
