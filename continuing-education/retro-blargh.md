@@ -2,6 +2,22 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 22-Nov-2022
+
+LingoBingo setup stuff:
+
+- Moved the lingoword table from one DB to another in Mongo Atlas.
+- Set up a search function to return all entries within a specified category.
+- Implemented all CRUD functions using Mongoose. There are some architecture details and some assumptions that will need to get fleshed out into details, but at this point, it seems like a few turnary functions can be implemented to enforce authentication and authorization, and it will be up to the caller to meet those requirements. For example: A non-authenticated user should not have authorization to update an existingn record.
+- I will need to go back and make sure that only the requisite information is actually returns from an endpoint, too. Spilling an entire document from Mongo to the caller is not an efficient use of processing nor bandwidth.
+- Calling '.exec()' at the end of a Mongoose statement (find et al) is required, unless I want to process the command *later*.
+
+Somehow I couldn't recall how to do object destructuring so I looked it up on MDN. Simple: `{ param1, param2, param3 } = inputObject`
+
+- This assumes the inputObject has fields 'param1', 'param2', and 'param3'.
+- It doens't matter in the inputObject has additional properties.
+- It doesn't matter what order the properties are in, just that the destructure syntax *uses the correct field names*.
+
 ## Monday 21-Nov-2022
 
 Back to Express, this time revisiting Forms, Jade, and Auth0. Will work on integrating with a database a little later.
