@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 23-Nov-2022
+
+Some things to consider when planning API Server development for LingoBingo:
+
+- Utilize custom error handler pages. See [Branden Enge's GitHub](https://github.com/brandenge/basic-api-server/tree/main/src/error-handlers) for examples.
+- Define my own middleware tools. See Branden's GitHub for that, too. Simply put, middleware is just a module with functionality that can be required by other components within the server.
+- Consider how to organize similar routes into a sub folder and simply export their functionality as modules.
+- If separate environment behaviors and features are needed, use an [environment selector](https://github.com/Keelen-Fisher/bearer-auth/blob/main/src/auth/models/index.js), as shown in Keelen Fisher's GitHub.
+- Separate permissions into a simple module that exports a function that simply checks permissions claims in a request against a list of permissions necessary for a function, prior to executing. Take a look at TTraylor310's example in [acl.js](https://github.com/TTraylor310/ExpressServer-Auth-and-Api/blob/main/src/auth/middleware/acl.js).
+
 ## Tuesday 22-Nov-2022
 
 LingoBingo setup stuff:
