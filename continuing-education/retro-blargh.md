@@ -134,6 +134,10 @@ Also today I worked through some interview preparation tasks including refining 
 
 ExpressJS has been displaying a warning whenever I launch the server. The message is "using form_post for response_mode may cause issues for you logging in over http...". In a development server, without a self-signed certificate, http is the way to go. Production servers would (of course) use a signed cert and leverage https. Since the example server I'm working on leverages Auth0, they have steps for running [https in development](https://auth0.com/docs/libraries/secure-local-development), which should resolve the warning by implementing a reverse proxy (they recommend caddy). When running expressjs behind a proxy, 'trust proxy' must be configured, otherwise expressjs will register the incorrect 'client ip'. See [Express Behind Proxies](https://expressjs.com/en/guide/behind-proxies.html) documentation for details.
 
+## Tuesday 15-Nov-2022
+
+Spent lots of time working through LingoBingo PRs on my own and with Ryan. This was the focus for today.
+
 ## Monday 14-Nov-2022
 
 Much of my day was spent working on volunteer work items, to clear the way for trainings, meetings, and exercises in 2023.
