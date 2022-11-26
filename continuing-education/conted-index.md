@@ -4,6 +4,10 @@ A collection of continuing education, research notes, and references.
 
 ## Table of Contents
 
+Learn [todos](#things-i-want-to-learn-more-about).  
+Research and [takeaways from experience](#notes-and-takeaways-from-research-and-experience).  
+Azure [learnings](#azure-learnings).  
+
 ### Things I Want To Learn More About
 
 - [ ] Study Auth0's [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
@@ -54,6 +58,13 @@ A collection of continuing education, research notes, and references.
 - [X] Interfaces: See [OOP, Inheritance, Interfaces](../code401-files/oop-inhrtnce-intfaces.html).  
 - [X] Trees and Decision Trees have perplexed me for a while I'd like to get over that.  
 - [X] Configuring Linux and Windows to support "IDEA ." to open IntelliJ [at current directory](../linux-terminal-files/bash-stuff.html###aliases).
+
+### Azure Learnings
+
+- [Azure Nodejs Kubernetes](./azure-nodejs-kubernetes.html).
+- [Azure Developer Cli AZD](./azure-developer-cli-azd.html).
+- [Deploy Expressjs to Azure](./deploy-express-azure.html).
+- [Deploy React App to Azure](./deploy-react-azure.html).
 
 ## Footer
 
