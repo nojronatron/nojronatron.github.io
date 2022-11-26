@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 26-Nov-2022
+
+Reviewed Azure Friday Episode: Azure Kubernetes VSCode Extension introduction. This short feature quickly overviewed creating, deploying, updating, monitoring, and managing a [Node.js instance in an AKS (Azure Kubernetes Service)](./azure-nodejs-kubernetes.html) service.
+
 ## Friday 25-Nov-2022
 
 Ryan and I met for several hours to go over design and architecture details of our next planned version. We refined some of the work items in Trello and moved lots of stuff into TODO. There is more architecture to get sorted out though:
