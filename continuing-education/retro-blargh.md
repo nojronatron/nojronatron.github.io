@@ -2,6 +2,20 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 25-Nov-2022
+
+Ryan and I met for several hours to go over design and architecture details of our next planned version. We refined some of the work items in Trello and moved lots of stuff into TODO. There is more architecture to get sorted out though:
+
+- Caching: I need to brush-up on how this is done and Ryan hasn't implemented it before. I already have a personal work item to review this.
+- Where to host the UI for a Presenter role user to add, update, and remove categories and word lists: API server or React website?
+- Lots of fiddly details about authorization, associating lists with Presenter users, and other schema-based and WRRC-like considerations to work through.
+
+Had pretty good success developing API server path(s) and using Pug for forms-based interaction with the API server, interfacing the Mongo DB:
+
+- Created a home page with a few starter forms where Presenters can interact with the API server.
+- Need to learn how to style Pug-based websites.
+- If a form submission needs to return data to the caller, there needs to be a page delivered in a 'response' from the API server, with the data attached.
+
 ## Wednesday 23-Nov-2022
 
 Some things to consider when planning API Server development for LingoBingo:
