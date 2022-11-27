@@ -2,9 +2,29 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 27-Nov-2022
+
+Goals:
+
+-[ ] Re-watch WDS episode, uninterrupted.
+-[ ] Review LingoBingo Trello and work on at least 1 card.
+-[ ] Implement caching on the API server demo.
+-[ ] Implement a sign-in and sign-out functionality to the API server demo.
+
 ## Saturday 26-Nov-2022
 
 Reviewed Azure Friday Episode: Azure Kubernetes VSCode Extension introduction. This short feature quickly overviewed creating, deploying, updating, monitoring, and managing a [Node.js instance in an AKS (Azure Kubernetes Service)](./azure-nodejs-kubernetes.html) service.
+
+Worked with Ryan here and there on the hamburger menu PR. Lots of progress made after a bunch of discussion. Somehow my local git got out of sync with the PR despite carefully pulling from the correct remote and PR branch. A quick clone to a new folder, git pull from remote PR branch, npm i, and npm start, and the code on my local was fixed. This is the 2nd time this has happened to me. I'll have to figure out how this keeps happening because it is causing interruptions in the dev and test processes.
+
+I reviewed a Web Dev Simplified episode on quickly building an Express + Mongo API server. There are multiple good nuggets of information in there:
+
+- Extention "Rest Client" is worth looking into. Simplifies sending req's and viewing responses.
+- Middleware was explained very simply as: Code that executes after the request is received but before it is routed. :+1:
+- Updating package.json 'scripts' element to define 'devStart' as `nodemon src/server.js` will explicitly call this functionality in an environment where `env.Dev=true`.
+- Installing env and nodemon using `--save-dev` puts these modules in the 'devDependencies' section of package.json, rather than 'dependencies' section, so they are only loaded when `env.Dev=true`.
+
+I'll need to watch it again and take better notes. There were too many interruptions to capture all there was to get.
 
 ## Friday 25-Nov-2022
 
