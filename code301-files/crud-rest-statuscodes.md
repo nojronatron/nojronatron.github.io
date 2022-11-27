@@ -85,7 +85,7 @@ What is the difference between a status 200 and a status 201?
 ## References
 
 [Which HTTP Status Code to Use for Every CRUD App](https://www.moesif.com/blog/technical/api-design/Which-HTTP-Status-Code-To-Use-For-Every-CRUD-App/)  
-Web Dev Simplified [Build REST API with Node Express and Mongo](https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw)  
+Web Dev Simplified [Build REST API with Node Express and Mongo](https://www.youtube.com/watch?v=fgTGADljAeg&t=672s&ab_channel=WebDevSimplified)  
 
 ## Footer
 

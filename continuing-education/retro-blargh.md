@@ -2,6 +2,44 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 27-Nov-2022
+
+Goals:
+
+-[ ] Re-watch WDS episode, uninterrupted.
+-[ ] Review LingoBingo Trello and work on at least 1 card.
+-[ ] Implement caching on the API server demo.
+-[ ] Implement a sign-in and sign-out functionality to the API server demo.
+
+## Saturday 26-Nov-2022
+
+Reviewed Azure Friday Episode: Azure Kubernetes VSCode Extension introduction. This short feature quickly overviewed creating, deploying, updating, monitoring, and managing a [Node.js instance in an AKS (Azure Kubernetes Service)](./azure-nodejs-kubernetes.html) service.
+
+Worked with Ryan here and there on the hamburger menu PR. Lots of progress made after a bunch of discussion. Somehow my local git got out of sync with the PR despite carefully pulling from the correct remote and PR branch. A quick clone to a new folder, git pull from remote PR branch, npm i, and npm start, and the code on my local was fixed. This is the 2nd time this has happened to me. I'll have to figure out how this keeps happening because it is causing interruptions in the dev and test processes.
+
+I reviewed a Web Dev Simplified episode on quickly building an Express + Mongo API server. There are multiple good nuggets of information in there:
+
+- Extention "Rest Client" is worth looking into. Simplifies sending req's and viewing responses.
+- Middleware was explained very simply as: Code that executes after the request is received but before it is routed. :+1:
+- Updating package.json 'scripts' element to define 'devStart' as `nodemon src/server.js` will explicitly call this functionality in an environment where `env.Dev=true`.
+- Installing env and nodemon using `--save-dev` puts these modules in the 'devDependencies' section of package.json, rather than 'dependencies' section, so they are only loaded when `env.Dev=true`.
+
+I'll need to watch it again and take better notes. There were too many interruptions to capture all there was to get.
+
+## Friday 25-Nov-2022
+
+Ryan and I met for several hours to go over design and architecture details of our next planned version. We refined some of the work items in Trello and moved lots of stuff into TODO. There is more architecture to get sorted out though:
+
+- Caching: I need to brush-up on how this is done and Ryan hasn't implemented it before. I already have a personal work item to review this.
+- Where to host the UI for a Presenter role user to add, update, and remove categories and word lists: API server or React website?
+- Lots of fiddly details about authorization, associating lists with Presenter users, and other schema-based and WRRC-like considerations to work through.
+
+Had pretty good success developing API server path(s) and using Pug for forms-based interaction with the API server, interfacing the Mongo DB:
+
+- Created a home page with a few starter forms where Presenters can interact with the API server.
+- Need to learn how to style Pug-based websites.
+- If a form submission needs to return data to the caller, there needs to be a page delivered in a 'response' from the API server, with the data attached.
+
 ## Wednesday 23-Nov-2022
 
 Some things to consider when planning API Server development for LingoBingo:
@@ -115,6 +153,10 @@ Today I spent a couple hours with Kevin L to look at purchasing equipment for th
 Also today I worked through some interview preparation tasks including refining responses to behavioral questions, considering what I want in a 'dream job' team and organization, and thinking up important questions I want answered as part of the interviewing process. These activities are helping me gain confidence in my ability to have a relaxed, productive conversation where I can put myself in a good light, and also determine if the prospective employer is one I want to work for.
 
 ExpressJS has been displaying a warning whenever I launch the server. The message is "using form_post for response_mode may cause issues for you logging in over http...". In a development server, without a self-signed certificate, http is the way to go. Production servers would (of course) use a signed cert and leverage https. Since the example server I'm working on leverages Auth0, they have steps for running [https in development](https://auth0.com/docs/libraries/secure-local-development), which should resolve the warning by implementing a reverse proxy (they recommend caddy). When running expressjs behind a proxy, 'trust proxy' must be configured, otherwise expressjs will register the incorrect 'client ip'. See [Express Behind Proxies](https://expressjs.com/en/guide/behind-proxies.html) documentation for details.
+
+## Tuesday 15-Nov-2022
+
+Spent lots of time working through LingoBingo PRs on my own and with Ryan. This was the focus for today.
 
 ## Monday 14-Nov-2022
 
