@@ -2,14 +2,30 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 28-Nov-2022
+
+Did some looking for apps that would create an animated gif, hopefully really small in file size, of the LingoBingo website. I settled on [ScreenToGif](https://www.screentogif.com) because it is pretty simple and straightforward. It is a Windows app though, and it wasn't able to make small enough files to be hosted in our GH repo. There are some options for how to host an animated gif and link to it that I will have to explore. Turns out the project is built in CSharp and is open source (perhaps something to look further in to, in the future).
+
+Authentiation - Auth0:
+
+- Need to store a cookie to 'remember' a logged-on user, and enable the ability to log them out.
+
 ## Sunday 27-Nov-2022
 
 Goals:
 
--[ ] Re-watch WDS episode, uninterrupted.
--[ ] Review LingoBingo Trello and work on at least 1 card.
+-[X] Re-watch WDS episode, uninterrupted.
+-[X] Review LingoBingo Trello and work on at least 1 card.
 -[ ] Implement caching on the API server demo.
 -[ ] Implement a sign-in and sign-out functionality to the API server demo.
+
+Middleware:
+
+- A function that can be called to perform common actions on a request.
+- For example, getting an entity from a database using 'findById()' might be needed by multiple routes. This reused code effeciently.
+- Param 'next' is a placeholder for additional middleware calls.
+- If using Express Router, just export the middleware function as router.
+- Place the middleware function name as the 2nd parameter in the router call e.g. `router.get('/:id', getMiddleware, (req, res) => { res.send(req.params.id)})`.
 
 ## Saturday 26-Nov-2022
 
