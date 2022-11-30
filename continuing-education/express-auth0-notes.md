@@ -14,7 +14,11 @@ A collection of notes for future review about implementing Auth0 server-side for
 ## Routing Considerations
 
 - Should any static routes be protected by authentication?
-- Will a '/profile' route bring-up a custom profile page for the logged-in user? Thunderclient shows return data from Auth0 that can be used to start building a page.
+- Will a '/profile' route bring-up a custom profile page for the logged-in user?
+
+## Testing Considerations
+
+- Thunderclient shows return data from Auth0 that can be used to start building a page or verifying output of routes.
 - Using ThunderClient will show responses but does not have an interactive/rendering display so use the browser for interactive log-in activity.
 
 ## Application Settings
@@ -23,8 +27,8 @@ The most critical configuration items to set up:
 
 - Name
 - Domain nnnnnnn.us.auth0.com
-- Client ID?
-- Client Secret?
+- Client ID
+- Client Secret
 - Application Type: Determines what settings can be configured from dashboard. Code301 used "SPA".
 - Token Endpoint Auth Method: None.
 - Allowed callback URLs. Should include dev, test, and deployed environment URL(s). Dev start => 'http://localhost:3000'
@@ -85,6 +89,71 @@ Provider Options:
 Your Own Developer Keys:
 
 - Check with each OAuth2 provider to acquire the keys.
+
+## Auth0 Social Authenticators
+
+This is related to Custom Developer Keys.
+
+In the free tier, Auth0 allows up to 2 "social" authenticators.
+
+- Google is there by default
+- A second can be added
+
+Auth0 Paid Tiers allow more.
+
+## Auth0 Username Password Authenticator
+
+In the free tier, Auth0 will support capture and use of end-users custom usernames and passwords.
+
+-[ ] I need to look into how this works and how it can be leveraged for LingoBingo.
+
+## Login and Logout
+
+Three layers of authentication:
+
+- Application Session: Requires the Application track users via Cookies in order to *log the user out of your application*.
+- Auth0 Session: Auth0 has their own Session Layer SSO Cookie that they use to SSO re-authentication.
+- Identity Providers Session (Google, Facebook, etc): It is not necessary to log a user out of their Identity Provider!
+
+-[ ] Implement cookies on the Express server to enable logout.
+
+Note: A Tenant-level 'Login URI' is available that can be used to all Applications within that Tenant.
+
+### Setting and Forgetting Cookies
+
+Set a cookie named 'auth0user_${useremail}': `req.cookie('auth0user_${useremail}', ${value}, { maxAge: ${30minutes} }`
+
+Forget a cookie named 'auth0user_${useremail}': `res.clearCookie('auth0user_${useremail}')`
+
+Cookie Options:
+
+- domain: String => DN for the cookie.
+- encode: Function() => Synchronous func for cookie value (default: encodeURIComponent).
+- expires: Date => Expiry date in GMT. Session Cookies set to 0 (or not specified).
+- httpOnly: Boolean => Accessibly only by the web SERVER.
+- maxAge: Number => Expiry time, relative to current time in msec.
+- path: String => Cookie path (default: '/');
+- priority: String => Sets priority of Set-Cookie attribute.
+- secure: Boolean => Only available with HTTPS protocol.
+- signed: Boolean => Should the cookie by signed?
+- sameSite: Boolean|String => Set value of 'SameSite' Set-Cookie attribute.
+
+See [ExpressJS 4x API](http://expressjs.com/en/4x/api.html#res.cookie) for details.
+
+### Cookie-Session Middleware
+
+Stores user session cookie data on the client.
+
+- No DB or server-side resources required.
+- Total session data limited to browser's max cookie size limits.
+- Useful in load-balanced scenarios.
+- Store light-weight session data including an identifier to lookup DB-backed data (reducing lookups).
+
+### Redirect After Logout
+
+Redirection post-logout can be done by registering the 'redirect url' in the Application Settings in Auth0.
+
+Note: There is a Tenant-level 'redirect url' ("Allowed Logout URLs") which applies to all Applications within that Tenant that don't have 'redirect url' configured.
 
 ## Footer
 
