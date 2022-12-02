@@ -2,6 +2,52 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 1-Dec-2022
+
+These notes span both Weds and Thursday.
+
+Explored Auth0's "APIs" feature. This could be helpful for enabling Auth0 to authorize access to parts of an SPA or Node app. For now I've backed-out of the settings and am moving on to other things.
+
+For now, the authentication requirements are removed from my exploratory API server so I can concentrate on updating the schema models and get those working with the existing routes, web templates, and processing functions.
+
+Some REST and CRUD takeaways from today's experiences:
+
+- Forms support POST, GET, PUT/PATCH, and DELETE.
+- Forms do so while submitting *a query formatted data steam*, meaning it is in the URL e.g. 'http://foo.net/thing?item=bar'.
+- To submit a JSON (or XML) Body from a form, the action must be *POST*, which could be unsafe for idempotent resource requests.
+- Idempotent: On every execution/trigger, the function will return the same result.
+- To work around the form-submission problem, a means to get an identifier is necessary so that the REST Verbs can be used consistent with RESTful design.
+- Recall that a GET request will accept a URL parameter. In route/path it will look like `/foo/:id` and the URL address will be `https://foobar.org/foo/identity`. ExpressJS Request object will have 'identity' stored in the 'params' field.
+
+Mongoose/MongoDB:
+
+- It is helpful to have errors returned in HTML from an API server. Sometime the HTML-embedded message is more helpful than the try-catch captured error!
+- Always use `Model.find(params).exec()` until something better is learned (promises and Mongoose Schema tricks).
+- A Mongoose Model can have a field of type 'Array' like so `new mongoose.Schema({ things: { type: [String], } });`. This allows use of `push()` on the field once the ref object is created to add items to the array (see documentation for examples of using `$push`).
+- Try to use your custom Mongoose-based Model as a means to create and update database items. This will increase readability of code and also enables built-in Mongoose validation checking on field entries! I need to explore this some more.
+
+IDs versus Hash Codes versus UUIDs:
+
+- There are many hashing modules availabe from NPM registry. Some of them are utter garbage (single test, terrible documentation, not updated for years, etc).
+- Module 'uuid' has many facets, allowing generation of many types of codes and conversions, including universally unique idenfiers.
+- Module 'node:buffer' is a super-simple load-and-convert tool for use with URL en/decoding, base64 and hexadecimal en/decoding, and more. It's as easy as `const foo = buf.toString('hex');` :fireworks:
+
+General Coding and Design:
+
+- Spend *more time on design* and less on code.
+- When coding cannot be done to design, it is time to go back to the drawingboard, not battle with code!
+- When an efficient and effective design is found/discovered, keep using it! If I had stuck with some realizations with Buffer and Mongoose as soon as I realized them, I would have saved at least a couple hours of flailing around.
+- Just because a JS Module is intended to be used by Express (req, res, next, error, etc) doesn't mean it has to be 100% integrated. Next time, create more generic, testable modules and use middleware or go-between modules to interface Express.
+
+Interesting reference:
+
+[REST API Tutorial website](https://www.restapitutorial.com/lessons/httpmethods.html) breaks the REST verbs down into easily digestable chunks.
+
+These are now done:
+
+- [X] Build a getter-setter middleware for presenter model.
+- [X] Build a getter-setter middleware for gameboard model.
+
 ## Tuesday 29-Nov-2022
 
 Worked through Ryan's latest PR and approved and merged it.
