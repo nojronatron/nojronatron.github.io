@@ -155,6 +155,22 @@ Redirection post-logout can be done by registering the 'redirect url' in the App
 
 Note: There is a Tenant-level 'redirect url' ("Allowed Logout URLs") which applies to all Applications within that Tenant that don't have 'redirect url' configured.
 
+### Username Password Authentication
+
+Auth0 provides a username-password-authentication database for free. It is possible to redirect Auth0 to your own DB.
+
+- Require a username.
+- Require a password of a certain range of length (e.g. 12-15).
+- Import users to Auth0 for use with thie username-password DB.
+- Enable/Disable 'sign-ups' to the application.
+
+## User Management in Auth0
+
+Creating a Role (RoleID) enables establishment of Permissions to Users that will access an Auth0 API.
+
+- The Auth0 Management API is not included.
+- TBD
+
 ## Footer
 
 Return to [Conted Index](./conted-index.html)
