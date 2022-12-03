@@ -61,6 +61,7 @@ Azure [learnings](#azure-learnings).
 
 ### Azure Learnings
 
+- [Azure Static WebApps API Options](./azure-static-webapps-api-options.html).
 - [Azure Nodejs Kubernetes](./azure-nodejs-kubernetes.html).
 - [Azure Developer Cli AZD](./azure-developer-cli-azd.html).
 - [Deploy Expressjs to Azure](./deploy-express-azure.html).
