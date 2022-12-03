@@ -2,6 +2,27 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 2-Dec-2022
+
+Discovered MSFT Learning has beginner's videos about Java! Hosted by Brian Benz (@bbenz) and Mark Heckler (@mkheck) at [Microsoft Learn - Java for Beginners](https://learn.microsoft.com/en-us/shows/java-for-beginners).
+
+Watched an episode of Azure Friday and [took some notes](./azure-static-webapps-api-options.html). Not sure I completely understand what is going on here. Perhaps it would be worth looking in to and maybe applying to Lingo Bingo.
+
+Completed some end-of-week tasks focused on accomplishments and improvements going forward.
+
+In a CodeFellows channel, a member mentioned [Advent of Code 2022](https://adventofcode.com/2022), an 'advent calendar' of code challenges. I had put on my task list to take on a code challenge, technical-interview style, so I used that as fodder to do so. I failed the design portion miserably, but after opening a repl.it to work through the issues I realized my approach was not taking advantage of javascript's capabilities.
+
+Some key takeaways:
+
+- Pay attention to the input type. If it looks like a String of numbers, then there is work to do to maybe put that into an Array *before* trying to traverse the datastructure.
+- Is my input really a bunch of numbers *or is it a String*? Consider how to massage the String input so it can be used to solve the problem at hand, for example: Parsing Strings into Integers/Numbers might be *required* to find the answer.
+- Use RegEx! `String.replace(regex, replaceString)` can work wonders.
+- Use `String.split()` to easily transform a CSV of Strings into an array of arrays.
+- Avoid `for...` loops and instead use `Array.forEach( item => n)` to work through each iteration.
+- Only use `Array.map( item => n)` for situations where *replacement* of original array is necessary.
+- Use the Step Through to help understand how to traverse a data structure. Walking through the steps will help design an initial algorithm, which can then be translated to Pseudo/Code more easily.
+- Like always: If the problem requires writing a lot of code, then the approach is probably wrong and should be restarted.
+
 ## Thursday 1-Dec-2022
 
 These notes span both Weds and Thursday.
