@@ -2,6 +2,37 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 3-Dec-2022
+
+USMNT is out of the FIFA World Cup, oh well.
+
+Did some more work on API Server experimentation. Some key takeaways:
+
+- Mongoose and Callbacks: Provide a function for Mongoose to call once the operation has been executed. Example: `MyModel.findOne({ name: 'Jon' }, function (err, myModel) {})`.
+- Mongoose and async/await: Prefix the Mongoose Client call with 'await' inside of an 'async' function: `const result = await MyModel.findOne({ name: 'Jon' }).exec()`.
+- Always enclose Mongoose operations inside of a Try-Catch. Using multiple Try-Catch blocks won't help much. A single one will call the Catch block at the first throw, saving from potentially executing code while in a bad or unknown state.
+- As I developed more CRUD functions to back-end the REST calls, I found myself developing a design pattern. When implementing an API server in the future, I will need to follow a design pattern that will ensure error-free, crash-free, effecient functions that leverage higher-order functions, and returns appropriate codes and information. See the following entry for a prime example. 
+
+Update multiple documents across model namespaces in the same DB:
+
+1. Validate the inputs to the function that will perform this trick. Return an appropriate http status code and exit if validation fails.
+1. Execute `Model.findOne({}).exec()` for each input and store each result into a variable.
+1. At every findOne step for every variable, test if null. Return an appropriate http status code and exit if validation fails.
+1. Use the captured findOne result objects to update the Fields as required.
+1. Use `myModel.save()` to store the least impactful document first (e.g. a child array or ancillary meta data item). If that fails, return an appropriate http status code and exit.
+1. Continue the previous step until all updated Models have been saved successfully, then return the appropriate http code and any status message in Body or JSON.
+
+I wasn't following these steps very carefully when developing a function that updated 2 documents with one API call, and it was tough to determine what the problems were when things weren't going as expected.
+
+Commonly Used HTTP Status Codes:
+
+1. Bad input? User error so return HTTP 400.
+1. User not authenticated or doesn't have correct authorization? Return HTTP 401.
+1. Cannot find the DB items associated with the validated user inputs? Return HTTP 404.
+1. Cannot create a new instance? Probably a programmatic error so return HTTP 500.
+1. Everything executed without throwing, data is 'in hand' and/or the state is verifiably 'good' (expected)? Return HTTP 200 along with any expected return data/message.
+1. Everything executed without throwing and an object was added to the DB? Return HTTP 201.
+
 ## Friday 2-Dec-2022
 
 Discovered MSFT Learning has beginner's videos about Java! Hosted by Brian Benz (@bbenz) and Mark Heckler (@mkheck) at [Microsoft Learn - Java for Beginners](https://learn.microsoft.com/en-us/shows/java-for-beginners).
