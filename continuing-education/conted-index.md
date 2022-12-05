@@ -40,6 +40,7 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
+- [X] Cookies and using [cookies in ExpressJS](./express-cookies-review.html)
 - [X] MS [Dot Net Conf 2022 Notes](./dotnetconf-2022.html)
 - [X] [Unit testing](./android-studio-testing.html) in Android Studio.
 - [X] [MSFT Ignite October 2022](./ms-ignite-2022-notes.html) provides an overview of MSFT new and upcoming technical solutions, especially Azure services, MSFT 365, and integration with and around those platforms.
