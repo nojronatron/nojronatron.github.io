@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 4-Dec-2022
+
+Met with Ryan, discussed the exploratory API server, set some work items, and moved forward from there. He now has access to the exploratory API server to review the code and explore it's configuration and operation. I have a few new work items that will take some time to knock out.
+
+The afternoon activity (not dev related) took up a good amount more time than I expected. Good progress was made but I was pretty much done for the day after that. Goals for today now pushed forward into the week.
+
 ## Saturday 3-Dec-2022
 
 USMNT is out of the FIFA World Cup, oh well.
