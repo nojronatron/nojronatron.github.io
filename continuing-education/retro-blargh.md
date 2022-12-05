@@ -2,6 +2,70 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 4-Dec-2022
+
+Met with Ryan, discussed the exploratory API server, set some work items, and moved forward from there. He now has access to the exploratory API server to review the code and explore it's configuration and operation. I have a few new work items that will take some time to knock out.
+
+The afternoon activity (not dev related) took up a good amount more time than I expected. Good progress was made but I was pretty much done for the day after that. Goals for today now pushed forward into the week.
+
+## Saturday 3-Dec-2022
+
+USMNT is out of the FIFA World Cup, oh well.
+
+Did some more work on API Server experimentation. Some key takeaways:
+
+- Mongoose and Callbacks: Provide a function for Mongoose to call once the operation has been executed. Example: `MyModel.findOne({ name: 'Jon' }, function (err, myModel) {})`.
+- Mongoose and async/await: Prefix the Mongoose Client call with 'await' inside of an 'async' function: `const result = await MyModel.findOne({ name: 'Jon' }).exec()`.
+- Always enclose Mongoose operations inside of a Try-Catch. Using multiple Try-Catch blocks won't help much. A single one will call the Catch block at the first throw, saving from potentially executing code while in a bad or unknown state.
+- As I developed more CRUD functions to back-end the REST calls, I found myself developing a design pattern. When implementing an API server in the future, I will need to follow a design pattern that will ensure error-free, crash-free, effecient functions that leverage higher-order functions, and returns appropriate codes and information. See the following entry for a prime example.
+
+Update multiple documents across model namespaces in the same DB:
+
+1. Validate the inputs to the function that will perform this trick. Return an appropriate http status code and exit if validation fails.
+1. Execute `Model.findOne({}).exec()` for each input and store each result into a variable.
+1. At every findOne step for every variable, test if null. Return an appropriate http status code and exit if validation fails.
+1. Use the captured findOne result objects to update the Fields as required.
+1. Use `myModel.save()` to store the least impactful document first (e.g. a child array or ancillary meta data item). If that fails, return an appropriate http status code and exit.
+1. Continue the previous step until all updated Models have been saved successfully, then return the appropriate http code and any status message in Body or JSON.
+
+I wasn't following these steps very carefully when developing a function that updated 2 documents with one API call, and it was tough to determine what the problems were when things weren't going as expected.
+
+Commonly Used HTTP Status Codes:
+
+1. Bad input? User error so return HTTP 400.
+1. User not authenticated or doesn't have correct authorization? Return HTTP 401.
+1. Cannot find the DB items associated with the validated user inputs? Return HTTP 404.
+1. Cannot create a new instance? Probably a programmatic error so return HTTP 500.
+1. Everything executed without throwing, data is 'in hand' and/or the state is verifiably 'good' (expected)? Return HTTP 200 along with any expected return data/message.
+1. Everything executed without throwing and an object was added to the DB? Return HTTP 201.
+
+Some more database lessons:
+
+- Leverage the `updated: DateTime` field to capture when a change was made to a document.
+- Leverage `deleted: Boolean` field to 'delete' a document. This can be helpful to ensure the ability to 'roll-back' a delete operation, either administratively, or via an end-user control (if the API allows it).
+- Leverage `deleted: Boolean` to track documents that are ready for actual deletion by an automated or otherwise triggered process during low activity levels or at certain other times.
+
+Findings about Server-side Cache:
+
+- While it is handy to use just the URI or PreviousURI as the 'key' for caching content, it is *not reliable* across requests with different JSON-body payloads and will return previous requests rather than new ones.
+- Simply assigning specific `request` properties (JSON, Body, Params, etc) isn't good enough because not all requests use the same payload mechanism.
+- It is possible that my API implementation is making caching more difficult, but it seems like a caching function (module) should be more dynamic, capable of plugging in to different environments yet still doing necessary processing.
+- It is clear to me now: Caching should *only be done on GET* requests, not on POST, PUT, DELETE (etc).
+
+Goals for Tomorrow:
+
+-[ ] Review Cookie use in Express and work on an implementation plan.
+-[ ] Re-implement Auth0 authentication.
+-[ ] When Auth0 is integrated: Implement login/register at Profile path. This wil require setting an Application Session Cookie.
+-[ ] When Auth0 is integrated: Implement authorization at necessary paths. This could be augmented with cookies.
+-[ ] When Auth0 is integrated: Implement a logout UI and the '/logout' path. This will require using cookies.
+-[ ] If time permits, implement using 'deleted' field (true -> false) instead of actual document deletion.
+
+Meeting with Ryan:
+
+- Demo current state of the PUG pages and REST + CRUD operations in the UI.
+- Review code behind the scenes with Ryan to display how this is all working, including MongoDB Atlas Collection views.
+
 ## Friday 2-Dec-2022
 
 Discovered MSFT Learning has beginner's videos about Java! Hosted by Brian Benz (@bbenz) and Mark Heckler (@mkheck) at [Microsoft Learn - Java for Beginners](https://learn.microsoft.com/en-us/shows/java-for-beginners).
