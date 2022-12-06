@@ -141,11 +141,50 @@ Risks of decrypting an Auth Cookie include:
 
 ## Cookie Parser
 
+1. Install Cookie-parser: `npm install cookie-parser`
+1. Load in Express (JS): `const cookieParser = require('cookie-parser')`
+1. Initialize as middleware function: `app.use(cookieParser())`
+1. Acquire a specific cookie from a client request: `const receivedCookie = req.cookies["key"]`
+1. Set a cookie in client browser via a Response: `res.cookie('keyString', 'valueString', { options })`
+1. Set options as a destructured object (see below).
+
+```javascript
+const options = {
+  maxAge = 1000 * 60 * 15, // 1 sec * 60 sec * 5 => 5 minutes
+  httpOnly: true, // only useable by the server
+  signed: true // only include if the cookie is signed
+};
+res.cookie('name', 'value', options);
+res.send('');
+```
+
+### Signed Cookies
+
+1. Prefixed with `s:`.
+1. Include a secure string to sign them.
+1. Set `signed: true` property on the cookie options.
+
+### JSON Cookies
+
+1. Prefixed with `j:`. Parsed using JSON.parse.
+1. Return parsed JSON value: `cookieParser.JSONCookie(String)`.
+1. Iterate over the keys to return an object: `cookieParser.JSONCookies(Array[cookies])`.
+1. Signed JSON cookies can also be parsed: `cookieParser.signedCookie(String, Secret)`. Signature must be valid, if not, returns `false`.
+1. Iterate over the keys to check for signed values: `cookieParser.signedCookies(cookies, Secret)`. Secret can be an array of Secrets or a single Secret String. In either case, all Secret(s) will be used to 'unsign' each cookie in signedCookies.
+
+Review the expressjs cookie-parser documentation for a few more details about JSON Cookies.
+
+## Cookie Gotchas
+
+See StackOverflow [set cookie using express framework](https://stackoverflow.com/questions/16209145/how-can-i-set-cookie-in-node-js-using-express-framework), where a user noted that Fetch didn't seem to respect cookie setting. Fetch options must be set in order to work around the problem.
+
+You will not see a SecureCookie, this is on purpose. Be sure to use a valid secret to sign cookies, and utilize `req.signedCookies` to retrieve them.
 
 ## Resources Used For These Notes
 
-- Wikipedia: [HTTP_cookie](https://en.wikipedia.org/wiki/HTTP_cookie).
+- Wikipedia's entry on [HTTP cookies](https://en.wikipedia.org/wiki/HTTP_cookie).
 - Express [Cookie-Parser](https://github.com/expressjs/cookie-parser) on Github.com.
+- StackOverflow [set cookie using express framework](https://stackoverflow.com/questions/16209145/how-can-i-set-cookie-in-node-js-using-express-framework).
 
 ## Footer
 
