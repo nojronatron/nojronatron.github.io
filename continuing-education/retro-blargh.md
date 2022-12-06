@@ -2,6 +2,24 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 5-Dec-2022
+
+-[X] Review Cookies and work on an implementation plan for LingoBingo.
+
+Cookie exploration was interesting. I had forgotten a lot of what I'd been exposed to 20 years ago in college. The challenge then was learning how to use the cookie-parser middleware function. High level takeaways:
+
+- Require cookie-parser then app.use the cookie-parser function.
+- Cookie-parser is a middleware *function*!
+- Getting a cookie will be done via `Request.cookie`, and key-value data can be captures with property selectors (e.g. `req.cookie["foo"]` returns a cookie with value 'bar' if it was set).
+- Setting a cookie will be done on a Response as `response.cookie(Key: String, Value: String, { options })`.
+
+The basic plan going forward will be to use Cookies only in very specific places in LingoBingo:
+
+- User authorization: Once authorized, a cookie with a reasonable maxAge should be set on the caller's browser with user's UUID.
+- User validation: During requests, the cookie should be checked as part of validating authorization to perform action, if not there then return an 'unauthorized' page to the caller.
+- User logout: When the user logs-out of the Auth service, the verification cookie should be set with an expiration in the past so it is immediately expired, therefore revoking authorization to the user.
+- Any protected page needs to check for the cookie and utilize the 'unauthorized' return, or if authorized, use the cookie data to perform the correct DB query.
+
 ## Sunday 4-Dec-2022
 
 Met with Ryan, discussed the exploratory API server, set some work items, and moved forward from there. He now has access to the exploratory API server to review the code and explore it's configuration and operation. I have a few new work items that will take some time to knock out.
