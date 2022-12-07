@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 6-Dec-2022
+
+Auth0 struggles stole most of my day. There were a few other interruptions too, and that didn't help. Key takeaways:
+
+- Auth0 setup for Front-end (React et al) is a client-auth flow with an API.
+- Auth0 setup for Regular Web Apps (Node.js, Express, ASP.NET, Java, etc) relies on redirects and Application Registration.
+- Auth0 has this thing called Authentication API that provides endpoints for most actions and scenarios (OID, OAuth2, and SAML), and requires configuring an OAuth2 Access Token, or ClientID + Secret, or ClientID only for public apps.
+- I should have known this from prior exercises in Code Fellows but also from SysAdmin experiences.
+- Instead of continuing to fail with this process, I'll use Cookies to track users (without an official authenticator) and get that working, so that when authentication comes into play, it will be a smaller part of tracking authorization over the API Server.
+- Reviewing [Auth0 Docs - Authentication API](https://auth0.com/docs/api/authentication#introduction) will be necessary to get evertying straight in my mind.
+
 ## Monday 5-Dec-2022
 
 -[X] Review Cookies and work on an implementation plan for LingoBingo.
