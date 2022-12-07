@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 7-Dec-2022
+
+Skipping an authentication provider service for now, working with cookies takeaways:
+
+- Requests contains Cookies. Plural.
+- Response can have a Cookie set on it. Singular and one-at-a-time.
+- One a client or user has been identified, set a cookie with a reasonable maxAge option and ensure routes check for that cookie.
+- Utilize cookies to pass always-needed info (e.g. a user idenfication mechanism or other contextual info) to avoid prompting the user or accessing DB lookups repeatedly.
+- Don't store PII or application secrets in cookies.
+- Use redirects when cookies are empty/missing so that the proper path can set the cookie with the correct info.
+
 ## Tuesday 6-Dec-2022
 
 Auth0 struggles stole most of my day. There were a few other interruptions too, and that didn't help. Key takeaways:
