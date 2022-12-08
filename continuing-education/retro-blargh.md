@@ -13,6 +13,13 @@ Skipping an authentication provider service for now, working with cookies takeaw
 - Don't store PII or application secrets in cookies.
 - Use redirects when cookies are empty/missing so that the proper path can set the cookie with the correct info.
 
+It was becoming more and more clear that I needed to implement middleware and Express Routes, so I started working in that direction. The goals are:
+
+- Maintain functionality as it stands right now.
+- Clean up the code for readability sake.
+- Stop writing the same code over and over again.
+- Enable test-ability of the functional components.
+
 ## Tuesday 6-Dec-2022
 
 Auth0 struggles stole most of my day. There were a few other interruptions too, and that didn't help. Key takeaways:
