@@ -20,6 +20,12 @@ It was becoming more and more clear that I needed to implement middleware and Ex
 - Stop writing the same code over and over again.
 - Enable test-ability of the functional components.
 
+Enabling cookies was definitely a good idea. Validating cookies is a bit more difficult. Refactoring the code lead to some typos that consumed lots of time, but I can 'login' and 'logout' using just cookies. Next steps:
+
+- Enable getting categories without any user-input data.
+- Enable getting words by only asking user for a category.
+- Enable other methods without prompting the user to 'login'.
+
 ## Tuesday 6-Dec-2022
 
 Auth0 struggles stole most of my day. There were a few other interruptions too, and that didn't help. Key takeaways:
