@@ -31,6 +31,17 @@ Some things I learned:
 - Javascript will not handle a fancy return statement like `return item1 !== undefined && item2 typeOf 'string';` the way I would have hoped.
 - Placement of middleware and the `app.use(middleware);` statement are super important to pay attention to.
 - Clearing a cookie requires knowing its last state, otherwise it will not be overwriten at all.
+- It is important to return an appropriate HTTP code with REST calls.
+- It is not difficult to factor-out Request, Response, and Next params from functions that don't need to use them.
+- Use cookie data and object destructuring techniques to manage input and outputs.
+- Data validation and user feedback at the UI *might be helped* with the use of appropriate HTTP Status Codes and short, succinct response messages.
+
+Goals for Tomorrow:
+
+- Finish refactoring OUT (req, res, next) from the route functions.
+- Continue refacting route functions to ensure proper HTTP Status Codes and message payloads are returned.
+- Continue factoring-in checking for 'deleted' field in database calls.
+- Implement use of 'updated' field in the 'updateword' and 'deleteword' and 'deletegameboard' routes.
 
 ## Tuesday 6-Dec-2022
 
