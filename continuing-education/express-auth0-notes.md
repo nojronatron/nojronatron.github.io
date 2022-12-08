@@ -2,11 +2,15 @@
 
 A collection of notes for future review about implementing Auth0 server-side for an Expressjs app.
 
+## Required Reading
+
+[Auth0 Docs - Authentication API](https://auth0.com/docs/api/authentication#introduction)
+
 ## Requirements
 
 1. Pick your technology. Client, Server, CLI, or other. Expressjs is listed among the options. Note: So is Java Spring Framework.
-1. Allowed Callback URLs. Example: 'http://localhost:3000/callback'
-1. Allowed Logout URLs. Example: 'http://localhost:3000'
+1. Allowed Callback URLs. Example: 'http://localhost:3000/callback'. Auth0 redirects the user after they have authenticated.
+1. Allowed Logout URLs. Example: 'http://localhost:3000'. Auth0 redirects the user after they logout of Auth0.
 1. Install 'express-openid-connect' module (maintained by Auth0).
 1. Generate a 32-bit random hexadecimal secret using either `openssl rand -hex 32` or [GRC Password Generator](https://www.grc.com/passwords.htm).
 1. Configuration of the OpenID Auth Router.
@@ -30,7 +34,7 @@ The most critical configuration items to set up:
 - Client ID
 - Client Secret
 - Application Type: Determines what settings can be configured from dashboard. Code301 used "SPA".
-- Token Endpoint Auth Method: None.
+- Token Endpoint Auth Method: None. POST enables the 'Client Credentials grant'.
 - Allowed callback URLs. Should include dev, test, and deployed environment URL(s). Dev start => 'http://localhost:3000'
 - Allowed logout URLs. Same as callback URLs but for expiring user's token.
 - Allowed web origins. Defines allowed origins for cross-origin, device flow, and web message-response mode. Dev start => 'http://localhost:3000'
@@ -138,6 +142,8 @@ Cookie Options:
 - signed: Boolean => Should the cookie by signed?
 - sameSite: Boolean|String => Set value of 'SameSite' Set-Cookie attribute.
 
+*Note*: res.clearCookie must match *all parameters and options* in order to clear the identified cookie.
+
 See [ExpressJS 4x API](http://expressjs.com/en/4x/api.html#res.cookie) for details.
 
 ### Cookie-Session Middleware
@@ -170,6 +176,15 @@ Creating a Role (RoleID) enables establishment of Permissions to Users that will
 
 - The Auth0 Management API is not included.
 - TBD
+
+## Enabling API Authentication
+
+1. Create an Auth0 API.
+1. Decide whether to set any Permissions.
+1. Follow the steps at Auth0 Dashboard, Quickstart tab, for your API.
+1. Once configured, go to the Test tab and follow the steps to request an Authorization Token, and then GET authenticated.
+
+*Note*: You *MUST* include the following '/' in the 'issuer' entry. Not doing so will not authorize the jwt token and an error 'jwt issuer invalid' will be returned.
 
 ## Footer
 
