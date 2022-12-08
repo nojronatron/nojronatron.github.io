@@ -26,6 +26,12 @@ Enabling cookies was definitely a good idea. Validating cookies is a bit more di
 - Enable getting words by only asking user for a category.
 - Enable other methods without prompting the user to 'login'.
 
+Some things I learned:
+
+- Javascript will not handle a fancy return statement like `return item1 !== undefined && item2 typeOf 'string';` the way I would have hoped.
+- Placement of middleware and the `app.use(middleware);` statement are super important to pay attention to.
+- Clearing a cookie requires knowing its last state, otherwise it will not be overwriten at all.
+
 ## Tuesday 6-Dec-2022
 
 Auth0 struggles stole most of my day. There were a few other interruptions too, and that didn't help. Key takeaways:
