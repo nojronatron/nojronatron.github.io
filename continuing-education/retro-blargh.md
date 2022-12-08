@@ -2,6 +2,20 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 8-Dec-2022
+
+Fixed-up most of the CRUD methods in the exploratory API Server to ensure consistent output and status code returns. Still need to refactor OUT the req, res, and next from the gameboard functions module.
+
+Had to do a `git reset --soft <commit>` due to my running `git commit -m 'message'` after an incidental `git add .` when I meant to `git add <file>`. Still not the ideal solution, but for this project the git history and messages aren't super critical.
+
+I discovered that adding non-async calls to another module, from within an async function can really cause timing havoc. The best solution is probably to move to promises over async/await.
+
+Mongoose provides for model validation within the schema, so I added that.
+
+Completing implementation of 'deleted' (boolean) and 'updated' (dateTime) field updates was not too bad. The biggest hurdle was learning how to create a valid timestamp in javascript: `const dateNow = new Date(Date.now());`. I modularized that so it can be called JIT from any other function that needs it.
+
+I'm not too thrilled with Pug. While it is nice as a quick-and-dirty html templating engine, doing anything too fancy with it is just too tedious. Also, the documentation mentions 'native' handling of arrays, which is true, but then they use examples that are awful (using hard-coded values) AND what is meant by 'native' is an Array can be passed-in to the rendered Pug file, and it will just list it horizontally within a 'p' element without any additional effort on the developer's part. It is probably the case that the desired output needs to be processed *prior* to passing it in to the rendered Pug file? Not sure I care much about it right now -- if I wanted to do something truly good for the user, I'd just create a React App and be done with it.
+
 ## Wednesday 7-Dec-2022
 
 Skipping an authentication provider service for now, working with cookies takeaways:
