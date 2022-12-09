@@ -16,6 +16,15 @@ Completing implementation of 'deleted' (boolean) and 'updated' (dateTime) field 
 
 I'm not too thrilled with Pug. While it is nice as a quick-and-dirty html templating engine, doing anything too fancy with it is just too tedious. Also, the documentation mentions 'native' handling of arrays, which is true, but then they use examples that are awful (using hard-coded values) AND what is meant by 'native' is an Array can be passed-in to the rendered Pug file, and it will just list it horizontally within a 'p' element without any additional effort on the developer's part. It is probably the case that the desired output needs to be processed *prior* to passing it in to the rendered Pug file? Not sure I care much about it right now -- if I wanted to do something truly good for the user, I'd just create a React App and be done with it.
 
+Code Fellows hosted a "Code 401 Instructor Panel" as they have done every so often in the past. It is always enlightening, and usually uplifting. Today one of the instructors reminded the audience that honing expertise takes 10,000 hours, so keep hacking through the tough times and learning will happen along the way. This is a good reminder for me to consider where I was a year ago versus today, and 10k hrs is still a ways away, so I should not be expecting 'expert level code' by any means at this point. In other words: Keep at it, but take it easy on yourself.
+
+The exploratory API server now has cookies fully implemented to use as an authorization tool for the various paths. Next goal is to get cache working on get calls.
+
+Good places to start:
+
+- [city explorer lab8api](https://github.com/nojronatron/city-explorer-lab8api/blob/main/movies.js).
+- [Chidume Nnamdi's blog on server-side-caching in expressjs](https://blog.bitsrc.io/server-side-caching-in-expressjs-24038daec102).
+
 ## Wednesday 7-Dec-2022
 
 Skipping an authentication provider service for now, working with cookies takeaways:
