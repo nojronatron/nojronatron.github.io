@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 9-Dec-2022
+
+Completed some job hunting and interviewing tasks this morning.
+
+Against my better judgement I took on part 2 of Advent of Code 2022 Day 1 challenge. I retro'd the outcomes elsewhere but in essence:
+
+- Performed a full technical interview style design, test, debug, and analysis.
+- Came up with a pretty simple solution fairly quickly, although I had the best results using a real dry-erase board to get the algorithm idea started.
+- Although my solution wasn't the most efficient, I discovered an easy, 2-line fix that reduced code step execution by 1/20th (Input n=260: Original code steps: 56k; Refactored code steps: 2.4k).
+
+Completed end-of-week retro (elsewhere). While it was a good, productive week, there are areas where I can improve, so I will continue taking time and effort to better plan and execute my projects and time.
+
 ## Thursday 8-Dec-2022
 
 Fixed-up most of the CRUD methods in the exploratory API Server to ensure consistent output and status code returns. Still need to refactor OUT the req, res, and next from the gameboard functions module.
@@ -79,7 +91,7 @@ Auth0 struggles stole most of my day. There were a few other interruptions too, 
 
 ## Monday 5-Dec-2022
 
--[X] Review Cookies and work on an implementation plan for LingoBingo.
+- [X] Review Cookies and work on an implementation plan for LingoBingo.
 
 Cookie exploration was interesting. I had forgotten a lot of what I'd been exposed to 20 years ago in college. The challenge then was learning how to use the cookie-parser middleware function. High level takeaways:
 
@@ -147,12 +159,12 @@ Findings about Server-side Cache:
 
 Goals for Tomorrow:
 
--[ ] Review Cookie use in Express and work on an implementation plan.
--[ ] Re-implement Auth0 authentication.
--[ ] When Auth0 is integrated: Implement login/register at Profile path. This wil require setting an Application Session Cookie.
--[ ] When Auth0 is integrated: Implement authorization at necessary paths. This could be augmented with cookies.
--[ ] When Auth0 is integrated: Implement a logout UI and the '/logout' path. This will require using cookies.
--[ ] If time permits, implement using 'deleted' field (true -> false) instead of actual document deletion.
+- [ ] Review Cookie use in Express and work on an implementation plan.
+- [ ] Re-implement Auth0 authentication.
+- [ ] When Auth0 is integrated: Implement login/register at Profile path. This wil require setting an Application Session Cookie.
+- [ ] When Auth0 is integrated: Implement authorization at necessary paths. This could be augmented with cookies.
+- [ ] When Auth0 is integrated: Implement a logout UI and the '/logout' path. This will require using cookies.
+- [ ] If time permits, implement using 'deleted' field (true -> false) instead of actual document deletion.
 
 Meeting with Ryan:
 

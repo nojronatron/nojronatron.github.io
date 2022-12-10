@@ -62,6 +62,7 @@ Azure [learnings](#azure-learnings).
 
 ### Azure Learnings
 
+- [Azure App Services Best Practices](./azure-app-svc-best-practices.html).
 - [Azure Static WebApps API Options](./azure-static-webapps-api-options.html).
 - [Azure Nodejs Kubernetes](./azure-nodejs-kubernetes.html).
 - [Azure Developer Cli AZD](./azure-developer-cli-azd.html).
