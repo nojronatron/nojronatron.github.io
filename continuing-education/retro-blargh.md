@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 9-Dec-2022
+
+Completed some job hunting and interviewing tasks this morning.
+
+Against my better judgement I took on part 2 of Advent of Code 2022 Day 1 challenge. I retro'd the outcomes elsewhere but in essence:
+
+- Performed a full technical interview style design, test, debug, and analysis.
+- Came up with a pretty simple solution fairly quickly, although I had the best results using a real dry-erase board to get the algorithm idea started.
+- Although my solution wasn't the most efficient, I discovered an easy, 2-line fix that reduced code step execution by 1/20th (Input n=260: Original code steps: 56k; Refactored code steps: 2.4k).
+
 ## Thursday 8-Dec-2022
 
 Fixed-up most of the CRUD methods in the exploratory API Server to ensure consistent output and status code returns. Still need to refactor OUT the req, res, and next from the gameboard functions module.
