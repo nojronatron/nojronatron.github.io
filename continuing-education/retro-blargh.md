@@ -2,6 +2,19 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 10-Dec-2022 and Sunday 11-Dec-2022
+
+Saturday:
+
+- Completed Advent-of-Code Day 2 Part 1. My algorithm idea to start was pretty close once I decided to use a dictionary (lookup), and after a little refactoring and implementing Jest to help me squash a couple bugs, my 3rd solution/output submission was accepted.
+- Deployed a YouTube channel to host an example video of LingoBingo-js in action. No big video plans at this time.
+- Validated some PR code from Ryan. Updates to the FE are coming along for this next version! Still some work left to do to get ready for BE dev and deploy.
+
+Sunday:
+
+-[ ] Review Firebase authentication and determine if this is a viable solution for a current project.
+-[ ] Update Miro with new design throught and approaches to the back-end API server.
+
 ## Friday 9-Dec-2022
 
 Completed some job hunting and interviewing tasks this morning.
