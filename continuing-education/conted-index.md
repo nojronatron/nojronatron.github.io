@@ -12,7 +12,7 @@ Azure [learnings](#azure-learnings).
 
 - [ ] Study Auth0's [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
 - [ ] Consider deploying a [Swagger UI for ExpressJS](https://github.com/scottie1984/swagger-ui-express) to better interact with Express during development.
-- [ ] Research [Firebase Authentication](https://firebase.google.com/products/auth) as a possible authenticator for LingoBingo v.Next.
+- [x] Research [Firebase Authentication](https://firebase.google.com/products/auth) and [Firebase Google Docs](https://firebase.google.com/docs/auth) as a possible alternative to Auth0. See notes at [firebase-auth](./firebase-auth.html).
 - [ ] Review [Method Chaining](../code301-files/methodChaining-DBs-Mongoose-Atlas-SeedData-ReactLifecycle.html) in preparation for LingoBingo v.Next.
 - [ ] Learn about [SVG files](svg-files.html) and how to use them.
 - [ ] Look into [Playwright](playwright-notes.html)
