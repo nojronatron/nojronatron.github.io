@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 17-Dec-2022
+
+Was ill last week and did not add notes here. Instead, I worked through several Advent of Code challenges on my laptop.
+
+More notes to come after some other tasks get knocked out today.
+
 ## Saturday 10-Dec-2022 and Sunday 11-Dec-2022
 
 Saturday:
