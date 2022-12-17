@@ -90,6 +90,52 @@ Best Practice: Use a Login State Monitor function that will return correct feedb
 
 Source: [Firebase Docs Auth Web Start](https://firebase.google.com/docs/auth/web/start)
 
+## Dev Setup and Management
+
+Firebase Tools and Firebase-CLI are needed for enabling the firebase emulator environment.
+
+- `npm install -g firebase-tools`
+- `firebase login`: Launches a web-browser to authenticate to Google and allow Firebase-CLI access to Firebase project(s).
+- `firebase init`: Asks a bunch of questions about the features to use, connecting the local project to an existing Firebase Project, what language to use (TS or js), and which emulator(s) to install. For authentication select the 'auth emulator'.
+- Emulator install: `firebase init emulators`.
+
+Documentation for [install and configure](https://firebase.google.com/docs/emulator-suite/install_and_configure).
+
+### Local Auth Emul Config
+
+- Auth Emulator Port: 9099
+- Emulator UI enabled
+- Emulator UI Port: (can allow app to choose any available)
+- Edit the Firebase Configuration module (or at the top of your webapp code) to include 'connectAuthEmulator' function from 'firebase/auth'.
+
+Note: Admin SDKs can be automatically connected using a ENV file. See [firebase docs emulator connect authentication web version 9](https://firebase.google.com/docs/emulator-suite/connect_auth#web-version-9) for details.
+
+Final step to start the emulator processes:
+
+- `firebase emulators:start`.
+
+### File System Changes After Dev Setup and Emulator Install
+
+Added:
+
+- .firebaserc
+- database.rules.json
+- firebase.json
+- functions/
+
+Changed:
+
+- package.json
+
+### Emulator Startup Info
+
+When starting the emulator(s) (firebase emulators:start):
+
+- The latest code is auto-downloaded.
+- A listing of enabled Emulators, ports, and links to their UIs: http://ip:port.
+
+*Note*: Left off here.
+
 ## Resources
 
 - [Firebase Authentication Google Docs](https://firebase.google.com/docs/auth)
