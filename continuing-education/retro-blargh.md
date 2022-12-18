@@ -4,9 +4,28 @@ Semi-regular notes taken during my software developer journey.
 
 ## Saturday 17-Dec-2022
 
-Was ill last week and did not add notes here. Instead, I worked through several Advent of Code challenges on my laptop.
+Was ill last week and did not add notes here. Instead, I worked through several Advent of Code challenges and have completed the first 4 days' challenges.
 
-More notes to come after some other tasks get knocked out today.
+Some takeaways re: Advent of Code solutions using javascript:
+
+- Linting: I'm a little behind the times here - I've finally found the magic sequence of configurations to get jshint working in a PowerShell-based project environment (more below).
+- Test-Driven Development: Implementing Jest testing early has helped deliver effective code solutions.
+- Modularization: Using modules to develop partial solutions and testing them with Jest has been effective.
+- Object Oriented When Needed: Why not? Create objects to process and manage data as needed. This has made module code look cleaner and made it easier to read.
+- Remember datastructures: Use them to help provide a means to traverse and process data, for example: Stacks to handle FILO operations effeciently.
+
+Lingo Bingo:
+
+- Ryan has done some fantastic work lately, including adding accessible-friendly UX to the react-based front-end.
+- I've been revamping the back-end designs, but the progress has been slow. I hope to get more done this weekend.
+
+Sunday:
+
+1. Back-end design updating.
+1. Complete my Firebase Authentication review.
+1. Implement caching on the example server.
+
+Interspersed: Various administrative tasks that need to be completed, outside of coding.
 
 ## Saturday 10-Dec-2022 and Sunday 11-Dec-2022
 
@@ -19,7 +38,7 @@ Saturday:
 Sunday:
 
 -[ ] Review Firebase authentication and determine if this is a viable solution for a current project.
--[ ] Update Miro with new design throught and approaches to the back-end API server.
+-[ ] Update Miro with new design thought and approaches to the back-end API server.
 
 ## Friday 9-Dec-2022
 
