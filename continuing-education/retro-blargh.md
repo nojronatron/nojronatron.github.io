@@ -21,11 +21,28 @@ Lingo Bingo:
 
 Sunday:
 
-1. Back-end design updating.
-1. Complete my Firebase Authentication review.
-1. Implement caching on the example server.
+- [X] Back-end design updating.
+- [ ] Complete my Firebase Authentication review.
+- [ ] Implement caching on the example server.
 
 Interspersed: Various administrative tasks that need to be completed, outside of coding.
+
+Implementing Firebase Authentication required resetting to my Linux dev environment. I wasn't too interested in using NPX to set up my new React project for this purpose, so I did it by hand following (most of the) advice of [vish448's Gist on GitHub](https://gist.github.com/vish448/). Vish448's method included installing and configuring WebPack and Babel (neither of which are well understood by me just yet) so I spent some time working through issues:
+
+- JSHint can't parse JSX and marks valid code with errors it cannot recover from. Resolution: Stop using it and move to ESLint.
+- ESLint has issues natively understanding React terminology and file setup symantics. Resolution: Enable plugins 'react' and 'react-hooks', remove the common rules from 'extends[]' and replace with 'plugin:react/recommended' instead. It might also have helped to include in Rules: 'react-hooks/rules-of-hooks', but I didn't investigate to verify.
+- Building and launching the React site with 'npm start' threw a Syntax Error 'module build failed...support for the experimental syntax 'jsx' isn't currenlty enabled'. Resolution: The error detail says 'add @babel/preset-react to presets section of Babel config to enable transformation'. Babel highly recommends setting 'babel.config.json' for project-wide configuration control, so I added `"presets":[ "@babel/preset-react" ]` and the site rendered.
+
+Quite accidentally, I ran across what could be a helpful article next time I approach Auth0 + React (soon!):
+
+- [ ] Revisit [Auth0 Blog: React User Authentication](https://auth0.com/blog/complete-guide-to-react-user-authentication/) and implement the sample to gain experience.
+
+React State and Forms:
+
+- Controlled vs Uncontrolled Components: Forms and form components have their own State. React wants to manage State as single source of Truth. Utilize Event Handlers to push Form State Data to React State so that other React Components can use that data right away.
+- Use `event.target` to get the Form elements submitted on an Event handler.
+- Targets will contain the element components e.g. Type (textbox, password, etc) or Name (in html `<input name='username'>`...).
+- Target will also carry a value for the current Event. If a single event handler is expecting a text field and a checkbox, then it is necessary to test for the Name or Type of the event.target prior to capturing its Value.
 
 ## Saturday 10-Dec-2022 and Sunday 11-Dec-2022
 
