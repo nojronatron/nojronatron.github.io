@@ -2,24 +2,15 @@
 
 Semi-regular notes taken during my software developer journey.
 
-## Saturday 17-Dec-2022
+## Monday 19-Dec-2022
 
-Was ill last week and did not add notes here. Instead, I worked through several Advent of Code challenges and have completed the first 4 days' challenges.
+While working through an Advent of Code challenge, I found a need to develop a collection of custom Class instances.
 
-Some takeaways re: Advent of Code solutions using javascript:
+- Stack: The custom class. Has the usual Peek, Push, Pop, and isEmpty functions, as well as a Count property.
+- StackCollection: Creates an indexed list of unique Stack instances. Leveragages a Map to ensure O(1) reference to each Stack instance in the collection.
+- Modularity: Most of my experience devloping modules are simple: 0, 1, or 2 inputs, and a (generally) simple output. This time, I needed a reference via the StackCollection to each Stack instance, so the Module had to return a Function so the StackCollection would instantiate as an initialized list. In other words, the code in the module had to execute in order for the Module Output to be worth anything, and that wasn't happening until I wrapped the functionality with in a function explicitly (an arrow function did not work, and nor did a static const variable).
 
-- Linting: I'm a little behind the times here - I've finally found the magic sequence of configurations to get jshint working in a PowerShell-based project environment (more below).
-- Test-Driven Development: Implementing Jest testing early has helped deliver effective code solutions.
-- Modularization: Using modules to develop partial solutions and testing them with Jest has been effective.
-- Object Oriented When Needed: Why not? Create objects to process and manage data as needed. This has made module code look cleaner and made it easier to read.
-- Remember datastructures: Use them to help provide a means to traverse and process data, for example: Stacks to handle FILO operations effeciently.
-
-Lingo Bingo:
-
-- Ryan has done some fantastic work lately, including adding accessible-friendly UX to the react-based front-end.
-- I've been revamping the back-end designs, but the progress has been slow. I hope to get more done this weekend.
-
-Sunday:
+## Sunday 18-Dec-2022
 
 - [X] Back-end design updating.
 - [ ] Complete my Firebase Authentication review.
@@ -43,6 +34,24 @@ React State and Forms:
 - Use `event.target` to get the Form elements submitted on an Event handler.
 - Targets will contain the element components e.g. Type (textbox, password, etc) or Name (in html `<input name='username'>`...).
 - Target will also carry a value for the current Event. If a single event handler is expecting a text field and a checkbox, then it is necessary to test for the Name or Type of the event.target prior to capturing its Value.
+
+## Saturday 17-Dec-2022
+
+Was ill last week and did not add notes here. Instead, I worked through several Advent of Code challenges and have completed the first 4 days' challenges.
+
+Some takeaways re: Advent of Code solutions using javascript:
+
+- Linting: I'm a little behind the times here - I've finally found the magic sequence of configurations to get jshint working in a PowerShell-based project environment (more below).
+- Test-Driven Development: Implementing Jest testing early has helped deliver effective code solutions.
+- Modularization: Using modules to develop partial solutions and testing them with Jest has been effective.
+- Object Oriented When Needed: Why not? Create objects to process and manage data as needed. This has made module code look cleaner and made it easier to read.
+- Remember datastructures: Use them to help provide a means to traverse and process data, for example: Stacks to handle FILO operations effeciently.
+
+Lingo Bingo:
+
+- Ryan has done some fantastic work lately, including adding accessible-friendly UX to the react-based front-end.
+- I've been revamping the back-end designs, but the progress has been slow. I hope to get more done this weekend.
+
 
 ## Saturday 10-Dec-2022 and Sunday 11-Dec-2022
 
