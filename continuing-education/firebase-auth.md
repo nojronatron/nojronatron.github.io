@@ -41,6 +41,38 @@
 - Spark Plan: No cost. 3k daily active (unique) users for Email, Social, Anonymous, and Custom auth types.
 - Blaze: Pay as you go.
 
+## WebDev Simplified Setup Overview
+
+Source: [WebDev Simplified: Crash Course with Firebase and Routing](https://www.youtube.com/watch?v=PKwu15ldZ7k&ab_channel=WebDevSimplified).
+
+1. Create Firebase Auth Projects: One for Dev, one for Production (if needed).
+1. Create your Firebase Auth App within the Project to get the 'firebaseConfig' data.
+1. Create ReactApp.
+1. Setup an ENV file and add all 'firebaseConfig' data there. Prefix all Env keys with 'REACT_'.
+1. Install 'firebase' using NPM.
+1. Add a firebase.js file, import firebase/app and firebase/auth.
+1. Add a const firebase.initializeApp and use process.env.REACT_NAME_OF_EACH_ENV_ENTRY to load the settings. Export as default.
+1. Create a Signup.js React functional component. This page should include the ability to Register using a link or Login using an on-screen Form. Include a password confirmation input too! Don't forget a Submit button with value 'Sign up'. One way to grab data from Forms is to `import {useRef} from 'react'` and assign Refs variable names so React can use them. useRef variables can be referenced using `refName.current.value`.
+1. Create a folder called 'context' to store Context so the authentication can be used anywhere within the ReactApp.
+1. Create an AuthContent.js React Functional Component. Assign `const AuthContext = React.createContext()` to allow wrapping the function export 'children' within an AuthCotext.Provider tag. (16:46 minutes into video). There is more setup here where useState is utilized to store the AuthProvider is set up.
+1. Import firebase/auth into AuthContent.js. Add a signup function using auth.createUserWithEmailAndPassword(). The function will now return currentUser and signup functions.
+1. Import contexts/AuthContext into the Signup React Functional Component.
+1. Ensure the entire App (inside App.js return() statement) is wrapped with `<AuthProvider>`.
+1. Validate user inputs! Exit out of a handleSubmit function if the input validation fails, and return a helpful error message (`return setError('Passwords do not match')`).
+1. Ensure rendering doesn't happen until Firebase can return with the user info. There is a lot to this, including use of useEffect and useState.
+1. Import BrowserRouter (a react-router-dom component) to App.js, and include 'Switch' and 'Route'. Router component will live inside the App rendered Container, and AuthProvider will live inside of the parent Router component.
+1. Enable routes by adding `<Route path='/path' component={component} />` and wrapping them all with `<Switch>`.
+1. Create a Login component that is A LOT like the Signup Component, except with the Password Confirmation logic and component(s).
+1. Use ReactRouter's `<Link>` component to enable linking text from one page (e.g. Login) to another (e.g. Signup).
+1. Leverage 'useHistory' from React Router to 'push' to a specific page (or '/') as a way to redirect after registration, login, or logout.
+1. Create a profile (dashboard) with a new React Functional Component. Replicate the work done in the login/register pages but only include a Logout button, and instead of displaying a Form for user to enter data, use elements to display data about the currently logged on user (`const { currentUser } = useAuth()`).
+1. Optionally configure a link to update the user profile that `<Link to='/update-profile'>Update Profile</Link>` using React Router's 'Link' component.
+1. Create a custom component called 'PrivateRoute.js'. It's a new React Functional Component. Export a function `PrivateRouter({ component: Component, ...rest })` that just returns `<Route {...rest}></Route>` and a `render = ` that captures the arrow function that checks for 'currentUser' to render component that got us here, otherwise redirect (via React Router) to the Login page.
+1. At the bottom of the Log In page, add a div to contain a link to 'forgot password' page.
+1. Create a Route for Forgot Password in the Route list in App.js.
+1. Create a new React Functional Component `ForgotPassword.js` and copy 'Login' component code (except the password expressions and variables), update text to set 'Forgot Password' context for the user, and implement a wrapper function `resetPassword(email){}` that just returns `auth.sendPasswordResetEmail(email)`.
+1. Complete the Profile/Dashboard page, and utilize `useAuth()` hook to allow Email and Password changes.
+
 ## Sign-in User To An App
 
 1. Get auth credetnials from user (UN+PW or OAuth Token).
@@ -65,7 +97,7 @@ After authentication:
 
 ### Overview Video Notes
 
-For dev/test, a local Auth Emulator must be running on the correct port else an error will be returned.
+For dev/test, if using a local Auth Emulator, it must be running on the correct port else an error will be returned.
 
 Users that are not already registered must be added manual, or to use Email validation flows (provided by FireBase or can be customized).
 
@@ -135,6 +167,14 @@ When starting the emulator(s) (firebase emulators:start):
 - A listing of enabled Emulators, ports, and links to their UIs: http://ip:port.
 
 *Note*: Left off here.
+
+## Authorized Domains
+
+In the Firebase Auth project, defaults will be entered for you.
+
+For development, localhost will be allowed.
+
+For production, localhost should be deleted!
 
 ## Resources
 
