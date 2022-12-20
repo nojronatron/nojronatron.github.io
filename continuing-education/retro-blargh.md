@@ -10,6 +10,16 @@ While working through an Advent of Code challenge, I found a need to develop a c
 - StackCollection: Creates an indexed list of unique Stack instances. Leveragages a Map to ensure O(1) reference to each Stack instance in the collection.
 - Modularity: Most of my experience devloping modules are simple: 0, 1, or 2 inputs, and a (generally) simple output. This time, I needed a reference via the StackCollection to each Stack instance, so the Module had to return a Function so the StackCollection would instantiate as an initialized list. In other words, the code in the module had to execute in order for the Module Output to be worth anything, and that wasn't happening until I wrapped the functionality with in a function explicitly (an arrow function did not work, and nor did a static const variable).
 
+Working through Firebase Authentication again:
+
+- Doing this with React has been quite a challenge but I feel like I am learning all the time.
+- Errors and failures happen often enough and I am able to address them, change course as necessary, and keep moving forward.
+- Configuring Firebase using modules was not that bad, I just made it harder on myself the first few attempts. :smiley:
+- Leveraged `ComponentDidMount()` to configure Firebase in the end, and it appears to be functioning!
+- Registration of new user(s) is functioning, but the React app State isn't getting an updated 'isAuthenticated' bit.
+
+Will keep moving forward tomorrow, after a good night's rest.
+
 ## Sunday 18-Dec-2022
 
 - [X] Back-end design updating.
