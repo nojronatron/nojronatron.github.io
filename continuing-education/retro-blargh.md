@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 20-Dec-2022
+
+I ran into a problem with getting the user context back from Firebase...rather, I knew the user was registered (and logged on) but somehow my code was missing the ability to update the state properly so that the site would show the user was logged in and allow logout. After trying some things I ran across some web resources about using Firebase and decided to explore them. Because my React App was manually configured, the WebPack and ReactScripts versions are in a buggy state that blocks using dotenv 'process' properly. This is a super-bad situation and probably means the site could have other broken issues I might not want to have to fix, so I'm starting over using the standard Create React App method. *argh*
+
 ## Monday 19-Dec-2022
 
 While working through an Advent of Code challenge, I found a need to develop a collection of custom Class instances.
