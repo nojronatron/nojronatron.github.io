@@ -4,6 +4,8 @@ Notes taken while attending Power Hour sessions - videos and/or in-person events
 
 ## Index
 
+Graphs and Finding Shortest Path in a Navigation App with [Roger R](./roger-graphs-navapp.html)
+
 Next Level Git with [David S](./dsouther-next-level-git.html)
 
 CSS Talk with [Brian](./bnation-css-stuff.html)
