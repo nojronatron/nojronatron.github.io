@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 23-Dec-2022
+
+Started working through integration of Firebase Auth into an ExpressJS server.
+
+Attended a partner power hour presentation by Roger R, about Graphs, demoing a simple navigation app. Well done!
+
 ## Wednesday 21-Dec2022
 
 Goals for today:
@@ -27,6 +33,7 @@ Takeaways:
 - Export default in ES6+ can be thought of as simply as this: When importing the module, braces are not required to use the module output [Stackoverflow What Is Export Default in JS](https://stackoverflow.com/questions/21117160/what-is-export-default-in-javascript).
 - Hey guess what!?! React-router-dom was updated recently and Switch is no longer supported. Also, they 'switched up' the way that Routes need to be defined in React to use 'element' instead of 'component'. Exact Path and Path appear to be the same. 'useHistory' is now (basically) 'useNavigate'. Redirect element `<Redirect to=...>` are now `<Navigate to=...>`, and instead of using 'push', 'replace' or nothing.
 - Navigate vs useNavigate: If a child React Component needs to redirect a user then use the Navigate element in the JSX/Render function (it wraps useNavigate to make it safe when useEffect() cannot be used). Otherwise, put useNavigate in a useEffect to safely redirect within functional code.
+- Firebase docs recommend using an Authentication State Observer that accepts the 'auth' context as an input. Without that 'auth' object (context), functions like Logout will fail because 'onAuthStateChanged()' will not have a context to work with.
 
 ## Tuesday 20-Dec-2022
 
