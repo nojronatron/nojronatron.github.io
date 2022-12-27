@@ -67,7 +67,7 @@ Source: [WebDev Simplified: Crash Course with Firebase and Routing](https://www.
 1. Leverage 'useHistory' from React Router to 'push' to a specific page (or '/') as a way to redirect after registration, login, or logout.
 1. Create a profile (dashboard) with a new React Functional Component. Replicate the work done in the login/register pages but only include a Logout button, and instead of displaying a Form for user to enter data, use elements to display data about the currently logged on user (`const { currentUser } = useAuth()`).
 1. Optionally configure a link to update the user profile that `<Link to='/update-profile'>Update Profile</Link>` using React Router's 'Link' component.
-1. Create a custom component called 'PrivateRoute.js'. It's a new React Functional Component. Export a function `PrivateRouter({ component: Component, ...rest })` that just returns `<Route {...rest}></Route>` and a `render = ` that captures the arrow function that checks for 'currentUser' to render component that got us here, otherwise redirect (via React Router) to the Login page.
+1. Create a custom component called 'PrivateRoute.js'. It's a new React Functional Component. Export a function `PrivateRouter({ component: Component, ...rest })` that just returns `<Route {...rest}></Route>` and a `render=` that captures the arrow function that checks for 'currentUser' to render component that got us here, otherwise redirect (via React Router) to the Login page.
 1. At the bottom of the Log In page, add a div to contain a link to 'forgot password' page.
 1. Create a Route for Forgot Password in the Route list in App.js.
 1. Create a new React Functional Component `ForgotPassword.js` and copy 'Login' component code (except the password expressions and variables), update text to set 'Forgot Password' context for the user, and implement a wrapper function `resetPassword(email){}` that just returns `auth.sendPasswordResetEmail(email)`.
@@ -86,6 +86,20 @@ After authentication:
 - App has access to user's basic profile data.
 - Access controls can be applied to app and other Firebase products.
 - Auth Token can be used to authenticate to your app's backend services.
+
+## Verify ID Tokens
+
+A custom backend server can verify a user's Firebase Auth Token:
+
+1. Front-end app verifies user and logs them in.
+1. Front-end app opens a connection to the back-end using HTTPS.
+1. Back-end server receives the user's ID toekn and verifies its authenticity to get the user's UID.
+1. Back-end server uses the UID to securely ID the currently signed-in user.
+
+[Verify ID Tokens](https://firebase.google.com/docs/auth/admin/verify-id-tokens)
+
+### On the Back End
+
 
 ## Implementation - FirebaseUI Auth
 

@@ -99,7 +99,6 @@ Lingo Bingo:
 - Ryan has done some fantastic work lately, including adding accessible-friendly UX to the react-based front-end.
 - I've been revamping the back-end designs, but the progress has been slow. I hope to get more done this weekend.
 
-
 ## Saturday 10-Dec-2022 and Sunday 11-Dec-2022
 
 Saturday:
