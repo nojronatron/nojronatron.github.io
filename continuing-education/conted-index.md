@@ -40,6 +40,7 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
+- [X] React [useContext](./react-use-context-overview.md)
 - [X] Cookies and using [cookies in ExpressJS](./express-cookies-review.html)
 - [X] MS [Dot Net Conf 2022 Notes](./dotnetconf-2022.html)
 - [X] [Unit testing](./android-studio-testing.html) in Android Studio.

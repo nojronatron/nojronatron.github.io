@@ -2,6 +2,43 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 23-Dec-2022
+
+Started working through integration of Firebase Auth into an ExpressJS server.
+
+Attended a partner power hour presentation by Roger R, about Graphs, demoing a simple navigation app. Well done!
+
+## Wednesday 21-Dec2022
+
+Goals for today:
+
+- [X] Create new Firebase password exploratory project.
+- [X] Bolt-on eslinting with react add-on.
+- [X] Add Firebase SDK and set up config.
+- [X] Test dotenv is functional.
+- [X] Create Register Form and set up Firebase registration.
+- [X] Create Login Form and set up Firebase login.
+- [X] Create Logout button and workflow.
+- [X] Implement a basic Profile page using Firebase auth info.
+- [ ] Add-on Google Auth and consider other OAuth methods.
+- [ ] Retro this and plan for integrating with API Server for authorization.
+
+Takeaways:
+
+- STOP using JSHint Extension in VSCode and instead realy on ESLint latest.
+- Try to implement the latest ECMA version possible in the ESLint configuration/rules.
+- Adding a SJX parser option like 'ecmaFeatures': 'jsx': 'true' can be helpful for some wrapped JSX code in React.
+- ESLint configuration and rule sets can get complicated (and incompatible) quickly and easily, so only implement what is absolutely required, or use a canned solution that is close-enough and apply specific rules only when absolutely necessary.
+- Babel Parser in ESLint: Might need to set 'eslint.workingDirectories' array item 'mode' to 'auto', after setting 'parser': '@babel/eslint-parser'.
+- Export default in ES6+ can be thought of as simply as this: When importing the module, braces are not required to use the module output [Stackoverflow What Is Export Default in JS](https://stackoverflow.com/questions/21117160/what-is-export-default-in-javascript).
+- Hey guess what!?! React-router-dom was updated recently and Switch is no longer supported. Also, they 'switched up' the way that Routes need to be defined in React to use 'element' instead of 'component'. Exact Path and Path appear to be the same. 'useHistory' is now (basically) 'useNavigate'. Redirect element `<Redirect to=...>` are now `<Navigate to=...>`, and instead of using 'push', 'replace' or nothing.
+- Navigate vs useNavigate: If a child React Component needs to redirect a user then use the Navigate element in the JSX/Render function (it wraps useNavigate to make it safe when useEffect() cannot be used). Otherwise, put useNavigate in a useEffect to safely redirect within functional code.
+- Firebase docs recommend using an Authentication State Observer that accepts the 'auth' context as an input. Without that 'auth' object (context), functions like Logout will fail because 'onAuthStateChanged()' will not have a context to work with.
+
+## Tuesday 20-Dec-2022
+
+I ran into a problem with getting the user context back from Firebase...rather, I knew the user was registered (and logged on) but somehow my code was missing the ability to update the state properly so that the site would show the user was logged in and allow logout. After trying some things I ran across some web resources about using Firebase and decided to explore them. Because my React App was manually configured, the WebPack and ReactScripts versions are in a buggy state that blocks using dotenv 'process' properly. This is a super-bad situation and probably means the site could have other broken issues I might not want to have to fix, so I'm starting over using the standard Create React App method. *argh*
+
 ## Monday 19-Dec-2022
 
 While working through an Advent of Code challenge, I found a need to develop a collection of custom Class instances.
@@ -61,7 +98,6 @@ Lingo Bingo:
 
 - Ryan has done some fantastic work lately, including adding accessible-friendly UX to the react-based front-end.
 - I've been revamping the back-end designs, but the progress has been slow. I hope to get more done this weekend.
-
 
 ## Saturday 10-Dec-2022 and Sunday 11-Dec-2022
 
