@@ -98,8 +98,17 @@ A custom backend server can verify a user's Firebase Auth Token:
 
 [Verify ID Tokens](https://firebase.google.com/docs/auth/admin/verify-id-tokens)
 
-### On the Back End
+### On the Back End (More Info)
 
+1. Setup Firebase with a Google Application Credential (json file) and Firebase Project ID. Use DotEnv for example.
+1. Install firebase-admin (I used ^11.4.1).
+1. Implement middleware that imports firebase-admin, dotenv (for example) and setup a 'serviceAccount' variable that requires the Google App Creds.
+1. Middleware: `admin.initializeApp({ credential: admin.credential.cert(serviceAccount)});`
+1. Middleware: Implement a 'getAuthToken(req, res, next)' finction that gets the 'Bearer token', and calls 'next();` at the end (as middleware does).
+1. Middleware: Implement a 'checkAuthentication(req, res, nex)' function that calls 'getAuthToken' then within a try-catch uses `admin.auth().verifyIdToken(authToken)` to validate the token then return 'next()' or an error (if 'catch(error)' is executed), setting status code 401 and an error message i.e. 'unauthorized'.
+1. On each path that requires authentication, insert 'checkIfAuthenticated' exported module function in the middleware, so Express will disallow or authorize access to the code next in the middleware chain.
+
+Optional: Use and refresh session cookies when 'checkIfAuthenticated' passes, otherwise expire the cookie.
 
 ## Implementation - FirebaseUI Auth
 
@@ -111,11 +120,11 @@ A custom backend server can verify a user's Firebase Auth Token:
 
 ### Overview Video Notes
 
-For dev/test, if using a local Auth Emulator, it must be running on the correct port else an error will be returned.
+Generally:
 
-Users that are not already registered must be added manual, or to use Email validation flows (provided by FireBase or can be customized).
-
-User UUID is guaranteed to be unique regardless of login method, and is provided as a User field that your App will have access to.
+- For dev/test, if using a local Auth Emulator, it must be running on the correct port else an error will be returned.
+- Users that are not already registered must be added manually or via use of Email validation flows (provided by FireBase or can be customized).
+- User UUID is guaranteed to be unique regardless of login method, and is provided as a User field that your App will have access to.
 
 To programmatically create a user account:
 
@@ -175,6 +184,8 @@ Changed:
 
 ### Emulator Startup Info
 
+Running a local emulator is optional, but can serve as a local dev & test platform without relying on a 'production' Firebase Auth App instance or setting up a second app.
+
 When starting the emulator(s) (firebase emulators:start):
 
 - The latest code is auto-downloaded.
@@ -189,6 +200,45 @@ In the Firebase Auth project, defaults will be entered for you.
 For development, localhost will be allowed.
 
 For production, localhost should be deleted!
+
+## Using Google Auth
+
+1. Add Firebase to the JS project if not already.
+1. Enable Google as sign-in provider to Firebase Project (a new public-facing project name will be added and a Project Support Email will be required).
+1. Implement [Google Sign-in Flow](https://firebase.google.com/docs/auth/web/google-signin) using Firebase SDK into the project.
+1. 
+
+### Implement Google Sign In Flow
+
+1. Create a Google Provider object that imports GoogleAuthProvider from firebase/auth, and calls 'new GoogleAuthProvider()'.
+1. Optional: Add OAuth 2.0 scopes using `provider.addScope(googleapis.com/my_scope)`.
+1. Optional: Localize OAuth flow to user's preferred language.
+1. Optional: Specify custom OAuth provider params to send with OAuth Request: `provider.setCustomParameters({ 'key': 'value' })`.
+1. Use the Google Provider Object to authenticate the user with Firebase. A Pop-up can be used or a redirect to the sign-in page (redirect preferred on mobile).
+1. Call `getRedirectResult(auth)` to acquire the provider's OAuth token when the page loads.
+
+### Google ID OAuth 2.0 Scopes
+
+Check out [OAuth 2.0 Scopes for Google APIs](https://developers.google.com/identity/protocols/oauth2/scopes)
+
+### Notes About Google Sign In Flow using Nodejs
+
+Firebase documentation states this sign-in flow must be handled manually:
+
+1. Implement sign-in flow to get user's Google ID token.
+1. Build a Credential Object using Google ID Token.
+1. Call `signInWithCredential(auth, credential)`... (more code here so see the web link) to perform login and handle any error.
+
+Overall:
+
+- Integrate the Google OAuth and call signInWithRedirect() which could return a promise.
+- Leverage getRedirectResult either in the custom authentication context (leveraging firebase-auth) or at the login button handler.
+- When calling 'signInWithRedirect(auth, provider)', return the result from 'getRedirectResult(auth)' to get a 'credential' and/or a 'token' in return.
+- Acquire Bearer Token elsewhere in the front-end app by calling `currentUser.getIdToken()` where 'currentUser' is imported from Firebase Auth.
+- When assembling a Bearer Token, concatenate 'Bearer ' with the result of currentUser.getIdToken() (template literal works).
+- Add a Headers field `{ Authorization: BearerToken }` and server will parse it, validate with Firebase Auth, then return an Authorized response.
+
+Note: Bearer token is also stored in local browser's firebaseLocalStorage (browser LocalStorage) at: value > stsTokenManager > accessToken.
 
 ## Resources
 

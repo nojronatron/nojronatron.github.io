@@ -2,6 +2,21 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 27-Dec-2022
+
+Christmas week is over and it's time to get back to business:
+
+- [X] GoogleAuth added to demo Firebase Auth React App. Verified can access protected path using Firebase Auth Validation on server-side.
+- [X] Retro plan for integrating with API Server for authorization.
+
+Some key takeaways:
+
+- Remember Axios? Set up axios configuration using `axios({ key:value, key:value })`.
+- Set Axios headers with `headers: { headerName: headerValue }`. This can be used to 'Authorization' header fields such as for a Bearer Token.
+- Axios responseType 'json' (not application/json) and responseEncoding 'utf8' (not charset=utf-8) should be used to specify a known response type and encoding.
+- Axios stores response data in `response.data`, so a response that contains a JSON object with a 'message' field is acquired via `response.data.message` when 'responseType: json' is used.
+- Be sure to require CORS on the Express server otherwise cross-origin requests will get blocked.
+
 ## Friday 23-Dec-2022
 
 Started working through integration of Firebase Auth into an ExpressJS server.
@@ -20,6 +35,7 @@ Goals for today:
 - [X] Create Login Form and set up Firebase login.
 - [X] Create Logout button and workflow.
 - [X] Implement a basic Profile page using Firebase auth info.
+- [X] Enable Bearer Token authentication verification on back-end server to protect route(s).
 - [ ] Add-on Google Auth and consider other OAuth methods.
 - [ ] Retro this and plan for integrating with API Server for authorization.
 
