@@ -2,6 +2,13 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 28-Dec-2022
+
+Random discoveries:
+
+- When destructuring output from a module function, the same variable names should be used. Renaming them requires using a KVP-style syntax e.g. `const items = { numbersArray: numsArr, proportionsCollection: proportions }`.
+- Jest: When testing floating-point numbers, rounding errors can occur due to base-10 to binary conversion. To work with floats and still get valid test results, use `.toBeCloseTo(number, numDigits?)` (numDigits is optional).
+
 ## Tuesday 27-Dec-2022
 
 Christmas week is over and it's time to get back to business:
