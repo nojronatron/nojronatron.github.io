@@ -15,6 +15,7 @@ Some key takeaways:
 - Set Axios headers with `headers: { headerName: headerValue }`. This can be used to 'Authorization' header fields such as for a Bearer Token.
 - Axios responseType 'json' (not application/json) and responseEncoding 'utf8' (not charset=utf-8) should be used to specify a known response type and encoding.
 - Axios stores response data in `response.data`, so a response that contains a JSON object with a 'message' field is acquired via `response.data.message` when 'responseType: json' is used.
+- Be sure to require CORS on the Express server otherwise cross-origin requests will get blocked.
 
 ## Friday 23-Dec-2022
 
