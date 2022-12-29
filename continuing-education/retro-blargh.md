@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 28-Dec-2022
+
+Random comments and discoveries:
+
+- When destructuring output from a module function, the same variable names should be used. Renaming them requires using a KVP-style syntax e.g. `const items = { numbersArray: numsArr, proportionsCollection: proportions }`.
+- Jest: When testing floating-point numbers, rounding errors can occur due to base-10 to binary conversion. To work with floats and still get valid test results, use `.toBeCloseTo(number, numDigits?)` (numDigits is optional).
+- It's okay to revisit an algorithm, decide it is too complicated or awkward, and re-write it while developing an app or module.
+- Out of curiosity I took a look at Vue.js. Documentation looked pretty good. I didn't spend much time trying to digest much of how to use it, but it looks like a good thing to explore sometime in the future.
+
+I had a good lunch break with my friend Dave in Snohomish. It was great to catch up with him and to talk techie stuff over tacos and coca-cola.
+
 ## Tuesday 27-Dec-2022
 
 Christmas week is over and it's time to get back to business:

@@ -10,9 +10,9 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
-- [ ] Study Auth0's [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
+- [ ] Vue.js, the [progressive javascript framework](https://vuejs.org/). Just get a feel for it.
+- [ ] Study Auth0 [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
 - [ ] Consider deploying a [Swagger UI for ExpressJS](https://github.com/scottie1984/swagger-ui-express) to better interact with Express during development.
-- [x] Research [Firebase Authentication](https://firebase.google.com/products/auth) and [Firebase Google Docs](https://firebase.google.com/docs/auth) as a possible alternative to Auth0. See notes at [firebase-auth](./firebase-auth.html).
 - [ ] Review [Method Chaining](../code301-files/methodChaining-DBs-Mongoose-Atlas-SeedData-ReactLifecycle.html) in preparation for LingoBingo v.Next.
 - [ ] Learn about [SVG files](svg-files.html) and how to use them.
 - [ ] Look into [Playwright](playwright-notes.html)
@@ -40,6 +40,7 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
+- [X] Research [Firebase Authentication](https://firebase.google.com/products/auth) and [Firebase Google Docs](https://firebase.google.com/docs/auth) as a possible alternative to Auth0. See notes at [firebase-auth](./firebase-auth.html).
 - [X] React [useContext](./react-use-context-overview.md)
 - [X] Cookies and using [cookies in ExpressJS](./express-cookies-review.html)
 - [X] MS [Dot Net Conf 2022 Notes](./dotnetconf-2022.html)
