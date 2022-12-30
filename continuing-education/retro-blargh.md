@@ -2,6 +2,23 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 29-Dec-2022
+
+A markdown surprise: H1 Headings can be made using equals signs. It will render the same as `# Heading1`.
+
+```text
+Heading1
+===
+```
+
+Demonstrated Firebase Auth and Auth0 capabilities to Ryan, for LingoBingo. We are both pretty confident that we can make Auth0 work with React FE and ExpressJS API Server, so we plan to start moving forward with server setup and deployment, and developing needed React pages.
+
+Some more takeaways:
+
+- DotEnv does NOT need to be installed on a React site. Just prefix the variables with 'REACT_APP_'.
+- Using DotEnv requires the '.env' file to be at the root of the project (as far as I can tell - I will have to do some investigating to confirm this or learn how to point to another location).
+- DotEnv file entries are NOT key-value-pairs e.g. `AUTH0_DOMAIN:"dev-asdfasdf.us.auth0.com"` they are value *assignments* i.e. `AUTH0_DOMAIN="dev-asdfasdf.us.auth0.com"`.
+
 ## Wednesday 28-Dec-2022
 
 Random comments and discoveries:
