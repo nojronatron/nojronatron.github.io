@@ -5,6 +5,9 @@ A collection of notes for future review about implementing Auth0 server-side for
 ## Required Reading
 
 [Auth0 Docs - Authentication API](https://auth0.com/docs/api/authentication#introduction)
+[Add Login to a React App](https://auth0.com/docs/quickstart/spa/react#add-login-to-your-application)
+[Call an API from React/JS](https://auth0.com/docs/quickstart/spa/react/02-calling-an-api)
+[Example of route protections using Auth0](https://github.com/auth0/auth0-react/blob/master/EXAMPLES.md#protect-a-route)
 
 ## Requirements
 
