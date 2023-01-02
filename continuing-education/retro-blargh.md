@@ -2,6 +2,15 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 30-Dec-2022 and Saturday 31-Dec-2022
+
+Express Learnings:
+
+- Passing results from middleware to `next()` is simply a matter of assigning a KVP to `res.locals`, for ex: `res.locals.authResult = 'Authorized'` will attach key:authResult, value:'Authorized' to the `Response` handler.
+- When examining cookies it is easier to install and use `cookie-parser` than it is to dive through the headers manually.
+- Adding middleware functions does *not* require including `res,req,next` in the params list. In fact, the params list can be left out altogether when called in-line with a handler i.e. `app.get('/', myMiddleware, (req, res) => { res.json({message:'Ok!'})});`.
+- It would be really super helpful if I would just draw-out all the middlewares and their dependancies before I started writing code. I'm spending too much time debugging 'on the run' instead of coding, validating, and moving to the next design.
+
 ## Thursday 29-Dec-2022
 
 A markdown surprise: H1 Headings can be made using equals signs. It will render the same as `# Heading1`.
