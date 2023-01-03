@@ -2,6 +2,31 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 2-Jan-2023
+
+Happy new year!
+
+Entering retro notes daily is a little overkill for my purposes, so I'm going to try a weekly branch => push timing instead.
+
+Deployed an example API server with canned authentication and data (no DB backend) to Azure App Service:
+
+- Don't include CORS as an unconfigured dependency otherwise it will block many valid requests, including App Service telemetry e.g. logging.
+- Configure dotenv (ENV aka Environment Variable) settings via Azure App Service *Application Settings*. There are reserved settings for the App Service itself, but otherwise fill-in what is needed the same as a `.env` or in Heroku's *environment variables* settings page.
+- There is no need to set a custom server port. Azure App Service defaults to 8080 and at least 1 gateway exists between the internet and the App Service itself.
+- Bearer Token is usually concatenated in code. For this example it is an environment variable to simplify development without relying on an actual authentication service, until we are confident in our ability to deploy it especially on the front-end.
+
+Going back to the React + Auth0 + Express example deployment:
+
+- Using pure functional components with useState and useEffect has been simpler and fairly effective.
+- Along the way I kept running into errors that looked like their were client-side but they might be server-side instead.
+- It is critical to look at both sides of a client-server communication/conversation to understand what is might be going wrong.
+
+Tomorrow I will get back to this and:
+
+-[ ] Find out if `unexpected 'aud' value` is referring to 'audience' or something else.
+-[ ] Review server-side JWT setup to ensure I have it right.
+-[ ] Review the Auth0 API Service documentation to ensure my front-end is acquiring the correct JWT in the first place.
+
 ## Friday 30-Dec-2022 and Saturday 31-Dec-2022
 
 Express Learnings:
