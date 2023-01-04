@@ -2,6 +2,28 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 3-Jan-2023
+
+For the first time in over a month I went for a run on Tuesday morning and I overdid it. So I ran again this morning and it was much easier so *back to work*!
+
+Working on the Auth0 front-end:back-end authentication project:
+
+-[X] Unepected 'aud' value was coming from an environment setting in variable `checkJwt` that was pointing to the correct express server, but relying on the Auth0 API server, but other configuration code was missing in order to do JWT authentication in this way.
+-[X] The JWT setup was close, just missing some code to get the correct JWT from the Auth0 API service configuration, which Auth0 documentation shows a long path to get to. Instead, I installed `jsonwebtoken` and `jwks-rsa` node modules and set up an Authorize component that defined a client pointing to the JWKS URI (an Advanced configuration Endpoint setting on the front-end application page), a getKey() method that acquires the public signing key, and a verifyUser() method with a nested valid() method, that acquires and formats the authorization token and validates in using jwt.verify().
+-[X] Fixing the prior to items solved the question 'is my front-end acquiring the correct JWT': It was not, but now it is!
+
+Now the front-end is able to access unprotected routes without an Authorization header, and CAN access PROTECTED routes WITH an Authorization header and a valid Token:
+
+- See implementation details in task list (above ^^^).
+- Front-end was in an endless loop, repeatedly acquiring response from protected route. This was caused by a buggy implementation of useEffect.
+
+UseEffect is easy to get wrong, here are things I learned getting it wrong, then debugging and getting it right:
+
+- UseEffect was declared separately from the async method that *relied on a Module parameter* to execute.
+- Encapsulating the async method call (uses Axios to call the protected path using a valid Authorization header + token) allows the useEffect to avoid re-rendering, thus executing again.
+- See [UseEffect FAQ: Dependencies change too often](https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often). In summary, make an external parameter a useEffect dependency (the square bracket parameter) and put the dependant function inside the useEffect code block.
+- See [UseEffect FAQ: Omitting functions from list of dependencies](https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies). In summary, do not omit them. Follow the FAQ entry instead.
+
 ## Monday 2-Jan-2023
 
 Happy new year!
