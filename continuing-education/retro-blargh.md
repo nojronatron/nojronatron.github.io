@@ -8,9 +8,9 @@ For the first time in over a month I went for a run on Tuesday morning and I ove
 
 Working on the Auth0 front-end:back-end authentication project:
 
--[X] Unepected 'aud' value was coming from an environment setting in variable `checkJwt` that was pointing to the correct express server, but relying on the Auth0 API server, but other configuration code was missing in order to do JWT authentication in this way.
--[X] The JWT setup was close, just missing some code to get the correct JWT from the Auth0 API service configuration, which Auth0 documentation shows a long path to get to. Instead, I installed `jsonwebtoken` and `jwks-rsa` node modules and set up an Authorize component that defined a client pointing to the JWKS URI (an Advanced configuration Endpoint setting on the front-end application page), a getKey() method that acquires the public signing key, and a verifyUser() method with a nested valid() method, that acquires and formats the authorization token and validates in using jwt.verify().
--[X] Fixing the prior to items solved the question 'is my front-end acquiring the correct JWT': It was not, but now it is!
+- [X] Unepected 'aud' value was coming from an environment setting in variable `checkJwt` that was pointing to the correct express server, but relying on the Auth0 API server, but other configuration code was missing in order to do JWT authentication in this way.
+- [X] The JWT setup was close, just missing some code to get the correct JWT from the Auth0 API service configuration, which Auth0 documentation shows a long path to get to. Instead, I installed `jsonwebtoken` and `jwks-rsa` node modules and set up an Authorize component that defined a client pointing to the JWKS URI (an Advanced configuration Endpoint setting on the front-end application page), a `getKey()` method that acquires the public signing key, and a `verifyUser()` method with a nested `valid()` method, that acquires and formats the authorization token and validates in using `jwt.verify()`.
+- [X] Fixing the prior to items solved the question 'is my front-end acquiring the correct JWT': It was not, but now it is!
 
 Now the front-end is able to access unprotected routes without an Authorization header, and CAN access PROTECTED routes WITH an Authorization header and a valid Token:
 
@@ -45,9 +45,9 @@ Going back to the React + Auth0 + Express example deployment:
 
 Tomorrow I will get back to this and:
 
--[ ] Find out if `unexpected 'aud' value` is referring to 'audience' or something else.
--[ ] Review server-side JWT setup to ensure I have it right.
--[ ] Review the Auth0 API Service documentation to ensure my front-end is acquiring the correct JWT in the first place.
+- Find out if `unexpected 'aud' value` is referring to 'audience' or something else.
+- Review server-side JWT setup to ensure I have it right.
+- Review the Auth0 API Service documentation to ensure my front-end is acquiring the correct JWT in the first place.
 
 ## Friday 30-Dec-2022 and Saturday 31-Dec-2022
 
