@@ -10,15 +10,14 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
+- [ ] Oracle: Developing a [Microservices-based RESTfull Java Application](https://www.oracle.com/explore/java-oci-1?source=:ow:de:te::::RC_WWSA220204P00012:EM22_TEC_EV_CO65_M0601_SO061YO19_DO1043_AO01_RO001&intcmp=:ow:de:te::::RC_WWSA220204P00012:EM22_TEC_EV_CO65_M0601_SO061YO19_DO1043_AO01_RO001) using Java.
 - [ ] Vue.js, the [progressive javascript framework](https://vuejs.org/). Just get a feel for it.
 - [ ] Study Auth0 [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
 - [ ] Consider deploying a [Swagger UI for ExpressJS](https://github.com/scottie1984/swagger-ui-express) to better interact with Express during development.
 - [ ] Review [Method Chaining](../code301-files/methodChaining-DBs-Mongoose-Atlas-SeedData-ReactLifecycle.html) in preparation for LingoBingo v.Next.
 - [ ] Learn about [SVG files](svg-files.html) and how to use them.
-- [ ] Look into [Playwright](playwright-notes.html)
-- [ ] Investigate [Cheerio](https://cheerio.js.org/) - notes [started here](cheerio.html)
-- [ ] [Auth0 with Express.js](express-auth0-notes.html)
-- [ ] Deploy Express.js and [MongoDB to Azure](deploy-express-mongodb-azure.html)
+- [ ] Look into [Playwright](playwright-notes.html).
+- [ ] Investigate [Cheerio](https://cheerio.js.org/) - notes [started here](cheerio.html).
 - [ ] Review the 'n+1 problem'. This has been mentioned multiple times recently in context with GraphQL.
 - [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
 - [ ] Learn about Flutter, a mobile framework. Bellingham Codes group mentioned it, along with some praise.
@@ -31,15 +30,17 @@ Azure [learnings](#azure-learnings).
 - [ ] JS Promises: I need to brush up on Promises.
 - [ ] CSS 3: When overlapped objects must have a transparency or alternate color assignment, what CSS property should be used? See [cssbattle 15](https://cssbattle.dev/play/15) for an example.
 - [ ] Mocking for unit testing in AndroidStudio.
-- [ ] Using 'cursor' in Java.
 - [ ] GENERICS: Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java) and then work through [Baeldung](https://www.baeldung.com/java-generics) to help me.  
 - [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)).  
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
-- [ ] When and why would I choose to develop in Java vs C# or Python e.g. for a project.  
 - [ ] Wiring Repositories in [Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa).
 
 ### Notes And Takeaways from Research and Experience
 
+- [X] Using 'cursor' in Java: [Cursor and Iterators](./java-cursor-iterators.html).
+- [X] When and why would I [choose to develop in](./choosing-a-language.html) Java vs C# or Python e.g. for a project.
+- [X] Deploy [Express.js to Azure](deploy-express-mongodb-azure.html).
+- [X] [Auth0 with Express.js](express-auth0-notes.html).
 - [X] Research [Firebase Authentication](https://firebase.google.com/products/auth) and [Firebase Google Docs](https://firebase.google.com/docs/auth) as a possible alternative to Auth0. See notes at [firebase-auth](./firebase-auth.html).
 - [X] React [useContext](./react-use-context-overview.md)
 - [X] Cookies and using [cookies in ExpressJS](./express-cookies-review.html)
