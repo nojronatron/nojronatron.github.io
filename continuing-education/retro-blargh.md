@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 5-Jan-2023
+
+Fiddled with PowerShell 7.x for a minute (2 hours). Now I remember one of the driving forces to find another language to learn and to get a better understanding of object-oriented principles. PowerShell has its place none-the-less.
+
 ## Wednesday 3-Jan-2023
 
 For the first time in over a month I went for a run on Tuesday morning and I overdid it. So I ran again this morning and it was much easier so *back to work*!
