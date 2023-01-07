@@ -4,12 +4,90 @@ A collection of notes for future review about implementing Auth0 server-side for
 
 ## Required Reading
 
-[Auth0 Docs - Authentication API](https://auth0.com/docs/api/authentication#introduction)
-[Add Login to a React App](https://auth0.com/docs/quickstart/spa/react#add-login-to-your-application)
-[Call an API from React/JS](https://auth0.com/docs/quickstart/spa/react/02-calling-an-api)
-[Example of route protections using Auth0](https://github.com/auth0/auth0-react/blob/master/EXAMPLES.md#protect-a-route)
+- Auth0 Docs [Authentication API](https://auth0.com/docs/api/authentication#introduction).
+- Auth0 Docs [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow).
+- Auth0 Docs [Call Your API Using Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow).
+- Auth0 Docs [Token Best Practices](https://auth0.com/docs/secure/tokens/token-best-practices).
 
-## Requirements
+## Terminology
+
+### Machine-to-Machine (M2M) Application
+
+Applications that need to authenticate without user credentials. Examples:
+
+- CLIs, Daemons, or Services on back-end.
+- Non-user scoped authentication scenarios.
+- Authentication scenarios that are not 'Social Login'.
+
+Instead of a username + password, a ClientID and Client Secret ae used for authentication, and in return are supplied with an Auth Token.
+
+The flow is:
+
+1. M2M App sends ClientID and ClientSecret to Auth0 Tenant.
+1. Auth0 Tenant validates ClientID and ClientSecret and sends back an Auth Token (or an error).
+1. M2M App sends a request with Auth Token in headers to the API Server endpoint.
+1. API Server endpoint sends a response with data (or access denied).
+
+### Java Web Tokens, Signatures, and Keys
+
+JWT: Java Web Token. Check out [JWT.io](https://jwt.io/introduction) and [Auth0 Docs on JWT](https://auth0.com/docs/secure/tokens/json-web-tokens).
+
+- JWT are similar to SAML Tokens but SAML are much larger (XML based). JWT are JSON objects and are easily used in HTTP and at scale.
+- Use for Authentication, Authorization, and secure (signed) information exchange.
+- JWT are *plain text* and therefore can be sniffed over an unencrypted connection. Always use HTTPS when exchanging JWT.
+- JWT can contain claims, which can be used for fine-grained Authorization logic by the Application.
+
+Security Algorithms:
+
+- RS256: Provides asymmetric keys (X.509 Certificates) for Token signing and signature validation. Secure.
+- HS256: Symmetric secret key to produce and validate signatures. Risky due to single, shared key structure.
+
+Auth0 SDKs:
+
+- Can perform JWT Validation for you, securely.
+- Can perform JWT Parsing for you, properly.
+
+In-code:
+
+If a JWT Parser or Validator returns an error message 'jwt malformed' your code *must reject the request* to remain secure.
+
+JWT Aud and Scope Fields:
+
+- After validation and parsing, the JWT will have Aud and Scope fields, known as *Claims*.
+- These are determined and set at Token creation time. Configure your Auth0 App settings to configure these fields.
+- Aud: Audience. This has the URI of the intended resource that the Token was designed for.
+- Scope: A space-separated list of permissions that can be applied to API endpoints or routes.
+
+Scope Examples:
+
+- `create:users`: Provides access to a specified endpoint like `/create`.
+- `read:data`: Provides GET access to an endpoing like `/data`.
+- OpenID (OID) example: `scope=openid name email family_name`.
+
+Auth0 uses `scope=openid ...` to limit token size.
+
+An API should enumerate Scope to ensure the API Endpoint rejects access when a Token does not include the correct Permission.
+
+JWT Makeup:
+
+- Segements separated by dots.
+- 1st Segment is Token Metadata including crypto used to secure the Token.
+- 2nd Segment is "payload". Contains claims and the ID of the user and their permissions.
+- 3rd Segment is "signature". Use this to validate Token trustworthiness and integrity. Validation is a *required step* prior to storing and using the Token.
+
+### Refresh Tookens
+
+Auth0 only allows obtaining a Refresh Token if one of the following flows is used:
+
+- Authorization Code Flow (with or without PKCE).
+- Resource Owner Password Flow.
+- Device Authorization Flow.
+
+There are rate-limits set on Refresh Token requests (200 per Application). Manage this in the Auth0 dashboard.
+
+When testing, follow Auth0's instructions in [Token Best Practices](https://auth0.com/docs/secure/tokens/token-best-practices) to avoid rate limit issues.
+
+## React Auth0 Requirements
 
 1. Pick your technology. Client, Server, CLI, or other. Expressjs is listed among the options. Note: So is Java Spring Framework.
 1. Allowed Callback URLs. Example: 'http://localhost:3000/callback'. Auth0 redirects the user after they have authenticated.
@@ -18,17 +96,19 @@ A collection of notes for future review about implementing Auth0 server-side for
 1. Generate a 32-bit random hexadecimal secret using either `openssl rand -hex 32` or [GRC Password Generator](https://www.grc.com/passwords.htm).
 1. Configuration of the OpenID Auth Router.
 
-## Routing Considerations
+### Routing Considerations
 
 - Should any static routes be protected by authentication?
 - Will a '/profile' route bring-up a custom profile page for the logged-in user?
 
-## Testing Considerations
+In these cases, use a wrapper around those protected routes that calls Auth0, enabling use of 'isAuthenticated' (and possibly other members).
+
+### Testing Considerations
 
 - Thunderclient shows return data from Auth0 that can be used to start building a page or verifying output of routes.
 - Using ThunderClient will show responses but does not have an interactive/rendering display so use the browser for interactive log-in activity.
 
-## Application Settings
+### Application Settings
 
 The most critical configuration items to set up:
 
@@ -67,7 +147,7 @@ Always verify the Application's Advanced Settings, Endpoints has the correct ent
 - WsFederation Metadata URL
 - WsFederation Sign-in URL
 
-## Client ID and Client Secret
+### Client ID and Client Secret
 
 Depending on the provider used for OAuth2, these may be named differently.
 
@@ -122,15 +202,22 @@ Three layers of authentication:
 - Auth0 Session: Auth0 has their own Session Layer SSO Cookie that they use to SSO re-authentication.
 - Identity Providers Session (Google, Facebook, etc): It is not necessary to log a user out of their Identity Provider!
 
-- [X] Implement cookies on the Express server to enable logout.
+- [X] Implement cookies on an Express server to enable Application Logout.
 
-Note: A Tenant-level 'Login URI' is available that can be used to all Applications within that Tenant.
+Note: An Auth0 Tenant-level 'Login URI' is available that can be used to effect all Applications within that Tenant.
 
-### Setting and Forgetting Cookies
+## Cookies for Application Login and Logout
 
-Set a cookie named 'auth0user_${useremail}': `req.cookie('auth0user_${useremail}', ${value}, { maxAge: ${30minutes} }`
+### Setting and Forgetting Cookies in Express
 
-Forget a cookie named 'auth0user_${useremail}': `res.clearCookie('auth0user_${useremail}')`
+Request Cookies: There could be multiple cookies within a Request object.
+
+Response Cookie: When setting properties of the Response object, each Cookie is set individually.
+
+Setting a Cookie in Response:
+
+- Set a cookie named 'auth0user_${useremail}': `res.cookie('auth0user_${useremail}', ${value}, { maxAge: ${30minutes} }`
+- Forget a cookie named 'auth0user_${useremail}': `res.clearCookie('auth0user_${useremail}' , ${value}, { maxAge: ${30minutes} )`
 
 Cookie Options:
 
@@ -158,13 +245,13 @@ Stores user session cookie data on the client.
 - Useful in load-balanced scenarios.
 - Store light-weight session data including an identifier to lookup DB-backed data (reducing lookups).
 
-### Redirect After Logout
+## Redirect After Logout
 
 Redirection post-logout can be done by registering the 'redirect url' in the Application Settings in Auth0.
 
 Note: There is a Tenant-level 'redirect url' ("Allowed Logout URLs") which applies to all Applications within that Tenant that don't have 'redirect url' configured.
 
-### Username Password Authentication
+## Username Password Authentication
 
 Auth0 provides a username-password-authentication database for free. It is possible to redirect Auth0 to your own DB.
 
@@ -194,12 +281,14 @@ Code Fellows suggested using:
 1. Once configured, go to the Test tab and follow the steps to request an Authorization Token, and then GET authenticated.
 1. Configure your Front-end with the API Server settings and an Audience setting (the URL to your back-end server).
 1. Follow the Auth0 documentation to programmatically check for authorization on the Front end.
-1. Follow the Auth0 documentation for your back-end to ensure it is registered as a nodejs/Express app, and that it has the Auth0 API settings for validating the user Authorization Token.
+1. Follow the Auth0 documentation for your back-end to ensure it is registered as an M2M App with Auth0, and that it has the Auth0 API settings for validating the user Authorization Token.
 1. Be sure that the front-end acquires *the correct Auth Token from Auth0 API* before trying to get authorization from your custom backend server.
 
 *Note*: You *MUST* include the following '/' in the 'issuer' entry. Not doing so will not authorize the jwt token and an error 'jwt issuer invalid' will be returned.
 
 ## Enabling Authentication to your Custom Backend the CodeFellows Way
+
+This method relies on using the Asymmetric Keys available in the Single Page Application advanced settings, JSON Web Tokens, and auth0-react.
 
 Express Back End:
 
@@ -274,9 +363,11 @@ export default UserProfile;
 
 ## References
 
-- React Tutorial: [Login](https://auth0.com/docs/quickstart/spa/react/01-login).
-- React Tutorial: [Call an API](https://auth0.com/docs/quickstart/spa/react/02-calling-an-api).
-- [Code Fellows](https://www.codefellows.org/courses/code-301/intermediate-software-development/).
+- Auth0 React Tutorial: [Login](https://auth0.com/docs/quickstart/spa/react/01-login).
+- Auth0 React Tutorial: [Call an API](https://auth0.com/docs/quickstart/spa/react/02-calling-an-api).
+- Auth0 [Add Login to a React App](https://auth0.com/docs/quickstart/spa/react#add-login-to-your-application)
+- Auth0 Github code [Example of route protections using Auth0](https://github.com/auth0/auth0-react/blob/master/EXAMPLES.md#protect-a-route)
+- [Code Fellows](https://www.codefellows.org/courses/code-301/intermediate-software-development/) course materials.
 
 ## Footer
 
