@@ -12,7 +12,6 @@ Azure [learnings](#azure-learnings).
 
 - [ ] Oracle: Developing a [Microservices-based RESTfull Java Application](https://www.oracle.com/explore/java-oci-1?source=:ow:de:te::::RC_WWSA220204P00012:EM22_TEC_EV_CO65_M0601_SO061YO19_DO1043_AO01_RO001&intcmp=:ow:de:te::::RC_WWSA220204P00012:EM22_TEC_EV_CO65_M0601_SO061YO19_DO1043_AO01_RO001) using Java.
 - [ ] Vue.js, the [progressive javascript framework](https://vuejs.org/). Just get a feel for it.
-- [ ] Study Auth0 [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
 - [ ] Consider deploying a [Swagger UI for ExpressJS](https://github.com/scottie1984/swagger-ui-express) to better interact with Express during development.
 - [ ] Review [Method Chaining](../code301-files/methodChaining-DBs-Mongoose-Atlas-SeedData-ReactLifecycle.html) in preparation for LingoBingo v.Next.
 - [ ] Learn about [SVG files](svg-files.html) and how to use them.
@@ -37,6 +36,7 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
+- [X] Study Auth0 [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
 - [X] Using 'cursor' in Java: [Cursor and Iterators](./java-cursor-iterators.html).
 - [X] When and why would I [choose to develop in](./choosing-a-language.html) Java vs C# or Python e.g. for a project.
 - [X] Deploy [Express.js to Azure](deploy-express-mongodb-azure.html).
