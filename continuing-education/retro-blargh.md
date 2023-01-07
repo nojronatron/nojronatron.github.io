@@ -6,6 +6,21 @@ Semi-regular notes taken during my software developer journey.
 
 Fiddled with PowerShell 7.x for a minute (2 hours). Now I remember one of the driving forces to find another language to learn and to get a better understanding of object-oriented principles. PowerShell has its place none-the-less.
 
+Took some time to implement caching on the (private) getting-started API server:
+
+- [X] Two paths (API Endpoints) now implement caching, demonstrating how to reduce DB calls to Mongo.
+- [X] As a personal challenge, implemented use of Promises. I am still a little confused by Promises, but not as badly as last week.
+
+A good portion of the rest of my day was spent preparing and emailing items in my volunteer capacity. It is set in stone (pretty much) that I will be running a training session, demonstrating basic Winlink startup and usage. Within a couple hours of the email announcement going out, the 'registration survey' already had 1 response, and I know there will be at least 2 more, maybe as many as a dozen!
+
+Goals for Saturday:
+
+- [ ] Complete write-up/eval of Firebase Auth.
+- [ ] Review an Azure Friday episode.
+- [ ] Run through interview preparation questions.
+- [ ] Run through technical datastructure basics.
+- [ ] Complete an end-of-week retrospective.
+
 ## Wednesday 3-Jan-2023
 
 For the first time in over a month I went for a run on Tuesday morning and I overdid it. So I ran again this morning and it was much easier so *back to work*!
