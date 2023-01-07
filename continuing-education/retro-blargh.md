@@ -2,7 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
-## Friday 5-Jan-2023
+## Saturday 7-Jan-2023
+
+Technical Datastructures Review:
+
+- Edge: In a Tree datastructure, the link between a Parent and Child Node.
+- Height: In a Tree datastructure, the number of Edges between the Root and the furthest Leaf Node.
+- Pre-Order: Process the current item/node prior to traversing any child references.
+- In-Order: Process the Node.Left child reference prior to processing the current Node.
+- Post-Order: Process the Node.Left and Node.Right child references prior to processing the current Node.
+
+## Friday 6-Jan-2023
 
 Fiddled with PowerShell 7.x for a minute (2 hours). Now I remember one of the driving forces to find another language to learn and to get a better understanding of object-oriented principles. PowerShell has its place none-the-less.
 
@@ -21,7 +31,7 @@ Goals for Saturday:
 - [ ] Run through technical datastructure basics.
 - [ ] Complete an end-of-week retrospective.
 
-## Wednesday 3-Jan-2023
+## Wednesday 4-Jan-2023
 
 For the first time in over a month I went for a run on Tuesday morning and I overdid it. So I ran again this morning and it was much easier so *back to work*!
 
