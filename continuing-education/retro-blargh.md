@@ -12,6 +12,10 @@ Technical Datastructures Review:
 - In-Order: Process the Node.Left child reference prior to processing the current Node.
 - Post-Order: Process the Node.Left and Node.Right child references prior to processing the current Node.
 
+Completed some interview preparatory tasks.
+
+Completed writing up a summary of Firebase Authentication: Setup and Implementation. I still need to go back and do it again from scratch so that I exercise what I know, and learn what I don't.
+
 ## Friday 6-Jan-2023
 
 Fiddled with PowerShell 7.x for a minute (2 hours). Now I remember one of the driving forces to find another language to learn and to get a better understanding of object-oriented principles. PowerShell has its place none-the-less.
@@ -57,7 +61,7 @@ UseEffect is easy to get wrong, here are things I learned getting it wrong, then
 
 Happy new year!
 
-Entering retro notes daily is a little overkill for my purposes, so I'm going to try a weekly branch => push timing instead.
+Entering retro notes daily is a little overkill for my purposes, so I'm going to try a weekly branch => push cadence instead.
 
 Deployed an example API server with canned authentication and data (no DB backend) to Azure App Service:
 
