@@ -65,6 +65,7 @@ Azure [learnings](#azure-learnings).
 
 ### Azure Learnings
 
+- [Azure for Java Applications (multi-part)](./azure-for-java-apps.html).
 - [Azure App Services Best Practices](./azure-app-svc-best-practices.html).
 - [Azure Static WebApps API Options](./azure-static-webapps-api-options.html).
 - [Azure Nodejs Kubernetes](./azure-nodejs-kubernetes.html).
