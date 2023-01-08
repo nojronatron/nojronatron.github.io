@@ -36,15 +36,16 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
+- [ ] Handling [Errors in ExpressJS](./express-error-handling.html).
 - [X] Study Auth0 [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
 - [X] Using 'cursor' in Java: [Cursor and Iterators](./java-cursor-iterators.html).
 - [X] When and why would I [choose to develop in](./choosing-a-language.html) Java vs C# or Python e.g. for a project.
 - [X] Deploy [Express.js to Azure](deploy-express-mongodb-azure.html).
 - [X] [Auth0 with Express.js](express-auth0-notes.html).
 - [X] Research [Firebase Authentication](https://firebase.google.com/products/auth) and [Firebase Google Docs](https://firebase.google.com/docs/auth) as a possible alternative to Auth0. See notes at [firebase-auth](./firebase-auth.html).
-- [X] React [useContext](./react-use-context-overview.md)
-- [X] Cookies and using [cookies in ExpressJS](./express-cookies-review.html)
-- [X] MS [Dot Net Conf 2022 Notes](./dotnetconf-2022.html)
+- [X] React [useContext](./react-use-context-overview.md).
+- [X] Using [cookies in ExpressJS](./express-cookies-review.html).
+- [X] MS [Dot Net Conf 2022 Notes](./dotnetconf-2022.html).
 - [X] [Unit testing](./android-studio-testing.html) in Android Studio.
 - [X] [MSFT Ignite October 2022](./ms-ignite-2022-notes.html) provides an overview of MSFT new and upcoming technical solutions, especially Azure services, MSFT 365, and integration with and around those platforms.
 - [X] Deploy a [Node.js WebApp to Azure](deploy-express-azure.html).
