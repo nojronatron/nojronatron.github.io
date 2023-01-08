@@ -4,7 +4,7 @@ Semi-regular notes taken during my software developer journey.
 
 ## Saturday 7-Jan-2023
 
-Technical Datastructures Review:
+Technical Datastructures Review, areas where I need to brush-up on:
 
 - Edge: In a Tree datastructure, the link between a Parent and Child Node.
 - Height: In a Tree datastructure, the number of Edges between the Root and the furthest Leaf Node.
@@ -12,9 +12,22 @@ Technical Datastructures Review:
 - In-Order: Process the Node.Left child reference prior to processing the current Node.
 - Post-Order: Process the Node.Left and Node.Right child references prior to processing the current Node.
 
-Completed some interview preparatory tasks.
+Completed some interview preparatory tasks, and an end of week retrospective.
 
 Completed writing up a summary of Firebase Authentication: Setup and Implementation. I still need to go back and do it again from scratch so that I exercise what I know, and learn what I don't.
+
+Wrote-up notes on an Azure Friday episode about Azure support for Java Development. Microsoft released their own OpenJDK of Java 17 (LTS). It might be based on Adoptium.
+
+Writing up some notes on error handling in ExpressJS. I left-off about 1/3 the way through the API documentation while implementing the basics on a few cached routes.
+
+Other Key Takeaways:
+
+- HTTP Status Codes: Client/browser might cache certain 3xx codes and paths. For example, when I tested sending a 301 (Moved Permanently) instead of a 302 (Found) for a login redirect response, I was no longer able to get to the Home page despite having authenticated.
+- Multi-line arrow functions *must*: Use braces; Use a return statement before the closing brace.
+- Single-line arrow functions *automatically return the result of the statement on the right side of the arrow*.
+- Do not try to `String.toString(obj)` within a Node environment, even if you know the obj is a String, because it will come back as the String description of a 'native object'.
+- Horray for JSON objects! It is really nice to move data between function calls and simply destructure it or property-select what is necessary, when necessary!
+- The `'use strict';` declaration is not necessary within exporting modules, it is implied.
 
 ## Friday 6-Jan-2023
 
@@ -29,11 +42,11 @@ A good portion of the rest of my day was spent preparing and emailing items in m
 
 Goals for Saturday:
 
-- [ ] Complete write-up/eval of Firebase Auth.
-- [ ] Review an Azure Friday episode.
-- [ ] Run through interview preparation questions.
-- [ ] Run through technical datastructure basics.
-- [ ] Complete an end-of-week retrospective.
+- [X] Complete write-up/eval of Firebase Auth.
+- [X] Review an Azure Friday episode.
+- [X] Run through interview preparation questions.
+- [X] Run through technical datastructure basics.
+- [X] Complete an end-of-week retrospective.
 
 ## Wednesday 4-Jan-2023
 
@@ -41,7 +54,7 @@ For the first time in over a month I went for a run on Tuesday morning and I ove
 
 Working on the Auth0 front-end:back-end authentication project:
 
-- [X] Unepected 'aud' value was coming from an environment setting in variable `checkJwt` that was pointing to the correct express server, but relying on the Auth0 API server, but other configuration code was missing in order to do JWT authentication in this way.
+- [X] Unexpected 'aud' value was coming from an environment setting in variable `checkJwt` that was pointing to the correct express server, but relying on the Auth0 API server, but other configuration code was missing in order to do JWT authentication in this way.
 - [X] The JWT setup was close, just missing some code to get the correct JWT from the Auth0 API service configuration, which Auth0 documentation shows a long path to get to. Instead, I installed `jsonwebtoken` and `jwks-rsa` node modules and set up an Authorize component that defined a client pointing to the JWKS URI (an Advanced configuration Endpoint setting on the front-end application page), a `getKey()` method that acquires the public signing key, and a `verifyUser()` method with a nested `valid()` method, that acquires and formats the authorization token and validates in using `jwt.verify()`.
 - [X] Fixing the prior to items solved the question 'is my front-end acquiring the correct JWT': It was not, but now it is!
 
