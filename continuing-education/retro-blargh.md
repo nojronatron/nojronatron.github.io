@@ -2,6 +2,99 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 7-Jan-2023
+
+Technical Datastructures Review, areas where I need to brush-up on:
+
+- Edge: In a Tree datastructure, the link between a Parent and Child Node.
+- Height: In a Tree datastructure, the number of Edges between the Root and the furthest Leaf Node.
+- Pre-Order: Process the current item/node prior to traversing any child references.
+- In-Order: Process the Node.Left child reference prior to processing the current Node.
+- Post-Order: Process the Node.Left and Node.Right child references prior to processing the current Node.
+
+Completed some interview preparatory tasks, and an end of week retrospective.
+
+Completed writing up a summary of Firebase Authentication: Setup and Implementation. I still need to go back and do it again from scratch so that I exercise what I know, and learn what I don't.
+
+Wrote-up notes on an Azure Friday episode about Azure support for Java Development. Microsoft released their own OpenJDK of Java 17 (LTS). It might be based on Adoptium.
+
+Writing up some notes on error handling in ExpressJS. I left-off about 1/3 the way through the API documentation while implementing the basics on a few cached routes.
+
+Other Key Takeaways:
+
+- HTTP Status Codes: Client/browser might cache certain 3xx codes and paths. For example, when I tested sending a 301 (Moved Permanently) instead of a 302 (Found) for a login redirect response, I was no longer able to get to the Home page despite having authenticated.
+- Multi-line arrow functions *must*: Use braces; Use a return statement before the closing brace.
+- Single-line arrow functions *automatically return the result of the statement on the right side of the arrow*.
+- Do not try to `String.toString(obj)` within a Node environment, even if you know the obj is a String, because it will come back as the String description of a 'native object'.
+- Horray for JSON objects! It is really nice to move data between function calls and simply destructure it or property-select what is necessary, when necessary!
+- The `'use strict';` declaration is not necessary within exporting modules, it is implied.
+
+## Friday 6-Jan-2023
+
+Fiddled with PowerShell 7.x for a minute (2 hours). Now I remember one of the driving forces to find another language to learn and to get a better understanding of object-oriented principles. PowerShell has its place none-the-less.
+
+Took some time to implement caching on the (private) getting-started API server:
+
+- [X] Two paths (API Endpoints) now implement caching, demonstrating how to reduce DB calls to Mongo.
+- [X] As a personal challenge, implemented use of Promises. I am still a little confused by Promises, but not as badly as last week.
+
+A good portion of the rest of my day was spent preparing and emailing items in my volunteer capacity. It is set in stone (pretty much) that I will be running a training session, demonstrating basic Winlink startup and usage. Within a couple hours of the email announcement going out, the 'registration survey' already had 1 response, and I know there will be at least 2 more, maybe as many as a dozen!
+
+Goals for Saturday:
+
+- [X] Complete write-up/eval of Firebase Auth.
+- [X] Review an Azure Friday episode.
+- [X] Run through interview preparation questions.
+- [X] Run through technical datastructure basics.
+- [X] Complete an end-of-week retrospective.
+
+## Wednesday 4-Jan-2023
+
+For the first time in over a month I went for a run on Tuesday morning and I overdid it. So I ran again this morning and it was much easier so *back to work*!
+
+Working on the Auth0 front-end:back-end authentication project:
+
+- [X] Unexpected 'aud' value was coming from an environment setting in variable `checkJwt` that was pointing to the correct express server, but relying on the Auth0 API server, but other configuration code was missing in order to do JWT authentication in this way.
+- [X] The JWT setup was close, just missing some code to get the correct JWT from the Auth0 API service configuration, which Auth0 documentation shows a long path to get to. Instead, I installed `jsonwebtoken` and `jwks-rsa` node modules and set up an Authorize component that defined a client pointing to the JWKS URI (an Advanced configuration Endpoint setting on the front-end application page), a `getKey()` method that acquires the public signing key, and a `verifyUser()` method with a nested `valid()` method, that acquires and formats the authorization token and validates in using `jwt.verify()`.
+- [X] Fixing the prior to items solved the question 'is my front-end acquiring the correct JWT': It was not, but now it is!
+
+Now the front-end is able to access unprotected routes without an Authorization header, and CAN access PROTECTED routes WITH an Authorization header and a valid Token:
+
+- See implementation details in task list (above ^^^).
+- Front-end was in an endless loop, repeatedly acquiring response from protected route. This was caused by a buggy implementation of useEffect.
+
+UseEffect is easy to get wrong, here are things I learned getting it wrong, then debugging and getting it right:
+
+- UseEffect was declared separately from the async method that *relied on a Module parameter* to execute.
+- Encapsulating the async method call (uses Axios to call the protected path using a valid Authorization header + token) allows the useEffect to avoid re-rendering, thus executing again.
+- See [UseEffect FAQ: Dependencies change too often](https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often). In summary, make an external parameter a useEffect dependency (the square bracket parameter) and put the dependant function inside the useEffect code block.
+- See [UseEffect FAQ: Omitting functions from list of dependencies](https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies). In summary, do not omit them. Follow the FAQ entry instead.
+
+## Monday 2-Jan-2023
+
+Happy new year!
+
+Entering retro notes daily is a little overkill for my purposes, so I'm going to try a weekly branch => push cadence instead.
+
+Deployed an example API server with canned authentication and data (no DB backend) to Azure App Service:
+
+- Don't include CORS as an unconfigured dependency otherwise it will block many valid requests, including App Service telemetry e.g. logging.
+- Configure dotenv (ENV aka Environment Variable) settings via Azure App Service *Application Settings*. There are reserved settings for the App Service itself, but otherwise fill-in what is needed the same as a `.env` or in Heroku's *environment variables* settings page.
+- There is no need to set a custom server port. Azure App Service defaults to 8080 and at least 1 gateway exists between the internet and the App Service itself.
+- Bearer Token is usually concatenated in code. For this example it is an environment variable to simplify development without relying on an actual authentication service, until we are confident in our ability to deploy it especially on the front-end.
+
+Going back to the React + Auth0 + Express example deployment:
+
+- Using pure functional components with useState and useEffect has been simpler and fairly effective.
+- Along the way I kept running into errors that looked like their were client-side but they might be server-side instead.
+- It is critical to look at both sides of a client-server communication/conversation to understand what is might be going wrong.
+
+Tomorrow I will get back to this and:
+
+- Find out if `unexpected 'aud' value` is referring to 'audience' or something else.
+- Review server-side JWT setup to ensure I have it right.
+- Review the Auth0 API Service documentation to ensure my front-end is acquiring the correct JWT in the first place.
+
 ## Friday 30-Dec-2022 and Saturday 31-Dec-2022
 
 Express Learnings:

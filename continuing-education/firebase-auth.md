@@ -26,7 +26,7 @@
 - Federated ID Provider Integration: "Social auth" including Google, FB, Twitter, and GH.
 - Phone Number: SMS-message based authentication.
 - Custom Auth: Integrate existing system with Firebase Auth SDK.
-- Anonymous Auth: Trail-based auth, helps convert lookers to users through simple conversion.
+- Anonymous Auth: Trial-based auth helps convert lookers to users through simple conversion.
 
 ## Firebase Auth with ID Platform
 
@@ -62,7 +62,7 @@ Source: [WebDev Simplified: Crash Course with Firebase and Routing](https://www.
 1. Ensure rendering doesn't happen until Firebase can return with the user info. There is a lot to this, including use of useEffect and useState.
 1. Import BrowserRouter (a react-router-dom component) to App.js, and include 'Switch' and 'Route'. Router component will live inside the App rendered Container, and AuthProvider will live inside of the parent Router component.
 1. Enable routes by adding `<Route path='/path' component={component} />` and wrapping them all with `<Switch>`.
-1. Create a Login component that is A LOT like the Signup Component, except with the Password Confirmation logic and component(s).
+1. Create a Login component that is A LOT like the Signup Component, except will leverage wrapped Login function from Firebase Auth component.
 1. Use ReactRouter's `<Link>` component to enable linking text from one page (e.g. Login) to another (e.g. Signup).
 1. Leverage 'useHistory' from React Router to 'push' to a specific page (or '/') as a way to redirect after registration, login, or logout.
 1. Create a profile (dashboard) with a new React Functional Component. Replicate the work done in the login/register pages but only include a Logout button, and instead of displaying a Form for user to enter data, use elements to display data about the currently logged on user (`const { currentUser } = useAuth()`).
@@ -75,7 +75,7 @@ Source: [WebDev Simplified: Crash Course with Firebase and Routing](https://www.
 
 ## Sign-in User To An App
 
-1. Get auth credetnials from user (UN+PW or OAuth Token).
+1. Get auth credentials from user (UN+PW or OAuth Token).
 1. Pass credentials to Firebase Authentication SDK.
 1. Firebase backend services verify credentials and return response to client.
 
@@ -93,10 +93,10 @@ A custom backend server can verify a user's Firebase Auth Token:
 
 1. Front-end app verifies user and logs them in.
 1. Front-end app opens a connection to the back-end using HTTPS.
-1. Back-end server receives the user's ID toekn and verifies its authenticity to get the user's UID.
+1. Back-end server receives the user's ID token and verifies its authenticity to get the user's UID.
 1. Back-end server uses the UID to securely ID the currently signed-in user.
 
-[Verify ID Tokens](https://firebase.google.com/docs/auth/admin/verify-id-tokens)
+[Verify ID Tokens](https://firebase.google.com/docs/auth/admin/verify-id-tokens) in Firebase Authentication.
 
 ### On the Back End (More Info)
 
@@ -104,8 +104,8 @@ A custom backend server can verify a user's Firebase Auth Token:
 1. Install firebase-admin (I used ^11.4.1).
 1. Implement middleware that imports firebase-admin, dotenv (for example) and setup a 'serviceAccount' variable that requires the Google App Creds.
 1. Middleware: `admin.initializeApp({ credential: admin.credential.cert(serviceAccount)});`
-1. Middleware: Implement a 'getAuthToken(req, res, next)' finction that gets the 'Bearer token', and calls 'next();` at the end (as middleware does).
-1. Middleware: Implement a 'checkAuthentication(req, res, nex)' function that calls 'getAuthToken' then within a try-catch uses `admin.auth().verifyIdToken(authToken)` to validate the token then return 'next()' or an error (if 'catch(error)' is executed), setting status code 401 and an error message i.e. 'unauthorized'.
+1. Middleware: Implement a 'getAuthToken(req, res, next)' function that gets the 'Bearer token', and calls 'next();` at the end (as middleware does).
+1. Middleware: Implement a 'checkAuthentication(req, res, next)' function that calls 'getAuthToken' then within a try-catch uses `admin.auth().verifyIdToken(authToken)` to validate the token then return 'next()' or an error (if 'catch(error)' is executed, then setting status code 401 and an error message i.e. 'unauthorized') else set 200 like status code.
 1. On each path that requires authentication, insert 'checkIfAuthenticated' exported module function in the middleware, so Express will disallow or authorize access to the code next in the middleware chain.
 
 Optional: Use and refresh session cookies when 'checkIfAuthenticated' passes, otherwise expire the cookie.
@@ -206,7 +206,6 @@ For production, localhost should be deleted!
 1. Add Firebase to the JS project if not already.
 1. Enable Google as sign-in provider to Firebase Project (a new public-facing project name will be added and a Project Support Email will be required).
 1. Implement [Google Sign-in Flow](https://firebase.google.com/docs/auth/web/google-signin) using Firebase SDK into the project.
-1. 
 
 ### Implement Google Sign In Flow
 
@@ -236,13 +235,20 @@ Overall:
 - When calling 'signInWithRedirect(auth, provider)', return the result from 'getRedirectResult(auth)' to get a 'credential' and/or a 'token' in return.
 - Acquire Bearer Token elsewhere in the front-end app by calling `currentUser.getIdToken()` where 'currentUser' is imported from Firebase Auth.
 - When assembling a Bearer Token, concatenate 'Bearer ' with the result of currentUser.getIdToken() (template literal works).
-- Add a Headers field `{ Authorization: BearerToken }` and server will parse it, validate with Firebase Auth, then return an Authorized response.
+- Add a Headers field `{ Authorization: Bearer {token} }` and server will parse it, validate with Firebase Auth, then return an Authorized response.
 
-Note: Bearer token is also stored in local browser's firebaseLocalStorage (browser LocalStorage) at: value > stsTokenManager > accessToken.
+*Note*: Bearer token appears to be stored in local browser's firebaseLocalStorage (browser LocalStorage) at: value > stsTokenManager > accessToken.
 
 ## Resources
 
-- [Firebase Authentication Google Docs](https://firebase.google.com/docs/auth)
+- [Firebase Authentication Google Docs](https://firebase.google.com/docs/auth).
+- [OAuth 2.0 Scopes for Google APIs](https://developers.google.com/identity/protocols/oauth2/scopes).
+- [Google Sign-in Flow](https://firebase.google.com/docs/auth/web/google-signin).
+- [firebase docs emulator connect authentication web version 9](https://firebase.google.com/docs/emulator-suite/connect_auth#web-version-9).
+- [install and configure](https://firebase.google.com/docs/emulator-suite/install_and_configure) Firebase Auth Emulator.
+- [Firebase Docs Auth Web Start](https://firebase.google.com/docs/auth/web/start).
+- [Verify ID Tokens](https://firebase.google.com/docs/auth/admin/verify-id-tokens) in Firebase Authentication.
+- [WebDev Simplified: Crash Course with Firebase and Routing](https://www.youtube.com/watch?v=PKwu15ldZ7k&ab_channel=WebDevSimplified).
 
 ## Footer
 
