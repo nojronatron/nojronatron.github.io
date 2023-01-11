@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 10-Jan-2023
+
+Started working on what will be the production API server for the LingoBingo project. Basic API paths hierarchy is laid out, schemas are added, database connection is working, and some core functional modules are implemented. Next steps:
+
+1. Implement authorization validation.
+2. Implement cookies to maintain application sessions.
+3. Test a live Azure deployment can access MongoDB Atlas.
+4. Implement additional API routes ones at a time.
+5. Implement caching and other features.
+
+Security will be maintained through Authorization Validation checks and use of Write- and Delete-capable modules only on specified paths with input and processing guardrails.
+
 ## Saturday 7-Jan-2023
 
 Technical Datastructures Review, areas where I need to brush-up on:
