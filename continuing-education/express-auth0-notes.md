@@ -361,6 +361,33 @@ const UserProfile = () = > {
 export default UserProfile;
 ```
 
+## Auth0 Tenants
+
+Separate configuration boundaries within an Auth0 account.
+
+Support dev, test, and production phases. Often company-dev and company-qa and another company-prod.
+
+Separate user communities.
+
+Sandboxes: Use to test different deployment scripts or implementation without impacting an existing deployment/production tenant.
+
+If deleted, a Tenant Name *can never by used again*.
+
+Enter a name, logo, and support email so customers can confirm they are in the right place, and get support if necessary.
+
+Vanity Domain URL:
+
+- More difficult to fish your domain.
+- Some browsers limit iFrame cross-domain support - using a vanity Domain will cure this.
+
+Enable MFA for your Admins.
+
+Tenants support multiple Admins (recommended).
+
+SSO Cookie Timeout (login session lifetime) is per-Tenant. Default is 7 days.
+
+Sandboxing: Ensure tenants are associated with your account so that the sandboxes are within your account scope.
+
 ## References
 
 - Auth0 React Tutorial: [Login](https://auth0.com/docs/quickstart/spa/react/01-login).
