@@ -91,10 +91,10 @@ Skip Link: Useful to help user jump over very long lists of links and informatio
 <header>
   <a href="#main" class="skip">Skip to...</a>
   <!-- content -->
-  </header>
-  <main id="main">
-    <!-- content -->
-    </main>
+</header>
+<main id="main">
+  <!-- content -->
+</main>
 ```
 
 There was also an example CSS class definition that supported hidden SkipLink.
