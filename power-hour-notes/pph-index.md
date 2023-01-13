@@ -4,6 +4,8 @@ Notes taken while attending Power Hour sessions - videos and/or in-person events
 
 ## Index
 
+Accessibility Fundamentals with [Stephanie](hill-accessibility-fundamentals.html)
+
 Docker and Blue Ocean with [Robert S](shepley-docker-digitalocean.html)
 
 Graphs and Finding Shortest Path in a Navigation App with [Roger R](./roger-graphs-navapp.html)
