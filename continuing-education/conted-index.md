@@ -10,6 +10,7 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
+- [ ] Using [Secure Cookies](http://expressjs.com/en/advanced/best-practice-security.html#use-cookies-securely) in ExpressJS.
 - [ ] Oracle: Developing a [Microservices-based RESTfull Java Application](https://www.oracle.com/explore/java-oci-1?source=:ow:de:te::::RC_WWSA220204P00012:EM22_TEC_EV_CO65_M0601_SO061YO19_DO1043_AO01_RO001&intcmp=:ow:de:te::::RC_WWSA220204P00012:EM22_TEC_EV_CO65_M0601_SO061YO19_DO1043_AO01_RO001) using Java.
 - [ ] Vue.js, the [progressive javascript framework](https://vuejs.org/). Just get a feel for it.
 - [ ] Consider deploying a [Swagger UI for ExpressJS](https://github.com/scottie1984/swagger-ui-express) to better interact with Express during development.
@@ -36,7 +37,7 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
-- [ ] Handling [Errors in ExpressJS](./express-error-handling.html).
+- [ ] Handling [Errors in ExpressJS](./express-error-handling.html). I am implementing this in a live API server instance and there is work still to do.
 - [X] Study Auth0 [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
 - [X] Using 'cursor' in Java: [Cursor and Iterators](./java-cursor-iterators.html).
 - [X] When and why would I [choose to develop in](./choosing-a-language.html) Java vs C# or Python e.g. for a project.
@@ -66,6 +67,7 @@ Azure [learnings](#azure-learnings).
 
 ### Azure Learnings
 
+- [Continuous test and validating Azure Workloads](./azure-testing-mission-critical-apps.html).
 - [Azure for Java Applications (multi-part)](./azure-for-java-apps.html).
 - [Azure App Services Best Practices](./azure-app-svc-best-practices.html).
 - [Azure Static WebApps API Options](./azure-static-webapps-api-options.html).
