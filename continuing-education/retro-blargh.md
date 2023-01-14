@@ -12,13 +12,15 @@ Busy week. Lots of dev Weds and Thurs that didn't get logged here, that's okay h
 - Implemented Response Headers Cookie (paired with Authorization flow) to EBLBJS API.
 - Reviewed Custom Errors in Express, implemented on the EBLBJS API.
 
-Going forward I won't have much time for implementing and securing routes, verifying username/password authN and authZ, and adding caching. Before the end of the months I hope to have the API server in such a state that the front-end can call an open route and get a valid response. Additional social login types will have to wait in the backlog.
+Going forward I won't have much time for implementing and securing routes, verifying username/password authN and authZ, and adding caching. Before the end of the month I hope to have the API server in such a state that the front-end can call an open route and get a valid response, and soon after that get authorized requests working as intended. Additional social login types will have to wait in the backlog.
 
 Some other takeaways about deploying a Node.js project to Azure AppService:
 
 - CORS seems to cause Node.js fail-to-start every time. There is probably some more I need to know about CORS to ensure I am implementing/configuring it properly for Azure.
 - Env variables aka Application Settings in VSCode Azure Extension: Do not quotation the values *unless you want delimited quotation marks* in the value.
 - There is a NODE_ENV variable that should be set to 'production' to change error catch/throw behavior.
+
+For the Nth time in a few months, I've found myself getting a little confused around Promises. At least it's a new year. :smiley: Perhaps part of the confusion is I am mingling promises with Express middleware and custom error handling? In some instances the headers are getting rewritten (after already sent) and in others the system crashes instead of catching an error (despite being in a catch block). Some research followed by refactoring will be necessary to get this going propertly.
 
 ## Tuesday 10-Jan-2023
 
