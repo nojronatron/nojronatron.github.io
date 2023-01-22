@@ -20,7 +20,7 @@ Some other takeaways about deploying a Node.js project to Azure AppService:
 - Env variables aka Application Settings in VSCode Azure Extension: Do not quotation the values *unless you want delimited quotation marks* in the value.
 - There is a NODE_ENV variable that should be set to 'production' to change error catch/throw behavior.
 
-For the Nth time in a few months, I've found myself getting a little confused around Promises. At least it's a new year. :smiley: Perhaps part of the confusion is I am mingling promises with Express middleware and custom error handling? In some instances the headers are getting rewritten (after already sent) and in others the system crashes instead of catching an error (despite being in a catch block). Some research followed by refactoring will be necessary to get this going propertly.
+For the Nth time in a few months, I've found myself getting a little confused around Promises. At least it's a new year. :smiley: Perhaps part of the confusion is I am mingling promises with Express middleware and custom error handling? In some instances the headers are getting rewritten (after already sent) and in others the system crashes instead of catching an error (despite being in a catch block). Some research followed by refactoring will be necessary to get this going properly.
 
 ## Tuesday 10-Jan-2023
 
