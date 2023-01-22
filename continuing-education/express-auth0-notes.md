@@ -9,6 +9,33 @@ A collection of notes for future review about implementing Auth0 server-side for
 - Auth0 Docs [Call Your API Using Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow).
 - Auth0 Docs [Token Best Practices](https://auth0.com/docs/secure/tokens/token-best-practices).
 
+## Quick Summaries
+
+Auth0 Service and Configuration:
+
+- An Auth0 Tenant will have the same Auth0 Domain e.g. dev-domain.us.auth0.com.
+- An Auth0 Application will rely on the Auth0 Domain for endpoints like '/Authorize', '/.well-known/jwks.json' etc.
+- The Auth0 Management API exists to supply Auth Tokens for Auth0 management endpoint access - basically do many admin and management tasks at the Tenant Level programmatically.
+- Custom Auth0 API's is for: Acquiring Tokens for Auth Tokens scoped to specific 'audience' (protected service), and for applying permissions during authorization at the 'audience' end-point.
+- Single-Page App configuration: Domain will be Tenant domain. ClientID and ClientSecret will be individual to each Application. App, Login, Logout, Origins/CORS, and Web Origins are Application-level settings.
+- Token expiration and refresh lifetime are configured at each Application configuration level.
+- Metadata: Can be assigned at the Application level (for identifying Tokens within the App).
+- OAuth Endpoints: All of these hang off of the Auth0 Tenant Domain and support: User and Device Auth, OpenID Config, and a public JSON Web Key Set endpoint.
+- SAML and WS-Federation: These hand off of the Auth0 Tenant Domain as well. I have not used these yet.
+
+Auth0 Authentication and Token Validation using JWKS:
+
+1. An application must be configured to find the Auth0 Domain and must have the Auth0 ClientID for the Application configuration in Auth0. An audience and Scope are not required but can be used for fine-grain control during authorization.
+2. The front-end will also need to know (progorammatically or by user input) the URL to the API Server they want authorization to access.
+3. When a user needs to login to the application, a redirect to Auth0's Universal Login provided by the configured in Auth0 Application will display, showing configured authentication types.
+4. When a user authenticates, the Tenant (?) supplies an Auth Token to return to the web app, which can be stored securely.
+5. When a user tries to access a protected API that requires a valid Auth Token, the web app must send the token (hopefully via https) to the custom API server (or if using device-2-device authentication, it is sent to the Auth0 API Management Service with a request to access an audience, but this is beyond the scope of these steps).
+6. The custom API server must know the Auth0 Domain and Auth0 Issuer BaseURL, and the Auth0 JWKS URI. For Device-2-device authentication, an Audience must also be configured (out of scope).
+7. The custom API server processes the client token using `jwks-rsa` and `jsonwebtoken`, validating it using the JWKS URI.
+8. This is the point where the token is authenticated or not. If it is authenticated, then Cookies can be used to "keep the user authenticated through several API calls", rather than forcing the API server to digest the Auth Token for every single call. Either way would work though.
+9. Timeouts: There should be timeouts on Application Session logins though, so the custom API server must be configured accordingly. Refresh Tokens eventually expire and Token Lifetimes too, so that scenario should trigger a re-authentication cycle on the client-side (not the custom API server side).
+10. Logouts: Application session logout is just a matter or expiring the Cookies. Auth0 Logout requires the web app to call the `logout()` method in the Auth0 SDK. Any configured 'logout redirect' will be sent back from Auth0 so the web app redirects to the correct page.
+
 ## Terminology
 
 ### Machine-to-Machine (M2M) Application
@@ -360,6 +387,33 @@ const UserProfile = () = > {
 
 export default UserProfile;
 ```
+
+## Auth0 Tenants
+
+Separate configuration boundaries within an Auth0 account.
+
+Support dev, test, and production phases. Often company-dev and company-qa and another company-prod.
+
+Separate user communities.
+
+Sandboxes: Use to test different deployment scripts or implementation without impacting an existing deployment/production tenant.
+
+If deleted, a Tenant Name *can never by used again*.
+
+Enter a name, logo, and support email so customers can confirm they are in the right place, and get support if necessary.
+
+Vanity Domain URL:
+
+- More difficult to fish your domain.
+- Some browsers limit iFrame cross-domain support - using a vanity Domain will cure this.
+
+Enable MFA for your Admins.
+
+Tenants support multiple Admins (recommended).
+
+SSO Cookie Timeout (login session lifetime) is per-Tenant. Default is 7 days.
+
+Sandboxing: Ensure tenants are associated with your account so that the sandboxes are within your account scope.
 
 ## References
 
