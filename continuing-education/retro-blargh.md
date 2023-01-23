@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 22-Jan-2023
+
+Was out of town last week and didn't do any coding or writing. Instead, worked on other tasks in between skiing sessions and other activities.
+
 ## Friday 13-Jan-2023
 
 Busy week. Lots of dev Weds and Thurs that didn't get logged here, that's okay here's a summary:
