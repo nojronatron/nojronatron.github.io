@@ -2,6 +2,19 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 24-Jan-2023
+
+Key takeaways for the day:
+
+- Promises: Why? Use Async-Await. As MDN puts it "[async await] enable asynchronous, *promise-based behavior*... ... avoiding the need to explicitly configure promise chains.". :tada: [MDN Async Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) :tada:
+- Accessing MongoDB from Azure AppService: MongoDB Atlas has a Network Access page where 'allowed IP addresses' can be added to enable access to a Mongo Atlas *Project* databases within an Organization. It will accept CIDR addresses such as '20.0.0.0/24' to cover an entire range.
+
+## Monday 23-Jan-2023
+
+Worked on the API Server a bit. Got caught-up in Promises and complexities of asynchronous server-side code. Will address this tomorrow.
+
+Scheduled a meeting with Ryan to discuss LingoBingo for this comming weekend.
+
 ## Sunday 22-Jan-2023
 
 Was out of town last week and didn't do any coding or writing. Instead, worked on other tasks in between skiing sessions and other activities.
