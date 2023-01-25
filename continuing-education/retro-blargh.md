@@ -8,6 +8,8 @@ Key takeaways for the day:
 
 - Promises: Why? Use Async-Await. As MDN puts it "[async await] enable asynchronous, *promise-based behavior*... ... avoiding the need to explicitly configure promise chains.". :tada: [MDN Async Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) :tada:
 - Accessing MongoDB from Azure AppService: MongoDB Atlas has a Network Access page where 'allowed IP addresses' can be added to enable access to a Mongo Atlas *Project* databases within an Organization. It will accept CIDR addresses such as '20.0.0.0/24' to cover an entire range.
+- Mongoose 7 will introduce a bug in my code if I'm not careful. Granted, the update to Mongoose 7 would be purposeful in most cases, it is better to fend against breaking things by removing the bug *before* Mongoose 7 is available via `npm -i`.
+- It is *exhilarating* seeing a back-end server I developed, running in Azure, accessing a DB in another Cloud-based service, and seeing it respond to Browser or other User Agent requests!
 
 ## Monday 23-Jan-2023
 
