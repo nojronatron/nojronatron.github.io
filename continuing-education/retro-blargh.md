@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 25-Jan-2023
+
+Key takeaways for Wednesday:
+
+- Mongoose: Use `findOne()` instead of `find()` to limit results to the first Document, unless it is necessary to return a collection of matching documents (or all of them).
+- Mongoose: Using `updateOne()` has the added feature of reporting on whether the DB operation was executed, how many Documents were matched, and how many were *upserted* or *modified*. Output this information to a log so update transactions can be reviewed or audited.
+- Middleware in ExpressJS: If the custom middleware doesn't end the Request-Response cycle it *must* call `next()`.
+
 ## Tuesday 24-Jan-2023
 
 Key takeaways for the day:
