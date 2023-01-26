@@ -10,6 +10,7 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
+- [ ] [Typescript](./typescript-getting-started.html).
 - [ ] Using [Secure Cookies](http://expressjs.com/en/advanced/best-practice-security.html#use-cookies-securely) in ExpressJS.
 - [ ] Oracle: Developing a [Microservices-based RESTfull Java Application](https://www.oracle.com/explore/java-oci-1?source=:ow:de:te::::RC_WWSA220204P00012:EM22_TEC_EV_CO65_M0601_SO061YO19_DO1043_AO01_RO001&intcmp=:ow:de:te::::RC_WWSA220204P00012:EM22_TEC_EV_CO65_M0601_SO061YO19_DO1043_AO01_RO001) using Java.
 - [ ] Vue.js, the [progressive javascript framework](https://vuejs.org/). Just get a feel for it.
