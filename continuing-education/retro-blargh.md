@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 26-Jan-2023
+
+This morning I attended a Microsoft Reactor live stream introducing TypeScript. I have some experience with TS as a test engineer but haven't tried developing with it yet. I'm not in a big rush to learn it, and this session gave me a pretty good idea about how to get started so I can start exploring when I'm ready.
+
+Most of the rest of this week through Satruday was busy with other administrative and volunteer-orientated tasks.
+
 ## Wednesday 25-Jan-2023
 
 Key takeaways for Wednesday:
