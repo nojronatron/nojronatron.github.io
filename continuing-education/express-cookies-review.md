@@ -2,6 +2,10 @@
 
 ## Overview of Cookies
 
+Cookies are just Key-Value Pairs with some additional Attributes that define when and where the cookie can be used.
+
+When a server sets a cookie with a reply to a client (user agent) request, the user agent stores that Cookie and sends it back to the server on its next request. The idea is to store state information between user agent and server, enabling session-tracking capability.
+
 Generally:
 
 - Magic Coookies: Packet of data sent to another computer, expected to be returned, unchanged.
@@ -14,6 +18,7 @@ Generally:
 - Authentication cookies used to make a logon 'sticky', identifying which authenticated account is being used.
 - Tracking cookies compile long-term data about a browser's usage and traversal through the web.
 - Non-essential cookie use and storage will require *consent* in some countries (example: EU requires *informed consent*).
+- User Agent (Browser's) privacy settings could block cookies.
 
 Technically:
 
@@ -21,14 +26,29 @@ Technically:
 - Older RFC created 'set-cookie2' field, but was soon deprecated and is no longer in use.
 - Session-Cookie: In-memory cookie / Transient cookie. Only available while the user navigates a website and expire when the browser is closed. Do not have an expiration date identified in the header.
 - Persistent Cookie: Has a specified  (`Expires` or `Max-Age`) in the header. Referred to as 'Tracking Cookies'. Used for ads, and for tracking Authentication / logon state, to reduce logon prompts at every visit.
-- Secure Cookie: Only allowed over a secured connection. Enable the 'Secure' flag on the cookie to set it as secure only.
-- HTTP-only Cookie: Cannot be accesses by client-side APIs (javascript). Thwarts XSS threats. Vulnerable to XST and CSRF attacks. Add 'HttpOnly' flag to enable it.
-- Same-site Cookie: Attribute 'SameSite', values: 'Strict' | 'Lax' | 'None'. Strict mitigates XSRF attacks. Lax enables CORS allowed only for safe (GET) requests, and 3rd party cookies are rejected. None allows 3rd party cookies, and most browsers require the 'Secure' flag to be set too.
+- Secure Cookie: Only allowed over a secured (https) connection. Enable the 'Secure' flag on the cookie to set it as secure only.
+- HTTP-only Cookie: Cannot be accessed by client-side APIs (javascript). Thwarts XSS threats. Vulnerable to XST and CSRF attacks. Add 'HttpOnly' flag to enable it.
+- Same-site Cookie: Defines if cookie should be restricted to 1st-party or same-site context.
 - Third-party Cookies: Another domain's server sets a cookie on the web browser through the actual server (for example: Images or other components stored in the third-party's domain).
 - Cookies can be *any size* or length, there is no limit (see next point).
 - Cookie Specifications require browsers to enforce limits: Up to 4 KB; 50 cookies per domain; 3k cookies total.
 - Force-expiring a cookie server-side by sending 'Set-cookie' with an 'Expires' date in the past.
 - Cookie *Attributes* are one-way: Server to Client. When the browser returns with set cookies, the Attributes are not included.
+
+## Cookie KVP and Attributes
+
+When using Set-Cookie the primary article is a Key-Value pair. There are also attributes that could (should) be set:
+
+- `cookie-name = String`
+- `Expires = Date`
+- `Max-Age = Number`
+- `Domain = String: domainName.com`
+- `Path = String`
+- `Secure` (Sets the flag, otherwise not set)
+- `HttpOnly` (Sets the flag...)
+- `SameSite = String: Strict | Lax | None`
+
+As mentioned elsewhere `SameSite=None` must be followed by `Secure` otherwise the Cookie will not get set by the User Agent.
 
 ### Supercookies
 
@@ -44,7 +64,7 @@ Technically:
 
 - Placed on a browsing computer hidden outside of the web browser's cookie storage.
 - Recreates an HTTP cookie as a 'regular cookie' after original cookie is deleted.
-- Often stored in : Flash Local Shared Objects, HTML5 Web Storage, and sometimes server-side storage locations.
+- Often stored in Flash Local Shared Objects, HTML5 Web Storage, and sometimes server-side storage locations.
 - Relies on javascript code stored in a long-term location that will automatically recreate deleted cookies, and re-launch itself in other areas of memory.
 
 ### Cookie Usage
@@ -53,13 +73,14 @@ Session Management:
 
 - Shopping cart/basket (although today that is usually a database-provide feature).
 - Requires a Session Identifier: Random unique string of characters. Browser will send-back that same cookie every time the user visits the website, and the server can then 'know' this is the same user and therefore session state might be associated with that user.
-- User logon (more later).
+- User logon (authentication) and/or authorization.
 
 ### User Logon Process
 
-1. User opens the Logon page and the server sends a unique Session ID to the client within a Cookie.
-1. When user successfully logs in and cookie is sent back to the server.
-1. Server processes the returned Session ID in the cookie and can now recall the user has authenticated successfully, grantin access to authorized resources.
+1. User opens the Logon page (Server-side rendered: The server also sends a unique Session ID to the user agent within a Cookie).
+1. When user successfully logs in and cookie is sent back to the server by the user-agent.
+1. Server processes the returned Session ID via the cookie.
+1. The user agent supplies an Authorization header and, if validated, the server sets a new cookie granting access to authorized resources.
 
 ### Personalization Cookies
 
@@ -91,7 +112,7 @@ Risks of decrypting an Auth Cookie include:
 - Self-contained data packaet.
 - Used to store user ID and Authentication data.
 - Used in place of Session-Cookies.
-- Must be specifically sent with an HTTP request (wheras Cookies are sent automatically).
+- Must be specifically sent with an HTTP request (wheras Cookies are sent automatically by the User Agent).
 
 ### HTTP Auth
 
@@ -132,20 +153,50 @@ Risks of decrypting an Auth Cookie include:
 - Browser Fingerprint: Version, Screen res, OS etc, used to ID the website visitor. A viable alternative to ID User or Computer when Cookies are turned off. Relatively good unique identifier storing about 18 bits of information.
 - Web Storage: Local Storage and Session Storage. Similar to Persistent Cookies and Session Cookies, respectively. Session Storage is tied to a specific Browser Window and Tab.
 
+## SameSite Key
+
+'SameSite' is an Attribute.
+
+Possible values:
+
+- Strict: Mitigates XSRF attacks,.
+- Lax: Enables CORS allowed only for safe (GET) requests and 3rd party cookies are rejected.
+- None: Allows 3rd party cookies, and most browsers require the 'Secure' flag to be set too.
+
+### Lax
+
+- Cookies NOT sent on normal cross-site subrequests.
+- Cookies ARE sent when user navigates to the origin site (e.g.: following a link).
+- Is default value if SameSite not specified at all.
+- Browser compatibility varies - None might be default which requires `Secure=true` else Cookie is ignored.
+
+*Note*: Browsers might implement 'Lax-Allowing-Unsafe' to enable cross-site unsafe requests within a short timeframe, therefore a value *should* be set by the developer.
+
+### Strict
+
+- Cookies *only* sent in 1st-party context.
+- Any 3rd party requests will not include Strict cookies.
+
+### None
+
+- Cookies sent in ALL contexts including 1st-party, and cross-site.
+- *Requires* `Secure` attribute to be set else cookie will be blocked.
+
 ## Important Cookie Considerations
 
 - Privacy concerns, especially with non-secure sessions.
 - Cookies are not guaranteed secure.
 - Properly identifying a user should be more than an ID, rather: User ID, Computer ID, and Web Browser ID.
 - Cookies are not 100% perfect at identifying a specific user (multiple accounts, multiple computers or browsers, multiple sets of cookies, etc).
+- SameSite should be explicitly set with a value to avoid browsers applying some `SameSite=Lax` or `SameSite=None` without `Secure` flag, which will break things.
 
 ## Cookie Parser
 
 1. Install Cookie-parser: `npm install cookie-parser`
 1. Load in Express (JS): `const cookieParser = require('cookie-parser')`
 1. Initialize as middleware function: `app.use(cookieParser())`
-1. Acquire a specific cookie from a client request: `const receivedCookie = req.cookies["key"]`
-1. Set a cookie in client browser via a Response: `res.cookie('keyString', 'valueString', { options })`
+1. Acquire a specific cookie from a user agent request: `const receivedCookie = req.cookies["key"]`
+1. Set a cookie in user agent browser via a Response: `res.cookie('keyString', 'valueString', { options })`
 1. Set options as a destructured object (see below).
 
 ```javascript
@@ -185,6 +236,9 @@ You will not see a SecureCookie, this is on purpose. Be sure to use a valid secr
 - Wikipedia's entry on [HTTP cookies](https://en.wikipedia.org/wiki/HTTP_cookie).
 - Express [Cookie-Parser](https://github.com/expressjs/cookie-parser) on Github.com.
 - StackOverflow [set cookie using express framework](https://stackoverflow.com/questions/16209145/how-can-i-set-cookie-in-node-js-using-express-framework).
+- Web.dev blog [Same Site Cookies Explained](https://web.dev/samesite-cookies-explained/).
+- Mozilla.org [MDN Web HTTP Headers Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cookie).
+- Mozilla.org [MDN Web HTTP Headers Set-Cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie).
 
 ## Footer
 

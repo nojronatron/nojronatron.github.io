@@ -42,11 +42,11 @@ Note: Webkit and Safari have som additional limitations.
 
 ## Simple Request Example Overview
 
-An XHR might cause browser to send a simple request that will include 'Origin: https://mysite.foo'.
+An XHR might cause browser to send a simple request that will include 'Origin: <https://mysite.foo>'.
 
 Server might respond 'HTTP/1.1 200 OK' and include 'Access-Control-Allow-Origin: *' which means resource can be accessed by any origin.
 
-If the server wanted to restrict to specific origins it would instead send: 'Access-Control-Allow-Origin: https://mysite.foo'.
+If the server wanted to restrict to specific origins it would instead send: 'Access-Control-Allow-Origin: <https://mysite.foo>'.
 
 *Note*: Credentialed requests *must* include a non-wildcard 'Access-Control-Allow-Origin' header response.
 
@@ -154,11 +154,13 @@ See [Resources](#resources) for the blog post where I took these key takeaways:
 Add credentials back in to CORS requests:
 
 Using "fetch": `const response = await fetch(url, { credentials: 'include', });`
-Using HTML: `<img crossorigin="use-credentials" src="" />`. Response must contain access control allow credentials and origin headers as well as 'Vary: Cookie Origin`!
+Using HTML: `<img crossorigin="use-credentials" src="" />`.
+
+Response must contain access control allow credentials and origin headers as well as 'Vary: Cookie Origin`!
 
 ### Preflight
 
-Requests that browser API's *don't generally make*, it is an 'unusual request' from the perspective of cors.
+Requests that browser API's *don't generally make* are an 'unusual request' from the perspective of cors.
 
 Request type determines 'usual': `GET`, `HEAD`, or `POST`.
 
@@ -185,7 +187,7 @@ Access-Control-Allow-Origin
 Access-Control-Allow-Credentials: true
 ```
 
-*Remember*: Access-Control-Allow-Credentials means *the browser* is *automatically* adding credentials to the request, *not* implemented custom headers!
+*Remember*: Access-Control-Allow-Credentials means *the browser* is *automatically* adding credentials to the request *not* implemented custom headers!
 
 After Preflight response is received *then* the actual request can be sent.
 
