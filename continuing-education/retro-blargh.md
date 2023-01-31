@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## MOnday 30-Jan-2023
+
+Spent a good deal of time battling Express Middleware and Error Handling again. I somehow allow myself to ignore the rules of these concepts, run into errors, and wonder why implementations are failing. Important aspects:
+
+- Be careful to notice functions that will return a Promise. Either await it, or handle it by chaining Resolve and Catch.
+- Throw errors *inside of try blocks*. This is nothing new, just took me a minute to understand why Nodejs would fall over when I expected it to return a sensible message instead.
+- Middleware *must* do one of these things to succeed: Call next; complete the request-response cycle. Otherwise, a request will never get a response and Express will leak memory.
+
+## Sunday 29-Jan-2023
+
+Chatted with Ryan to get up to speed with LBJS and we are both pretty busy lately. Overviewed the WRRC, current dev state of API Server to-be-deployed, and using Auth0 in a React (SPA). Will deploy a sample SPA that works with my Auth0 acct so Ryan can test and dev on his local using the working sample code.
+
 ## Thursday 26-Jan-2023
 
 This morning I attended a Microsoft Reactor live stream introducing TypeScript. I have some experience with TS as a test engineer but haven't tried developing with it yet. I'm not in a big rush to learn it, and this session gave me a pretty good idea about how to get started so I can start exploring when I'm ready.
