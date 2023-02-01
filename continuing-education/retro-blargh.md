@@ -2,7 +2,7 @@
 
 Semi-regular notes taken during my software developer journey.
 
-## Wedsnesday 1-Feb-2023
+## Wednesday 1-Feb-2023
 
 Attended MSFT Reactor session "Building Your First Typescript Project" and made notes in my Cont-Ed folder for reference. Key takeaways:
 
@@ -10,6 +10,22 @@ Attended MSFT Reactor session "Building Your First Typescript Project" and made 
 - When writing a TS project from scratch, keep 'strict' mode on for better IDE snippets and helpers.
 - TSC is used to build projects or individual files. The JS that comes out is *very busy* and imho messy. That will not matter when it comes to type-safe, trustworthy apps in the end.
 - Instead of using `.env` file to set environment variables, use `.envrc` and set it up the same as `.env`, then create an `app-config.ts` file, import `zod` and create a `z.object({})` with full typing for each environment variable. Include a try-catch with `process.exit(1)` in the catch in case the config typing is ever invalid. Lastly, in the TS file that needs the config e.g. an Express-js app entry point `app.ts`, load the configuration as a const e.g. `const config = loadConfig()`. Config items can then be accessed using `config.some_property` in the code.
+
+While working on what looked like a good fit for a Turnary Operator (which avoids writing *yet another* set of if-then-else codeblocks). While fiddling with the right Turnary Operator statement, I explored some alternatives and discovered that node.js will accept the Logical AND operator `&&` followed by a Logical OR operator `||`:
+
+```node
+function getCode(arr) {
+  return arr.length > 1 && 200 || 404
+}
+
+console.log('statusCode from [1,2,3]:', getCode([1,2,3]))
+// output: statusCode from [1,2,3]: 200
+
+console.log('statusCode from []:', getCode([]))
+// output: statusCode from []: 404
+```
+
+MDN covers this in their JavaScript Reference documentation on [Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) so there is no real surprise here but it was fun to stumble upon it while working on a real project. Fairly easy to read and less typing than if-else conditionals. Pretty neat! :sunglasses:
 
 ## Tuesday 31-Jan-2023
 
