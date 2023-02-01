@@ -141,7 +141,7 @@ Free TraficLab APIs at [https://developer.trafiklab.se/api](https://developer.tr
 
 - SL Real-time Informaiton 5 API
 - SL Location lookup API
-- Get a DevKey: [https://developer.trafiklab.se/projekt](https://developer.trafiklab.se/projekt).
+- Get a DevKey: [https://developer.trafiklab.se/projekt](https://developer.trafiklab.se/projekt) (requires login).
 
 Guest Developer: Lucas Santos :arrow_right: Twitter: @\_staticvoid :arrow_right: GitHub: khaosdoctor
 
@@ -205,7 +205,7 @@ MSFT Learning [TypeScript Getting Started pt.2](https://aka.ms/GettingStartedWit
 
 Get used to TS online with [TypeScriptLang](https://www.typescriptlang.org/play)
 
-MSFT Reactor [Code and Links shared during TS Code](https://aka.ms/FirstTSProject)
+MSFT Reactor [Code and Links shared during TS Code](https://aka.ms/FirstTSProject) or [direct link](https://techcommunity.microsoft.com/t5/microsoft-reactor/building-your-first-typescript-project-resources-and-recap/m-p/3730630).
 
 ## Footer
 
