@@ -2,6 +2,15 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wedsnesday 1-Feb-2023
+
+Attended MSFT Reactor session "Building Your First Typescript Project" and made notes in my Cont-Ed folder for reference. Key takeaways:
+
+- TS and JS can be written side-by-side, just update 'tsconfig.json' to allow it and to turn off 'strict' mode.
+- When writing a TS project from scratch, keep 'strict' mode on for better IDE snippets and helpers.
+- TSC is used to build projects or individual files. The JS that comes out is *very busy* and imho messy. That will not matter when it comes to type-safe, trustworthy apps in the end.
+- Instead of using `.env` file to set environment variables, use `.envrc` and set it up the same as `.env`, then create an `app-config.ts` file, import `zod` and create a `z.object({})` with full typing for each environment variable. Include a try-catch with `process.exit(1)` in the catch in case the config typing is ever invalid. Lastly, in the TS file that needs the config e.g. an Express-js app entry point `app.ts`, load the configuration as a const e.g. `const config = loadConfig()`. Config items can then be accessed using `config.some_property` in the code.
+
 ## Tuesday 31-Jan-2023
 
 Practiced whiteboarding while developing a route on the LBJS API Server: Problem statement, inputs and outputs, step-through definition (but no depictions/drawings), and javascript code (but no pseudocode). Took about 45 minutes to complete whiteboarding, perhaps 5 minutes to implement the code with only minor adjustments, and another 5-10 minutes of debugging and the code is functional! There are probably a few more bugs to work out, but only *one major bug-fix was required* to get the happy-path working as intended. :boom:

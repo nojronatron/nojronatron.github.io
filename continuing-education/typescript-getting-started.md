@@ -1,8 +1,10 @@
 # Typescript Basics
 
-Microsoft Reactor held a presentation series about Typescript. The language has been gaining steam and I am growing increasingly curious. These notes will be mostly ad-hoc to start.
+The language has been gaining steam and I am growing increasingly curious. These notes will be mostly ad-hoc to start.
 
 ## Microsft Reactor Typescript For Beginners
+
+Microsoft Reactor held a series of presentations series about Typescript.
 
 ### Overview
 
@@ -51,7 +53,7 @@ Additional Types:
 
 Use GitHub CoPilot! This will help by making suggestions while coding TypeScript.
 
-Get used to learning what the error messages *mean*.
+Get used to learning what the error messages _mean_.
 
 ### Benefits
 
@@ -84,9 +86,9 @@ Assign a value to a name and include a Type: `let name:type = value`
 
 `const myArray: string[] = ['alpha', 'bravo', 'charlie'];`
 
-When declaring the Array as a Type, all the values within the Array *must be the declared Type*.
+When declaring the Array as a Type, all the values within the Array _must be the declared Type_.
 
-Pushed Types *must also* be of the declared Type.
+Pushed Types _must also_ be of the declared Type.
 
 ### Tuples
 
@@ -105,15 +107,11 @@ Editorial: It feels like a TS Tuple boils-down to an Object with fields in JavaS
 `object: { name: type; name: type };`
 
 ```typescript
-function foo(fooInfo: {
-  fooName: string;
-  fooEmail: string;
-  fooTime: boolean;
-}) {
-  console.log('fooInfo:', fooInfo);
+function foo(fooInfo: { fooName: string; fooEmail: string; fooTime: boolean }) {
+  console.log("fooInfo:", fooInfo);
 }
 
-foo('bar', 'baz', true);
+foo("bar", "baz", true);
 ```
 
 ### Compiling
@@ -135,6 +133,70 @@ Target: Sets the JavaScript version target e.g. ES6
 
 OutFile and OutDir: Uncomment for dev to control where source will be output (default: './'; option: './src').
 
+## Build a Project in TS
+
+### Setup
+
+Free TraficLab APIs at [https://developer.trafiklab.se/api](https://developer.trafiklab.se/api).
+
+- SL Real-time Informaiton 5 API
+- SL Location lookup API
+- Get a DevKey: [https://developer.trafiklab.se/projekt](https://developer.trafiklab.se/projekt).
+
+Guest Developer: Lucas Santos :arrow_right: Twitter: @\_staticvoid :arrow_right: GitHub: khaosdoctor
+
+TS was intended to be:
+
+- An easy migration from JS.
+- "JavaScript that scales."
+
+### Basics
+
+Interfaces: Define what an object IS and DOES:
+
+- Contract: This object will have these properties and methods implemented.
+- Interfaces only define the members but do not implement them.
+- Built-in are used to ensure a Type is created properly.
+- Create your own to define custom object creation and TS will provide guidance on using them.
+
+Typed Aliases:
+
+- Define your own Types in TS.
+- Similar to Interfaces (maybe the same?).
+- Cannot add more members "later on".
+- Adds restrictions to code e.g. to limit range of options in an object property.
+
+There are also Typed Functions (but they were not defined nor discussed).
+
+Initialize the project: npm init -y
+Prep TS environment: npm i -D typescript @types/node @types/express
+Create config file for TS "tsconfig.json": npx tsc --init
+Find outDir and change it to "./dist".
+Find strict and either:
+
+- Change value to 'false' to migrate JS to TS.
+- Leave 'true' in a new project to help ensure strict typeing.
+
+DotEnvRC is roughly equivalent to '.env'.
+
+Zod:
+
+- Library (github: colinhacks/zod) that helps enforcing structure and types in TS.
+- Error Class is brought in.
+- 'z' Class.
+- Is a type validator.
+
+_Note_: ThunderClient can generate Typescript Types from a Response using the 'Response > Snippet' drop-down.
+
+### Build
+
+Confusingly, this topic was not discussed.
+
+Givent the code that was shown during the session, I discovered the following:
+
+1. In tsconfig.json: update 'rootDir' to ensure the correct source file root is targeted (might not be 'Project Root').
+1. TSC was not finding the tsconfig.json file, so to work around errors indicating Express could not be 'imported' I did: `tsc --esModuleInterop ./src/app.ts` and the build succeeded.
+
 ## References
 
 MSFT Learning [TypeScript Getting Started pt.1](https://aka.ms/GettingStartedWithTypescript1)
@@ -142,6 +204,8 @@ MSFT Learning [TypeScript Getting Started pt.1](https://aka.ms/GettingStartedWit
 MSFT Learning [TypeScript Getting Started pt.2](https://aka.ms/GettingStartedWithTypescript2)
 
 Get used to TS online with [TypeScriptLang](https://www.typescriptlang.org/play)
+
+MSFT Reactor [Code and Links shared during TS Code](https://aka.ms/FirstTSProject)
 
 ## Footer
 
