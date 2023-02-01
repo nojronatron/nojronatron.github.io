@@ -2,7 +2,15 @@
 
 Semi-regular notes taken during my software developer journey.
 
-## MOnday 30-Jan-2023
+## Tuesday 31-Jan-2023
+
+Practiced whiteboarding while developing a route on the LBJS API Server: Problem statement, inputs and outputs, step-through definition (but no depictions/drawings), and javascript code (but no pseudocode). Took about 45 minutes to complete whiteboarding, perhaps 5 minutes to implement the code with only minor adjustments, and another 5-10 minutes of debugging and the code is functional! There are probably a few more bugs to work out, but only *one major bug-fix was required* to get the happy-path working as intended. :boom:
+
+Implemented cache and Promises on one of the routes. All of this practice is paying off and implementations like these are getting easier, and getting completed faster. I still need to add tests to the functions for sanity sake, and there are plenty of refactorings needed on most of the other routes, and those things will come with time.
+
+The LBJS-Back API AppService has been redeployed with the latest PR code and it appears to be functioning! It can successfully return a JSON collection of words, and all of the existing routes are protected by default. Tomorrow I will do more testing using authorized users while watching the Streaming Log to validate API paths are doing the right things and Node.js is not falling over in Azure.
+
+## Monday 30-Jan-2023
 
 Spent a good deal of time battling Express Middleware and Error Handling again. I somehow allow myself to ignore the rules of these concepts, run into errors, and wonder why implementations are failing. Important aspects:
 
