@@ -40,7 +40,7 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
-- [ ] Handling [Errors in ExpressJS](./express-error-handling.html). I am implementing this in a live API server instance and there is work still to do.
+- [X] Handling [Errors in ExpressJS](./express-error-handling.html). I am implementing this in a live API server instance and there is work still to do.
 - [X] Study Auth0 [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
 - [X] Using 'cursor' in Java: [Cursor and Iterators](./java-cursor-iterators.html).
 - [X] When and why would I [choose to develop in](./choosing-a-language.html) Java vs C# or Python e.g. for a project.
@@ -70,6 +70,7 @@ Azure [learnings](#azure-learnings).
 
 ### Azure Learnings
 
+- DevOps for Microsoft Platforms (an overview, introduction really)[MSFT Platform DevOps](./msft-platform-devops.html).
 - [Continuous test and validating Azure Workloads](./azure-testing-mission-critical-apps.html).
 - [Azure for Java Applications (multi-part)](./azure-for-java-apps.html).
 - [Azure App Services Best Practices](./azure-app-svc-best-practices.html).
