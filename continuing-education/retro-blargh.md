@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 2-Feb-2023
+
+Made some experiments with LBJS React using Axios to acquire a payload from our custom API server.
+
 ## Wednesday 1-Feb-2023
 
 Attended MSFT Reactor session "Building Your First Typescript Project" and made notes in my Cont-Ed folder for reference. Key takeaways:
