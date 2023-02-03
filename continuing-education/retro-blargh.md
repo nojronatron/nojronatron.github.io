@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 3-Feb-2023
+
+Slowly I am getting back to my weekly schedule. There have been enough interruptions the last few months that I have fallen behind on things like technical interview practice and other preparatory tasks. I am so fortunate I have the time and ability to put in this effort.
+
+Completed a technical interview question that required code in order to 'complete' it. Initial rubric scoring of my solution indicates a likely pass, however I will need to review the idiomatic and syntactical correctness of the code (later today). One error I made was in code analysis:
+
+- In code complexity of storage, if there are always 3 variable used regardless of input size, that could be written as O(3), which boils down to O(1). I failed to boil-it-down.
+
 ## Thursday 2-Feb-2023
 
 Made some experiments with LBJS React using Axios to acquire a payload from our custom API server.
