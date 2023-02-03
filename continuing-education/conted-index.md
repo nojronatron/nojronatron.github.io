@@ -70,6 +70,7 @@ Azure [learnings](#azure-learnings).
 
 ### Azure Learnings
 
+- Microsoft Identity Platform is integrated into Azure: [Microsoft Identity Platform](./azure-identity-platform.html).
 - DevOps for Microsoft Platforms (an overview, introduction really)[MSFT Platform DevOps](./msft-platform-devops.html).
 - [Continuous test and validating Azure Workloads](./azure-testing-mission-critical-apps.html).
 - [Azure for Java Applications (multi-part)](./azure-for-java-apps.html).
