@@ -2,6 +2,72 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 3-Feb-2023
+
+Slowly I am getting back to my weekly schedule. There have been enough interruptions the last few months that I have fallen behind on things like technical interview practice and other preparatory tasks. I am so fortunate I have the time and ability to put in this effort.
+
+Completed a technical interview question that required code in order to 'complete' it. Initial rubric scoring of my solution indicates a likely pass, however I will need to review the idiomatic and syntactical correctness of the code (later today). One error I made was in code analysis:
+
+- In code complexity of storage, if there are always 3 variable used regardless of input size, that could be written as O(3), which boils down to O(1). I failed to boil-it-down.
+
+After watching a presentation on algorithms and data structures, it occurred to me that during technical interviewing I often times get caught up in values. The presentation used colors as Linked List Nodes, rather than numbers or characters or other objects. While it is true that values are important in an algorithm determining *how to traverse a data structure* is arguably more important because walking the structure is necessary for the algorithm to manage the values in the data structure. Once a data structure is selected, plug-in the numbers while performing a walk-through to verify the algorithm works.
+
+Some advice shared by David:
+
+- Advice to solve problems: Define the problem, ID test cases, Visualize, Plan the algorithm, write Code, then Verify the solution.
+- Visualizations do not need to be complicated, for example a string input of "some value" is easily visualized as the string within quotes.
+- Visualization stage: Probably do not know what the code will look like, only what the input(s) and possible output examples look like.
+- Step-through stage: Smallest possible steps to incrementally define the actual algorithm.
+
+## Thursday 2-Feb-2023
+
+Made some experiments with LBJS React using Axios to acquire a payload from our custom API server.
+
+## Wednesday 1-Feb-2023
+
+Attended MSFT Reactor session "Building Your First Typescript Project" and made notes in my Cont-Ed folder for reference. Key takeaways:
+
+- TS and JS can be written side-by-side, just update 'tsconfig.json' to allow it and to turn off 'strict' mode.
+- When writing a TS project from scratch, keep 'strict' mode on for better IDE snippets and helpers.
+- TSC is used to build projects or individual files. The JS that comes out is *very busy* and imho messy. That will not matter when it comes to type-safe, trustworthy apps in the end.
+- Instead of using `.env` file to set environment variables, use `.envrc` and set it up the same as `.env`, then create an `app-config.ts` file, import `zod` and create a `z.object({})` with full typing for each environment variable. Include a try-catch with `process.exit(1)` in the catch in case the config typing is ever invalid. Lastly, in the TS file that needs the config e.g. an Express-js app entry point `app.ts`, load the configuration as a const e.g. `const config = loadConfig()`. Config items can then be accessed using `config.some_property` in the code.
+
+While working on what looked like a good fit for a Turnary Operator (which avoids writing *yet another* set of if-then-else codeblocks). While fiddling with the right Turnary Operator statement, I explored some alternatives and discovered that node.js will accept the Logical AND operator `&&` followed by a Logical OR operator `||`:
+
+```node
+function getCode(arr) {
+  return arr.length > 1 && 200 || 404
+}
+
+console.log('statusCode from [1,2,3]:', getCode([1,2,3]))
+// output: statusCode from [1,2,3]: 200
+
+console.log('statusCode from []:', getCode([]))
+// output: statusCode from []: 404
+```
+
+MDN covers this in their JavaScript Reference documentation on [Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) so there is no real surprise here but it was fun to stumble upon it while working on a real project. Fairly easy to read and less typing than if-else conditionals. Pretty neat! :sunglasses:
+
+## Tuesday 31-Jan-2023
+
+Practiced whiteboarding while developing a route on the LBJS API Server: Problem statement, inputs and outputs, step-through definition (but no depictions/drawings), and javascript code (but no pseudocode). Took about 45 minutes to complete whiteboarding, perhaps 5 minutes to implement the code with only minor adjustments, and another 5-10 minutes of debugging and the code is functional! There are probably a few more bugs to work out, but only *one major bug-fix was required* to get the happy-path working as intended. :boom:
+
+Implemented cache and Promises on one of the routes. All of this practice is paying off and implementations like these are getting easier, and getting completed faster. I still need to add tests to the functions for sanity sake, and there are plenty of refactorings needed on most of the other routes, and those things will come with time.
+
+The LBJS-Back API AppService has been redeployed with the latest PR code and it appears to be functioning! It can successfully return a JSON collection of words, and all of the existing routes are protected by default. Tomorrow I will do more testing using authorized users while watching the Streaming Log to validate API paths are doing the right things and Node.js is not falling over in Azure.
+
+## Monday 30-Jan-2023
+
+Spent a good deal of time battling Express Middleware and Error Handling again. I somehow allow myself to ignore the rules of these concepts, run into errors, and wonder why implementations are failing. Important aspects:
+
+- Be careful to notice functions that will return a Promise. Either await it, or handle it by chaining Resolve and Catch.
+- Throw errors *inside of try blocks*. This is nothing new, just took me a minute to understand why Nodejs would fall over when I expected it to return a sensible message instead.
+- Middleware *must* do one of these things to succeed: Call next; complete the request-response cycle. Otherwise, a request will never get a response and Express will leak memory.
+
+## Sunday 29-Jan-2023
+
+Chatted with Ryan to get up to speed with LBJS and we are both pretty busy lately. Overviewed the WRRC, current dev state of API Server to-be-deployed, and using Auth0 in a React (SPA). Will deploy a sample SPA that works with my Auth0 acct so Ryan can test and dev on his local using the working sample code.
+
 ## Thursday 26-Jan-2023
 
 This morning I attended a Microsoft Reactor live stream introducing TypeScript. I have some experience with TS as a test engineer but haven't tried developing with it yet. I'm not in a big rush to learn it, and this session gave me a pretty good idea about how to get started so I can start exploring when I'm ready.
