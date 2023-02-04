@@ -10,6 +10,15 @@ Completed a technical interview question that required code in order to 'complet
 
 - In code complexity of storage, if there are always 3 variable used regardless of input size, that could be written as O(3), which boils down to O(1). I failed to boil-it-down.
 
+After watching a presentation on algorithms and data structures, it occurred to me that during technical interviewing I often times get caught up in values. The presentation used colors as Linked List Nodes, rather than numbers or characters or other objects. While it is true that values are important in an algorithm determining *how to traverse a data structure* is arguably more important because walking the structure is necessary for the algorithm to manage the values in the data structure. Once a data structure is selected, plug-in the numbers while performing a walk-through to verify the algorithm works.
+
+Some advice shared by David:
+
+- Advice to solve problems: Define the problem, ID test cases, Visualize, Plan the algorithm, write Code, then Verify the solution.
+- Visualizations do not need to be complicated, for example a string input of "some value" is easily visualized as the string within quotes.
+- Visualization stage: Probably do not know what the code will look like, only what the input(s) and possible output examples look like.
+- Step-through stage: Smallest possible steps to incrementally define the actual algorithm.
+
 ## Thursday 2-Feb-2023
 
 Made some experiments with LBJS React using Axios to acquire a payload from our custom API server.
