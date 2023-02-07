@@ -2,6 +2,24 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 6-Feb-2023
+
+This morning I realized there was a problem with a test for the latest java code challenge so I fixed the test, which uncovered another bug in the latest revision of the code. I spend some time redesinging the code (to avoid writing really long and tedious garbage code) and came up with a solution. Some key takeaways:
+
+- It is incredibly important to make sure "copy pasta" (copying code) does the right thing.
+- It is incredibly important to *update* the copy pasta code before running it, assuming it will do what is expected for where it now lives and runs.
+- Checking for null in Java is all to critical.
+- Using `if-then-else` can get really tedious. Options are to use `if-continue` or `switch() case:` to avoid crazy-nested decision trees.
+- Using Stacks to solve this sorting problem is not ideal.
+
+There are other data structures I will try to get a good sorting algorithm working for this code challenge.
+
+I also spent some time working on LBJS front-end. When a user is given a link to the gameboard by the presenter, the website should load the appropriate words and randomize them so the bingoboard is ready for the user to play. Lacking an appropriate gameboard ID in the URI link, the gameboard should still load a canned set of words. Last week I wrote a possible solution and included a 'then-able' Axios call, but I didn't quite implement it correctly. Key takeaways using Then-able Axios:
+
+- When the `.catch()` statement is hit, be sure to include any/all code that must be run following the error condition.
+- To avoid catching a simple situation (like an undefined input), implement an if-then or other conditional statement so the then-able statement is less likely to run code that would guarantee crash/fail/catch.
+- Using `console.log()` in React can be dangerous! Avoid using concatenations or template literals. Instead, just comma-separate text and values.
+
 ## Sunday 5-Feb-2023
 
 On Friday I attempted to impelment the code I created during a 45-minute code challenge and it became clear there were many issues. So today I retried the same code challenge and it moved along pretty well. I utilize a different data structure and traversing it was a bit easier. The 45-minute timer expired before I was able to walk through the code visually, but there was code on the board, and it had been stepped through using the design diagram I sketched up. What was lacking was stepping through the code using the example input collection values.
