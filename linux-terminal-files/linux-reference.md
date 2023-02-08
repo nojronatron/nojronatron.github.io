@@ -58,6 +58,7 @@ NOTE: I am no longer making any effort to verify any of these work in Windows Po
 - [vi text editor](#vi-text-editor)
 - [internal logs](#view-internal-logs)
 - [yarn](#yarn)
+- [primer: how linux works](#primer-how-linux-works)
 
 ## Linux Facts and Figures
 
@@ -618,7 +619,188 @@ GZIP Manual at [Gnu.org](https://www.gnu.org/software/tar/manual/html_node/gzip.
 
 [Ubuntu Tar Reference](https://manpages.ubuntu.com/manpages/xenial/en/man1/tar.1.html)
 
- *NOTE*: End of under dev section
+## Primer: How Linux Works
+
+This section contains notes from a Microsoft Reactor session about the very basics of Linux.
+
+Host Gwyneth Pena-Siguenza, MSFT Cloud Developer Advocate.
+
+Agenda:
+
+- High-level compoents of linux.
+- What does the Kernel do?
+- The User Space.
+- File hierarchy standard.
+- How does everything start/come together?
+
+### High Level Components
+
+Hardware: RAM, CPU, USB devices, etc.
+Kernel: In-memory; Assigns tasks to CPU; Manages hardware; Inteface between running programs and hardware.
+User Processes: All programs that are running and managed by the Kernel e.g. Email, Code, word processing, browser, etc.
+User Mode/Space: Access to only subset of memory and "safe CPU operations"; cannot crash entire system.
+Kernel Mode/Space: *Unrestricted* access to processor and RAM; Can crash entire system.
+
+### Main Memory
+
+Storage area for bits and bytes.
+All running processes are made up of bits - instructions for the CPU.
+The state of every process resides in RAM.
+
+State: A collection of bits in RAM that represent the current action of a running process.
+
+### CPU and Kernel
+
+CPU is in charge of operating on memory.
+
+The Kernel is the collection of non-tangible operations and state within the CPU and RAM.
+
+### Kernel Responsibility and Actions
+
+Process Mangement:
+
+- Starts, stops, pause, resume, scheduling of processes.
+- Give space in RAM for each process to live in.
+- Timeslices separate the time between processes running in the background.
+- The Kernel runs between process 'time slices' "during a context switch'.
+
+Memory Management:
+
+- Tracks all RAM allocations, shared, or free.
+- Allocate axiliary space if necessary.
+- Ensures processes stick to their own space.
+- Splits memory into subdivisions, for processes.
+- Tracks the *state* of each RAM subdivision.
+
+Device Management:
+
+- Kernel operates the hardware via drivers.
+- Physical devices must have driver software for the Kernel to know how to use it.
+- Kernel manages moving data through drivers to and from physical devices.
+
+System Calls:
+
+- Process use system calls to talk to the kernel and request a service.
+- Process Control: fork(), exec() => start processes
+- File Management: open(), read()
+- Device Management: ioctl()
+- Information Management: getpid(), sleep()
+- Communications: pipe(), shmget(), mmap()
+
+Summary:
+
+- Lives in Kernel space.
+- Works in kernel mode.
+- Allocates in *user space*.
+
+#### User Space
+
+Main Memory allocated by kernel for user processes.
+
+Every process running lives in user space.
+
+Organization:
+
+- No hard-and-fast rules.
+- Usually more complex processes are pushed farther up the 'stack'.
+- Applications: Sit at the top and are user-interactive.
+- Utilities in the middle: DB Server, Web server, caching, etc.
+- Basic Services at the bottom: Basic communications, network config, etc.
+
+Components use each other: Usually on the same level or below.
+
+User Space talks to the Kernel: SysCalls used to comms between User Space and Kernel Space.
+
+
+#### Virtualization and Containerization
+
+Virtualization:
+
+- Hypervisor between OS Kernel and the physical hardware.
+- Shared OS, each OS maintains its own Kernel.
+
+Containerization:
+
+- Hypervisor is similar to VM but...
+- OS Kernel is on top of Hypervisor and...
+- Containers sit on top of the Kernel layer.
+- Shared Kernel, each Container uses the same virtualized Kernel.
+
+#### Users Space
+
+Users: Entity associated with username and ID. Permissions and boundaries are applied to allow (or prevent) access to files, services, etc.
+
+Superuser:
+
+- Users can start/stop/edit their own processes.
+- Superuser/root Can terminate and alter other user's processes, and access any file on the local filesystem.
+- SUDO: Super User DO.
+
+#### Memory Helper: MMU
+
+MMU: Memory Management Unit.
+
+- Provides virtual memory mapping to the Kernel.
+- Performs physical memory access.
+- Translates physical-to-virtual memory mappings in both directions.
+
+#### File Hierarchy Standard
+
+Root: '/'
+Dev: '/dev' Device files
+Etc: '/etc' Core system config directory, user passwords, boot, device, networking, and other setup files.
+Library: '/lib'
+Binaries: '/bin'
+System Bin: '/sbin' System-based binaries. Not available to non-superusers. System executables, boot files, low-level system repair/maintenance, etc).
+User: '/usr'
+Options: '/opt'
+Temp: '/tmp' Temporary files.
+Boot: '/boot' Contains boot loader and the kernel (loader).
+Binaries: '/bin' Executables and most Unix commands.
+Many others: Too many to list, and varies by Linux distribution.
+
+Everything in Linux is seen and accessible as a *file*. This allows comon tools to manage files, data, processes, etc.
+
+USR:
+
+- Many sub directories.
+- bin, sbin, man, share, local
+- Same directory structure with similar purposes.
+- Is a historic division.
+- Put applications and binaries necessary for locally logged on users go into usr/bin
+- Manuals go into usr/man
+- Configurations go into usr/sbin
+- Share: Files that should work on other unix-y machines go into usr/share
+- Local/Bin or Local/Sbin: Store custom (user-created) scripts and system-wide available scripts.
+
+DEV:
+
+- Everything in dev is a device file!
+- Two main types of devices (drivers): Block-type (have fixed size like HDDs); Character type devices (everything else).
+- Not all devices have files (e.g. Network Interfaces).
+- Some devices are not physical e.g. dev/null and dev/urandom.
+
+#### Booting
+
+1. BIOS Loads and runs boot loader: '/boot'
+1. Boot Loader finds Kernel Image and loads it into main memory and starts it: '/boot'
+1. Kernal inits devices and drivers.
+1. Kernel mounts root filesystem: '/'
+1. Kernel starts 'init' program with process ID of 1 and the User Space starts: '/etc'
+
+Editing how kernel boots will require low-level development skills.
+
+#### User Space Startup
+
+1. Init kicked-off by Kernel boot.
+1. Essential low-level services (udevd and syslogd among others) are started.
+1. Network configuration is initialized.
+1. Mid- and high-level services (cron, printing, etc) are started.
+1. Login prompts, GUIs, and other high-level applications are loaded into memory.
+
+#### Summary
+
+Three primary components of Linux: `User Processes <-> Kernel <-> Hardware`
 
 ## References
 
@@ -631,6 +813,8 @@ Apt and DPKG details were gleened from [this AskUbuntu.com article](https://asku
 [TechRepublic](https://www.techrepublic.com/article/how-to-add-an-openpgp-repository-key-now-that-apt-key-is-deprecated/) discusses adding an openGPG key, now that apt-key is deprecated.  
 
 [ChrisJean.com](https://chrisjean.com/4-great-tools-to-find-files-quickly-in-ubuntu/) for tips on 'which' and 'find' tools.
+
+[Introduction to Linux on Azure](https://learn.microsoft.com/en-us/training/modules/intro-to-azure-linux/?wt.mc_id=youtube_18177_video_reactor)
 
 ## Footer
 
