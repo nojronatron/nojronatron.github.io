@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 8-Feb-2023
+
+Took some time researching Azure and Linux. Microsoft Learn has resources and training materials that I started in on. Hopefully this will help me take the next steps, which is continuous integration, and eventually continuous delivery. See notes added to [linux references](../linux-terminal-files/linux-reference.html).
+
 ## Monday 6-Feb-2023
 
 This morning I realized there was a problem with a test for the latest java code challenge so I fixed the test, which uncovered another bug in the latest revision of the code. I spend some time redesinging the code (to avoid writing really long and tedious garbage code) and came up with a solution. Some key takeaways:
