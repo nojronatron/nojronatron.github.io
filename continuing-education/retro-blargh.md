@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 9-Feb-2023
+
+Completed a java code challenge, this time using a Queue data structure. Although I was unable to complete requirements of the technical interview, the diagram had good basic logic and required few edits to make it a good resource for writing pseudocode and actual Java code. Once I wrote Java code, about 4 lines of code needed to be *removed*, and there was only one small bug in the code that was quick to fix. All the tests, even the empty cases and those containing zeroes passed right away. One other positive takeaway is: I implemented a Queue class and Queue Node specifically for this solution and only needed to peek at a working solution once before the Queue implementation was fully functional (Peek, Enqueue, Dequeue, IsEmpty, and getSize/Count)!
+
 ## Wednesday 8-Feb-2023
 
 Took some time researching Azure and Linux. Microsoft Learn has resources and training materials that I started in on. Hopefully this will help me take the next steps, which is continuous integration, and eventually continuous delivery. See notes added to [linux references](../linux-terminal-files/linux-reference.html).
