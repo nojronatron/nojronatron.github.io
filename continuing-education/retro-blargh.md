@@ -2,6 +2,42 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 9-Feb-2023
+
+Completed a java code challenge, this time using a Queue data structure. Although I was unable to complete requirements of the technical interview, the diagram had good basic logic and required few edits to make it a good resource for writing pseudocode and actual Java code. Once I wrote Java code, about 4 lines of code needed to be *removed*, and there was only one small bug in the code that was quick to fix. All the tests, even the empty cases and those containing zeroes passed right away. One other positive takeaway is: I implemented a Queue class and Queue Node specifically for this solution and only needed to peek at a working solution once before the Queue implementation was fully functional (Peek, Enqueue, Dequeue, IsEmpty, and getSize/Count)!
+
+## Wednesday 8-Feb-2023
+
+Took some time researching Azure and Linux. Microsoft Learn has resources and training materials that I started in on. Hopefully this will help me take the next steps, which is continuous integration, and eventually continuous delivery. See notes added to [linux references](../linux-terminal-files/linux-reference.html).
+
+## Monday 6-Feb-2023
+
+This morning I realized there was a problem with a test for the latest java code challenge so I fixed the test, which uncovered another bug in the latest revision of the code. I spend some time redesinging the code (to avoid writing really long and tedious garbage code) and came up with a solution. Some key takeaways:
+
+- It is incredibly important to make sure "copy pasta" (copying code) does the right thing.
+- It is incredibly important to *update* the copy pasta code before running it, assuming it will do what is expected for where it now lives and runs.
+- Checking for null in Java is all to critical.
+- Using `if-then-else` can get really tedious. Options are to use `if-continue` or `switch() case:` to avoid crazy-nested decision trees.
+- Using Stacks to solve this sorting problem is not ideal.
+
+There are other data structures I will try to get a good sorting algorithm working for this code challenge.
+
+I also spent some time working on LBJS front-end. When a user is given a link to the gameboard by the presenter, the website should load the appropriate words and randomize them so the bingoboard is ready for the user to play. Lacking an appropriate gameboard ID in the URI link, the gameboard should still load a canned set of words. Last week I wrote a possible solution and included a 'then-able' Axios call, but I didn't quite implement it correctly. Key takeaways using Then-able Axios:
+
+- When the `.catch()` statement is hit, be sure to include any/all code that must be run following the error condition.
+- To avoid catching a simple situation (like an undefined input), implement an if-then or other conditional statement so the then-able statement is less likely to run code that would guarantee crash/fail/catch.
+- Using `console.log()` in React can be dangerous! Avoid using concatenations or template literals. Instead, just comma-separate text and values.
+
+## Sunday 5-Feb-2023
+
+On Friday I attempted to impelment the code I created during a 45-minute code challenge and it became clear there were many issues. So today I retried the same code challenge and it moved along pretty well. I utilize a different data structure and traversing it was a bit easier. The 45-minute timer expired before I was able to walk through the code visually, but there was code on the board, and it had been stepped through using the design diagram I sketched up. What was lacking was stepping through the code using the example input collection values.
+
+## Saturday 4-Feb-2023
+
+The code challenge yesterday has one pretty bad bug that makes it a failing solution, and there were a few idiomatic and syntactical issues, docking a few points. Given I haven't written Java in a while, this is not a total surprise. Plan is to re-try this challenge soon and do a better job of defining the problem before building an algorithm, and then walking-through the algorithm (debug it!) before writing the code.
+
+Worked with Ryan, sorting out Auth0 authentication configuration and use of JSON Web Tokens and Keys.
+
 ## Friday 3-Feb-2023
 
 Slowly I am getting back to my weekly schedule. There have been enough interruptions the last few months that I have fallen behind on things like technical interview practice and other preparatory tasks. I am so fortunate I have the time and ability to put in this effort.
@@ -10,18 +46,22 @@ Completed a technical interview question that required code in order to 'complet
 
 - In code complexity of storage, if there are always 3 variable used regardless of input size, that could be written as O(3), which boils down to O(1). I failed to boil-it-down.
 
-After watching a presentation on algorithms and data structures, it occurred to me that during technical interviewing I often times get caught up in values. The presentation used colors as Linked List Nodes, rather than numbers or characters or other objects. While it is true that values are important in an algorithm determining *how to traverse a data structure* is arguably more important because walking the structure is necessary for the algorithm to manage the values in the data structure. Once a data structure is selected, plug-in the numbers while performing a walk-through to verify the algorithm works.
+After watching a presentation on algorithms and data structures, it occurred to me that during technical interviewing I often times get caught up in values. The presentation used colors as Linked List Nodes, rather than numbers or characters/strings. While it is true that values are important in an algorithm, it is more important early on to determine *how to traverse a data structure*. Walking the structure is necessary for the algorithm to process the values within it. Once a data structure and traversing algorithm are selected, plug-in the numbers while performing a walk-through to verify the planned implementation.
 
 Some advice shared by David:
 
-- Advice to solve problems: Define the problem, ID test cases, Visualize, Plan the algorithm, write Code, then Verify the solution.
+- Advice for solving problems: Define the problem, ID test cases, Visualize (forwards and backwards), Plan the algorithm, write Code, then Verify the solution.
+- Forwards-backwards visualization: Write input case at top and output case at the bottom. Start at the output and think about a question that needs to be asked to get a specific output case. The output is the answer, so respond in the form of a question (how to get the output).
 - Visualizations do not need to be complicated, for example a string input of "some value" is easily visualized as the string within quotes.
 - Visualization stage: Probably do not know what the code will look like, only what the input(s) and possible output examples look like.
 - Step-through stage: Smallest possible steps to incrementally define the actual algorithm.
+- In an interview setting, ask specific questions of the interviewer so that you get useful information. Yes/No questions are probably best. Avoid subjective questions (answers to these probably won't help anyway).
 
 ## Thursday 2-Feb-2023
 
 Made some experiments with LBJS React using Axios to acquire a payload from our custom API server.
+
+Also took some time to execute the implemented routes on the Azure-deployed API Server and everything is working so far.
 
 ## Wednesday 1-Feb-2023
 
@@ -52,7 +92,7 @@ MDN covers this in their JavaScript Reference documentation on [Operators](https
 
 Practiced whiteboarding while developing a route on the LBJS API Server: Problem statement, inputs and outputs, step-through definition (but no depictions/drawings), and javascript code (but no pseudocode). Took about 45 minutes to complete whiteboarding, perhaps 5 minutes to implement the code with only minor adjustments, and another 5-10 minutes of debugging and the code is functional! There are probably a few more bugs to work out, but only *one major bug-fix was required* to get the happy-path working as intended. :boom:
 
-Implemented cache and Promises on one of the routes. All of this practice is paying off and implementations like these are getting easier, and getting completed faster. I still need to add tests to the functions for sanity sake, and there are plenty of refactorings needed on most of the other routes, and those things will come with time.
+Implemented cache and Promises on one of the routes. All of this practice is paying off and implementations like these are getting easier, and are completed more quickly than before. I still need to add tests to the functions for sanity sake, and there are plenty of refactorings needed on most of the other routes... those things will be done in time.
 
 The LBJS-Back API AppService has been redeployed with the latest PR code and it appears to be functioning! It can successfully return a JSON collection of words, and all of the existing routes are protected by default. Tomorrow I will do more testing using authorized users while watching the Streaming Log to validate API paths are doing the right things and Node.js is not falling over in Azure.
 
