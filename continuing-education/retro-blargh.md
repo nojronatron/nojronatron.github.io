@@ -1,6 +1,19 @@
 # Occasional Retrospective Notes
 
-Semi-regular notes taken during my software developer journey.
+Semi-regular notes taken during my journey as a software developer.
+
+## Thursday 16-Feb-2023
+
+Most of my time earlier this week has been spent on volunteer and around-the-house tasks. I will be presenting how to use "Email over ham radio" to a class of 12 hams on Saturday the 18th, and I think my presentation and plan is ready to go.
+
+Completed an LBJS PR to componentize a pair of nested functions within a React Class component. After initial discovery and fiddling with the code I started to thing the effort was not going to be worth it. I took a break and thought about it, came back to it and implemented a slighly different solution that started working well. After a few short refactorings while testing, the webapp was working without errors. Key takeaways:
+
+- Refactoring the two child functions into their own React Functional Components meant passing params *through* one component just so the other component could use it.
+- Both functions were ALWAYS CALLED TOGETHER so it made sense that they should continue to be together and not broken into separate components.
+- Put the dependent function(s) inside the 1st called component function so the params will be easily accessible.
+- A React Component farther up the tree calls useEffect hook so two render cycles are run, which meant that some parameters did not yet exist on the 1st rendering. Added a Conditional (turnary) Operator to ensure the componentized function would only be called once the dependent props were no longer *underfined*.
+
+
 
 ## Thursday 9-Feb-2023
 
