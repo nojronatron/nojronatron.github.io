@@ -10,9 +10,10 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
+- [ ] Vercel [Next.js](https://nextjs.org/learn/basics/create-nextjs-app). Just get a feel for it.
 - [ ] Microtasks in JavaScript: [MDN queueMicrotask()](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide).
 - [ ] [AlpineJS](https://alpinejs.dev/).
-- [ ] [Typescript](./typescript-getting-started.html).
+- [ ] [Typescript](./typescript-getting-started.html). Just get a feel for it.
 - [ ] Using [Secure Cookies](http://expressjs.com/en/advanced/best-practice-security.html#use-cookies-securely) in ExpressJS.
 - [ ] Oracle: Developing a [Microservices-based RESTfull Java Application](https://www.oracle.com/explore/java-oci-1?source=:ow:de:te::::RC_WWSA220204P00012:EM22_TEC_EV_CO65_M0601_SO061YO19_DO1043_AO01_RO001&intcmp=:ow:de:te::::RC_WWSA220204P00012:EM22_TEC_EV_CO65_M0601_SO061YO19_DO1043_AO01_RO001) using Java.
 - [ ] Vue.js, the [progressive javascript framework](https://vuejs.org/). Just get a feel for it.
@@ -29,7 +30,6 @@ Azure [learnings](#azure-learnings).
 - [ ] Review and gain experience with topics in [Best Practices With Generics And Collections](https://www.codejava.net/java-core/collections/18-java-collections-and-generics-best-practices) from codejava.net.
 - [ ] Java: Investigate [Rest-assured](https://rest-assured.io/) and [rest-assured github](https://github.com/rest-assured/rest-assured/wiki/GettingStarted) - a test framework library 'for REST built on HTTPBuilder' for Java.
 - [ ] Investigate [replit.com](https://replit.com)'s unit testing tool.
-- [ ] React Lifecycle: I have a vague recollection of how this works but need to review for an upcoming project.
 - [ ] JS Promises: I need to brush up on Promises.
 - [ ] CSS 3: When overlapped objects must have a transparency or alternate color assignment, what CSS property should be used? See [cssbattle 15](https://cssbattle.dev/play/15) for an example.
 - [ ] Mocking for unit testing in AndroidStudio.
@@ -40,6 +40,7 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
+- [X] React Lifecycle: useEffect, setState, componentWillLoad, componentUnloaded are all special ways to execute code and manage state during, before, and after render cycles. Examples of useEffect can be found in LBJS code (post MVP).
 - [X] Handling [Errors in ExpressJS](./express-error-handling.html). I am implementing this in a live API server instance and there is work still to do.
 - [X] Study Auth0 [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
 - [X] Using 'cursor' in Java: [Cursor and Iterators](./java-cursor-iterators.html).

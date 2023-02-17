@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Friday 17-Feb-2023
+
+Knocked out a few more LBJS tasks including fixing code vulnerabilities in dependent node modules. Determining the correct set of steps to find and remove the vulnerable code was a challenge. This exercise led to some side-track investigations into a few things:
+
+- Babel: Web code compiler too that converts ECMAScript to JavaScript for current and older browser DOMs.
+- WebPack: A web component composition tool.
+- Next.js: A tool-chain for React.
+
+Vercel has a [getting started with Next.js](https://nextjs.org/learn/basics/create-nextjs-app) onling training session that I should explore some day.
+
 ## Thursday 16-Feb-2023
 
 Most of my time earlier this week has been spent on volunteer and around-the-house tasks. I will be presenting how to use "Email over ham radio" to a class of 12 hams on Saturday the 18th, and I think my presentation and plan is ready to go.
@@ -17,6 +27,8 @@ Watched a presentation on Linux on Azure. It wasn't too informative but I alread
 
 - How Microsoft changed their messaging about Linux over time, from "its cancerous" to "it's great!"
 - Just how popular Linux on Azure is, not just as an IaaS VM, but mostly as PaaS applications, services, and containers.
+
+Knocked out an example 'favicon' file for LBJS. Was a good exercise in using creativity, Paint.net for image editing, documentation, and code management using git.
 
 ## Thursday 9-Feb-2023
 
