@@ -13,7 +13,10 @@ Completed an LBJS PR to componentize a pair of nested functions within a React C
 - Put the dependent function(s) inside the 1st called component function so the params will be easily accessible.
 - A React Component farther up the tree calls useEffect hook so two render cycles are run, which meant that some parameters did not yet exist on the 1st rendering. Added a Conditional (turnary) Operator to ensure the componentized function would only be called once the dependent props were no longer *underfined*.
 
+Watched a presentation on Linux on Azure. It wasn't too informative but I already have some experience with Azure services, so some of it was review. It was interesting to learn:
 
+- How Microsoft changed their messaging about Linux over time, from "its cancerous" to "it's great!"
+- Just how popular Linux on Azure is, not just as an IaaS VM, but mostly as PaaS applications, services, and containers.
 
 ## Thursday 9-Feb-2023
 
