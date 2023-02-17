@@ -249,7 +249,6 @@ A much more capable text editor.
 Should be kept in mind for driving around text files in a native Linux viewer/editor.  
 All CLI, no UI.
 
-
 Two modes:  
 
 1. Insert/Input Mode: Enter data into a file: Tap `i` to change to INSERT mode and `--INSERT--` will be displayed at bottom of screen.  
@@ -453,7 +452,7 @@ Add an alias for IntelliJ IDEA:
 Add an alias for AndroidStudio:
 
 1. Locate file "studio.sh" probably off your home directory (or see JetBrains ToolBox if you installed Android Studio that way).
-2. Add the path to an alias and name it something like: `androidstudio ` alias androidstudio=$STEP_1_PATH`
+2. Add the path to an alias and name it something like: `androidstudio` alias androidstudio=$STEP_1_PATH`
 3. Restart your shell.
 4. Traverse to the Android project directory and type: `androidstudio .` and your project will open.
 
@@ -711,7 +710,6 @@ Components use each other: Usually on the same level or below.
 
 User Space talks to the Kernel: SysCalls used to comms between User Space and Kernel Space.
 
-
 #### Virtualization and Containerization
 
 Virtualization:
@@ -801,6 +799,8 @@ Editing how kernel boots will require low-level development skills.
 #### Summary
 
 Three primary components of Linux: `User Processes <-> Kernel <-> Hardware`
+
+Check out notes from Microsoft Reactor session [linux on azure](../continuing-education/linux-on-azure.html).
 
 ## References
 
