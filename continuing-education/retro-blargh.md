@@ -10,7 +10,15 @@ Knocked out a few more LBJS tasks including fixing code vulnerabilities in depen
 - WebPack: A web component composition tool.
 - Next.js: A tool-chain for React.
 
+Ryan approved and merged-in a few PRs so I updated the Trello board.
+
 Vercel has a [getting started with Next.js](https://nextjs.org/learn/basics/create-nextjs-app) onling training session that I should explore some day.
+
+End of week retro:
+
+- My primary focus was preparing for a training class in digital radio for the community, which was well received. This will probably be a thing a couple times per year going forward. Since I have the curriculum completed (more-or-less), future classes will take less effort to prepare for.
+- It was good to dive into challenges that appear difficult on the surface, or I assume will take a long time to resolve, because those assumptions aren't always correct. Updating dependencies in node_modules can be messy, but a little investigation and exploration enabled plugging some security holes.
+- It has been 1 year since I enrolled at Code Fellows. The curriculum allowed me to change how I approach coding, design, and troubleshooting. My experiences have expanded deeper into web development, and back into Java (which I hadn't touched in nearly 20 years). Attending CodeFellows was a good challenge and was well worth the investment.
 
 ## Thursday 16-Feb-2023
 
