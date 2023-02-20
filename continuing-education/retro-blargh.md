@@ -1,6 +1,42 @@
 # Occasional Retrospective Notes
 
-Semi-regular notes taken during my software developer journey.
+Semi-regular notes taken during my journey as a software developer.
+
+## Friday 17-Feb-2023
+
+Knocked out a few more LBJS tasks including fixing code vulnerabilities in dependent node modules. Determining the correct set of steps to find and remove the vulnerable code was a challenge. This exercise led to some side-track investigations into a few things:
+
+- Babel: Web code compiler too that converts ECMAScript to JavaScript for current and older browser DOMs.
+- WebPack: A web component composition tool.
+- Next.js: A tool-chain for React.
+
+Ryan approved and merged-in a few PRs so I updated the Trello board.
+
+Vercel has a [getting started with Next.js](https://nextjs.org/learn/basics/create-nextjs-app) onling training session that I should explore some day.
+
+End of week retro:
+
+- My primary focus was preparing for a training class in digital radio for the community, which was well received. This will probably be a thing a couple times per year going forward. Since I have the curriculum completed (more-or-less), future classes will take less effort to prepare for.
+- It was good to dive into challenges that appear difficult on the surface, or I assume will take a long time to resolve, because those assumptions aren't always correct. Updating dependencies in node_modules can be messy, but a little investigation and exploration enabled plugging some security holes.
+- It has been 1 year since I enrolled at Code Fellows. The curriculum allowed me to change how I approach coding, design, and troubleshooting. My experiences have expanded deeper into web development, and back into Java (which I hadn't touched in nearly 20 years). Attending CodeFellows was a good challenge and was well worth the investment.
+
+## Thursday 16-Feb-2023
+
+Most of my time earlier this week has been spent on volunteer and around-the-house tasks. I will be presenting how to use "Email over ham radio" to a class of 12 hams on Saturday the 18th, and I think my presentation and plan is ready to go.
+
+Completed an LBJS PR to componentize a pair of nested functions within a React Class component. After initial discovery and fiddling with the code I started to thing the effort was not going to be worth it. I took a break and thought about it, came back to it and implemented a slighly different solution that started working well. After a few short refactorings while testing, the webapp was working without errors. Key takeaways:
+
+- Refactoring the two child functions into their own React Functional Components meant passing params *through* one component just so the other component could use it.
+- Both functions were ALWAYS CALLED TOGETHER so it made sense that they should continue to be together and not broken into separate components.
+- Put the dependent function(s) inside the 1st called component function so the params will be easily accessible.
+- A React Component farther up the tree calls useEffect hook so two render cycles are run, which meant that some parameters did not yet exist on the 1st rendering. Added a Conditional (turnary) Operator to ensure the componentized function would only be called once the dependent props were no longer *underfined*.
+
+Watched a presentation on Linux on Azure. It wasn't too informative but I already have some experience with Azure services, so some of it was review. It was interesting to learn:
+
+- How Microsoft changed their messaging about Linux over time, from "its cancerous" to "it's great!"
+- Just how popular Linux on Azure is, not just as an IaaS VM, but mostly as PaaS applications, services, and containers.
+
+Knocked out an example 'favicon' file for LBJS. Was a good exercise in using creativity, Paint.net for image editing, documentation, and code management using git.
 
 ## Thursday 9-Feb-2023
 
