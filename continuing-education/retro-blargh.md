@@ -21,6 +21,12 @@ Methods of cleansing and massaging a long input string into an array:
 - Test array length to ensure minimum input is met.
 - Probably a good idea to test for other specialized characters using `string.replace(regex)` to avoid importing executable code.
 
+Reviewed Graph Data Structures:
+
+- Was able to brain dump about 50% of the details of a Graph DS.
+- I wrote-out most of the fields and other class members including those for GraphNode and GraphEdge.
+- There are some aspects of Breadth- and Depth-first Traversals that I am still shakey with so my next goal here will be to pseudocode then code and test in Java on an exercise branch.
+
 ## Monday 20-Feb-2023
 
 Approached LBJS bulk-load words via an API. There are some limitations (like only authenticated users can do this) and requirements that must be met (at least 24 words, and the database should not be polluted with duplicate words for a single owner) that results in some design and slightly more complex implementation details. First idea was okay and leveraged Promises nicely, but the logic did not work out - duplicate words were allowed. Second and third attempts were better but still some logic failures were allowing duplicates. I shouldn't have let 3 attempts go by before re-designing. Will work on this tomorrow.
