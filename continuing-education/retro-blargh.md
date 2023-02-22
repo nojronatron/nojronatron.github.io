@@ -2,6 +2,25 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Tuesday 21-Feb-2023
+
+Back to the drawing board to figure out the logic necessary to bulk-load words into a DB via an API. I was practically dreaming about this problem last night. Whiteboarding the problem took about an hour, but the resulting code works better than any of Monday's attempts. The final hangup is managing status codes and any result message. Gotta love it when the code works as expected, but the hang up is just error handling and final portion of the WRRC.
+
+I generally find HTML Forms to be fairly easy to work with, with some referencing MDN for details and some syntax. Using PUG to display a form that will accept an array of strings was a little challenging. The key takeaways:
+
+- PUG documentation is not too helpful.
+- It is very simple to tempate a form using PUG.
+- Implementing attributes to define an input as a collection in HTML is a matter of `name="name[]"` but in PUG that does not work.
+- If the input cannot be identified as an array then the API must cleanse and massage the input before attempting to use it.
+
+Methods of cleansing and massaging a long input string into an array:
+
+- Test for empty or invalid type (as best is possible is JS) using `typeof myVar !== 'string'` etc.
+- Use `String.prototype.replace(regex, '')` to replace spaces with nothing, as an alternative to an iterator that does `trim()` to each item.
+- Use `String.prototype.split(delimiter)` to break the string into an array.
+- Test array length to ensure minimum input is met.
+- Probably a good idea to test for other specialized characters using `string.replace(regex)` to avoid importing executable code.
+
 ## Monday 20-Feb-2023
 
 Approached LBJS bulk-load words via an API. There are some limitations (like only authenticated users can do this) and requirements that must be met (at least 24 words, and the database should not be polluted with duplicate words for a single owner) that results in some design and slightly more complex implementation details. First idea was okay and leveraged Promises nicely, but the logic did not work out - duplicate words were allowed. Second and third attempts were better but still some logic failures were allowing duplicates. I shouldn't have let 3 attempts go by before re-designing. Will work on this tomorrow.
