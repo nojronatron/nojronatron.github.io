@@ -2,6 +2,22 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Wednesday 22-Feb-2023
+
+Back to code challenges:
+
+- [X] Work through pseudo-coding a Graph datastructure.
+- [ ] Work through pseudo-coding Graph traversals (in process).
+
+Some takeaways from working on code challenges:
+
+- Still slow but drawings are easier to understand and are therefore allowing me to write better pseudocode.
+- HashSet in Java implements the Iterator interface so using `hasNext()` to test for an item, and then `next().value` to get the value is helpful to rapidly find whatever value is 'next' in a specialized Collection like a HashSet.
+
+Worked through interview preparation tasks. I need to review some documentation from back in June and July '22 to refine my preparatory tasks, resume, and etc.
+
+The live stream about Windows Subsystem for Linux was canceled.
+
 ## Tuesday 21-Feb-2023
 
 Back to the drawing board to figure out the logic necessary to bulk-load words into a DB via an API. I was practically dreaming about this problem last night. Whiteboarding the problem took about an hour, but the resulting code works better than any of Monday's attempts. The final hangup is managing status codes and any result message. Gotta love it when the code works as expected, but the hang up is just error handling and final portion of the WRRC.
