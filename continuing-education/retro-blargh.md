@@ -1348,13 +1348,13 @@ const sumWithInitial = array1.reduce(
 );
 ```
 
-Step Through::
+Step Through:
 
-Iteration 1: (previousValue = initialValue = 0, currentValue = 1) => (0+1, 0)
-Iteration 2: (previousValue=1, currentValue=2) => (1+2, 0)
-Iteration 3: (previousValue=3, currenValue=3) => (3+3, 0)
-Iteration 3: (previousValue=6, currentValue=4) => (6+4, 0)
-Return: 10
+- Iteration 1: (previousValue = initialValue = 0, currentValue = 1) => (0+1, 0)
+- Iteration 2: (previousValue=1, currentValue=2) => (1+2, 0)
+- Iteration 3: (previousValue=3, currenValue=3) => (3+3, 0)
+- Iteration 3: (previousValue=6, currentValue=4) => (6+4, 0)
+- Return: 10
 
 ## Tuesday 18-Oct-2022
 
