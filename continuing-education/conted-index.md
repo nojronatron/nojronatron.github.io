@@ -40,6 +40,7 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
+- [X] Windows Subsystem for Linux [WSL Notes](./windows-subsystem-for-linux.html).
 - [X] React Lifecycle: useEffect, setState, componentWillLoad, componentUnloaded are all special ways to execute code and manage state during, before, and after render cycles. Examples of useEffect can be found in LBJS code (post MVP).
 - [X] Handling [Errors in ExpressJS](./express-error-handling.html). I am implementing this in a live API server instance and there is work still to do.
 - [X] Study Auth0 [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
@@ -71,6 +72,7 @@ Azure [learnings](#azure-learnings).
 
 ### Azure Learnings
 
+- Managing and [Reporting on Costs and Billing in Azure](./azure-reporting-costs.md).
 - Microsoft Identity Platform is integrated into Azure: [Microsoft Identity Platform](./azure-identity-platform.html).
 - DevOps for Microsoft Platforms (an overview, introduction really)[MSFT Platform DevOps](./msft-platform-devops.html).
 - [Continuous test and validating Azure Workloads](./azure-testing-mission-critical-apps.html).

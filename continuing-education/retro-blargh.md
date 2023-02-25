@@ -2,6 +2,69 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Friday 23-Feb-2023
+
+Thursday was spent designing, testing, fiddling, redesigning, coding, and testing Graph class. The key takeaways are:
+
+- When using REFERENCE types, use them as such do NOT treat them as value types. For example, creating a reference to an existing object, then changing it, changes it at the memory location, so it is not necessary to copy it back.
+- REF types must be cloned in order to break the link from origin to a new, current version. Data will be the same, but the memory references will NOT.
+- When using REF types always use `.equals(obj)` instead of `==` operator.
+- If necessary, add custom `.equals(obj)` and operator overrides so the JVM can properly differentiate same-for-same values within custom objects (otherwise it will always see them as different memory location mappings regardless of values stored in them).
+
+Friday morning I made the mistake of trying to change Themes to get something closer to VS Code's Night Owl custom Theme. There is one, but it is NOT the same. Also, I don't understand how changing themes in IntelliJ can possibly be fun. Couldn't they have just added a one-stop-shop to import, use, change, and edit UI Themes?
+
+I continued with more redesigning and test-driven development with the Graph Class. Key Takeaways:
+
+- Do *not* try to use a `for(...)` or `for(each)` loops when items are going to be removed from a Collection.
+- To remove item(s) from a Collection use an Iterator: Check for `hasNext()`, reassign REF using `next()`, and removing the last item returned with `remove()`.
+
+## Wednesday 22-Feb-2023
+
+Back to code challenges:
+
+- [X] Work through pseudo-coding a Graph datastructure.
+- [ ] Work through pseudo-coding Graph traversals (in process).
+
+Some takeaways from working on code challenges:
+
+- Still slow but drawings are easier to understand and are therefore allowing me to write better pseudocode.
+- HashSet in Java implements the Iterator interface so using `hasNext()` to test for an item, and then `next().value` to get the value is helpful to rapidly find whatever value is 'next' in a specialized Collection like a HashSet.
+
+Worked through interview preparation tasks. I need to review some documentation from back in June and July '22 to refine my preparatory tasks, resume, and etc.
+
+The live stream about Windows Subsystem for Linux was canceled.
+
+## Tuesday 21-Feb-2023
+
+Back to the drawing board to figure out the logic necessary to bulk-load words into a DB via an API. I was practically dreaming about this problem last night. Whiteboarding the problem took about an hour, but the resulting code works better than any of Monday's attempts. The final hangup is managing status codes and any result message. Gotta love it when the code works as expected, but the hang up is just error handling and final portion of the WRRC.
+
+I generally find HTML Forms to be fairly easy to work with, with some referencing MDN for details and some syntax. Using PUG to display a form that will accept an array of strings was a little challenging. The key takeaways:
+
+- PUG documentation is not too helpful.
+- It is very simple to tempate a form using PUG.
+- Implementing attributes to define an input as a collection in HTML is a matter of `name="name[]"` but in PUG that does not work.
+- If the input cannot be identified as an array then the API must cleanse and massage the input before attempting to use it.
+
+Methods of cleansing and massaging a long input string into an array:
+
+- Test for empty or invalid type (as best is possible is JS) using `typeof myVar !== 'string'` etc.
+- Use `String.prototype.replace(regex, '')` to replace spaces with nothing, as an alternative to an iterator that does `trim()` to each item.
+- Use `String.prototype.split(delimiter)` to break the string into an array.
+- Test array length to ensure minimum input is met.
+- Probably a good idea to test for other specialized characters using `string.replace(regex)` to avoid importing executable code.
+
+Reviewed Graph Data Structures:
+
+- Was able to brain dump about 50% of the details of a Graph DS.
+- I wrote-out most of the fields and other class members including those for GraphNode and GraphEdge.
+- There are some aspects of Breadth- and Depth-first Traversals that I am still shakey with so my next goal here will be to pseudocode then code and test in Java on an exercise branch.
+
+## Monday 20-Feb-2023
+
+Approached LBJS bulk-load words via an API. There are some limitations (like only authenticated users can do this) and requirements that must be met (at least 24 words, and the database should not be polluted with duplicate words for a single owner) that results in some design and slightly more complex implementation details. First idea was okay and leveraged Promises nicely, but the logic did not work out - duplicate words were allowed. Second and third attempts were better but still some logic failures were allowing duplicates. I shouldn't have let 3 attempts go by before re-designing. Will work on this tomorrow.
+
+I knocked out several interview preparation tasks and took some time out to reorganize and re-prioritize work items.
+
 ## Friday 17-Feb-2023
 
 Knocked out a few more LBJS tasks including fixing code vulnerabilities in dependent node modules. Determining the correct set of steps to find and remove the vulnerable code was a challenge. This exercise led to some side-track investigations into a few things:
@@ -1301,13 +1364,13 @@ const sumWithInitial = array1.reduce(
 );
 ```
 
-Step Through::
+Step Through:
 
-Iteration 1: (previousValue = initialValue = 0, currentValue = 1) => (0+1, 0)
-Iteration 2: (previousValue=1, currentValue=2) => (1+2, 0)
-Iteration 3: (previousValue=3, currenValue=3) => (3+3, 0)
-Iteration 3: (previousValue=6, currentValue=4) => (6+4, 0)
-Return: 10
+- Iteration 1: (previousValue = initialValue = 0, currentValue = 1) => (0+1, 0)
+- Iteration 2: (previousValue=1, currentValue=2) => (1+2, 0)
+- Iteration 3: (previousValue=3, currenValue=3) => (3+3, 0)
+- Iteration 3: (previousValue=6, currentValue=4) => (6+4, 0)
+- Return: 10
 
 ## Tuesday 18-Oct-2022
 
