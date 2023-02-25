@@ -2,6 +2,22 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Friday 23-Feb-2023
+
+Thursday was spent designing, testing, fiddling, redesigning, coding, and testing Graph class. The key takeaways are:
+
+- When using REFERENCE types, use them as such do NOT treat them as value types. For example, creating a reference to an existing object, then changing it, changes it at the memory location, so it is not necessary to copy it back.
+- REF types must be cloned in order to break the link from origin to a new, current version. Data will be the same, but the memory references will NOT.
+- When using REF types always use `.equals(obj)` instead of `==` operator.
+- If necessary, add custom `.equals(obj)` and operator overrides so the JVM can properly differentiate same-for-same values within custom objects (otherwise it will always see them as different memory location mappings regardless of values stored in them).
+
+Friday morning I made the mistake of trying to change Themes to get something closer to VS Code's Night Owl custom Theme. There is one, but it is NOT the same. Also, I don't understand how changing themes in IntelliJ can possibly be fun. Couldn't they have just added a one-stop-shop to import, use, change, and edit UI Themes?
+
+I continued with more redesigning and test-driven development with the Graph Class. Key Takeaways:
+
+- Do *not* try to use a `for(...)` or `for(each)` loops when items are going to be removed from a Collection.
+- To remove item(s) from a Collection use an Iterator: Check for `hasNext()`, reassign REF using `next()`, and removing the last item returned with `remove()`.
+
 ## Wednesday 22-Feb-2023
 
 Back to code challenges:
