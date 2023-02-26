@@ -2,6 +2,20 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Saturday 24-Feb-2023
+
+Worked on a few administrative and interview prep tasks, and watched an Azure Friday episode about billing: Monitoring and Reporting. This was timely since I recently started getting charges for a couple of AppServices (dimes and quarters worth, so at least it is small).
+
+Working through a tougher Java challenge: How to get the weight between multiple vertices. Key takeaways:
+
+- Generally speaking, a good traversal mechanism is Depth First, because reaching another Vertex requires searching the connected Edges to the Root (starting) Vertex.
+- Between two neighoring Vertices (on the same Edge) the algorithm just needs to get that one Edge Weight value and return it.
+- When there are Vertices between the root and target Vertices, some tracking mechanism is necessary.
+- The tracking mechanism needs to be able to 'back track' in case a Leaf (Vertex with no Edges) is reached.
+- Utilizing a recursive method is not a good choice because the Target Vertex might be found before all recursions have completed, and depending on exactly how the "back-out" is coded, this could cause the correct list of Edges to be removed (corrupt bread crumbs).
+
+I'll take a look at this again tomorrow, and I'll use a Stack rather than recursion to solve it. This way I'll have full control over the exit from the search pattern.
+
 ## Friday 23-Feb-2023
 
 Thursday was spent designing, testing, fiddling, redesigning, coding, and testing Graph class. The key takeaways are:
