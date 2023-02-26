@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Sunday 25-Feb-2023
+
+Revisited updating dependencies of a React-JS webapp. Every so often vulnerabilities are found in node-js modules that probably should be cleaned up. Good news is, there are bug-bounties and free-lancers that find these vulnerabilities, so they get fixed in the OSS world pretty rapidly. Now the problem is for the implementers (dependecy dependers?) to update the node modules and redploy apps to avoid these attach vectors, for the sake of their own deployment, and their users.
+
+Key takeaways:
+
+- You *must* use `npm audit` to make a list of installed, vulnerable packages and dependencies.
+- You *could* go in and edit package.json and package-lock.json to surgically fix modules' version requirements and those of their dependencies.
+- However you *should* use `npm update package-name` instead to update a specific top-level dependency.
+- Running `npm audit fix` is also an option and will be helpful to automatically resolve some (or all if you're luck) vulnerable dependencies.
+- On occasion you will *need to* go into package-lock.json and update vulnerable dependencies' versions and remove references to the vulnerable module, as well as delete the entire node_modules directory and all of its children. Follow that with `npm audit fix` again to force acquisition of the correct dependecy/ies.
+
 ## Saturday 24-Feb-2023
 
 Worked on a few administrative and interview prep tasks, and watched an Azure Friday episode about billing: Monitoring and Reporting. This was timely since I recently started getting charges for a couple of AppServices (dimes and quarters worth, so at least it is small).
