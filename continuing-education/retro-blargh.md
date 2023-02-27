@@ -14,6 +14,20 @@ Key takeaways:
 - Running `npm audit fix` is also an option and will be helpful to automatically resolve some (or all if you're luck) vulnerable dependencies.
 - On occasion you will *need to* go into package-lock.json and update vulnerable dependencies' versions and remove references to the vulnerable module, as well as delete the entire node_modules directory and all of its children. Follow that with `npm audit fix` again to force acquisition of the correct dependecy/ies.
 
+Plenty of bouncing around today, between the Graph code challenge problem solving design efforts, and catching-up on LBJS PRs and enqueued work.
+
+LBJS: We are very close to a point where we can launch V1 front-end and utilize the deployed API server to get existing gameboards if needed. We have means to authorize for adding words and creating gameboards all on the backend, so custom requests can be made. There are just a few bugs and a couple loose ends to resolve on the front end before pushing the latest to Netlify and basically having V1 ready-to-go for players.
+
+I realized that instead of manually editing package.json and package-lock.json files I can use npm to manipulate dependencies safely. There are a few situations where manual editing is still required, but a lot of the complexity is gone now that I've worked out and refined a step-by-step.
+
+Promises made a return, related to an Axios call in a useEffect on a React site. Some takeaways:
+
+- When possible, use the 'syntactic sugar' of `async` and `await` instead of Promises, they are just easier.
+- In cases where async-await is not possible, remember that a Promise returns a 'pending' state to the JS Event Loop, and is placed in a separate structure until the Promise is Fulfilled or Rejected.
+- The three possible states of a Promise are 'Rejected' (Failed operation), 'Fulfilled' (Promise resolved successfully), or 'Pending' (Initial state - neight Rejected nor Fulfilled).
+
+See [conted index](./conted-index.html) for an entry about Promises.
+
 ## Saturday 24-Feb-2023
 
 Worked on a few administrative and interview prep tasks, and watched an Azure Friday episode about billing: Monitoring and Reporting. This was timely since I recently started getting charges for a couple of AppServices (dimes and quarters worth, so at least it is small).
