@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Tuesday 28-Feb-2023
+
+It's snowing again.
+
+Worked on researching interesting job openings, and exercised my brain with some q-and-a practice early this morning. It's a good wake-up exercise once I get some food and a cup of coffee in me. :coffee: :smiley:
+
+Snow stopped falling, everything is drying out now.
+
+Took at a look at some job openings, more research is needed.
+
+Decided to take a peek at the Portfolio webapp project from April last year. There were many issues, partly due to deprecated and vulnerable versions of modules, and partly due to various CSS and content problems. I took some time out to fix all of that and deployed a working version to Netlify. I added work items of things to fix and update to make this portfolio webapp a bit more appealing and useful.
+
 ## Monday 27-Feb-2023
 
 Continued working with Graph data structure and completed the challenge: Write a function for a directed, complete graph, that finds a total value of a path between two vertices. Key takeaways:
