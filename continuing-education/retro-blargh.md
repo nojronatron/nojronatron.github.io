@@ -2,7 +2,17 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
-## Sunday 25-Feb-2023
+## Monday 27-Feb-2023
+
+Continued working with Graph data structure and completed the challenge: Write a function for a directed, complete graph, that finds a total value of a path between two vertices. Key takeaways:
+
+- Attempts to use depth-first traversal were challenging. It could be that my design was not careful enough. At the time it 'felt wrong' which prompted me to do various whiteboard sessions.
+- Utilizing the adjacency collection was an early idea that I should have explored on the whiteboard earlier on. It ended up being a reasonable way to solve the problem.
+- When developing a solution, look at the true/false deicisions that must be made and develop small functions that just manage that data first, then organize a larger method that can call the correct function(s) at the correct time, given the circumstances/context.
+- When tracking values, consider whether immediately summing or concatenating them is necessary, or if it is better to store them in another data structure so they can be parsed later. In this case, it was best to push possible values into a Stack, and when values ended up being incorrect, they could be 'popped' back out (breadcrumbs). They can also be easily ( O(1) ) popped within an iterator to sum/concatenate them later.
+- Recursive functions for depth-mining are not always the right answer. Part of the problem is when the recursed functions pop off the stack, they could alter the state that actually needs to be maintained. In these cases use multiple functions to handle small portions of the implementation, and manage the state/data in a higher-level function or an owning Class instead.
+
+## Sunday 26-Feb-2023
 
 Revisited updating dependencies of a React-JS webapp. Every so often vulnerabilities are found in node-js modules that probably should be cleaned up. Good news is, there are bug-bounties and free-lancers that find these vulnerabilities, so they get fixed in the OSS world pretty rapidly. Now the problem is for the implementers (dependecy dependers?) to update the node modules and redploy apps to avoid these attach vectors, for the sake of their own deployment, and their users.
 
@@ -28,7 +38,9 @@ Promises made a return, related to an Axios call in a useEffect on a React site.
 
 See [conted index](./conted-index.html) for an entry about Promises.
 
-## Saturday 24-Feb-2023
+Ryan got back to me about some updates I supplied to him earlier in the day. He raised a good question about a PR that I submitted, so I went in and fixed it. I need to watch for obvious code-line omissions, kinda like 'copy-pasta' problems.
+
+## Saturday 25-Feb-2023
 
 Worked on a few administrative and interview prep tasks, and watched an Azure Friday episode about billing: Monitoring and Reporting. This was timely since I recently started getting charges for a couple of AppServices (dimes and quarters worth, so at least it is small).
 
@@ -42,7 +54,7 @@ Working through a tougher Java challenge: How to get the weight between multiple
 
 I'll take a look at this again tomorrow, and I'll use a Stack rather than recursion to solve it. This way I'll have full control over the exit from the search pattern.
 
-## Friday 23-Feb-2023
+## Friday 24-Feb-2023
 
 Thursday was spent designing, testing, fiddling, redesigning, coding, and testing Graph class. The key takeaways are:
 
