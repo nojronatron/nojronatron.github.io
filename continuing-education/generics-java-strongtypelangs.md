@@ -28,6 +28,8 @@ Raw Types: No type arguments are included with the instantiation of the Generic 
 
 Methods use Type Inference to process generic parameters.
 
+Non-generic Classes support generic Methods.
+
 ### Java Primitives
 
 Primitives allocate less memory than Types.
@@ -118,7 +120,7 @@ Multiple Bounded Types in the Type Parameter list are sensitive to the inheritan
 
 Use the OOP rule 'IS A' to determine if a primitive or Type will be allowed in a Bounded Types listing, and what order it should be within the Bounded TYpes listing.
 
-*Note*: Integer and Double are NOT subtypes of Number, it is actually *the other way around*. Think of it this way: What is the common parent of the Types? If there is no common parent, than the Types will not be compatible with the Bounded Types list. Oracle Docs say to look at 'Wildcards and Subtyping' for details about this behavior and how to work with it.
+*Note*: Integer and Double are subtypes of Number, but when used with Generics, the generic class T, whether Integer or Double, are not. Think of it this way: What is the common parent of the Genericized Type? If there is no common parent, than the Types will not be compatible with the Bounded Types list. Oracle Docs say to look at 'Wildcards and Subtyping' for details about this behavior and how to work with it.
 
 ### Primitive Operators in Java
 
@@ -144,6 +146,176 @@ public class Juice extends Liquid {
 public class Juice implements Pourable {
   // extend Interface Pourable here
   ...
+}
+```
+
+### Java Type Inference
+
+The Java Compiler uses a Type Inference Algorithm that:
+
+- Figures out the type argument(s) necessary for a declaration.
+- Selects *the most specific* type argument that works for all arguments.
+- Uses invokation arguments, target types, and obvious expected return types of a Member to determine inferred Type.
+- Does NOT consider returns or outputs later in the code to determine inferred Type.
+
+Use the diamond `<>` symbol when instantiating a new generic class to avoid incidentally referencing the Raw Type.
+
+Constructors can use Generics as well, and Type Inference can figure out the Type the same as described above.
+
+### Type Witness Notation
+
+When declaring a new Generic instance, the common syntax is:
+
+```java
+// taken directly from Oracle's Java docs on generic type inference
+static <T> List<T> emptyList();
+List<String> myList = Collections.emptyList();
+```
+
+Type Witnesses are placed in front of the instance declaration for readability:
+
+```java
+static<T> List<T> emptyList();
+List<String> myList = Collections.<String>emptyList(); // <--
+```
+
+When Type Witnesses are not used, the compiler relies on Type Inference algorithm to figure it out.
+
+Another example where Type Inference will chose 'Object' incorrectly unless a Type Witness is included:
+
+```java
+// starter method code
+static <T> List<T> emptyList();
+
+// will not compile in JSE 8 and earlier because the Type cannot be inferred in the invocation or return
+processStringList(Collections.emptyList());
+
+// will compile because the Witness Notation was included
+processStringList(Collections.<String>emptyList());
+```
+
+### Wildcards in Java Generics
+
+Wildcard Syntax: `?`
+
+Wildcard is a placeholder for an 'unknown type'.
+
+Can be used as a Type in a parameter, field, or local variable.
+
+Avoid using wildcards:
+
+- In a return type. It is possible but the most specific Type should be declared for a return Type.
+
+#### Upper Bounded Wildcards
+
+- Relax restrictions on a variable.
+- Usage: `List<? extends String>`
+- Meaning: 'Wildcard Extends UpperBoundType'
+- Keyword 'extends' applies to both extending a Class and 'implements' an Interface.
+
+```Java
+// bounded to List<String>
+public static void process(List<Number> list) {
+  ...
+}
+// less restrictive, allowing subtypes including Integer
+public static void process(List<? extends Number> list) {
+  // this can accept a list of any sub-class of Number
+}
+```
+
+#### Unbounded Wildcards
+
+- AKA 'Unknown Type'
+- Usage: `List<?>`
+- Meaning: Method will use functionality provided by Object class.
+
+Example of a Class that does NOT require type T:
+
+```java
+public static void printList(List<?> list) {
+  // list.size() interrogates a List property size (length) 
+  // Types stored within the Collection are ignored
+  System.out.println("list size is %s%n", list.size());
+  // also note that any Type that has a toString method can be accessed
+  for (Object item: list) {
+    System.out.println("%s ", item);
+  }
+  System.out.println();
+}
+```
+
+If `Object` were used instead of `?` the iterator would provide Object instances instead of returing the String representation of the Type actually stored at each element.
+
+There are [Guidelines](https://docs.oracle.com/javase/tutorial/java/generics/wildcardGuidelines.html) and if/when Wildcard should be used.
+
+#### Lower Bounded Wildcards
+
+- Restricts the unknown Type to be a specific 'Super Type' of that Type.
+- Usage: `List<? super String>`
+- Meaning: 'Wildcard IS A Super Type of LowerBoundType'
+- Keyword 'super' ensures the Lower Bound Type is the most derived, and any parent Classes to the Lower Bound Type are acceptable.
+
+```java
+public void printList(List<Integer> items) {
+  //  limited to an Integer Type
+}
+
+public void printList(List<? super Integer>) {
+  //  supports Integer, Number, and Object,
+  //  anything that holds Integer values
+}
+```
+
+#### Wildcards and Subtyping
+
+When one Class A 'IS A' Class B (such as through the 'extends' keyword), the extended Class is the super, and the extending Class is the inheritor.
+
+The documentation example states:
+
+```java
+class A {}
+class B extends A {}
+B b = new B();
+A a = b; // possible because B extends A
+```
+
+BUT when used as a Type Parameter:
+
+```java
+List<B> lb = new ArrayList<>();
+List<A> la = lb; // compile-time error
+```
+
+The problem is `List<?>` is the common parent, not `A`.
+
+Therefore, use an upper-bounded wildcard:
+
+```java
+List<? extends Integer> intList = new ArrayList<>();
+List<? extends Number> numList = intList(); // OK
+```
+
+This is because `List<? extends Integer>` is a subtype of `List<? extends Number>`.
+
+#### Wildcard Capture and Helper Methods
+
+The compiler infers a particular type from the code when using Wildcards.
+
+It is probably a good idea to assume the Compiler will guess the type is 'Object' if it isn't made apparent.
+
+A private helper method should be implemented so Type inferrence will work properly (from the Oracle Docs):
+
+```java
+public class WildcardFixed {
+  void foo(List<?> i) {
+    fooHelper(i);
+  }
+
+  // by convention name Helper Methods after the member they are for
+  private <T> void wildcardFixedHelper(List<T> list) {
+    list.set(0, list.get(0));
+  }
 }
 ```
 
