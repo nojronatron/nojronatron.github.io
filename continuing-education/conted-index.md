@@ -33,14 +33,14 @@ Azure [learnings](#azure-learnings).
 - [ ] [Promises](https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript) in JavaScript.
 - [ ] CSS 3: When overlapped objects must have a transparency or alternate color assignment, what CSS property should be used? See [cssbattle 15](https://cssbattle.dev/play/15) for an example.
 - [ ] Mocking for unit testing in AndroidStudio.
-- [ ] GENERICS: Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java) and then work through [Baeldung](https://www.baeldung.com/java-generics) to help me.  
+generics-in-java) and then work through [Baeldung](https://www.baeldung.com/java-generics) to help me.  
 - [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)).  
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
 - [ ] Wiring Repositories in [Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa).
 
 ### Notes And Takeaways from Research and Experience
 
-- [X] Microsoft Graph [SDK, API](./azure-graphapi-dotnet.html).
+- [ ] [Generics](./generics-java-strongtypelangs.html): Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/- [X] Microsoft Graph [SDK, API](./azure-graphapi-dotnet.html).
 - [X] Windows Subsystem for Linux [WSL Notes](./windows-subsystem-for-linux.html).
 - [X] React Lifecycle: useEffect, setState, componentWillLoad, componentUnloaded are all special ways to execute code and manage state during, before, and after render cycles. Examples of useEffect can be found in LBJS code (post MVP).
 - [X] Handling [Errors in ExpressJS](./express-error-handling.html). I am implementing this in a live API server instance and there is work still to do.
