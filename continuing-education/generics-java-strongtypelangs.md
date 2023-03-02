@@ -30,6 +30,8 @@ Methods use Type Inference to process generic parameters.
 
 Non-generic Classes support generic Methods.
 
+Due to Type Erasure, generics incur no runtime overhead, ensure type safety, and ensure only ordinary classes, interfaces, and methods will be produced in bytecode.
+
 ### Java Primitives
 
 Primitives allocate less memory than Types.
@@ -162,6 +164,8 @@ Use the diamond `<>` symbol when instantiating a new generic class to avoid inci
 
 Constructors can use Generics as well, and Type Inference can figure out the Type the same as described above.
 
+During compilation the 'T' is replaced with 'Object' during Type Erasure (below).
+
 ### Type Witness Notation
 
 When declaring a new Generic instance, the common syntax is:
@@ -204,7 +208,9 @@ Can be used as a Type in a parameter, field, or local variable.
 
 Avoid using wildcards:
 
-- In a return type. It is possible but the most specific Type should be declared for a return Type.
+- In a return type. It is possible but the most specific Type should be declared for readability sake.
+
+Bounded Wildcards are compiled-down to the bounded Type Parameter during Type Erasure (below).
 
 #### Upper Bounded Wildcards
 
@@ -317,6 +323,86 @@ public class WildcardFixed {
     list.set(0, list.get(0));
   }
 }
+```
+
+#### Guidelines for Wildcard use (Java)
+
+Variables provide one of 2 functions:
+
+- `In`: Serves data to the code. An IN parameter.
+- `Out`: Holds data to be used elsewhere. An OUT parameter.
+
+The In-or-Out-Principle:
+
+- IN variable is defined with an *upper bounded wildcard* using 'extends' keyword.
+- OUT variable is defined with a *lower bounded wildcard* using 'super' keyword.
+- Use UNBOUNDED when: IN can be accessed using defined methods in Object class.
+- Do NOT USE A WILDCARD in cases where code needs to access *both IN and OUT* variables.
+
+Additionally:
+
+- AVOID using wildcard in a Method Return Type (complicates code).
+
+### Type Erasure in Java
+
+See the docs for details. The following are just a few things to watch out for:
+
+- The Compiler *might* create a synthetic method (aka Bridge Method), which could throw a ClassCastException. Avoid using Raw Types to avoid this.
+- When Bridge Methods are created, Method Signatures could no longer match, which could throw a ClassCastException.
+- Reifiable Types: Type information is fully available at Runtime (primitives, raw types, unbound wildcard invokations).
+- Non-reifiable Types: Type information missing due to Type Erasure.
+
+Non-reifiable Types example:
+
+```java
+public void addList(List<String> list) {...}
+public void addList(List<Integer> list) {...}
+// JVM cannot tell difference because these are Non-reifiable Types
+```
+
+Avoid using non-reifiable Types:
+
+- In `instanceof` statements.
+- As an element in an array.
+
+Heap Pollution:
+
+- A variable of a parameterized type refers to an object that is *not of that parameterized type*.
+- An *unchecked warning* situation.
+- Code contains mixed raw types and parameterized types.
+- Code performs unchecked casts.
+
+Possibly good advice: If you find yourself using ___, consider rewriting your code to avoid non-reifiable Types or incorrectly handling casts:
+
+- `@SafeVarargs`: An annotation asserts the implementation will not improperly handle varargs formal parameter.
+- `@SuppressWarnings({"unchecked", "varargs"})`: Suppresses unchecked and varargs warnings. Not advisable.
+
+### Java Generics Restrictions
+
+Things you cannot do with Java Generics:
+
+- Instantiate using primitive types. Instead of `char` use `Character`, etc.
+- Create instances of Type parameters. The Type Parameter is a hint for the compiler, not a concrete Type.
+- Declare static fields using Type parameters. Static fields are class-level variables.
+- Use casts or `instanceof` with parameter types. Type Erasure makes this an impossible execution at runtime.
+- Create Arrays of parmeterized types. A list of a list cannot be an Array of Objects containling List of type T.
+- Create, Catch, or Throw Objects of Parameterized types. Generic *Classes* cannot extend `Throwable` Class directly or indirectly.
+- Overload a method where the formal parameter types of each overload erase to the same raw type.
+
+*Note*: A method *can* throw a placeholder type e.g. `public void parse(File file) throws T {...}`.
+
+*Note*: Method overriding *must* use type parameters that won't cause the methods to have the same signature after Type Erasure.
+
+```java
+// before type erasure
+public void print(Set<String> set) {...}
+public void print(Set<Integer> set) {...}
+```
+
+```java
+// after type erasure
+public void print(Set set) {...}
+public void print(Set set) {...}
 ```
 
 ### Common Naming Conventions (Java SE 8+)
