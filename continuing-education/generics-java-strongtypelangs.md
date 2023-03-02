@@ -63,7 +63,7 @@ public class DSNode<T> {
 }
 ```
 
-*Note*: Primitives can then be used as the Type in the Generic Class, Interface, or Method.
+*Note*: Primitives can then be used as the Type within the Generic Class, Interface, or Method.
 
 ```java
 int myValue = 11;
@@ -347,7 +347,7 @@ Additionally:
 
 See the docs for details. The following are just a few things to watch out for:
 
-- The Compiler *might* create a synthetic method (aka Bridge Method), which could throw a ClassCastException. Avoid using Raw Types to avoid this.
+- The Compiler *might* create a synthetic method (aka Bridge Method), which could throw a ClassCastException. Avoid using Raw Types to avoid this situation.
 - When Bridge Methods are created, Method Signatures could no longer match, which could throw a ClassCastException.
 - Reifiable Types: Type information is fully available at Runtime (primitives, raw types, unbound wildcard invokations).
 - Non-reifiable Types: Type information missing due to Type Erasure.
@@ -381,13 +381,13 @@ Possibly good advice: If you find yourself using ___, consider rewriting your co
 
 Things you cannot do with Java Generics:
 
-- Instantiate using primitive types. Instead of `char` use `Character`, etc.
-- Create instances of Type parameters. The Type Parameter is a hint for the compiler, not a concrete Type.
-- Declare static fields using Type parameters. Static fields are class-level variables.
-- Use casts or `instanceof` with parameter types. Type Erasure makes this an impossible execution at runtime.
+- Instantiate using primitive types. *Instead* of `char` use `Character`, etc.
+- Create instances of Type parameters. The *Type Parameter is a hint* for the compiler, not a concrete Type.
+- Declare static fields using Type parameters. Static fields are *class-level variables*.
+- Use casts or `instanceof` with parameter types. Type Erasure makes this impossible execution at runtime.
 - Create Arrays of parmeterized types. A list of a list cannot be an Array of Objects containling List of type T.
 - Create, Catch, or Throw Objects of Parameterized types. Generic *Classes* cannot extend `Throwable` Class directly or indirectly.
-- Overload a method where the formal parameter types of each overload erase to the same raw type.
+- Overload a method where the formal parameter types of each overload get 'erased' to the same raw type.
 
 *Note*: A method *can* throw a placeholder type e.g. `public void parse(File file) throws T {...}`.
 
