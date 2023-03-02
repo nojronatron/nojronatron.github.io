@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Wednesday 1-Mar-2023
+
+Attended a seminar on Microsoft Graph API and SDK for DotNET. Microsoft 365 is building features and functionality on top of Azure services and the DotNET platform. Microsoft Graph allows querying for "me" data, meaning the API endpoint root is "me" and after authorization, the REST methods allow calling for calendar, email, task, and other data. MS Reactor will be holding more sessions about [Microsoft Graph](./azure-graphapi-dotnet.html) in the coming days and weeks.
+
+Reviewed [Java Generics](./generics-java-strongtypelangs.html) on Oracle's Java Documentation. It went into much more detail than I had expected. It made sense although it was slow going at times. In the past I ran into issues with Generics and saw some warning messages that I didn't understand, now they make sense. For starters, the Raw Types message: This means the code risks operating without type safety, and Object is used as the base Type, allowing Boxing and Unboxing to occur, and unchecked Casts, which can negatively impact performance, or allow Runtime Errors.
+
+Some other key takeaways:
+
+- Java does not allow using Operators like `<` and `>` on Types, only Primitives.
+- Bounded Types and Wildcards allow constricting or directing what Type supers or children are allowed in a Generic Class, Interface, or Member.
+- Type Erasure is used at Run Time to ensure only ordinary classes, interfaces, and methods are included in the byte code.
+
 ## Tuesday 28-Feb-2023
 
 It's snowing again.
