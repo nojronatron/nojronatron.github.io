@@ -400,11 +400,11 @@ You will want to consider the following when creating a member:
 ## Setting Up A New Java Project
 
 1. Go to the directory and mkdir the project directory you want to do.  
-1. Git Pull.
-1. gradle init
-1. Difference between an App and a Library? Apps have Main (an 'entry point').  
+1. `gradle init` and respond to questions e.g. library, java, groovy, new APIs, JUnit Jupiter.
 1. Check that correct SDK is selected (apply it) and then do a BUILD.  
 1. Check if settings.gradle is in the root
+
+*Note*: Difference between an App and a Library? Apps have Main (an 'entry point').  
 
 *Note*: Sometimes the project directory must be removed and gradle init run again.
 
@@ -471,8 +471,8 @@ Multiple Constructors can be created with differing parameter lists.
 
 ### Properties
 
-Keep Properties private.  
-Constants can be created that cannot be edited using 'final' keyword.  
+- Keep Properties private.
+- Constants can be created that cannot be edited using 'final' keyword.
 
 ```java
 public static final int MY_CONST = 1;
@@ -481,9 +481,9 @@ public static final int MY_CONST = 1;
 
 ### Overriding
 
-toString is a built-in Object method.  
-It does *not know how to work with your custom Class instances*!  
-Tell it what to do by using the `@override` decorator.  
+- toString is a built-in Object method.  
+- It does *not know* how to work with your custom Class instances!
+- Tell it what to do by using the `@override` decorator.  
 
 ```java
 class... {
@@ -575,33 +575,39 @@ Inner-Call: Calling a method from within a method.
 
 ### Linked List Terminology
 
-LL is a Data STructure that contains references to other linked nodes.  
-Links are called NEXT.  
-Values stored in LL Nodes are the Data (State).  
-TreeNode has a Left and a Right (value or methods?).  
-Values stored in Nodes can be Objects, Primatives, Methods, Files, etc.  
+- LL is a Data STructure that contains references to other linked nodes.  
+- Links are called NEXT.  
+- Values stored in LL Nodes are the Data (State).  
+- TreeNode has a Left and a Right (value or methods?).  
+- Values stored in Nodes can be Objects, Primatives, Methods, Files, etc.  
 
 #### Doubly Linked List
 
-Tracks Next  
-Tracks Previous  
-These are NOT ALLOWED here because the technical interviews are mostly Single-Linked Lists.
+- Tracks Next  
+- Tracks Previous  
+- These are NOT ALLOWED here because the technical interviews are mostly Single-Linked Lists.
 
 ### Singly Linked List
 
-Track a REF to Next  
-Head: REF to FIRST Node  
-Current: Currently REF'd Node, used to traverse Linked Lists  
-Tail: REF to the Last Node  
+- Track a REF to Next
+- Head: REF to FIRST Node  
+- Current: Currently REF'd Node, used to traverse Linked Lists  
+- Tail: REF to the Last Node  
 
 ### Drawing Linked Lists
 
-Use bubbles!  
-Connect them with one-way arrows!  
-Remember that nothing is NULL  
-Linked List Class: Contains all of the functionality to adding, moving, removing LL Nodes.  
-LL Node: Data and Node Next properties.  
-Traverse a LL: Method that takes a parameters list of Type LinkedList, then captures Node currentNode = LL.head, then utilizes a while(condition) will change REFs from currentNode via currentNode = currentNode.next.  
+- Use bubbles!  
+- Connect them with one-way arrows!  
+- Remember that nothing is NULL  
+- Linked List Class: Contains all of the functionality to adding, moving, removing LL Nodes.  
+- LL Node: Data and Node Next properties.  
+
+Traverse a LL: 
+
+- Method that takes a parameters list of Type LinkedList
+- Captures Node currentNode = LL.head
+- Utilizes a while(condition)
+- Will change REFs from currentNode via currentNode = currentNode.next.  
 
 ### Coding LLNodes and LLClass
 
@@ -676,7 +682,6 @@ O(1) => Integers, Bytes, Strings (they have a max limit) etc; Constant Space.
 O(n) => Arrays, Lists, Collections, and Objects => Structures that can have n items.  
 O(n^2): ??
 O(log n): ??
-
 
 ## Aliasing TerminalFor Automation
 
