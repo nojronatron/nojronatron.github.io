@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Thursday 2-Mar-2023
+
+Attended another seminar on Microsoft Graph API and SDK, and signed up for the hack-a-thon challenge at [MS Hack Together](https://github.com/microsoft/hack-together). Initially I considered a Java-based Android app for my submission, but the DotNET SDK is a requirement for entry, so I'll stick with that. It took some time to get used to how the Graph Explorer works, including permissions allowances to various endpoints. While using the tool I set up some ideas for project features I could implement, and wrote a Console App in C# with DotNET SDK 7. Key Takeaways:
+
+- Java and C# are very similar, however some of the differences are in casing requirements for Classes and its members, and it is a little confusing at times.
+- VSCode now supports new project templates that remove the usual namespace declarations. In Visual Studio, there is a namespace monitor that tells you what namespace you are in for a particular selected file, so it is a little alarming in VSCode to have neither that monitor nor the namespace declaration in a file (where does this code reside?). The only way I am aware of to get around this (when necessary) is to manually add-back the namespace declarations and VSCode will understand.
+- When designing and implementing custom Classes, VSCode isn't very good at finding the class file in the filesystem, and there are time that instantiating a custom class fails with (somewhat of a red herring) message that says an import statement or missing assembly reference. Not as intuitive as Visual Studio.
+- Microsoft Graph SDK encapsulates a *lot* of the business of authorization and calling the Graph API. However, there is lacking documentation on what some of the SDK Class methods actually return, so it's not always obvious how to process a result from an API call.
+- Relearning how to use Environment Variables (configuation secrets) in DotNET was a little tricky but I was able to get a single variable imported using public documentation. Turns out there are a few more variables necessary for Graph that I'll need to get imported.
+- Moving between languages is still a little tricky just from the perspective of the toolsets, environment expectations, frameworks and libraries including configuration and setup. At some point I suspect this will get easier as I gain work experince.
+
 ## Wednesday 1-Mar-2023
 
 Attended a seminar on Microsoft Graph API and SDK for DotNET. Microsoft 365 is building features and functionality on top of Azure services and the DotNET platform. Microsoft Graph allows querying for "me" data, meaning the API endpoint root is "me" and after authorization, the REST methods allow calling for calendar, email, task, and other data. MS Reactor will be holding more sessions about [Microsoft Graph](./azure-graphapi-dotnet.html) in the coming days and weeks.
