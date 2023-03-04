@@ -40,7 +40,8 @@ generics-in-java) and then work through [Baeldung](https://www.baeldung.com/java
 
 ### Notes And Takeaways from Research and Experience
 
-- [X] [Generics](./generics-java-strongtypelangs.html): Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/- [X] Microsoft Graph [SDK, API](./azure-graphapi-dotnet.html).
+- [X] [Generics](./generics-java-strongtypelangs.html): Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java)
+- [X] Microsoft Graph [SDK, API](./azure-graphapi-dotnet.html).
 - [X] Windows Subsystem for Linux [WSL Notes](./windows-subsystem-for-linux.html).
 - [X] React Lifecycle: useEffect, setState, componentWillLoad, componentUnloaded are all special ways to execute code and manage state during, before, and after render cycles. Examples of useEffect can be found in LBJS code (post MVP).
 - [X] Handling [Errors in ExpressJS](./express-error-handling.html). I am implementing this in a live API server instance and there is work still to do.
