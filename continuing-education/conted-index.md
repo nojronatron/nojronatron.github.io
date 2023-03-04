@@ -10,6 +10,7 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
+- [ ] Review Java Scanner at [Oracle Java Docs - Scanner]](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) and [Baeldung - Java Scanner](https://www.baeldung.com/java-scanner).
 - [ ] Vercel [Next.js](https://nextjs.org/learn/basics/create-nextjs-app). Just get a feel for it.
 - [ ] Microtasks in JavaScript: [MDN queueMicrotask()](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide).
 - [ ] [AlpineJS](https://alpinejs.dev/).
@@ -33,7 +34,6 @@ Azure [learnings](#azure-learnings).
 - [ ] [Promises](https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript) in JavaScript.
 - [ ] CSS 3: When overlapped objects must have a transparency or alternate color assignment, what CSS property should be used? See [cssbattle 15](https://cssbattle.dev/play/15) for an example.
 - [ ] Mocking for unit testing in AndroidStudio.
-generics-in-java) and then work through [Baeldung](https://www.baeldung.com/java-generics) to help me.  
 - [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)).  
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
 - [ ] Wiring Repositories in [Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa).

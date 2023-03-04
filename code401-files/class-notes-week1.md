@@ -710,7 +710,6 @@ Aliasing: `alias ls='ls -la'` causes `ls` to always run `ls -la`.
 Assignments Due Thursday:
 
 - [X] Read: Java Primitives vs Objects, Exceptions
-- [ ] Read: Java Scanner
 - [X] Pick Accountability Partners
 - [X] Read04: OOP, Objects, Binary, Decimal, and Hexidecimal
 - [X] Code Challenge - Paired Whiteboard Interviewing
@@ -722,6 +721,12 @@ Get-Ahead Work Items As Time Permits:
 
 - [X] Workshop #1 Prep: Networking Gameplan
 - [X] Workshop #1 Prep: Resume & Completed Resume
+
+## References
+
+Baeldung [String Concatenation Methods](https://www.baeldung.com/java-string-concatenation)
+
+IntelliJ [Live Templates](https://www.jetbrains.com/help/idea/using-live-templates.html)
 
 ## Footer
 
