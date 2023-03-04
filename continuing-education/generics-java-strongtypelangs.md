@@ -179,7 +179,7 @@ List<String> myList = Collections.emptyList();
 Type Witnesses are placed in front of the instance declaration for readability:
 
 ```java
-static<T> List<T> emptyList();
+static <T> List<T> emptyList();
 List<String> myList = Collections.<String>emptyList(); // <--
 ```
 
@@ -379,7 +379,7 @@ Possibly good advice: If you find yourself using ___, consider rewriting your co
 
 ### Java Generics Restrictions
 
-Things you cannot do with Java Generics:
+Things you *cannot do* with Java Generics:
 
 - Instantiate using primitive types. *Instead* of `char` use `Character`, etc.
 - Create instances of Type parameters. The *Type Parameter is a hint* for the compiler, not a concrete Type.
