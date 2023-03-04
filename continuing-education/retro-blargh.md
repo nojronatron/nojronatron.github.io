@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Friday 3-Mar-2023
+
+Some developments this morning:
+
+- MS Graph: Discovered the tutorial for working with MS Graph SDK in a console app. Will be following that.
+- Java Generics: I remembered that Interfaces can be used in an Upper Bounded Wildcard.
+- Java Generics: Stop trying to use Primitives when instantiating arrays, lists/collections, etc.
+- Java Generics: Using these helps enforce type safety, allow using Types as parameters, and enable developing generic algorithms.
+- Java: Stop assuming the word 'array' translates to a Collection type (e.g. `List<T>` or `ArrayList<T>`). Everytime this happens, the code gets larger and does not meet the requirement of using a bracketed array.
+
 ## Thursday 2-Mar-2023
 
 Attended another seminar on Microsoft Graph API and SDK, and signed up for the hack-a-thon challenge at [MS Hack Together](https://github.com/microsoft/hack-together). Initially I considered a Java-based Android app for my submission, but the DotNET SDK is a requirement for entry, so I'll stick with that. It took some time to get used to how the Graph Explorer works, including permissions allowances to various endpoints. While using the tool I set up some ideas for project features I could implement, and wrote a Console App in C# with DotNET SDK 7. Key Takeaways:
