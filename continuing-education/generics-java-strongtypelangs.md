@@ -4,6 +4,8 @@ Generics are used in Java, C#, and other strongly typed programming languages. F
 
 ## Java Tutorials Notes
 
+Baeldung states that Generics were added to Java in JDK 5.0. This explains why I wasn't already aware of them from college where I was introduced to Java at v.1.5, but the curriculum wasn't updated yet.
+
 ### Basics
 
 'Generics add stability to your code by making more of your bugs detectable at compile time.' *[The Java Tutorials]*
@@ -24,7 +26,9 @@ Type Parameters: Generic parameters are parameters that are *types* i.e. `T obje
 
 Keyword 'T': Used as a placeholder for the Type that will be used in the Generic Class, Interface, or Function.
 
-Raw Types: No type arguments are included with the instantiation of the Generic Type. The catch is Un/Boxing penalties apply, and unsafe code can execute at run time. Code is unsafe because Type Safety cannot be validated. Older APIs (Java 7 and earlier) will require use of Raw Types for backward compatibility reasons. Use `@SuppressWarnings` syntax for ignore Raw Types warning messages.
+Raw Types: No type arguments are included with the instantiation of the Generic Type.
+
+> The catch is Un/Boxing penalties apply, and unsafe code can execute at run time. Code is unsafe because Type Safety cannot be validated. Older APIs (Java 7 and earlier) will require use of Raw Types for backward compatibility reasons. Use `@SuppressWarnings` syntax for ignore Raw Types warning messages.
 
 Methods use Type Inference to process generic parameters.
 
@@ -36,9 +40,9 @@ Due to Type Erasure, generics incur no runtime overhead, ensure type safety, and
 
 Primitives allocate less memory than Types.
 
-Primitives cannot be used as a Type Parameter in the generic declaration.
+Primitives cannot be used as a Type Parameter in the generic declaration at this time.
 
-Primitives can utilize comparison operators like '< > !=' etc, Types cannot.
+Primitives can utilize comparison operators like `<` `>` `!=` etc.
 
 List of Java SE 8 Primitives:
 
@@ -49,6 +53,11 @@ List of Java SE 8 Primitives:
 - float
 - byte
 - char
+
+Types can compare for value or equality by:
+
+- Implementing the `compareTo()` method of `Comparable<T>`.
+- Overriding `Object.equals()` method with a custom implementation.
 
 ### Java Generic Type Invocation
 
@@ -91,6 +100,29 @@ public class DSNode<T> {
   public void setData(T newData) {
     this.data = newData; // <--
   }
+}
+```
+
+A method signature of a Generic Method must include a generic type `<T>`:
+
+```java
+public class Processor {
+  // static method is prefixed with a generic template <T>
+  public static <T> void exchangeElements(T[] list, int left, int right) {
+      T firstItem = list[left];
+      list[left] = list[right];
+      list[right] = firstItem;
+  }
+}
+```
+
+When a generic method will use multiple types, they can be listed in the method signature *[Baeldung.com/java-generics]*:
+
+```java
+public static <T, G> List<G> fromArrayToList(T[] arr, Function<T, G> mapperFunc) {
+  return Arrays.stream(arr)
+    .map(mapperFunc)
+    .collect(Collectors.toList());
 }
 ```
 
@@ -150,6 +182,55 @@ public class Juice implements Pourable {
   ...
 }
 ```
+
+Leveraging abstract classes and methods allows definition of Bounded Wildcards in generics. Reminder of Inheritance:
+
+```java
+abstract class Animal {
+  abstract void talk();
+}
+class Dog extends Animal {
+  void talk() {
+    System.out.println("Bark!");
+  }
+}
+class Cat extends Animal {
+  void talk() {
+    System.out.println("Meow!");
+  }
+}
+```
+
+Here, Dog IS-A Animal, and Cat IS-A Animal too, so filtering a type by tye super class Animal, allows including Dog and Cat types.
+
+Using Interfaces, a Type can be made to fit requirement by implementing expected members.
+
+```java
+interface Language {
+  void speak();
+}
+class Terrier extends Animal implements Language {
+  // dogs bark
+  public talk() {
+    System.out.println("Bark!");
+  }
+  // breeds bark in a dialect
+  public speak() {
+    System.out.println("Bow-wow!");
+  }
+}
+class GermanShepherdDog extends Animal implements Language {
+  void talk() {
+    System.out.println("Bark!");
+  }
+  // GSDs have a deeper dialect
+  public speak() {
+    System.out.println("Woof!");
+  }
+}
+```
+
+More about this later.
 
 ### Java Type Inference
 
@@ -228,15 +309,19 @@ public static void process(List<Number> list) {
 public static void process(List<? extends Number> list) {
   // this can accept a list of any sub-class of Number
 }
+
+public static void addToFamily(T<? extends Animal> pet) {
+  // accepts dogs or cats based on abstract class defined earlier
+}
 ```
 
 #### Unbounded Wildcards
 
 - AKA 'Unknown Type'
 - Usage: `List<?>`
-- Meaning: Method will use functionality provided by Object class.
+- Meaning: Method will *use functionality provided by Object class*.
 
-Example of a Class that does NOT require type T:
+Using an unbounded wildcard for an input limits members to that of the base class Object:
 
 ```java
 public static void printList(List<?> list) {
@@ -251,9 +336,11 @@ public static void printList(List<?> list) {
 }
 ```
 
-If `Object` were used instead of `?` the iterator would provide Object instances instead of returing the String representation of the Type actually stored at each element.
+If `Object` were used instead of `?` the iterator would provide Object instances represented as a String, instead of returing the String representation of the Type actually stored at each element.
 
 There are [Guidelines](https://docs.oracle.com/javase/tutorial/java/generics/wildcardGuidelines.html) and if/when Wildcard should be used.
+
+Avoid using a wildcard on a method output as it will make the return type unknown and difficult to debug and work with.
 
 #### Lower Bounded Wildcards
 
@@ -272,6 +359,8 @@ public void printList(List<? super Integer>) {
   //  anything that holds Integer values
 }
 ```
+
+Applying a lower-bounded wildcard to Animal `public void show(T<? super Animal>){...}` would result in only Animal and base class Object as acceptable types. Meaning neither Car nor Dog would be accepted as a wildcard matched type.
 
 #### Wildcards and Subtyping
 
@@ -345,7 +434,22 @@ Additionally:
 
 ### Type Erasure in Java
 
-See the docs for details. The following are just a few things to watch out for:
+See the docs for details, here are the highlights:
+
+- Type Erasure removes all type parameters and replaces them.
+- Type parameters are replaced by thier bounds.
+- Unbounded type parameters are replaced with Object.
+- Proper casting is applied (by the Compiler) to avoid casting mistakes.
+- Primitives *do not extend Object* and so do not apply to Generics!
+
+```java
+// type parameters are replaced by their bounds
+public <T extends Animal> void foo(T animal) {...};
+// becomes...
+public void foo(Animal animal) {...};
+```
+
+The following are just a few things to watch out for:
 
 - The Compiler *might* create a synthetic method (aka Bridge Method), which could throw a ClassCastException. Avoid using Raw Types to avoid this situation.
 - When Bridge Methods are created, Method Signatures could no longer match, which could throw a ClassCastException.
@@ -372,7 +476,7 @@ Heap Pollution:
 - Code contains mixed raw types and parameterized types.
 - Code performs unchecked casts.
 
-Possibly good advice: If you find yourself using ___, consider rewriting your code to avoid non-reifiable Types or incorrectly handling casts:
+Possibly good advice: If you find yourself using `___` consider rewriting your code to avoid non-reifiable Types or incorrectly handling casts:
 
 - `@SafeVarargs`: An annotation asserts the implementation will not improperly handle varargs formal parameter.
 - `@SuppressWarnings({"unchecked", "varargs"})`: Suppresses unchecked and varargs warnings. Not advisable.
@@ -421,7 +525,11 @@ Multiple type placeholders? Use 'S', 'U', 'V', ...etc in the template diamond.
 
 ## References
 
-[The Java Tutorials](https://docs.oracle.com/javase/tutorial/java/generics/index.html)
+Oracle's [Java Tutorials](https://docs.oracle.com/javase/tutorial/java/generics/index.html)
+
+Baeldung: [Java Generics](https://www.baeldung.com/java-generics)
+
+Baeldung: [Comparing Objects in Java](https://www.baeldung.com/java-comparing-objects)
 
 ## Footer
 

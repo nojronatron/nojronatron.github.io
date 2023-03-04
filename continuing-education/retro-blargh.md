@@ -11,6 +11,11 @@ Some developments this morning:
 - Java Generics: Stop trying to use Primitives when instantiating arrays, lists/collections, etc.
 - Java Generics: Using these helps enforce type safety, allow using Types as parameters, and enable developing generic algorithms.
 - Java: Stop assuming the word 'array' translates to a Collection type (e.g. `List<T>` or `ArrayList<T>`). Everytime this happens, the code gets larger and does not meet the requirement of using a bracketed array.
+- Java Generics: It is not necessary to make an enclosing Class generic in order to make generic methods. I assume the class *would* need to be labeled generic if any private or public fields *are* generic.
+
+Completed the Java Generics exercises, and experimenting with the code and tests I produced.
+
+I updated the MS Graph code a little bit. There is much more to do and learn. The main hang-up right now is figuring out how to handle the result type from a successful, filtered request. It is not obvious to me.
 
 ## Thursday 2-Mar-2023
 
