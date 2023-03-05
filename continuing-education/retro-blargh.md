@@ -2,7 +2,121 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
-## Friday 23-Feb-2023
+## Saturday 4-Mar-2023
+
+Did some job search work and updated lots of administrative items and documentation. I also completed a week-end retro for this week. These are helpful in setting a pace and expectations going forward.
+
+Whiteboarded some new appoaches to existing API Server functions. Turns out there were some issues with some routes and also the default error handler. One route issue was checking for situations that would never occur because the cookie handler middleware would have caught it, leading to cleaner code. Takeaways:
+
+- Leverage Promise chaining when possible, but realize it will not always be the best approach for every situation.
+- Only return with a `next(message)` if there is an error, otherwise always if-then through all scenarios that apply.
+- Use a try-catch structure and put `next(error)` in the catch after any logging statements so the default handler catches the 'err' condition in middleware.
+
+There are 7 more tasks to complete before I will feel like the API server is in a good-to-go state.
+
+## Friday 3-Mar-2023
+
+Some developments this morning:
+
+- MS Graph: Discovered the tutorial for working with MS Graph SDK in a console app. Will be following that.
+- Java Generics: I remembered that Interfaces can be used in an Upper Bounded Wildcard.
+- Java Generics: Stop trying to use Primitives when instantiating arrays, lists/collections, etc.
+- Java Generics: Using these helps enforce type safety, allow using Types as parameters, and enable developing generic algorithms.
+- Java: Stop assuming the word 'array' translates to a Collection type (e.g. `List<T>` or `ArrayList<T>`). Everytime this happens, the code gets larger and does not meet the requirement of using a bracketed array.
+- Java Generics: It is not necessary to make an enclosing Class generic in order to make generic methods. I assume the class *would* need to be labeled generic if any private or public fields *are* generic.
+
+Completed the Java Generics exercises, and experimenting with the code and tests I produced.
+
+I updated the MS Graph code a little bit. There is much more to do and learn. The main hang-up right now is figuring out how to handle the result type from a successful, filtered request. It is not obvious to me.
+
+## Thursday 2-Mar-2023
+
+Attended another seminar on Microsoft Graph API and SDK, and signed up for the hack-a-thon challenge at [MS Hack Together](https://github.com/microsoft/hack-together). Initially I considered a Java-based Android app for my submission, but the DotNET SDK is a requirement for entry, so I'll stick with that. It took some time to get used to how the Graph Explorer works, including permissions allowances to various endpoints. While using the tool I set up some ideas for project features I could implement, and wrote a Console App in C# with DotNET SDK 7. Key Takeaways:
+
+- Java and C# are very similar, however some of the differences are in casing requirements for Classes and its members, and it is a little confusing at times.
+- VSCode now supports new project templates that remove the usual namespace declarations. In Visual Studio, there is a namespace monitor that tells you what namespace you are in for a particular selected file, so it is a little alarming in VSCode to have neither that monitor nor the namespace declaration in a file (where does this code reside?). The only way I am aware of to get around this (when necessary) is to manually add-back the namespace declarations and VSCode will understand.
+- When designing and implementing custom Classes, VSCode isn't very good at finding the class file in the filesystem, and there are time that instantiating a custom class fails with (somewhat of a red herring) message that says an import statement or missing assembly reference. Not as intuitive as Visual Studio.
+- Microsoft Graph SDK encapsulates a *lot* of the business of authorization and calling the Graph API. However, there is lacking documentation on what some of the SDK Class methods actually return, so it's not always obvious how to process a result from an API call.
+- Relearning how to use Environment Variables (configuation secrets) in DotNET was a little tricky but I was able to get a single variable imported using public documentation. Turns out there are a few more variables necessary for Graph that I'll need to get imported.
+- Moving between languages is still a little tricky just from the perspective of the toolsets, environment expectations, frameworks and libraries including configuration and setup. At some point I suspect this will get easier as I gain work experince.
+
+## Wednesday 1-Mar-2023
+
+Attended a seminar on Microsoft Graph API and SDK for DotNET. Microsoft 365 is building features and functionality on top of Azure services and the DotNET platform. Microsoft Graph allows querying for "me" data, meaning the API endpoint root is "me" and after authorization, the REST methods allow calling for calendar, email, task, and other data. MS Reactor will be holding more sessions about [Microsoft Graph](./azure-graphapi-dotnet.html) in the coming days and weeks.
+
+Reviewed [Java Generics](./generics-java-strongtypelangs.html) on Oracle's Java Documentation. It went into much more detail than I had expected. It made sense although it was slow going at times. In the past I ran into issues with Generics and saw some warning messages that I didn't understand, now they make sense. For starters, the Raw Types message: This means the code risks operating without type safety, and Object is used as the base Type, allowing Boxing and Unboxing to occur, and unchecked Casts, which can negatively impact performance, or allow Runtime Errors.
+
+Some other key takeaways:
+
+- Java does not allow using Operators like `<` and `>` on Types, only Primitives.
+- Bounded Types and Wildcards allow constricting or directing what Type supers or children are allowed in a Generic Class, Interface, or Member.
+- Type Erasure is used at Run Time to ensure only ordinary classes, interfaces, and methods are included in the byte code.
+
+## Tuesday 28-Feb-2023
+
+It's snowing again.
+
+Worked on researching interesting job openings, and exercised my brain with some q-and-a practice early this morning. It's a good wake-up exercise once I get some food and a cup of coffee in me. :coffee: :smiley:
+
+Snow stopped falling, everything is drying out now.
+
+Took at a look at some job openings, more research is needed.
+
+Decided to take a peek at the Portfolio webapp project from April last year. There were many issues, partly due to deprecated and vulnerable versions of modules, and partly due to various CSS and content problems. I took some time out to fix all of that and deployed a working version to Netlify. I added work items of things to fix and update to make this portfolio webapp a bit more appealing and useful.
+
+## Monday 27-Feb-2023
+
+Continued working with Graph data structure and completed the challenge: Write a function for a directed, complete graph, that finds a total value of a path between two vertices. Key takeaways:
+
+- Attempts to use depth-first traversal were challenging. It could be that my design was not careful enough. At the time it 'felt wrong' which prompted me to do various whiteboard sessions.
+- Utilizing the adjacency collection was an early idea that I should have explored on the whiteboard earlier on. It ended up being a reasonable way to solve the problem.
+- When developing a solution, look at the true/false deicisions that must be made and develop small functions that just manage that data first, then organize a larger method that can call the correct function(s) at the correct time, given the circumstances/context.
+- When tracking values, consider whether immediately summing or concatenating them is necessary, or if it is better to store them in another data structure so they can be parsed later. In this case, it was best to push possible values into a Stack, and when values ended up being incorrect, they could be 'popped' back out (breadcrumbs). They can also be easily ( O(1) ) popped within an iterator to sum/concatenate them later.
+- Recursive functions for depth-mining are not always the right answer. Part of the problem is when the recursed functions pop off the stack, they could alter the state that actually needs to be maintained. In these cases use multiple functions to handle small portions of the implementation, and manage the state/data in a higher-level function or an owning Class instead.
+
+## Sunday 26-Feb-2023
+
+Revisited updating dependencies of a React-JS webapp. Every so often vulnerabilities are found in node-js modules that probably should be cleaned up. Good news is, there are bug-bounties and free-lancers that find these vulnerabilities, so they get fixed in the OSS world pretty rapidly. Now the problem is for the implementers (dependecy dependers?) to update the node modules and redploy apps to avoid these attach vectors, for the sake of their own deployment, and their users.
+
+Key takeaways:
+
+- You *must* use `npm audit` to make a list of installed, vulnerable packages and dependencies.
+- You *could* go in and edit package.json and package-lock.json to surgically fix modules' version requirements and those of their dependencies.
+- However you *should* use `npm update package-name` instead to update a specific top-level dependency.
+- Running `npm audit fix` is also an option and will be helpful to automatically resolve some (or all if you're luck) vulnerable dependencies.
+- On occasion you will *need to* go into package-lock.json and update vulnerable dependencies' versions and remove references to the vulnerable module, as well as delete the entire node_modules directory and all of its children. Follow that with `npm audit fix` again to force acquisition of the correct dependecy/ies.
+
+Plenty of bouncing around today, between the Graph code challenge problem solving design efforts, and catching-up on LBJS PRs and enqueued work.
+
+LBJS: We are very close to a point where we can launch V1 front-end and utilize the deployed API server to get existing gameboards if needed. We have means to authorize for adding words and creating gameboards all on the backend, so custom requests can be made. There are just a few bugs and a couple loose ends to resolve on the front end before pushing the latest to Netlify and basically having V1 ready-to-go for players.
+
+I realized that instead of manually editing package.json and package-lock.json files I can use npm to manipulate dependencies safely. There are a few situations where manual editing is still required, but a lot of the complexity is gone now that I've worked out and refined a step-by-step.
+
+Promises made a return, related to an Axios call in a useEffect on a React site. Some takeaways:
+
+- When possible, use the 'syntactic sugar' of `async` and `await` instead of Promises, they are just easier.
+- In cases where async-await is not possible, remember that a Promise returns a 'pending' state to the JS Event Loop, and is placed in a separate structure until the Promise is Fulfilled or Rejected.
+- The three possible states of a Promise are 'Rejected' (Failed operation), 'Fulfilled' (Promise resolved successfully), or 'Pending' (Initial state - neight Rejected nor Fulfilled).
+
+See [conted index](./conted-index.html) for an entry about Promises.
+
+Ryan got back to me about some updates I supplied to him earlier in the day. He raised a good question about a PR that I submitted, so I went in and fixed it. I need to watch for obvious code-line omissions, kinda like 'copy-pasta' problems.
+
+## Saturday 25-Feb-2023
+
+Worked on a few administrative and interview prep tasks, and watched an Azure Friday episode about billing: Monitoring and Reporting. This was timely since I recently started getting charges for a couple of AppServices (dimes and quarters worth, so at least it is small).
+
+Working through a tougher Java challenge: How to get the weight between multiple vertices. Key takeaways:
+
+- Generally speaking, a good traversal mechanism is Depth First, because reaching another Vertex requires searching the connected Edges to the Root (starting) Vertex.
+- Between two neighoring Vertices (on the same Edge) the algorithm just needs to get that one Edge Weight value and return it.
+- When there are Vertices between the root and target Vertices, some tracking mechanism is necessary.
+- The tracking mechanism needs to be able to 'back track' in case a Leaf (Vertex with no Edges) is reached.
+- Utilizing a recursive method is not a good choice because the Target Vertex might be found before all recursions have completed, and depending on exactly how the "back-out" is coded, this could cause the correct list of Edges to be removed (corrupt bread crumbs).
+
+I'll take a look at this again tomorrow, and I'll use a Stack rather than recursion to solve it. This way I'll have full control over the exit from the search pattern.
+
+## Friday 24-Feb-2023
 
 Thursday was spent designing, testing, fiddling, redesigning, coding, and testing Graph class. The key takeaways are:
 
