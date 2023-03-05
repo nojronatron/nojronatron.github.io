@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Saturday 4-Mar-2023
+
+Did some job search work and updated lots of administrative items and documentation. I also completed a week-end retro for this week. These are helpful in setting a pace and expectations going forward.
+
+Whiteboarded some new appoaches to existing API Server functions. Turns out there were some issues with some routes and also the default error handler. One route issue was checking for situations that would never occur because the cookie handler middleware would have caught it, leading to cleaner code. Takeaways:
+
+- Leverage Promise chaining when possible, but realize it will not always be the best approach for every situation.
+- Only return with a `next(message)` if there is an error, otherwise always if-then through all scenarios that apply.
+- Use a try-catch structure and put `next(error)` in the catch after any logging statements so the default handler catches the 'err' condition in middleware.
+
+There are 7 more tasks to complete before I will feel like the API server is in a good-to-go state.
+
 ## Friday 3-Mar-2023
 
 Some developments this morning:
