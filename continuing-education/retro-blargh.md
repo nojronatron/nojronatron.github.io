@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Wednesday 7-Mar-2023
+
+Holy wowzers it took me 2 hours of fighting with DotNET ConfigurationManager extensions to figure out how to get environment variables into a console app. Good news is I DID IT. Key takeaways:
+
+- The ConfigurationManager extension class is the key, along with the various Interfaces.
+- Per usual DotNET expectations, implement a static BuildConfig method that accepts an IConfiguraitonBuilder parameter, and "build" the configuraiton using chained extension methods.
+- Chained methods are `.SetBasePath()`, and `.AddJsonFile()`.
+- Remember how to find the current working directory in DotNET (oh you don't? Here you go:) `Directory.GetCurrentDirectory()`.
+- The `BuildConfig(IConfigurationBuilder)` method operates on a an object instance *reference* :arrow-right: Whatever argument is put it must meet `IConfigurationBuilder` requirements and will be 'configured' in-memory.
+- After calling `BuildConfig()` just ask for the data you want i.e. `builder.GetValue<T>("parent:childKey");`
+
 ## Tuesday 6-Mar-2023
 
 Spent a good amount of time reviewing code already written for LBJS API server and finding some places where things could be improved, and updated the uuid generation to use base64url encoding instead of hex. I was originally going to implement Secure Cookies but I'm going to table that effort for now, and put a work item in my backlog for focusing on later. For now I need to spend more time in front of MS Graph and C# so I can submit something for the hack-together event.
