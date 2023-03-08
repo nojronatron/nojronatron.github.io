@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Tuesday 6-Mar-2023
+
+Spent a good amount of time reviewing code already written for LBJS API server and finding some places where things could be improved, and updated the uuid generation to use base64url encoding instead of hex. I was originally going to implement Secure Cookies but I'm going to table that effort for now, and put a work item in my backlog for focusing on later. For now I need to spend more time in front of MS Graph and C# so I can submit something for the hack-together event.
+
+On Monday, before diving deep into the API Server, I did some research on a few companies. Nothing terribly exciting has come up yet but it is interesting to see lots of job expectations, company values, and ways companies interact with the internet.
+
+This evening, my MS Graph project could no longer get past authentication. The problem might be related to my changing the app.config file (per docs) but I'm not sure. Will look into it tomorrow morning.
+
 ## Sunday 5-Mar-2023
 
 Continued working on LBJS API Server, reviewing the implemented paths and refining the code, runing manual tests to validate functionality and crash avoidance. Utilized whiteboarding to work out logic fix-ups and refactorings for some functions. There is still work to do here but it is better. Began researching SecureCookies, which seem simple enough, just need to figure out the proper syntax to get the secure key working. Current thinking is to use a secret salt and just go with that. One concern is dealing with these massively long UUIDs - it might be good to use URLEncoded or some other conversion or digest method to keep the IDs from becoming too long for the frameworks to handle them (introducing unexpected results and matching or authorization bugs).
