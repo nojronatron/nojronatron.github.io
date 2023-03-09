@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Thursday 9-Mar-2023
+
+Lots to do today. For starters, attend an MS Reactor presentation on TS: Deploying React+TS App with Azure Static WebApps. Next, some volunteer administrivia finalizing a capabilities diagram and sending a few follow-up emails from last nights meeting. Then, to finish up the morning, complete some job research and preparatory tasks. This afternoon I'll get back to MS Graph development, and try to sneak in a technical challenge or two. Friday is usually a busy morning, and Saturday I'll be at another event for a large portion of the day, so today is probably the last 'full day' to get some impactful things accomplished.
+
+I'm realizing that I can be organized and yet still experience some chaos of my own doing and from outside inputs, without concluding I lack structure.
+
 ## Wednesday 8-Mar-2023
 
 Holy wowzers it took me 2 hours of fighting with DotNET ConfigurationManager extensions to figure out how to get environment variables into a console app. Good news is I DID IT. Key takeaways:
@@ -14,6 +20,8 @@ Holy wowzers it took me 2 hours of fighting with DotNET ConfigurationManager ext
 - After calling `BuildConfig()` just ask for the data you want i.e. `builder.GetValue<T>("parent:childKey");`
 
 Took some time out from the MS Graph project and studied some OOP and C# lessons from a few years back. It is interesting to see the anonymous functions, Delegates, and other keyword implementations after studying JavaScript and Java for the last year and 6 months (respectively). I can't believe I had such a hard time with data structures and algorithms in Java, given that I had already be training those concepts in 2021. Anyway, it was good to go over some of this and I'll count that at code challenge studying for the day.
+
+Back to MSGraph: I was having an issue where authentication was failing in a weird way. The message indicated that the wrong tenant was selected for authentication. It took a bit to figure out which portion of my setup was bad, but the only thing remaining was to verify my app was properly registered (was the ClientID correct?). I remember creating an Application and setting a ClientID, but perhaps that was deleted after my first (very rough) attempt to develop this hacky solution. Once I went back in and registered the an and set the ClientId, the code would run without hanging or throwing, and data was actually returned.
 
 ## Tuesday 7-Mar-2023
 
