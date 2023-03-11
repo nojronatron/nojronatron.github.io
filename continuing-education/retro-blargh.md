@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Friday 10-Mar-2023
+
+The MS Graph project is not very exciting to me. I thought it would be, but I find myself not getting excited about interacting with MS Graph, and feel like I am putting more into it than I am getting out, so for now I'm going to set it aside. There are a few more days left so I might go back to it, meanwhile there are tasks I *am* passionate about, so I want to pursue those.
+
+LBJS activities summary:
+
+- React useEffect "fires after layout and paint", is suitable for event handlers, and events that should not "block the browser from updating the screen." *[ReactJS hooks-reference docs]*
+- Using the *addition operator* in console logs in React and Node cause issues.
+- Submitted PRs to address a bug and a refactoring to avoid duplicate code.
+
 ## Thursday 9-Mar-2023
 
 Lots to do today. For starters, attend an MS Reactor presentation on TS: Deploying React+TS App with Azure Static WebApps. Next, some volunteer administrivia finalizing a capabilities diagram and sending a few follow-up emails from last nights meeting. Then, to finish up the morning, complete some job research and preparatory tasks. This afternoon I'll get back to MS Graph development, and try to sneak in a technical challenge or two. Friday is usually a busy morning, and Saturday I'll be at another event for a large portion of the day, so today is probably the last 'full day' to get some impactful things accomplished.
