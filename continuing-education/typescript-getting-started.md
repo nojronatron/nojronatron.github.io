@@ -188,24 +188,101 @@ Zod:
 
 _Note_: ThunderClient can generate Typescript Types from a Response using the 'Response > Snippet' drop-down.
 
+TS utilizes promises and enforces Type Safety similar to Java and C#:
+
+```typescript
+function get(): Promise<CustomType> {
+  // function implementation
+}
+```
+
 ### Build
 
 Confusingly, this topic was not discussed.
 
-Givent the code that was shown during the session, I discovered the following:
+Given the code that was shown during the session, I discovered the following:
 
 1. In tsconfig.json: update 'rootDir' to ensure the correct source file root is targeted (might not be 'Project Root').
 1. TSC was not finding the tsconfig.json file, so to work around errors indicating Express could not be 'imported' I did: `tsc --esModuleInterop ./src/app.ts` and the build succeeded.
 
+## Building a Typescript React App
+
+1. Use `npx create-react-app app_name --template typescript` to get started quickly.
+1. Check 'rootDir' and 'outDir' in tsconfig: Part of the compilation output configuration for TS in VS Code - make sure they point to the correct folders.
+1. Enable CORS on the backend to avoid errors when your API calls will cross domains. `app.use(cors({ origin: "*"}))` for dev-test, production should be more strict.
+1. Understand the 'shape' of the API. Interfaces (or Types) in TS define what the response will look like for processing API responses.
+1. Leverage tool "Typescript to JSON".
+
+Helpful JSON Tool: [JSON Path Finder](https://jsonpathfinder.com).
+
+## Deploy React TS to Azure Static Web Apps
+
+MSFT Reactor Session by Korey Stegared-Pace featuring Maxim Salnikov - MSFT Developer Engagement Lead (@webmaxru).
+
+ALL links and resources [here](https://aka.ms/deploytslinks)
+
+- [ ] MSFT Course on Angular, React, Svelte, or Vue JS App with Azure Static WebApps (link coming soon).
+
+SSR: Server-side Rendering.
+
+- Sounds like that is not supported for this scenario. However, NextJS workloads can use a small portion of SSR.
+- Astro: Can build ssr-ish on Azure Static WebApps.
+
+PWA: Progressive Web Application
+
+- Installable.
+- Offline-ready.
+
+Azure Static WebApps solve these issues:
+
+- Hosting: Fast, reliable; geo-distributed; SPA- and SSR-ready; Custom domains; SSL (free).
+- Deployment: Automated; Staging environments; No DevOps skills needed.
+- Feature Helpers: Serverless API; Provider-based Authentication; Role-based Access Controls; Tools for local development.
+- "Generous Free Tier", "Invest my time, not my dollars". :smiley:
+
+Azure Static WebApps Edge Cases:
+
+- Can access files using FTP SSL transfer, but this skips CI/CD pipelines.
+
+How to get started with deploying?
+
+1. Use VSCode Extension or Azure Portal.
+1. Point to the code repository e.g. GitHub.
+1. Confirm configuration.
+1. Publish: App uploads, builds, and launches.
+
+How to deploy a new version:
+
+- Code and push to the repo.
+- YAML and GitHub Actions support (for initial Publish, too).
+
+Developing Locally with Azure Static WebApps CLI:
+
+- Web server with config file support.
+- Emulates AuthN and AuthZ.
+- Serving/proxying to API requests.
+- Tool install: `npm install -g @azure/static-web-apps-cli`
+- Start Static WebApp: `swa start [params]`
+- Example: `swa start --run "cmd" / swa start --api-location [functions_folder_or_url]`
+- SWA CLI is a work in progress, expect changes over time.
+
+MS Learning [Publish Angular/React/Svelte/Vue JS App with Azure Static WebApps](https://learn.microsoft.com/en-us/training/modules/publish-app-service-static-web-app-api/?wt.mc_id=3reg_18721_webpage_reactor).
+
+Azure [Static Web Apps Documentation](https://learn.microsoft.com/en-us/azure/static-web-apps/?ocid=aid3054628_RequestedResources_ThankYou_DevComm&eventId=BPMTechno-AzureStaticWebAppsDemo_N70PBXzBTDKx).
+
 ## References
 
-MSFT Learning [TypeScript Getting Started pt.1](https://aka.ms/GettingStartedWithTypescript1)
+MSFT Learning [TypeScript Getting Started pt.1](https://aka.ms/GettingStartedWithTypescript1).
 
-MSFT Learning [TypeScript Getting Started pt.2](https://aka.ms/GettingStartedWithTypescript2)
+MSFT Learning [TypeScript Getting Started pt.2](https://aka.ms/GettingStartedWithTypescript2).
 
-Get used to TS online with [TypeScriptLang](https://www.typescriptlang.org/play)
+MSFT Learning [TypeScript Getting Started pt.3](https://www.youtube.com/watch?v=iCFAJ7SQ0Mo&t=334s&ab_channel=MicrosoftReactor).
+
+Get used to TS online with [TypeScriptLang.org](https://www.typescriptlang.org/play).
 
 MSFT Reactor [Code and Links shared during TS Code](https://aka.ms/FirstTSProject) or [direct link](https://techcommunity.microsoft.com/t5/microsoft-reactor/building-your-first-typescript-project-resources-and-recap/m-p/3730630).
+
+General MSFT Links to [TS Resources](https://aka.ms/tslinks).
 
 ## Footer
 

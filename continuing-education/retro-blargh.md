@@ -2,6 +2,63 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Saturday 11-Mar-2023
+
+This morning was a little disrupted with a vehicle repair situation, followed by a drive to Puyallup for a ham convention and electronics show. I met up with a few hams I have volunteered with in the past and we caught up a little. It was good to get out and be social.
+
+At home I designed a set of functions using Java, on a Singly Linked List to do various things:
+
+- Traverse the list looking for a specific value and returning it.
+- Return true if the linked list contains a value, otherwise false.
+- Find a node and return the value of the node **before it**.
+- Insert a value **before** a node with another value.
+
+I still need to do my end-of-week tasks, but that will have to wait until Sunday.
+
+## Friday 10-Mar-2023
+
+Completed a code challenge on a real dry-erase board with pseudocode and step-through (excluding BigO analysis and tests).
+
+Attended a Code Fellows Code301 Final Presentation session. The Code301 curriculum has been updated with React Hooks and WebSockets. I am a little envious about this, but I have already started to use React Hooks, and can always add Sockets as a topic I want to explore in the future.
+
+Later, I set up my SurfacePro 7 VSCode with Java development Extensions and it is working well for dev and simple debugging. I will need to learn how to set up unit tests as well as find build output (JAR) files, but that will come in time. Using this setup I coded (in Java) the code challenge from earlier today (a singly linked list) and starting building out additional functionality:
+
+- Insert a value to the head of the linked list.
+- Traverse the list and output the contents to the console.
+
+## Thursday 9-Mar-2023
+
+Lots to do today. For starters, attend an MS Reactor presentation on TS: Deploying React+TS App with Azure Static WebApps. Next, some volunteer administrivia finalizing a capabilities diagram and sending a few follow-up emails from last nights meeting. Then, to finish up the morning, complete some job research and preparatory tasks. This afternoon I'll get back to MS Graph development, and try to sneak in a technical challenge or two. Friday is usually a busy morning, and Saturday I'll be at another event for a large portion of the day, so today is probably the last 'full day' to get some impactful things accomplished.
+
+I'm realizing that I can be organized and yet still experience some chaos of my own doing and from outside inputs, without concluding I lack structure.
+
+## Wednesday 8-Mar-2023
+
+Holy wowzers it took me 2 hours of fighting with DotNET ConfigurationManager extensions to figure out how to get environment variables into a console app. Good news is I DID IT. Key takeaways:
+
+- The ConfigurationManager extension class is the key, along with the various Interfaces.
+- Per usual DotNET expectations, implement a static BuildConfig method that accepts an IConfiguraitonBuilder parameter, and "build" the configuraiton using chained extension methods.
+- Chained methods are `.SetBasePath()`, and `.AddJsonFile()`.
+- Remember how to find the current working directory in DotNET (oh you don't? Here you go:) `Directory.GetCurrentDirectory()`.
+- The `BuildConfig(IConfigurationBuilder)` method operates on a an object instance *reference* :arrow-right: Whatever argument is put it must meet `IConfigurationBuilder` requirements and will be 'configured' in-memory.
+- After calling `BuildConfig()` just ask for the data you want i.e. `builder.GetValue<T>("parent:childKey");`
+
+Took some time out from the MS Graph project and studied some OOP and C# lessons from a few years back. It is interesting to see the anonymous functions, Delegates, and other keyword implementations after studying JavaScript and Java for the last year and 6 months (respectively). I can't believe I had such a hard time with data structures and algorithms in Java, given that I had already be training those concepts in 2021. Anyway, it was good to go over some of this and I'll count that at code challenge studying for the day.
+
+Back to MSGraph: I was having an issue where authentication was failing in a weird way. The message indicated that the wrong tenant was selected for authentication. It took a bit to figure out which portion of my setup was bad, but the only thing remaining was to verify my app was properly registered (was the ClientID correct?). I remember creating an Application and setting a ClientID, but perhaps that was deleted after my first (very rough) attempt to develop this hacky solution. Once I went back in and registered the an and set the ClientId, the code would run without hanging or throwing, and data was actually returned.
+
+## Tuesday 7-Mar-2023
+
+Spent a good amount of time reviewing code already written for LBJS API server and finding some places where things could be improved, and updated the uuid generation to use base64url encoding instead of hex. I was originally going to implement Secure Cookies but I'm going to table that effort for now, and put a work item in my backlog for focusing on later. For now I need to spend more time in front of MS Graph and C# so I can submit something for the hack-together event.
+
+On Monday, before diving deep into the API Server, I did some research on a few companies. Nothing terribly exciting has come up yet but it is interesting to see lots of job expectations, company values, and ways companies interact with the internet.
+
+This evening, my MS Graph project could no longer get past authentication. The problem might be related to my changing the app.config file (per docs) but I'm not sure. Will look into it tomorrow morning.
+
+## Sunday 5-Mar-2023
+
+Continued working on LBJS API Server, reviewing the implemented paths and refining the code, runing manual tests to validate functionality and crash avoidance. Utilized whiteboarding to work out logic fix-ups and refactorings for some functions. There is still work to do here but it is better. Began researching SecureCookies, which seem simple enough, just need to figure out the proper syntax to get the secure key working. Current thinking is to use a secret salt and just go with that. One concern is dealing with these massively long UUIDs - it might be good to use URLEncoded or some other conversion or digest method to keep the IDs from becoming too long for the frameworks to handle them (introducing unexpected results and matching or authorization bugs).
+
 ## Saturday 4-Mar-2023
 
 Did some job search work and updated lots of administrative items and documentation. I also completed a week-end retro for this week. These are helpful in setting a pace and expectations going forward.
