@@ -10,6 +10,7 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
+- [ ] Learn about WebSockets.
 - [ ] Look into [Apache Kafka](https://kafka.apache.org/), especially how Java is used with/for it. Some companies are using Kafka in/with their deliverables.
 - [ ] Review Java Scanner at [Oracle Java Docs - Scanner]](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) and [Baeldung - Java Scanner](https://www.baeldung.com/java-scanner).
 - [ ] Vercel [Next.js](https://nextjs.org/learn/basics/create-nextjs-app). Just get a feel for it.
