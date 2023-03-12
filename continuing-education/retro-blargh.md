@@ -2,6 +2,30 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Saturday 11-Mar-2023
+
+This morning was a little disrupted with a vehicle repair situation, followed by a drive to Puyallup for a ham convention and electronics show. I met up with a few hams I have volunteered with in the past and we caught up a little. It was good to get out and be social.
+
+At home I designed a set of functions using Java, on a Singly Linked List to do various things:
+
+- Traverse the list looking for a specific value and returning it.
+- Return true if the linked list contains a value, otherwise false.
+- Find a node and return the value of the node **before it**.
+- Insert a value **before** a node with another value.
+
+I still need to do my end-of-week tasks, but that will have to wait until Sunday.
+
+## Friday 10-Mar-2023
+
+Completed a code challenge on a real dry-erase board with pseudocode and step-through (excluding BigO analysis and tests).
+
+Attended a Code Fellows Code301 Final Presentation session. The Code301 curriculum has been updated with React Hooks and WebSockets. I am a little envious about this, but I have already started to use React Hooks, and can always add Sockets as a topic I want to explore in the future.
+
+Later, I set up my SurfacePro 7 VSCode with Java development Extensions and it is working well for dev and simple debugging. I will need to learn how to set up unit tests as well as find build output (JAR) files, but that will come in time. Using this setup I coded (in Java) the code challenge from earlier today (a singly linked list) and starting building out additional functionality:
+
+- Insert a value to the head of the linked list.
+- Traverse the list and output the contents to the console.
+
 ## Thursday 9-Mar-2023
 
 Lots to do today. For starters, attend an MS Reactor presentation on TS: Deploying React+TS App with Azure Static WebApps. Next, some volunteer administrivia finalizing a capabilities diagram and sending a few follow-up emails from last nights meeting. Then, to finish up the morning, complete some job research and preparatory tasks. This afternoon I'll get back to MS Graph development, and try to sneak in a technical challenge or two. Friday is usually a busy morning, and Saturday I'll be at another event for a large portion of the day, so today is probably the last 'full day' to get some impactful things accomplished.
