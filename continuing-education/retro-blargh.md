@@ -21,6 +21,14 @@ Completed a code challenge on a real dry-erase board with pseudocode and step-th
 
 Attended a Code Fellows Code301 Final Presentation session. The Code301 curriculum has been updated with React Hooks and WebSockets. I am a little envious about this, but I have already started to use React Hooks, and can always add Sockets as a topic I want to explore in the future.
 
+The MS Graph project is not very exciting to me. I thought it would be, but I find myself not getting excited about interacting with MS Graph, and feel like I am putting more into it than I am getting back, so for now I'm going to set it aside. There are a few more days left so I might go back to it, meanwhile there are tasks I *am* passionate about, so I will pursue those.
+
+I completed some LBJS activities:
+
+- React useEffect "fires after layout and paint", is suitable for event handlers, and events that should not "block the browser from updating the screen." *[ReactJS hooks-reference docs]*
+- Using the *addition operator* in console logs in React and Node cause issues.
+- Submitted PRs to address a bug and a refactoring to avoid duplicate code.
+
 Later, I set up my SurfacePro 7 VSCode with Java development Extensions and it is working well for dev and simple debugging. I will need to learn how to set up unit tests as well as find build output (JAR) files, but that will come in time. Using this setup I coded (in Java) the code challenge from earlier today (a singly linked list) and starting building out additional functionality:
 
 - Insert a value to the head of the linked list.
