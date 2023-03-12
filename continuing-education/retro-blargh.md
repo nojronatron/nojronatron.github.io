@@ -2,15 +2,37 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Saturday 11-Mar-2023
+
+This morning was a little disrupted with a vehicle repair situation, followed by a drive to Puyallup for a ham convention and electronics show. I met up with a few hams I have volunteered with in the past and we caught up a little. It was good to get out and be social.
+
+At home I designed a set of functions using Java, on a Singly Linked List to do various things:
+
+- Traverse the list looking for a specific value and returning it.
+- Return true if the linked list contains a value, otherwise false.
+- Find a node and return the value of the node **before it**.
+- Insert a value **before** a node with another value.
+
+I still need to do my end-of-week tasks, but that will have to wait until Sunday.
+
 ## Friday 10-Mar-2023
 
-The MS Graph project is not very exciting to me. I thought it would be, but I find myself not getting excited about interacting with MS Graph, and feel like I am putting more into it than I am getting out, so for now I'm going to set it aside. There are a few more days left so I might go back to it, meanwhile there are tasks I *am* passionate about, so I want to pursue those.
+Completed a code challenge on a real dry-erase board with pseudocode and step-through (excluding BigO analysis and tests).
 
-LBJS activities summary:
+Attended a Code Fellows Code301 Final Presentation session. The Code301 curriculum has been updated with React Hooks and WebSockets. I am a little envious about this, but I have already started to use React Hooks, and can always add Sockets as a topic I want to explore in the future.
+
+The MS Graph project is not very exciting to me. I thought it would be, but I find myself not getting excited about interacting with MS Graph, and feel like I am putting more into it than I am getting back, so for now I'm going to set it aside. There are a few more days left so I might go back to it, meanwhile there are tasks I *am* passionate about, so I will pursue those.
+
+I completed some LBJS activities:
 
 - React useEffect "fires after layout and paint", is suitable for event handlers, and events that should not "block the browser from updating the screen." *[ReactJS hooks-reference docs]*
 - Using the *addition operator* in console logs in React and Node cause issues.
 - Submitted PRs to address a bug and a refactoring to avoid duplicate code.
+
+Later, I set up my SurfacePro 7 VSCode with Java development Extensions and it is working well for dev and simple debugging. I will need to learn how to set up unit tests as well as find build output (JAR) files, but that will come in time. Using this setup I coded (in Java) the code challenge from earlier today (a singly linked list) and starting building out additional functionality:
+
+- Insert a value to the head of the linked list.
+- Traverse the list and output the contents to the console.
 
 ## Thursday 9-Mar-2023
 
