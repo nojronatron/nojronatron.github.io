@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Sunday 12-Mar-2023
+
+Completed some administrative tasks including end-of-week retro. Since I have missed completing my retros on Fridays, I'm going to reset the goal to Saturdays instead. Seems to make sense anyways because I track weeks Sunday through Saturday.
+
+Whiteboarded some Binary Tree structures and traversals, but somehow am getting stuck on depth-first. I'll need to work on that tomorrow (I know it, just need to work it out again which is good practice). This is in preparation to replace my Binary Tree implementation in my java-code-challenges repo.
+
 ## Saturday 11-Mar-2023
 
 This morning was a little disrupted with a vehicle repair situation, followed by a drive to Puyallup for a ham convention and electronics show. I met up with a few hams I have volunteered with in the past and we caught up a little. It was good to get out and be social.
