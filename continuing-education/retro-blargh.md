@@ -19,9 +19,11 @@ Put some time into designing Binary Trees, continuing from yesterday, and also s
 
 About Nodes vs their (possibly) containing Classes:
 
-- If I want to remove the Root Node from a Balanced Binary Tree with at least 3 Nodes, I might want to split the Tree into two Trees, which might seem daunting.
-- If I assume a Tree is just a collection of Binary-Tree-like-Nodes, then every time I have a Node reference, I actually have a Tree Root Node reference.
+- If I want to remove the Root Node from a Balanced Binary Tree with at least 3 Nodes, I might want to split the Tree into two Trees, which might seem daunting but really isn't.
+- If I assume a Tree is just a collection of Binary-Tree-like-Nodes, then every time I have a Node reference, I actually have a Tree Root Node reference, with all descendants too.
 - If I have a Tree Root Node reference, I should expect to be able to traverse it, count it, determine the height of it and its children, and etc.
+
+I plan to add the ability to find the Height and Width of the Tree, as well as implement recursive depth-first traversal, as well as a generalized breadth-first traversal function. At that point, this challenge should be done, effectively replacing the older binary tree implementation.
 
 ## Sunday 12-Mar-2023
 
