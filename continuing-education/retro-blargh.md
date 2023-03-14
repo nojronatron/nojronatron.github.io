@@ -2,6 +2,27 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Tuesday 14-Mar-2023
+
+Happy Pi Day!
+
+## Monday 13-Mar-2023
+
+Put some time into designing Binary Trees, continuing from yesterday, and also started coding tests and implementing from designs. Key takeaways:
+
+- Use a tracking HashSet when using Depth First and NOT using recursion, to ensure child nodes are not visited multiple times.
+- Code is easier to ready when simple methods like `hasRightChild()` and `isLeaf()` are implemented.
+- Removing a node from a Binary Tree is complex so I will give it a try for 30 minutes then look up existing solutions so I can implement one, and not get stuck.
+- IntelliJ IDEA: Use `souf` (template for `System.out.printf("")` with `%s`, `%n`, etc) instead of `sout` to easily in-line string formatting.
+- Setting `public Stringn toString()` method will help with debugging if crafted to expose necessary fields and values.
+- The further I get into these code challenges, the more obvious it is that parent classes like Linked List, Binary Tree, etc, are really just extensions of the Nodes themselves.
+
+About Nodes vs their (possibly) containing Classes:
+
+- If I want to remove the Root Node from a Balanced Binary Tree with at least 3 Nodes, I might want to split the Tree into two Trees, which might seem daunting.
+- If I assume a Tree is just a collection of Binary-Tree-like-Nodes, then every time I have a Node reference, I actually have a Tree Root Node reference.
+- If I have a Tree Root Node reference, I should expect to be able to traverse it, count it, determine the height of it and its children, and etc.
+
 ## Sunday 12-Mar-2023
 
 Completed some administrative tasks including end-of-week retro. Since I have missed completing my retros on Fridays, I'm going to reset the goal to Saturdays instead. Seems to make sense anyways because I track weeks Sunday through Saturday.
@@ -29,7 +50,7 @@ Attended a Code Fellows Code301 Final Presentation session. The Code301 curricul
 
 The MS Graph project is not very exciting to me. I thought it would be, but I find myself not getting excited about interacting with MS Graph, and feel like I am putting more into it than I am getting back, so for now I'm going to set it aside. There are a few more days left so I might go back to it, meanwhile there are tasks I *am* passionate about, so I will pursue those.
 
-I completed some LBJS activities:
+I completed some LBJS activities, and with some research and experimentation came away with these tidbits:
 
 - React useEffect "fires after layout and paint", is suitable for event handlers, and events that should not "block the browser from updating the screen." *[ReactJS hooks-reference docs]*
 - Using the *addition operator* in console logs in React and Node cause issues.
