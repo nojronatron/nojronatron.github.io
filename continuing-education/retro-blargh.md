@@ -6,6 +6,18 @@ Semi-regular notes taken during my journey as a software developer.
 
 Happy Pi Day!
 
+This morning I continued development on the Binary Tree class, completing implementation of the `remove()` function, verified tests passing, and performed some general code cleanup. There are a few more things I want to get done with this code challenge, but it will wait for another day.
+
+I found a few software job postings online today that were worthy of some time to research.
+
+I also reviewed my previous java code challenge work on Graphs. There are some issues with the Readme content, and perhaps sometime I will address that. For now it stays as-is. However, I came away with some thoughts about using HashTables and Sets to store unique values for later lookup (Graph, Traversals with Visited Collections, etc):
+
+- Why test to see if an object or value is in the Set if it just needs to be in there anyways?
+- Just add an item to the Set if it will need to be tracked for later lookup.
+- Only time to avoid adding without lookup first, is when a lookup is needed to decide to take another route in the code, or if the current item needs to be processed later anyway.
+
+Started researching Java Streams and making notes [here](./java-io-data-object-streams.html).
+
 ## Monday 13-Mar-2023
 
 Put some time into designing Binary Trees, continuing from yesterday, and also started coding tests and implementing from designs. Key takeaways:
@@ -17,7 +29,7 @@ Put some time into designing Binary Trees, continuing from yesterday, and also s
 - Setting `public Stringn toString()` method will help with debugging if crafted to expose necessary fields and values.
 - The further I get into these code challenges, the more obvious it is that parent classes like Linked List, Binary Tree, etc, are really just extensions of the Nodes themselves.
 
-About Nodes vs their (possibly) containing Classes:
+About Binary Tree Nodes vs their (possibly) containing Classes:
 
 - If I want to remove the Root Node from a Balanced Binary Tree with at least 3 Nodes, I might want to split the Tree into two Trees, which might seem daunting but really isn't.
 - If I assume a Tree is just a collection of Binary-Tree-like-Nodes, then every time I have a Node reference, I actually have a Tree Root Node reference, with all descendants too.
