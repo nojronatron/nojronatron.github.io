@@ -67,6 +67,63 @@ Streams can be made to be:
 
 Static Interface `Stream.Builder<T>` can be used as a mutable builder for a Stream.
 
+## Byte Streams
+
+8-bit data streams.
+
+Byte Stream classes are decendants of InputStream and OutputStream.
+
+Seems like its a good idea to import `java.io.IOException` for these streams.
+
+Instantiate FileInputStream with the filename of the data source.
+
+Instantiate FileOutputStream with a write-to filename.
+
+```java
+// always initialize Streams as null
+FileInputStream in = null;
+FileOutputStream out = null;
+
+// set up the input and output files
+in = new FileInputStream("input_file.txt");
+out = new FileOutputStream("output_file.txt");
+```
+
+Use a loop to read-in data until FileInputStream sees byte `-1`.
+
+```java
+try {
+  int character;
+  while((character = in.read()) != -1) {
+    out.write(character);
+  }
+}
+```
+
+*Always close streams* - use a Finally block to safely close them:
+
+```java
+finally {
+  // if file was not opened, in will be null and never opened
+  if (in != null) {
+    in.close();
+  }
+  if (out != null) {
+    out.close();
+  }
+}
+```
+
+### Summary of Byte Streams
+
+All other Streams are based on Byte Streams, but only use Byte Streams when it is appropriate for the data that is being manipulated.
+
+For example, when reading a text file, use Character Streams, not Byte Streams.
+
+## Character Streams
+
+I am [here](https://docs.oracle.com/javase/tutorial/essential/io/charstreams.html).
+
 ## Resources
 
 [Oracle Java Tutorials](https://docs.oracle.com/javase/tutorial/essential/io/index.html).
