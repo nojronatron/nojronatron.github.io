@@ -1,6 +1,15 @@
 # Occasional Retrospective Notes
 
-Semi-regular notes taken during my journey as a software developer.
+Semi-regular notes taken during my software developer journey.
+
+## Thursday 16-Mar-2023
+
+While researching open positions with a C# / Scala team in US-East, I uncovered a bit of an interesting rabbit hole, discovering different views about investing, decision-making, and meritocracy. I don't believe the company/team would be a good match for me, but I came away from the research with a few notes and slightly changed view of the world...an unexpected takeaway.
+
+Reviewed java code challenge: Binary Trees and decided to merge-in the PR as-is. There will always be more to do, but not right now.
+
+Completed some administrative tasks, and discovered I should rework my social media follows a little bit, and also try to squeeze in some official podcast time so I am more regularly introduced to on-going tech topics.
+
 
 ## Wednesday 15-Mar-2023
 
