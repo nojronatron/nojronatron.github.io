@@ -2,6 +2,21 @@
 
 Semi-regular notes taken during my journey as a software developer.
 
+## Wednesday 15-Mar-2023
+
+It's practically Thursday and I'm just now writing about my day.
+
+I completed some interview prep and job hunting tasks. There were a couple of interesting openings - one required relocation (would pay but I'm not interested in moving right now) and another was not a well formed job opportunity posting, just failing to describe the job or who the hiring manager was looking for. I did pick up some good insight into what a few teams were looking for in a candidate, even if the experience or other aspects did not match well for me.
+
+Self tested on some data structures and algorithms, and completed a code challenge: Whiteboarded a complete solution in 45 minutes with analysis, test approach, step through and code, and then validated the code in Java with tests. Along the way discovered something called a TreeSet: A Java utility class that provides sorted data. I didn't research it completely, and am assuming it is a Binary Search Tree. This was useful for ordering a large number of inputs to get the largest value (last sorted item) without knowing what the values were, so a unit test using large random value inputs could be used to test my code.
+
+Back to LBJS:
+
+- Ryan merged in some approved PRs and made some comments on a couple others.
+- I fixed a couple issues and pushed update commits to the PR with problems.
+- Netlify build was failing, so I took a peek at what was going on - it was a linting problem: "Must use single-quotes around Strings". It took a bit to sort out the issue because eslint was not helping and Prettier was makng the problem worse. Once I fixed the file with the problems, I pushed the commit directly to the Netlify branch and a build-deploy completed without issue.
+- Since the Netlify site was back up, I took a stab at running a gameboard ID in the Play route. Netlify returns a default 404 page so something is not quite right there (it works on my machine!).
+
 ## Tuesday 14-Mar-2023
 
 Happy Pi Day!

@@ -104,10 +104,11 @@ try {
 
 ```java
 finally {
-  // if file was not opened, in will be null and never opened
+  // if a file was not opened, in will be null and never opened
   if (in != null) {
     in.close();
   }
+  // same here, no file, out will be null and should not be closed
   if (out != null) {
     out.close();
   }
