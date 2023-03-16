@@ -10,6 +10,7 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
+- [ ] Learn how to properly log to WebApp hosts like Netlify (from a React SPA) or Azure App Service (from a Node-js service).
 - [ ] Learn about WebSockets.
 - [ ] Look into [Apache Kafka](https://kafka.apache.org/), especially how Java is used with/for it. Some companies are using Kafka in/with their deliverables.
 - [ ] Review Java Scanner at [Oracle Java Docs - Scanner]](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) and [Baeldung - Java Scanner](https://www.baeldung.com/java-scanner).
