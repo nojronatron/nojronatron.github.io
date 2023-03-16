@@ -10,6 +10,13 @@ Reviewed java code challenge: Binary Trees and decided to merge-in the PR as-is.
 
 Completed some administrative tasks, and discovered I should rework my social media follows a little bit, and also try to squeeze in some official podcast time so I am more regularly introduced to on-going tech topics.
 
+LBJS on Netlify work takeaways:
+
+- Netlify does not handle routing on SPAs so if a URL Parameter is included in the address bar and HTTP 404 will be thrown. Include a `_redirects` file in the `public` folder (for React, might be elsewhere for other frameworks) to include `index.html` and force an HTTP 200.
+- The LBJS API Server in Azure takes about 90 seconds to power-on, but otherwise shows good performance. Viewing the Log Stream from Azure Portal (or VSCode Azure Extension) is helpful when console logging is implemented.
+- Some additional tasks are now necessary to A) Catch up the main branch with the needed file for Netlify, and B) Update Readme with info, and C) Research the BrowserList DB and consider updating it.
+
+Create React App documents on [deploying to Netlify](https://create-react-app.dev/docs/deployment/#netlify).
 
 ## Wednesday 15-Mar-2023
 
