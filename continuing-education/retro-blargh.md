@@ -1,6 +1,104 @@
 # Occasional Retrospective Notes
 
-Semi-regular notes taken during my journey as a software developer.
+Semi-regular notes taken during my software developer journey.
+
+## Saturday 18-Mar-2023
+
+Completed a code challenge adding one Binary Tree to another. It was completely incidental that I ran into this challenge, and it just happened that designing a solution worked well in my current workload -- better than some other tasks would have. Key takeaways:
+
+- Recall that a Binary Node knows about its children, referencing their instances in its own fields. It is, in effect, a Binary Tree on its own.
+- Based on that fact, finding a Node within one tree that has an available "child Node" reference is all that is needed to attach an entire Binary Tree to another one.
+- A 'Queue' in the Java Utils library is an abstraction, and therefore should be used as an interface for implementing the Queue-like operations, but it cannot be instantiated.
+- Instead, the most "Queue-like" Class is the generic LinkedTransferQueue, and this should be used in most cases, except possibly where concurrency matters (check the docs).
+
+I added to my network a little bit, but I still need to update my resume.
+
+Reviewed an Azure Friday episode [Developing Azure Functions using v2 Programming Model for Python](https://learn.microsoft.com/en-us/shows/azure-friday/developing-azure-functions-using-the-v2-programming-model-for-python). This breaks down to decorated functions that Azure Functions Service recognizes and deploys accordingly, and there is a local (virtualized) dev environment for rapid ramp-up.
+
+Completed my weekly retrospective, stored elsewhere. I know what I need to work on, I just need to keep moving forward and keep my head up along the way.
+
+## Friday 17-Mar-2023
+
+Prettier was integrated into VSCode recently, which is great! There are some things to know:
+
+- If your project uses an `.editorconfig` file, its settings will override Prettier settings stored in VSCode user config file.
+- Prettier will not enforce single-quotes around JSX syntax. For example, `<Row className='p-2'>...</Row>` is JSX and has a String in the className. JSX Single Quote is the Prettier setting that needs to be enabled to enforce this.
+- New to me: VSCode Output window has a drop-down where Prettier and many other Extensions will pipe results to - I need to start using this now that I know its there. :anguished:
+- HTML Attribute names and JSX reminder: use camelCase e.g.: `className` and `tabIndex`, among others.
+
+Review [React Documentation on JSX](https://legacy.reactjs.org/docs/introducing-jsx.html).
+
+## Thursday 16-Mar-2023
+
+While researching open positions with a C# / Scala team in US-East, I uncovered a bit of an interesting rabbit hole, discovering different views about investing, decision-making, and meritocracy. I don't believe the company/team would be a good match for me, but I came away from the research with a few notes and slightly changed view of the world...an unexpected takeaway.
+
+Reviewed java code challenge: Binary Trees and decided to merge-in the PR as-is. There will always be more to do, but not right now.
+
+Completed some administrative tasks, and discovered I should rework my social media follows a little bit, and also try to squeeze in some official podcast time so I am more regularly introduced to on-going tech topics.
+
+LBJS on Netlify work takeaways:
+
+- Netlify does not handle routing on SPAs so if a URL Parameter is included in the address bar and HTTP 404 will be thrown. Include a `_redirects` file in the `public` folder (for React, might be elsewhere for other frameworks) to include `index.html` and force an HTTP 200.
+- The LBJS API Server in Azure takes about 90 seconds to power-on, but otherwise shows good performance. Viewing the Log Stream from Azure Portal (or VSCode Azure Extension) is helpful when console logging is implemented.
+- Some additional tasks are now necessary to A) Catch up the main branch with the needed file for Netlify, and B) Update Readme with info, and C) Research the BrowserList DB and consider updating it.
+
+Create React App documents on [deploying to Netlify](https://create-react-app.dev/docs/deployment/#netlify).
+
+## Wednesday 15-Mar-2023
+
+It's practically Thursday and I'm just now writing about my day.
+
+I completed some interview prep and job hunting tasks. There were a couple of interesting openings - one required relocation (would pay but I'm not interested in moving right now) and another was not a well formed job opportunity posting, just failing to describe the job or who the hiring manager was looking for. I did pick up some good insight into what a few teams were looking for in a candidate, even if the experience or other aspects did not match well for me.
+
+Self tested on some data structures and algorithms, and completed a code challenge: Whiteboarded a complete solution in 45 minutes with analysis, test approach, step through and code, and then validated the code in Java with tests. Along the way discovered something called a TreeSet: A Java utility class that provides sorted data. I didn't research it completely, and am assuming it is a Binary Search Tree. This was useful for ordering a large number of inputs to get the largest value (last sorted item) without knowing what the values were, so a unit test using large random value inputs could be used to test my code.
+
+Back to LBJS:
+
+- Ryan merged in some approved PRs and made some comments on a couple others.
+- I fixed a couple issues and pushed update commits to the PR with problems.
+- Netlify build was failing, so I took a peek at what was going on - it was a linting problem: "Must use single-quotes around Strings". It took a bit to sort out the issue because eslint was not helping and Prettier was makng the problem worse. Once I fixed the file with the problems, I pushed the commit directly to the Netlify branch and a build-deploy completed without issue.
+- Since the Netlify site was back up, I took a stab at running a gameboard ID in the Play route. Netlify returns a default 404 page so something is not quite right there (it works on my machine!).
+
+## Tuesday 14-Mar-2023
+
+Happy Pi Day!
+
+This morning I continued development on the Binary Tree class, completing implementation of the `remove()` function, verified tests passing, and performed some general code cleanup. There are a few more things I want to get done with this code challenge, but it will wait for another day.
+
+I found a few software job postings online today that were worthy of some time to research.
+
+I also reviewed my previous java code challenge work on Graphs. There are some issues with the Readme content, and perhaps sometime I will address that. For now it stays as-is. However, I came away with some thoughts about using HashTables and Sets to store unique values for later lookup (Graph, Traversals with Visited Collections, etc):
+
+- Why test to see if an object or value is in the Set if it just needs to be in there anyways?
+- Just add an item to the Set if it will need to be tracked for later lookup.
+- Only time to avoid adding without lookup first, is when a lookup is needed to decide to take another route in the code, or if the current item needs to be processed later anyway.
+
+Started researching Java Streams and making notes [here](./java-io-data-object-streams.html).
+
+## Monday 13-Mar-2023
+
+Put some time into designing Binary Trees, continuing from yesterday, and also started coding tests and implementing from designs. Key takeaways:
+
+- Use a tracking HashSet when using Depth First and NOT using recursion, to ensure child nodes are not visited multiple times.
+- Code is easier to ready when simple methods like `hasRightChild()` and `isLeaf()` are implemented.
+- Removing a node from a Binary Tree is complex so I will give it a try for 30 minutes then look up existing solutions so I can implement one, and not get stuck.
+- IntelliJ IDEA: Use `souf` (template for `System.out.printf("")` with `%s`, `%n`, etc) instead of `sout` to easily in-line string formatting.
+- Setting `public Stringn toString()` method will help with debugging if crafted to expose necessary fields and values.
+- The further I get into these code challenges, the more obvious it is that parent classes like Linked List, Binary Tree, etc, are really just extensions of the Nodes themselves.
+
+About Binary Tree Nodes vs their (possibly) containing Classes:
+
+- If I want to remove the Root Node from a Balanced Binary Tree with at least 3 Nodes, I might want to split the Tree into two Trees, which might seem daunting but really isn't.
+- If I assume a Tree is just a collection of Binary-Tree-like-Nodes, then every time I have a Node reference, I actually have a Tree Root Node reference, with all descendants too.
+- If I have a Tree Root Node reference, I should expect to be able to traverse it, count it, determine the height of it and its children, and etc.
+
+I plan to add the ability to find the Height and Width of the Tree, as well as implement recursive depth-first traversal, as well as a generalized breadth-first traversal function. At that point, this challenge should be done, effectively replacing the older binary tree implementation.
+
+## Sunday 12-Mar-2023
+
+Completed some administrative tasks including end-of-week retro. Since I have missed completing my retros on Fridays, I'm going to reset the goal to Saturdays instead. Seems to make sense anyways because I track weeks Sunday through Saturday.
+
+Whiteboarded some Binary Tree structures and traversals, but somehow am getting stuck on depth-first. I'll need to work on that tomorrow (I know it, just need to work it out again which is good practice). This is in preparation to replace my Binary Tree implementation in my java-code-challenges repo.
 
 ## Saturday 11-Mar-2023
 
@@ -21,12 +119,12 @@ Completed a code challenge on a real dry-erase board with pseudocode and step-th
 
 Attended a Code Fellows Code301 Final Presentation session. The Code301 curriculum has been updated with React Hooks and WebSockets. I am a little envious about this, but I have already started to use React Hooks, and can always add Sockets as a topic I want to explore in the future.
 
-The MS Graph project is not very exciting to me. I thought it would be, but I find myself not getting excited about interacting with MS Graph, and feel like I am putting more into it than I am getting back, so for now I'm going to set it aside. There are a few more days left so I might go back to it, meanwhile there are tasks I *am* passionate about, so I will pursue those.
+The MS Graph project is not very exciting to me. I thought it would be, but I find myself not getting excited about interacting with MS Graph, and feel like I am putting more into it than I am getting back, so for now I'm going to set it aside. There are a few more days left so I might go back to it, meanwhile there are tasks I _am_ passionate about, so I will pursue those.
 
-I completed some LBJS activities:
+I completed some LBJS activities, and with some research and experimentation came away with these tidbits:
 
-- React useEffect "fires after layout and paint", is suitable for event handlers, and events that should not "block the browser from updating the screen." *[ReactJS hooks-reference docs]*
-- Using the *addition operator* in console logs in React and Node cause issues.
+- React useEffect "fires after layout and paint", is suitable for event handlers, and events that should not "block the browser from updating the screen." _[ReactJS hooks-reference docs]_
+- Using the _addition operator_ in console logs in React and Node cause issues.
 - Submitted PRs to address a bug and a refactoring to avoid duplicate code.
 
 Later, I set up my SurfacePro 7 VSCode with Java development Extensions and it is working well for dev and simple debugging. I will need to learn how to set up unit tests as well as find build output (JAR) files, but that will come in time. Using this setup I coded (in Java) the code challenge from earlier today (a singly linked list) and starting building out additional functionality:
@@ -48,7 +146,7 @@ Holy wowzers it took me 2 hours of fighting with DotNET ConfigurationManager ext
 - Per usual DotNET expectations, implement a static BuildConfig method that accepts an IConfiguraitonBuilder parameter, and "build" the configuraiton using chained extension methods.
 - Chained methods are `.SetBasePath()`, and `.AddJsonFile()`.
 - Remember how to find the current working directory in DotNET (oh you don't? Here you go:) `Directory.GetCurrentDirectory()`.
-- The `BuildConfig(IConfigurationBuilder)` method operates on a an object instance *reference* :arrow-right: Whatever argument is put it must meet `IConfigurationBuilder` requirements and will be 'configured' in-memory.
+- The `BuildConfig(IConfigurationBuilder)` method operates on a an object instance _reference_ :arrow-right: Whatever argument is put it must meet `IConfigurationBuilder` requirements and will be 'configured' in-memory.
 - After calling `BuildConfig()` just ask for the data you want i.e. `builder.GetValue<T>("parent:childKey");`
 
 Took some time out from the MS Graph project and studied some OOP and C# lessons from a few years back. It is interesting to see the anonymous functions, Delegates, and other keyword implementations after studying JavaScript and Java for the last year and 6 months (respectively). I can't believe I had such a hard time with data structures and algorithms in Java, given that I had already be training those concepts in 2021. Anyway, it was good to go over some of this and I'll count that at code challenge studying for the day.
@@ -88,7 +186,7 @@ Some developments this morning:
 - Java Generics: Stop trying to use Primitives when instantiating arrays, lists/collections, etc.
 - Java Generics: Using these helps enforce type safety, allow using Types as parameters, and enable developing generic algorithms.
 - Java: Stop assuming the word 'array' translates to a Collection type (e.g. `List<T>` or `ArrayList<T>`). Everytime this happens, the code gets larger and does not meet the requirement of using a bracketed array.
-- Java Generics: It is not necessary to make an enclosing Class generic in order to make generic methods. I assume the class *would* need to be labeled generic if any private or public fields *are* generic.
+- Java Generics: It is not necessary to make an enclosing Class generic in order to make generic methods. I assume the class _would_ need to be labeled generic if any private or public fields _are_ generic.
 
 Completed the Java Generics exercises, and experimenting with the code and tests I produced.
 
@@ -101,7 +199,7 @@ Attended another seminar on Microsoft Graph API and SDK, and signed up for the h
 - Java and C# are very similar, however some of the differences are in casing requirements for Classes and its members, and it is a little confusing at times.
 - VSCode now supports new project templates that remove the usual namespace declarations. In Visual Studio, there is a namespace monitor that tells you what namespace you are in for a particular selected file, so it is a little alarming in VSCode to have neither that monitor nor the namespace declaration in a file (where does this code reside?). The only way I am aware of to get around this (when necessary) is to manually add-back the namespace declarations and VSCode will understand.
 - When designing and implementing custom Classes, VSCode isn't very good at finding the class file in the filesystem, and there are time that instantiating a custom class fails with (somewhat of a red herring) message that says an import statement or missing assembly reference. Not as intuitive as Visual Studio.
-- Microsoft Graph SDK encapsulates a *lot* of the business of authorization and calling the Graph API. However, there is lacking documentation on what some of the SDK Class methods actually return, so it's not always obvious how to process a result from an API call.
+- Microsoft Graph SDK encapsulates a _lot_ of the business of authorization and calling the Graph API. However, there is lacking documentation on what some of the SDK Class methods actually return, so it's not always obvious how to process a result from an API call.
 - Relearning how to use Environment Variables (configuation secrets) in DotNET was a little tricky but I was able to get a single variable imported using public documentation. Turns out there are a few more variables necessary for Graph that I'll need to get imported.
 - Moving between languages is still a little tricky just from the perspective of the toolsets, environment expectations, frameworks and libraries including configuration and setup. At some point I suspect this will get easier as I gain work experince.
 
@@ -145,11 +243,11 @@ Revisited updating dependencies of a React-JS webapp. Every so often vulnerabili
 
 Key takeaways:
 
-- You *must* use `npm audit` to make a list of installed, vulnerable packages and dependencies.
-- You *could* go in and edit package.json and package-lock.json to surgically fix modules' version requirements and those of their dependencies.
-- However you *should* use `npm update package-name` instead to update a specific top-level dependency.
+- You _must_ use `npm audit` to make a list of installed, vulnerable packages and dependencies.
+- You _could_ go in and edit package.json and package-lock.json to surgically fix modules' version requirements and those of their dependencies.
+- However you _should_ use `npm update package-name` instead to update a specific top-level dependency.
 - Running `npm audit fix` is also an option and will be helpful to automatically resolve some (or all if you're luck) vulnerable dependencies.
-- On occasion you will *need to* go into package-lock.json and update vulnerable dependencies' versions and remove references to the vulnerable module, as well as delete the entire node_modules directory and all of its children. Follow that with `npm audit fix` again to force acquisition of the correct dependecy/ies.
+- On occasion you will _need to_ go into package-lock.json and update vulnerable dependencies' versions and remove references to the vulnerable module, as well as delete the entire node_modules directory and all of its children. Follow that with `npm audit fix` again to force acquisition of the correct dependecy/ies.
 
 Plenty of bouncing around today, between the Graph code challenge problem solving design efforts, and catching-up on LBJS PRs and enqueued work.
 
@@ -194,14 +292,14 @@ Friday morning I made the mistake of trying to change Themes to get something cl
 
 I continued with more redesigning and test-driven development with the Graph Class. Key Takeaways:
 
-- Do *not* try to use a `for(...)` or `for(each)` loops when items are going to be removed from a Collection.
+- Do _not_ try to use a `for(...)` or `for(each)` loops when items are going to be removed from a Collection.
 - To remove item(s) from a Collection use an Iterator: Check for `hasNext()`, reassign REF using `next()`, and removing the last item returned with `remove()`.
 
 ## Wednesday 22-Feb-2023
 
 Back to code challenges:
 
-- [X] Work through pseudo-coding a Graph datastructure.
+- [x] Work through pseudo-coding a Graph datastructure.
 - [ ] Work through pseudo-coding Graph traversals (in process).
 
 Some takeaways from working on code challenges:
@@ -268,10 +366,10 @@ Most of my time earlier this week has been spent on volunteer and around-the-hou
 
 Completed an LBJS PR to componentize a pair of nested functions within a React Class component. After initial discovery and fiddling with the code I started to thing the effort was not going to be worth it. I took a break and thought about it, came back to it and implemented a slighly different solution that started working well. After a few short refactorings while testing, the webapp was working without errors. Key takeaways:
 
-- Refactoring the two child functions into their own React Functional Components meant passing params *through* one component just so the other component could use it.
+- Refactoring the two child functions into their own React Functional Components meant passing params _through_ one component just so the other component could use it.
 - Both functions were ALWAYS CALLED TOGETHER so it made sense that they should continue to be together and not broken into separate components.
 - Put the dependent function(s) inside the 1st called component function so the params will be easily accessible.
-- A React Component farther up the tree calls useEffect hook so two render cycles are run, which meant that some parameters did not yet exist on the 1st rendering. Added a Conditional (turnary) Operator to ensure the componentized function would only be called once the dependent props were no longer *underfined*.
+- A React Component farther up the tree calls useEffect hook so two render cycles are run, which meant that some parameters did not yet exist on the 1st rendering. Added a Conditional (turnary) Operator to ensure the componentized function would only be called once the dependent props were no longer _underfined_.
 
 Watched a presentation on Linux on Azure. It wasn't too informative but I already have some experience with Azure services, so some of it was review. It was interesting to learn:
 
@@ -282,7 +380,7 @@ Knocked out an example 'favicon' file for LBJS. Was a good exercise in using cre
 
 ## Thursday 9-Feb-2023
 
-Completed a java code challenge, this time using a Queue data structure. Although I was unable to complete requirements of the technical interview, the diagram had good basic logic and required few edits to make it a good resource for writing pseudocode and actual Java code. Once I wrote Java code, about 4 lines of code needed to be *removed*, and there was only one small bug in the code that was quick to fix. All the tests, even the empty cases and those containing zeroes passed right away. One other positive takeaway is: I implemented a Queue class and Queue Node specifically for this solution and only needed to peek at a working solution once before the Queue implementation was fully functional (Peek, Enqueue, Dequeue, IsEmpty, and getSize/Count)!
+Completed a java code challenge, this time using a Queue data structure. Although I was unable to complete requirements of the technical interview, the diagram had good basic logic and required few edits to make it a good resource for writing pseudocode and actual Java code. Once I wrote Java code, about 4 lines of code needed to be _removed_, and there was only one small bug in the code that was quick to fix. All the tests, even the empty cases and those containing zeroes passed right away. One other positive takeaway is: I implemented a Queue class and Queue Node specifically for this solution and only needed to peek at a working solution once before the Queue implementation was fully functional (Peek, Enqueue, Dequeue, IsEmpty, and getSize/Count)!
 
 ## Wednesday 8-Feb-2023
 
@@ -293,7 +391,7 @@ Took some time researching Azure and Linux. Microsoft Learn has resources and tr
 This morning I realized there was a problem with a test for the latest java code challenge so I fixed the test, which uncovered another bug in the latest revision of the code. I spend some time redesinging the code (to avoid writing really long and tedious garbage code) and came up with a solution. Some key takeaways:
 
 - It is incredibly important to make sure "copy pasta" (copying code) does the right thing.
-- It is incredibly important to *update* the copy pasta code before running it, assuming it will do what is expected for where it now lives and runs.
+- It is incredibly important to _update_ the copy pasta code before running it, assuming it will do what is expected for where it now lives and runs.
 - Checking for null in Java is all to critical.
 - Using `if-then-else` can get really tedious. Options are to use `if-continue` or `switch() case:` to avoid crazy-nested decision trees.
 - Using Stacks to solve this sorting problem is not ideal.
@@ -324,7 +422,7 @@ Completed a technical interview question that required code in order to 'complet
 
 - In code complexity of storage, if there are always 3 variable used regardless of input size, that could be written as O(3), which boils down to O(1). I failed to boil-it-down.
 
-After watching a presentation on algorithms and data structures, it occurred to me that during technical interviewing I often times get caught up in values. The presentation used colors as Linked List Nodes, rather than numbers or characters/strings. While it is true that values are important in an algorithm, it is more important early on to determine *how to traverse a data structure*. Walking the structure is necessary for the algorithm to process the values within it. Once a data structure and traversing algorithm are selected, plug-in the numbers while performing a walk-through to verify the planned implementation.
+After watching a presentation on algorithms and data structures, it occurred to me that during technical interviewing I often times get caught up in values. The presentation used colors as Linked List Nodes, rather than numbers or characters/strings. While it is true that values are important in an algorithm, it is more important early on to determine _how to traverse a data structure_. Walking the structure is necessary for the algorithm to process the values within it. Once a data structure and traversing algorithm are selected, plug-in the numbers while performing a walk-through to verify the planned implementation.
 
 Some advice shared by David:
 
@@ -347,20 +445,20 @@ Attended MSFT Reactor session "Building Your First Typescript Project" and made 
 
 - TS and JS can be written side-by-side, just update 'tsconfig.json' to allow it and to turn off 'strict' mode.
 - When writing a TS project from scratch, keep 'strict' mode on for better IDE snippets and helpers.
-- TSC is used to build projects or individual files. The JS that comes out is *very busy* and imho messy. That will not matter when it comes to type-safe, trustworthy apps in the end.
+- TSC is used to build projects or individual files. The JS that comes out is _very busy_ and imho messy. That will not matter when it comes to type-safe, trustworthy apps in the end.
 - Instead of using `.env` file to set environment variables, use `.envrc` and set it up the same as `.env`, then create an `app-config.ts` file, import `zod` and create a `z.object({})` with full typing for each environment variable. Include a try-catch with `process.exit(1)` in the catch in case the config typing is ever invalid. Lastly, in the TS file that needs the config e.g. an Express-js app entry point `app.ts`, load the configuration as a const e.g. `const config = loadConfig()`. Config items can then be accessed using `config.some_property` in the code.
 
-While working on what looked like a good fit for a Turnary Operator (which avoids writing *yet another* set of if-then-else codeblocks). While fiddling with the right Turnary Operator statement, I explored some alternatives and discovered that node.js will accept the Logical AND operator `&&` followed by a Logical OR operator `||`:
+While working on what looked like a good fit for a Turnary Operator (which avoids writing _yet another_ set of if-then-else codeblocks). While fiddling with the right Turnary Operator statement, I explored some alternatives and discovered that node.js will accept the Logical AND operator `&&` followed by a Logical OR operator `||`:
 
 ```node
 function getCode(arr) {
-  return arr.length > 1 && 200 || 404
+  return (arr.length > 1 && 200) || 404;
 }
 
-console.log('statusCode from [1,2,3]:', getCode([1,2,3]))
+console.log('statusCode from [1,2,3]:', getCode([1, 2, 3]));
 // output: statusCode from [1,2,3]: 200
 
-console.log('statusCode from []:', getCode([]))
+console.log('statusCode from []:', getCode([]));
 // output: statusCode from []: 404
 ```
 
@@ -368,7 +466,7 @@ MDN covers this in their JavaScript Reference documentation on [Operators](https
 
 ## Tuesday 31-Jan-2023
 
-Practiced whiteboarding while developing a route on the LBJS API Server: Problem statement, inputs and outputs, step-through definition (but no depictions/drawings), and javascript code (but no pseudocode). Took about 45 minutes to complete whiteboarding, perhaps 5 minutes to implement the code with only minor adjustments, and another 5-10 minutes of debugging and the code is functional! There are probably a few more bugs to work out, but only *one major bug-fix was required* to get the happy-path working as intended. :boom:
+Practiced whiteboarding while developing a route on the LBJS API Server: Problem statement, inputs and outputs, step-through definition (but no depictions/drawings), and javascript code (but no pseudocode). Took about 45 minutes to complete whiteboarding, perhaps 5 minutes to implement the code with only minor adjustments, and another 5-10 minutes of debugging and the code is functional! There are probably a few more bugs to work out, but only _one major bug-fix was required_ to get the happy-path working as intended. :boom:
 
 Implemented cache and Promises on one of the routes. All of this practice is paying off and implementations like these are getting easier, and are completed more quickly than before. I still need to add tests to the functions for sanity sake, and there are plenty of refactorings needed on most of the other routes... those things will be done in time.
 
@@ -379,8 +477,8 @@ The LBJS-Back API AppService has been redeployed with the latest PR code and it 
 Spent a good deal of time battling Express Middleware and Error Handling again. I somehow allow myself to ignore the rules of these concepts, run into errors, and wonder why implementations are failing. Important aspects:
 
 - Be careful to notice functions that will return a Promise. Either await it, or handle it by chaining Resolve and Catch.
-- Throw errors *inside of try blocks*. This is nothing new, just took me a minute to understand why Nodejs would fall over when I expected it to return a sensible message instead.
-- Middleware *must* do one of these things to succeed: Call next; complete the request-response cycle. Otherwise, a request will never get a response and Express will leak memory.
+- Throw errors _inside of try blocks_. This is nothing new, just took me a minute to understand why Nodejs would fall over when I expected it to return a sensible message instead.
+- Middleware _must_ do one of these things to succeed: Call next; complete the request-response cycle. Otherwise, a request will never get a response and Express will leak memory.
 
 ## Sunday 29-Jan-2023
 
@@ -397,17 +495,17 @@ Most of the rest of this week through Satruday was busy with other administrativ
 Key takeaways for Wednesday:
 
 - Mongoose: Use `findOne()` instead of `find()` to limit results to the first Document, unless it is necessary to return a collection of matching documents (or all of them).
-- Mongoose: Using `updateOne()` has the added feature of reporting on whether the DB operation was executed, how many Documents were matched, and how many were *upserted* or *modified*. Output this information to a log so update transactions can be reviewed or audited.
-- Middleware in ExpressJS: If the custom middleware doesn't end the Request-Response cycle it *must* call `next()`.
+- Mongoose: Using `updateOne()` has the added feature of reporting on whether the DB operation was executed, how many Documents were matched, and how many were _upserted_ or _modified_. Output this information to a log so update transactions can be reviewed or audited.
+- Middleware in ExpressJS: If the custom middleware doesn't end the Request-Response cycle it _must_ call `next()`.
 
 ## Tuesday 24-Jan-2023
 
 Key takeaways for the day:
 
-- Promises: Why? Use Async-Await. As MDN puts it "[async await] enable asynchronous, *promise-based behavior*... ... avoiding the need to explicitly configure promise chains.". :tada: [MDN Async Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) :tada:
-- Accessing MongoDB from Azure AppService: MongoDB Atlas has a Network Access page where 'allowed IP addresses' can be added to enable access to a Mongo Atlas *Project* databases within an Organization. It will accept CIDR addresses such as '20.0.0.0/24' to cover an entire range.
-- Mongoose 7 will introduce a bug in my code if I'm not careful. Granted, the update to Mongoose 7 would be purposeful in most cases, it is better to fend against breaking things by removing the bug *before* Mongoose 7 is available via `npm -i`.
-- It is *exhilarating* seeing a back-end server I developed, running in Azure, accessing a DB in another Cloud-based service, and seeing it respond to Browser or other User Agent requests!
+- Promises: Why? Use Async-Await. As MDN puts it "[async await] enable asynchronous, _promise-based behavior_... ... avoiding the need to explicitly configure promise chains.". :tada: [MDN Async Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) :tada:
+- Accessing MongoDB from Azure AppService: MongoDB Atlas has a Network Access page where 'allowed IP addresses' can be added to enable access to a Mongo Atlas _Project_ databases within an Organization. It will accept CIDR addresses such as '20.0.0.0/24' to cover an entire range.
+- Mongoose 7 will introduce a bug in my code if I'm not careful. Granted, the update to Mongoose 7 would be purposeful in most cases, it is better to fend against breaking things by removing the bug _before_ Mongoose 7 is available via `npm -i`.
+- It is _exhilarating_ seeing a back-end server I developed, running in Azure, accessing a DB in another Cloud-based service, and seeing it respond to Browser or other User Agent requests!
 
 ## Monday 23-Jan-2023
 
@@ -434,7 +532,7 @@ Going forward I won't have much time for implementing and securing routes, verif
 Some other takeaways about deploying a Node.js project to Azure AppService:
 
 - CORS seems to cause Node.js fail-to-start every time. There is probably some more I need to know about CORS to ensure I am implementing/configuring it properly for Azure.
-- Env variables aka Application Settings in VSCode Azure Extension: Do not quotation the values *unless you want delimited quotation marks* in the value.
+- Env variables aka Application Settings in VSCode Azure Extension: Do not quotation the values _unless you want delimited quotation marks_ in the value.
 - There is a NODE_ENV variable that should be set to 'production' to change error catch/throw behavior.
 
 For the Nth time in a few months, I've found myself getting a little confused around Promises. At least it's a new year. :smiley: Perhaps part of the confusion is I am mingling promises with Express middleware and custom error handling? In some instances the headers are getting rewritten (after already sent) and in others the system crashes instead of catching an error (despite being in a catch block). Some research followed by refactoring will be necessary to get this going properly.
@@ -472,8 +570,8 @@ Writing up some notes on error handling in ExpressJS. I left-off about 1/3 the w
 Other Key Takeaways:
 
 - HTTP Status Codes: Client/browser might cache certain 3xx codes and paths. For example, when I tested sending a 301 (Moved Permanently) instead of a 302 (Found) for a login redirect response, I was no longer able to get to the Home page despite having authenticated.
-- Multi-line arrow functions *must*: Use braces; Use a return statement before the closing brace.
-- Single-line arrow functions *automatically return the result of the statement on the right side of the arrow*.
+- Multi-line arrow functions _must_: Use braces; Use a return statement before the closing brace.
+- Single-line arrow functions _automatically return the result of the statement on the right side of the arrow_.
 - Do not try to `String.toString(obj)` within a Node environment, even if you know the obj is a String, because it will come back as the String description of a 'native object'.
 - Horray for JSON objects! It is really nice to move data between function calls and simply destructure it or property-select what is necessary, when necessary!
 - The `'use strict';` declaration is not necessary within exporting modules, it is implied.
@@ -484,28 +582,28 @@ Fiddled with PowerShell 7.x for a minute (2 hours). Now I remember one of the dr
 
 Took some time to implement caching on the (private) getting-started API server:
 
-- [X] Two paths (API Endpoints) now implement caching, demonstrating how to reduce DB calls to Mongo.
-- [X] As a personal challenge, implemented use of Promises. I am still a little confused by Promises, but not as badly as last week.
+- [x] Two paths (API Endpoints) now implement caching, demonstrating how to reduce DB calls to Mongo.
+- [x] As a personal challenge, implemented use of Promises. I am still a little confused by Promises, but not as badly as last week.
 
 A good portion of the rest of my day was spent preparing and emailing items in my volunteer capacity. It is set in stone (pretty much) that I will be running a training session, demonstrating basic Winlink startup and usage. Within a couple hours of the email announcement going out, the 'registration survey' already had 1 response, and I know there will be at least 2 more, maybe as many as a dozen!
 
 Goals for Saturday:
 
-- [X] Complete write-up/eval of Firebase Auth.
-- [X] Review an Azure Friday episode.
-- [X] Run through interview preparation questions.
-- [X] Run through technical datastructure basics.
-- [X] Complete an end-of-week retrospective.
+- [x] Complete write-up/eval of Firebase Auth.
+- [x] Review an Azure Friday episode.
+- [x] Run through interview preparation questions.
+- [x] Run through technical datastructure basics.
+- [x] Complete an end-of-week retrospective.
 
 ## Wednesday 4-Jan-2023
 
-For the first time in over a month I went for a run on Tuesday morning and I overdid it. So I ran again this morning and it was much easier so *back to work*!
+For the first time in over a month I went for a run on Tuesday morning and I overdid it. So I ran again this morning and it was much easier so _back to work_!
 
 Working on the Auth0 front-end:back-end authentication project:
 
-- [X] Unexpected 'aud' value was coming from an environment setting in variable `checkJwt` that was pointing to the correct express server, but relying on the Auth0 API server, but other configuration code was missing in order to do JWT authentication in this way.
-- [X] The JWT setup was close, just missing some code to get the correct JWT from the Auth0 API service configuration, which Auth0 documentation shows a long path to get to. Instead, I installed `jsonwebtoken` and `jwks-rsa` node modules and set up an Authorize component that defined a client pointing to the JWKS URI (an Advanced configuration Endpoint setting on the front-end application page), a `getKey()` method that acquires the public signing key, and a `verifyUser()` method with a nested `valid()` method, that acquires and formats the authorization token and validates in using `jwt.verify()`.
-- [X] Fixing the prior to items solved the question 'is my front-end acquiring the correct JWT': It was not, but now it is!
+- [x] Unexpected 'aud' value was coming from an environment setting in variable `checkJwt` that was pointing to the correct express server, but relying on the Auth0 API server, but other configuration code was missing in order to do JWT authentication in this way.
+- [x] The JWT setup was close, just missing some code to get the correct JWT from the Auth0 API service configuration, which Auth0 documentation shows a long path to get to. Instead, I installed `jsonwebtoken` and `jwks-rsa` node modules and set up an Authorize component that defined a client pointing to the JWKS URI (an Advanced configuration Endpoint setting on the front-end application page), a `getKey()` method that acquires the public signing key, and a `verifyUser()` method with a nested `valid()` method, that acquires and formats the authorization token and validates in using `jwt.verify()`.
+- [x] Fixing the prior to items solved the question 'is my front-end acquiring the correct JWT': It was not, but now it is!
 
 Now the front-end is able to access unprotected routes without an Authorization header, and CAN access PROTECTED routes WITH an Authorization header and a valid Token:
 
@@ -514,7 +612,7 @@ Now the front-end is able to access unprotected routes without an Authorization 
 
 UseEffect is easy to get wrong, here are things I learned getting it wrong, then debugging and getting it right:
 
-- UseEffect was declared separately from the async method that *relied on a Module parameter* to execute.
+- UseEffect was declared separately from the async method that _relied on a Module parameter_ to execute.
 - Encapsulating the async method call (uses Axios to call the protected path using a valid Authorization header + token) allows the useEffect to avoid re-rendering, thus executing again.
 - See [UseEffect FAQ: Dependencies change too often](https://reactjs.org/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often). In summary, make an external parameter a useEffect dependency (the square bracket parameter) and put the dependant function inside the useEffect code block.
 - See [UseEffect FAQ: Omitting functions from list of dependencies](https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies). In summary, do not omit them. Follow the FAQ entry instead.
@@ -528,7 +626,7 @@ Entering retro notes daily is a little overkill for my purposes, so I'm going to
 Deployed an example API server with canned authentication and data (no DB backend) to Azure App Service:
 
 - Don't include CORS as an unconfigured dependency otherwise it will block many valid requests, including App Service telemetry e.g. logging.
-- Configure dotenv (ENV aka Environment Variable) settings via Azure App Service *Application Settings*. There are reserved settings for the App Service itself, but otherwise fill-in what is needed the same as a `.env` or in Heroku's *environment variables* settings page.
+- Configure dotenv (ENV aka Environment Variable) settings via Azure App Service _Application Settings_. There are reserved settings for the App Service itself, but otherwise fill-in what is needed the same as a `.env` or in Heroku's _environment variables_ settings page.
 - There is no need to set a custom server port. Azure App Service defaults to 8080 and at least 1 gateway exists between the internet and the App Service itself.
 - Bearer Token is usually concatenated in code. For this example it is an environment variable to simplify development without relying on an actual authentication service, until we are confident in our ability to deploy it especially on the front-end.
 
@@ -550,7 +648,7 @@ Express Learnings:
 
 - Passing results from middleware to `next()` is simply a matter of assigning a KVP to `res.locals`, for ex: `res.locals.authResult = 'Authorized'` will attach key:authResult, value:'Authorized' to the `Response` handler.
 - When examining cookies it is easier to install and use `cookie-parser` than it is to dive through the headers manually.
-- Adding middleware functions does *not* require including `res,req,next` in the params list. In fact, the params list can be left out altogether when called in-line with a handler i.e. `app.get('/', myMiddleware, (req, res) => { res.json({message:'Ok!'})});`.
+- Adding middleware functions does _not_ require including `res,req,next` in the params list. In fact, the params list can be left out altogether when called in-line with a handler i.e. `app.get('/', myMiddleware, (req, res) => { res.json({message:'Ok!'})});`.
 - It would be really super helpful if I would just draw-out all the middlewares and their dependancies before I started writing code. I'm spending too much time debugging 'on the run' instead of coding, validating, and moving to the next design.
 
 ## Thursday 29-Dec-2022
@@ -566,9 +664,9 @@ Demonstrated Firebase Auth and Auth0 capabilities to Ryan, for LingoBingo. We ar
 
 Some more takeaways:
 
-- DotEnv does NOT need to be installed on a React site. Just prefix the variables with 'REACT_APP_'.
+- DotEnv does NOT need to be installed on a React site. Just prefix the variables with `REACT_APP`.
 - Using DotEnv requires the '.env' file to be at the root of the project (as far as I can tell - I will have to do some investigating to confirm this or learn how to point to another location).
-- DotEnv file entries are NOT key-value-pairs e.g. `AUTH0_DOMAIN:"dev-asdfasdf.us.auth0.com"` they are value *assignments* i.e. `AUTH0_DOMAIN="dev-asdfasdf.us.auth0.com"`.
+- DotEnv file entries are NOT key-value-pairs e.g. `AUTH0_DOMAIN:"dev-asdfasdf.us.auth0.com"` they are value _assignments_ i.e. `AUTH0_DOMAIN="dev-asdfasdf.us.auth0.com"`.
 
 ## Wednesday 28-Dec-2022
 
@@ -585,8 +683,8 @@ I had a good lunch break with my friend Dave in Snohomish. It was great to catch
 
 Christmas week is over and it's time to get back to business:
 
-- [X] GoogleAuth added to demo Firebase Auth React App. Verified can access protected path using Firebase Auth Validation on server-side.
-- [X] Retro plan for integrating with API Server for authorization.
+- [x] GoogleAuth added to demo Firebase Auth React App. Verified can access protected path using Firebase Auth Validation on server-side.
+- [x] Retro plan for integrating with API Server for authorization.
 
 Some key takeaways:
 
@@ -606,15 +704,15 @@ Attended a partner power hour presentation by Roger R, about Graphs, demoing a s
 
 Goals for today:
 
-- [X] Create new Firebase password exploratory project.
-- [X] Bolt-on eslinting with react add-on.
-- [X] Add Firebase SDK and set up config.
-- [X] Test dotenv is functional.
-- [X] Create Register Form and set up Firebase registration.
-- [X] Create Login Form and set up Firebase login.
-- [X] Create Logout button and workflow.
-- [X] Implement a basic Profile page using Firebase auth info.
-- [X] Enable Bearer Token authentication verification on back-end server to protect route(s).
+- [x] Create new Firebase password exploratory project.
+- [x] Bolt-on eslinting with react add-on.
+- [x] Add Firebase SDK and set up config.
+- [x] Test dotenv is functional.
+- [x] Create Register Form and set up Firebase registration.
+- [x] Create Login Form and set up Firebase login.
+- [x] Create Logout button and workflow.
+- [x] Implement a basic Profile page using Firebase auth info.
+- [x] Enable Bearer Token authentication verification on back-end server to protect route(s).
 - [ ] Add-on Google Auth and consider other OAuth methods.
 - [ ] Retro this and plan for integrating with API Server for authorization.
 
@@ -632,7 +730,7 @@ Takeaways:
 
 ## Tuesday 20-Dec-2022
 
-I ran into a problem with getting the user context back from Firebase...rather, I knew the user was registered (and logged on) but somehow my code was missing the ability to update the state properly so that the site would show the user was logged in and allow logout. After trying some things I ran across some web resources about using Firebase and decided to explore them. Because my React App was manually configured, the WebPack and ReactScripts versions are in a buggy state that blocks using dotenv 'process' properly. This is a super-bad situation and probably means the site could have other broken issues I might not want to have to fix, so I'm starting over using the standard Create React App method. *argh*
+I ran into a problem with getting the user context back from Firebase...rather, I knew the user was registered (and logged on) but somehow my code was missing the ability to update the state properly so that the site would show the user was logged in and allow logout. After trying some things I ran across some web resources about using Firebase and decided to explore them. Because my React App was manually configured, the WebPack and ReactScripts versions are in a buggy state that blocks using dotenv 'process' properly. This is a super-bad situation and probably means the site could have other broken issues I might not want to have to fix, so I'm starting over using the standard Create React App method. _argh_
 
 ## Monday 19-Dec-2022
 
@@ -654,7 +752,7 @@ Will keep moving forward tomorrow, after a good night's rest.
 
 ## Sunday 18-Dec-2022
 
-- [X] Back-end design updating.
+- [x] Back-end design updating.
 - [ ] Complete my Firebase Authentication review.
 - [ ] Implement caching on the example server.
 
@@ -704,8 +802,7 @@ Saturday:
 
 Sunday:
 
--[ ] Review Firebase authentication and determine if this is a viable solution for a current project.
--[ ] Update Miro with new design thought and approaches to the back-end API server.
+-[ ] Review Firebase authentication and determine if this is a viable solution for a current project. -[ ] Update Miro with new design thought and approaches to the back-end API server.
 
 ## Friday 9-Dec-2022
 
@@ -731,7 +828,7 @@ Mongoose provides for model validation within the schema, so I added that.
 
 Completing implementation of 'deleted' (boolean) and 'updated' (dateTime) field updates was not too bad. The biggest hurdle was learning how to create a valid timestamp in javascript: `const dateNow = new Date(Date.now());`. I modularized that so it can be called JIT from any other function that needs it.
 
-I'm not too thrilled with Pug. While it is nice as a quick-and-dirty html templating engine, doing anything too fancy with it is just too tedious. Also, the documentation mentions 'native' handling of arrays, which is true, but then they use examples that are awful (using hard-coded values) AND what is meant by 'native' is an Array can be passed-in to the rendered Pug file, and it will just list it horizontally within a 'p' element without any additional effort on the developer's part. It is probably the case that the desired output needs to be processed *prior* to passing it in to the rendered Pug file? Not sure I care much about it right now -- if I wanted to do something truly good for the user, I'd just create a React App and be done with it.
+I'm not too thrilled with Pug. While it is nice as a quick-and-dirty html templating engine, doing anything too fancy with it is just too tedious. Also, the documentation mentions 'native' handling of arrays, which is true, but then they use examples that are awful (using hard-coded values) AND what is meant by 'native' is an Array can be passed-in to the rendered Pug file, and it will just list it horizontally within a 'p' element without any additional effort on the developer's part. It is probably the case that the desired output needs to be processed _prior_ to passing it in to the rendered Pug file? Not sure I care much about it right now -- if I wanted to do something truly good for the user, I'd just create a React App and be done with it.
 
 Code Fellows hosted a "Code 401 Instructor Panel" as they have done every so often in the past. It is always enlightening, and usually uplifting. Today one of the instructors reminded the audience that honing expertise takes 10,000 hours, so keep hacking through the tough times and learning will happen along the way. This is a good reminder for me to consider where I was a year ago versus today, and 10k hrs is still a ways away, so I should not be expecting 'expert level code' by any means at this point. In other words: Keep at it, but take it easy on yourself.
 
@@ -774,7 +871,7 @@ Some things I learned:
 - It is important to return an appropriate HTTP code with REST calls.
 - It is not difficult to factor-out Request, Response, and Next params from functions that don't need to use them.
 - Use cookie data and object destructuring techniques to manage input and outputs.
-- Data validation and user feedback at the UI *might be helped* with the use of appropriate HTTP Status Codes and short, succinct response messages.
+- Data validation and user feedback at the UI _might be helped_ with the use of appropriate HTTP Status Codes and short, succinct response messages.
 
 Goals for Tomorrow:
 
@@ -796,12 +893,12 @@ Auth0 struggles stole most of my day. There were a few other interruptions too, 
 
 ## Monday 5-Dec-2022
 
-- [X] Review Cookies and work on an implementation plan for LingoBingo.
+- [x] Review Cookies and work on an implementation plan for LingoBingo.
 
 Cookie exploration was interesting. I had forgotten a lot of what I'd been exposed to 20 years ago in college. The challenge then was learning how to use the cookie-parser middleware function. High level takeaways:
 
 - Require cookie-parser then app.use the cookie-parser function.
-- Cookie-parser is a middleware *function*!
+- Cookie-parser is a middleware _function_!
 - Getting a cookie will be done via `Request.cookie`, and key-value data can be captures with property selectors (e.g. `req.cookie["foo"]` returns a cookie with value 'bar' if it was set).
 - Setting a cookie will be done on a Response as `response.cookie(Key: String, Value: String, { options })`.
 
@@ -857,10 +954,10 @@ Some more database lessons:
 
 Findings about Server-side Cache:
 
-- While it is handy to use just the URI or PreviousURI as the 'key' for caching content, it is *not reliable* across requests with different JSON-body payloads and will return previous requests rather than new ones.
+- While it is handy to use just the URI or PreviousURI as the 'key' for caching content, it is _not reliable_ across requests with different JSON-body payloads and will return previous requests rather than new ones.
 - Simply assigning specific `request` properties (JSON, Body, Params, etc) isn't good enough because not all requests use the same payload mechanism.
 - It is possible that my API implementation is making caching more difficult, but it seems like a caching function (module) should be more dynamic, capable of plugging in to different environments yet still doing necessary processing.
-- It is clear to me now: Caching should *only be done on GET* requests, not on POST, PUT, DELETE (etc).
+- It is clear to me now: Caching should _only be done on GET_ requests, not on POST, PUT, DELETE (etc).
 
 Goals for Tomorrow:
 
@@ -888,12 +985,12 @@ In a CodeFellows channel, a member mentioned [Advent of Code 2022](https://adven
 
 Some key takeaways:
 
-- Pay attention to the input type. If it looks like a String of numbers, then there is work to do to maybe put that into an Array *before* trying to traverse the datastructure.
-- Is my input really a bunch of numbers *or is it a String*? Consider how to massage the String input so it can be used to solve the problem at hand, for example: Parsing Strings into Integers/Numbers might be *required* to find the answer.
+- Pay attention to the input type. If it looks like a String of numbers, then there is work to do to maybe put that into an Array _before_ trying to traverse the datastructure.
+- Is my input really a bunch of numbers _or is it a String_? Consider how to massage the String input so it can be used to solve the problem at hand, for example: Parsing Strings into Integers/Numbers might be _required_ to find the answer.
 - Use RegEx! `String.replace(regex, replaceString)` can work wonders.
 - Use `String.split()` to easily transform a CSV of Strings into an array of arrays.
 - Avoid `for...` loops and instead use `Array.forEach( item => n)` to work through each iteration.
-- Only use `Array.map( item => n)` for situations where *replacement* of original array is necessary.
+- Only use `Array.map( item => n)` for situations where _replacement_ of original array is necessary.
 - Use the Step Through to help understand how to traverse a data structure. Walking through the steps will help design an initial algorithm, which can then be translated to Pseudo/Code more easily.
 - Like always: If the problem requires writing a lot of code, then the approach is probably wrong and should be restarted.
 
@@ -908,8 +1005,8 @@ For now, the authentication requirements are removed from my exploratory API ser
 Some REST and CRUD takeaways from today's experiences:
 
 - Forms support POST, GET, PUT/PATCH, and DELETE.
-- Forms do so while submitting *a query formatted data steam*, meaning it is in the URL e.g. 'http://foo.net/thing?item=bar'.
-- To submit a JSON (or XML) Body from a form, the action must be *POST*, which could be unsafe for idempotent resource requests.
+- Forms do so while submitting _a query formatted data steam_, meaning it is in the URL e.g. 'http://foo.net/thing?item=bar'.
+- To submit a JSON (or XML) Body from a form, the action must be _POST_, which could be unsafe for idempotent resource requests.
 - Idempotent: On every execution/trigger, the function will return the same result.
 - To work around the form-submission problem, a means to get an identifier is necessary so that the REST Verbs can be used consistent with RESTful design.
 - Recall that a GET request will accept a URL parameter. In route/path it will look like `/foo/:id` and the URL address will be `https://foobar.org/foo/identity`. ExpressJS Request object will have 'identity' stored in the 'params' field.
@@ -929,7 +1026,7 @@ IDs versus Hash Codes versus UUIDs:
 
 General Coding and Design:
 
-- Spend *more time on design* and less on code.
+- Spend _more time on design_ and less on code.
 - When coding cannot be done to design, it is time to go back to the drawingboard, not battle with code!
 - When an efficient and effective design is found/discovered, keep using it! If I had stuck with some realizations with Buffer and Mongoose as soon as I realized them, I would have saved at least a couple hours of flailing around.
 - Just because a JS Module is intended to be used by Express (req, res, next, error, etc) doesn't mean it has to be 100% integrated. Next time, create more generic, testable modules and use middleware or go-between modules to interface Express.
@@ -940,8 +1037,8 @@ Interesting reference:
 
 These are now done:
 
-- [X] Build a getter-setter middleware for presenter model.
-- [X] Build a getter-setter middleware for gameboard model.
+- [x] Build a getter-setter middleware for presenter model.
+- [x] Build a getter-setter middleware for gameboard model.
 
 ## Tuesday 29-Nov-2022
 
@@ -955,15 +1052,15 @@ Continued API Server design efforts:
 
 Completed goals:
 
-- [X] Implement caching on the API server demo.
-- [X] Implement a sign-in and sign-out functionality to the API server demo.
+- [x] Implement caching on the API server demo.
+- [x] Implement a sign-in and sign-out functionality to the API server demo.
 
 The sign-in/out functionality is implemented but the Presenter User Stories paths haven't been fully implemented in the UI or in the routes. That will be a work in progress for a few more days.
 
 Started adding models and middleware to the exploratory API Server:
 
-- [X] Models for presenters and gameboards.
-- [X] Refactored word model and schema into one file.
+- [x] Models for presenters and gameboards.
+- [x] Refactored word model and schema into one file.
 - [ ] Build a getter-setter middleware for presenter model.
 - [ ] Build a getter-setter middleware for gameboard model.
 
@@ -981,10 +1078,7 @@ Authentiation - Auth0:
 
 Goals:
 
--[X] Re-watch WDS episode, uninterrupted.
--[X] Review LingoBingo Trello and work on at least 1 card.
--[ ] Implement caching on the API server demo.
--[ ] Implement a sign-in and sign-out functionality to the API server demo.
+-[X] Re-watch WDS episode, uninterrupted. -[X] Review LingoBingo Trello and work on at least 1 card. -[ ] Implement caching on the API server demo. -[ ] Implement a sign-in and sign-out functionality to the API server demo.
 
 Middleware:
 
@@ -1044,13 +1138,13 @@ LingoBingo setup stuff:
 - Set up a search function to return all entries within a specified category.
 - Implemented all CRUD functions using Mongoose. There are some architecture details and some assumptions that will need to get fleshed out into details, but at this point, it seems like a few turnary functions can be implemented to enforce authentication and authorization, and it will be up to the caller to meet those requirements. For example: A non-authenticated user should not have authorization to update an existingn record.
 - I will need to go back and make sure that only the requisite information is actually returns from an endpoint, too. Spilling an entire document from Mongo to the caller is not an efficient use of processing nor bandwidth.
-- Calling '.exec()' at the end of a Mongoose statement (find et al) is required, unless I want to process the command *later*.
+- Calling '.exec()' at the end of a Mongoose statement (find et al) is required, unless I want to process the command _later_.
 
 Somehow I couldn't recall how to do object destructuring so I looked it up on MDN. Simple: `{ param1, param2, param3 } = inputObject`
 
 - This assumes the inputObject has fields 'param1', 'param2', and 'param3'.
 - It doens't matter in the inputObject has additional properties.
-- It doesn't matter what order the properties are in, just that the destructure syntax *uses the correct field names*.
+- It doesn't matter what order the properties are in, just that the destructure syntax _uses the correct field names_.
 
 ## Monday 21-Nov-2022
 
@@ -1116,7 +1210,7 @@ While exploring Cookies in ExpressJS, I ran across a scenario that I haven't con
 - Lables:Forms is many:1
 - Button elements and Input element of type 'button' are already labeled (don't need to add one).
 - Implicit and explicit Label associations exist: Implicit = nested, Explicity = 'label for='
-- Label text *is clickable* which effectively increases the clickable area of a clickable element, like a small checkbox.
+- Label text _is clickable_ which effectively increases the clickable area of a clickable element, like a small checkbox.
 - Use `div` or `fieldset` to wrap Form elements.
 - Match up the Input elements 'id=' attribute with the label's 'for=' attribute to bind the data.
 - Often the 'name=' attribute is named the same as the id and for attributes.
@@ -1161,7 +1255,7 @@ Completed a code challenge, whiteboard session only. It took 70 minutes to compl
 
 Completed Graph write-up, implementation, and full suite of unit tests. There are a few minor lingering items that I could revisit in the future as a means to jog my memory on this data structure and the algorithms used to traverse it.
 
-- [X] Revisit Graph challenge, try to wrap it up before EOD.
+- [x] Revisit Graph challenge, try to wrap it up before EOD.
 
 Sorry Friday, it wasn't your day.
 
@@ -1189,12 +1283,12 @@ Thursday:
 
 Friday:
 
-- [X] Spend some time working through interview preparation tasks.
-- [X] Continue work refining Screen Party functionality, debugging.
+- [x] Spend some time working through interview preparation tasks.
+- [x] Continue work refining Screen Party functionality, debugging.
 - [ ] Revisit Graph challenge, try to wrap it up before EOD.
-- [X] It is 'Azure Friday': Review an episode.
-- [X] End of week retro: Brain-dump what went well this week, and what needs improvement or could I have done differently?
-- [X] Power Hour and Presentation sessions at Code Fellows.
+- [x] It is 'Azure Friday': Review an episode.
+- [x] End of week retro: Brain-dump what went well this week, and what needs improvement or could I have done differently?
+- [x] Power Hour and Presentation sessions at Code Fellows.
 
 Meeting with Ryan about project Lingo Bingo has been rescheduled for Saturday 12-Nov.
 
@@ -1213,7 +1307,7 @@ GitHub Codespaces Sounds Interesting!
 
 CSS Animations can be tricky:
 
-- Absolute or Fixed display type? Both are effective, but Fixed takes the box *out of the usual flow* so the animation doesn't interfere with the rest of the page.
+- Absolute or Fixed display type? Both are effective, but Fixed takes the box _out of the usual flow_ so the animation doesn't interfere with the rest of the page.
 - Animating fonts advice: Font sizes can get really large but too big might not be good for the overall experience.
 - Animating boxes: Assign a starting height and width of 0 and in the keyframes use auto.
 - Use `overflow: hidden` to keep objects from expanding the view port size when they spill over.
@@ -1253,13 +1347,13 @@ The one part of deploying Express that I didn't pay much attention to (but I sho
 
 Reviewing Express.js today:
 
-- [X] Simple Routing.
-- [X] Static pages.
-- [X] Static pages with absolute path using path module.
-- [X] OAuth integration.
+- [x] Simple Routing.
+- [x] Static pages.
+- [x] Static pages with absolute path using path module.
+- [x] OAuth integration.
 - [ ] Implementing server-side cache.
 
-Worked with Ryan on LingoBingo updates, PRs, code reviews... via GitHub, Email, and Slack. We are getting *very close*! He resolved several bugs and is moving things forward nicely.
+Worked with Ryan on LingoBingo updates, PRs, code reviews... via GitHub, Email, and Slack. We are getting _very close_! He resolved several bugs and is moving things forward nicely.
 
 While exploring Express.js and Auth0, I discovered Auth0 provides profile information for free. It's not a lot of info and really only includes the user name, locale, email, and an access grant token that is only used in the current authentication session. However, my exploratory Express server didn't have a way to display the data in a user friendly way.
 
@@ -1275,7 +1369,7 @@ Express.js Social ID Providers and Developer Keys:
 
 - The freebee Auth0 Developer Keys are useful for temporary testing, and not available in private cloud deployments.
 - A ClientID and ClientSecret are part of the Developer Keys set and should be obtained via the target provider (Google, GitHub, Twitter, etc).
-- Auth0 *will not show your custom logo* on the OAuth screen when using Developer Keys.
+- Auth0 _will not show your custom logo_ on the OAuth screen when using Developer Keys.
 
 ## Saturday 5-Nov-2022
 
@@ -1283,7 +1377,7 @@ Survived the windstorm and power outages last night and this morning. Back to it
 
 Attended a webinar by a Code Fellows alumni and ex-instructor re: CSS. Was well worth the time, and he was very good at walking and talking through what he was doing and why.
 
-Walked through the steps necessary to deploy React Apps to Netlify and Azure App Services. Netlify is pretty easy just on its own, and deploying to Azure App Service is made *super simple* using the Azure Extension for VSCode. 9/10 do recommend! For LingoBingo we will plan to deploy "production" front end to Netlify, and back end features (API, DB, Authentication and Authorization, etc) to Azure.
+Walked through the steps necessary to deploy React Apps to Netlify and Azure App Services. Netlify is pretty easy just on its own, and deploying to Azure App Service is made _super simple_ using the Azure Extension for VSCode. 9/10 do recommend! For LingoBingo we will plan to deploy "production" front end to Netlify, and back end features (API, DB, Authentication and Authorization, etc) to Azure.
 
 ## Friday 4-Nov-2022
 
@@ -1365,7 +1459,7 @@ YAML key takeaways:
 - File extension '.yaml' or '.yml'.
 - Store in `./github/workflows/` directory of the repo.
 - On: Single or multiple events can be defined.
-- Branches, branches-ignore, paths, and paths-ignore: Refine *when* an Action is executed.
+- Branches, branches-ignore, paths, and paths-ignore: Refine _when_ an Action is executed.
 - Can be scheduled (like CRON) or called by workflow and other events.
 
 Resources:
@@ -1390,7 +1484,7 @@ Revisited ExpressJS to jumpstart my memory on how this all works. It's nice that
 - Remember to `npm install`. Should be gut-reaction at this point (but it's not).
 - Execute `npm start` to run the Express server, regardless of exactly how you created it.
 - Package.json will have a pointer to the default 'entrypoint' file, so be sure that is correct/up-to-date.
-- NODEMON! When editing the config or code in an Express server, your changes *might not be reflected* without restarting `npm start`. Instead, do `npm install nodemon` and then execute `nodemon` and when changes are detected, Express is restarted automatically so changes are 'picked up' right away.
+- NODEMON! When editing the config or code in an Express server, your changes _might not be reflected_ without restarting `npm start`. Instead, do `npm install nodemon` and then execute `nodemon` and when changes are detected, Express is restarted automatically so changes are 'picked up' right away.
 
 Last thing to note: Working server side is making me smile a lot. I am excited to move to this server-side portion of the project!
 
@@ -1439,14 +1533,14 @@ The idea to use a CSS Class selector came from [css-tricks.com](https://css-tric
 
 I reviewed my latest code challenge attempt and there are problems with the pseudocode and the slightly altered actual Java code:
 
-1. Character class is a single String character, but is stored as an integer. So when casting a char of an integer (lets say 23) to an int, the *value* of the char is returned instead of the character as an int. Instead of casting the Character class to an Integer, I should first cast Character to a String, and then to an Integer.
+1. Character class is a single String character, but is stored as an integer. So when casting a char of an integer (lets say 23) to an int, the _value_ of the char is returned instead of the character as an int. Instead of casting the Character class to an Integer, I should first cast Character to a String, and then to an Integer.
 2. Creating temp variables should be done with a purpose, meaning they need to be used sometime later, and probably destroyed. This needs to get corrected to be sure that temporarily stored value is used.
 
 ## Monday 24-Oct-2022
 
 We've been looking to find a font or three to use for the Lingo Bingo project. Some resources were added to the Trello board so I read the article about Roboto and took a peek at [FontJoy](https://fontjoy.com/) to find some reasonable pairings. Will have to revisit this in the future with the goal of making a decision.
 
-While researching hosting options for Lingo Bingo I found Azure to be a pretty capable. Looking at Heroku and Azure, it is clear that deploying a database server/service, storing the data, and dealing with transaction or request limits is much more expensive (and complex) than deploying a web app, desktop virtual machine, or some other services. Azure does have one benefit of having a pretty cheap SQL Server deployment tier that will consume *some* credits every month, but the capabilities of MS SQL are all there. It is possible that mutliple services will be used for example: Front-end webapp on Netlify and a back-end API with MongoDB in Azure.
+While researching hosting options for Lingo Bingo I found Azure to be a pretty capable. Looking at Heroku and Azure, it is clear that deploying a database server/service, storing the data, and dealing with transaction or request limits is much more expensive (and complex) than deploying a web app, desktop virtual machine, or some other services. Azure does have one benefit of having a pretty cheap SQL Server deployment tier that will consume _some_ credits every month, but the capabilities of MS SQL are all there. It is possible that mutliple services will be used for example: Front-end webapp on Netlify and a back-end API with MongoDB in Azure.
 
 More research is needed to review a few other hosting services to see what we might use, and what we should get ready for. RedHat OpenShift is so market-eeze that I can't tell what it might cost to use it, much less exactly what I'd use it for. Netlify is a known quantity, and as a front-end hosting platform it will only provide a part of the solution. Heroku has something called 'build packs' that support React, but are completely unknown (to me at this point). Heroku also has Add-Ons that will enable MongoDB access and other features, but my experience with those is they are supplied at a cost (although a minimal PostGresQL was available for Java-based deployments and was free, that doesn't help us in MERN-stack world).
 
@@ -1468,7 +1562,7 @@ Key takeaways:
 - An input could have been an empty string, so early on I should have written a test for that so there would be something early on, instead of waiting until the very end writing test approach.
 - Input type was String (which was unexpected given the challenge name), so I need to immediately ask questions about handling all character types, not just the expected numeric types. What if the input was "12c4"?
 - Utilizing a Stack to store input in a LIFO order is helpful for cases like this one, and it was good to come up with that portion rapidly. Although I should have made a few distinct notes about Stacks e.g. push, pop, peek, isEmpty, and LIFO.
-- The overall performance of my solution in time is O(n*m), which makes me wonder if there is another data structure or approach that would be more efficient.
+- The overall performance of my solution in time is O(n\*m), which makes me wonder if there is another data structure or approach that would be more efficient.
 - Technical interviews are a means for the interviewer to better understand how the candidate problem solves. In this case, it might not be possible to solve the challenge within an hour.
 
 Turned my attention to LingoBingo for a bit to work out some theming issue. I don't quite have my head wrapped around this yet, but I feel like it is close.
@@ -1483,15 +1577,15 @@ Took some time out to do a technical interview practice challenge. Key takeaways
 
 Completed 2 behavioral questions. There are just a few more that I need to write out responses to, then I can start a serious review and better prepare for interviewing.
 
-Attended a presentation session on web accessibility. I was aware there are standards out there providing guidance to make sites, services, products, and software accessible, but I wasn't aware just how far along those resources have come. Check out the W3C for details about the WCAG (Web Content Accessibility Guidelines) at all stages during the software development process. Doing so will bring the site/service/product closer to compliance, but the main point is to design for *inclusivity*.
+Attended a presentation session on web accessibility. I was aware there are standards out there providing guidance to make sites, services, products, and software accessible, but I wasn't aware just how far along those resources have come. Check out the W3C for details about the WCAG (Web Content Accessibility Guidelines) at all stages during the software development process. Doing so will bring the site/service/product closer to compliance, but the main point is to design for _inclusivity_.
 
-Saw presentations by Javascript Full Stack developers and they were using a package called [inquirer](https://www.npmjs.com/package/inquirer). It is a command-line interface for Node.js. They were using it to administratively update database entries, and manage services running on their backend infrastructures. This could be useful in future Node and Express projects! Turns out the class was instructed to do their projects *without any graphical user interface at all*, and use AWS Services for CRUD, authentication and authorization, and build custom API servers to manage their data calls. They all did really well!
+Saw presentations by Javascript Full Stack developers and they were using a package called [inquirer](https://www.npmjs.com/package/inquirer). It is a command-line interface for Node.js. They were using it to administratively update database entries, and manage services running on their backend infrastructures. This could be useful in future Node and Express projects! Turns out the class was instructed to do their projects _without any graphical user interface at all_, and use AWS Services for CRUD, authentication and authorization, and build custom API servers to manage their data calls. They all did really well!
 
 Went through the java-code-challenges repository to review properties, methods, traversals, and algorithmic complexities. There were a couple of errors, some points that needed refinement, and some reference links that needed to be updated, so I did that. Having that repository with all of the documentation included seems to be a good idea as I am able to easily review the information and refresh it in my mind. This actually raises my interest in coding, so it might be good to do these reviews earlier in the day so I can take advantage of that coding desire.
 
 ## Thursday 20-Oct-2022
 
-Continued research using React Hooks. Much of the documentation introduces the concept of Context and 'useContext' all in the same file. That's fine except those examples fail to demonstrate leveraging a defined context *across files* in a React hierarchy.
+Continued research using React Hooks. Much of the documentation introduces the concept of Context and 'useContext' all in the same file. That's fine except those examples fail to demonstrate leveraging a defined context _across files_ in a React hierarchy.
 
 Key Takeaways:
 
@@ -1499,7 +1593,7 @@ Key Takeaways:
 - In the parent Component, import the custom Context component and set up a value that will be transferred via that Context.
 - Also in the parent, wrap child component(s) in a `<MyContext.Provider value={myValue}>`.
 - In the child component(s) import the custom Context component and assign the Context value to a variable by calling `useContext(MyContext)`.
-- Whenever the Context value(s) change, the child *components that import it will re-render*.
+- Whenever the Context value(s) change, the child _components that import it will re-render_.
 
 Checkout [this post on react usecontext hook](https://www.robinwieruch.de/react-usecontext-hook/) by 'rw;eruch' aka Robin Wieruch.
 
@@ -1510,7 +1604,7 @@ I attended the Bellingham Codes Software Forum, where plenty of good discussion 
 Some takeaways from the Software Forum discussions:
 
 - I really enjoyed talking about code, with developers from all backgrounds.
-- Just because your React hierarchy is getting large or complex is *not* an indication that it is wrong or otherwise bad.
+- Just because your React hierarchy is getting large or complex is _not_ an indication that it is wrong or otherwise bad.
 - Framer: A production-ready [Motion library for React](https://www.framer.com/developers/guides/).
 - [Inkscape-react](https://github.com/konsumer/inkscape-react#readme): Converts Inkscape images to React Components.
 
@@ -1530,7 +1624,7 @@ React Hooks uses concepts that are pretty familiar, now that I am gaining a basi
 About 'Array.prototype.reduce()':
 
 - Input parameters are previousValue, currentValue.
-- Arrow function just points to the expression *to be performed on the inputs*.
+- Arrow function just points to the expression _to be performed on the inputs_.
 - The expression component '(previousValue + currentValue, ...' literally means 'replace the first input with the result of this expression'.
 - The expression component '...initialValue)' literally means 'replace the second input with the result of this expression'.
 
@@ -1601,14 +1695,14 @@ I took a look at a few blog articles about theming, and it is pretty invovled. I
 
 Monitored MS Ignite sessions again today. Notes are stored at [MSIgnite 2022 Notes](./ms-ignite-2022-notes.html).
 
-MSFT has done a lot of work to enable remote development, and IT management of remote development resources, via the Azure cloud. Although it is very Visual Studio-centric, they did demostrate Maui features (cross-platform build, hot-reload, and an *android emulator*).
+MSFT has done a lot of work to enable remote development, and IT management of remote development resources, via the Azure cloud. Although it is very Visual Studio-centric, they did demostrate Maui features (cross-platform build, hot-reload, and an _android emulator_).
 
 I completed a React-Tac-Toe challenge: [Highlight Winning Tiles](#react-tac-toe). I updated the blargh article where the challenges are listed. Takeaways:
 
 - Analyze the output of functions to be sure I understand what it is they are returning.
 - Check for the closest Component to where the UI change needs to take place, and work backwards to the calling Component so that props can be back-traced properly.
 - Javascript does not have a 'Contains()' method. It has `Array.prototype.includes()`. :confounded:
-- One year ago I was not able to use code to change style on a website. Today *I can do it without much thought*!
+- One year ago I was not able to use code to change style on a website. Today _I can do it without much thought_!
 
 ## Wednesday 12-Oct-2022
 
@@ -1618,7 +1712,7 @@ GitHub Universe is set for November 9th and 10th 2022.
 
 Git tid-bit:
 
-`git commit -c {id}` allows updating a commit message for a commit with *id*.
+`git commit -c {id}` allows updating a commit message for a commit with _id_.
 
 What is an OKR? Objective and Key Result. OKRs enable setting and communicatingn goals and milestones.
 
@@ -1633,12 +1727,12 @@ Back to MS Ignite, David Fowler and Damian Edwards shared some interesting ASP.N
 
 ## Tuesday 11-Oct-2022
 
-Another poster added a link to [Jake Archibald's blog page](https://jakearchibald.com/2021/cors/) that discusses *CORS* in historic detail. It's also pretty humorous. Key takeaways are stored in [cors-review](./cors-review.html). Key takeaways for right here:
+Another poster added a link to [Jake Archibald's blog page](https://jakearchibald.com/2021/cors/) that discusses _CORS_ in historic detail. It's also pretty humorous. Key takeaways are stored in [cors-review](./cors-review.html). Key takeaways for right here:
 
 - Preflight not required for same origin, non-credentialed requests.
 - Preflight not required when headers include 'access-control-request-method' and 'access-control-request-headers' that are acceptable to the server.
-- Preflight is triggered for requests that are *not* GET, HEAD, or POST, and/or include unusual Headers or Methods.
-- Preflight is triggered when requests ask for headers *not on a safelist*.
+- Preflight is triggered for requests that are _not_ GET, HEAD, or POST, and/or include unusual Headers or Methods.
+- Preflight is triggered when requests ask for headers _not on a safelist_.
 - CORS preflight and responses can be seen using DevTools, Network tab. Use it!
 - It is not good enough to just allow wildcards, as that will not override preflight requirements.
 - Browser and CDN caches can cause issues with CORS. Use `Vary: Cookie` and `Vary: Origin` to ensure caches do not send aged response instead of fresh one.
@@ -1682,7 +1776,7 @@ After integrating my calculation components into the Lingo Bingo React project, 
 
 Today I worked through writing the basics of a Graph Data Structure, and the traversal algorithms. I found an interesting slide deck for a computer science class at the UW [CSE 417: Algorithms and Computational Complexity](https://courses.cs.washington.edu/courses/cse417/12wi/notes/03graphs.pdf) that was helpful. It had an interesting quote from [Walter Ruzzo](https://homes.cs.washington.edu/~ruzzo/), Professor of Computer Science & Engineering and Adjunct Professor at the University of Washington.
 
-> "Never write an argument you are not convinced in because this may damage your brain." *[Ruzzo]*
+> "Never write an argument you are not convinced in because this may damage your brain." _[Ruzzo]_
 
 Some key takeaways:
 
@@ -1703,12 +1797,12 @@ Started working through Lingo Bingo logic to determine when a Bingo has been att
 Key Takeaways:
 
 - Jest will not tell you everything you need to know about a test failure, so don't expect it.
-- Jest is most likely running the tests *in parallel*. There are heuristics that decide whether to run asynchronously or not. It is probably best to assume synchronous most of the time.
+- Jest is most likely running the tests _in parallel_. There are heuristics that decide whether to run asynchronously or not. It is probably best to assume synchronous most of the time.
 - When Arrays or Objects are not supplying data the way you expect it, start at the data itself, then the first component to touch it, then the next component, and so-on.
 - Don't troubleshoot the Jest Test when the problem is deeper than "the test fails", go to the modules/functions under test!
 - When passing JS or ES6 Arrays as arguments to functions, use `.map()` and `.forEach()` to push data into an Array explicitly so there are no assumptions about A) the data getting added to the array, and B) the number of items the array will contain.
-- It paid off to build Jest Tests early on while developing these functions (there were 5 of them!), as the tests discovered *plenty* of issues with my original code attempts.
-- Worry less about making the code beautiful until *after* the code is passing unit tests and is 'done'... *then* refactor it.
+- It paid off to build Jest Tests early on while developing these functions (there were 5 of them!), as the tests discovered _plenty_ of issues with my original code attempts.
+- Worry less about making the code beautiful until _after_ the code is passing unit tests and is 'done'... _then_ refactor it.
 
 ## Thursday 6-Oct-2022
 
@@ -1737,7 +1831,7 @@ Key Takeaways about Arrow Functions:
 - Cannot be used as constructors and are not able to use 'yield'.
 - CAN be treated like variables when used in the 'function body' format: `const result = (params) => { codeBlock; return value; }`.
 - Assigning the arrow function to a value allows calling it like `result(myParam)`.
-- Any necessary operations can be performed *directly* on the result.
+- Any necessary operations can be performed _directly_ on the result.
 
 An example of what I threw together can be found on [ReplIt](https://replit.com/@JonRumsey/CoordinatesFun).
 
@@ -1777,7 +1871,7 @@ Before the day ended implemented the technical interview challenge in my Java Co
 
 Back to the bitmap transformer project! Had I taken time to look into BufferedImage class back when I first did this assignment, I probably would have been able to complete it, or at least get one transform done (instead of none). Key takeaways:
 
-- ImageIO suports bmp, png, gif, and jpg filetypes except for `write()` method => *bmp is not supported*. To get around write, write a PNG file instead.
+- ImageIO suports bmp, png, gif, and jpg filetypes except for `write()` method => _bmp is not supported_. To get around write, write a PNG file instead.
 - There are built-in draw and edit capabilities in the java library java.awt.Graphics that are good for drawing, filling, or adjusting the size of existing images.
 - SGOESCH has an interesting github project called [java image processing survival guide](https://github.com/sgoeschl/java-image-processing-survival-guide/blob/master/paper/README.md) that has some helpful info about Java and image processing, handling.
 
@@ -1803,7 +1897,7 @@ Single-use:
 boolean result = Pattern.matches(regex, inputParam);
 ```
 
-*Note*: The Oracle Java docs have a special set of REGEX rules that are *slightly* different than what I've seen elsewhere (e.g. regex101).
+_Note_: The Oracle Java docs have a special set of REGEX rules that are _slightly_ different than what I've seen elsewhere (e.g. regex101).
 
 Responded to a behavioral interview question. This was in interesting one because it is basically asking what gets me exciting about software development. The basic answer is: solving problems, and watching unit tests pass, proving the problem is solved. There is more of course, but that is in the details of the answer I drew up and will refine.
 
@@ -1817,8 +1911,8 @@ Final set of takeaways:
 
 Last couple TODOs for the bitmap-transform project were completed on October 6th:
 
-- [X] Add unit tests.
-- [X] Add method documentation to the codefile.
+- [x] Add unit tests.
+- [x] Add method documentation to the codefile.
 
 While I was checking in to a couple of ham radio nets, I decided to take a peek at the NWS API. Key takeaways:
 
@@ -1846,7 +1940,7 @@ We are going to have to figure out how to manage "Host" users vs. "Player" users
 
 Key takeaway: Trust myself a little more when it comes to solving problems related to React State.
 
-Code Challenges: I discovered that my solution to "Is Anagram" challenge was not quite right. Turns out the input was to be *2 strings* and the comparison is whether they are anagrams *of each other*. I might take on the challenge of fixing that in the near future.
+Code Challenges: I discovered that my solution to "Is Anagram" challenge was not quite right. Turns out the input was to be _2 strings_ and the comparison is whether they are anagrams _of each other_. I might take on the challenge of fixing that in the near future.
 
 I attacked another React Challenge: Add a toggle button that lets you sort the moves in either ascending or descending order. See entries from about 2 weeks ago for the full list and images of results.
 
@@ -1855,15 +1949,15 @@ Key takeaways:
 - Create a new boolean State property that can be toggled, tracking ascending/descending order.
 - Define a variable to store the reverse-order of the list items. Since this was an array, use the built-in `.reverse()` method after using the spread operator `[...arr]` on existing items.
 - Create an event handler that simply toggles the sortAscending boolean: `!this.state.sortAscending,`.
-- Add a Button component to the rendered output and declare an *arrow function* as the 'onClick' argument: `onClick={()=>this.toggleDescending()}`.
-- An arrow function is *critical* so that this.state can be accessed within the event handler function.
+- Add a Button component to the rendered output and declare an _arrow function_ as the 'onClick' argument: `onClick={()=>this.toggleDescending()}`.
+- An arrow function is _critical_ so that this.state can be accessed within the event handler function.
 
-On to Java Code Challenges! Reviewing the isAnagram solution, it turns out I solved the *palindrome* problem instead of the anagram one. Granted, a palindrome *is* an anagram, there are a bunch of use cases that won't get solved by the isAnagram method I created. So I completed an update to the java code challenges repository that addresses that problem. There are now two classes - one for the Palindrome problem, another for the Anagram problem.
+On to Java Code Challenges! Reviewing the isAnagram solution, it turns out I solved the _palindrome_ problem instead of the anagram one. Granted, a palindrome _is_ an anagram, there are a bunch of use cases that won't get solved by the isAnagram method I created. So I completed an update to the java code challenges repository that addresses that problem. There are now two classes - one for the Palindrome problem, another for the Anagram problem.
 
 Takeaways:
 
 - Pay closer attention to the problem domain. I shouldn't have missed the requirements of two string inputs, and it wouldn't have hurt to just Google (in this case) anagrams, to make sure I got it right to begin with.
-- Remember to use Enhanced For (Java; for-each in other languages) when I need to iterate through all items in a collection *but I don't need to know the exact index of each one*. It's simpler to code it this way and gets the same result w/o fear of an out of bounds or mis-typed variable.
+- Remember to use Enhanced For (Java; for-each in other languages) when I need to iterate through all items in a collection _but I don't need to know the exact index of each one_. It's simpler to code it this way and gets the same result w/o fear of an out of bounds or mis-typed variable.
 
 Also, when thinking about using Hash Table, recall that it:
 
@@ -1872,7 +1966,7 @@ Also, when thinking about using Hash Table, recall that it:
 - Can return all values.
 - Can determine if a value is contained, or if a key is contained -- don't assume it is just the value that can be checked for!
 - Add and Delete are included in Hashtable that is included with the java libraries.
-- The hashtable might *not* solve the problem itself, but it can do the work of determining non-uniqueness in O(1) time with very little code.
+- The hashtable might _not_ solve the problem itself, but it can do the work of determining non-uniqueness in O(1) time with very little code.
 
 That's it for today.
 
@@ -1900,17 +1994,17 @@ I set up Jest on the Lingo Bingo project and submitted a PR with a couple of tes
 
 ## Friday 30-Sept-2022
 
-This morning I attempted another technical interview question and could not get code on the board before 40 minutes was up. I believe the overall design is *close*, but there is definitely a problem with the iterators and indexing. Using a Stack seems like a great idea though.
+This morning I attempted another technical interview question and could not get code on the board before 40 minutes was up. I believe the overall design is _close_, but there is definitely a problem with the iterators and indexing. Using a Stack seems like a great idea though.
 
 Key takeaways:
 
-1. Remember that the Stack data structure has a Peek() method *and* an isEmpty() method. Be sure to consider their use and how they can help solve the problem at hand.
-1. When I'm struggling to deal with "cutting an array in half" and "iterating through the result(s)", just start drawing out an odd-count array and an even-count array and *work the problem until it is solved*. Do not just skip over it because it *will* bite later on.
+1. Remember that the Stack data structure has a Peek() method _and_ an isEmpty() method. Be sure to consider their use and how they can help solve the problem at hand.
+1. When I'm struggling to deal with "cutting an array in half" and "iterating through the result(s)", just start drawing out an odd-count array and an even-count array and _work the problem until it is solved_. Do not just skip over it because it _will_ bite later on.
 1. Developing a Stack's Pop() and Push() methods requires careful operation, depending on how many items (if any) are already in the Stack. Push: More than One? Only one? None? Pop: None? One? More than One? ...in those orders.
-1. When a method needs to raise an exception that means: *specify the exception in the method declaration* using the `throws` keyword.
+1. When a method needs to raise an exception that means: _specify the exception in the method declaration_ using the `throws` keyword.
 1. Before implementing generics, just use `Object`. Yes, un/boxing and various Casting calls will be necessary, but this will allow developing the solution rapidly, without getting hung up with Generics.
 1. When thinking about unit tests, especially with data structures that have linked Nodes, remember that an empty structure, a structure with a single item, and structures with few or many items may have slightly different behaviors, and those "boundaries" should be tested and are not really optional.
-1. Java's Char class *does* have `Character.toLowerCase(char)` *but* it is a little different than `String string = character.toString()` followed by `string.toLowerCase(Locale.ROOT)`. This might be worth reviewing a few times to get the hang of.
+1. Java's Char class _does_ have `Character.toLowerCase(char)` _but_ it is a little different than `String string = character.toString()` followed by `string.toLowerCase(Locale.ROOT)`. This might be worth reviewing a few times to get the hang of.
 1. Dividing an integer by 2 may cause a rounding error. I need to refamiliarize myself with what happens: Does it round UP or DOWN? (to be continued...)
 1. It is okay to pseudocode lots of placeholder variables that in real code won't be necessary (and might even be confusing), so try not to worry about that while tackling a technical interview question.
 
@@ -1920,7 +2014,7 @@ Key Takeaways:
 
 - You cannot get away from ambiguity, it is tech - it is life.
 - MANAGING ambiguity is where the rubber meets the road.
-- Asking questions is *critical* to working through ambiguity. Do *not* allow yourself (or anyone else) to say your question is not smart.
+- Asking questions is _critical_ to working through ambiguity. Do _not_ allow yourself (or anyone else) to say your question is not smart.
 - Sometimes we just don't know what we don't know, and occasionally we don't know it until it is too late or find out "in the end". This is going to happen so be prepared for it by allowing yourself to move on. It is not the end if/when this happens.
 - Use diagrams to help communicate your idea(s), or to help others guide you to answering questions.
 
@@ -1941,13 +2035,13 @@ I started today completing some housekeeping tasks - literally - so no technical
 Back to the Java Code Challenge: Browser Navigation History. I completed designing, implementing, and testing enhanced versions of Go, Forward, and Back methods. Confusing elements:
 
 1. Using a linked-list, it is most effecient to insert a new node at Head, so moving 'forward' through history move toward head.
-1. Moving foward through history means *decrementing an index* or traversing *previous* Node references (counter-intuitive).
-1. Chrome's Forward and Back buttons have a different "view" of the Browser history than `Chrome://history`! Figuring out which to follow (and why) caused me to develop *2* solutions to the code challenge.
+1. Moving foward through history means _decrementing an index_ or traversing _previous_ Node references (counter-intuitive).
+1. Chrome's Forward and Back buttons have a different "view" of the Browser history than `Chrome://history`! Figuring out which to follow (and why) caused me to develop _2_ solutions to the code challenge.
 
 In retrospect:
 
-- When considering the problem domain, I need to ask *more questions* to better define the problem. I am too eager to get to solving the problem before I fully understand it.
-- Do not allow terms like 'forward' and 'back' pollute / distract from finding a viable algorithm design. Concentrate on the representations of those terms, and *how it translates to solving the problem*.
+- When considering the problem domain, I need to ask _more questions_ to better define the problem. I am too eager to get to solving the problem before I fully understand it.
+- Do not allow terms like 'forward' and 'back' pollute / distract from finding a viable algorithm design. Concentrate on the representations of those terms, and _how it translates to solving the problem_.
 
 There are a bunch of tasks now in my Trello board, one of them I haven't touched for several weeks: Java Project 'bitmap-transformer'. I'll take a peek at it and try to knock out something small before the day gets away from me.
 
@@ -1976,7 +2070,7 @@ Of course this is nothing new.
 
 This morning I knocked out a couple behavioral questions. One of them was asking what I aim to accomplish in my first 30, 60, and 90 days on a new team. Generally speaking there are things I can talk about. Without knowing anything about a company or team or code base, the answers are going to be fairly unrealitice -- although the general concepts around what is important as a new dev on a team should be well orientated. This speaks to actively reseraching companies I am interested in. Soon I will need to return to doing this as I am increasingly excited about my next big thing and look forward to getting underway!
 
-As for the Browser Navigation History challenge in my Java-Code-Challenges repo, I decided to approach implementation from a test driven development perspective. Although I already have the algorithm written, the code is *not*. As I write the code I want to be able to run the tests and modify the code to make the tests pass. I made a good amount of progress and discovered that there are a couple ways to implement solutions to this challenge. Once I was done writing and testing the algorithm I designed in Miro, I started planning an "enhanced" version of the methods that would solve the problem, matching the behavior of "Chrome History" a little more closely. It will take me into tomorrow to finish designing, implementing, and testing that code.
+As for the Browser Navigation History challenge in my Java-Code-Challenges repo, I decided to approach implementation from a test driven development perspective. Although I already have the algorithm written, the code is _not_. As I write the code I want to be able to run the tests and modify the code to make the tests pass. I made a good amount of progress and discovered that there are a couple ways to implement solutions to this challenge. Once I was done writing and testing the algorithm I designed in Miro, I started planning an "enhanced" version of the methods that would solve the problem, matching the behavior of "Chrome History" a little more closely. It will take me into tomorrow to finish designing, implementing, and testing that code.
 
 ## Tuesday 27-Sept-2022
 
@@ -1990,7 +2084,7 @@ CSS Animations: I updated my current exploratory ReactJS project and things are 
 
 I spent a little extra time exploring Hashtables to wrap my brain around the expectations of these technical interview questions. I'm pretty sure I have the technical aspects of these data structures. The issue is probably two things:
 
-1. Understanding *when* to use them.
+1. Understanding _when_ to use them.
 1. Boiling them down to a simplified explanation, without going into the weeds.
 
 The impetus for that second point come from reading my README file about Hashtables and the Repeated Word challenge, and one of my takeaways from yesters: Don't waste time implementing those 'already implemented' structures and instead use an existing language library. Given the 1st point above, I should be able to talk my way through what I would be using, why, and how.
@@ -2041,8 +2135,8 @@ Key takeaways:
 - My first approach was to use margins to push objects into position. The downside to doing this is every change to a parent or `::before` element, caused other elements to move, as if they are all relatively positioned to one-another. This was difficult.
 - I changed course and used `position: absolute;` and `transform: translate(x,y)` instead, which made it much easier to edit each pseudo element directly, without moving other elements around.
 - At some point early on I was using `display: inline-block;` but changed it to `display: block;`. Inline-block seemed to artificially move the pseudo-elements vs. using block, which seemed to place the pseudo elements in a way I felt was expected.
-- In terms of css code required to meet the challenge, it *might* have been better to create 5 divs and use cascading techniques, since many of the elements ended up needed the same properties.
-- I started this challenge thinking "wow, can I even do this?" and ended with *100% match*!
+- In terms of css code required to meet the challenge, it _might_ have been better to create 5 divs and use cascading techniques, since many of the elements ended up needed the same properties.
+- I started this challenge thinking "wow, can I even do this?" and ended with _100% match_!
 
 Next I completed CSS Battle 2 Challenge 18 "Matrix", earning 600 pts for a 100% match... but it took 834 characters to do it. It makes me wonder:
 
@@ -2068,11 +2162,11 @@ Key Takeaways:
 
 I'm still not entirely sure I know the size of the center diamond shape, so it is extremely difficult to get the positioning right!
 
-Nevertheless, I *did* complete it with a 99.9% match, 598 character score! That's pretty good considering how little I have used rotate and skewx/skewy properties.
+Nevertheless, I _did_ complete it with a 99.9% match, 598 character score! That's pretty good considering how little I have used rotate and skewx/skewy properties.
 
 ## Saturday 24-Sept-2022
 
-For the last several weeks I have wanted to work on my desk a bit. There are USB and audio extensions that were just hanging around on and about the desktop and it was... messy. So I took apart the dual-monitor mounting system, added the USB + Audio line housing to the foot of the mount, and put the system back together. While I was behind the desk I added a second power stick to shore-up power cables to the monitors and a few other things, and cleaned-up the USB, audio, and D-port cabling so everything is nice and tidy now. My *Uplift* desk is *so good*.
+For the last several weeks I have wanted to work on my desk a bit. There are USB and audio extensions that were just hanging around on and about the desktop and it was... messy. So I took apart the dual-monitor mounting system, added the USB + Audio line housing to the foot of the mount, and put the system back together. While I was behind the desk I added a second power stick to shore-up power cables to the monitors and a few other things, and cleaned-up the USB, audio, and D-port cabling so everything is nice and tidy now. My _Uplift_ desk is _so good_.
 
 I attended a seminar by Mica Goebig, where she discussed confidence issues, as well as managing fear and self-doubt. Her business is geared towards women, poc, etc. Her advice in this session was easily transportable to just about anybody. My takeaways to boosting my confidence are:
 
@@ -2096,8 +2190,8 @@ Some things that need improvement:
 Back to React! Some key takeaways when developing a site that requires some initial processing to display a page:
 
 - Create purely functional Components (code snippet 'rfc' in VSCode) to do highly focused bits of work.
-- Rely on those to get the results you need *prior to the return() statement* in your main Component's `render() {}` function.
-- Pay attention to the data schema. If data is imported and there are data fields you don't need, then don't include them. Use `map()` or `filter()` function to get what you *do need*.
+- Rely on those to get the results you need _prior to the return() statement_ in your main Component's `render() {}` function.
+- Pay attention to the data schema. If data is imported and there are data fields you don't need, then don't include them. Use `map()` or `filter()` function to get what you _do need_.
 - Passing data as props is one thing, but learn how to pass style information as props so that style can be managed by parent and grand-parent components as needed.
 
 On another topic, some of my Code Fellows student-friends are at their 401-level finals week. I won't be able to see it live but I'm looking forward to seeing a video of what they did!
@@ -2121,10 +2215,12 @@ React challenges, continued!
 I completed the challenge of making the currently selected move text bold (see the checklist below for a screen snip). The code was fairly easy, but it requires an understanding of the backing State and data, and also an ability to leverage boolean logic to select and apply CSS to an element.
 
 ```javascript
-<button 
-  onClick={() => this.jumpTo(move)} 
+<button
+  onClick={() => this.jumpTo(move)}
   className={this.state.stepNumber === move ? 'selectedBold' : ''}
->{desc}</button>
+>
+  {desc}
+</button>
 ```
 
 ```css
@@ -2180,7 +2276,7 @@ Reviewing React facts and usage this morning, here are some key takeaways:
 - When `setState{}` is called, only the items specified within the braces are changed in State, the rest remain unchanged.
 - Pushing into an array is usual, but consider using `concat()` because it does not mutuate the original array. This makes it compatible with State operations.
 - Design logic functions to process a single element or state. This will simplify the logic and allow returning a meaningful result to the calling function.
-- Remember, javascript functions can be declared and used in React *just like they are in javascript and node*. Use this to your advantage to further componentize the solution and for code reuse.
+- Remember, javascript functions can be declared and used in React _just like they are in javascript and node_. Use this to your advantage to further componentize the solution and for code reuse.
 
 Arrow Function used for an onClick event: `onClick={() => this.setState({value: 'X'})}`
 
@@ -2194,7 +2290,7 @@ handleClick(i) {
     return;
   }
 }
-    
+
 // in the parent class render statement
 <MyComponent
   onClick={() => this.handleClick(i)}
@@ -2212,24 +2308,23 @@ handleClick(i) {
 
 Here is a neat little [React js tutorial](https://reactjs.org/tutorial/tutorial.html), and at the end some code challenges are posed. I started working through these because I was feeling like I was a little too rusty with React to make effective progress on the Enigma Bay project.
 
-- [X] Display the location for each move in the format (col, row) in the move history list. This took a minute to sort out *where* the data needed to be added, but once I realized the index of the clicked Square was maintained in the callback, and the coordinates needed to be tied to move history, I figured it out.
+- [x] Display the location for each move in the format (col, row) in the move history list. This took a minute to sort out _where_ the data needed to be added, but once I realized the index of the clicked Square was maintained in the callback, and the coordinates needed to be tied to move history, I figured it out.
 
   > ![tic-tac-toe add click coordinates to history buttons](./images/react-tac-toe-coords-history.jpg)
 
-- [X] Bold the currently selected item in the move list.
+- [x] Bold the currently selected item in the move list.
 
   > ![tic-tac-toe bold text of currently selected item in move list](./images/react-tac-toe-bold-current-move.png)
 
-- [X] Rewrite Board to use two loops to make the squares instead of hardcoding them.
+- [x] Rewrite Board to use two loops to make the squares instead of hardcoding them.
 
   > ![Two loops in the code automate creating the board](./images/react-tac-toe-two-loops-build-board.png)
 
-- [X] Add a toggle button that lets you sort the moves in either ascending or descending order.
+- [x] Add a toggle button that lets you sort the moves in either ascending or descending order.
 
-> ![Sort button added to game output](./images/react-tac-toe-sort-button.png)
-> ![Sort button clicked sorts descending history](./images/react-tac-toe-sort-button-clicked.png)
+> ![Sort button added to game output](./images/react-tac-toe-sort-button.png) > ![Sort button clicked sorts descending history](./images/react-tac-toe-sort-button-clicked.png)
 
-- [X] When someone wins, highlight the three squares that caused the win.
+- [x] When someone wins, highlight the three squares that caused the win.
 
 > ![Highlight three squares that caused the win](./images/react-tac-toe-highlight-winning-tiles.png)
 
@@ -2243,11 +2338,11 @@ Put some effort into the javascript project today. Some key takeaways follow.
 
 React:
 
-1. Use React Function Components as much as possible, unless a Component *absolutely needs to maintain its own State*, then it should be a Class Component.
+1. Use React Function Components as much as possible, unless a Component _absolutely needs to maintain its own State_, then it should be a Class Component.
 1. React Function Components are just javascript functions, so adding a parameter to the function allows the function to utilize it as input.
-1. *Avoid* chaining the input parameter(s) within the Functional Component code blocks... they are read-only.
+1. _Avoid_ chaining the input parameter(s) within the Functional Component code blocks... they are read-only.
 1. React Function Components are simple, and must contain a return statement.
-1. React Class Components must extend React.Component and have a *render function* with a return statement.
+1. React Class Components must extend React.Component and have a _render function_ with a return statement.
 1. When defining props (in a functional component for example), remember to set the PropTypes at the end of the Component to avoid type mis-match errors. See the example code below.
 
 ```javascript
@@ -2255,13 +2350,11 @@ React:
 import PropTypes from 'prop-types';
 
 export default function MyFunction(props) {
-  return (
-    <div className={props.styleclass}>{props.message}</div>
-  );
+  return <div className={props.styleclass}>{props.message}</div>;
 }
 MyFunction.propTypes = {
   styleclass: PropTypes.string,
-  message: PropTypes.string
+  message: PropTypes.string,
 };
 ```
 
@@ -2282,14 +2375,14 @@ Bootstrap:
 CSS:
 
 1. Remember `display: flex` ? Then remember to also set 'height', 'align-items', and 'justify-content' in the parent container to make your life easy arranging content in the child box.
-1. Be careful with class naming schemes and multiple CSS files. Class names can *clash* and produce unexpected rendering. Remember, importing multiple CSS files ends up creating one large CSS file under the covers.
+1. Be careful with class naming schemes and multiple CSS files. Class names can _clash_ and produce unexpected rendering. Remember, importing multiple CSS files ends up creating one large CSS file under the covers.
 1. Enable CSS variables to do stuff like create a single CSS file with all the theme-based color designations (see example below).
 
 ```css
 :root {
   /* selects all elements */
-  --primary-main-color: #12AE55;
-  --secondary-main-color: #0055FF;
+  --primary-main-color: #12ae55;
+  --secondary-main-color: #0055ff;
   --shadow-color: #112233;
 }
 ```
@@ -2306,7 +2399,7 @@ element {
 
 ## Friday 16-Sept-2022 thru Sunday 18-Sept-2022
 
-Wow did this week go by quickly, I can't believe it's friday already! Earlier this week I tackled another Java Code Challenge. It actually tackled me, so I had to do some research and due-dilligence to figure it out. Essentially the problem was I did not identify the correct data structure, or rather I picked the correct data structure *but for the wrong reason* and so I couldn't determine how to utilize it within the time limit.
+Wow did this week go by quickly, I can't believe it's friday already! Earlier this week I tackled another Java Code Challenge. It actually tackled me, so I had to do some research and due-dilligence to figure it out. Essentially the problem was I did not identify the correct data structure, or rather I picked the correct data structure _but for the wrong reason_ and so I couldn't determine how to utilize it within the time limit.
 
 The challenge is basically this: You are given a book's worth of text, and you must write a function that processes that String input to return the most commonly encountered word (the first one if there are many).
 
@@ -2319,14 +2412,14 @@ So this experience spills-over into Saturday and Sunday, delaying work on other 
 Key takeaways:
 
 1. When a code challenge requires String input, a whole host of questions should be asked of the interviewer to try and hone-in on a viable solution (and buy some time for the creative problem-solving juices to flow). For example: Does case-sensitivity matter? How about punctuation - is there a difference between 'cat' and 'cat!'? What about whitespace and null or empty string characters, should they be ignored or are they somehow important to the output? Answers to these questions (and more) will help bring to light the amount of additional processing the algorithm might need to do to the input.
-1. Code challenges that state an input will be a String, or a Collection, might have some requirement to process those inputs. Remember to consider a String input *could* become an array of items in your algorithm, in order to better deal with the input.
+1. Code challenges that state an input will be a String, or a Collection, might have some requirement to process those inputs. Remember to consider a String input _could_ become an array of items in your algorithm, in order to better deal with the input.
 1. A code challenge that asks for a comparison, inclusion or exclusion (uniqueness), should immediately become a condidate for Types like Hashtable or Set. These types were developed to find and properly manage unique items.
 
 More takeaways, about hashtables in general:
 
 1. Buckets are each comprised of a LinkedList, which will be initialized and `isEmpty() == true` upon hashtable instantiation.
 1. LinkedLists might be generic, or could be predefined to hold specific values or types. In any case, that needs to be abstracted away, so that LinkedList Nodes are simply part of the operation of a LinkedList, and callers do not need to try to utilize Nodes directly, only the functionality the LinkedList exposes (Add, Contains, Find, Remove, AddBefore, etc).
-1. Even with a large sized backing array, the hashing function could still result in a duplicate Key index. A *good* hashtable algorithm will abstract that situation and do the right thing to the right item. In the case of an Add, the Bucket will insert a Node; In the case of Find or Get, the Bucket will return the correct item from the LinkedList, whether there are 1 or multiple Nodes in the list.
+1. Even with a large sized backing array, the hashing function could still result in a duplicate Key index. A _good_ hashtable algorithm will abstract that situation and do the right thing to the right item. In the case of an Add, the Bucket will insert a Node; In the case of Find or Get, the Bucket will return the correct item from the LinkedList, whether there are 1 or multiple Nodes in the list.
 1. Remember that hashtables won't answer the question as to how many items have been de-duplicated, but they can be used to find out, given a stream of inquiries and by interrogating the results from hashtable.has(item) results.
 
 Administrative Stuff:
@@ -2343,7 +2436,7 @@ When approaching code challenges, I need to remember to:
 
 - Break down the problem further, by describing the input in as basic terms as possible.
 - Analyze the selected data structure for how it is used including traversal.
-- If the start of my solution looks to be too complicated, consider where the complexity is entering the solution because the correct solution should be *easy*, not hard.
+- If the start of my solution looks to be too complicated, consider where the complexity is entering the solution because the correct solution should be _easy_, not hard.
 
 ## Tuesday 13-Sept-2022
 
@@ -2391,7 +2484,7 @@ Key takeaways:
 - In the class that owns the recursive function, create private variable of whatever necessary type, for storing values (or references, whichever you need) as they are processed.
 - Within the recursive function, decide where "processing" of the node (or current item) needs to happen. In the case of In-Order, it is between the LeftChild and RightChild IF statements.
 - When processing the node, value, or item, simply call `this.storage` (or whatever it is named at the Class level) and add (or otherwise append) to it from the recursive call.
-- It doesn't matter that the processing happens after the call to get the Left Child, because every call to the recursive function will *have to execute the processing code* for each child.
+- It doesn't matter that the processing happens after the call to get the Left Child, because every call to the recursive function will _have to execute the processing code_ for each child.
 - Remove any return type requirements as the return will not be necessary - the calling function will have to query `this.storage` to get the data the recursive function outputs.
 
 Working code:
@@ -2517,7 +2610,7 @@ Friday was busy with lots of tasks in lots of areas, including software. Most of
   display: flex;
   align-items: center; // horizontal centering
   justify-content: center; // vertical centering
-  padding: .25rem; // your choice
+  padding: 0.25rem; // your choice
 }
 ```
 
@@ -2564,7 +2657,7 @@ The next challenge was from [CodeWars](codewars.com) using javascript. In 40 min
 1. Array.prototype.length is a property, not a function/method.
 1. Indexing into an array is zero-based so do not change the beginning iterator in a for loop unless you really really need to.
 1. Next time consider using `Array.prototype.map( (element, idx)=> { return ... });` and increment idx value within the string concatenation (or template literal).
-1. Concatenating strings in javascript using template literal requires `${}` placeholders and *back ticks* (e.g. code fencing characters).
+1. Concatenating strings in javascript using template literal requires `${}` placeholders and _back ticks_ (e.g. code fencing characters).
 
 ```javascript
 // template literals
@@ -2598,7 +2691,7 @@ Track Keys and Values when passing a collection as props:
 
 1. Review [React Keys](https://reactjs.org/docs/lists-and-keys.html#keys)
 1. The Parent Component should specify the key attribute inside the array (inside a Map function).
-1. The Child Component that uses the passed-in props does *not* need to reference props.key, only props.value (whatever value is).
+1. The Child Component that uses the passed-in props does _not_ need to reference props.key, only props.value (whatever value is).
 
 Lastly, whenever it is not clear whether data is being passed around or what it looks like in-flight, use console.log and check it out at run time.
 
@@ -2606,7 +2699,7 @@ Lastly, whenever it is not clear whether data is being passed around or what it 
 
 After finishing some tasks around the house, I jumped right in to a 40 minute technical interview challenge. This one was summing odd numbers in a binary tree. It tests the interviewee's understanding on binary trees, including traversal and Node data structures. Whiteboarding these challenges in Miro (and similar apps) is quite difficult because there is an additional interface layer between me and the depiction I'm attempting to draw and layout. When working on a real, in-person, dry-erase board, it is much easier to erase, correct, and draw-out the brainstorming and ideation. Granted, one benefit of Miro (and similar) is duplication of complex drawings is super fast!
 
-It took the full 40 minutes but I earned a passing score because I pretty much nailed every section in the rubrik except for code and Big-O. The failures there were not writing any Big-O evaluation *at all*, and my javascript code was only 85% complete before the time expired.
+It took the full 40 minutes but I earned a passing score because I pretty much nailed every section in the rubrik except for code and Big-O. The failures there were not writing any Big-O evaluation _at all_, and my javascript code was only 85% complete before the time expired.
 
 To solve this challenge I used Breadth-first Traversal using a Queue, rather than Depth-first using a recursive function because it is more difficult to store Recursive function values/outputs than it is to collect and store data within a while structure.
 
@@ -2700,21 +2793,19 @@ class Queue {
   enqueue(data) {
     let newNode = new Node(data);
     // case 1: no nodes in queue
-    if (this.front === null &&
-        this.front === this.back) {
+    if (this.front === null && this.front === this.back) {
       this.front = newNode;
       this.back = this.front;
       this.count = 1;
       return;
-      }
+    }
     // case 2: 1 node in queue
-    if (this.front !== null &&
-       this.front === this.back) {
+    if (this.front !== null && this.front === this.back) {
       this.back = newNode;
       this.front.next = this.back;
       this.count++;
       return;
-     }
+    }
     // case 3: more than 1 node in queue
     this.back.next = newNode;
     this.back = newNode;
@@ -2737,7 +2828,7 @@ Next up is the duck-duck-goose function code. Code Fellows utilized arrow functi
 
 The important part of the code starts with the Queue instantiation and loading from the input array. From there the main processing code is pretty short and sweet, but entails two iterating structures, which is not always the most efficient algorithm in BigO.
 
-The worst-case BigO of Time for duckDuckGoose() is probably O(n * k). Thankfully, the Queue datastructure has a O(1) in time and O(1) in space for all of its operations so total time through each iteration is fairly fast and lean.
+The worst-case BigO of Time for duckDuckGoose() is probably O(n \* k). Thankfully, the Queue datastructure has a O(1) in time and O(1) in space for all of its operations so total time through each iteration is fairly fast and lean.
 
 BigO in space for duckDuckGoose() is more like O(n) because the entire input array is stuffed into the Queue O(1) storage at a time for every item in the array.
 
@@ -2760,16 +2851,16 @@ const duckDuckGoose = (arr, k) => {
   if (k < 0) {
     k = Math.abs(k);
   }
-  
+
   let myQueue = new Queue();
   // enqueue the array!
-  for (let idx=0; idx < arr.length; idx++) {
+  for (let idx = 0; idx < arr.length; idx++) {
     myQueue.enqueue(arr[idx]);
   }
 
   // main processing
   while (myQueue.getCount() > 1) {
-    for (let jdx=1; jdx < k; jdx++) {
+    for (let jdx = 1; jdx < k; jdx++) {
       myQueue.enqueue(myQueue.dequeue());
     }
     myQueue.dequeue(); // this should be the kth item
@@ -2777,7 +2868,7 @@ const duckDuckGoose = (arr, k) => {
 
   // return result
   return myQueue.dequeue();
-}
+};
 ```
 
 It's not always necessary to code all of the edge case tests (depends on your interviewer I guess), but I decided to do it to exercise my software test engineer skills.
@@ -2830,7 +2921,7 @@ class Stack {
     let newNode = new Node(value);
     if (!this.isEmpty) {
       newNode.next = this.top;
-    } 
+    }
     this.top = newNode;
     this.nodeCount = this.nodeCount + 1;
     this.isEmpty = this.nodeCount < 1;
@@ -2838,7 +2929,7 @@ class Stack {
   pop() {
     // returns the TOP node or item (LIFO) from the stack
     if (this.isEmpty) {
-      return "Stack is empty";
+      return 'Stack is empty';
     }
     let tempNode = this.top;
     this.top = tempNode.next;
@@ -2849,7 +2940,7 @@ class Stack {
   peek() {
     // returns a copy of the value at TOP node without removing it
     if (this.isEmpty) {
-      return "Stack is empty";
+      return 'Stack is empty';
     }
     return this.top.data;
   }
@@ -2883,26 +2974,26 @@ The code was all developed using a real dry-erase board and replit. Testing the 
 ```javascript
 let myStack = new Stack();
 let emptyStack = myStack.isEmpty;
-console.log("Created stack. emptyStack? ", emptyStack);
+console.log('Created stack. emptyStack? ', emptyStack);
 myStack.push(100);
 emptyStack = myStack.isEmpty;
-console.log("Pushed a value. emptyStack? ", emptyStack);
+console.log('Pushed a value. emptyStack? ', emptyStack);
 let stackPeek = myStack.peek();
-console.log("Peeking the stack, value is: ", stackPeek);
+console.log('Peeking the stack, value is: ', stackPeek);
 let popResult = myStack.pop();
-console.log("popResult: ", popResult);
+console.log('popResult: ', popResult);
 emptyStack = myStack.isEmpty;
-console.log("emptyStack? ", emptyStack);
+console.log('emptyStack? ', emptyStack);
 myStack.push(3);
 myStack.push(2);
 myStack.push(5);
 myStack.push(1);
 myStack.push(4);
-console.log("stack empty should be false: ", myStack.isEmpty);
-console.log("peek should be 4: ", myStack.peek());
-console.log("maxVal should be 5: ", myStack.maxVal());
-console.log("stack empty should be false: ", myStack.isEmpty);
-console.log("peek should be 4: ", myStack.peek());
+console.log('stack empty should be false: ', myStack.isEmpty);
+console.log('peek should be 4: ', myStack.peek());
+console.log('maxVal should be 5: ', myStack.maxVal());
+console.log('stack empty should be false: ', myStack.isEmpty);
+console.log('peek should be 4: ', myStack.peek());
 ```
 
 Just now I noticed that replit has a 'unit tests' tool! Something else to check out for sure.
@@ -2936,12 +3027,12 @@ CodeWars challenges are a great way to prepare for technical interviews, especia
 
 Fridays at Code Fellows tend to be busy with streams of final presentations, mid-term presentations, guest speakers, and collective social events for CF students and alumni. Today's JavaScript 401 Finals presentations included a team with Andrew S, whom I hadn't talk to in a while. He was a peer in previous CF classes with me, and it was great to see him present his team's project. All teams presented very well and it was great to see their progress toward graduation!
 
-There was also a Python Midterm presentation. The first team included previous team-mate Liesl, and the team obviously had a *lot* of fun presenting their app. The next team included previous team-mate Dana H and Gina N, as well as co-Code Fellows team mate Vinny S! Their app searches Wikipedia and finds related articles that link together a "start" and "end" article. The other teams also had amazing projects including a Chess game built from the ground up that included a console version as well as a GUI, and an app that scaped Canvas data and provided graphs, calendaring items, and quick links to common tools and areas of Canvas.
+There was also a Python Midterm presentation. The first team included previous team-mate Liesl, and the team obviously had a _lot_ of fun presenting their app. The next team included previous team-mate Dana H and Gina N, as well as co-Code Fellows team mate Vinny S! Their app searches Wikipedia and finds related articles that link together a "start" and "end" article. The other teams also had amazing projects including a Chess game built from the ground up that included a console version as well as a GUI, and an app that scaped Canvas data and provided graphs, calendaring items, and quick links to common tools and areas of Canvas.
 
 Back into coding practice, I work on CSSBattle.dev again. I need to remember how to make trangles, so here is an example of an upright isocolese triangle in red:
 
-1. Set the left border as 100px solid and *transparent*
-1. Set the right border as 100px solid and *tranparent*
+1. Set the left border as 100px solid and _transparent_
+1. Set the right border as 100px solid and _tranparent_
 1. Set the top border as 100px solid and red (or your preferred color for the entire triangle)
 
 It is important to remember that the vertex angle is determined by border-left and border-right unit settings.
