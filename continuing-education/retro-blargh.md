@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 19-Mar-2023
+
+Working through the Java SE documentation on Streams. Code Fellows covered a little bit of this, but the added context and detail is interesting to learn about:
+
+- Remember that defining an array in Java uses braces to store the initializing values: `static final String[] myArr = { "alpha", "bravo", "charlie" };`
+
 ## Saturday 18-Mar-2023
 
 Completed a code challenge adding one Binary Tree to another. It was completely incidental that I ran into this challenge, and it just happened that designing a solution worked well in my current workload -- better than some other tasks would have. Key takeaways:
