@@ -77,6 +77,7 @@ Azure [learnings](#azure-learnings).
 
 ### Azure Learnings
 
+- Developing [Azure Functions](./azure-functions.html) in Python (and other languages, too).
 - Managing and [Reporting on Costs and Billing in Azure](./azure-reporting-costs.md).
 - Microsoft Identity Platform is integrated into Azure: [Microsoft Identity Platform](./azure-identity-platform.html).
 - DevOps for Microsoft Platforms (an overview, introduction really)[MSFT Platform DevOps](./msft-platform-devops.html).
