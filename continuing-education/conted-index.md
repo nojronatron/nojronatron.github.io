@@ -6,12 +6,12 @@ A collection of continuing education, research notes, and references.
 
 Learn [todos](#things-i-want-to-learn-more-about).  
 Research and [takeaways from experience](#notes-and-takeaways-from-research-and-experience).  
-Azure [learnings](#azure-learnings).  
+Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
 - [ ] Learn how to properly log to WebApp hosts like Netlify (from a React SPA) or Azure App Service (from a Node-js service).
-- [ ] Learn about WebSockets.
+- [ ] Learn about WebSockets, start with [Socket.IO](https://github.com/socketio/socket.io).
 - [ ] Look into [Apache Kafka](https://kafka.apache.org/), especially how Java is used with/for it. Some companies are using Kafka in/with their deliverables.
 - [ ] Review Java Scanner at [Oracle Java Docs - Scanner]](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) and [Baeldung - Java Scanner](https://www.baeldung.com/java-scanner).
 - [ ] Vercel [Next.js](https://nextjs.org/learn/basics/create-nextjs-app). Just get a feel for it.
@@ -37,43 +37,43 @@ Azure [learnings](#azure-learnings).
 - [ ] [Promises](https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript) in JavaScript.
 - [ ] CSS 3: When overlapped objects must have a transparency or alternate color assignment, what CSS property should be used? See [cssbattle 15](https://cssbattle.dev/play/15) for an example.
 - [ ] Mocking for unit testing in AndroidStudio.
-- [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)) - my notes [start here](./java-io-data-object-streams.html).  
-- [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).  
+- [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)) - my notes [start here](./java-io-data-object-streams.html).
+- [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).
 - [ ] Wiring Repositories in [Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa).
 
 ### Notes And Takeaways from Research and Experience
 
-- [X] [Generics](./generics-java-strongtypelangs.html): Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java)
-- [X] Microsoft Graph [SDK, API](./azure-graphapi-dotnet.html).
-- [X] Windows Subsystem for Linux [WSL Notes](./windows-subsystem-for-linux.html).
-- [X] React Lifecycle: useEffect, setState, componentWillLoad, componentUnloaded are all special ways to execute code and manage state during, before, and after render cycles. Examples of useEffect can be found in LBJS code (post MVP).
-- [X] Handling [Errors in ExpressJS](./express-error-handling.html). I am implementing this in a live API server instance and there is work still to do.
-- [X] Study Auth0 [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
-- [X] Using 'cursor' in Java: [Cursor and Iterators](./java-cursor-iterators.html).
-- [X] When and why would I [choose to develop in](./choosing-a-language.html) Java vs C# or Python e.g. for a project.
-- [X] Deploy [Express.js to Azure](deploy-express-mongodb-azure.html).
-- [X] [Auth0 with Express.js](express-auth0-notes.html).
-- [X] Research [Firebase Authentication](https://firebase.google.com/products/auth) and [Firebase Google Docs](https://firebase.google.com/docs/auth) as a possible alternative to Auth0. See notes at [firebase-auth](./firebase-auth.html).
-- [X] React [useContext](./react-use-context-overview.md).
-- [X] Using [cookies in ExpressJS](./express-cookies-review.html).
-- [X] MS [Dot Net Conf 2022 Notes](./dotnetconf-2022.html).
-- [X] [Unit testing](./android-studio-testing.html) in Android Studio.
-- [X] [MSFT Ignite October 2022](./ms-ignite-2022-notes.html) provides an overview of MSFT new and upcoming technical solutions, especially Azure services, MSFT 365, and integration with and around those platforms.
-- [X] Deploy a [Node.js WebApp to Azure](deploy-express-azure.html).
-- [X] Cross Origin Resource Sharing [CORS](./cors-review.html)
-- [X] Animating web elements using [CSS](./css-animations.html)
-- [X] React [NavBar with Router](./navbar-in-react-with-routing.html) notes from [WebDevSimplified - How to create a navbar in react with routing](https://www.youtube.com/watch?v=SLfhMt5OUPI)
-- [X] Get up to speed on React Router: [react-router-dom](./react-router-dom-notes.html) and react-router-native (which I won't cover here...at least not yet).
-- [X] Review 301 class notes regarding React, State, Props, and Components.
-- [X] Review Javascript "hoisting". This is related to the 2-pass setup and execution behavior of Javascript as runtime initializes.
-- [X] How to implement [Style and Themes](../code401-files/android-themes.html) to your Android App.
-- [X] Proper and efficient installation of a specified JDK in Linux: Use JetBrains Tools box for IntelliJ installations; Use DEB install for Linux without JetBrains; Use Zip for Windows, put files where you want them, update JAVAHOME reference.
-- [X] [Handling exceptions and exception types](../code401-files/java-exceptions-scanner.html) in asynchronous programming in Java.  
-- [X] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.  
-- [X] Spring MVC especially SQL and other DB APIs.  
-- [X] Interfaces: See [OOP, Inheritance, Interfaces](../code401-files/oop-inhrtnce-intfaces.html).  
-- [X] Trees and Decision Trees have perplexed me for a while I'd like to get over that.  
-- [X] Configuring Linux and Windows to support "IDEA ." to open IntelliJ [at current directory](../linux-terminal-files/bash-stuff.html###aliases).
+- [x] [Generics](./generics-java-strongtypelangs.html): Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java)
+- [x] Microsoft Graph [SDK, API](./azure-graphapi-dotnet.html).
+- [x] Windows Subsystem for Linux [WSL Notes](./windows-subsystem-for-linux.html).
+- [x] React Lifecycle: useEffect, setState, componentWillLoad, componentUnloaded are all special ways to execute code and manage state during, before, and after render cycles. Examples of useEffect can be found in LBJS code (post MVP).
+- [x] Handling [Errors in ExpressJS](./express-error-handling.html). I am implementing this in a live API server instance and there is work still to do.
+- [x] Study Auth0 [Client Credentials Flow](https://auth0.com/docs/get-started/authentication-and-authorization-flow/call-your-api-using-the-client-credentials-flow), to prepare for possible Auth0 implementation for LingoBingo v.Next.
+- [x] Using 'cursor' in Java: [Cursor and Iterators](./java-cursor-iterators.html).
+- [x] When and why would I [choose to develop in](./choosing-a-language.html) Java vs C# or Python e.g. for a project.
+- [x] Deploy [Express.js to Azure](deploy-express-mongodb-azure.html).
+- [x] [Auth0 with Express.js](express-auth0-notes.html).
+- [x] Research [Firebase Authentication](https://firebase.google.com/products/auth) and [Firebase Google Docs](https://firebase.google.com/docs/auth) as a possible alternative to Auth0. See notes at [firebase-auth](./firebase-auth.html).
+- [x] React [useContext](./react-use-context-overview.md).
+- [x] Using [cookies in ExpressJS](./express-cookies-review.html).
+- [x] MS [Dot Net Conf 2022 Notes](./dotnetconf-2022.html).
+- [x] [Unit testing](./android-studio-testing.html) in Android Studio.
+- [x] [MSFT Ignite October 2022](./ms-ignite-2022-notes.html) provides an overview of MSFT new and upcoming technical solutions, especially Azure services, MSFT 365, and integration with and around those platforms.
+- [x] Deploy a [Node.js WebApp to Azure](deploy-express-azure.html).
+- [x] Cross Origin Resource Sharing [CORS](./cors-review.html)
+- [x] Animating web elements using [CSS](./css-animations.html)
+- [x] React [NavBar with Router](./navbar-in-react-with-routing.html) notes from [WebDevSimplified - How to create a navbar in react with routing](https://www.youtube.com/watch?v=SLfhMt5OUPI)
+- [x] Get up to speed on React Router: [react-router-dom](./react-router-dom-notes.html) and react-router-native (which I won't cover here...at least not yet).
+- [x] Review 301 class notes regarding React, State, Props, and Components.
+- [x] Review Javascript "hoisting". This is related to the 2-pass setup and execution behavior of Javascript as runtime initializes.
+- [x] How to implement [Style and Themes](../code401-files/android-themes.html) to your Android App.
+- [x] Proper and efficient installation of a specified JDK in Linux: Use JetBrains Tools box for IntelliJ installations; Use DEB install for Linux without JetBrains; Use Zip for Windows, put files where you want them, update JAVAHOME reference.
+- [x] [Handling exceptions and exception types](../code401-files/java-exceptions-scanner.html) in asynchronous programming in Java.
+- [x] JUnit Tests: Why do they pass by default, without asserts or any code? They would always fail otherwise.
+- [x] Spring MVC especially SQL and other DB APIs.
+- [x] Interfaces: See [OOP, Inheritance, Interfaces](../code401-files/oop-inhrtnce-intfaces.html).
+- [x] Trees and Decision Trees have perplexed me for a while I'd like to get over that.
+- [x] Configuring Linux and Windows to support "IDEA ." to open IntelliJ [at current directory](../linux-terminal-files/bash-stuff.html###aliases).
 
 ### Azure Learnings
 
