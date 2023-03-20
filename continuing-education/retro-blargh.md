@@ -6,7 +6,13 @@ Semi-regular notes taken during my software developer journey.
 
 Working through the Java SE documentation on Streams. Code Fellows covered a little bit of this, but the added context and detail is interesting to learn about:
 
-- Remember that defining an array in Java uses braces to store the initializing values: `static final String[] myArr = { "alpha", "bravo", "charlie" };`
+- Remember that defining an array in Java uses _braces_ to store the initializing values: `static final String[] myArr = { "alpha", "bravo", "charlie" };`
+- Byte and Character Streams are small and handy but lack other features and compatibility outside of simple character and String-like Streams.
+- Object Streams are handy for complex Streamed data but there are tricks with ordering Fields, and confirming unique or reference types at the other end of the stream.
+- The Command Line implements a Streaming interface.
+- The File Systems of Unix and Windows are presented as Streams, allowing lots of operations including full CRUD, path comparison, representation, and traversal.
+
+Ryan submitted some comments on PRs and merged a few in to Main. One issue was an inefficient check performed at every Game Session load (whether starting, during a game, or playing again) that was O(n) in time and space. I wasn't sure I could solve the problem, but after some studying and trying things out, I found an O(1) time and O(n) space solution that should do the trick. This also eliminated an additional `useEffect()` hook, further consolidating code into an existing hook with similar dependancies. :medal_sports:
 
 ## Saturday 18-Mar-2023
 
