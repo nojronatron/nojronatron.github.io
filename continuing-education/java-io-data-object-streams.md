@@ -357,6 +357,106 @@ Reconstituting an object from a stream can be tricky.
 - The reconstituted duplicated object (by reference) will look like the same object when from the _same stream_.
 - Referenced Objects within _multiple streams_ will look like individual objects to the consumer so _object References must be checked in addition to Equality_ at the consumer-side.
 
+### File IO with NIO.2
+
+Oracle Java Docs refers to JDK 8 release and java.nio.file package and its sub-packages in this sub-section.
+
+The documentation reviews Paths, both relative and absolute, and Symbolic Links.
+
+Unix-based Paths are not comparable to Windows-based Paths due to their native naming convention. However, both can be handled and processed by Java.
+
+Symbolic Links are:
+
+- Symlinks.
+- Soft links.
+- Special file that serves as reference to another file.
+- Abstact-away the sideways traversal to another Path.
+- Automatic redirectors to the actual referenced file, aka the Link Target.
+- Transparent to the OS user.
+- Exceptions are thrown when a symbolic link no longer exists (deleted, renamed, mis-spelled, etc).
+- Capable of circularly-referencing.
+
+Java handles circularly-referenced Symlinks.
+
+#### Paths
+
+Create a path using the Paths helper class:
+
+```java
+Path path1 = Paths.get("/home");
+Path path2 = Paths.get(args[0]);
+Path path3 = Paths.get(URI.create("file:///Users/user/file.java"));
+```
+
+Paths helper is shorthand for `FileSystems.getDefault().getPath(String);`
+
+Create a file and get a reference to it in either Unix or Windows:
+
+```java
+Path myFile = Paths.get(System.getProperty("user.home"), "logs", "logfile.txt");
+```
+
+Path syntax _can be bound to the underlying OS sematics_ but it might be better to use Environment Variables and Path instance methods to get info:
+
+```java
+Path path = Paths.get("/home/username/log-file.log");
+path.toString(); // /home/username/log-file.log
+path.getFileName(); // log-file
+path.getName(0); // /home
+path.getNameCount(); // count of elements in path: 3
+path.subpath(0,2); // /home/username
+path.getParent(); // /home/username
+path.getRoot(); // The root path: /
+path.normalize(); // removes redundant indicators like . and .. from the path
+```
+
+#### Converting a Path
+
+Three methods to do so:
+
+```java
+Path path1 = Paths.get("/home/users");
+path.toAbsolutePath(path1); // /home/users
+Path userInputPath = Paths.get(args[0]);
+path.toAbsolutPath(userINputPath); // /root/pathOfExecutable/userInputPath
+```
+
+`toRealPath()`: Returns the _real_ path of an existing file:
+
+- Resolves symlinks.
+- Extends relative to fully qualified path.
+- Removes redundant elements.
+
+_Note_: Leverage _NoSuchFileException_ to catch errors related to Path and Paths operations.
+
+Join Paths using `Paths.get("path_one").resolve("child_path")`.
+
+Use Relitivize method to return the path to a sibling path from a starting path:
+
+```java
+Path p1 = Paths.get("foo");
+Path p2 = Paths.get("bar");
+Path p1_to_p2 = p1.relativize(p2); // ../bar
+Path p2_to_p1 = p2.relativize(p1); // ../joe
+// use this to avoid typing stuff like Paths.get("../../grandParentPath/baz")
+```
+
+_Note_: Relative paths might be a problem for Relativize depending on the root path and the OS.
+
+Compare Two Paths using equals:
+
+```java
+path.equals(otherPath); // returns boolean if path equals otherPath
+path.startsWith(beginning); // returns boolean of Path root is equal to "beginning"
+path.endsWith(ending); // returns boolean of Path last-child is equal to "ending"
+```
+
+Path implements:
+
+- Iterable interface: Can be used within For and Advanced For loops.
+- Comparable interface: Can be sorted.
+- Equals method: Helper methods `compareTo()` and `isSameFile()` (two paths locate the same file) are exposed.
+
 ## Resources
 
 [Oracle Java Tutorials](https://docs.oracle.com/javase/tutorial/essential/io/index.html).
