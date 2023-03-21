@@ -2,9 +2,22 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 21-Mar-2023
+
+Researching algorithmic complexity, it is good to remember:
+
+- When adding a list, array, or collection to store the results of processing, this is potentially an O(n) operation because _storage is being added_.
+- Algorithms that alter an input 'in-place' will use O(1) space but could be problematic in cases where a reference is passed in and the caller is not expecting its data to be mutated.
+
+## Monday 20-Mar-2023
+
+Job hunting has revealed many more advanced position openings in the last week or so. Also, several interesting positions are looking for AWS experience that I would need to brush up on. I have a few backlogged projects I'd like to work on that would support using AWS tools, so I am inclined to consider how to reorganize my task log to make room for that.
+
+Working through a code challenge to sort an Integer array I realize my sort algorithm knowledge is lacking. I kept trying to implement a merge-sort algorithm but couldn't quite get it working so I fell back to a simpler, very inefficient, selection sort-like algorithm. After coding and testing this, I will take some time out to study and analyze other algorithms.
+
 ## Sunday 19-Mar-2023
 
-Working through the Java SE documentation on Streams. Code Fellows covered a little bit of this, but the added context and detail is interesting to learn about:
+Working through the Java SE documentation on Streams. Code Fellows curriculum covered this, but I need this added context and detail to get a better handle and to know when and how to use them:
 
 - Remember that defining an array in Java uses _braces_ to store the initializing values: `static final String[] myArr = { "alpha", "bravo", "charlie" };`
 - Byte and Character Streams are small and handy but lack other features and compatibility outside of simple character and String-like Streams.
