@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 22-Mar-2023
+
+The JavaSE Tutorials on Basic IO are quite long, and I'm nearly done studying them. Hopefully I'll have a better grasp on what I'm doing next time I need to work with Files, Scanning, and Streams in general.
+
 ## Tuesday 21-Mar-2023
 
 Researching algorithmic complexity, it is good to remember:

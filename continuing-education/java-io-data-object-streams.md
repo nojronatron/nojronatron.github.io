@@ -661,6 +661,143 @@ See [Oracle Docs File](https://docs.oracle.com/javase/tutorial/essential/io/file
 
 ### Randome Access Files
 
+Non-sequential access to file contents.
+
+1. Open
+2. Seek to location
+3. Read from (or write to) the file
+
+SeekableByteChannel interface provides a Channel I-O.
+
+SeekableByteChannel API Methods:
+
+- `position`: Returns current position.
+- `position(log)`: Sets current position.
+- `read(ByteBuffer)`: Reads bytes into buffer.
+- `write(ByteBuffer)`: Writes bytes from buffer.
+- `truncate(long)`: Truncates a file (or entity) connected to the channel.
+
+`Path.newByteChannel` methods return an instance of SeekableByteChannel.
+
+SeekableByteChannel can be cast to `FileChannel` providing advanced features: Mapping a region to memory, locking a region of a file, and reading/writing bytes from an absolute position.
+
+There is a [code snippet](https://docs.oracle.com/javase/tutorial/essential/io/rafs.html) that demonstrates the use of `ByteBuffer`, `FileChannel`, `position`, `rewind`, `nread`, and `write`.
+
+#### Creating and Reading Directories
+
+List Directories:
+
+- `FileSystem.getRootDirectories()`: Implements Iterable interface.
+- Chain `getDefault().getRootDirectories()` for directories in Root.
+
+Create a Directory:
+
+- `Files.createDirectory(Path, FileAttribute<?>)`: Without FileAttribute, a default set of attirbuites will be applied.
+- Attributes are listed like `"rwxr-x---"` e.g. `Set<PosixFilePermissions> perms = PosixFilePermissions.fromString("rwxr-x---");`
+- Directory creation is NOT atomic and can fail with partial work completed.
+
+Create a Temporary Directory:
+
+- `createTempDirectory(Path, String, FileAttribute<?>...)`: Allows code to specify a location for the temp directory.
+- `createTempDirectory(String, FileAttribute<?>...)`: Creates a new directory in the default temporary-file directory.
+
+Listing Directory Contents:
+
+- `newDirectoryStream(Path)`: Implements DirectoryStream interface, which implements Iterable.
+- Example: `DirectoryStream<Path> stream = Files.newDirectoryStream(dir))...`
+
+Be sure to use Try-with-resources because the returned DirectoryStream _is a Stream_.
+
+Everything including files, links, subdirectories, and hidden files will all be returned unless Globbing is used:
+
+`DirectoryStream<Path> stream = Files.newDirectoryStream(dir, "*.{java,class,jar}"))` etc.
+
+#### Writing Directory Filters
+
+Use `DirectoryStream.Filter<T>` interface, method `accept()`:
+
+Create Filter partial example: `DirecotryStream.Filter<Path> filter = newDirectoryStream.Filter<Path>() { public boolean accept(Path file) throws IOException { ... }}`
+
+Invoke custom Filter partial example: `try (DirectoryStream<Path> stream = Files.newDirectoryStream(dir, filter)) { ... }`
+
+See Oracle's Java Documentation on [Writing Your Own Directory Filter](https://docs.oracle.com/javase/tutorial/essential/io/dirs.html) for the full example.
+
+#### Symbolic and Other Links
+
+`java.nio.file` package supports links and behavior can be configured when a Symlink is discovered.
+
+Notes about Hard Links:
+
+- Opposite of Symlinks or 'soft' links.
+- Target of the link must absolutely exist.
+- Not allowed on directories.
+- Not allowed to cross partitions or volumes.
+- Are more similar to a regular file in looks and behavior.
+- Carry same metadata (identical) as the target.
+- Path methods work with them seamlessly.
+
+Create a Symbolic Link:
+
+- `createSymbolicLink(Path, Path, FileAttribute<?>)`: Path1 = newLink; Path2 = target.
+- FileAttributes vararg works as with other java.nio.file package objects.
+
+Create a Hard Link:
+
+- `createLin(Path, Path)`
+- Throws NoSuchFileException if Path2 does not point to an actual file.
+
+Detecting a Symlink:
+
+- `isSymbolicLink(Path)`
+
+Finding Link Target:
+
+- `readSymbolicLink(Path)`
+- Throws NotLinkException if Path is not a Symlink.
+
+#### Walking The File Tree
+
+FileVisitor Interface:
+
+- Implement `FileVisitor` to detmine behavior through traversal process.
+
+FileVisitor Traversal Behavior Methods:
+
+- `preVisitDirecotry`: Invoked before directory entries are visited.
+- `postVisitDirectory`: Invoked after all entries in directory are visited. Exceptions are passed to this method.
+- `visitFile`: Invoked _on the file being visited_ and returns BasicFileAttributes to the method. FileAttributes package can be used to read specific attributes.
+- `visitFileFailed`: Invoked when the file cannot be accessed and an Exception is passed to the method for handling (throw it, log it, etc).
+
+Review [FileVisitor Interface](https://docs.oracle.com/javase/tutorial/essential/io/walk.html) documentation on Oracle JavaSE Docs for examples and more info.
+
+Initiating a Traversal:
+
+- `walkFileTree(Path, FileVisitor)`: Path is starting point, FileVisitor is your FileVisitor instance.
+- `walkFileTree(Path, Set<FileVisitOption>, int, FileVisitor)`: Enables specifying limit on number of levels to visit via `FileVisitOptions` enums.
+- `FOLLOW_LINKS`: A FileVisitOptions enum that enables following Symlinks.
+
+FileVisitor Considerations:
+
+- Traversal is Depth-First.
+- Child directories are not in a name-based sort order.
+- Files and Directories could be changed by other applications or services while FileVisitor is traversing.
+- In recursive file copy, attribute copying is a _2nd step_ in the process. Requires using `preVisitDirectory`, `visitFiles`, and `postVisitDirectory`
+- Using `visitFile` to perform a file search does not find Directories. To get direcotories, perform a comparison in either `preVisitDirectory` or `postVisitDirectory` methods.
+- Avoid following Symlinks when _deleting_ files (could produce unsavory results).
+- `walkFileTree` does _not follow_ Symlinks.
+- `visitFile` method is invoked for _files_. If configured to follow Symlinks, recursive/loop discoveries will be reported in `visitFileFailed` method with `FileSystemLoopException`
+
+Controlling the Flow of FileVisitor:
+
+FileVisitor methods return a `FileVisitResult` value where you control the flow of the traversal:
+
+- CONTINUE: Direcotry is 'visited' if CONTINUE is returend by `preVisitDirectory` method.
+- TERMINATE: When returned the traversal stops immediately.
+- SKIP*SUBTREE: Specified directory (and sub-directories) are \_skipped* when `preVisitDirectory` method returns this value.
+- SKIP_SIBLINGS: When returned by `preVisitDirectory` method, `postVisitDirectory` method is not invoked and neither the specified directory nor its siblings will be visited.
+
+Check out [Controling the Flow Code Snippets and Examples at page bottom](https://docs.oracle.com/javase/tutorial/essential/io/walk.html) at Oracle JavaSE Docs.
+
 ## Resources
 
 [Oracle Java Tutorials](https://docs.oracle.com/javase/tutorial/essential/io/index.html).
