@@ -8,7 +8,7 @@ Baeldung states that Generics were added to Java in JDK 5.0. This explains why I
 
 ### Basics
 
-'Generics add stability to your code by making more of your bugs detectable at compile time.' *[The Java Tutorials]*
+'Generics add stability to your code by making more of your bugs detectable at compile time.' _[The Java Tutorials]_
 
 - Compile-time errors are easy to detect. Between the IDE and the compiler, you'll get a notice.
 - Run-time errors are more difficult to detect or anticipate. Generics help in this regard.
@@ -20,9 +20,9 @@ Generics enable Types to be Parameters.
 
 Apply Generics to Classes, Interfaces, and Methods.
 
-Formal Parameters: Strongly-typed parameter that is a *value* i.e. `Integer weight`.
+Formal Parameters: Strongly-typed parameter that is a _value_ i.e. `Integer weight`.
 
-Type Parameters: Generic parameters are parameters that are *types* i.e. `T object`.
+Type Parameters: Generic parameters are parameters that are _types_ i.e. `T object`.
 
 Keyword 'T': Used as a placeholder for the Type that will be used in the Generic Class, Interface, or Function.
 
@@ -72,7 +72,7 @@ public class DSNode<T> {
 }
 ```
 
-*Note*: Primitives can then be used as the Type within the Generic Class, Interface, or Method.
+_Note_: Primitives can then be used as the Type within the Generic Class, Interface, or Method.
 
 ```java
 int myValue = 11;
@@ -116,7 +116,7 @@ public class Processor {
 }
 ```
 
-When a generic method will use multiple types, they can be listed in the method signature *[Baeldung.com/java-generics]*:
+When a generic method will use multiple types, they can be listed in the method signature _[Baeldung.com/java-generics]_:
 
 ```java
 public static <T, G> List<G> fromArrayToList(T[] arr, Function<T, G> mapperFunc) {
@@ -154,17 +154,17 @@ Multiple Bounded Types in the Type Parameter list are sensitive to the inheritan
 
 Use the OOP rule 'IS A' to determine if a primitive or Type will be allowed in a Bounded Types listing, and what order it should be within the Bounded TYpes listing.
 
-*Note*: Integer and Double are subtypes of Number, but when used with Generics, the generic class T, whether Integer or Double, are not. Think of it this way: What is the common parent of the Genericized Type? If there is no common parent, than the Types will not be compatible with the Bounded Types list. Oracle Docs say to look at 'Wildcards and Subtyping' for details about this behavior and how to work with it.
+_Note_: Integer and Double are subtypes of Number, but when used with Generics, the generic class T, whether Integer or Double, are not. Think of it this way: What is the common parent of the Genericized Type? If there is no common parent, than the Types will not be compatible with the Bounded Types list. Oracle Docs say to look at 'Wildcards and Subtyping' for details about this behavior and how to work with it.
 
 ### Primitive Operators in Java
 
-Certain Operators *only work on primitive types* and therefore cannot be used to compare custom Types or Generic arguments that don't have their own Operator definitions or overrides.
+Certain Operators _only work on primitive types_ and therefore cannot be used to compare custom Types or Generic arguments that don't have their own Operator definitions or overrides.
 
 Implement an interface i.e. `Comparable<T>` so `e.compareTo(elem) > 0` can be utilized.
 
 ### Subtyping in Java
 
-Extend or implement a generic class or interface to *subtype* it.
+Extend or implement a generic class or interface to _subtype_ it.
 
 Determination of a subtype are made within 'extends' and 'implements' clauses.
 
@@ -237,7 +237,7 @@ More about this later.
 The Java Compiler uses a Type Inference Algorithm that:
 
 - Figures out the type argument(s) necessary for a declaration.
-- Selects *the most specific* type argument that works for all arguments.
+- Selects _the most specific_ type argument that works for all arguments.
 - Uses invokation arguments, target types, and obvious expected return types of a Member to determine inferred Type.
 - Does NOT consider returns or outputs later in the code to determine inferred Type.
 
@@ -319,13 +319,13 @@ public static void addToFamily(T<? extends Animal> pet) {
 
 - AKA 'Unknown Type'
 - Usage: `List<?>`
-- Meaning: Method will *use functionality provided by Object class*.
+- Meaning: Method will _use functionality provided by Object class_.
 
 Using an unbounded wildcard for an input limits members to that of the base class Object:
 
 ```java
 public static void printList(List<?> list) {
-  // list.size() interrogates a List property size (length) 
+  // list.size() interrogates a List property size (length)
   // Types stored within the Collection are ignored
   System.out.println("list size is %s%n", list.size());
   // also note that any Type that has a toString method can be accessed
@@ -423,10 +423,10 @@ Variables provide one of 2 functions:
 
 The In-or-Out-Principle:
 
-- IN variable is defined with an *upper bounded wildcard* using 'extends' keyword.
-- OUT variable is defined with a *lower bounded wildcard* using 'super' keyword.
+- IN variable is defined with an _upper bounded wildcard_ using 'extends' keyword.
+- OUT variable is defined with a _lower bounded wildcard_ using 'super' keyword.
 - Use UNBOUNDED when: IN can be accessed using defined methods in Object class.
-- Do NOT USE A WILDCARD in cases where code needs to access *both IN and OUT* variables.
+- Do NOT USE A WILDCARD in cases where code needs to access _both IN and OUT_ variables.
 
 Additionally:
 
@@ -440,7 +440,7 @@ See the docs for details, here are the highlights:
 - Type parameters are replaced by thier bounds.
 - Unbounded type parameters are replaced with Object.
 - Proper casting is applied (by the Compiler) to avoid casting mistakes.
-- Primitives *do not extend Object* and so do not apply to Generics!
+- Primitives _do not extend Object_ and so do not apply to Generics!
 
 ```java
 // type parameters are replaced by their bounds
@@ -451,7 +451,7 @@ public void foo(Animal animal) {...};
 
 The following are just a few things to watch out for:
 
-- The Compiler *might* create a synthetic method (aka Bridge Method), which could throw a ClassCastException. Avoid using Raw Types to avoid this situation.
+- The Compiler _might_ create a synthetic method (aka Bridge Method), which could throw a ClassCastException. Avoid using Raw Types to avoid this situation.
 - When Bridge Methods are created, Method Signatures could no longer match, which could throw a ClassCastException.
 - Reifiable Types: Type information is fully available at Runtime (primitives, raw types, unbound wildcard invokations).
 - Non-reifiable Types: Type information missing due to Type Erasure.
@@ -471,8 +471,8 @@ Avoid using non-reifiable Types:
 
 Heap Pollution:
 
-- A variable of a parameterized type refers to an object that is *not of that parameterized type*.
-- An *unchecked warning* situation.
+- A variable of a parameterized type refers to an object that is _not of that parameterized type_.
+- An _unchecked warning_ situation.
 - Code contains mixed raw types and parameterized types.
 - Code performs unchecked casts.
 
@@ -483,19 +483,19 @@ Possibly good advice: If you find yourself using `___` consider rewriting your c
 
 ### Java Generics Restrictions
 
-Things you *cannot do* with Java Generics:
+Things you _cannot do_ with Java Generics:
 
-- Instantiate using primitive types. *Instead* of `char` use `Character`, etc.
-- Create instances of Type parameters. The *Type Parameter is a hint* for the compiler, not a concrete Type.
-- Declare static fields using Type parameters. Static fields are *class-level variables*.
+- Instantiate using primitive types. _Instead_ of `char` use `Character`, etc.
+- Create instances of Type parameters. The _Type Parameter is a hint_ for the compiler, not a concrete Type.
+- Declare static fields using Type parameters. Static fields are _class-level variables_.
 - Use casts or `instanceof` with parameter types. Type Erasure makes this impossible execution at runtime.
 - Create Arrays of parmeterized types. A list of a list cannot be an Array of Objects containling List of type T.
-- Create, Catch, or Throw Objects of Parameterized types. Generic *Classes* cannot extend `Throwable` Class directly or indirectly.
+- Create, Catch, or Throw Objects of Parameterized types. Generic _Classes_ cannot extend `Throwable` Class directly or indirectly.
 - Overload a method where the formal parameter types of each overload get 'erased' to the same raw type.
 
-*Note*: A method *can* throw a placeholder type e.g. `public void parse(File file) throws T {...}`.
+_Note_: A method _can_ throw a placeholder type e.g. `public void parse(File file) throws T {...}`.
 
-*Note*: Method overriding *must* use type parameters that won't cause the methods to have the same signature after Type Erasure.
+_Note_: Method overriding _must_ use type parameters that won't cause the methods to have the same signature after Type Erasure.
 
 ```java
 // before type erasure
@@ -511,7 +511,7 @@ public void print(Set set) {...}
 
 ### Common Naming Conventions (Java SE 8+)
 
-Directly from *[Oracle JavaSE Tutorial: Java Generics]*
+Directly from _[Oracle JavaSE Tutorial: Java Generics]_
 
 Use single, upper-case letters:
 
@@ -530,6 +530,8 @@ Oracle's [Java Tutorials](https://docs.oracle.com/javase/tutorial/java/generics/
 Baeldung: [Java Generics](https://www.baeldung.com/java-generics)
 
 Baeldung: [Comparing Objects in Java](https://www.baeldung.com/java-comparing-objects)
+
+West Chester University's Dr. Robert Kline, CS Department (retired) on [generics](https://www.cs.wcupa.edu/rkline/cs3/generics.html)
 
 ## Footer
 
