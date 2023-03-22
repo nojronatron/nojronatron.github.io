@@ -431,7 +431,7 @@ _Note_: Leverage _NoSuchFileException_ to catch errors related to Path and Paths
 
 Join Paths using `Paths.get("path_one").resolve("child_path")`.
 
-Use Relitivize method to return the path to a sibling path from a starting path:
+Use Relativize method to return the path to a sibling path from a starting path:
 
 ```java
 Path p1 = Paths.get("foo");
@@ -453,9 +453,213 @@ path.endsWith(ending); // returns boolean of Path last-child is equal to "ending
 
 Path implements:
 
-- Iterable interface: Can be used within For and Advanced For loops.
+- Iterable interface: Can be used with For and Advanced For loops.
 - Comparable interface: Can be sorted.
 - Equals method: Helper methods `compareTo()` and `isSameFile()` (two paths locate the same file) are exposed.
+
+#### File Operations
+
+`Files` class is a `java.nio.file` package entrypoint.
+
+- Static Methods
+- Read, Write, Manipulate files and directories
+- Work with `Path` objects.
+
+Terminology:
+
+- Releasing System Resources: Many classes impelment or extend `java.io.Closeable` interface. This is used to limit memory leaks. Use-with-resources is a common way to do this. Another is to call an Object's `close()` method before leaving an execution scope.
+- Exceptions: Use Try-Catch-Finally blocks or Try-with-resources to surround code that could throw Exceptions. For file operations, `IOException` is common. Use `.close()` method within a Finally block if the object is null.
+- Varargs: Stands for Variable Number of Arguments. Example `Path Files.move(Path, Path, CopyOption...)` where `...` means pass-in a comma-separated list of values. `CopyOption[]` would mean to pass-in an array of type CopyOption instances.
+- Atomic Operations: `move()` method is atomic meaning all-or-nothing operation. Success or failure, no in-between.
+- Method Chaining: A method that returns an object can have a 'chained method' that can act on that returned object. Example `String value = Charset.defaultCharset().decode(buf).toString();`.
+- Globs: A String-type that can be matched against other Strings (including Director and File names). Rules for Globs are below.
+- Link Awareness: Method knows what to do with Symbolic Links, and allows adding flags to indicate what to do with a Symlink.
+
+##### Globs Rules
+
+Glob syntax rules:
+
+- An asterisk: Match any number of characters or none.
+- Two asterisks: Asterisk that crosses directory boundaries (e.g. complete path matching).
+- Question Mark: Match a single character only.
+- Braces: Collection of subpatterns. `{temp*, tmp*}`.
+- Brackets: Set of single characters, or a range when used with a dash `[abcdefg]` or `[0-9]`.
+- Character: Match themselves (`* ? \` match themselves within brackets).
+- Escape character: `\`. Use `\\` to match a single `\` character.
+
+Note: Command-line escape characters might differ between systems.
+
+Consider Globs to be like RegEx syntax that `java.nio.file` understands.
+
+#### Checking a File or Directory
+
+Verify existence!
+
+- `exists(Path, LinkOption...)`
+- `notExists(Path, LinkOption...)`
+
+Three possible results:
+
+- Verified to exist.
+- Verified to NOT exist.
+- Status is unknown e.g. access denied, etc.
+
+File Accessibility:
+
+- `isReadable(Path)`: Boolean
+- `isWriteable(Path)`: Boolean
+- `isExecutable(Path)`: Boolean
+
+_Note_: TOCTTOU (Tock-too) errors can occur when testing for Read, Write, and Executability and then accessing the file. Read about how to avoid this situation.
+
+Two Paths Can Locate The Same File!
+
+- Symlinks
+- `isSameFile(Path, Path)`: Boolean
+
+#### Deleting Files Directories and Links
+
+Files and Directories:
+
+- File is actually removed from the file system.
+- Directory will only be deleted if empty.
+
+Symlinks:
+
+- Only the Symlink is removed, not the target items.
+
+Deletion Methods:
+
+- `delete(Path)`: Succeeds or throws an Exception.
+- `deleteIfExists(Path)`: Use when multiple threads could be deleting same path/item. Silently fails.
+
+#### Copying Files and Directories
+
+`copy(Path, Path, CopyOption...)`
+
+- Fails if target file exists and `REPLACE_EXISTING` NOT specified.
+
+CopyOption Enums/Varargs:
+
+- REPLACE_EXISTING: Copies over existing target. Symlinks are copied (not the target). Throws `DirectoryNotEmptyException`.
+- COPY_ATTRIBUTES: File attributes are OS-specific but 'last-modified-time' is universal and is automatically copied.
+- NOFOLLOW_LINKS: Do NOT follow Symlinks. If specified path IS a Symlink, copy the Symlink itself but not the Symlink target.
+
+Example:
+
+```java
+import static java.nio.file.StandardCopyOption.*;
+Files.copy(source, target, REPLACE_EXISTING);
+```
+
+_Note_: `Files.walkFileTree()` method supports recursive copying.
+
+#### Moving Files and Directories
+
+`move(Path, Path, CopyOption...)`: Same failure mode as Copying.
+
+CopyOption Enums/Varargs:
+
+- REPLACE_EXISTING: Overwrite target path. Symlink target will get overwritten (but not its target).
+- ATOMIC_MOVE: Perform move as an atomic 'all-or-nothing' operation. Throws if File System does not support Atomic operations.
+
+Example:
+
+```java
+import static java.nio.file.StandardCopyOption.*;
+Files.move(source, target, REPLACE_EXISTING);
+```
+
+#### Managing Metadata
+
+Filesystem metadata is stored IN files and directories.
+
+AKA File Attributes.
+
+See [Oracle Java Docs File Attributes](https://docs.oracle.com/javase/tutorial/essential/io/fileAttr.html) for methods that act of Filesystem Metadata.
+
+Metadata is collected into Views so that effectively similar information can be displayed, whether POSIX or DOS style Filesystem:
+
+- `BasicFileAttributeView`
+- `DosFileAttributeView`
+- `PosixFileAttributeView`
+- `FileOwnerAttributeView`
+- `AclFileAttributeView`
+- `UserDefinedFileAttributeView`
+
+_Note_: Not all views are supported by all systems, and some file systems support views NOT supported in java.nio.file libraries.
+
+FileAttributeView interfaces can be accessed via `getFileAttributeView(Path, Class<V>, LinkOption...)` but in most cases is not necessary.
+
+Some FileAttributes can be programmatically set. See [Oracle Java Docs File Attributes](https://docs.oracle.com/javase/tutorial/essential/io/fileAttr.html) for methods and usage.
+
+#### Reading, Writing, Creating, and Opening Files
+
+Utility Methods for simpler, common cases:
+
+- readAllBytes: Read-in a small file in a single pass.
+- readAllLines
+- Write methods such as `Files.write(file, buf)`
+
+Iteration over a stream or lines of text and interop with java.io package (which includes Buffered Streaming capability):
+
+- newBufferedReader
+- newBufferedWriter
+- newInputStream
+- newOutputStream
+
+More complex, less common methods:
+
+- ByteChannels
+- SeekableByteChannels
+- ByteBuffers
+- newByteChannel
+
+Locking and memory-mapped IO required:
+
+- FileChannel
+
+OpenOptions Parameter:
+
+- Many methods utilize this.
+- API will state what default is if not supplied to the method.
+- Many Enums supported (see list on [Oracle Docs File](https://docs.oracle.com/javase/tutorial/essential/io/file.html)).
+
+#### Methods for Unbuffered Streams and Interop with java.io APIs
+
+Reading File with Stream IO:
+
+- `newInputStream(Path, OpenOption...)`: Returns unbuffered input stream for oreading bytes from a file. Wrap an instance of `InputStream` with a `BufferedReader` instance.
+
+Creating, Writing File with Stream IO:
+
+- `newOutputStream(Path, OpenOption...)`: Returns an unbuffered output stream. Utilize OpenOption Enums to flag specific behavior e.g. `CREATE, APPEND`, etc.
+
+#### Methods for Channels and ByteBuffers
+
+Two methods for reading and writing channel IO:
+
+- `newByteChannel(Path, OpenOption...)`
+- `newByteChannel(Path, Set<? extends OpenOption>, FileAttribute<?>...)`
+
+These return an instance of a `SeekableByteChannel` that can be cast to a `FileChannel` which can allow mapping file contents to memory for faster access.
+
+See [Oracle Docs File](https://docs.oracle.com/javase/tutorial/essential/io/file.html) for more (there is a lot).
+
+#### Methods for Creating Regular and Temporary Files
+
+`createFile` is an atomic operation method.
+
+There example code of how to create a file with default attributes using createFile().
+
+For temporary files, use:
+
+- `createTempFile(Path, String, String, FileAttribute<?>)`: Specify a temporary file location.
+- `createTempFile(String, String, FileAttribute<?>)`: Use File-system Default temp location.
+
+See [Oracle Docs File](https://docs.oracle.com/javase/tutorial/essential/io/file.html) for an example.
+
+### Randome Access Files
 
 ## Resources
 
