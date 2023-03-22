@@ -9,6 +9,14 @@ Researching algorithmic complexity, it is good to remember:
 - When adding a list, array, or collection to store the results of processing, this is potentially an O(n) operation because _storage is being added_.
 - Algorithms that alter an input 'in-place' will use O(1) space but could be problematic in cases where a reference is passed in and the caller is not expecting its data to be mutated.
 
+Completed Insertion Sort code challenge. This was difficult. Key takeaways:
+
+- Insertion Sort uses a Linked List as the sorting mechanism. Knowing this is a fast-track to writing the algorithm.
+- When a sorting mechanism is necessary, remember to use comparison operators on primitives, and `Equals()` and `CompareTo()` on Generics and Types.
+- Overriding Equals is not always necessary, but a custom Type will likely need a `HashCode()` and a `CompareTo()` override or overload to get sorting to work properly and without runtime exceptions.
+- Identify the conditions under which actions must be taken. For example, to know where to insert a value into a Linked List, it is good to compare the Current with the In-Hand value, and Current.Next with In-Hand value. Also, test for Head GT/LT In-Hand Value to know whether to replace or add after Head. Lastly, null (Tail) is the last place to add only after all other checks are completed.
+- Try to push as much functionality to a custom LinkedList Class and its Nodes, rather than passing around a LinkedList instance, or struggling with existing methods from some other Library. For an algorithm like this one, customizing the Data Structure makes a huge difference.
+
 ## Monday 20-Mar-2023
 
 Job hunting has revealed many more advanced position openings in the last week or so. Also, several interesting positions are looking for AWS experience that I would need to brush up on. I have a few backlogged projects I'd like to work on that would support using AWS tools, so I am inclined to consider how to reorganize my task log to make room for that.
