@@ -6,6 +6,8 @@ Semi-regular notes taken during my software developer journey.
 
 The JavaSE Tutorials on Basic IO are quite long, and I'm nearly done studying them. Hopefully I'll have a better grasp on what I'm doing next time I need to work with Files, Scanning, and Streams in general.
 
+Reviewed Hash Tables data structure and methods. Did pretty well, and could probably be conversant about the topic. Coding one without help might be mostly successful - not quite there yet.
+
 ## Tuesday 21-Mar-2023
 
 Researching algorithmic complexity, it is good to remember:
