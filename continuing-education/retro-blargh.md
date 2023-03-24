@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 23-Mar-2023
+
+Working with LBJS attempting to get a page of forms designed for this next version. My initial idea was to use Bootstrap Accordions and Forms, and of course Accordions gave me trouble. Key takeaways:
+
+- Other components can be made to act like an Accordion by using the Accordion API `as` attribute, which sets a custom element for the current component.
+- Applying styles via themed CSS to the Accordion component itself is more challenging than I anticipated, but once I utilized Bootstrap's code sample from the 'Custom Toggle' section, theme application started working.
+- I was losing confidence in my abilities to style a webpage for a few hours, but I stuck with it, and tried a few approaches, and now remember that leveraging Bootstrap's built-in keywords for formatting is the way to go without diving deep into a large CSS file.
+
 ## Wednesday 22-Mar-2023
 
 The JavaSE Tutorials on Basic IO are quite long, and I'm nearly done studying them. Hopefully I'll have a better grasp on what I'm doing next time I need to work with Files, Scanning, and Streams in general.
