@@ -2,6 +2,25 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 25-Mar-2023
+
+Completed integrating Auth0 into a dev branch of LBJS. Key takeaways:
+
+- Remember to modularize. Bolting-on functionality makes for large components that are more difficult to debug.
+- Use the Auth0 Log function available at the Tenant webpage, Monitoring topic.
+
+Started working on API calls using authorization:
+
+- I need to quick reference and some reminders for using Promises.
+- Auth0 has a `fetchAuthConfig()` method and a `createAuth0Client()` method that I want to look into utilizing to simplify authorization calls.
+
+## Friday 24-Mar-2023
+
+Continued working on authorized section of LBJS. Key takeaways:
+
+- Use other existing components as a template for a new page. Building from new should not be necessary _unless there is a specified requirement to do so_. Otherwise, redesign will really be re-architect, which should be done on a design surface, not in code.
+- Use the instructions provided by Auth0 to get authentication working. Sometimes functions and patterns change, and the instructions will walk through those so the configuration is correct.
+
 ## Thursday 23-Mar-2023
 
 Working with LBJS attempting to get a page of forms designed for this next version. My initial idea was to use Bootstrap Accordions and Forms, and of course Accordions gave me trouble. Key takeaways:
