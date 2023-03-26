@@ -1,12 +1,14 @@
-# Power Hour Notes  
+# Power Hour Notes
 
 Notes taken while attending Power Hour sessions - videos and/or in-person events reviewing pertenent info for CodeFellow students.
 
 ## Index
 
-Accessibility Fundamentals with [Stephanie](hill-accessibility-fundamentals.html)
+Chrome Dev Tools for [Power Users](./dolphus-chrome-dev-tools.html)
 
-Docker and Blue Ocean with [Robert S](shepley-docker-digitalocean.html)
+Accessibility Fundamentals with [Stephanie](./hill-accessibility-fundamentals.html)
+
+Docker and Blue Ocean with [Robert S](./shepley-docker-digitalocean.html)
 
 Graphs and Finding Shortest Path in a Navigation App with [Roger R](./roger-graphs-navapp.html)
 
@@ -16,7 +18,7 @@ CSS Talk with [Brian](./bnation-css-stuff.html)
 
 A conversation about [24 years experience in tech](./bennett-12in4in24.html).
 
-Web [Accessibility](web-accessibility-design-test.html), Design, Test, and usability.
+Web [Accessibility](./web-accessibility-design-test.html), Design, Test, and usability.
 
 T Adlin [Aligning key people to help your project](./pph-tadlin-align-key-investors.html)
 
@@ -42,11 +44,11 @@ Data Structures and Algorithms[Talk](./data-structures-algos.html)
 
 PPH [Rover.com](./pph-rover.html)
 
-Communicating Under [Stress](./comms-under-stress.html)  
+Communicating Under [Stress](./comms-under-stress.html)
 
-## Important  
+## Important
 
-All notes within are for my personal benefit and do not represent official Code Fellows curriculum.  
+All notes within are for my personal benefit and do not represent official Code Fellows curriculum.
 
 ## Footer
 

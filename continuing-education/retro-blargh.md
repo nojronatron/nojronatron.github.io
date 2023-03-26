@@ -2,6 +2,72 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 25-Mar-2023
+
+Completed integrating Auth0 into a dev branch of LBJS. Key takeaways:
+
+- Remember to modularize. Bolting-on functionality makes for large components that are more difficult to debug.
+- Use the Auth0 Log function available at the Tenant webpage, Monitoring topic.
+
+Started working on API calls using authorization:
+
+- I need to quick reference and some reminders for using Promises.
+- Auth0 has a `fetchAuthConfig()` method and a `createAuth0Client()` method that I want to look into utilizing to simplify authorization calls.
+
+## Friday 24-Mar-2023
+
+Continued working on authorized section of LBJS. Key takeaways:
+
+- Use other existing components as a template for a new page. Building from new should not be necessary _unless there is a specified requirement to do so_. Otherwise, redesign will really be re-architect, which should be done on a design surface, not in code.
+- Use the instructions provided by Auth0 to get authentication working. Sometimes functions and patterns change, and the instructions will walk through those so the configuration is correct.
+
+## Thursday 23-Mar-2023
+
+Working with LBJS attempting to get a page of forms designed for this next version. My initial idea was to use Bootstrap Accordions and Forms, and of course Accordions gave me trouble. Key takeaways:
+
+- Other components can be made to act like an Accordion by using the Accordion API `as` attribute, which sets a custom element for the current component.
+- Applying styles via themed CSS to the Accordion component itself is more challenging than I anticipated, but once I utilized Bootstrap's code sample from the 'Custom Toggle' section, theme application started working.
+- I was losing confidence in my abilities to style a webpage for a few hours, but I stuck with it, and tried a few approaches, and now remember that leveraging Bootstrap's built-in keywords for formatting is the way to go without diving deep into a large CSS file.
+
+## Wednesday 22-Mar-2023
+
+The JavaSE Tutorials on Basic IO are quite long, and I'm nearly done studying them. Hopefully I'll have a better grasp on what I'm doing next time I need to work with Files, Scanning, and Streams in general.
+
+Reviewed Hash Tables data structure and methods. Did pretty well, and could probably be conversant about the topic. Coding one without help might be mostly successful - not quite there yet.
+
+## Tuesday 21-Mar-2023
+
+Researching algorithmic complexity, it is good to remember:
+
+- When adding a list, array, or collection to store the results of processing, this is potentially an O(n) operation because _storage is being added_.
+- Algorithms that alter an input 'in-place' will use O(1) space but could be problematic in cases where a reference is passed in and the caller is not expecting its data to be mutated.
+
+Completed Insertion Sort code challenge. This was difficult. Key takeaways:
+
+- Insertion Sort uses a Linked List as the sorting mechanism. Knowing this is a fast-track to writing the algorithm.
+- When a sorting mechanism is necessary, remember to use comparison operators on primitives, and `Equals()` and `CompareTo()` on Generics and Types.
+- Overriding Equals is not always necessary, but a custom Type will likely need a `HashCode()` and a `CompareTo()` override or overload to get sorting to work properly and without runtime exceptions.
+- Identify the conditions under which actions must be taken. For example, to know where to insert a value into a Linked List, it is good to compare the Current with the In-Hand value, and Current.Next with In-Hand value. Also, test for Head GT/LT In-Hand Value to know whether to replace or add after Head. Lastly, null (Tail) is the last place to add only after all other checks are completed.
+- Try to push as much functionality to a custom LinkedList Class and its Nodes, rather than passing around a LinkedList instance, or struggling with existing methods from some other Library. For an algorithm like this one, customizing the Data Structure makes a huge difference.
+
+## Monday 20-Mar-2023
+
+Job hunting has revealed many more advanced position openings in the last week or so. Also, several interesting positions are looking for AWS experience that I would need to brush up on. I have a few backlogged projects I'd like to work on that would support using AWS tools, so I am inclined to consider how to reorganize my task log to make room for that.
+
+Working through a code challenge to sort an Integer array I realize my sort algorithm knowledge is lacking. I kept trying to implement a merge-sort algorithm but couldn't quite get it working so I fell back to a simpler, very inefficient, selection sort-like algorithm. After coding and testing this, I will take some time out to study and analyze other algorithms.
+
+## Sunday 19-Mar-2023
+
+Working through the Java SE documentation on Streams. Code Fellows curriculum covered this, but I need this added context and detail to get a better handle and to know when and how to use them:
+
+- Remember that defining an array in Java uses _braces_ to store the initializing values: `static final String[] myArr = { "alpha", "bravo", "charlie" };`
+- Byte and Character Streams are small and handy but lack other features and compatibility outside of simple character and String-like Streams.
+- Object Streams are handy for complex Streamed data but there are tricks with ordering Fields, and confirming unique or reference types at the other end of the stream.
+- The Command Line implements a Streaming interface.
+- The File Systems of Unix and Windows are presented as Streams, allowing lots of operations including full CRUD, path comparison, representation, and traversal.
+
+Ryan submitted some comments on PRs and merged a few in to Main. One issue was an inefficient check performed at every Game Session load (whether starting, during a game, or playing again) that was O(n) in time and space. I wasn't sure I could solve the problem, but after some studying and trying things out, I found an O(1) time and O(n) space solution that should do the trick. This also eliminated an additional `useEffect()` hook, further consolidating code into an existing hook with similar dependancies. :medal_sports:
+
 ## Saturday 18-Mar-2023
 
 Completed a code challenge adding one Binary Tree to another. It was completely incidental that I ran into this challenge, and it just happened that designing a solution worked well in my current workload -- better than some other tasks would have. Key takeaways:
