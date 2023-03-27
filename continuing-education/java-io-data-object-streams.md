@@ -793,7 +793,7 @@ FileVisitor methods return a `FileVisitResult` value where you control the flow 
 
 - CONTINUE: Direcotry is 'visited' if CONTINUE is returend by `preVisitDirectory` method.
 - TERMINATE: When returned the traversal stops immediately.
-- SKIP*SUBTREE: Specified directory (and sub-directories) are \_skipped* when `preVisitDirectory` method returns this value.
+- SKIP _SUBTREE: Specified directory (and sub-directories) are \_skipped_ when `preVisitDirectory` method returns this value.
 - SKIP_SIBLINGS: When returned by `preVisitDirectory` method, `postVisitDirectory` method is not invoked and neither the specified directory nor its siblings will be visited.
 
 Check out [Controling the Flow Code Snippets and Examples at page bottom](https://docs.oracle.com/javase/tutorial/essential/io/walk.html) at Oracle JavaSE Docs.
