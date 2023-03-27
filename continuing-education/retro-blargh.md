@@ -2,6 +2,19 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 26-Mar-2023
+
+Spent several hours trying to debug an Auth0 problem:
+
+- Two identically configured SPA applications, named differently.
+- Both running on localhost while testing and developing the 2nd site.
+- Identical authorization and user meta_data capture flows in code.
+- User meta_data comes back fine in one webapp upon request.
+- User meta_data is 'undefined' upon request in the other webapp.
+- Also: The API Configuration in Auth0 for the end-points (in Azure) is locked, and I am unable to make adjustments to the configuration and there is no apparent reason why (because the actual webapp is running??)
+
+Completed some administrative and wrap-up work left over from last week.
+
 ## Saturday 25-Mar-2023
 
 Completed integrating Auth0 into a dev branch of LBJS. Key takeaways:
