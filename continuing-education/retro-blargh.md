@@ -2,6 +2,22 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 28-Mar-2023
+
+Attended a MSFT Reactor "Monitoring Azure Resources" event. Hoping this will provide some basics on adding monitoring to my AppService deployments. Somehow, I've missed a regular MSFT Reactor newsletter offering with more info about virtual and in-person events, until today.
+
+Bumped into an interesting way to avoid compile-time warnings of Unchecked cast statements in Java. See [Java Exceptions and Scanner](../code401-files/java-exceptions-scanner.html) for details. I also cleaned up that exceptions and scanner content for readability.
+
+## Monday 27-Mar-2023
+
+Researching SWE openings recently I've noticed more `Java Kafka` positions. This is the first I've heard of Kafka so I took a peek. It is a framework for processing and presenting 'big data' for your applications or services, in Java. It is open source, based on Java 8+, and abstracts away the complexities of big data so your app can adapt to the Kafka inputs, and not worry about processing large amounts of data. Sounds interesting! I've added a task to take a peek at Kafka.
+
+Reviewing Insertion Sort and Selection Sort, two key takeaways on the basics of these 2 algorithms:
+
+- Insertion Sort creates new storage of size n, and inserts the elements in sorted order, and returns it to the caller.
+- Selection Sort is an in-place algorithm that swaps values of the input elements until they are in sorted order, then stops.
+- My first shot writing a sorting algorithm is essentially an in-place, selection sort. My assumptions about BigO in time are off a bit: Time effeciency will be O(n^2).
+
 ## Sunday 26-Mar-2023
 
 Spent several hours trying to debug an Auth0 problem:
