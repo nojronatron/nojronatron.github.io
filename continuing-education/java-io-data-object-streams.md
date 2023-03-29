@@ -230,8 +230,8 @@ Scanner:
 
 - Is _not_ a Stream class.
 - Must be closed when done, just like a Stream class.
-- Supports all primitive types _except char_.
-- Support integer usage of the comma separater in US Locale, i.e.: `27,000` is an integer.
+- Supports all primitive types _except_ 'char'.
+- Support integer usage of the comma seperator in US Locale, i.e.: `27,000` is an integer.
 
 Basic Implementation of Scanner:
 
@@ -410,6 +410,8 @@ path.getRoot(); // The root path: /
 path.normalize(); // removes redundant indicators like . and .. from the path
 ```
 
+Key takeaway: `Path` class contains methods for manipulating a path.
+
 #### Converting a Path
 
 Three methods to do so:
@@ -474,6 +476,14 @@ Terminology:
 - Method Chaining: A method that returns an object can have a 'chained method' that can act on that returned object. Example `String value = Charset.defaultCharset().decode(buf).toString();`.
 - Globs: A String-type that can be matched against other Strings (including Director and File names). Rules for Globs are below.
 - Link Awareness: Method knows what to do with Symbolic Links, and allows adding flags to indicate what to do with a Symlink.
+
+Key Takeaways on Files class methods:
+
+- Move files.
+- Copy files.
+- Delete files.
+- Retreive file attributes.
+- Set file attributes.
 
 ##### Globs Rules
 
@@ -644,6 +654,8 @@ Two methods for reading and writing channel IO:
 
 These return an instance of a `SeekableByteChannel` that can be cast to a `FileChannel` which can allow mapping file contents to memory for faster access.
 
+Key Takeaway: _To seek to a specific location in a file and read it_, use `Files.newByteChannel` and its returned instance of `SeekableByteChannel` to read/write from/to any position within a file.
+
 See [Oracle Docs File](https://docs.oracle.com/javase/tutorial/essential/io/file.html) for more (there is a lot).
 
 #### Methods for Creating Regular and Temporary Files
@@ -659,7 +671,7 @@ For temporary files, use:
 
 See [Oracle Docs File](https://docs.oracle.com/javase/tutorial/essential/io/file.html) for an example.
 
-### Randome Access Files
+### Random Access Files
 
 Non-sequential access to file contents.
 
@@ -684,6 +696,8 @@ SeekableByteChannel can be cast to `FileChannel` providing advanced features: Ma
 There is a [code snippet](https://docs.oracle.com/javase/tutorial/essential/io/rafs.html) that demonstrates the use of `ByteBuffer`, `FileChannel`, `position`, `rewind`, `nread`, and `write`.
 
 #### Creating and Reading Directories
+
+`FileSystem` Class contains a variety of methods for obtaining information about the file system.
 
 List Directories:
 
@@ -743,7 +757,7 @@ Create a Symbolic Link:
 
 Create a Hard Link:
 
-- `createLin(Path, Path)`
+- `createLink(Path, Path)`
 - Throws NoSuchFileException if Path2 does not point to an actual file.
 
 Detecting a Symlink:
@@ -754,6 +768,8 @@ Finding Link Target:
 
 - `readSymbolicLink(Path)`
 - Throws NotLinkException if Path is not a Symlink.
+
+Key Takeaway: Detect Symlinks by using `java.nio.file` package `File` instanace `.isSymbolicLink(Path)` for a boolean result.
 
 #### Walking The File Tree
 
@@ -770,7 +786,7 @@ FileVisitor Traversal Behavior Methods:
 
 Review [FileVisitor Interface](https://docs.oracle.com/javase/tutorial/essential/io/walk.html) documentation on Oracle JavaSE Docs for examples and more info.
 
-Initiating a Traversal:
+Initiating a Traversal with these Methods and options enum:
 
 - `walkFileTree(Path, FileVisitor)`: Path is starting point, FileVisitor is your FileVisitor instance.
 - `walkFileTree(Path, Set<FileVisitOption>, int, FileVisitor)`: Enables specifying limit on number of levels to visit via `FileVisitOptions` enums.
@@ -796,7 +812,177 @@ FileVisitor methods return a `FileVisitResult` value where you control the flow 
 - SKIP _SUBTREE: Specified directory (and sub-directories) are \_skipped_ when `preVisitDirectory` method returns this value.
 - SKIP_SIBLINGS: When returned by `preVisitDirectory` method, `postVisitDirectory` method is not invoked and neither the specified directory nor its siblings will be visited.
 
-Check out [Controling the Flow Code Snippets and Examples at page bottom](https://docs.oracle.com/javase/tutorial/essential/io/walk.html) at Oracle JavaSE Docs.
+Check out [Controlling the Flow Code Snippets and Examples at page bottom](https://docs.oracle.com/javase/tutorial/essential/io/walk.html) at Oracle JavaSE Docs.
+
+#### Finding Files
+
+Use pattern matching to help, i.e. `*` for any, `?` for single placeholder, etc.
+
+File System implementations in `java.nio.file` provides a `PathMatcher` functionality.
+
+PathMatcher accepts Glob or Regular Expressions as the the params to `.getPathMatcher()`.
+
+Steps to use:
+
+1. Create a PathMatcher instance.
+2. Match files against it.
+
+```java
+PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*.{java, class});`
+Path filename = ...;
+if (matcher.matches(filename)) {
+  System.out.println(filename);
+}
+```
+
+Example java taken directly from the Finding Files section of _[javase tutorials on essential io]_
+
+Recursive pattern matching is used to find a file _somewhere_ within a file system.
+
+- Search by parts of a filename.
+- Search by file extension.
+
+Use `Find` with a glob pattern to search the file system for a file.
+
+The Find class:
+
+- Is a Console App (has a Main() entry point that instantiates the internal Finder class).
+- Extends `SimpleFileVisitor<Path>`
+- Leverages `PathMatcher` as a field and the input args are used to set up the `pattern` for pattern matching.
+- Is instantiated using a String pattern, which initializes a PathMatcher with a glob pattern from the CTOR param.
+- Adds `@Overrides` that define `preVisitDirectory()`, `visitFileFialed()`, and `visitFile()` (all FileVisitor traversal behavior methods).
+- Calls `walkFileTree()` (Find is a simple FileVisitor polymorphism).
+- Returns the field `count` for the number of matching files found while walking the file tree.
+
+#### Watch a Directory for Changes
+
+Utilize functionality called 'file change notification'.
+
+- Detect operations on a relevant directory in the file system.
+
+Detection through file system changes is inefficient, so `java.nio.file` has an API for that:
+
+- Enables registering directory/ies with a Watch service.
+- Enables settings they _type of operation_ to watch for e.g. ENTRY_CREATE, ENTRY_DELETE, and/or ENTRY_MODIFY.
+- Process is 'called back' by the API when an event is detected.
+
+There is also an OVERFLOW event, but registration is not required in order to receive it (probably an unchecked exception escape hatch).
+
+Oracle recommends caution when deciding to implement their 'Watch Service API' referenced in the documentation:
+
+- Not for indexing a file system.
+- Most (but not all) file systems support change notification, and the Watch Service API takes advantage when it exists.
+- Without file-system-based notification, the Watch Service will _poll the file system_ to detect the events.
+
+#### Determining MIME Types
+
+Use `probeContentType(Path)` to get a file's MIME Type:
+
+```java
+try {
+  String type = Files.probeContentType(filename);
+  if(type==null) {
+    System.err.format("%s has an unknown filetype.%n", filename);
+  } else if (!type.equals("text/plain")) {
+    System.err.format("%s is not a plain text file.%n", filename);
+    continue;
+  }
+  catch (IOException ioex) {
+    System.err.println(ioex);
+  }
+}
+```
+
+Return is either String or null (if cannot be determined).
+
+Content Type is generally managed by the platform's type detector, so presumptive content-types like: Extension `.class` is a Java file, might not be correct.
+
+Take a look at [FileTypeDetector](https://docs.oracle.com/javase/8/docs/api/java/nio/file/spi/FileTypeDetector.html) in the Oracle Java Docs. Note that it still 'guesses'.
+
+#### Default File System
+
+Use `FileSystems.getDefault()` method and chain it with `FileSystem` type methods. Example:
+
+```java
+PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*.*");
+```
+
+#### Path String Separator
+
+Path separators are not always the same:
+
+- Windows: `\`
+- POSIX: `/`
+- Others: (could be different still)
+
+Retreive the path separator character using:
+
+- `String separator = File.separator;` or
+- `String separator = FileSystems.getDefault().getSeparator();`
+
+#### File System Stores
+
+Files and Directories are actually stored within a File System's _Stores_.
+
+`File Store` represents the underlying storage device:
+
+- Windows: Volumes with alpha-labels e.g. 'C'
+- UNIX: A mounted File Store.
+
+List all file stores the system has:
+
+```java
+for (FileStore store: FileSystems.getDefault().getFileStores()) {
+  ...
+}
+```
+
+Get a specific File Store:
+
+```java
+Path file = ...;
+FileStore store = Files.getFileStore(file);
+```
+
+#### Legacy File IO Code
+
+Prior to Java SE 7:
+
+- `java.io.File` was used.
+- Inconsistent Exception throwing.
+- Inconsistent rename handling.
+- No SymLink support.
+- Lack of MetaData support.
+- Inefficient algorithms and classes, especially for large-scale calls.
+- Unreliable circular-link detection.
+
+##### Migrating to NIO
+
+`java.io.File.toPath()` converts File instance to `java.nio.file.Path` instance: `Path input = file.toPath();`
+
+There is a large matrix of functionality that relates `java.io.File` functionality to `java.nio.file` Functionality, along with links to tutorials on usage at [Oracles Java Docs on File IO](https://docs.oracle.com/javase/tutorial/essential/io/legacy.html).
+
+## Oracle Tutorial Q and A
+
+What Class and method would you use to read a few pieces of data that are at known positions near the end of a large file?
+
+> Use `Files.newByteChannel` to get instance of `SeekableByteChannel` which allows reading from/writing to any position in a file.
+
+When invoking `format`, what is the best way to indicate a new line?
+
+> Use `%n`which is platform independant.
+
+How would you determine the MIME type of a file?
+
+> Two options: Use `Files.probeContentTypes(Path: file_name)` (which uses the file systems underlying file type detector). Note: Oracle suggested an optional `FileTypeDetector` code file to try.
+
+What method(s) would you use to determine whether a file is s symbolic link?
+
+> Use `Files.isSymbolicLink(Path: file_name)` method.
+
+Note:
+
+- Use `Paths` class method `.toRealPath(Path: symlink_name)` to get the actual path to a Symlinked file.
 
 ## Resources
 
