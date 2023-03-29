@@ -8,6 +8,8 @@ Attended a MSFT Reactor "Monitoring Azure Resources" event. Hoping this will pro
 
 Bumped into an interesting way to avoid compile-time warnings of Unchecked cast statements in Java. See [Java Exceptions and Scanner](../code401-files/java-exceptions-scanner.html) for details. I also cleaned up that exceptions and scanner content for readability.
 
+Completed a code challenge for Java to practice using File IO and NIO2: Build a console application that will return the count of characters within a provided text file. This took me about 3 hours to complete from design, through implement, test, refine, and document. I updated [java-code-challenges](https://github.com/nojronatron/java-code-challenges/) with the results of this exercise.
+
 ## Monday 27-Mar-2023
 
 Researching SWE openings recently I've noticed more `Java Kafka` positions. This is the first I've heard of Kafka so I took a peek. It is a framework for processing and presenting 'big data' for your applications or services, in Java. It is open source, based on Java 8+, and abstracts away the complexities of big data so your app can adapt to the Kafka inputs, and not worry about processing large amounts of data. Sounds interesting! I've added a task to take a peek at Kafka.
