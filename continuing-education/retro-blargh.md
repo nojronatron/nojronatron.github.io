@@ -2,13 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 29-Mar-2023
+
+Reviewed Promises again. Maybe this time it'll stick. :smiley: Just for the record, in recent weeks I have been using Promises correctly, and have also been implementing async-await whenever possible due to its simplicity. It is also worth noting that a Top-level Await in JS Modules is not available and newer browser support is pretty good (see [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)).
+
 ## Tuesday 28-Mar-2023
 
 Attended a MSFT Reactor "Monitoring Azure Resources" event. Hoping this will provide some basics on adding monitoring to my AppService deployments. Somehow, I've missed a regular MSFT Reactor newsletter offering with more info about virtual and in-person events, until today.
 
 Bumped into an interesting way to avoid compile-time warnings of Unchecked cast statements in Java. See [Java Exceptions and Scanner](../code401-files/java-exceptions-scanner.html) for details. I also cleaned up that exceptions and scanner content for readability.
 
-Completed a code challenge for Java to practice using File IO and NIO2: Build a console application that will return the count of characters within a provided text file. This took me about 3 hours to complete from design, through implement, test, refine, and document. I updated [java-code-challenges](https://github.com/nojronatron/java-code-challenges/) with the results of this exercise.
+Completed a code challenge for Java to practice using File IO and NIO: Build a console application that will return the count of characters within a provided text file. This took me about 3 hours to complete from design, through implement, test, refine, and document. I updated [java-code-challenges](https://github.com/nojronatron/java-code-challenges/) with the results of this exercise.
 
 ## Monday 27-Mar-2023
 
