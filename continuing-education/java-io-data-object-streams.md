@@ -361,9 +361,9 @@ Reconstituting an object from a stream can be tricky.
 
 Oracle Java Docs refers to JDK 8 release and java.nio.file package and its sub-packages in this sub-section.
 
-The documentation reviews Paths, both relative and absolute, and Symbolic Links.
+The documentation reviews paths, both relative and absolute, and Symbolic Links.
 
-Unix-based Paths are not comparable to Windows-based Paths due to their native naming convention. However, both can be handled and processed by Java.
+Unix-based paths are not comparable to Windows-based paths due to their native naming convention. However, both can be handled and processed by Java.
 
 Symbolic Links are:
 
@@ -389,6 +389,12 @@ Path path3 = Paths.get(URI.create("file:///Users/user/file.java"));
 ```
 
 Paths helper is shorthand for `FileSystems.getDefault().getPath(String);`
+
+Notes (source [java nio File Paths helper class](https://docs.oracle.com/javase/7/docs/api/java/nio/file/Paths.html)):
+
+- Confusingly, the Paths Helper Class has two static members `Path()`
+- Convert a path string or sequence of strings to a Path object: `public static Path get(String first, String...)` :right-arrow: Best used with Path.resolve helper e.g. `Path dir=""; Path path=dir.resolve("file");`
+- Convert a URI to a Path object: `public static Path get(URI uri)` :right-arrow: Iterates over installed providers to find one that handles the URI scheme.
 
 Create a file and get a reference to it in either Unix or Windows:
 
