@@ -40,15 +40,15 @@ You must check out management and determine if there is a high turnover or other
 
 - Who is the manager you will be reporting to?
 - What about the manager above them?
-- If *I* am the manager and my people start leaving, *I* am not doing a good job.
+- If _I_ am the manager and my people start leaving, _I_ am not doing a good job.
 
-Tech jobs are *everywhere* in the world!
+Tech jobs are _everywhere_ in the world!
 
 Travelling and working in other countries will exand your thinking, feed creativity, and a different view on diversity and inclusivity.
 
 Get pushed out of your comfort zone to get used to it, and get better handling them.
 
-Burnout is read and self care is *vital*:
+Burnout is read and self care is _vital_:
 
 - Take care of yourself else ruin your health.
 - Family and friends will also pay a toll.
@@ -58,15 +58,15 @@ Burnout is read and self care is *vital*:
 
 Tech is constantly changing:
 
-- You *must* be ready to change with it!
+- You _must_ be ready to change with it!
 - Not always your choice, sometimes up to your employer or business.
-- Learn *how to learn* and keep it going to keep up with the tech stack.
+- Learn _how to learn_ and keep it going to keep up with the tech stack.
 
 Beware of money-money-money orientated jobs:
 
-- If money is everything, then *nothing else matters*.
+- If money is everything, then _nothing else matters_.
 - This can lead to a very toxic environment.
-- *Beware* getting pulled into these toxic behaviors!
+- _Beware_ getting pulled into these toxic behaviors!
 
 Culture is more important than money:
 
@@ -98,7 +98,7 @@ Learning a New Language:
 
 - In a stagnant role? Look into a new language as an option.
 - In a role where older tech is in use? Look into a new language as an option.
-- Excited about a technology? Start right away so when it gets difficult, 
+- Excited about a technology? Start right away, find others that are passionate and knowledgable about it for support when you need it.
 
 ## References
 
