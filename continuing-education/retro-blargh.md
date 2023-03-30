@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 30-Mar-2023
+
+Took care of some administrative stuff this morning, and cleaned up a couple notes files from previous events.
+
+Reviewed Graph data structures and a custom method I developed (by hand) that find accumulated weight between two vertices. Also updated TODO lists with completed tasks.
+
+While reviewing job postings I found one on LinkedIn that turned out to be click-bait. That makes job hunting that much less fun, oh well.
+
 ## Wednesday 29-Mar-2023
 
 Reviewed Promises again. Maybe this time it'll stick. :smiley: Just for the record, in recent weeks I have been using Promises correctly, and have also been implementing async-await whenever possible due to its simplicity. It is also worth noting that a Top-level Await in JS Modules is not available and newer browser support is pretty good (see [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)).
