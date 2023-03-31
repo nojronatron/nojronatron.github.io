@@ -10,6 +10,8 @@ Reviewed Graph data structures and a custom method I developed (by hand) that fi
 
 While reviewing job postings I found one on LinkedIn that turned out to be click-bait. That makes job hunting that much less fun, oh well.
 
+I was out for a bit, and when I came back I reviewed "Zip Linked Lists" challenge and made some minor changes. This is tight, well designed code. There is room for improvement in the tests themselves, but adding To String overrides allows visualizing the test inputs and outputs for confirmation that the zipper code is doing what is promised.
+
 ## Wednesday 29-Mar-2023
 
 Reviewed Promises again. Maybe this time it'll stick. :smiley: Just for the record, in recent weeks I have been using Promises correctly, and have also been implementing async-await whenever possible due to its simplicity. It is also worth noting that a Top-level Await in JS Modules is not available and newer browser support is pretty good (see [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)).
