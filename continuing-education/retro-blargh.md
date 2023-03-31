@@ -2,6 +2,51 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 31-Mar-2023
+
+Worked through a Merge Sort algorithm challenge. Started last night, whiteboarding the basic idea behind the solution. Came back to it today to do a full technical interview style solution. It took about 3 hours total including writing actual code and the golden path test. While the code is not fully vetted, this is arguably the best I've been able to implement a Merge Sort algorithm without looking at a reference to get through it. Key takeaways:
+
+- Recursive algorithms require an exit condition. Sometimes the exit condition is a return void, as is the case with an in-place sorting algorithm.
+- When finding the midpoint of an array, use modulo to find if total array length is odd or even. If off, add 1 to length, divide by 2 to get Mid, then add first index ID to mid to get actual mid for this sub-array. See example below.
+- The Mid variable might only be necessary for the partitioning function (depending on how merge is implemented).
+- Avoid adjusting indicies withing nested iterators, instead have the inner iterator starting value dependant on the outer iterator's value. Let the code do the work for you! See example below.
+- If the value at a left index is ever larger than a value at a right index, shift the value at right index through decrementing indices until it is swapped with the original 'left index' value.
+- My code design had 3 lexical flaws, and at least 1 operational flaw. A seasoned developer probably would have found these bugs before writing code. In my case I found then as I was writing the code, and while debugging the golden-path test.
+
+```java
+// find "left" sub-array and "right" sub-arry of an input array
+public void partition(int startIdx, int endIdx, int[] fullArray) {
+  // if endIdx is 6 then mid = 3
+  // if endIdx is 7 then mid = 4
+  int mid = endIdx % 2 == 0 ? endIdx / 2 : (endIdx + 1) / 2;
+  // assigning startLeft for clarity
+  int startLeft = startIdx;
+  // assigning endLeft to be last IDX of "left" sub-array
+  int endLeft = mid - 1;
+  // assigning startRight to be mid aka first IDX of "right" sub-array
+  int startRight = mid;
+  // assigining endRight for clarity
+  int endRight = endIdx;
+  // call another function to process "left" and "right" sub-arrays
+  var result = processLeft(startLeft, endLeft, fullArray);
+}
+```
+
+```java
+// avoid adjusting the incrementing indices within nested loops
+// instead just have the loops do the work for you
+public void merge(int startLeft, int endRight, int[] fullArray) {
+  for (int leftIdx = startLeft; leftIdx < endRight; leftIdx++) {
+    // by forcing the inner loop to start 1 index greater than outer loop index
+    // the inner loop auto-adjusts and never gets overlapped by the outer loop
+    for (int rightIdx = leftIdx + 1; rightIdx <= endRight; rightIdx++) {
+      // compare values at array leftIdx and rightIdx and call a shift function
+      // to move higher-value item at array rightIdx to the leftIdx location
+    }
+  }
+}
+```
+
 ## Thursday 30-Mar-2023
 
 Took care of some administrative stuff this morning, and cleaned up a couple notes files from previous events.
