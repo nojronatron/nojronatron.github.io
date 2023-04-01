@@ -2,6 +2,48 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 1-Apr-2023
+
+Finished up a version of Merge Sort that I can be happy with. Some takeaways:
+
+- I should have tried using a temporary array to help solve the difficult challenge of the Merge function processing.
+- I used my resources to find a workable solution, and integrated it into my code for a working solution.
+- Calculating algorithmic complexity is not very easy with algorithms like this one. It took a good hour to figure out ways to determine what code was executing when, and record that info for counting post-execution. The solution I came up with here is _not_ scalable but good enough to ballpark a Big-O estimation.
+
+The final Merge function turned out like this example code:
+
+```java
+public void merge(int start, int midPoint, int end, int[] inputArr) {
+    int leftIDX = start;
+    int rightIDX = midPoint;
+    int tempIDX = start;
+    int[] tempArray = new int[inputArr.length];
+
+    while (leftIDX < midPoint && rightIDX <= end) {
+        if (inputArr[leftIDX] <= inputArr[rightIDX]) {
+            tempArray[tempIDX] = inputArr[leftIDX];
+            leftIDX++;
+        } else {
+            tempArray[tempIDX] = inputArr[rightIDX];
+            rightIDX++;
+        }
+        tempIDX++;
+    }
+
+    for (int fillIDX=leftIDX; fillIDX < midPoint; fillIDX++) {
+        tempArray[tempIDX] = inputArr[fillIDX];
+        tempIDX++;
+    }
+    for (int fillIDX=rightIDX; fillIDX <= end; fillIDX++) {
+        tempArray[tempIDX] = inputArr[fillIDX];
+        tempIDX++;
+    }
+    // the following built-in array copying utility was added by the IDE
+    // my code was a for loop from start to end, tempArray to inputArr
+    if (end + 1 - start >= 0) System.arraycopy(tempArray, start, inputArr, start, end + 1 - start);
+}
+```
+
 ## Friday 31-Mar-2023
 
 Worked through a Merge Sort algorithm challenge. Started last night, whiteboarding the basic idea behind the solution. Came back to it today to do a full technical interview style solution. It took about 3 hours total including writing actual code and the golden path test. While the code is not fully vetted, this is arguably the best I've been able to implement a Merge Sort algorithm without looking at a reference to get through it. Key takeaways:
