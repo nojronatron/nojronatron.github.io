@@ -2,6 +2,15 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 2-Apr-2023
+
+I took a look into using GitHub Actions to enfore code style. Because Prettier is pretty great, and is now included with VSCode it is becoming fairly ubiquitous. GH Marketplace has a [prettier-action](https://github.com/marketplace/actions/prettier-action) that would do the trick. I'm not sure I feel comfortable with it adding a Commit to a Push or Merge. However, it has a dry run parameter which will fail the Action if Prettier has to make changes. The remaining challenge then is to ensure the settings in the GH Action match the actual desired codestyle _and_ the VSCode user profile Prettier settings are in-sync. And isn't that the problem to begin with? With some experimentation I got it to work and will use it as a (potentially ongoing) learning experiment on my Portfolio project. Key takeaways:
+
+- Use the latest version, not a previous.
+- If the tools published page (e.g. NPM, GH Action Marketplace, etc) has a use-this-tool button or UI element, consider using it to get the latest, known-good configuration parameters.
+- Just because Prettier is installed automatically in VS Code doesn't mean it is taking affect. Either use "Format Document With..." and select Prettier, or go into Settings and set Prettier to run on Save (or do both).
+- YAML files are confusing and get over it they will help improve code workflow.
+
 ## Saturday 1-Apr-2023
 
 Finished up a version of Merge Sort that I can be happy with. Some takeaways:
