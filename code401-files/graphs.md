@@ -36,7 +36,7 @@ Each Node is directed at another Node, like a reference to 'Next Node'.
 
 Complete: All Nodes are onnected to all other Nodes once.
 
-Connected: All Nodes have *at least* one edge. A 'Tree' is a form of Connected Graph.
+Connected: All Nodes have _at least_ one edge. A 'Tree' is a form of Connected Graph.
 
 Disconnected: Some Nodes may not have edges. Stand-alone Nodes could be described as Disconnected Graphs or 'Islands'.
 
@@ -45,7 +45,7 @@ Disconnected: Some Nodes may not have edges. Stand-alone Nodes could be describe
 Acyclic:
 
 - Directed Graph without cycles.
-- Cycles are defined by loops within a graph where a path from one Node could *potentially* lead back to itself.
+- Cycles are defined by loops within a graph where a path from one Node could _potentially_ lead back to itself.
 - Directed Acyclic Graph "DAG": Acyclic Graph with Directed edges. Trees can be thought of as DAGs.
 
 Cyclic:
@@ -150,7 +150,7 @@ Notes about Breadth First usage in Graphs:
 
 Use a Stack to visit children of a subtree.
 
-*Note*: Traversing Trees Depth First leverages the Call Stack, here a separate Stack object will be instantiated.
+_Note_: Traversing Trees Depth First leverages the Call Stack, here a separate Stack object will be instantiated.
 
 Algorithm:
 
@@ -172,10 +172,10 @@ Algorithm:
 
 ## TODOs
 
-- [ ] review graphs
-- [ ] translate pseudocode into real code
-- [ ] execute tests and debug step-throughs to see them in-action
-- [ ] research other uses for graphs
+- [x] review graphs
+- [x] translate pseudocode into real code
+- [x] execute tests and debug step-throughs to see them in-action
+- [x] research other uses for graphs
 
 ## Footer
 

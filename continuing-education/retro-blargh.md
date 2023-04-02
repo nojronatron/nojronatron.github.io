@@ -2,6 +2,138 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 1-Apr-2023
+
+Finished up a version of Merge Sort that I can be happy with. Some takeaways:
+
+- I should have tried using a temporary array to help solve the difficult challenge of the Merge function processing.
+- I used my resources to find a workable solution, and integrated it into my code for a working solution.
+- Calculating algorithmic complexity is not very easy with algorithms like this one. It took a good hour to figure out ways to determine what code was executing when, and record that info for counting post-execution. The solution I came up with here is _not_ scalable but good enough to ballpark a Big-O estimation.
+
+The final Merge function turned out like this example code:
+
+```java
+public void merge(int start, int midPoint, int end, int[] inputArr) {
+    int leftIDX = start;
+    int rightIDX = midPoint;
+    int tempIDX = start;
+    int[] tempArray = new int[inputArr.length];
+
+    while (leftIDX < midPoint && rightIDX <= end) {
+        if (inputArr[leftIDX] <= inputArr[rightIDX]) {
+            tempArray[tempIDX] = inputArr[leftIDX];
+            leftIDX++;
+        } else {
+            tempArray[tempIDX] = inputArr[rightIDX];
+            rightIDX++;
+        }
+        tempIDX++;
+    }
+
+    for (int fillIDX=leftIDX; fillIDX < midPoint; fillIDX++) {
+        tempArray[tempIDX] = inputArr[fillIDX];
+        tempIDX++;
+    }
+    for (int fillIDX=rightIDX; fillIDX <= end; fillIDX++) {
+        tempArray[tempIDX] = inputArr[fillIDX];
+        tempIDX++;
+    }
+    // the following built-in array copying utility was added by the IDE
+    // my code was a for loop from start to end, tempArray to inputArr
+    if (end + 1 - start >= 0) System.arraycopy(tempArray, start, inputArr, start, end + 1 - start);
+}
+```
+
+## Friday 31-Mar-2023
+
+Worked through a Merge Sort algorithm challenge. Started last night, whiteboarding the basic idea behind the solution. Came back to it today to do a full technical interview style solution. It took about 3 hours total including writing actual code and the golden path test. While the code is not fully vetted, this is arguably the best I've been able to implement a Merge Sort algorithm without looking at a reference to get through it. Key takeaways:
+
+- Recursive algorithms require an exit condition. Sometimes the exit condition is a return void, as is the case with an in-place sorting algorithm.
+- When finding the midpoint of an array, use modulo to find if total array length is odd or even. If off, add 1 to length, divide by 2 to get Mid, then add first index ID to mid to get actual mid for this sub-array. See example below.
+- The Mid variable might only be necessary for the partitioning function (depending on how merge is implemented).
+- Avoid adjusting indicies withing nested iterators, instead have the inner iterator starting value dependant on the outer iterator's value. Let the code do the work for you! See example below.
+- If the value at a left index is ever larger than a value at a right index, shift the value at right index through decrementing indices until it is swapped with the original 'left index' value.
+- My code design had 3 lexical flaws, and at least 1 operational flaw. A seasoned developer probably would have found these bugs before writing code. In my case I found then as I was writing the code, and while debugging the golden-path test.
+
+```java
+// find "left" sub-array and "right" sub-arry of an input array
+public void partition(int startIdx, int endIdx, int[] fullArray) {
+  // if endIdx is 6 then mid = 3
+  // if endIdx is 7 then mid = 4
+  int mid = endIdx % 2 == 0 ? endIdx / 2 : (endIdx + 1) / 2;
+  // assigning startLeft for clarity
+  int startLeft = startIdx;
+  // assigning endLeft to be last IDX of "left" sub-array
+  int endLeft = mid - 1;
+  // assigning startRight to be mid aka first IDX of "right" sub-array
+  int startRight = mid;
+  // assigining endRight for clarity
+  int endRight = endIdx;
+  // call another function to process "left" and "right" sub-arrays
+  var result = processLeft(startLeft, endLeft, fullArray);
+}
+```
+
+```java
+// avoid adjusting the incrementing indices within nested loops
+// instead just have the loops do the work for you
+public void merge(int startLeft, int endRight, int[] fullArray) {
+  for (int leftIdx = startLeft; leftIdx < endRight; leftIdx++) {
+    // by forcing the inner loop to start 1 index greater than outer loop index
+    // the inner loop auto-adjusts and never gets overlapped by the outer loop
+    for (int rightIdx = leftIdx + 1; rightIdx <= endRight; rightIdx++) {
+      // compare values at array leftIdx and rightIdx and call a shift function
+      // to move higher-value item at array rightIdx to the leftIdx location
+    }
+  }
+}
+```
+
+## Thursday 30-Mar-2023
+
+Took care of some administrative stuff this morning, and cleaned up a couple notes files from previous events.
+
+Reviewed Graph data structures and a custom method I developed (by hand) that find accumulated weight between two vertices. Also updated TODO lists with completed tasks.
+
+While reviewing job postings I found one on LinkedIn that turned out to be click-bait. That makes job hunting that much less fun, oh well.
+
+I was out for a bit, and when I came back I reviewed "Zip Linked Lists" challenge and made some minor changes. This is tight, well designed code. There is room for improvement in the tests themselves, but adding To String overrides allows visualizing the test inputs and outputs for confirmation that the zipper code is doing what is promised.
+
+## Wednesday 29-Mar-2023
+
+Reviewed Promises again. Maybe this time it'll stick. :smiley: Just for the record, in recent weeks I have been using Promises correctly, and have also been implementing async-await whenever possible due to its simplicity. It is also worth noting that a Top-level Await in JS Modules is not available and newer browser support is pretty good (see [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)).
+
+## Tuesday 28-Mar-2023
+
+Attended a MSFT Reactor "Monitoring Azure Resources" event. Hoping this will provide some basics on adding monitoring to my AppService deployments. Somehow, I've missed a regular MSFT Reactor newsletter offering with more info about virtual and in-person events, until today.
+
+Bumped into an interesting way to avoid compile-time warnings of Unchecked cast statements in Java. See [Java Exceptions and Scanner](../code401-files/java-exceptions-scanner.html) for details. I also cleaned up that exceptions and scanner content for readability.
+
+Completed a code challenge for Java to practice using File IO and NIO: Build a console application that will return the count of characters within a provided text file. This took me about 3 hours to complete from design, through implement, test, refine, and document. I updated [java-code-challenges](https://github.com/nojronatron/java-code-challenges/) with the results of this exercise.
+
+## Monday 27-Mar-2023
+
+Researching SWE openings recently I've noticed more `Java Kafka` positions. This is the first I've heard of Kafka so I took a peek. It is a framework for processing and presenting 'big data' for your applications or services, in Java. It is open source, based on Java 8+, and abstracts away the complexities of big data so your app can adapt to the Kafka inputs, and not worry about processing large amounts of data. Sounds interesting! I've added a task to take a peek at Kafka.
+
+Reviewing Insertion Sort and Selection Sort, two key takeaways on the basics of these 2 algorithms:
+
+- Insertion Sort creates new storage of size n, and inserts the elements in sorted order, and returns it to the caller.
+- Selection Sort is an in-place algorithm that swaps values of the input elements until they are in sorted order, then stops.
+- My first shot writing a sorting algorithm is essentially an in-place, selection sort. My assumptions about BigO in time are off a bit: Time effeciency will be O(n^2).
+
+## Sunday 26-Mar-2023
+
+Spent several hours trying to debug an Auth0 problem:
+
+- Two identically configured SPA applications, named differently.
+- Both running on localhost while testing and developing the 2nd site.
+- Identical authorization and user meta_data capture flows in code.
+- User meta_data comes back fine in one webapp upon request.
+- User meta_data is 'undefined' upon request in the other webapp.
+- Also: The API Configuration in Auth0 for the end-points (in Azure) is locked, and I am unable to make adjustments to the configuration and there is no apparent reason why (because the actual webapp is running??)
+
+Completed some administrative and wrap-up work left over from last week.
+
 ## Saturday 25-Mar-2023
 
 Completed integrating Auth0 into a dev branch of LBJS. Key takeaways:

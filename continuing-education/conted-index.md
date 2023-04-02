@@ -10,10 +10,11 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
+- [ ] Within a larger Java Project are several Packages. Learn how to build, test, and execute specific packages within the larger project.
 - [ ] Learn how to properly log to WebApp hosts like Netlify (from a React SPA) or Azure App Service (from a Node-js service).
 - [ ] Learn about WebSockets, start with [Socket.IO](https://github.com/socketio/socket.io).
 - [ ] Look into [Apache Kafka](https://kafka.apache.org/), especially how Java is used with/for it. Some companies are using Kafka in/with their deliverables.
-- [ ] Review Java Scanner at [Oracle Java Docs - Scanner]](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) and [Baeldung - Java Scanner](https://www.baeldung.com/java-scanner).
+- [ ] Review Java Scanner at [Oracle Java Docs - Scanner](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) and [Baeldung - Java Scanner](https://www.baeldung.com/java-scanner).
 - [ ] Vercel [Next.js](https://nextjs.org/learn/basics/create-nextjs-app). Just get a feel for it.
 - [ ] Microtasks in JavaScript: [MDN queueMicrotask()](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide).
 - [ ] [AlpineJS](https://alpinejs.dev/).
@@ -77,6 +78,7 @@ Azure [learnings](#azure-learnings).
 
 ### Azure Learnings
 
+- About [Monitoring Azure Resources](./azure-monitoring-resources.html).
 - Developing [Azure Functions](./azure-functions.html) in Python (and other languages, too).
 - Managing and [Reporting on Costs and Billing in Azure](./azure-reporting-costs.md).
 - Microsoft Identity Platform is integrated into Azure: [Microsoft Identity Platform](./azure-identity-platform.html).

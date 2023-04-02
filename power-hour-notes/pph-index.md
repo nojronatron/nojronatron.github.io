@@ -4,6 +4,8 @@ Notes taken while attending Power Hour sessions - videos and/or in-person events
 
 ## Index
 
+[Breaking Down Problems](./davies-breaking-down-problems.html) in JavaScript (and other languages too!)
+
 Chrome Dev Tools for [Power Users](./dolphus-chrome-dev-tools.html)
 
 Accessibility Fundamentals with [Stephanie](./hill-accessibility-fundamentals.html)
