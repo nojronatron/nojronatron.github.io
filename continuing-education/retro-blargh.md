@@ -10,6 +10,7 @@ I took a look into using GitHub Actions to enfore code style. Because Prettier i
 - If the tools published page (e.g. NPM, GH Action Marketplace, etc) has a use-this-tool button or UI element, consider using it to get the latest, known-good configuration parameters.
 - Just because Prettier is installed automatically in VS Code doesn't mean it is taking affect. Either use "Format Document With..." and select Prettier, or go into Settings and set Prettier to run on Save (or do both).
 - YAML files are confusing and get over it they will help improve code workflow.
+- After getting the GH Action to function, and applying Prettier rules to a new Pull Request, GH Actions might continue to fail until the correct `prettier_options` are added. An example in my case: `--check **/*.{js,scss,css,json} --single-quote --jsx-single-quote`.
 
 ## Saturday 1-Apr-2023
 
