@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 3-Apr-2023
+
+Long day of battling Auth0:
+
+- Started with issues getting React hooks written in a way that didn't fall into _worst practices_ and error conditions.
+- At one point I was using a button click handler to call another function that implemented useState and useEffect, and React did not like that.
+- Better to stick with React functions (than plain JS ones) and have them return JSX when possible, especially for asynchronous calls like awaiting a response from a distant API.
+- When executing authentication calls using a tool like Thunderclient, I'm able to get the correct bearer token.
+- Doing the same from the SPA on localhost fails with CORS errors, and I feel like this can be solved by moving the SAP to Netlify and adding the appropriate Allow URLs (and be careful about trailing slashes).
+
+So much for Monday, hello Tuesday please be more productive! :smiley:
+
 ## Sunday 2-Apr-2023
 
 I took a look into using GitHub Actions to enfore code style. Because Prettier is pretty great, and is now included with VSCode it is becoming fairly ubiquitous. GH Marketplace has a [prettier-action](https://github.com/marketplace/actions/prettier-action) that would do the trick. I'm not sure I feel comfortable with it adding a Commit to a Push or Merge. However, it has a dry run parameter which will fail the Action if Prettier has to make changes. The remaining challenge then is to ensure the settings in the GH Action match the actual desired codestyle _and_ the VSCode user profile Prettier settings are in-sync. And isn't that the problem to begin with? With some experimentation I got it to work and will use it as a (potentially ongoing) learning experiment on my Portfolio project. Key takeaways:
