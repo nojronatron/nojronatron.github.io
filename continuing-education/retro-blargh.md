@@ -2,6 +2,50 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 5-Apr-2023
+
+More on getting tests set up for Java in VSCode:
+
+- VSCode settings.json (local copy) should be configured with sourcePaths, outputPath, and referencedLibraries. See example below.
+- Folder structure should be set up for build output (bin), dependency jar files (lib), and source code (src).
+- A POM file should probably be set up as well.
+- Once this is done, select the Test Runner in VSCode and allow it to install the dependecies (JUnit 4 suggested).
+
+```json
+{
+  "java.project.sourcePaths": ["src"],
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": ["lib/**/*.jar"]
+}
+```
+
+[Testing Java in VSCode](https://code.visualstudio.com/docs/java/java-testing) has more detailed information.
+
+At first I selected JUnit Jupiter and it isn't clear whether that is fully supported, I guess I'll find out.
+
+Some takeaways while working with solution designing, Java coding, and Java debugging:
+
+- If a Constructor cannot complete the job of instantiating the class, then it should throw an `IllegalArgumentException`.
+- While `Comparable<T>` is a fancy way to ensure a method only consumes comparable types, some work might still be necessesary to work with _non-numeric_ types for example: Sorting words or characters within boundaries is not as straighforward as sorting numbers within boundaries. Not impossible, but could require a bit more design, and a bit more code.
+
+## Tuesday 4-Apr-2023
+
+Took care of some administrative and volunteer stuff.
+
+Worked through some code challenges:
+
+- Bubble Sort. This was actually done last week when I started studying sorting algorithms, but I couldn't name it as such.
+- Bucket Sort. Theoretically this is a simple sorting method, but design and coding proved to be a bit more difficult. Will finish it up tomorrow.
+
+Developing Java in VSCode is a matter of installing supporting tools:
+
+- Extension Pack for Java, which captures most of them.
+- Maven.
+- Debugger.
+- Project Manager.
+- Test Runner.
+- Language Support for Java(TM) by RedHat.
+
 ## Monday 3-Apr-2023
 
 Long day of battling Auth0:
