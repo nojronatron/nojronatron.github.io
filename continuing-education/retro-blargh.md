@@ -21,12 +21,19 @@ More on getting tests set up for Java in VSCode:
 
 [Testing Java in VSCode](https://code.visualstudio.com/docs/java/java-testing) has more detailed information.
 
-At first I selected JUnit Jupiter and it isn't clear whether that is fully supported, I guess I'll find out.
+At first I selected JUnit Jupiter and it isn't clear whether that is fully supported (it is fine).
 
 Some takeaways while working with solution designing, Java coding, and Java debugging:
 
-- If a Constructor cannot complete the job of instantiating the class, then it should throw an `IllegalArgumentException`.
+- If a Constructor cannot complete the job of instantiating the class, then it should throw an `IllegalArgumentException`. It is up to the caller to handle that exception as it is expected to get the required inputs in order to create the class instance.
 - While `Comparable<T>` is a fancy way to ensure a method only consumes comparable types, some work might still be necessesary to work with _non-numeric_ types for example: Sorting words or characters within boundaries is not as straighforward as sorting numbers within boundaries. Not impossible, but could require a bit more design, and a bit more code.
+- When wrapping a data structure like a `LinkedList` with an `ArrayList<T>`, be sure to _instantiate each element before attempting to access or modify_.
+
+About generating random numbers in Java:
+
+- While `Random rand = new Random()` is simple boilerplate, it has the problem of being 'not very random', especially when instantiated within a function every time, rather than allowed to live long as a Field within a Class instance. Not a requirement, just better.
+- Reading through a [Stackoverflow question](https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java) (and many answers) a better approach is to use `java.util.concurrent.ThreadLocalRandom` library instead.
+- Details about Class [ThreadLocalRandom](<https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html#nextInt(int,int)>) indicate this class utilizes fewer resources, provides better results, and is not shared across theads (ensuring this thread instance is not shared with other code on other threads). It is not good for crypto, but is a utility random Number-type generator.
 
 ## Tuesday 4-Apr-2023
 
