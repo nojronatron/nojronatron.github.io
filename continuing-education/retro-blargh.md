@@ -2,6 +2,23 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 7-Apr-2023
+
+Spent the morning configuring my main workstation Windows installation for development work. VSCode and Git and various support files were already installed, and some configurations were good. Git needed to be updated to support CRLF in a Windows AND Unix friendly way. Some takeaways:
+
+- GitPosh: Not difficult to install. Default configuration is pretty close to my needs. See [GitPost Installation](https://github.com/dahlbyk/posh-git#installation) on Dahlbyk's GitHub for details.
+- AutoCRLF in Git Config is confusing. Following [this response by Antony Hatchkins on StackOverflow](https://stackoverflow.com/questions/1967370/git-replacing-lf-with-crlf) provides a wealth of information about where to find the settings, how to change them, and _which setting should be used in various circumstances_.
+- The Git Config AutoCRLF setting options are amusing (and confusing in part) because the configuration parameters are boolean 'true' and 'false' _and_ 'input' (non-boolean). It just breaks my mind for a few minutes when I see that.
+
+I still need to confirm my Windows workstation can play nice with:
+
+- Java development, especially in VSCode, but probably in IntelliJ IDEA too.
+- React development, new projects, existing repos, etc.
+- Azure deployments and updates to App Service, etc.
+- DotNET Development.
+
+Learning to get comfortable with Linux has been a journey that I'm sure will help me in the future. For now, I want to expand my ability to develop in both environments, both at my office workstation, as well as on the go with my Surface Pro 7.
+
 ## Thursday 6-Apr-2023
 
 Spent more time tweaking VSCode for Java development, and working with the Testing and Debugging tools (for Java) in VSCode. I was able to import an existing project with a large file hierarchy, edit files, run tests (passing), and do the usual git operations.
