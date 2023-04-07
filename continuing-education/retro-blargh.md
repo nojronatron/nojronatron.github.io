@@ -19,6 +19,32 @@ I still need to confirm my Windows workstation can play nice with:
 
 Learning to get comfortable with Linux has been a journey that I'm sure will help me in the future. For now, I want to expand my ability to develop in both environments, both at my office workstation, as well as on the go with my Surface Pro 7.
 
+Cloning to a Windows machine from a Git Repo that contains files with unsupported file name characters or filenames that are too long, will cause a Clone problem. Good news is Git provides a helpful message:
+
+```text
+error: invalid path 'license.'
+fatal: unable to checkout working tree
+warning: Clone succeeded, but checkout failed.
+You can inspect what was checked out with 'git status'
+and retry with 'get restore --source=HEAD :/'
+```
+
+Installing WSL seems like a good solution for this. The inconventient result is a reboot is required to complete the installation and configuration. Additional takeaways:
+
+- Pushing code changes to GitHub must be done using a certificate/ssl key.
+- Git [for Windows](https://github.com/git-for-windows) has an official GitHub page now.
+- Use [Git Credential Manager](https://github.com/git-ecosystem/git-credential-manager) to store manage new or existing SSL Keys for authenticating on _push_. Point the WSL Git Config credential.helper setting to the \_mounted windows file system where Git Credential Manager gets installed.
+- Generating a new SSL Key might be necessary, so use 'ssh-keygen' to create a new rsa or ed25519 key set per [GitHub SSL Keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+- When installing WSL: Be sure to use the `wsl --status` command for step-by-step help _and_ be sure to run 'apt-get update' to get the latest deb references to allow installing new and latest packages.
+
+For my future reference adding SSL Credentials to Git:
+
+1. Generate new keys with `ssl-keygen`.
+1. Add the generated public key to your GitHub profile's SSH Keys.
+1. Install `Git Credential Manager` or the latest `git-for-windows` to get the manager installed locally (rather than use the cache).
+1. Set the `credential helper` Git configuration to `manager-core` (or `manager` which might be deprecated).
+1. Test the SSH Key setup by using `ssh -T git@github.com` per instructions from [GitHub Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection).
+
 ## Thursday 6-Apr-2023
 
 Spent more time tweaking VSCode for Java development, and working with the Testing and Debugging tools (for Java) in VSCode. I was able to import an existing project with a large file hierarchy, edit files, run tests (passing), and do the usual git operations.
