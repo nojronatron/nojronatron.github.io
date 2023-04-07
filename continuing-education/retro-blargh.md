@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 6-Apr-2023
+
+Spent more time tweaking VSCode for Java development, and working with the Testing and Debugging tools (for Java) in VSCode. I was able to import an existing project with a large file hierarchy, edit files, run tests (passing), and do the usual git operations.
+
+The Bucket Sort experimentation took several more hours of my day. I was exploring the performance implications of various changes to the algorithm, and trying to understand the algorithmic complexity through the modular method calls. At some point in the future I want to design Bucket Sort again, from the ground-up, through TDD, code, and analysis.
+
 ## Wednesday 5-Apr-2023
 
 More on getting tests set up for Java in VSCode:
