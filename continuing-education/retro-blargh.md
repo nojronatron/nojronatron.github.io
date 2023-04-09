@@ -2,6 +2,24 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 8-Apr-2023
+
+Focused on implementing "Remove Node" and "Remove Edge" functionality on the java-code-challenges repo's Graph class. When I originally built this class and came to the point of having to remove Vertices or an Edge, I didn't have a clear path to a solution, and the ideas I had at the time were inefficient and difficult. With a little dry-erase modeling and design work, I discovered the problem is fairly simple (although there is probably a more time-effeicient way to do them).
+
+Removing an Edge in a Directed Graph:
+
+1. Find the Vertex that has the Edge to be removed.
+2. Call the Vertex's Remove Edge function, passing in an argument of the neighboring Vertex.
+3. The Remove Edge function find the Vertex's Edge that has the Neighbor Vertex reference and deletes it from the collection.
+
+Removing a Vertex in a Directed Graph:
+
+1. The Graph class finds the Vertex to be deleted and creates a reference to it.
+2. The Graph then traverses the Adjacency List and calls each Vertex's Remove Edge function, passing in the Vertex Reference to be deleted. This _could_ be done asynchronously.
+3. Once the traversal completes (all Vertices remove their Edge references to the referece Vertex), the Graph Class tells the Adjacency List to remove the Vertex to be deleted.
+
+Looks like moving to VSCode to do Java development and testing is not too tough, and the Extensions have enough smarts to use configuration-style project setup, or file-hierarchy style project setup, as well as integrate Gradle or Maven.
+
 ## Friday 7-Apr-2023
 
 Spent the morning configuring my main workstation Windows installation for development work. VSCode and Git and various support files were already installed, and some configurations were good. Git needed to be updated to support CRLF in a Windows AND Unix friendly way. Some takeaways:
