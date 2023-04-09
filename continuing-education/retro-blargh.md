@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 9-Apr-2023
+
+This morning was dedicated to doing some catch-up work due to my heavy focus on code and environment setup last week.
+
 ## Saturday 8-Apr-2023
 
 Focused on implementing "Remove Node" and "Remove Edge" functionality on the java-code-challenges repo's Graph class. When I originally built this class and came to the point of having to remove Vertices or an Edge, I didn't have a clear path to a solution, and the ideas I had at the time were inefficient and difficult. With a little dry-erase modeling and design work, I discovered the problem is fairly simple (although there is probably a more time-effeicient way to do them).
@@ -26,7 +30,7 @@ Spent the morning configuring my main workstation Windows installation for devel
 
 - GitPosh: Not difficult to install. Default configuration is pretty close to my needs. See [GitPost Installation](https://github.com/dahlbyk/posh-git#installation) on Dahlbyk's GitHub for details.
 - AutoCRLF in Git Config is confusing. Following [this response by Antony Hatchkins on StackOverflow](https://stackoverflow.com/questions/1967370/git-replacing-lf-with-crlf) provides a wealth of information about where to find the settings, how to change them, and _which setting should be used in various circumstances_.
-- The Git Config AutoCRLF setting options are amusing (and confusing in part) because the configuration parameters are boolean 'true' and 'false' _and_ 'input' (non-boolean). It just breaks my mind for a few minutes when I see that.
+- The Git Config AutoCRLF setting options are amusing (and confusing in part) because the configuration parameters are boolean 'true' and 'false', _and_ the non-boolean 'input'. It just breaks my brain when I see these mixed-type enumerations.
 
 I still need to confirm my Windows workstation can play nice with:
 
@@ -35,7 +39,7 @@ I still need to confirm my Windows workstation can play nice with:
 - Azure deployments and updates to App Service, etc.
 - DotNET Development.
 
-Learning to get comfortable with Linux has been a journey that I'm sure will help me in the future. For now, I want to expand my ability to develop in both environments, both at my office workstation, as well as on the go with my Surface Pro 7.
+Learning to get comfortable with Linux has been a journey that I've enjoyed and am sure will help me in the future. For now, I want to expand my ability to develop in both Linux and Windows environments. This agility could come in helpful for future employment, as well as when I am home and away from my primary Linux workstation.
 
 Cloning to a Windows machine from a Git Repo that contains files with unsupported file name characters or filenames that are too long, will cause a Clone problem. Good news is Git provides a helpful message:
 
@@ -55,7 +59,7 @@ Installing WSL seems like a good solution for this. The inconventient result is 
 - Generating a new SSL Key might be necessary, so use 'ssh-keygen' to create a new rsa or ed25519 key set per [GitHub SSL Keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
 - When installing WSL: Be sure to use the `wsl --status` command for step-by-step help _and_ be sure to run 'apt-get update' to get the latest deb references to allow installing new and latest packages.
 
-For my future reference adding SSL Credentials to Git:
+This worked, but took much longer than expected because _its not everday that I work with ssl certificates and a credential manager_. For my future reference, some key takeaways about adding SSL Credentials to Git:
 
 1. Generate new keys with `ssl-keygen`.
 1. Add the generated public key to your GitHub profile's SSH Keys.
@@ -63,11 +67,13 @@ For my future reference adding SSL Credentials to Git:
 1. Set the `credential helper` Git configuration to `manager-core` (or `manager` which might be deprecated).
 1. Test the SSH Key setup by using `ssh -T git@github.com` per instructions from [GitHub Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection).
 
+> Also: If credential manager is already setup in a host Windows machine with WSL 2.0 installed, the WLS OS VM can access the existing CredMan installation and use that as its own configuration.
+
 ## Thursday 6-Apr-2023
 
 Spent more time tweaking VSCode for Java development, and working with the Testing and Debugging tools (for Java) in VSCode. I was able to import an existing project with a large file hierarchy, edit files, run tests (passing), and do the usual git operations.
 
-The Bucket Sort experimentation took several more hours of my day. I was exploring the performance implications of various changes to the algorithm, and trying to understand the algorithmic complexity through the modular method calls. At some point in the future I want to design Bucket Sort again, from the ground-up, through TDD, code, and analysis.
+The Bucket Sort experimentation took several more hours of my day. I was exploring the performance implications of various changes to the algorithm, and trying to understand the algorithmic complexity through the modular method calls. At some point in the future I want to design Bucket Sort again, from the ground up using a TDD approach.
 
 ## Wednesday 5-Apr-2023
 
@@ -88,19 +94,19 @@ More on getting tests set up for Java in VSCode:
 
 [Testing Java in VSCode](https://code.visualstudio.com/docs/java/java-testing) has more detailed information.
 
-At first I selected JUnit Jupiter and it isn't clear whether that is fully supported (it is fine).
+At first I selected JUnit Jupiter and it wasn't clear if fully supported (turns out it is fine).
 
 Some takeaways while working with solution designing, Java coding, and Java debugging:
 
-- If a Constructor cannot complete the job of instantiating the class, then it should throw an `IllegalArgumentException`. It is up to the caller to handle that exception as it is expected to get the required inputs in order to create the class instance.
-- While `Comparable<T>` is a fancy way to ensure a method only consumes comparable types, some work might still be necessesary to work with _non-numeric_ types for example: Sorting words or characters within boundaries is not as straighforward as sorting numbers within boundaries. Not impossible, but could require a bit more design, and a bit more code.
-- When wrapping a data structure like a `LinkedList` with an `ArrayList<T>`, be sure to _instantiate each element before attempting to access or modify_.
+- If a Constructor cannot complete the job of instantiating the class, then it should throw an `IllegalArgumentException`. The calling function should provide the necessary parameters for a fully fledged object instance, so it is up to the caller to handle that exception.
+- While `Comparable<T>` is a fancy way to ensure a method only consumes comparable types, some work might still be necessesary to work with _non-numeric_ types for example: Sorting words or characters within boundaries is not as straighforward as sorting numbers within boundaries. Not impossible, but could require a bit more design and code.
+- When wrapping a data structure like a `LinkedList` with an `ArrayList<T>` be sure to _instantiate each element before attempting to access or modify it_.
 
 About generating random numbers in Java:
 
-- While `Random rand = new Random()` is simple boilerplate, it has the problem of being 'not very random', especially when instantiated within a function every time, rather than allowed to live long as a Field within a Class instance. Not a requirement, just better.
-- Reading through a [Stackoverflow question](https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java) (and many answers) a better approach is to use `java.util.concurrent.ThreadLocalRandom` library instead.
-- Details about Class [ThreadLocalRandom](<https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html#nextInt(int,int)>) indicate this class utilizes fewer resources, provides better results, and is not shared across theads (ensuring this thread instance is not shared with other code on other threads). It is not good for crypto, but is a utility random Number-type generator.
+- Although `Random rand = new Random()` is simple to remember and implement, the Random class has the problem of not being very random when instantiated within a function every time it is called. Instead, instantiate it within a Field of a longer-living Class instance to get better randomized results.
+- Reading through a [Stackoverflow question](https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java) (and many answers) a better approach to acquiring randomized values is to use the `java.util.concurrent.ThreadLocalRandom` library instead.
+- Details about Class [ThreadLocalRandom](<https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html#nextInt(int,int)>) indicate this class utilizes fewer resources, provides better results, and is not shared across theads. It is not good for crypto, but is a utility random Number-type generator.
 
 ## Tuesday 4-Apr-2023
 
@@ -128,7 +134,7 @@ Long day of battling Auth0:
 - At one point I was using a button click handler to call another function that implemented useState and useEffect, and React did not like that.
 - Better to stick with React functions (than plain JS ones) and have them return JSX when possible, especially for asynchronous calls like awaiting a response from a distant API.
 - When executing authentication calls using a tool like Thunderclient, I'm able to get the correct bearer token.
-- Doing the same from the SPA on localhost fails with CORS errors, and I feel like this can be solved by moving the SAP to Netlify and adding the appropriate Allow URLs (and be careful about trailing slashes).
+- Doing the same from the SPA on localhost fails with CORS errors, and I feel like this can be solved by moving the SPA to Netlify so the browser isn't calling from an HTTP context, as well as adding the appropriate Allow URLs (and be careful about trailing slashes).
 
 So much for Monday, hello Tuesday please be more productive! :smiley:
 
