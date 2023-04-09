@@ -2,6 +2,146 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 8-Apr-2023
+
+Focused on implementing "Remove Node" and "Remove Edge" functionality on the java-code-challenges repo's Graph class. When I originally built this class and came to the point of having to remove Vertices or an Edge, I didn't have a clear path to a solution, and the ideas I had at the time were inefficient and difficult. With a little dry-erase modeling and design work, I discovered the problem is fairly simple (although there is probably a more time-effeicient way to do them).
+
+Removing an Edge in a Directed Graph:
+
+1. Find the Vertex that has the Edge to be removed.
+2. Call the Vertex's Remove Edge function, passing in an argument of the neighboring Vertex.
+3. The Remove Edge function find the Vertex's Edge that has the Neighbor Vertex reference and deletes it from the collection.
+
+Removing a Vertex in a Directed Graph:
+
+1. The Graph class finds the Vertex to be deleted and creates a reference to it.
+2. The Graph then traverses the Adjacency List and calls each Vertex's Remove Edge function, passing in the Vertex Reference to be deleted. This _could_ be done asynchronously.
+3. Once the traversal completes (all Vertices remove their Edge references to the referece Vertex), the Graph Class tells the Adjacency List to remove the Vertex to be deleted.
+
+Looks like moving to VSCode to do Java development and testing is not too tough, and the Extensions have enough smarts to use configuration-style project setup, or file-hierarchy style project setup, as well as integrate Gradle or Maven.
+
+## Friday 7-Apr-2023
+
+Spent the morning configuring my main workstation Windows installation for development work. VSCode and Git and various support files were already installed, and some configurations were good. Git needed to be updated to support CRLF in a Windows AND Unix friendly way. Some takeaways:
+
+- GitPosh: Not difficult to install. Default configuration is pretty close to my needs. See [GitPost Installation](https://github.com/dahlbyk/posh-git#installation) on Dahlbyk's GitHub for details.
+- AutoCRLF in Git Config is confusing. Following [this response by Antony Hatchkins on StackOverflow](https://stackoverflow.com/questions/1967370/git-replacing-lf-with-crlf) provides a wealth of information about where to find the settings, how to change them, and _which setting should be used in various circumstances_.
+- The Git Config AutoCRLF setting options are amusing (and confusing in part) because the configuration parameters are boolean 'true' and 'false' _and_ 'input' (non-boolean). It just breaks my mind for a few minutes when I see that.
+
+I still need to confirm my Windows workstation can play nice with:
+
+- Java development, especially in VSCode, but probably in IntelliJ IDEA too.
+- React development, new projects, existing repos, etc.
+- Azure deployments and updates to App Service, etc.
+- DotNET Development.
+
+Learning to get comfortable with Linux has been a journey that I'm sure will help me in the future. For now, I want to expand my ability to develop in both environments, both at my office workstation, as well as on the go with my Surface Pro 7.
+
+Cloning to a Windows machine from a Git Repo that contains files with unsupported file name characters or filenames that are too long, will cause a Clone problem. Good news is Git provides a helpful message:
+
+```text
+error: invalid path 'license.'
+fatal: unable to checkout working tree
+warning: Clone succeeded, but checkout failed.
+You can inspect what was checked out with 'git status'
+and retry with 'get restore --source=HEAD :/'
+```
+
+Installing WSL seems like a good solution for this. The inconventient result is a reboot is required to complete the installation and configuration. Additional takeaways:
+
+- Pushing code changes to GitHub must be done using a certificate/ssl key.
+- Git [for Windows](https://github.com/git-for-windows) has an official GitHub page now.
+- Use [Git Credential Manager](https://github.com/git-ecosystem/git-credential-manager) to store manage new or existing SSL Keys for authenticating on _push_. Point the WSL Git Config credential.helper setting to the \_mounted windows file system where Git Credential Manager gets installed.
+- Generating a new SSL Key might be necessary, so use 'ssh-keygen' to create a new rsa or ed25519 key set per [GitHub SSL Keys](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent).
+- When installing WSL: Be sure to use the `wsl --status` command for step-by-step help _and_ be sure to run 'apt-get update' to get the latest deb references to allow installing new and latest packages.
+
+For my future reference adding SSL Credentials to Git:
+
+1. Generate new keys with `ssl-keygen`.
+1. Add the generated public key to your GitHub profile's SSH Keys.
+1. Install `Git Credential Manager` or the latest `git-for-windows` to get the manager installed locally (rather than use the cache).
+1. Set the `credential helper` Git configuration to `manager-core` (or `manager` which might be deprecated).
+1. Test the SSH Key setup by using `ssh -T git@github.com` per instructions from [GitHub Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/testing-your-ssh-connection).
+
+## Thursday 6-Apr-2023
+
+Spent more time tweaking VSCode for Java development, and working with the Testing and Debugging tools (for Java) in VSCode. I was able to import an existing project with a large file hierarchy, edit files, run tests (passing), and do the usual git operations.
+
+The Bucket Sort experimentation took several more hours of my day. I was exploring the performance implications of various changes to the algorithm, and trying to understand the algorithmic complexity through the modular method calls. At some point in the future I want to design Bucket Sort again, from the ground-up, through TDD, code, and analysis.
+
+## Wednesday 5-Apr-2023
+
+More on getting tests set up for Java in VSCode:
+
+- VSCode settings.json (local copy) should be configured with sourcePaths, outputPath, and referencedLibraries. See example below.
+- Folder structure should be set up for build output (bin), dependency jar files (lib), and source code (src).
+- A POM file should probably be set up as well.
+- Once this is done, select the Test Runner in VSCode and allow it to install the dependecies (JUnit 4 suggested).
+
+```json
+{
+  "java.project.sourcePaths": ["src"],
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": ["lib/**/*.jar"]
+}
+```
+
+[Testing Java in VSCode](https://code.visualstudio.com/docs/java/java-testing) has more detailed information.
+
+At first I selected JUnit Jupiter and it isn't clear whether that is fully supported (it is fine).
+
+Some takeaways while working with solution designing, Java coding, and Java debugging:
+
+- If a Constructor cannot complete the job of instantiating the class, then it should throw an `IllegalArgumentException`. It is up to the caller to handle that exception as it is expected to get the required inputs in order to create the class instance.
+- While `Comparable<T>` is a fancy way to ensure a method only consumes comparable types, some work might still be necessesary to work with _non-numeric_ types for example: Sorting words or characters within boundaries is not as straighforward as sorting numbers within boundaries. Not impossible, but could require a bit more design, and a bit more code.
+- When wrapping a data structure like a `LinkedList` with an `ArrayList<T>`, be sure to _instantiate each element before attempting to access or modify_.
+
+About generating random numbers in Java:
+
+- While `Random rand = new Random()` is simple boilerplate, it has the problem of being 'not very random', especially when instantiated within a function every time, rather than allowed to live long as a Field within a Class instance. Not a requirement, just better.
+- Reading through a [Stackoverflow question](https://stackoverflow.com/questions/363681/how-do-i-generate-random-integers-within-a-specific-range-in-java) (and many answers) a better approach is to use `java.util.concurrent.ThreadLocalRandom` library instead.
+- Details about Class [ThreadLocalRandom](<https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/ThreadLocalRandom.html#nextInt(int,int)>) indicate this class utilizes fewer resources, provides better results, and is not shared across theads (ensuring this thread instance is not shared with other code on other threads). It is not good for crypto, but is a utility random Number-type generator.
+
+## Tuesday 4-Apr-2023
+
+Took care of some administrative and volunteer stuff.
+
+Worked through some code challenges:
+
+- Bubble Sort. This was actually done last week when I started studying sorting algorithms, but I couldn't name it as such.
+- Bucket Sort. Theoretically this is a simple sorting method, but design and coding proved to be a bit more difficult. Will finish it up tomorrow.
+
+Developing Java in VSCode is a matter of installing supporting tools:
+
+- Extension Pack for Java, which captures most of them.
+- Maven.
+- Debugger.
+- Project Manager.
+- Test Runner.
+- Language Support for Java(TM) by RedHat.
+
+## Monday 3-Apr-2023
+
+Long day of battling Auth0:
+
+- Started with issues getting React hooks written in a way that didn't fall into _worst practices_ and error conditions.
+- At one point I was using a button click handler to call another function that implemented useState and useEffect, and React did not like that.
+- Better to stick with React functions (than plain JS ones) and have them return JSX when possible, especially for asynchronous calls like awaiting a response from a distant API.
+- When executing authentication calls using a tool like Thunderclient, I'm able to get the correct bearer token.
+- Doing the same from the SPA on localhost fails with CORS errors, and I feel like this can be solved by moving the SAP to Netlify and adding the appropriate Allow URLs (and be careful about trailing slashes).
+
+So much for Monday, hello Tuesday please be more productive! :smiley:
+
+## Sunday 2-Apr-2023
+
+I took a look into using GitHub Actions to enfore code style. Because Prettier is pretty great, and is now included with VSCode it is becoming fairly ubiquitous. GH Marketplace has a [prettier-action](https://github.com/marketplace/actions/prettier-action) that would do the trick. I'm not sure I feel comfortable with it adding a Commit to a Push or Merge. However, it has a dry run parameter which will fail the Action if Prettier has to make changes. The remaining challenge then is to ensure the settings in the GH Action match the actual desired codestyle _and_ the VSCode user profile Prettier settings are in-sync. And isn't that the problem to begin with? With some experimentation I got it to work and will use it as a (potentially ongoing) learning experiment on my Portfolio project. Key takeaways:
+
+- Use the latest version, not a previous.
+- If the tools published page (e.g. NPM, GH Action Marketplace, etc) has a use-this-tool button or UI element, consider using it to get the latest, known-good configuration parameters.
+- Just because Prettier is installed automatically in VS Code doesn't mean it is taking affect. Either use "Format Document With..." and select Prettier, or go into Settings and set Prettier to run on Save (or do both).
+- YAML files are confusing and get over it they will help improve code workflow.
+- After getting the GH Action to function, and applying Prettier rules to a new Pull Request, GH Actions might continue to fail until the correct `prettier_options` are added. An example in my case: `--check **/*.{js,scss,css,json} --single-quote --jsx-single-quote`.
+
 ## Saturday 1-Apr-2023
 
 Finished up a version of Merge Sort that I can be happy with. Some takeaways:
