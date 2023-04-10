@@ -6,6 +6,20 @@ Semi-regular notes taken during my software developer journey.
 
 This morning was dedicated to doing some catch-up work due to my heavy focus on code and environment setup last week.
 
+Completed the task of documenting how to use VSCode for Java projects. It is very sparse comments that covers:
+
+- Necessary VSCode Extensions to support New, Dev, Import, Build, and Test cycles.
+- Test Process and configuration (when necessary).
+- Runtime configurations.
+- Test configuration.
+- Directory Structure-based projects, Maven projects, and Gradle projects.
+- Importing existing projects into VSCode e.g. Git Clone :arrow_right: Open Folder.
+- Where JAR output is stored.
+
+The best resource for this is [Java Project Management for VSCode](https://code.visualstudio.com/docs/java/java-project) at code.visualstudio.com.
+
+Spent some time looking through [Baeldung Java 8 Streams](https://www.baeldung.com/java-8-streams), in the hopes I will exercise my previous learnings, build on that knowledge, and expand my Java skill set.
+
 ## Saturday 8-Apr-2023
 
 Focused on implementing "Remove Node" and "Remove Edge" functionality on the java-code-challenges repo's Graph class. When I originally built this class and came to the point of having to remove Vertices or an Edge, I didn't have a clear path to a solution, and the ideas I had at the time were inefficient and difficult. With a little dry-erase modeling and design work, I discovered the problem is fairly simple (although there is probably a more time-effeicient way to do them).
