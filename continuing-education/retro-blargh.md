@@ -2,6 +2,27 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 10-Apr-2023
+
+Back to Auth0 challenges from a week ago:
+
+- Summary from last week: Front-end could not get appropriate Authorization Token from Auth0 to use against custom API Server.
+- Auth0 has deprecated Well-Known-JWKS keyset Endpoint. Grant Types have been moved around (presumedly due to this and other deprecations) so the SPA definitions are no longer compliant with latest secure settings.
+
+My plan going forward:
+
+- Remove the SPA and API entries.
+- Recreate the SPA entry for the front-end system using a current, supported Client Authorization Flow.
+
+Whelp, that wasn't really the problem but that's okay. Since using the canned SPA (React) and API (node, express) code does not get the data the API needs, a different route will be taken tomorrow:
+
+1. Read [Auth0 Scopes and Claims](https://auth0.com/docs/get-started/apis/scopes/sample-use-cases-scopes-and-claims)
+2. Implement the OID request with user-consent.
+3. Have the SPA request tokens.
+4. Decode the token and grab the needed claims.
+
+For the rest of tonight I am working through a small code challenge: Find the 'middle value element' in an array of elements, and return its index.
+
 ## Sunday 9-Apr-2023
 
 This morning was dedicated to doing some catch-up work due to my heavy focus on code and environment setup last week.
