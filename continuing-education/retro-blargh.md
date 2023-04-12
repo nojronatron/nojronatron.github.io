@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 12-Apr-2023
+
+Interesting discussion with a person at the dentist office today about the tech industry, layoffs yet lots of openings, how fast the software world moves, and building portfolios.
+
 ## Tuesday 11-Apr-2023
 
 Did a bunch of studying and redesign planning in Express js for my custom API server. Some key takeaways:
