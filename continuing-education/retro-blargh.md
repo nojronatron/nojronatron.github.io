@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 11-Apr-2023
+
+Did a bunch of studying and redesign planning in Express js for my custom API server. Some key takeaways:
+
+- Many of the existing functions are very verbose, probably due to my inexperience with middleware, Promises (at the time), and Mongoose.
+- When exporting a function module it is NOT necessary to use parentheses, otherwise the intended function call become a promise-like object which I believe means the function is passed-in as a reference, rather than executed.
+- If an API server is not going to be responsible for authenticating a user with a 3rd party Authenticator (like Auth0), then the front-end is going to have to send any needed additional data to identify the user. Otherwise, the front-end will need to be a 'secured service' instead of 'public' (untrusted).
+
 ## Monday 10-Apr-2023
 
 Back to Auth0 challenges from a week ago:
