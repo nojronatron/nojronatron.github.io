@@ -2,6 +2,72 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 13-Apr-2023
+
+Lots of effort was put into volunteer projects yesteray and today. Now I'm back to the program.
+
+CodeWars: I hadn't done one of these challenges for quite a while so I decided to do a technical design practice and follow up with actual code. Apparently this was a good idea because:
+
+- I got frustrated trying to remember how types are -handled- almost ignored in JavaScript.
+- My solution was good and took less than 45 minutes despite not leveraging higher-level methods.
+
+Key takeaways:
+
+- JavaScript arrays are totally mutable, unlike Java.
+- JavaScript arrays don't care what types are stored in it, unlike Java.
+- Built-in methods like `shift()`, `reverse()`, and `unshift()` are surprisingly easy but could be O(n) operations under the hood (I don't know) so if I'm going to use them I need to be prepare to talk about how they work, otherwise my code analysis will not be accurate.
+- If I want items in an array to be converted to a specific type (like String to Number) then I can use prototypes like `Number.parseInt(string, radix)` but I have to remember my assumption that the input is a String and if it is not `NaN` will be returned.
+
+```javascript
+const array1 = [];
+console.log('array1 size is', array1.length);
+array1.push(10);
+console.log('array1 size is', array1.length);
+array1.push(20);
+console.log('array1 size is', array1.length);
+```
+
+```javascript
+// altering items in an array can be done with replacement
+array1.push('40'); // a String
+console.log('array1 contents', array1);
+array1[4] = Number.parseInt(array1[4], 10); // parse String to an int of specified radix
+console.log('array1 is now', array1);
+```
+
+```javascript
+// js arrays can contain different data types
+array1.push('a');
+console.log('array1 size is', array1.length);
+console.log('array1 index 3', array1[3]);
+console.log('array1 contents', array1);
+```
+
+```javascript
+// shift removes element at index 0 from an array and returns it
+let index0 = array1.shift();
+console.log('removed item', index0, 'from front of array', array1);
+let alpha = array1.shift();
+console.log('removed item', alpha, 'from front of array', array1);
+```
+
+```javascript
+// unshift adds elements to beginning of an array
+alpha = array1.pop();
+console.log('array1 is now', array1);
+let fourty = array1.pop();
+console.log('array1 is now', array1);
+array1.unshift(alpha, fourty);
+console.log('array1 is now', array1);
+```
+
+```javascript
+// Number.parseInt() is helpful but might provide unexpected results
+const number = 'letter';
+const letter = Number.parseInt(number, 10);
+console.log('string', letter, 'is now Number', letter);
+```
+
 ## Wednesday 12-Apr-2023
 
 Interesting discussion with a person at the dentist office today about the tech industry, layoffs yet lots of openings, how fast the software world moves, and building portfolios.
