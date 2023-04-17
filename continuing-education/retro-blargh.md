@@ -3494,6 +3494,22 @@ Back into coding practice, I work on CSSBattle.dev again. I need to remember how
 
 It is important to remember that the vertex angle is determined by border-left and border-right unit settings.
 
+## Tuesday 2-Aug-2022
+
+Lots of little work done on the Bigfoot WL Bib Record Form project [here](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form), and some pretty good collaboration started with a small group of 4-5 others. Success for this iteration of the form looks promising!
+
+Yesterday I spent several hours reviewing bogposts and freebie articles about interviewing. Turns out a lot of my fears about interviewing are not really justified, and _my approach_ to interviewing is what needs to be adjusted. An adversarial interview is not what anyone is looking for (if they are serious about filling a position). Instead, my view needs to focus on researching the company and the position I am interested in, and during the interview use that information to help inform my responses. The research should also answer lots of questions about a company and the position but it cannot possibly answer them all, so I should bring those remaining questions to the interview with me, and learn what I can while I have the _inside opportunity to ask them_. There is opportunity on both sides, and I need to leverage this to help me have positive interviewing experiences, regardless if an interview turning into an offer.
+
+Over the weekend I began working on a collaboration project with Ryan S in Bellingham. We agreed to work on a mern-stack project, basically rewriting a project I already have underway using DotNet. We are both looking to gain more experience with most (if not all) aspects of software development, but especially javascript, react-js, node, and probably express-js and mongo. We will also benefit from utilizing common software management tools like GitHub and Trello, and following some good practices to plan-out this project. Also, there is already a 'customer' for this project, so I suspect we will some experience with engaging with a client and honing the project to a real use-case. I'm looking forward to working with Ryan, and moving this project forward!
+
+These last few days I learned about:
+
+- GitHub Release zipping process does not maintain CRLF in plain text files, only LFs used which can be an issue for some apps or environments.
+- CircleCI has a free tier that can be helpful to manage build and release processes, integrated with GitHub (thanks Jason Martin for the tip!).
+- CSS can be fun, if appropriate challenged. Kyle on YouTube at [Web Dev Simplified](https://www.youtube.com/c/WebDevSimplified) turned me on to [CSSBattle](https://cssbattle.dev) so I have yet another diversion, but this might pay-off when it comes to my upcoming collaborative project with Ryan, revamping [LingoBingoGen](https://github.com/nojronatron/LingoBingoGen).
+- Adding badges to a readme.md file isn't too tough. Check out [shields.io](https://shields.io) for tools to build common or custom badges.
+- Preparing for an interview takes a bunch of time, but understanding that the goal is to learn about the company and team, and allow them to learn about you (the candidate) is ultimately what is required to discover if the position and the candiate are a good fit.
+
 ## Friday 29-July-2022
 
 At some point in the future, I'll want to change-up this format to something like a more formal blog article. I haven't decided yet what it will be, other than not a massively long MD file with a FILO stack of entries.
