@@ -968,7 +968,7 @@ Prior to Java SE 7:
 
 There is a large matrix of functionality that relates `java.io.File` functionality to `java.nio.file` Functionality, along with links to tutorials on usage at [Oracles Java Docs on File IO](https://docs.oracle.com/javase/tutorial/essential/io/legacy.html).
 
-## Oracle Tutorial Q and A
+### Oracle Tutorial Q and A
 
 What Class and method would you use to read a few pieces of data that are at known positions near the end of a large file?
 
@@ -989,6 +989,211 @@ What method(s) would you use to determine whether a file is s symbolic link?
 Note:
 
 - Use `Paths` class method `.toRealPath(Path: symlink_name)` to get the actual path to a Symlinked file.
+
+## Notes from Baeldung Readings
+
+### Creating Streams
+
+- Use `Stream.empty()` to create a new Stream and test whether it is empty before tryingn to use it.
+- Create as a collection e.g. `Collection<Integer> numbersStream = Arrays.asList(1, 2, 3); Stream<Integer> streamOfNumbers = numbersStream.stream();`
+- Create a Array stream `Stream<Integer> streamOfArray = Stream.of(1, 2, 3);`
+- Stream Of Array can be initialized with an existing Array or a combination of new elements _and_ an existing Array.
+- Use `Stream.builder()` with a type hint and a size (otherwise is 'infinite'): `Stream<Integer> generatedStream = Stream.Generate(()->1).limit(5);`
+- Another infinite Stream: `Stream<Integer> iterStream = Stream.iterate(1, num-> num * 2).limit(4);` :arrow_right: `1, 2, 4, 8`
+- Stream of Primitives (Java 8): int, long, and double. Implements `IntStream`, `LongStream`, and `DoubleStream`.
+- Stream of String: Leverage `chars()` method, which produces Integer representations of characters (example below).
+- File Stream: Using `lines()` method, `Java.NIO.Files` class supports streaming file data (example below).
+
+Examples:
+
+```java
+// Stream of String (of Integer representation of Characters)
+IntStream streamOfChars = "word".chars();
+// use RegEx
+Stream<String> streamOfString = Pattern.compile(", ").splitAsStream("X", "Y", "Z");
+```
+
+```java
+// Stream of File (of Strings)
+Path path = Paths.get('C:\\example.txt');
+Stream<String> streamOfStrings = Files.lines(path);
+Stream<String> streamWithCharset = Files.lines(path, Charset.forName('UTF-8'));
+```
+
+_[Java 8 Streams at [Baeldung.com](https://www.baeldung.com/java-8-streams)]_
+
+### Referencing Streams
+
+- Only _intermediate_ operations are allowed on an instantiated Stream.
+- "Terminal" operations render the Stream inaccessible: `stream.findAny()` is an example of a method that will work but an IllegateStateException will be thrown (a RuntimeException). This is tricky because it `will not be caught at design or compile time`.
+- Proper way is to encapsulate the Stream using a Collection like `List<T>` and the `collect(Collectors.toList())` nested methods.
+
+```java
+List<String> elements = Stream.of("X", "Y", "Z")
+  .filter(element -> element
+  .contains("Y"))
+  .collect(Collectors.toList());
+Optional<String> anyElement = elements.stream().findAny();
+Option<String> firstElement = elements.stream().findFirst();
+```
+
+### Stream Pipelines
+
+Sequence of operations for using Streams:
+
+1. Source: Where the data will be streamed from, e.g. an Array.
+2. Intermediate Operations: Return a new, modified Stream. Can be chained. `skip()`, `map()`, and others.
+3. Terminal Operation: Only one is allowed per Stream. Returns a result of operations done on the Stream.
+
+```java
+List<String> list = Arrays.asList("alpha", "bravo", "charlie");
+long size = list.stream().skip(1).map(item -> item.substring(0, 3)).sorted().count()
+```
+
+TODO:
+
+- [ ] Look up actual definitions of Source, Intermediate Operation, and Terminal Operation and record information here.
+
+### Lazy Invokation
+
+- Intermediate operations are lazy - only execute _if needed by Terminal Operation_.
+- Terminal operations (such as `map()`) force the Intermediate operation(s) to execute and produce results.
+- Method calls that are not required for by the Terminal operation _are never called_.
+
+### Order of Execution
+
+- Chaining operations in correct order will produce correct result.
+- Intermediate operations that reduce the size of the Stream should be placed before operations that apply to each element.
+- Place `skip()`, `filter()`, and `distinct()` at the top of the Stream pipeline.
+
+### Stream Reduction
+
+- There are many Terminal operations including: `count()`, `max()`, `min()`, and `sum()`.
+- Reduction mechanisms like these can be customized using `reduce()` and `collect()`.
+
+#### Reduce Method
+
+Variations:
+
+- Identity: Initial value or default value if Stream is empty.
+- Accumulator: Logic that aggregates elements, returning a new value at each reducer iteration. A poor performer in some circumstances.
+- Combiner: Aggregates Accumulator results. Useful for parallel operations from other threads.
+
+```java
+OptionalInt reduced = IntStream.range(1, 4).reduce((a, b) -> a + b);
+// 1+2, 3+3 returns 6
+```
+
+```java
+int reducedTwoparams = intStream.range(1, 4).reduce(10, (a, b) -> a + b);
+// 10 + 1 + 2, 13 + 3 returns 16
+```
+
+```java
+int reducedParams = Stream.of(1, 2, 3)
+  .reduce(10, (a, b) -> a + b, (a, b) -> {
+    log.info("combiner was called");
+    return a + b;
+  });
+  // combiner will not be called in non-parallel reducers
+  // however result is still 16
+```
+
+```java
+int reducedParallel = Arrays.asList(1, 2, 3)
+  .parallelStream()
+  .reduce(10, (a, b) -> a + b, (a, b) -> {
+    log.info("combiner was called");
+    return a + b;
+  });
+// combiner called twice and result is 36
+// each combiner processing happens in parallel
+// 10 + 1 and 10 + 2 and 10 + 3
+// so when accumulated is 11, 12, and 13
+// and when combined is 11 + 12 + 13 result 36
+```
+
+_[Java 8 Streams at [Baeldung.com](https://www.baeldung.com/java-8-streams)]_
+
+#### The Collect Method
+
+- Is a Terminal operation.
+- Accepts argument of type Collector.
+- Collector specified reduction mechanism.
+- Many types of Collectors already exist.
+
+Steps:
+
+1. Start with a `List<T>` and init as `Arrays.asList(new {type(value)}, new {type(vlaue)})` to init or add elements of 'type' into a List.
+2. Convert to a Collection, List, or Set using `.stream().map(MyType::getName).collect(Collectors.toList());`.
+3. Operate on the Collection using `.collect(Collectors.command(args))`.
+
+Tools:
+
+- Reduce to String using `.stream().map(MyType::getName).collect(Collectors.joining(", ", "[", "]"));` (args: delimiter, prefix, suffix).
+- Find average value of elements: `.stream().collect(Collectors.averagingInt(MyType::getValue));` (getValue is getter method on MyType).
+- Sum all elements: `.stream().collect(Collectors.summingInt(MyType::getValue));` (getValue is getter on MyType).
+- Summarizing statistic: `.stream().collect(Collectors.summarizingInt(MyType::getValue));`. Follow with `toString()` for output.
+- Grouping elements per specific function: `.stream().collect(Collectors.groupingBy(MyType::getValue));`
+- Grouping by predicate: `.stream().collect(Collectors.partitioningBy(item -> item.getValue > minValue));`
+- Additional Transformation: `.stream().collect(Collectors.collectingAndThen(Collectors.toSet(), Collection::unmodifiableSet));` which will convert Stream to Set, then Set to immutable Set.
+
+Custom Collectors can be created using `of()` method of type `Collector`:
+
+```java
+Collector<MyType , ?, LinkedList<MyType>> toLinkedList = Collector.of(LinkedList::new, LinkedList::add, (first, second) -> {
+  first.addAll(second);
+  return first;
+});
+LinkedList<MyType> linkedListOfMythings = listOfMyThings.stream().collect(toLinkedList);
+// Collector instance gets reduced to the LinkedList, first element?
+```
+
+#### Parallel Streams
+
+Java 8 makes things simpler with:
+
+- ExecutorService
+- ForkJoin
+
+Create parallel Streams when source is a Collection or an Array type, using `parallelStream()` method:
+
+```java
+Stream<MyType> streamOfCollection = myTypes.parallelStream();
+boolean isParallel = streamOfCollection.isParallel();
+boolean bigInstance = streamOfCollection
+  .map(myTypeItem -> myTypeItem.getValue() * someValue)
+  .anyMatch(thisValue -> thisValue > 200);
+```
+
+Create parallel Streams using `parallel()` when source is _not_ a Collection or an Array type:
+
+```java
+IntStream intStreamParallel = IntStream.range(1, 100).parallel();
+boolean isParallel = intStreamParallel.isParallel();
+```
+
+Notes:
+
+- ForkJoin is used automatically and does not need to be written.
+- Common thread pool is used so custom assigning threads is not possible (unless using custom set of parallel collectors).
+- Avoid blocking operations!
+- Tasks that take similar amount of execution time should be used for best results.
+
+Convert Parallel Mode Stream back to sequential mode using `sequential()`:
+
+```java
+IntStream intStreamSequential = intStreamParallel.sequential();
+boolean isParallel = intStreamSequential.isParallel();
+```
+
+_[Java 8 Streams at [Baeldung.com](https://www.baeldung.com/java-8-streams)]_
+
+#### Memory Leaks
+
+Always apply `close()` to terminal operations to avoid memory leaks.
+
+Unconsumed Streams will create memory leaks.
 
 ## Resources
 
