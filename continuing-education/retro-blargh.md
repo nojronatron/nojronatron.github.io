@@ -2,6 +2,26 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday, Saturday, Sunday, April 14 through 16, 2023
+
+Lots going on ending last week:
+
+- Several meetings unrelated to software dev.
+- Prepared a presentation _just in case_ someone else did not bring theirs (they did not).
+- Completed Auth0 readings and reconfiguring the Auth0 tenant SPA (Single-Page App) and API Server instances. Localhost development environments are working again.
+- Implemented a means to authenticate users on the SPA and capture enough data to enable authorization to the API.
+- Implemented new code to authorize users at the API, using a combination of Auth0 bearer token and an encoded user identifier.
+- Committed changes to both FE and BE codebases with updates so far.
+
+I still need to test published deployment using 'deployed settings' for both SPA and API Server.
+
+Saturday and Sunday were spent working through implementing a componentized and state-managed design to the front-end:
+
+- Some bugs in my API Server code were undetected prior to these efforts.
+- If I never write tests to check for bugs, am I saying I prefer finding them while I'm coding other components? How about when a customer finds one for me?
+- Finding un-tested, undetected bugs can force uncomfortable and inconvenient refactoring. For example, the Mongoose Schema did not support 'required' fields for all of the properties for a particular Model. This allowed creating unexpected documents in the DB.
+- Working with Form Data in React can be a little tricky. There are lots of notes from my previous work, and other resources that I am using to help work through those.
+
 ## Thursday 13-Apr-2023
 
 Lots of effort was put into volunteer projects yesteray and today. Now I'm back to the program.
