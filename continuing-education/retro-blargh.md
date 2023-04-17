@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 17-Apr-2023
+
+Did some Git cleanup on this article. I occasionally delete older branches and found a missed branch that was never merged-in to main, with some comments from August 2022, so I got it merged in. There are a bunch of administrative catch-up items I need to complete this morning, then do some preparatory work for 4 upcoming volunteer events that will require completing and publishing plans and notes from previous meetings, as well as preparing hardware for in-the-field operations over this coming weekend.
+
 ## Friday, Saturday, Sunday, April 14 through 16, 2023
 
 Lots going on ending last week:
@@ -3516,7 +3520,7 @@ It is important to remember that the vertex angle is determined by border-left a
 
 ## Tuesday 2-Aug-2022
 
-Lots of little work done on the Bigfoot WL Bib Record Form project [here](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form), and some pretty good collaboration started with a small group of 4-5 others. Success for this iteration of the form looks promising!
+Lots of little work done on the [Bigfoot WL Bib Record Form project](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form), and some pretty good collaboration started with a small group of 4-5 others. Success for this iteration of the form looks promising!
 
 Yesterday I spent several hours reviewing bogposts and freebie articles about interviewing. Turns out a lot of my fears about interviewing are not really justified, and _my approach_ to interviewing is what needs to be adjusted. An adversarial interview is not what anyone is looking for (if they are serious about filling a position). Instead, my view needs to focus on researching the company and the position I am interested in, and during the interview use that information to help inform my responses. The research should also answer lots of questions about a company and the position but it cannot possibly answer them all, so I should bring those remaining questions to the interview with me, and learn what I can while I have the _inside opportunity to ask them_. There is opportunity on both sides, and I need to leverage this to help me have positive interviewing experiences, regardless if an interview turning into an offer.
 
