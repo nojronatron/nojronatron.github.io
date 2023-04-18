@@ -6,6 +6,30 @@ Semi-regular notes taken during my software developer journey.
 
 Did some Git cleanup on this article. I occasionally delete older branches and found a missed branch that was never merged-in to main, with some comments from August 2022, so I got it merged in. There are a bunch of administrative catch-up items I need to complete this morning, then do some preparatory work for 4 upcoming volunteer events that will require completing and publishing plans and notes from previous meetings, as well as preparing hardware for in-the-field operations over this coming weekend.
 
+I updated java-code-challenges with some refactorings of code and tests that I did a few weeks ago:
+
+- Removing items like unsafe operations, duplicate operations, and YAGNI members.
+- Implemented core members were actually called (not just ignored).
+- Cleanup comments.
+
+There is some more work to do with the code to "clean it up", but it is in a much better place now and it can be loaded, code can be edited, and tests developed and executed _in VSCode_ now! :bang:
+
+Lots of work with React and Express today, working through implementations for LBJS. Key takeaways:
+
+- `useEffect()` has consequences. Know (or find out) what they are, how to work around them. Good rule of thumb is to change your logic to _do something different_ to get the desired end result, instead of blaming `useEffect()` and having the same (bad) result. :smiley:
+- Be careful with order of operations when massaging Strings, so that necessary space characters are not eliminated when in fact they are necessary.
+- Mapping and ForEach higher level functions in JavaScript: Map replaces items in an array; ForEach simply iterates over the elements, so any "acceptable" (or mutated) element must be `push()`ed into another array during processing.
+
+React does this thing in development where `useEffect()` executes twice - once to test the integrity and setup of the Component, and again to actually execute it. [react dev documentation](https://react.dev/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) walks through why this is and how to work around it. There are still edge cases where it will not fix a problem and presents some options for resolution:
+
+- Some bug is causing the remounting process to break application logic. Step through the code and see what might be happening.
+- Iteractions should driven through event handlers, not a page load.
+- To test whether a user's experience is altered with a remount operation, click in to the page, click a link to another page, then click the back button. The expected result of loading the page both times _should be identical_. If not, there is a logic bug, regardless of whether component mounting is involved.
+
+I also read through a section of Baeldung's Java Streams and took some notes in my [Java Streams Reading Notes](./java-io-data-object-streams.html).
+
+Finally, there were a few interesting job opportunities posted recently that I need to research and circle-back to.
+
 ## Friday, Saturday, Sunday, April 14 through 16, 2023
 
 Lots going on ending last week:
