@@ -2,6 +2,8 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 18-Apr-2023
+
 ## Monday 17-Apr-2023
 
 Did some Git cleanup on this article. I occasionally delete older branches and found a missed branch that was never merged-in to main, with some comments from August 2022, so I got it merged in. There are a bunch of administrative catch-up items I need to complete this morning, then do some preparatory work for 4 upcoming volunteer events that will require completing and publishing plans and notes from previous meetings, as well as preparing hardware for in-the-field operations over this coming weekend.
