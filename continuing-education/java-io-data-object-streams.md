@@ -123,7 +123,7 @@ finally {
 
 ### Character Streams
 
-[Hava Basic IO Character Streams](https://docs.oracle.com/javase/tutorial/essential/io/charstreams.html).
+[Java Basic IO Character Streams](https://docs.oracle.com/javase/tutorial/essential/io/charstreams.html).
 
 - Store character values in Unicode.
 - Transforms to 'local character set' e.g. 8-bit ASCII.
@@ -1194,6 +1194,26 @@ _[Java 8 Streams at [Baeldung.com](https://www.baeldung.com/java-8-streams)]_
 Always apply `close()` to terminal operations to avoid memory leaks.
 
 Unconsumed Streams will create memory leaks.
+
+## Key Takeaways
+
+- Streams can be instantiated and have references to them using intermediate operations.
+- A terminal operation will render a Stream inaccessible, so it should be the last operation in a chain on a Stream.
+- Streams cannot be re-used. Run-Time Exception `IllegalStateOperation` will result when accessing a Stream that has already had a terminal operation run against it.
+- Streams are for _applying a finite sequence of operations to a source of elements_.
+- Streams are _not_ for storing data.
+- Operate on Stream elements using `functional style` operations.
+
+Operate on a Collection, not the Stream itself:
+
+```java
+List<String> elements = Stream
+  .of("X", "Y", "Z")
+  .filter(element -> element.contains("Y"))
+  .collect(Collectors.toList());
+Optional<String> anyElement = elements.stream().findAny();
+Optional<String> firstElement = elements.stream().findFirst();
+```
 
 ## Resources
 
