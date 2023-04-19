@@ -4,6 +4,17 @@ Semi-regular notes taken during my software developer journey.
 
 ## Tuesday 18-Apr-2023
 
+It's that time again: Update the resume.
+
+While researching job openings I noticed quite a few that are looking for SQL Query skills. While I have worked with SQL relational system before, and am currently working with Mongo DB, I felt like the question "write a T-SQL statement that would return a list of book titles, sorted by author" would be met with a lot of "uhh" noises from me, so I added a task to review SQL Statements to refresh my memory.
+
+Did some refactoring and debugging on LBJS front-end:
+
+- Axios will return successful when it receives a 200-level Status Code, otherwise it will trigger a catch-handler block, so testing for specific Status Codes is not required.
+- Exactly _when_ useState's setItem is called can make a difference when several State variables need to be set. The result of multiple useState setItem calls within a useEffect can cause multiple re-renders (as in: beyond the 2 in developer mode, and could continue in production mode). Try to consolidate and colocate the setItem function calls so they happen together.
+- Using logs of Console.Log statements can really hinder performance, and actually cause other effects during rendering. This is because writing to the console is a blocking, synchronous, and relatively slow operation.
+- Although `prop-types` is not necessary as a hard-and-fast rule in React, implementing it has helped me to keep straight in my head what types I am passing around between Components (and how many).
+
 ## Monday 17-Apr-2023
 
 Did some Git cleanup on this article. I occasionally delete older branches and found a missed branch that was never merged-in to main, with some comments from August 2022, so I got it merged in. There are a bunch of administrative catch-up items I need to complete this morning, then do some preparatory work for 4 upcoming volunteer events that will require completing and publishing plans and notes from previous meetings, as well as preparing hardware for in-the-field operations over this coming weekend.
