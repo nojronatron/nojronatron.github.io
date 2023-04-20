@@ -2,6 +2,13 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 19-Apr-2023
+
+Microsoft Reactor has been ramping up their informational and educational sessions. Three that are interesting to me are all happening today.
+
+- [x] Take a look at [MSFT Learn Module on the Agile Framework](https://aka.ms/Apr20AgileApproach3).
+- [x] MeetUp had an interesting session on [ChatGPT](./chat-gpt-llms.html) so I took some notes, signed up for the free tier, and it is already providing helpful responses in the context of my volunteer work.
+
 ## Tuesday 18-Apr-2023
 
 It's that time again: Update the resume.
