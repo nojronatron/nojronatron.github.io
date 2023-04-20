@@ -44,6 +44,7 @@ Azure [learnings](#azure-learnings).
 
 - [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)) - my notes [start here](./java-io-data-object-streams.html).
 - [ ] [Promises](https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript) in JavaScript (currently active).
+- [ ] Introductions to [ChatGPT](./chat-gpt-llms.html) and regenerative learning models.
 - [x] [GitHub Copilot notes](./github-copilot.html)
 - [x] [Generics](./generics-java-strongtypelangs.html): Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java)
 - [x] Microsoft Graph [SDK, API](./azure-graphapi-dotnet.html).
