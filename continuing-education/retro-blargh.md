@@ -2,12 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
-## Thursday 19-Apr-2023
+## Friday 21-Apr-2023
+
+My day was a little blown up with final prepping for several upcoming volunteer activities. However, I completed some interview preparatory tasks, got back into Microsoft Learn training paths, and also supported Code Fellows students by attending and interacting in their mid-term and final presentations.
+
+## Thursday 20-Apr-2023
 
 Microsoft Reactor has been ramping up their informational and educational sessions. Three that are interesting to me are all happening today.
 
-- [x] Take a look at [MSFT Learn Module on the Agile Framework](https://aka.ms/Apr20AgileApproach3).
-- [x] MeetUp had an interesting session on [ChatGPT](./chat-gpt-llms.html) so I took some notes, signed up for the free tier, and it is already providing helpful responses in the context of my volunteer work.
+- Took a look at [MSFT Learn Module on the Agile Framework](https://aka.ms/Apr20AgileApproach3), spurred by a MSFT Reactor session on Agile development.
+- MeetUp had an interesting session on [ChatGPT](./chat-gpt-llms.html) so I took some notes, signed up for the free tier, and it is already providing helpful responses in the context of my volunteer work.
+- MSFT Reactor had a session about GitHub Copilot with CodeSpaces integration. Free tier is limited however overall experience is a VSCode instance in a web browser with GH Copilot code assistance!
 
 ## Tuesday 18-Apr-2023
 

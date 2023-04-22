@@ -1,5 +1,44 @@
 # Agile Learning Notes
 
+## MSFT Learning - The Agile Philosophy
+
+Emphasizes:
+
+- Incremental delivery
+- Team collaboration
+- Continual planning
+- Learning
+
+Based on iterative development.
+
+### Vertical Teams
+
+Horizontal teams tend to have a structure similar to the project they are working on: UI, back end, etc.
+
+Vertical teams "span the architecture and align with product outcomes".
+
+- Members with skill sets that cover all areas to complete the feature come together as a team.
+- Scaling occurs by adding teams, rather that building the organization of a single team.
+
+### Azure Boards
+
+Create an agile Kanban style board:
+
+1. Create a Project
+2. Create a Team
+3. Add Team members
+4. Create the board
+5. Define a sprint
+6. Assign tasks and set the iteration
+
+### Several Processes
+
+Agile development can be done following several processes:
+
+- Agile: Scales well for many team and project sizes
+- Scrum: Requires a Scrum Master with expertise in Scrum, and a team with Scrum training
+- CMMI: For very large teams and/or projects that is much more complicated and usually overboard for smaller projects
+
 ## Microsoft Reactor Agile Mindset
 
 Host: Sandy Liu, Certified Scrum Master
@@ -110,6 +149,8 @@ Don't just go through the Agile Methodology motions.
 Confessions of a Scrum Master (Amazon)
 
 Radical Candor, by Tim Scott
+
+The [Agile Manifesto](https://agilemanifesto.org/?azure-portal=true)
 
 ## Footer
 
