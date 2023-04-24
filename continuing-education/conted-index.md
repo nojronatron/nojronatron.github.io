@@ -37,13 +37,16 @@ Azure [learnings](#azure-learnings).
 - [ ] Investigate [replit.com](https://replit.com)'s unit testing tool.
 - [ ] CSS 3: When overlapped objects must have a transparency or alternate color assignment, what CSS property should be used? See [cssbattle 15](https://cssbattle.dev/play/15) for an example.
 - [ ] Mocking for unit testing in AndroidStudio.
-- [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)) - my notes [start here](./java-io-data-object-streams.html).
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).
 - [ ] Wiring Repositories in [Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa).
 
 ### Notes And Takeaways from Research and Experience
 
+- [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)) - my notes [start here](./java-io-data-object-streams.html).
 - [ ] [Promises](https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript) in JavaScript (currently active).
+- [ ] Introductions to [ChatGPT](./chat-gpt-llms.html) and regenerative learning models.
+- [x] An [Agile Mindset](./agile-mindset-projects-action.html) leads to agile actions and success.
+- [x] [GitHub Copilot notes](./github-copilot.html)
 - [x] [Generics](./generics-java-strongtypelangs.html): Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java)
 - [x] Microsoft Graph [SDK, API](./azure-graphapi-dotnet.html).
 - [x] Windows Subsystem for Linux [WSL Notes](./windows-subsystem-for-linux.html).

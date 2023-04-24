@@ -2,6 +2,59 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 21-Apr-2023
+
+My day was a little blown up with final prepping for several upcoming volunteer activities. However, I completed some interview preparatory tasks, got back into Microsoft Learn training paths, and also supported Code Fellows students by attending and interacting in their mid-term and final presentations.
+
+## Thursday 20-Apr-2023
+
+Microsoft Reactor has been ramping up their informational and educational sessions. Three that are interesting to me are all happening today.
+
+- Took a look at [MSFT Learn Module on the Agile Framework](https://aka.ms/Apr20AgileApproach3), spurred by a MSFT Reactor session on Agile development.
+- MeetUp had an interesting session on [ChatGPT](./chat-gpt-llms.html) so I took some notes, signed up for the free tier, and it is already providing helpful responses in the context of my volunteer work.
+- MSFT Reactor had a session about GitHub Copilot with CodeSpaces integration. Free tier is limited however overall experience is a VSCode instance in a web browser with GH Copilot code assistance!
+
+## Tuesday 18-Apr-2023
+
+It's that time again: Update the resume.
+
+While researching job openings I noticed quite a few that are looking for SQL Query skills. While I have worked with SQL relational system before, and am currently working with Mongo DB, I felt like the question "write a T-SQL statement that would return a list of book titles, sorted by author" would be met with a lot of "uhh" noises from me, so I added a task to review SQL Statements to refresh my memory.
+
+Did some refactoring and debugging on LBJS front-end:
+
+- Axios will return successful when it receives a 200-level Status Code, otherwise it will trigger a catch-handler block, so testing for specific Status Codes is not required.
+- Exactly _when_ useState's setItem is called can make a difference when several State variables need to be set. The result of multiple useState setItem calls within a useEffect can cause multiple re-renders (as in: beyond the 2 in developer mode, and could continue in production mode). Try to consolidate and colocate the setItem function calls so they happen together.
+- Using logs of Console.Log statements can really hinder performance, and actually cause other effects during rendering. This is because writing to the console is a blocking, synchronous, and relatively slow operation.
+- Although `prop-types` is not necessary as a hard-and-fast rule in React, implementing it has helped me to keep straight in my head what types I am passing around between Components (and how many).
+
+## Monday 17-Apr-2023
+
+Did some Git cleanup on this article. I occasionally delete older branches and found a missed branch that was never merged-in to main, with some comments from August 2022, so I got it merged in. There are a bunch of administrative catch-up items I need to complete this morning, then do some preparatory work for 4 upcoming volunteer events that will require completing and publishing plans and notes from previous meetings, as well as preparing hardware for in-the-field operations over this coming weekend.
+
+I updated java-code-challenges with some refactorings of code and tests that I did a few weeks ago:
+
+- Removing items like unsafe operations, duplicate operations, and YAGNI members.
+- Implemented core members were actually called (not just ignored).
+- Cleanup comments.
+
+There is some more work to do with the code to "clean it up", but it is in a much better place now and it can be loaded, code can be edited, and tests developed and executed _in VSCode_ now! :bang:
+
+Lots of work with React and Express today, working through implementations for LBJS. Key takeaways:
+
+- `useEffect()` has consequences. Know (or find out) what they are, how to work around them. Good rule of thumb is to change your logic to _do something different_ to get the desired end result, instead of blaming `useEffect()` and having the same (bad) result. :smiley:
+- Be careful with order of operations when massaging Strings, so that necessary space characters are not eliminated when in fact they are necessary.
+- Mapping and ForEach higher level functions in JavaScript: Map replaces items in an array; ForEach simply iterates over the elements, so any "acceptable" (or mutated) element must be `push()`ed into another array during processing.
+
+React does this thing in development where `useEffect()` executes twice - once to test the integrity and setup of the Component, and again to actually execute it. [react dev documentation](https://react.dev/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development) walks through why this is and how to work around it. There are still edge cases where it will not fix a problem and presents some options for resolution:
+
+- Some bug is causing the remounting process to break application logic. Step through the code and see what might be happening.
+- Iteractions should driven through event handlers, not a page load.
+- To test whether a user's experience is altered with a remount operation, click in to the page, click a link to another page, then click the back button. The expected result of loading the page both times _should be identical_. If not, there is a logic bug, regardless of whether component mounting is involved.
+
+I also read through a section of Baeldung's Java Streams and took some notes in my [Java Streams Reading Notes](./java-io-data-object-streams.html).
+
+Finally, there were a few interesting job opportunities posted recently that I need to research and circle-back to.
+
 ## Friday, Saturday, Sunday, April 14 through 16, 2023
 
 Lots going on ending last week:
@@ -3513,6 +3566,22 @@ Back into coding practice, I work on CSSBattle.dev again. I need to remember how
 1. Set the top border as 100px solid and red (or your preferred color for the entire triangle)
 
 It is important to remember that the vertex angle is determined by border-left and border-right unit settings.
+
+## Tuesday 2-Aug-2022
+
+Lots of little work done on the [Bigfoot WL Bib Record Form project](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form), and some pretty good collaboration started with a small group of 4-5 others. Success for this iteration of the form looks promising!
+
+Yesterday I spent several hours reviewing bogposts and freebie articles about interviewing. Turns out a lot of my fears about interviewing are not really justified, and _my approach_ to interviewing is what needs to be adjusted. An adversarial interview is not what anyone is looking for (if they are serious about filling a position). Instead, my view needs to focus on researching the company and the position I am interested in, and during the interview use that information to help inform my responses. The research should also answer lots of questions about a company and the position but it cannot possibly answer them all, so I should bring those remaining questions to the interview with me, and learn what I can while I have the _inside opportunity to ask them_. There is opportunity on both sides, and I need to leverage this to help me have positive interviewing experiences, regardless if an interview turning into an offer.
+
+Over the weekend I began working on a collaboration project with Ryan S in Bellingham. We agreed to work on a mern-stack project, basically rewriting a project I already have underway using DotNet. We are both looking to gain more experience with most (if not all) aspects of software development, but especially javascript, react-js, node, and probably express-js and mongo. We will also benefit from utilizing common software management tools like GitHub and Trello, and following some good practices to plan-out this project. Also, there is already a 'customer' for this project, so I suspect we will some experience with engaging with a client and honing the project to a real use-case. I'm looking forward to working with Ryan, and moving this project forward!
+
+These last few days I learned about:
+
+- GitHub Release zipping process does not maintain CRLF in plain text files, only LFs used which can be an issue for some apps or environments.
+- CircleCI has a free tier that can be helpful to manage build and release processes, integrated with GitHub (thanks Jason Martin for the tip!).
+- CSS can be fun, if appropriate challenged. Kyle on YouTube at [Web Dev Simplified](https://www.youtube.com/c/WebDevSimplified) turned me on to [CSSBattle](https://cssbattle.dev) so I have yet another diversion, but this might pay-off when it comes to my upcoming collaborative project with Ryan, revamping [LingoBingoGen](https://github.com/nojronatron/LingoBingoGen).
+- Adding badges to a readme.md file isn't too tough. Check out [shields.io](https://shields.io) for tools to build common or custom badges.
+- Preparing for an interview takes a bunch of time, but understanding that the goal is to learn about the company and team, and allow them to learn about you (the candidate) is ultimately what is required to discover if the position and the candiate are a good fit.
 
 ## Friday 29-July-2022
 
