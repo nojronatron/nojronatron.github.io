@@ -138,6 +138,83 @@ Common fears:
 
 Lack of seeing these fears could mean a lack of innovative, collective, agile performance.
 
+## Delivery Plans
+
+How delivery plans enabled teams to plan, schedule, and coordinate work:
+
+- Present a calendar view with work items and dependencies.
+- Call-out dependencies across Sprints and Teams, highlighting delivery schedule conflicts.
+- Enable moving Work Items to handle dependency conflicts quickly and easily.
+
+Create a delivery plan and optimize sprint workload for delivery efficiency:
+
+- Use the Azure DevOps administration console.
+- Create a new Project or use an existing one.
+- Create a Team or use an existing one.
+- Create a New Plan for the Project and provide a Name, Backlog Items backlog, and add your Team.
+
+View dependencies within work items in one/across teams:
+
+- Use the Delivery Plans view.
+- Notice the Red and Green link icons.
+
+Resolve dependencies that have issues:
+
+- Red Link icons indicate dependency issues.
+- Overlapping delivery dates will cause dependency issues.
+- A predecessor Work Item with a delivery date later than a successor will cause a dependecy collision.
+
+### What Delivery Plans Are
+
+Visualization of one or more work schedules against a calendar backdrop.
+
+Provides teams and mgmt with over view of plans to produce and when.
+
+Must be occasionally synchronized with other teams' schedules.
+
+Like a calendar with Sprint swimlanes, icons indicating dependencies between work items, and Milestones.
+
+Multiple teams are displayed so Sprints and Swim Lanes can be lined up.
+
+There is _no focus_ on the logistics of how deliverables will be produced.
+
+### How To Set Up Delivery Plans
+
+1. Sign In to the Azure DevOps.
+2. Create a new project by selecting a template and provide a name and select your Azure DevOps Organization.
+3. Click Create Project.
+4. Navigate to the project in Azure DevOps.
+5. Select Delivery Plans under Boards.
+6. Click New Plan.
+7. Provide a Name, Backlog Items backlog, and add the Team.
+8. Click create.
+
+### Schedule Milestone Markers
+
+Add these as reference points to help plan work within context of significant or extenral dates.
+
+Add a Date, Label, and Color to the markers for visibility.
+
+### Optimizing the Work Schedule
+
+Green Links indicate linked dependencies.
+
+Red Links indicate depedency conflicts.
+
+Find Work Items with Dependency conflicts and reorganize them as appropriate.
+
+Work Items with overlapping or swapped due dates should be dragged between Sprints to ensure an item is not blocked by another team or Work Item.
+
+Ensure that predecessor work items dates do not overlap with successor work item dates.
+
+### Considerations when scaling Agile Efforts
+
+Build trust in people and processes.
+
+Elevate the organization above the team and the individual.
+
+Foster a culture of transparency.
+
 ## Takeaways
 
 Agile Framework is not about Scrum or Kenban methodologies.
@@ -151,6 +228,8 @@ Confessions of a Scrum Master (Amazon)
 Radical Candor, by Tim Scott
 
 The [Agile Manifesto](https://agilemanifesto.org/?azure-portal=true)
+
+Microsoft Learn Modules: [Get Started With Azure Devops](https://learn.microsoft.com/)
 
 ## Footer
 
