@@ -8,6 +8,10 @@ Much of the weekend was spent at volunteer events. On Monday the 24th I configur
 
 CodeWars has been acquired and has had a bit of a redesign, including a restart of their email campaigns that I hadn't seen for several months. The latest email had an interesting code question: How to verify a Sudoku puzzle has been solved. I started fiddling with possible solutions in between other tasks.
 
+Completed two JavaScript code challenges and posted them to js-code-challenges. Added GHActions to run tests prior to merging, updated README notes, and added code commentary to analyze code in Big-O notation.
+
+The antenna swap activity was successful and the repeater seems to be functioning properly, although it hasn't been tested to determine if signal quality (or coverage) has improved at all. At least the site has an actual 'repeater antenna' that has been used in that purpose before, so I have hope that it will perform well for many years to come.
+
 ## Friday 21-Apr-2023
 
 My day was a little blown up with final prepping for several upcoming volunteer activities. However, I completed some interview preparatory tasks, got back into Microsoft Learn training paths, and also supported Code Fellows students by attending and interacting in their mid-term and final presentations.
