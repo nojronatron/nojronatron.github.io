@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 25-Apr-2023
+
+Much of the weekend was spent at volunteer events. On Monday the 24th I configured Netlify to deploy a test build branch based on my updates over the last several weeks, incorporating Auth0 and API calls. It works, however there is a problem and I suspect it is a timing issue when an API call is made but the page renders without a valid response.
+
+CodeWars has been acquired and has had a bit of a redesign, including a restart of their email campaigns that I hadn't seen for several months. The latest email had an interesting code question: How to verify a Sudoku puzzle has been solved. I started fiddling with possible solutions in between other tasks.
+
 ## Friday 21-Apr-2023
 
 My day was a little blown up with final prepping for several upcoming volunteer activities. However, I completed some interview preparatory tasks, got back into Microsoft Learn training paths, and also supported Code Fellows students by attending and interacting in their mid-term and final presentations.
