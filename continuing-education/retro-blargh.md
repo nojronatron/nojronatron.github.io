@@ -2,6 +2,15 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 26-Apr-2023
+
+Lots of emails with questions about the volunteer exercise coming up on Saturday have been distracting me. Despite this, here are some takeaways from today:
+
+- Great to get a reminder on using SQL Inner and Outer JOIN statements.
+- SQL Alias is helpful not only in renaming an existing column but for _naming an expression_ that processes data within the query.
+- Handling 'Null's in SQL statements: Using a JOIN statement that relies on the asymmetric table, then joins the completed table(s) will return Null values. This could be _good or bad_ depending on the purpose.
+- Quicksort algorithm development is going more slowly than I had hoped. Will continue working through the requirements in an attempt to break down the problem as much on my own as I can.
+
 ## Tuesday 25-Apr-2023
 
 Much of the weekend was spent at volunteer events. On Monday the 24th I configured Netlify to deploy a test build branch based on my updates over the last several weeks, incorporating Auth0 and API calls. It works, however there is a problem and I suspect it is a timing issue when an API call is made but the page renders without a valid response.
