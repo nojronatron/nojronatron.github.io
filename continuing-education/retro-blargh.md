@@ -2,6 +2,15 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 28-Apr-2023
+
+Returned to designing a Quicksort algorithm and implementing tests and code in Java. It was close, but failed on 2 fronts:
+
+1. The code could not pass 2 of the tests that other sorting algorithms can pass.
+2. The code does not match a quicksort algorithm example (see Wikipedia).
+
+The plan is to return to this challenge in a day or two with a tiny bit more research, and a fresh perspective on solving the problem.
+
 ## Wednesday 26-Apr-2023
 
 Lots of emails with questions about the volunteer exercise coming up on Saturday have been distracting me. Despite this, here are some takeaways from today:
