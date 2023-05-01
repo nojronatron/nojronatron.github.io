@@ -2,6 +2,46 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 30-Apr-2023
+
+Continued working on Quicksort algorithm in between other projects. So far this second attempt seems close, although it feels like cases where inputs have duplicate values might fail completely. Once I finish off the core logic, refactoring code to the new implementation plan will begin, in tandem with regular unit test executions to guide the refactoring process.
+
+Assisted Ryan getting his local environment working for LingoBingo. The tricky parts were:
+
+1. Refactoring Auth0 configuration for a new deployment is a little tricky and _requires_ a super-keen focus on details to get the Auth0 Application configuration and the project environment variables correctly set.
+2. My code was not well documented so there was a bit of stepping-through that was necessary to find where it needed to be updated.
+3. It had been just long enough since working in the code that a bit of re-discovery was necessary to get myself up-to-speed enought to be able to help at all.
+
+Over all it was _great_ to work through the issues in a remote pair programming session and Ryan is up and running.
+
+## Friday 28-Apr-2023
+
+Returned to designing a Quicksort algorithm and implementing tests and code in Java. It was close, but failed on 2 fronts:
+
+1. The code could not pass 2 of the tests that other sorting algorithms can pass.
+2. The code does not match a quicksort algorithm example (see Wikipedia).
+
+The plan is to return to this challenge in a day or two with a tiny bit more research, and a fresh perspective on solving the problem.
+
+## Wednesday 26-Apr-2023
+
+Lots of emails with questions about the volunteer exercise coming up on Saturday have been distracting me. Despite this, here are some takeaways from today:
+
+- Great to get a reminder on using SQL Inner and Outer JOIN statements.
+- SQL Alias is helpful not only in renaming an existing column but for _naming an expression_ that processes data within the query.
+- Handling 'Null's in SQL statements: Using a JOIN statement that relies on the asymmetric table, then joins the completed table(s) will return Null values. This could be _good or bad_ depending on the purpose.
+- Quicksort algorithm development is going more slowly than I had hoped. Will continue working through the requirements in an attempt to break down the problem as much on my own as I can.
+
+## Tuesday 25-Apr-2023
+
+Much of the weekend was spent at volunteer events. On Monday the 24th I configured Netlify to deploy a test build branch based on my updates over the last several weeks, incorporating Auth0 and API calls. It works, however there is a problem and I suspect it is a timing issue when an API call is made but the page renders without a valid response.
+
+CodeWars has been acquired and has had a bit of a redesign, including a restart of their email campaigns that I hadn't seen for several months. The latest email had an interesting code question: How to verify a Sudoku puzzle has been solved. I started fiddling with possible solutions in between other tasks.
+
+Completed two JavaScript code challenges and posted them to js-code-challenges. Added GHActions to run tests prior to merging, updated README notes, and added code commentary to analyze code in Big-O notation.
+
+The antenna swap activity was successful and the repeater seems to be functioning properly, although it hasn't been tested to determine if signal quality (or coverage) has improved at all. At least the site has an actual 'repeater antenna' that has been used in that purpose before, so I have hope that it will perform well for many years to come.
+
 ## Friday 21-Apr-2023
 
 My day was a little blown up with final prepping for several upcoming volunteer activities. However, I completed some interview preparatory tasks, got back into Microsoft Learn training paths, and also supported Code Fellows students by attending and interacting in their mid-term and final presentations.
