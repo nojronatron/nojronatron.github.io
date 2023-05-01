@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 30-Apr-2023
+
+Continued working on Quicksort algorithm in between other projects. So far this second attempt seems close, although it feels like cases where inputs have duplicate values might fail completely. Once I finish off the core logic, refactoring code to the new implementation plan will begin, in tandem with regular unit test executions to guide the refactoring process.
+
+Assisted Ryan getting his local environment working for LingoBingo. The tricky parts were:
+
+1. Refactoring Auth0 configuration for a new deployment is a little tricky and _requires_ a super-keen focus on details to get the Auth0 Application configuration and the project environment variables correctly set.
+2. My code was not well documented so there was a bit of stepping-through that was necessary to find where it needed to be updated.
+3. It had been just long enough since working in the code that a bit of re-discovery was necessary to get myself up-to-speed enought to be able to help at all.
+
+Over all it was _great_ to work through the issues in a remote pair programming session and Ryan is up and running.
+
 ## Friday 28-Apr-2023
 
 Returned to designing a Quicksort algorithm and implementing tests and code in Java. It was close, but failed on 2 fronts:
