@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 1-May-2023
+
+Worked through another iteration of Quicksort. Some corner-cases still failing (actually, corner-cases are good now its the golden path that won't pass). Seems like a large enough value at the end of the input array won't get moved far enough to the left. Will debug again on another day.
+
+At some point I need to start figuring out how to use anonymous method and lambdas in Java. I have no problem using lambdas in Java when I see documentation showing usage, but it has yet to materialize without assistance.
+
 ## Sunday 30-Apr-2023
 
 Continued working on Quicksort algorithm in between other projects. So far this second attempt seems close, although it feels like cases where inputs have duplicate values might fail completely. Once I finish off the core logic, refactoring code to the new implementation plan will begin, in tandem with regular unit test executions to guide the refactoring process.
@@ -12,7 +18,7 @@ Assisted Ryan getting his local environment working for LingoBingo. The tricky p
 2. My code was not well documented so there was a bit of stepping-through that was necessary to find where it needed to be updated.
 3. It had been just long enough since working in the code that a bit of re-discovery was necessary to get myself up-to-speed enought to be able to help at all.
 
-Over all it was _great_ to work through the issues in a remote pair programming session and Ryan is up and running.
+Over all it was _great_ to work through the issues in a remote pair programming session that results in a working environment!
 
 ## Friday 28-Apr-2023
 
