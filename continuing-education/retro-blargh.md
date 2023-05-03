@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 2-May-2023
+
+Second iteration working through Quicksort was close but did not complete passing all of the tests. After some additional research I realize my mind was stuck on thinking of partitioning the array as an equal, symmetric operation. It doesn't have to be that way. For this challenge it might be better for me to think about solving the sorting problem by filling the ends of the array first. In other words instead of just picking the first index with a value that needs to be in a different position, find the index with the value that is most likely to be put at one end of the array. This requires sweeping the array several times, however after the first few sweeps the largest elements should be near the ends, and any elements still of the 'wrong side' of the array can then be managed within a sub-array (partition) without worrying that the out-of-order item will get 'cut off' from the rest of the array (and therefore never find the index where it belongs).
+
 ## Monday 1-May-2023
 
 Worked through another iteration of Quicksort. Some corner-cases still failing (actually, corner-cases are good now its the golden path that won't pass). Seems like a large enough value at the end of the input array won't get moved far enough to the left. Will debug again on another day.
