@@ -15,7 +15,7 @@ Upgrading NPM on Windows Key Takeaway:
 - Remember PowerShell ExecutionPolicy? It's a little difference in PowerShell 7 on Windows 11.
 - Use `npm install -g npm` for versions GT 6 but _note this will upgrade to v.9.x_!
 
-I recall reading about GitAttributes having some overriding effect on local git configurations. [Bigfoot Bib Report](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form) is a Windows-targeted project that I partially developed in a Linux environment, later to discover an issue with LF vs CRLF handling. Previously this was handled by setting up a CircleCI pipeline to re-write the text file with CRLF symbols in place of LF. That worked. Going forward, I wanted to see if GitAttributes would solve this problem going forward without using a pipeline.
+I recall reading about GitAttributes having some overriding effect on local git configurations. [Bigfoot Bib Report](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form) is a Windows-targeted project that I partially developed in a Linux environment, later to discover an issue with LF vs CRLF handling. Previously this was handled by setting up a CircleCI pipeline to re-write the text file with CRLF symbols in place of LF. That worked. Going forward, I wanted to see if GitAttributes would solve this problem going forward without using a pipeline. [GitHub Docs](https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings) has a nice little write-up.
 
 Git Attributes and LF vs CRLF Key Takeaways:
 
