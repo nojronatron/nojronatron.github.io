@@ -2,6 +2,29 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 3-May-2023
+
+Interesting email regarding a job opportunity not far from home. After some research, I submitted a resume. The research was helpful, but the company is private, so information is (relatively) limited, and I don't subscribe to information-gathering services to draw from. I am interested to learn more about the opportunity because the description was a bit lacking, however I look forward to asking about the role and its responsibilities if the opportunity arises.
+
+I've moved back over to my Windows development machine (nothing is wrong with the Linux environment). I discovered my NPM installation is a little behind, so it took me a bit to get it up to speed.
+
+Upgrading NPM on Windows Key Takeaway:
+
+- NPM versions prior to 8 might require a custom script to upgrade NPM.
+- NPM 8.x and above _do not require a separate script_.
+- Remember PowerShell ExecutionPolicy? It's a little difference in PowerShell 7 on Windows 11.
+- Use `npm install -g npm` for versions GT 6 but _note this will upgrade to v.9.x_!
+
+I recall reading about GitAttributes having some overriding effect on local git configurations. [Bigfoot Bib Report](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form) is a Windows-targeted project that I partially developed in a Linux environment, later to discover an issue with LF vs CRLF handling. Previously this was handled by setting up a CircleCI pipeline to re-write the text file with CRLF symbols in place of LF. That worked. Going forward, I wanted to see if GitAttributes would solve this problem going forward without using a pipeline.
+
+Git Attributes and LF vs CRLF Key Takeaways:
+
+- By default the top of GitAttributes has `* text=auto` which is usually an okay setting.
+- Comment that out and add `text eol=crlf` which will force Git to maintain CRLF symbols instead of strip them down to LF symbols.
+- The file(s) need to be updated _after_ GitIgnore is checked-in, in order for changes to take hold.
+
+Initial testing indicates this will work. I look forward to feedback from the other contributors and users once they get this latest version (probably late July and early August).
+
 ## Tuesday 2-May-2023
 
 Second iteration working through Quicksort was close but did not complete passing all of the tests. After some additional research I realize my mind was stuck on thinking of partitioning the array as an equal, symmetric operation. It doesn't have to be that way. For this challenge it might be better for me to think about solving the sorting problem by filling the ends of the array first. In other words instead of just picking the first index with a value that needs to be in a different position, find the index with the value that is most likely to be put at one end of the array. This requires sweeping the array several times, however after the first few sweeps the largest elements should be near the ends, and any elements still of the 'wrong side' of the array can then be managed within a sub-array (partition) without worrying that the out-of-order item will get 'cut off' from the rest of the array (and therefore never find the index where it belongs).
