@@ -2,6 +2,38 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 4-May-2023
+
+Received some resume feedback. Will be using that to update my resume to be a little closer to stellar.
+
+Worked on a few administrative tasks. Started building a presentation deck to review the commex completed last weekend. More to do, but it will be done in pieces.
+
+Looking at my Portfolio webapp, it can use some help. I have run across at least one job posting that is asking for examples online, and this is a good way to aggregate the links to what I've accomplished. The Portfolio webapp is clearly missing a few projects, and some creative design elements. For projects, not a single Python project is listed, and the one DotNET project is pretty basic and does not highlight my experience with DotNET and automated testing. This prompted me to get a new project listed: Coordinate Converter. This was last updated 2 years ago using DotNET 5 (which is now out of support) so an upgrade was necessary. Also, the last time this project was edited I was using Visual Studio Community Edition. All of my development efforts have moved over to VS Code so there are some other updates that are needed.
+
+Upgrading NET5 to NET6 Key Takeaways:
+
+- Fairly simple for smaller projects with few (or none) dependencies.
+- Update the csproj file so that `<TargetFramework></TargetFramework>` targets `dotnet6` instead of `dotnet5`.
+- Some dependencies will require updating. In my case I moved away from NUnit to MSTest.
+- Update `<ItemGroup>` elements in CSPROJ files to include Micorosft NET Test SDK, MSTest Framework, and coverlet.collector (see below).
+- Update `using` statements: For MSTest this is `using Microsoft.VisualStudio.TestTools.UnitTesting`.
+- Update test file Attributes to use MSTest terminology (in place of NUnit): `[TestClass]` instead of `[TestFixture()]`, and `[TestMethod]` instead of `[Test()]`.
+
+```xml
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
+    <PackageReference Include="coverlet.collector" Version="3.1.2" />
+  </ItemGroup>
+```
+
+In the future I want to:
+
+- [ ] Change 'master' to 'main'.
+- [ ] Set a YAML file to trigger a GH Action to build and test the project before PR is allowed.
+- [ ] Automate setting a Label and Release upon successfull merge into main.
+
 ## Wednesday 3-May-2023
 
 Interesting email regarding a job opportunity not far from home. After some research, I submitted a resume. The research was helpful, but the company is private, so information is (relatively) limited, and I don't subscribe to information-gathering services to draw from. I am interested to learn more about the opportunity because the description was a bit lacking, however I look forward to asking about the role and its responsibilities if the opportunity arises.
