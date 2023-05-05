@@ -15,7 +15,7 @@ Upgrading NET5 to NET6 Key Takeaways:
 - Fairly simple for smaller projects with few (or none) dependencies.
 - Update the csproj file so that `<TargetFramework></TargetFramework>` targets `dotnet6` instead of `dotnet5`.
 - Some dependencies will require updating. In my case I moved away from NUnit to MSTest.
-- Update `<ItemGroup>` elements in CSPROJ files to include Micorosft NET Test SDK, MSTest Framework, and coverlet.collector (see below).
+- Update `<ItemGroup>` elements in TEST CSPROJ files to include Micorosft NET Test SDK, MSTest Framework, and coverlet.collector (see below).
 - Update `using` statements: For MSTest this is `using Microsoft.VisualStudio.TestTools.UnitTesting`.
 - Update test file Attributes to use MSTest terminology (in place of NUnit): `[TestClass]` instead of `[TestFixture()]`, and `[TestMethod]` instead of `[Test()]`.
 
@@ -33,6 +33,10 @@ In the future I want to:
 - [ ] Change 'master' to 'main'.
 - [ ] Set a YAML file to trigger a GH Action to build and test the project before PR is allowed.
 - [ ] Automate setting a Label and Release upon successfull merge into main.
+
+While rewriting the readme, it became apparent there are more bugs in the code than I had anticipated. A few new Issues were added to the queue with these bugs, but I'm certain there are even more. The next time I pick up this project I need to build it and run it locally, fix any major issues, and produce a NET6 MVP. This will provide a 'golden path' for demonstration purposes and for grabbing screenshots of the Terminal app in use for the portfolio site. From there, additional fixes and enhancements can be planned and later implemented as necessary.
+
+I bumped into a Microsoft Learn event that occurred in April: [VS Code Day 2023](https://learn.microsoft.com/en-us/events/vs-code-day-2023/). Silly name, however the content is focused on productivity using VSCode. There are definitely things I could learn about VSCode to help me out, so this is in the queue, too.
 
 ## Wednesday 3-May-2023
 
