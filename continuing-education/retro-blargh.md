@@ -2,6 +2,25 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 5-May-2023
+
+There is a growing list of things that I want to do, and should do. These lists are forever getting larger despite the many things I do actually complete. The good news is part of the problem is there are a lot of things I want to learn about and explore. I need to remember that so long as I keep moving forward and achieve professional and personal goals, how big these lists are is less important than what I am doing overall.
+
+Moved the LingoBingoJS FE & BE dev environment over to my Windows workstation. Took a little over an hour to get both FE and API Server up and running, connecting to a database, and authenticating via Auth0. This exercise (and helping Ryan get setup last weekend) informs me that I have a bit to learn about maintaining effective documentation during the development process.
+
+Some key takeaways:
+
+- Early in this project I thought it would be okay to share tenant info so that both DEV and TEST environments in Auth0 and MongoDB would use the same data. This goes against everything I'd learned as a software test engineer so I'm not sure why. This exercise, and the experience last weekend with Ryan reinforced the importance of having separate tenants for those services for Dev, Test, and Production.
+- Using Auth0 can be confusing and seem complex. Open up the SPA configuration and review it first.
+- Walk through the front-end enviornment variables first with Auth0 SPA configuration open, and make edits to get the React App functional on localhost. If there is a problem with authentication at this point, authorization with an API won't matter (in fact will be confusing). Once this is working, move on.
+- Save configuring environment variables for the API/back-end until after authentication is working on the front end (unless API/back does the authentication for you).
+- MongoDB connection string Atlas give you will look like `mongodb+srv://<username>:<password>@cluster0.0gxux.mongodb.net/?retryWrites=true&w=majority`. Be sure to edit this to point to a specific namespace such as `LocalDevDocuments` e.g. `mongodb+srv://<username>:<password>@cluster0.0gxux.mongodb.net/LocalDevDocuments?retryWrites=true&w=majority` to control where documents are stored and accessed. Configure this in the back-end `.env` file before launching Node/Express.
+- Maintain `.env.example` by taking an existing, working `.env` file, copying it to `.env.example` and then redacting actual values with explanations of what the value should be, and be specific.
+
+There are still plenty of issues to work through, but at least now I have a workable environment and can help move this last major portion of the environment forward.
+
+Why did I wait so long to install MongoDB Compass? _What was I waiting for_? Compass is more capable than the Atlas website!
+
 ## Thursday 4-May-2023
 
 Received some resume feedback. Will be using that to update my resume to be a little closer to stellar.
