@@ -10,6 +10,8 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
+- [ ] Learn how to use SendGrid API.
+- [ ] Learn about TOML files, when to use them, etc.
 - [ ] Within a larger Java Project are several Packages. Learn how to build, test, and execute specific packages within the larger project.
 - [ ] Learn how to properly log to WebApp hosts like Netlify (from a React SPA) or Azure App Service (from a Node-js service).
 - [ ] Learn about WebSockets, start with [Socket.IO](https://github.com/socketio/socket.io).
