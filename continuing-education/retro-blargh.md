@@ -21,6 +21,27 @@ There are still plenty of issues to work through, but at least now I have a work
 
 Why did I wait so long to install MongoDB Compass? _What was I waiting for_? Compass is more capable than the Atlas website!
 
+I started using [VSCode.dev](https://vscode.dev/) to write code in a web browser. While it is missing some functionality like Run-and-Debug and some Extensions support, it is practically the same as working in VSCode the application. Open the website, connect to a GitHub repo, create a new branch, write code, then use the Source Control widget to manage staging and commits. Simple, quick, and integrated. Good job MSFT and GitHub!
+
+Watching Code Fellow students demo their 301 and 401 projects I learned a few things, and want to explore a few other things:
+
+- Leverage the ChatGPT API. The demo was a text-based adventure game using ChatGPT to develop room descriptions. Great idea!
+- Utilize SendGrid API for sending emails. This could be applied to LingoBingoJS.
+- TOML files can be used similar to a `_redirects` file to manage Netlify route handling.
+- Use a javascript object _to set CSS Style properties within a React webapp_. This is probably _fantastic_ for exploring stylings during development, without having to juggle multiple CSS files or many classes.
+
+```javascript
+// within the body of the React module:
+const cardImage = {
+  width: '90%',
+};
+
+// and then within the render function:
+<Card.Img style={cardIimage} src='' />;
+
+// etc
+```
+
 ## Thursday 4-May-2023
 
 Received some resume feedback. Will be using that to update my resume to be a little closer to stellar.
