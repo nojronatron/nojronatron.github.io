@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 6-May-2023
+
+After some analysis of LingoBingo front-end and back-end environment variables and local vs. cloud configurations, the causes of the AuthN and AuthZ failures are now identified and my goal for the next few days is to get an MVP of the full-stack solution up and running in Netlify + Azure. Not much else to report other than lots of updating environment variables, editing code, squashing bugs, and deploying to Netlify and Azure again and again. Getting close, not there yet though.
+
 ## Friday 5-May-2023
 
 There is a growing list of things that I want to do, and should do. These lists are forever getting larger despite the many things I do actually complete. The good news is part of the problem is there are a lot of things I want to learn about and explore. I need to remember that so long as I keep moving forward and achieve professional and personal goals, how big these lists are is less important than what I am doing overall.
