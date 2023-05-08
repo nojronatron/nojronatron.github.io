@@ -2,6 +2,21 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 7-May-2023
+
+Worked on LingoBingo quite a bit, getting the code ready for cloud-hosted deployments. This is much more tricky than I anticipated:
+
+- It is easy to overload a useEffect child function to do more work than might be necessary. This can easily lead to multiple requests being sent to the back-end API when only a single is necessary.
+- When Axios get a non-200 level response code, it calls `.catch()` so there is no need to test for status codes. :smiley:
+- React documentation mentioned use of a conditional to stop useEffect from running fully twice while in test mode, so I implemented that and it works (of course).
+- Sometimes conditionals (in a useEffect) really _don't_ need to update items in `useState`. For example, it might not be a good idea to update `useState` with nulls and empty strings in an `else` statement, otherwise that forces a refresh that really isn't necessary.
+- I am good at writing too much code to do simple things. It is totally great that I thought through using cache and cookies and all of that stuff, but I should have concentrated on authentication on the front end much earlier, as well as authorization and use of middleware on the backend much earlier in the design process. What happened was some of the functionality I assumed was necessary really wan't, and in fact did not provide the necessary capability. This made debugging more difficult because it became a refactoring _and_ debugging festival.
+- Netlify has a 'branch deploy' feature that is super-handy for testing new webapp features and functionality while allowing the main deployed webapp to run untouched. It really paid off to have a separate GitHub branch for branch-deploy to use!
+
+It is pretty clear that one of my lacking skills is creative design in the UI. It's not that I don't _want_ to be good at it. It could be argued that I am not that skilled at back-end development either, but the result isn't visual and so is not prone to immediate recognition of 'ugly' or 'not quite right'. Something for me to work on, and consider as I push forward in my developer journey.
+
+Developing the back-end to be Azure AppService deploy and functional with Authorization and MongoDB CRUD took me about 4 months in all. Code was developed here and there as I learned new things and came up with new ideas. There were definitely times where no work was put into it. However IT IS NOW LIVE AT AN MVP LEVEL! Users can login (auto-register), create words and categories, and create gameboards that the React FE will consume and 'fetch' the correct set of words. :tada: There is more work to do though and the next step is to document what is done, demonstrate how it can be used, and debug it so it is stable and reliable. A little farther down the road additional features like Delete Word, Delete Gameboard, and Update (replace) Word will be implemented. :tada: :boom: :smiley:
+
 ## Saturday 6-May-2023
 
 After some analysis of LingoBingo front-end and back-end environment variables and local vs. cloud configurations, the causes of the AuthN and AuthZ failures are now identified and my goal for the next few days is to get an MVP of the full-stack solution up and running in Netlify + Azure. Not much else to report other than lots of updating environment variables, editing code, squashing bugs, and deploying to Netlify and Azure again and again. Getting close, not there yet though.
