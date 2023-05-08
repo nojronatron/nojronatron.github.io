@@ -2,6 +2,119 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 6-May-2023
+
+After some analysis of LingoBingo front-end and back-end environment variables and local vs. cloud configurations, the causes of the AuthN and AuthZ failures are now identified and my goal for the next few days is to get an MVP of the full-stack solution up and running in Netlify + Azure. Not much else to report other than lots of updating environment variables, editing code, squashing bugs, and deploying to Netlify and Azure again and again. Getting close, not there yet though.
+
+## Friday 5-May-2023
+
+There is a growing list of things that I want to do, and should do. These lists are forever getting larger despite the many things I do actually complete. The good news is part of the problem is there are a lot of things I want to learn about and explore. I need to remember that so long as I keep moving forward and achieve professional and personal goals, how big these lists are is less important than what I am doing overall.
+
+Moved the LingoBingoJS FE & BE dev environment over to my Windows workstation. Took a little over an hour to get both FE and API Server up and running, connecting to a database, and authenticating via Auth0. This exercise (and helping Ryan get setup last weekend) informs me that I have a bit to learn about maintaining effective documentation during the development process.
+
+Some key takeaways:
+
+- Early in this project I thought it would be okay to share tenant info so that both DEV and TEST environments in Auth0 and MongoDB would use the same data. This goes against everything I'd learned as a software test engineer so I'm not sure why. This exercise, and the experience last weekend with Ryan reinforced the importance of having separate tenants for those services for Dev, Test, and Production.
+- Using Auth0 can be confusing and seem complex. Open up the SPA configuration and review it first.
+- Walk through the front-end enviornment variables first with Auth0 SPA configuration open, and make edits to get the React App functional on localhost. If there is a problem with authentication at this point, authorization with an API won't matter (in fact will be confusing). Once this is working, move on.
+- Save configuring environment variables for the API/back-end until after authentication is working on the front end (unless API/back does the authentication for you).
+- MongoDB connection string Atlas give you will look like `mongodb+srv://<username>:<password>@cluster0.0gxux.mongodb.net/?retryWrites=true&w=majority`. Be sure to edit this to point to a specific namespace such as `LocalDevDocuments` e.g. `mongodb+srv://<username>:<password>@cluster0.0gxux.mongodb.net/LocalDevDocuments?retryWrites=true&w=majority` to control where documents are stored and accessed. Configure this in the back-end `.env` file before launching Node/Express.
+- Maintain `.env.example` by taking an existing, working `.env` file, copying it to `.env.example` and then redacting actual values with explanations of what the value should be, and be specific.
+
+There are still plenty of issues to work through, but at least now I have a workable environment and can help move this last major portion of the environment forward.
+
+Why did I wait so long to install MongoDB Compass? _What was I waiting for_? Compass is more capable than the Atlas website!
+
+I started using [VSCode.dev](https://vscode.dev/) to write code in a web browser. While it is missing some functionality like Run-and-Debug and some Extensions support, it is practically the same as working in VSCode the application. Open the website, connect to a GitHub repo, create a new branch, write code, then use the Source Control widget to manage staging and commits. Simple, quick, and integrated. Good job MSFT and GitHub!
+
+Watching Code Fellow students demo their 301 and 401 projects I learned a few things, and want to explore a few other things:
+
+- Leverage the ChatGPT API. The demo was a text-based adventure game using ChatGPT to develop room descriptions. Great idea!
+- Utilize SendGrid API for sending emails. This could be applied to LingoBingoJS.
+- TOML files can be used similar to a `_redirects` file to manage Netlify route handling.
+- Use a javascript object _to set CSS Style properties within a React webapp_. This is probably _fantastic_ for exploring stylings during development, without having to juggle multiple CSS files or many classes.
+
+```javascript
+// within the body of the React module:
+const cardImage = {
+  width: '90%',
+};
+
+// and then within the render function:
+<Card.Img style={cardIimage} src='' />;
+
+// etc
+```
+
+## Thursday 4-May-2023
+
+Received some resume feedback. Will be using that to update my resume to be a little closer to stellar.
+
+Worked on a few administrative tasks. Started building a presentation deck to review the commex completed last weekend. More to do, but it will be done in pieces.
+
+Looking at my Portfolio webapp, it can use some help. I have run across at least one job posting that is asking for examples online, and this is a good way to aggregate the links to what I've accomplished. The Portfolio webapp is clearly missing a few projects, and some creative design elements. For projects, not a single Python project is listed, and the one DotNET project is pretty basic and does not highlight my experience with DotNET and automated testing. This prompted me to get a new project listed: Coordinate Converter. This was last updated 2 years ago using DotNET 5 (which is now out of support) so an upgrade was necessary. Also, the last time this project was edited I was using Visual Studio Community Edition. All of my development efforts have moved over to VS Code so there are some other updates that are needed.
+
+Upgrading NET5 to NET6 Key Takeaways:
+
+- Fairly simple for smaller projects with few (or none) dependencies.
+- Update the csproj file so that `<TargetFramework></TargetFramework>` targets `dotnet6` instead of `dotnet5`.
+- Some dependencies will require updating. In my case I moved away from NUnit to MSTest.
+- Update `<ItemGroup>` elements in TEST CSPROJ files to include Micorosft NET Test SDK, MSTest Framework, and coverlet.collector (see below).
+- Update `using` statements: For MSTest this is `using Microsoft.VisualStudio.TestTools.UnitTesting`.
+- Update test file Attributes to use MSTest terminology (in place of NUnit): `[TestClass]` instead of `[TestFixture()]`, and `[TestMethod]` instead of `[Test()]`.
+
+```xml
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
+    <PackageReference Include="coverlet.collector" Version="3.1.2" />
+  </ItemGroup>
+```
+
+In the future I want to:
+
+- [ ] Change 'master' to 'main'.
+- [ ] Set a YAML file to trigger a GH Action to build and test the project before PR is allowed.
+- [ ] Automate setting a Label and Release upon successfull merge into main.
+
+While rewriting the readme, it became apparent there are more bugs in the code than I had anticipated. A few new Issues were added to the queue with these bugs, but I'm certain there are even more. The next time I pick up this project I need to build it and run it locally, fix any major issues, and produce a NET6 MVP. This will provide a 'golden path' for demonstration purposes and for grabbing screenshots of the Terminal app in use for the portfolio site. From there, additional fixes and enhancements can be planned and later implemented as necessary.
+
+I bumped into a Microsoft Learn event that occurred in April: [VS Code Day 2023](https://learn.microsoft.com/en-us/events/vs-code-day-2023/). Silly name, however the content is focused on productivity using VSCode. There are definitely things I could learn about VSCode to help me out, so this is in the queue, too.
+
+## Wednesday 3-May-2023
+
+Interesting email regarding a job opportunity not far from home. After some research, I submitted a resume. The research was helpful, but the company is private, so information is (relatively) limited, and I don't subscribe to information-gathering services to draw from. I am interested to learn more about the opportunity because the description was a bit lacking, however I look forward to asking about the role and its responsibilities if the opportunity arises.
+
+I've moved back over to my Windows development machine (nothing is wrong with the Linux environment). I discovered my NPM installation is a little behind, so it took me a bit to get it up to speed.
+
+Upgrading NPM on Windows Key Takeaway:
+
+- NPM versions prior to 8 might require a custom script to upgrade NPM.
+- NPM 8.x and above _do not require a separate script_.
+- Remember PowerShell ExecutionPolicy? It's a little difference in PowerShell 7 on Windows 11.
+- Use `npm install -g npm` for versions GT 6 but _note this will upgrade to v.9.x_!
+
+I recall reading about GitAttributes having some overriding effect on local git configurations. [Bigfoot Bib Report](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form) is a Windows-targeted project that I partially developed in a Linux environment, later to discover an issue with LF vs CRLF handling. Previously this was handled by setting up a CircleCI pipeline to re-write the text file with CRLF symbols in place of LF. That worked. Going forward, I wanted to see if GitAttributes would solve this problem going forward without using a pipeline. [GitHub Docs](https://docs.github.com/en/get-started/getting-started-with-git/configuring-git-to-handle-line-endings) has a nice little write-up.
+
+Git Attributes and LF vs CRLF Key Takeaways:
+
+- By default the top of GitAttributes has `* text=auto` which is usually an okay setting.
+- Comment that out and add `text eol=crlf` which will force Git to maintain CRLF symbols instead of strip them down to LF symbols.
+- The file(s) need to be updated _after_ GitIgnore is checked-in, in order for changes to take hold.
+
+Initial testing indicates this will work. I look forward to feedback from the other contributors and users once they get this latest version (probably late July and early August).
+
+## Tuesday 2-May-2023
+
+Second iteration working through Quicksort was close but did not complete passing all of the tests. After some additional research I realize my mind was stuck on thinking of partitioning the array as an equal, symmetric operation. It doesn't have to be that way. For this challenge it might be better for me to think about solving the sorting problem by filling the ends of the array first. In other words instead of just picking the first index with a value that needs to be in a different position, find the index with the value that is most likely to be put at one end of the array. This requires sweeping the array several times, however after the first few sweeps the largest elements should be near the ends, and any elements still of the 'wrong side' of the array can then be managed within a sub-array (partition) without worrying that the out-of-order item will get 'cut off' from the rest of the array (and therefore never find the index where it belongs).
+
+## Monday 1-May-2023
+
+Worked through another iteration of Quicksort. Some corner-cases still failing (actually, corner-cases are good now its the golden path that won't pass). Seems like a large enough value at the end of the input array won't get moved far enough to the left. Will debug again on another day.
+
+At some point I need to start figuring out how to use anonymous method and lambdas in Java. I have no problem using lambdas in Java when I see documentation showing usage, but it has yet to materialize without assistance.
+
 ## Sunday 30-Apr-2023
 
 Continued working on Quicksort algorithm in between other projects. So far this second attempt seems close, although it feels like cases where inputs have duplicate values might fail completely. Once I finish off the core logic, refactoring code to the new implementation plan will begin, in tandem with regular unit test executions to guide the refactoring process.
@@ -12,7 +125,7 @@ Assisted Ryan getting his local environment working for LingoBingo. The tricky p
 2. My code was not well documented so there was a bit of stepping-through that was necessary to find where it needed to be updated.
 3. It had been just long enough since working in the code that a bit of re-discovery was necessary to get myself up-to-speed enought to be able to help at all.
 
-Over all it was _great_ to work through the issues in a remote pair programming session and Ryan is up and running.
+Over all it was _great_ to work through the issues in a remote pair programming session that results in a working environment!
 
 ## Friday 28-Apr-2023
 
