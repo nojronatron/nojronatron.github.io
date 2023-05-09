@@ -2,6 +2,31 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 9-May-2023
+
+JavaScript. So useful and at times so elusive. I completed a basic JS challenge within 45 minutes following the full CF rubrick, and the only hang-up was with validating JS built-in types. Key takeaways:
+
+- In JS, the Number built-in Object represents floating-point numbers and it has a constructor that _could_ be used but MDN recommends it should rarely be used.
+- When working with number-like inputs, watch out for potential divide-by-zero, min-val, and max-val situations.
+- Number properties include: `.NaN` which is unique to JS (arguably Python), and `.MAX_VALUE` and `.MIN_VALUE`, which are similar to Integer properties in Java.
+- Testing for an object type in JS can be done using 'typeof' within a conditional statement: `if (inputVar typeof === 'string'){...}`.
+- Confusingly, JS returns a string name for built-in objects like Number as 'number', not 'Number'. Gets me just about every time.
+- In a strongly-typed language (Java, C#, etc) ways to test are to use getClass(): `if (inputVar.getClass() == Integer.class){...}`.
+- Another example from Java: `if (inputVar instanceOf ParentClass){...}`. This is particularly useful when working with polymorphism.
+- Boolean checks can usually be consolidated into single-line statements, and perhaps as part of a return statement (see below).
+
+```javascript
+// multiline boolean return (simple example)
+const bool1 = input1 % 2 === 0;
+const bool2 = input2 % 2 === 0;
+return bool1 !== boo2;
+```
+
+```javascript
+// single line boolean return from above example
+return input1 % 2 !== input2 % 2;
+```
+
 ## Monday 8-May-2023
 
 Worked on some presentation materials for a volunteer meeting on Wednesday night. It's always a time sink _but_ it forces me to organize my thoughts, and generate plans for the future of the organization, and for myself.
