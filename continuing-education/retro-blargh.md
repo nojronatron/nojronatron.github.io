@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 8-May-2023
+
+Worked on some presentation materials for a volunteer meeting on Wednesday night. It's always a time sink _but_ it forces me to organize my thoughts, and generate plans for the future of the organization, and for myself.
+
+Worked through some reading and research on Java Streams API and functional interfaces.
+
+Researched a potential employer (they don't appear to be hiring). Web-design consultancy in Seattle. Very small team, supports websites of at least one local event in my area. Turns out they use Wordpress site development, so my interest has waned somewhat. They have a good sales pitch describing who they are, what they do, and why. It was inspiring.
+
 ## Sunday 7-May-2023
 
 Worked on LingoBingo quite a bit, getting the code ready for cloud-hosted deployments. This is much more tricky than I anticipated:
