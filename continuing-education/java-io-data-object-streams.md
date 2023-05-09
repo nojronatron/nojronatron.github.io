@@ -1195,10 +1195,34 @@ Always apply `close()` to terminal operations to avoid memory leaks.
 
 Unconsumed Streams will create memory leaks.
 
+## Stream FindAny and FindFirst
+
+See [Baeldung Streams FindAny and FindFirst](https://www.baeldung.com/java-stream-findfirst-vs-findany)
+
+### Stream FindAny
+
+Find any element within a Stream.
+
+- Order is ignored.
+- Returns an `Optional` instance which is empty if the Stream is empty.
+- Can be parallelized.
+- Not guaranteed to return the 1st element that matches.
+- Parallelized operations may return results that are indeterminate. Use `anyOf(is(a), is(b), ...)` to allow for empty returns mixed with truthy returns.
+
+### Stream FindFirst
+
+Find the first element in a Stream.
+
+- Does not have a defined 'encounter order'.
+- Relies on the source Stream and Intermediate Operations to determine encounter order.
+- Return type is `Optional` which is empty if the Stream is empty.
+- Can be parallelized.
+- Behavior when parallelized _does not change_ from synchronous.
+
 ## Key Takeaways
 
 - Streams can be instantiated and have references to them using intermediate operations.
-- A terminal operation will render a Stream inaccessible, so it should be the last operation in a chain on a Stream.
+- A terminal operation will render a Stream inaccessible and should be the _last_ operation in a chain on a Stream.
 - Streams cannot be re-used. Run-Time Exception `IllegalStateOperation` will result when accessing a Stream that has already had a terminal operation run against it.
 - Streams are for _applying a finite sequence of operations to a source of elements_.
 - Streams are _not_ for storing data.
