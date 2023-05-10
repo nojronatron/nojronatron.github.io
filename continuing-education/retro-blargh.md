@@ -27,6 +27,20 @@ return bool1 !== boo2;
 return input1 % 2 !== input2 % 2;
 ```
 
+Took a few side-trips:
+
+- Reviewed Microsoft Reactor series Introduction to ML for Beginners. Good stuff. Make me want to write some Python code.
+- Found 2 more job opportunities that were interesting, although location was an issue for one, and the other was a very marketing-centric Web Dev position, which might not be a great fit for me.
+
+Back to preparing Coordinate Conversion Utility for MPV demonstrating:
+
+- `dotnet test` and `dotnet test {path-to-unittest-csproj} --configuration release` both execute and pass.
+- VSCode 'Testing' plugin does not find tests.
+- If necessary, use `dotnet new console --framework net6.0 --use-program-main` and take a peek at `.\vscode\launch.json` configurations[] and `.\vscode\tasks.json` tasks[].
+- VSCode Extension vscode-solution-explorer (Fernando Escolar) was helpful in finding and verifying dependencies and packages. In the Unittest Project Packages node, ensure MSTest.TestFramework, MSTest.TestAdapter, and Microsoft.NET.Test.Sdk are all up-to-date. This will update unittest assets and package references to support testing in VSCode.
+- Test Runner (the flask) seemed to lock up and sometimes throw "cannot read properties of undefined (reading 'id')" when searching for tests. Updating the Nunit Test Runner Project Patterns to include the unittests.dll file didn't help. Turns out _uninstalling the Nunit Test Runner_ (by Forms) and installing '.NET Core Test Explorer' (Jun Han) fixed the problem. Unit Tests can now be executed by the Test Runner. This gives me confidence I will be able to set up GH Actions to automate testing so I can start patching the code for release to DotNET 6. Note: Net Core Test Explorer is a bit old so it could become a problem in the near future.
+- The Coordinate Converter Utility project is old enough that it had the old default branch name. It is not difficult to rename the default branch. The trouble might come when contributors don't update their locals, so I added a file to remind them (me actually) to fix-up my local Git environment before working on it.
+
 ## Monday 8-May-2023
 
 Worked on some presentation materials for a volunteer meeting on Wednesday night. It's always a time sink _but_ it forces me to organize my thoughts, and generate plans for the future of the organization, and for myself.
