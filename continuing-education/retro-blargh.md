@@ -2,6 +2,20 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 10-May-2023
+
+Added a GH Repo for a small project I started working on back in November. Updated the old default branch to 'main' (surprisingly easy). Added GH Actions to build and test, and enforce PR and Status checks prior to merging to main.
+
+Got a little off-track setting up my local for more work with CoordinateConversionUtility and changed-up the Posh-Git prompt:
+
+- `$GitPromptSettings`: Display all settings.
+- `$GitPromptSettings.DefaultPromptAbbreviatedHomeDirectory = $true`: Yay a tilde!
+
+PowerShell has its own prompt settings:
+
+- `$(Get-Command Prompt)` [Powershell 7.3.x Documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_prompts?view=powershell-7.3)
+- For example, to reduce the prompt down to the last folder name in your path set up a Prompt function and add `"$($(Get-PromptPath).Split('\')[-1])"`. Mmm, nested commands.
+
 ## Tuesday 9-May-2023
 
 JavaScript. So useful and at times so elusive. I completed a basic JS challenge within 45 minutes following the full CF rubrick, and the only hang-up was with validating JS built-in types. Key takeaways:
