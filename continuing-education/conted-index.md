@@ -10,6 +10,7 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
+- [ ] Get a better grasp on [Machine Learning](./about-machine-learning.html) to increase awareness and familiarity.
 - [ ] Learn how to use SendGrid API.
 - [ ] Learn about TOML files, when to use them, etc.
 - [ ] Within a larger Java Project are several Packages. Learn how to build, test, and execute specific packages within the larger project.
@@ -46,7 +47,7 @@ Azure [learnings](#azure-learnings).
 
 - [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)) - my notes [start here](./java-io-data-object-streams.html).
 - [ ] [Promises](https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript) in JavaScript (currently active).
-- [ ] Introductions to [ChatGPT](./chat-gpt-llms.html) and regenerative learning models.
+- [x] Introductions to [ChatGPT](./chat-gpt-llms.html) and regenerative learning models.
 - [x] An [Agile Mindset](./agile-mindset-projects-action.html) leads to agile actions and success.
 - [x] [GitHub Copilot notes](./github-copilot.html)
 - [x] [Generics](./generics-java-strongtypelangs.html): Review [Oracle.com](https://docs.oracle.com/javase/tutorial/java/generics/index.html) then check out [JavaPoint](https://www.javatpoint.com/generics-in-java)

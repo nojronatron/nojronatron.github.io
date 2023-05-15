@@ -2,6 +2,83 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 10-May-2023
+
+Added a GH Repo for a small project I started working on back in November. Updated the old default branch to 'main' (surprisingly easy). Added GH Actions to build and test, and enforce PR and Status checks prior to merging to main.
+
+Got a little off-track setting up my local for more work with CoordinateConversionUtility and changed-up the Posh-Git prompt:
+
+- `$GitPromptSettings`: Display all settings.
+- `$GitPromptSettings.DefaultPromptAbbreviatedHomeDirectory = $true`: Yay a tilde!
+- Store the settings you want to keep for future PowerShell instances by adding the command(s) to profile.ps1, after the line that imports posh-git.
+
+PowerShell has its own prompt settings:
+
+- `$(Get-Command Prompt)` [Powershell 7.3.x Documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_prompts?view=powershell-7.3)
+- For example, to reduce the prompt down to the last folder name in your path set up a Prompt function and add `"$($(Get-PromptPath).Split('\')[-1])"`. Mmm, nested commands.
+
+## Tuesday 9-May-2023
+
+JavaScript. So useful and at times so elusive. I completed a basic JS challenge within 45 minutes following the full CF rubrick, and the only hang-up was with validating JS built-in types. Key takeaways:
+
+- In JS, the Number built-in Object represents floating-point numbers and it has a constructor that _could_ be used but MDN recommends it should rarely be used.
+- When working with number-like inputs, watch out for potential divide-by-zero, min-val, and max-val situations.
+- Number properties include: `.NaN` which is unique to JS (arguably Python), and `.MAX_VALUE` and `.MIN_VALUE`, which are similar to Integer properties in Java.
+- Testing for an object type in JS can be done using 'typeof' within a conditional statement: `if (inputVar typeof === 'string'){...}`.
+- Confusingly, JS returns a string name for built-in objects like Number as 'number', not 'Number'. Gets me just about every time.
+- In a strongly-typed language (Java, C#, etc) ways to test are to use getClass(): `if (inputVar.getClass() == Integer.class){...}`.
+- Another example from Java: `if (inputVar instanceOf ParentClass){...}`. This is particularly useful when working with polymorphism.
+- Boolean checks can usually be consolidated into single-line statements, and perhaps as part of a return statement (see below).
+
+```javascript
+// multiline boolean return (simple example)
+const bool1 = input1 % 2 === 0;
+const bool2 = input2 % 2 === 0;
+return bool1 !== boo2;
+```
+
+```javascript
+// single line boolean return from above example
+return input1 % 2 !== input2 % 2;
+```
+
+Took a few side-trips:
+
+- Reviewed Microsoft Reactor series Introduction to ML for Beginners. Good stuff. Make me want to write some Python code.
+- Found 2 more job opportunities that were interesting, although location was an issue for one, and the other was a very marketing-centric Web Dev position, which might not be a great fit for me.
+
+Back to preparing Coordinate Conversion Utility for MPV demonstrating:
+
+- `dotnet test` and `dotnet test {path-to-unittest-csproj} --configuration release` both execute and pass.
+- VSCode 'Testing' plugin does not find tests.
+- If necessary, use `dotnet new console --framework net6.0 --use-program-main` and take a peek at `.\vscode\launch.json` configurations[] and `.\vscode\tasks.json` tasks[].
+- VSCode Extension vscode-solution-explorer (Fernando Escolar) was helpful in finding and verifying dependencies and packages. In the Unittest Project Packages node, ensure MSTest.TestFramework, MSTest.TestAdapter, and Microsoft.NET.Test.Sdk are all up-to-date. This will update unittest assets and package references to support testing in VSCode.
+- Test Runner (the flask) seemed to lock up and sometimes throw "cannot read properties of undefined (reading 'id')" when searching for tests. Updating the Nunit Test Runner Project Patterns to include the unittests.dll file didn't help. Turns out _uninstalling the Nunit Test Runner_ (by Forms) and installing '.NET Core Test Explorer' (Jun Han) fixed the problem. Unit Tests can now be executed by the Test Runner. This gives me confidence I will be able to set up GH Actions to automate testing so I can start patching the code for release to DotNET 6. Note: Net Core Test Explorer is a bit old so it could become a problem in the near future.
+- The Coordinate Converter Utility project is old enough that it had the old default branch name. It is not difficult to rename the default branch. The trouble might come when contributors don't update their locals, so I added a file to remind them (me actually) to fix-up my local Git environment before working on it.
+
+## Monday 8-May-2023
+
+Worked on some presentation materials for a volunteer meeting on Wednesday night. It's always a time sink _but_ it forces me to organize my thoughts, and generate plans for the future of the organization, and for myself.
+
+Worked through some reading and research on Java Streams API and functional interfaces.
+
+Researched a potential employer (they don't appear to be hiring). Web-design consultancy in Seattle. Very small team, supports websites of at least one local event in my area. Turns out they use Wordpress site development, so my interest has waned somewhat. They have a good sales pitch describing who they are, what they do, and why. It was inspiring.
+
+## Sunday 7-May-2023
+
+Worked on LingoBingo quite a bit, getting the code ready for cloud-hosted deployments. This is much more tricky than I anticipated:
+
+- It is easy to overload a useEffect child function to do more work than might be necessary. This can easily lead to multiple requests being sent to the back-end API when only a single is necessary.
+- When Axios get a non-200 level response code, it calls `.catch()` so there is no need to test for status codes. :smiley:
+- React documentation mentioned use of a conditional to stop useEffect from running fully twice while in test mode, so I implemented that and it works (of course).
+- Sometimes conditionals (in a useEffect) really _don't_ need to update items in `useState`. For example, it might not be a good idea to update `useState` with nulls and empty strings in an `else` statement, otherwise that forces a refresh that really isn't necessary.
+- I am good at writing too much code to do simple things. It is totally great that I thought through using cache and cookies and all of that stuff, but I should have concentrated on authentication on the front end much earlier, as well as authorization and use of middleware on the backend much earlier in the design process. What happened was some of the functionality I assumed was necessary really wan't, and in fact did not provide the necessary capability. This made debugging more difficult because it became a refactoring _and_ debugging festival.
+- Netlify has a 'branch deploy' feature that is super-handy for testing new webapp features and functionality while allowing the main deployed webapp to run untouched. It really paid off to have a separate GitHub branch for branch-deploy to use!
+
+It is pretty clear that one of my lacking skills is creative design in the UI. It's not that I don't _want_ to be good at it. It could be argued that I am not that skilled at back-end development either, but the result isn't visual and so is not prone to immediate recognition of 'ugly' or 'not quite right'. Something for me to work on, and consider as I push forward in my developer journey.
+
+Developing the back-end to be Azure AppService deploy and functional with Authorization and MongoDB CRUD took me about 4 months in all. Code was developed here and there as I learned new things and came up with new ideas. There were definitely times where no work was put into it. However IT IS NOW LIVE AT AN MVP LEVEL! Users can login (auto-register), create words and categories, and create gameboards that the React FE will consume and 'fetch' the correct set of words. :tada: There is more work to do though and the next step is to document what is done, demonstrate how it can be used, and debug it so it is stable and reliable. A little farther down the road additional features like Delete Word, Delete Gameboard, and Update (replace) Word will be implemented. :tada: :boom: :smiley:
+
 ## Saturday 6-May-2023
 
 After some analysis of LingoBingo front-end and back-end environment variables and local vs. cloud configurations, the causes of the AuthN and AuthZ failures are now identified and my goal for the next few days is to get an MVP of the full-stack solution up and running in Netlify + Azure. Not much else to report other than lots of updating environment variables, editing code, squashing bugs, and deploying to Netlify and Azure again and again. Getting close, not there yet though.

@@ -1195,10 +1195,148 @@ Always apply `close()` to terminal operations to avoid memory leaks.
 
 Unconsumed Streams will create memory leaks.
 
+## Stream FindAny and FindFirst
+
+See [Baeldung Streams FindAny and FindFirst](https://www.baeldung.com/java-stream-findfirst-vs-findany)
+
+### Stream FindAny
+
+Find any element within a Stream.
+
+- Order is ignored.
+- Returns an `Optional` instance which is empty if the Stream is empty.
+- Can be parallelized.
+- Not guaranteed to return the 1st element that matches.
+- Parallelized operations may return results that are indeterminate. Use `anyOf(is(a), is(b), ...)` to allow for empty returns mixed with truthy returns.
+
+### Stream FindFirst
+
+Find the first element in a Stream.
+
+- Does not have a defined 'encounter order'.
+- Relies on the source Stream and Intermediate Operations to determine encounter order.
+- Return type is `Optional` which is empty if the Stream is empty.
+- Can be parallelized.
+- Behavior when parallelized _does not change_ from synchronous.
+
+## Streams Functional Interfaces in Java 8
+
+See [Baeldung Java8 Streams Functional Interfaces](https://www.baeldung.com/java-8-functional-interfaces)
+
+[Baeldung Lambda Expressions and Functional Interfaces Tips and Best Practices](https://www.baeldung.com/java-8-lambda-expressions-tips).
+
+### Lambda Expressions
+
+- aka 'Lambdas'
+- New in Java 8.
+- An anonymous function.
+- Can be passed to a method as an argument.
+- Can be returned by a method as a functional object.
+- Useful to represent primitive functions or data types, without all the formalities of creating a concrete class.
+
+### Functional Interfaces
+
+- Requires `@` annotation.
+- Any Interface with a Single Abstract Method (SAM) is a Functional Interface.
+- Implementation can be treated as if it were a Lambda Expression.
+
+_Note_: Default Methods do not count as Abstract.
+
+### Functions
+
+Simple description: Interface with single method takes single value and returns single value `public interface Function<T, R> { ... }`.
+
+Example of Standard Library Function Type: `Map.computeIfAbsent()`
+
+- Returns value from a Map by Key only if present, otherwise returns calculated value.
+- Represented in the java code, below:
+
+```java
+myHashMap.computeIfAbsent(string, (item) -> item.length);
+// looks for key String and if not found inserts String into map with value item.length
+```
+
+Converting to a functional interface:
+
+```java
+myHashMap.computeIfAbsent(string, String::length);
+// the pair of colons means think of this as a lambda function
+```
+
+Function Interface has default `compose()` method.
+
+- Combines several functions into one.
+- Executes functions sequentially.
+
+How to:
+
+1. Define a Function that uses Functional Interface `::`.
+2. Define a Function that is a lambda that uses the addition operator to concatenate quoted strings and primitives that have default `toString()` method.
+3. Define a Function that is the result of calling Function2 with the compose function, passing in Function1: `Function2.compose(Function1)`.
+
+Very abstract. Here's _[The example from Baeldung.com]_ with comments added by me:
+
+```java
+// function uses Functional Interface and stores an Integer, returns a String
+Function<Integer, String> intToString = Object::toString;
+// function uses lambda and stores String input, returns a String output
+Function<String, String> quote = s -> "'" + s + "'";
+// function calls intToString, passing in quote and executes its built-in compose() method
+Function<Integer, String> quoteIntToString = quote.compose(intToString);
+// use assertion to verify output is as expected
+assertEquals("'5'", quoteIntToString.apply(5));
+```
+
+### Primitive Function Specializations
+
+Primitives cannot be generic type arguments.
+
+Function Interface has ability to use `double`, `int`, `long`, and combinations thereof.
+
+- IntFunction, LongFunction, DoubleFunction: Arguments are int, long, or double. Return type is parameterized.
+- ToIntFunction, ToLongFunction, ToDoubleFunction: Return type specific. Arguments are parameterized.
+- DoubleToIntFunction, DoubleToLongFunction (etc): Both argument and return type are as defined by their names. Available for all combinations of transformation.
+
+Returning another Primitive Type from a Primitive Function can be achieved using a Functional Interface decorator/attribute, and implementing a custom function.
+
+Example from _[Baeldung.com]_ with my comments added:
+
+```java
+@FunctionalInterface
+public interface ShortToByteFunction {
+  // a single method in the functional interface takes a single value and returns a single value
+  byte applyAsByte(short s);
+}
+
+// allow passing in a Lambda Expression using ShortToByteFunction interface
+public byte[] transformArray(short[] array, ShortToByteFunction function) {
+  byte[] transformedArray = new byte[array.length];
+  // step through each element in input array and apply the custom function interface method
+  for (int i = 0; i < array.length; i++) {
+    transformedArray[i] = function.applyAsByte(array[i]);
+  }
+  return transformedArray;
+}
+```
+
+```java
+// transform an array of shorts to an array of bytes multiplied by 2
+short[] array = {(short) 1, (short) 2, (short) 3};
+byte[] transformedArray = transformedArray(array, s -> (byte) (s * 2));
+byte[] expectedArray = {(byte) 2, (byte) 4, (byte) 6};
+assertArrayEquals(expectedArray, transformedArray);
+```
+
+This is an excellent example of why an Interface is important in object oriented programming. If any function was passed in but did not have the `.applyAsByte(short s)` method, the code would not compile.
+
+### Two-Arity Function Specializations
+
+[Two-Arity Function Specializations at Baeldung.com](https://www.baeldung.com/java-8-functional-interfaces#Specializations)
+
 ## Key Takeaways
 
 - Streams can be instantiated and have references to them using intermediate operations.
-- A terminal operation will render a Stream inaccessible, so it should be the last operation in a chain on a Stream.
+- A terminal operation will render a Stream inaccessible and should be the _last_ operation in a chain on a Stream.
 - Streams cannot be re-used. Run-Time Exception `IllegalStateOperation` will result when accessing a Stream that has already had a terminal operation run against it.
 - Streams are for _applying a finite sequence of operations to a source of elements_.
 - Streams are _not_ for storing data.
