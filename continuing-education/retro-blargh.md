@@ -10,6 +10,7 @@ Got a little off-track setting up my local for more work with CoordinateConversi
 
 - `$GitPromptSettings`: Display all settings.
 - `$GitPromptSettings.DefaultPromptAbbreviatedHomeDirectory = $true`: Yay a tilde!
+- Store the settings you want to keep for future PowerShell instances by adding the command(s) to profile.ps1, after the line that imports posh-git.
 
 PowerShell has its own prompt settings:
 
