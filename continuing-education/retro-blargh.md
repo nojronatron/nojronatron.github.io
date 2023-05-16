@@ -9,6 +9,17 @@ Posh-Git:
 - Quote types matter when configuring `$GitPromptSettings` properties. Open a quoted output with single quote `'`, use double-quotes for inner quotations `"`.
 - The Profile settings for powershell are stored in several places, but the one that impacts Post-Git for the current user is in '$env:homepath\Documents\PowerShell\profile.ps1'
 
+Portfolio:
+
+- Writing an effective and concise About statement takes some crafting.
+- Need to go back to my CF notes and follow that advice to avoid complexity or extended length.
+
+Code Challenge:
+
+- Started attempt #3 at solving Quicksort.
+- Whiteboarding was not too difficult, and I was able to come up with a solution that the step-through indicates will work.
+- If I can't get it this time, I'll have to look it up and study the solution closely to understand what is going on.
+
 ## Wednesday 10-May-2023
 
 Added a GH Repo for a small project I started working on back in November. Updated the old default branch to 'main' (surprisingly easy). Added GH Actions to build and test, and enforce PR and Status checks prior to merging to main.
