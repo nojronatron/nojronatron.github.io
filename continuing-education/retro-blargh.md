@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 16-May-2023
+
+It's concerning to start the day opening an existing (last-known good/functioning) java project in VSCode and it logs errors on imports stating source cannot be found. Opening the Gradle Extension and clicking "Reload All Gradle Projects" solves the problem. :tada:
+
 ## Monday 15-May-2023
 
 Posh-Git:
@@ -1783,7 +1787,7 @@ For now, the authentication requirements are removed from my exploratory API ser
 Some REST and CRUD takeaways from today's experiences:
 
 - Forms support POST, GET, PUT/PATCH, and DELETE.
-- Forms do so while submitting _a query formatted data steam_, meaning it is in the URL e.g. 'http://foo.net/thing?item=bar'.
+- Forms do so while submitting _a query formatted data steam_, meaning it is in the URL for example [http://foo.net/thing?item=bar].
 - To submit a JSON (or XML) Body from a form, the action must be _POST_, which could be unsafe for idempotent resource requests.
 - Idempotent: On every execution/trigger, the function will return the same result.
 - To work around the form-submission problem, a means to get an identifier is necessary so that the REST Verbs can be used consistent with RESTful design.
@@ -1950,8 +1954,8 @@ Express CRUD with Mongo Atlas takeaways (so far):
 Continuing using express with postgresql from LogRocket blog. I was stuck on querying a single user by ID:
 
 - Must use REST verb 'GET' if that's how the binding is set.
-- A defined path of '/users/:id' for a GET means the URL is 'http://localhost:8080/path/path/user/n' where n is the ID to get.
-- Query Parameters in URLs are different and looke like 'http://localhost:8080/path?name=n&state=s' where n is a string and s is a string.
+- A defined path of '/users/:id' for a GET means the URL is [http://localhost:8080/path/path/user/n] where n is the ID to get.
+- Query Parameters in URLs are different and looke like [http://localhost:8080/path?name=n&state=s] where n is a string and s is a string.
 
 Some other takeaways from the ExpressJS + PostgreSQL exercise:
 
@@ -2539,7 +2543,7 @@ Using '.find()' makes the code a litte bit longer horizontally, but from a reada
 
 Reviewed some of Ryan's code for the LingoBingo project. He's working on a play again button, so I reviewed the code, pulled in his changes and ran them, and sent him some feedback. That functionality will definitely be needed but it's not fully baked yet.
 
-On Friday I experienced some anxiety figuring out why some of my Jest Tests were failing, and others would appear to hang. There are key takeaways for Friday that cover most of the items but there was one remaining question: Do Jest Tests run in parallel? Behavior of `npm test` output and the errors I was seeing suggested that was the case, and today I verified it with some internet searching. According to www.oreilly.com and [a github facebook Jest issue 5818](https://github.com/facebook/jest/issues/5818). A read through provided some detail on how Jest operates.
+On Friday I experienced some anxiety figuring out why some of my Jest Tests were failing, and others would appear to hang. There are key takeaways for Friday that cover most of the items but there was one remaining question: Do Jest Tests run in parallel? Behavior of `npm test` output and the errors I was seeing suggested that was the case, and today I verified it with some internet searching. According to [www.oreilly.com](https://www.oreilly.com) and [GitHub Facebook Jest issue 5818](https://github.com/facebook/jest/issues/5818). A read through provided some detail on how Jest operates.
 
 Key takeaway on Jest parallelism:
 
