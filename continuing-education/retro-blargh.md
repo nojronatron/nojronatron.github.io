@@ -2,9 +2,15 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 17-May-2023
+
+Decided to create a [DSA note taking page](./dsa-notes.html) to track experiences and references so I can refer to those separately from the java-code-challenges or other repositories.
+
 ## Tuesday 16-May-2023
 
 It's concerning to start the day opening an existing (last-known good/functioning) java project in VSCode and it logs errors on imports stating source cannot be found. Opening the Gradle Extension and clicking "Reload All Gradle Projects" solves the problem. :tada:
+
+Working through Quicksort one last time. I was still confused about how exactly the algorithm does what it does, and would get stuck with certain test cases failing due to duplicates in the array, or ending up not-sorted or endlessly sorting. For those cases that ended up not-sorted/endless, stepping through the code in debug mode showed that the algorithm _would_ sort the array, but the stop conditions were not correct to _keep it sorted_ and the algorithm would then un-sort the array, putting it into a state that further recursive calls would never be able to sort because there would be out-of-scope values that are out of order.
 
 ## Monday 15-May-2023
 
