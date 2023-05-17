@@ -10,6 +10,7 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
+- [ ] Continue learning about Data Structures and Algorithms. See [DSA Notes](./dsa-notes.html) for documentation and review.
 - [ ] Get a better grasp on [Machine Learning](./about-machine-learning.html) to increase awareness and familiarity.
 - [ ] Learn how to use SendGrid API.
 - [ ] Learn about TOML files, when to use them, etc.
