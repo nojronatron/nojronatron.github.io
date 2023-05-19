@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 18-May-2023
+
+VS Code's twitter account linked to a VSCode YouTube Channel event featuring Dan Shiffman (@shiffman) discussing [p5js usage in VSCode](./coding-with-p5.html). It was inspiring and lots of fun.
+
 ## Wednesday 17-May-2023
 
 Decided to create a [DSA note taking page](./dsa-notes.html) to track experiences and references so I can refer to those separately from the java-code-challenges or other repositories.
