@@ -2,6 +2,38 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 18-May-2023
+
+VS Code's twitter account linked to a VSCode YouTube Channel event featuring Dan Shiffman (@shiffman) discussing [p5js usage in VSCode](./coding-with-p5.html). It was inspiring and lots of fun.
+
+## Wednesday 17-May-2023
+
+Decided to create a [DSA note taking page](./dsa-notes.html) to track experiences and references so I can refer to those separately from the java-code-challenges or other repositories.
+
+## Tuesday 16-May-2023
+
+It's concerning to start the day opening an existing (last-known good/functioning) java project in VSCode and it logs errors on imports stating source cannot be found. Opening the Gradle Extension and clicking "Reload All Gradle Projects" solves the problem. :tada:
+
+Working through Quicksort one last time. I was still confused about how exactly the algorithm does what it does, and would get stuck with certain test cases failing due to duplicates in the array, or ending up not-sorted or endlessly sorting. For those cases that ended up not-sorted/endless, stepping through the code in debug mode showed that the algorithm _would_ sort the array, but the stop conditions were not correct to _keep it sorted_ and the algorithm would then un-sort the array, putting it into a state that further recursive calls would never be able to sort because there would be out-of-scope values that are out of order.
+
+## Monday 15-May-2023
+
+Posh-Git:
+
+- Quote types matter when configuring `$GitPromptSettings` properties. Open a quoted output with single quote `'`, use double-quotes for inner quotations `"`.
+- The Profile settings for powershell are stored in several places, but the one that impacts Post-Git for the current user is in '$env:homepath\Documents\PowerShell\profile.ps1'
+
+Portfolio:
+
+- Writing an effective and concise About statement takes some crafting.
+- Need to go back to my CF notes and follow that advice to avoid complexity or extended length.
+
+Code Challenge:
+
+- Started attempt #3 at solving Quicksort.
+- Whiteboarding was not too difficult, and I was able to come up with a solution that the step-through indicates will work.
+- If I can't get it this time, I'll have to look it up and study the solution closely to understand what is going on.
+
 ## Wednesday 10-May-2023
 
 Added a GH Repo for a small project I started working on back in November. Updated the old default branch to 'main' (surprisingly easy). Added GH Actions to build and test, and enforce PR and Status checks prior to merging to main.
@@ -15,7 +47,7 @@ Got a little off-track setting up my local for more work with CoordinateConversi
 PowerShell has its own prompt settings:
 
 - `$(Get-Command Prompt)` [Powershell 7.3.x Documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_prompts?view=powershell-7.3)
-- For example, to reduce the prompt down to the last folder name in your path set up a Prompt function and add `"$($(Get-PromptPath).Split('\')[-1])"`. Mmm, nested commands.
+- For example, to reduce the prompt down to the last folder name in your path set up a Prompt function and add `'$($(Get-PromptPath).Split("\")[-1])'`. Mmm, nested commands.
 
 ## Tuesday 9-May-2023
 
@@ -1765,7 +1797,7 @@ For now, the authentication requirements are removed from my exploratory API ser
 Some REST and CRUD takeaways from today's experiences:
 
 - Forms support POST, GET, PUT/PATCH, and DELETE.
-- Forms do so while submitting _a query formatted data steam_, meaning it is in the URL e.g. 'http://foo.net/thing?item=bar'.
+- Forms do so while submitting _a query formatted data steam_, meaning it is in the URL for example [http://foo.net/thing?item=bar].
 - To submit a JSON (or XML) Body from a form, the action must be _POST_, which could be unsafe for idempotent resource requests.
 - Idempotent: On every execution/trigger, the function will return the same result.
 - To work around the form-submission problem, a means to get an identifier is necessary so that the REST Verbs can be used consistent with RESTful design.
@@ -1932,8 +1964,8 @@ Express CRUD with Mongo Atlas takeaways (so far):
 Continuing using express with postgresql from LogRocket blog. I was stuck on querying a single user by ID:
 
 - Must use REST verb 'GET' if that's how the binding is set.
-- A defined path of '/users/:id' for a GET means the URL is 'http://localhost:8080/path/path/user/n' where n is the ID to get.
-- Query Parameters in URLs are different and looke like 'http://localhost:8080/path?name=n&state=s' where n is a string and s is a string.
+- A defined path of '/users/:id' for a GET means the URL is [http://localhost:8080/path/path/user/n] where n is the ID to get.
+- Query Parameters in URLs are different and looke like [http://localhost:8080/path?name=n&state=s] where n is a string and s is a string.
 
 Some other takeaways from the ExpressJS + PostgreSQL exercise:
 
@@ -2521,7 +2553,7 @@ Using '.find()' makes the code a litte bit longer horizontally, but from a reada
 
 Reviewed some of Ryan's code for the LingoBingo project. He's working on a play again button, so I reviewed the code, pulled in his changes and ran them, and sent him some feedback. That functionality will definitely be needed but it's not fully baked yet.
 
-On Friday I experienced some anxiety figuring out why some of my Jest Tests were failing, and others would appear to hang. There are key takeaways for Friday that cover most of the items but there was one remaining question: Do Jest Tests run in parallel? Behavior of `npm test` output and the errors I was seeing suggested that was the case, and today I verified it with some internet searching. According to www.oreilly.com and [a github facebook Jest issue 5818](https://github.com/facebook/jest/issues/5818). A read through provided some detail on how Jest operates.
+On Friday I experienced some anxiety figuring out why some of my Jest Tests were failing, and others would appear to hang. There are key takeaways for Friday that cover most of the items but there was one remaining question: Do Jest Tests run in parallel? Behavior of `npm test` output and the errors I was seeing suggested that was the case, and today I verified it with some internet searching. According to [www.oreilly.com](https://www.oreilly.com) and [GitHub Facebook Jest issue 5818](https://github.com/facebook/jest/issues/5818). A read through provided some detail on how Jest operates.
 
 Key takeaway on Jest parallelism:
 
