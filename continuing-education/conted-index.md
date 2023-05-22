@@ -18,7 +18,6 @@ Azure [learnings](#azure-learnings).
 - [ ] Learn how to properly log to WebApp hosts like Netlify (from a React SPA) or Azure App Service (from a Node-js service).
 - [ ] Learn about WebSockets, start with [Socket.IO](https://github.com/socketio/socket.io).
 - [ ] Look into [Apache Kafka](https://kafka.apache.org/), especially how Java is used with/for it. Some companies are using Kafka in/with their deliverables.
-- [ ] Review Java Scanner at [Oracle Java Docs - Scanner](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) and [Baeldung - Java Scanner](https://www.baeldung.com/java-scanner).
 - [ ] Vercel [Next.js](https://nextjs.org/learn/basics/create-nextjs-app). Just get a feel for it.
 - [ ] Microtasks in JavaScript: [MDN queueMicrotask()](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide).
 - [ ] [AlpineJS](https://alpinejs.dev/).
@@ -46,6 +45,7 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
+- [x] Review Java Scanner at [Oracle Java Docs - Scanner](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) and [Baeldung - Java Scanner](https://www.baeldung.com/java-scanner).
 - [x] [Promises](./promises-promises.html) in JavaScript.
 - [x] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)) - my notes [start here](./java-io-data-object-streams.html).
 - [x] Introductions to [ChatGPT](./chat-gpt-llms.html) and regenerative learning models.

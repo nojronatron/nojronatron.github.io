@@ -2,6 +2,29 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 22-May-2023
+
+Long volunteer weekend in Portland was fun, supporting the Multiple Sclerosis Society's Walk MS event. Great people, great cause.
+
+Java Scanner class review key takeaways:
+
+- A detailed, thorough discussion of Scanner can be found at [Oracle Java Docs - Scanner](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
+- Scanner parses primitive types and strings using regular expressions.
+- Supply Scanner with an 'input stream' type such as `FileInputStream`.
+- If using FileInputStream, remember to add checked `IOException`.
+- Always close scanner when done using it e.g. `scanner.close()`.
+- Scanner's `.close()` method _closes the source too_, which will affect other instances of Scanner.
+- Reading 'tokenized' data is performed with `scanner.next()`.
+- Scanner has a regex method `.useDelimiter(string regex)` that works as expected. The default delimiter is an empty String. Multiple delimiters can be used in _regex_ as a single string token.
+- If a match is not found, throw (or catch) `NoSuchElementException`.
+- Scanner method `nextLine()` reads the entire line into a processable token.
+- To avoid missing input data from an ignored LF/CRLS, use `nextLine()` an additional time, or use `scanner.skip("\r\n")` to force Scanner to move past New Line character(s).
+- Generally speaking, use `BufferedReader` to process lines from a file, instead of `scanner.nextLine()`.
+- Capture input from the console: `new Scanner(System.in)`: Accepts a `ByteArrayInputStream` (as an `InputStream`).
+- Review my notes on [Java Streams](./java-io-data-object-streams.html) and [Baeldung.com](https://www.baeldung.com/java-scanner) for details.
+- Use `.next()`, `.nextInt()`, and `.nextDouble()` to identify tokens as those types natively.
+- To search for a pattern use `.findInLine(string regex)` and the matched token will be returned. To search a wider scope use `.findWithinHorizon(string regex, int count)` to define the domain/boundary of the search.
+
 ## Thursday 18-May-2023
 
 VS Code's twitter account linked to a VSCode YouTube Channel event featuring Dan Shiffman (@shiffman) discussing [p5js usage in VSCode](./coding-with-p5.html). It was inspiring and lots of fun.
