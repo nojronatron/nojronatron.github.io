@@ -75,7 +75,7 @@ betterPromise.then((response) => {
 });
 ```
 
-When calling an API that will take take to return, use a function that will return a promise.
+When calling an API that will take time to return, use a function that will return a promise.
 
 Handling the result is fairly simple:
 
@@ -116,7 +116,7 @@ addWordsToDB(listOfWords)
   .catch((err) => console.log('an error occurred:', err.message))
 ```
 
-> Look mo, no pyramids!
+> Look mom, no pyramids!
 
 Input arguments are callbacks, which can be written as arrow functions `(value)=>{return}`.
 
