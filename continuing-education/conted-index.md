@@ -46,8 +46,8 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
-- [ ] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)) - my notes [start here](./java-io-data-object-streams.html).
-- [ ] [Promises](https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript) in JavaScript (currently active).
+- [x] [Promises](./promises-promises.html) in JavaScript.
+- [x] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)) - my notes [start here](./java-io-data-object-streams.html).
 - [x] Introductions to [ChatGPT](./chat-gpt-llms.html) and regenerative learning models.
 - [x] An [Agile Mindset](./agile-mindset-projects-action.html) leads to agile actions and success.
 - [x] [GitHub Copilot notes](./github-copilot.html)
