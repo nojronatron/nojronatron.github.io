@@ -2,6 +2,8 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 23-May-2023
+
 ## Monday 22-May-2023
 
 Long volunteer weekend in Portland was fun, supporting the Multiple Sclerosis Society's Walk MS event. Great people, great cause.
@@ -37,6 +39,8 @@ Using the List Interface Factory Method in a Constructor:
 ```java
 List<String> testLL = new LinkedList<>(List.of("alpha", "bravo", "charlie"));
 ```
+
+As I experimented with Java based on inspiration from the above readings, I felt like I needed to review [java collections and generics best practices](codejava.net/java-core/collections/18-java-collections-and-generics-best-practices). This led me back to some Java code examples I wrote while configuring VSCode for Java several weeks ago. Collections in Java include various types of Lists and Maps, and the supporting interfaces help drive functionality implementation and inherited capabilities. Turns out writing a custom LinkedList (or other collection type) class can be assisted by extending `AbstractSequentialList` and other interfaces from the Java Collections library. I spent a few hours refactoring existing code into a Collections-extended, custom LinkedList class.
 
 ## Thursday 18-May-2023
 
