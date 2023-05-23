@@ -10,6 +10,7 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
+- [ ] Learn how to build a ChatGPT Plugin (MSFT Build 2023).
 - [ ] Attend MSFT Build 2023 and [take notes](./msbuild-20230-notes.html).
 - [ ] Continue learning about Data Structures and Algorithms. See [DSA Notes](./dsa-notes.html) for documentation and review.
 - [ ] Get a better grasp on [Machine Learning](./about-machine-learning.html) to increase awareness and familiarity.
