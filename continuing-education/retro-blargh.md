@@ -22,8 +22,21 @@ Java Scanner class review key takeaways:
 - Generally speaking, use `BufferedReader` to process lines from a file, instead of `scanner.nextLine()`.
 - Capture input from the console: `new Scanner(System.in)`: Accepts a `ByteArrayInputStream` (as an `InputStream`).
 - Review my notes on [Java Streams](./java-io-data-object-streams.html) and [Baeldung.com](https://www.baeldung.com/java-scanner) for details.
-- Use `.next()`, `.nextInt()`, and `.nextDouble()` to identify tokens as those types natively.
+- Use `.next()`, `.nextInt()`, and `.nextDouble()` to identify tokens as those types natively. These are basically conversion methods with specific output types: string, int, and double, respectively.
 - To search for a pattern use `.findInLine(string regex)` and the matched token will be returned. To search a wider scope use `.findWithinHorizon(string regex, int count)` to define the domain/boundary of the search.
+
+Rummaging through Java Collections library I discovered a few handy things:
+
+- Types that implement the List Interface can leverage the List Factory method `List.of()` in the constructor.
+- Certain Collection member types differentiate between returning Null, False, or throwing an Exception. This is because some implementations do not allow storing Null elements within the list type. For example, it is probably better to throw a `NullPointerException` or `false` when an element doesn't exist, versus returning `null` in the same situation.
+- Use Abstract Types over Concrete Types to make methods flexible. Return type should be `Collection` for any collection types, and if the method accepts a parameter that could be an `ArrayList<E>` or `LinkedList<E>`, then set the parameter as a `List<E>` Interface type.
+- Similar to the previous point, avoid returning `null` when a method returns a Collection Type (or Interface), instead return an empty collection.
+
+Using the List Interface Factory Method in a Constructor:
+
+```java
+List<String> testLL = new LinkedList<>(List.of("alpha", "bravo", "charlie"));
+```
 
 ## Thursday 18-May-2023
 
