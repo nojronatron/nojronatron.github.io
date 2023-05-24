@@ -19,6 +19,18 @@ Today is day 2 of Microsoft Build 2023. Key takeaways:
 - Windows 11 OOBE (out of box experience) has been updated to include a 'Developer' setting to tweak performance settings and install DevHome and the new Winget, to shrink time between New Box to Productive Developer.
 - Also check out [aka.ms/LearnAtBuild](https://aka.ms/LearnAtBuild)
 
+I started using GitHub Copilot today. Often enough I waste a good amount of time flailing around trying to produce just the right syntax, or looking up details on the internet to get to a sensible, effective implementation. I should instead be making better use of my coding time by minimizing time-to-learn and finishing managable tasks within a reasonable timeframe.
+
+1. There is a 30-day free trial, so why not?
+2. GitHub Copilot is like pair-programming (which I enjoy) although probably not as cool as working with a real human.
+3. I am not creating anything new. There is no IP in my code or apps. Everything I write more-or-less ends up on my publicly available GitHub anyway. And for those situations where my code needs to be private or ownership is involved, GH Copilot can be told to not use that code as part of its learning/context building feature.
+4. My goals are to learn and build my skillset, and to start producing applications and services that achieve things.
+
+Seems like the best place to start is to resolve some existing issues in one of my exploratory code repos on my local laptop:
+
+- I had an issue in a Java ListIterator method that could not return what seemed like an appropriate `ListIterator<E>` instance. I removed the instance initializer and wrote a comments describing what was needed, just above the lines where the results were needed. Suggested code lines resolved the problem in devtime.
+- I set a comment within a simple function to change the value stored within a LinkedList Node. GH Copilot returned exactly the correct code to implement the change.
+
 ## Tuesday 23-May-2023
 
 Today is day 1 of Microsoft Build 2023. Key takeaways:
