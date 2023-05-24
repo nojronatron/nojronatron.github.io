@@ -2,6 +2,23 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 24-May-2023
+
+Today is day 2 of Microsoft Build 2023. Key takeaways:
+
+- DevHome is a Windows Store app that will help get a physical computer ready for developer productivity rapidly with common tools and custmizable, configurability.
+- DSC: Desired State Configuration is not integrated into WinGet!
+- Windows Terminal has been built-out to overlap Windows, PowerShell, and several flavors of Linux, and now includes customizations (backgrounds, colors, look-and-feel).
+- MSFT Teams is becoming its own Ecosystem with commercial and custom apps, integration points, and Copilot plugins.
+- Creating a plugin for Copilot is a 5-step process that enables the Copilot feature integration with a custom API endpoint.
+- Microsoft 365 plugins can enable in-app as well as external-app capabilities.
+- Microsoft Mesh is the new 'Metaverse', missing legs and all, that integrates with M365.
+- Windows Copilot will be ready to Preview in June 2023.
+- GitHub Copilot X for Windows Terminal can help orchestrate tasks and operations: Waitlisted, preview later this year.
+- Getting started using AI is (surprisingly) easy when starting with Windows AI Libraries. More advanced integration points exist usingn ONINX Runtime and Olive Toolchain.
+- Windows 11 OOBE (out of box experience) has been updated to include a 'Developer' setting to tweak performance settings and install DevHome and the new Winget, to shrink time between New Box to Productive Developer.
+- Also check out [aka.ms/LearnAtBuild](https://aka.ms/LearnAtBuild)
+
 ## Tuesday 23-May-2023
 
 Today is day 1 of Microsoft Build 2023. Key takeaways:
