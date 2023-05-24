@@ -207,9 +207,74 @@ Azure Deployment Environments, with Shayne Boyer Principal Progrma Manager, MSFT
 
 Now Generally Available.
 
+## Selef Serve App Infrastructure Using Azure Deployment Environments
+
+Presenters
+
+- Sagar Chandra Reddy Lankala, Sr Product Manager MSFT
+- Jared Rewerts, Software Engineer MSFT
+
+SDL Transformations
+
+- DevOps transformed software development lifecycle.
+- DevOps requires Developers to concentrate on infrastructure.
+- Administrators (experts in infrastructure) help supply, deploy infra.
+- Challenges with mundane work and managing costs and auditing usage.
+
+Cloud Based Infra Imperatives
+
+- Speed: Performance must meet demands, requirements of the project(s) that depend on it.
+- Governance: Maintain centralized control.
+- Usability: Infra must be configurable, manageable, else it might as well not be there.
+
+Azure Deployment Environments
+
+- Developer-centric Self-Serve, standardized Templates.
+- More than 30 Enterprise customer provided feedback to this since last year.
+- ADE is now GA.
+- Currently native with GitHub.
+- Can be extended to use other repository types.
+
+Maximize Developer Productivity
+
+- Self service access to On-demand templates.
+- Environments within project-specific template catalogs.
+- Deploy direct from code repo, CLI, or Dev Portal.
+- Sandbox, On-demand, and CI/CD Pipeline Environments, all driven by Dev Poetal & Dev Tools, or Pipelines for Enterprise.
+
+Demo: New Developer Ramp-up Time
+
+- Review the project infrastructure/overview to understand the complexity, moving parts, etc at a high level.
+- Newbie wants a breakable environment, using the target environments, without negatively impacting customers, other developers, etc.
+- Utilize Developer Portal to display DevBox template environments and create new ones.
+- Select an Environment Definition. Think of these as 'infrastructure as code' that stands-up necessary bits to support the environment.
+- Additional Template parameters might be necessary (or not).
+- Once deployed, developer is ready to get started developing, testing, etc.
+
+Demo: Dev Environment For Development
+
+- Sign-in to DevBox.
+- Open VSCode (web view) to view the code.
+- Make changes and push changes to GitHub.
+- Actions are fired upon Push that create the deployment environment along with logs.
+- Creating a PR spins-up _another environment_ for PR Review, specifically.
+- Various environments build-up in branches and Dev Environment deployments, which will be depeted upon other tasks.
+- With PR Approvals and Merge-in, Dev Environments related to the workflow stages are deleted, freeing resources, and limiting costs.
+
+Demo: Platform Engineers Create Dev Centers
+
+- Maintain and control access to Dev Environments for the organization.
+- Catalogs: Source infrastructure templates. Simply uses a Clone URL.
+- Environment Types: Roughly equivalent to a developer team. Attached to deployment subscription(s), deployment identities (who is deploying the environment), and access levels e.g. Active Directory groups.
+- Tags: Name-Value pairs to help identify deployments. Bubble _down_ to the _environment_ level, for search and reporting.
+
+Coming soon: Azure Developer CLI (AZD) + Azure Deployment Environments.
+
 ## Resources
 
 Code for Kevin's PodCast Copilot [github.com/microsoft/PodcastCopilot](github.com/microsoft/PodcastCopilot).
+
+Coding Java using Azure tools [aka.ms/java-azure](aka.ms/java-azure).
 
 ## Footer
 
