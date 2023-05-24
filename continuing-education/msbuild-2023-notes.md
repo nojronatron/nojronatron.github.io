@@ -532,6 +532,101 @@ General Notes:
 - Terminal Tab Tearoff enables removing a Tab from host Window into a new Window.
 - Terminal supports Windows 10 too!
 - Winget Configure, DevHome, DevDrives: Enabled (and soon) in the cloud.
+- DevHome: Develop a YAML file, check it in to your GitHub repository, and DevHome can use that as a guide to ensure prerequisite software is installed.
+- DevHome: DSC/YAML will also allow DevHome to manage _software that you do not want_ e.g. Ensure the correct version of Node is installed.
+- DevHome: Supports GitHub, Azure DevOps, PowerPlatform, and more.
+
+## Open Q&A About Java at Microsoft
+
+Java Binaries, Licensing, and the open-source JDK:
+
+- Usually the OSS JDK fits the need.
+- For specific scenarios, looking at costs for licensing will be an exercise for the team or organization.
+
+Copilot and Java:
+
+- Works well with Java code.
+- Occasionally comes up with proposing methods and tests.
+- Worst case scenario it is coming up with something that can be edited to 'be what you were looking for'.
+- IntelliJ has a Copilot plugin for IDEA.
+
+Azure Functions vs Services:
+
+- Consider how often a function is being called/spun-up.
+- Azure Functions are ephemeral, short-duration tools.
+- Azure Functions supports newer Java versions, possibly as far back as Java 8.
+- Kubernetes containers might be a good option for longer duration or more busy function execution.
+- A full-on Azure Service would be recommended for an on-going, regularly executing function.
+- Azure Functions can be used as a trigger to cause a workload in another environment to execute.
+
+Java Version Usage:
+
+- Current LTS Java versions are 11 and 17.
+- Next LTS Java will be 21.
+- LTS versions are supported for about 6 years ("until at least").
+- Quarterly LTS updates.
+- MSFT assists in development and maintenance of Eclipse Adoptium Binaries.
+- MSFT utilizes Java 17 for all unit and functional testing.
+
+MSFT Spring Framework Support:
+
+- MSFT is partnered with VMWare (prior to acquisition of/by Pivotal).
+- Spring Boot and Spring Could Libraries are well supported at MSFT.
+- Cloud, Security, and other umbrella projects are supported end-to-end.
+- Spring Boot support is in Azure.
+- Spring Framework holds something like 70% of the Java Framework ecosystem.
+
+WSL2 and VSCode and Developing Java Apps:
+
+- Selecting Runtimes and JDKs and default runners.
+- WSL2 requires installing JDK and CLI etc, Gradle, Maven, etc.
+
+Advice for Teams Migrating from DotNET to Java:
+
+- Don't create methods with a capital letter! :smiley:
+- Get acquainted with the Java ecosystem.
+- There are many different implementations, not one is 'perfect'.
+- Pick one that looks good enough (or easy enough) and start working with it.
+- MSFT DotNET has fed knowledge into the Java ecosystem.
+- Dependency management differs from the DotNET world (Gradle and Maven).
+
+Java vs Kotlin vs Scala decision making framework?
+
+- About Scala: Is not 'fully interoperable' with Java, but has declining interest and support.
+- Kotlin 'felt like the future' vs Java being a bit older (long in tooth).
+- Gap between Kotlin and Java is closing.
+- Kotlin and Java compile-down to the same bit code, so mix-and-match is an option.
+- Kotlin is 1st-class in IntelliJ (Kotlin is developed by JetBrains) but not in VSCode.
+
+## Just Say No
+
+Host: Debbie O'Brien
+Co-host: Scott Hanselman
+Moderator: Justin Yoo
+
+General Notes:
+
+- When a new opportunity comes to you, is it difficult to say no?
+- Are you just trying to be a people pleaser?
+- A mix of imposter syndrome and fear of missing out can drive to YES when NO might be better.
+- Burning out can result. Debbie ended up in the Hospital due to stress and overwork.
+- Try this: Put a timer on allowing the emotions to roll and be in the moment to help get through tough times.
+- Do more of what makes you happy. Is what my manager is telling me to do going to make me happy?
+- Applying color labels to work items, calendar items... helps you prepare for scheduled items that are happy/good, and prepare for those that require additional preparation/work.
+- Put one-on-one meetings in my calendar (but don't invite anyone): Plan for the week early on, then on Friday look back and forgive what hasn't been done or for actions taken, but leave that meeting and its contents in the meeting. Plan, and then release.
+- Don't sleepwalk through your career. Wake up by deciding what goals to meet and when, and do things that support making that goal.
+- Setting boundaries: Set a specific "end of day" time and turn-off all applications (unless you have agreed to be 'on call').
+- You have the power to teach your boss how to treat you. For example: If you respond after your boundary 'not working time', you are opening the door to continued access at that time. Another example: It is important to talk to your manager about how you want to be managed, and what will wrk for you.
+- Resentment comes from unmet expectations. Unspoken expectations leads to resentment.
+- Expect a 60 hr week to be followed with a much shorter work week. If that cannot be met then a conversation must take place so that expectations can be reset between manager and employee.
+- Come to the table looking for a win-win agreement.
+- Prepare to set a 'core hours' timespan where you will be 'in the office/totally available'. This doesn't mean only work those hours, rather these are times when most interactivity and productivity is going to happen. Working outside of those hours is up to each individual.
+- How to say 'no' though? If the question is not a 'heck yes!' then it might be a no. Otherwise, discuss the requirements and priorities to come to an agreement as to what could work.
+- It is good practice to write-out a list of 'no' responses _that include the why_, along with appreciation in your response. Also, if the budget doesn't meet the ask, or otherwise does not align with previous agreements and/or your goals, it should be discussed or considered a strong 'no' with appreciation.
+- Strangers asking you to do something might not even require a response, it depends on the situation. It would be considered very kind to respond in any way, however a non-response is usually forgotten and/or excused.
+- Which mountain (of code languages, frameworks, etc) do I want to focus on? Nobody can do them all. "You can always click unsubscribe" to whatever you are doing. _[Scott Hanselman]_
+- Everyday, compare yourself _only to yourself_ and nobody else.
+- Work hard, then _take a break_. So long as you are enjoying yourself, keep it up!
 
 ## Resources
 
@@ -540,6 +635,10 @@ Code for Kevin's PodCast Copilot [github.com/microsoft/PodcastCopilot](github.co
 Coding Java using Azure tools [aka.ms/java-azure](aka.ms/java-azure).
 
 Learn more about MS Build 2023 topics at [aka.ms/LearnAtBuild](https://aka.ms/LearnAtBuild).
+
+Check out [aka.ms/java-azure](https://aka.ms/java-azure).
+
+Check out [Java on Microsoft portal](https://developer.microsoft.com/java).
 
 ## Footer
 
