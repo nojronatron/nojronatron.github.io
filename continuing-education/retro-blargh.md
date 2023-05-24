@@ -4,6 +4,31 @@ Semi-regular notes taken during my software developer journey.
 
 ## Tuesday 23-May-2023
 
+Today is day 1 of Microsoft Build 2023. Key takeaways:
+
+- ChatGPT and GPT-4 are the platform upon which developers can build custom services without having to know all of the details of AI, large Language Models, etc.
+- GitHub Copilot Chat can help with reading YAML files.
+- AI capabilities and performance are only as good as its data inputs.
+- Azure Dev Environments and DevBox enable templated, self-service infrastructure for develop, test, review, and deploy code projects. Integrates with GitHub Actions and Git flow actions like Push and PR/Merge.
+- PowerBI has ChatGTP integrations now, too. This will help with generating reports with tempated style and consistent chart types, without the hassle of Chart Wizards and property setting.
+- Bing integration with ChatGPT, AI Safety, and Copilot integration with Windows, Microsoft 365, Azure, and more.
+- Custom Copilots can be built. They are simply an API, running as a web service (perhaps in Azure), and so are easily extensible.
+- Microsoft provides the _platform_ upon which developers will implement solutions based on AI and Language Learning Models.
+- Microsoft made it very clear that trustworthy computing (and services) are key to enabling open development and utilization of the platform.
+
+In between MSFT Build sessions, I worked on implementing AbstractSequentialList interface to a custom LinkedList class I recently created. Although the implementations aren't working yet, I learned a few things:
+
+- Lists can be randomly accessed, or sequentially accessed. An ArrayList is the former type, and a LinkedList is the latter.
+- In the context of a Singly-LinkedList, sequential access moving forward is relatively easy, moving backward is a bit more of a chore.
+- I was able to create `@Override public Iterator<E> iterator()` method without much trouble. It contains `hasNext()`, `next()`, and `remove()` methods, and meets some interface implementation requirements. The rest of the requirements are hidden in `ListIterator<E>`.
+- Java's Object Class has a default `hashMap()` function that is not guaranteed to produce unique hash codes (but is likely to due to sourcing hashmap from the memory location of the object) and can be relied on in most basic cases of needing a hashing function. Some cases will require overriding hashMap to include private field data that can uniquely identify an instance. This is not very different from C#.
+- I'm starting to wonder if implementing ListIterator at the LinkedList class level is part of the problem. Does it need to be implemented at a wrapper-class level? ...Or at the Node level? TBD.
+
+References for today:
+
+- [Three Cursors in Java Collections (Medium.com)](https://abhimanyu081.medium.com/three-cursors-in-java-collections-c93f75f69b16)
+- [Abstract Sequential List (Docs.Oracle.com)](https://docs.oracle.com/javase/7/docs/api/java/util/AbstractSequentialList.html)
+
 ## Monday 22-May-2023
 
 Long volunteer weekend in Portland was fun, supporting the Multiple Sclerosis Society's Walk MS event. Great people, great cause.
