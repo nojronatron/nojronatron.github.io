@@ -2,6 +2,28 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 25-May-2023
+
+Did some cleanup of my [Bigfoot Bib Report Form repo](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form), editing the README for clarity and to be up-to-date, removing an unused GH Action, updating the Packages to the latest version of HTML and TXT files, and deploying a [preview site to Netlify](https://enchanting-pony-09ae40.netlify.app/bigfoot-bib-report-initial) of what an end user would see when launched within Winlink Express.
+
+Completed the [SQLBolt](https://www.sqlbolt.com) exercises to refresh my memory on using SQL Queries. Aside from all of the synax necessary to become proficient at CRUD, the exercises mentioned the order of operations within SQL Statements. In order they are:
+
+1. FROM and JOIN clauses execute, usually creating a temporary table for the remaining operations to work on.
+2. Where clause is executed, eliminating data that won't be included further into query execution.
+3. Group By clause organizes the current result set based on the expression.
+4. Having clause will execute if there was a Group By clause ahead of it, further reducing the dataset.
+5. Select causes the dataset to retain only those columns identified in its clause, including Aggregate Functions and the Distinct keyword.
+6. ORDER BY executes to further arrange data by columns, ascending or descending.
+7. LIMIT (and OFFSET if included) retain the final output elements of the dataset.
+8. The resulting view is returned.
+
+Worked on a few issues with my [Portfolio Website Project](https://github.com/nojronatron/portfolio). Took a bit to warm-up to Bootstrap and in-line Styling. The major issue was alignment problems on the About page, and the minor issue was the About Me write-up. Both got attention and the webapp is now updated. Some things of note:
+
+- `@iconify` is awesome! I utilized the imported iconify logos for now. In the future I'll want to try using the SVG files instead.
+- Just because a webapp layout is a certain way doesn't mean it is right. Fixing some of the alignment issues in desktop and phone-sized viewports meant rearranging the layout a bit.
+- Sometimes it is good to _remove css and bootstrap_ properties. Sometimes the properties don't do anything anyway, so removing them doesn't do any harm.
+- The 'About' statement was a single-string entry in a JSON file. Because I write so much, the content was difficult to read in a single paragraph. Refactoring the JSON file to use an array of Strings, and then refactoring the code to `map()` over the description props, assigning JSX to the output in the iterations, made the paragraph layout a little easier to read.
+
 ## Wednesday 24-May-2023
 
 Today is day 2 of Microsoft Build 2023. Key takeaways:
