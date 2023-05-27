@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 27-May-2023
+
+Completed implementing an Express server with Jest tests and GitHub Action that builds, tests, and deploys the server to Azure App Service. Next step is to apply what I've learned here to LingoBingo API server so that tests can be implemented and deployment is automatic. :tada:
+
 ## Friday 26-May-2023
 
 Spent the day working on odds and ends.
@@ -9,6 +13,7 @@ Spent the day working on odds and ends.
 - Updated LingoBingo with some style to the Login and Logout buttons, and reset their locations so they look like they belong.
 - Took screen shots of LingoBingo in its current form, operating the Presenters Page, creating a Bingoboard, etc to add to my Portfolio site.
 - Researched [MongoDB topics](../code301-files/mongo-and-mongoose.html) to complete a long-running, 20-ish item training task re: MongoDB topics.
+- Moved Bigfoot Bib Report Form deployment to Netlify, created a link to the Form itself, and emailed the core team with the latest updates. Still a few months away from the actual event, but I expect things to ramp-up a bit in the next 6-8 weeks.
 
 ## Thursday 25-May-2023
 
