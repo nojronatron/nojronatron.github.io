@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 26-May-2023
+
+Spent the day working on odds and ends.
+
+- Updated LingoBingo with some style to the Login and Logout buttons, and reset their locations so they look like they belong.
+- Took screen shots of LingoBingo in its current form, operating the Presenters Page, creating a Bingoboard, etc to add to my Portfolio site.
+- Researched [MongoDB topics](../code301-files/mongo-and-mongoose.html) to complete a long-running, 20-ish item training task re: MongoDB topics.
+
 ## Thursday 25-May-2023
 
 Did some cleanup of my [Bigfoot Bib Report Form repo](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form), editing the README for clarity and to be up-to-date, removing an unused GH Action, updating the Packages to the latest version of HTML and TXT files, and deploying a [preview site to Netlify](https://enchanting-pony-09ae40.netlify.app/bigfoot-bib-report-initial) of what an end user would see when launched within Winlink Express.
