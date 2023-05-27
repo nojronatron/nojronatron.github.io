@@ -47,6 +47,7 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
+- [x] MongoDB and Mongoose [notes](../code301-files/mongo-and-mongoose.html).
 - [x] Review Java Scanner at [Oracle Java Docs - Scanner](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) and [Baeldung - Java Scanner](https://www.baeldung.com/java-scanner).
 - [x] [Promises](./promises-promises.html) in JavaScript.
 - [x] Java Object Streams: What they are and how to use them ([Oracle.com](https://docs.oracle.com/javase/tutorial/essential/io/objectstreams.html)) - my notes [start here](./java-io-data-object-streams.html).
