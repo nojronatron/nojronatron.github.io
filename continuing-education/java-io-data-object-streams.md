@@ -1333,6 +1333,102 @@ This is an excellent example of why an Interface is important in object oriented
 
 [Two-Arity Function Specializations at Baeldung.com](https://www.baeldung.com/java-8-functional-interfaces#Specializations)
 
+Define lambdas with 2 input args using library functions with "Bi" in the name.
+
+- BiFunction: Generics used for input and output.
+- ToDoubleBiFunction: Allows use of Primitives.
+- ToIntBiFunction: Primitives allowed.
+- ToLongBiFunction: Primitives allowed.
+
+When using a Map function (or Map-like for e.g. `HashMap.ReplaceAll()`), a Two-Arity function can allow processing 2 values and returning a single result that the `ReplaceAll()` function proceses to elements in the HashMap.
+
+### Suppliers
+
+A Function Specialization that takes zero arguments.
+
+Commonly used for lazy-generation or values.
+
+Returns a Supplier type that can then be treated as a Stream object, and the 'state' values are treated as _final_.
+
+Available Suppliers:
+
+- BooleanSupplier
+- DoubleSupplier
+- LongSupplier
+- IntSupplier
+
+### Consumers
+
+A 'void' type Function that accepts Generic Inputs.
+
+Useful for generating _side effects_ e.g. Console output.
+
+Built-in Consumer functions:
+
+- DoubleConsumer
+- IntConsumer
+- LongConsumer
+- BiConsumer types: Accepts two arguments.
+
+### Predicates
+
+Function that accepts one (Generic Type) value, and returns a Boolean.
+
+Using a lambda like `.filter(n -> f(x))` within chained Stream functions provides a predicate (true/false) result that following chained functions that would operate when the predicate returns `true`.
+
+Variations that accept primitive arguments:
+
+- IntPredicate
+- DoublePredicate
+- LongPredicate
+
+### Operators
+
+Functions that receive and return the same value type.
+
+Unary Operators `++` and `--` are examples.
+
+- Prefixing a variable with a unary operator causes the function to execute 1st, returning the result of the operation.
+- Postfixing a variable with a unary operator causes the function to return the input value 1st, then execute the operation.
+
+From [W3Schools](https://www.w3schools.in/java/operators/unary), with comments added by me:
+
+```java
+public class unaryop {
+ public static void main(String[] args) {
+  int r = 6;
+  // prints 6, stores 7 into variable r
+  System.out.println("r=: " + r++);
+
+  // print 7
+  System.out.println("r=: " + r);
+
+  int x = 6;
+  // prints 6, stores 5 into variable x
+  System.out.println("x=: " + x--);
+
+  // prints 5
+  System.out.println("x=: " + x);
+
+  int y = 6;
+  // stores 7 into variable y then prints 7
+  System.out.println("y=: " + ++y);
+
+  int p = 6;
+  // stores 5 into variable p then prints 5
+  System.out.println("p=: " + --p);
+ }
+}
+```
+
+### Legacy Functional Interfaces
+
+Generally speaking:
+
+- Develop Lambdas following FunctionInterface as a guide to defining input, output, processing, and applying the correct Lambda to a functional interface.
+- Within 'Concurrency APIs' are Interfaces 'Runnable' and 'Callable' interfaces.
+- In Java8 these interfaces are decorated with `@FunctionalInterface` annotation.
+
 ## Key Takeaways
 
 - Streams can be instantiated and have references to them using intermediate operations.
@@ -1360,6 +1456,8 @@ Optional<String> firstElement = elements.stream().findFirst();
 Baeldung [Java Streams Links and Information](https://www.baeldung.com/java-streams).
 
 Baeldung [Java IO Tutorials](https://www.baeldung.com/java-io) (mostly about file system manipulation).
+
+Baeldung [GitHub Repo of Lambda and FunctionInterface examples](https://github.com/eugenp/tutorials/tree/master/core-java-modules/core-java-lambdas)
 
 ## Footer
 

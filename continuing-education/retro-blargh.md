@@ -2,6 +2,135 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 27-May-2023
+
+Completed implementing an Express server with Jest tests and GitHub Action that builds, tests, and deploys the server to Azure App Service. Next step is to apply what I've learned to LingoBingo API server so that tests can be implemented and deployment will be automatic. :tada:
+
+## Friday 26-May-2023
+
+Spent the day working on odds and ends.
+
+- Updated LingoBingo with some style to the Login and Logout buttons, and reset their locations so they look like they belong.
+- Took screen shots of LingoBingo in its current form, operating the Presenters Page, creating a Bingoboard, etc to add to my Portfolio site.
+- Researched [MongoDB topics](../code301-files/mongo-and-mongoose.html) to complete a long-running, 20-ish item training task re: MongoDB topics.
+- Moved Bigfoot Bib Report Form deployment to Netlify, created a link to the Form itself, and emailed the core team with the latest updates. Still a few months away from the actual event, but I expect things to ramp-up a bit in the next 6-8 weeks.
+
+## Thursday 25-May-2023
+
+Did some cleanup of my [Bigfoot Bib Report Form repo](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form), editing the README for clarity and to be up-to-date, removing an unused GH Action, updating the Packages to the latest version of HTML and TXT files, and deploying a [preview site to Netlify](https://enchanting-pony-09ae40.netlify.app/bigfoot-bib-report-initial) of what an end user would see when launched within Winlink Express.
+
+Completed the [SQLBolt](https://www.sqlbolt.com) exercises to refresh my memory on using SQL Queries. Aside from all of the synax necessary to become proficient at CRUD, the exercises mentioned the order of operations within SQL Statements. In order they are:
+
+1. FROM and JOIN clauses execute, usually creating a temporary table for the remaining operations to work on.
+2. Where clause is executed, eliminating data that won't be included further into query execution.
+3. Group By clause organizes the current result set based on the expression.
+4. Having clause will execute if there was a Group By clause ahead of it, further reducing the dataset.
+5. Select causes the dataset to retain only those columns identified in its clause, including Aggregate Functions and the Distinct keyword.
+6. ORDER BY executes to further arrange data by columns, ascending or descending.
+7. LIMIT (and OFFSET if included) retain the final output elements of the dataset.
+8. The resulting view is returned.
+
+Worked on a few issues with my [Portfolio Website Project](https://github.com/nojronatron/portfolio). Took a bit to warm-up to Bootstrap and in-line Styling. The major issue was alignment problems on the About page, and the minor issue was the About Me write-up. Both got attention and the webapp is now updated. Some things of note:
+
+- `@iconify` is awesome! I utilized the imported iconify logos for now. In the future I'll want to try using the SVG files instead.
+- Just because a webapp layout is a certain way doesn't mean it is right. Fixing some of the alignment issues in desktop and phone-sized viewports meant rearranging the layout a bit.
+- Sometimes it is good to _remove css and bootstrap_ properties. Sometimes the properties don't do anything anyway, so removing them doesn't do any harm.
+- The 'About' statement was a single-string entry in a JSON file. Because I write so much, the content was difficult to read in a single paragraph. Refactoring the JSON file to use an array of Strings, and then refactoring the code to `map()` over the description props, assigning JSX to the output in the iterations, made the paragraph layout a little easier to read.
+
+## Wednesday 24-May-2023
+
+Today is day 2 of Microsoft Build 2023. Key takeaways:
+
+- DevHome is a Windows Store app that will help get a physical computer ready for developer productivity rapidly with common tools and custmizable, configurability.
+- DSC: Desired State Configuration is not integrated into WinGet!
+- Windows Terminal has been built-out to overlap Windows, PowerShell, and several flavors of Linux, and now includes customizations (backgrounds, colors, look-and-feel).
+- MSFT Teams is becoming its own Ecosystem with commercial and custom apps, integration points, and Copilot plugins.
+- Creating a plugin for Copilot is a 5-step process that enables the Copilot feature integration with a custom API endpoint.
+- Microsoft 365 plugins can enable in-app as well as external-app capabilities.
+- Microsoft Mesh is the new 'Metaverse', missing legs and all, that integrates with M365.
+- Windows Copilot will be ready to Preview in June 2023.
+- GitHub Copilot X for Windows Terminal can help orchestrate tasks and operations: Waitlisted, preview later this year.
+- Getting started using AI is (surprisingly) easy when starting with Windows AI Libraries. More advanced integration points exist usingn ONINX Runtime and Olive Toolchain.
+- Windows 11 OOBE (out of box experience) has been updated to include a 'Developer' setting to tweak performance settings and install DevHome and the new Winget, to shrink time between New Box to Productive Developer.
+- Also check out [aka.ms/LearnAtBuild](https://aka.ms/LearnAtBuild)
+
+I started using GitHub Copilot today. Often enough I waste a good amount of time flailing around trying to produce just the right syntax, or looking up details on the internet to get to a sensible, effective implementation. I should instead be making better use of my coding time by minimizing time-to-learn and finishing managable tasks within a reasonable timeframe.
+
+1. There is a 30-day free trial, so why not?
+2. GitHub Copilot is like pair-programming (which I enjoy) although probably not as cool as working with a real human.
+3. I am not creating anything new. There is no IP in my code or apps. Everything I write more-or-less ends up on my publicly available GitHub anyway. And for those situations where my code needs to be private or ownership is involved, GH Copilot can be told to not use that code as part of its learning/context building feature.
+4. My goals are to learn and build my skillset, and to start producing applications and services that achieve things.
+
+Seems like the best place to start is to resolve some existing issues in one of my exploratory code repos on my local laptop:
+
+- I had an issue in a Java ListIterator method that could not return what seemed like an appropriate `ListIterator<E>` instance. I removed the instance initializer and wrote a comments describing what was needed, just above the lines where the results were needed. Suggested code lines resolved the problem in devtime.
+- I set a comment within a simple function to change the value stored within a LinkedList Node. GH Copilot returned exactly the correct code to implement the change.
+
+## Tuesday 23-May-2023
+
+Today is day 1 of Microsoft Build 2023. Key takeaways:
+
+- ChatGPT and GPT-4 are the platform upon which developers can build custom services without having to know all of the details of AI, large Language Models, etc.
+- GitHub Copilot Chat can help with reading YAML files.
+- AI capabilities and performance are only as good as its data inputs.
+- Azure Dev Environments and DevBox enable templated, self-service infrastructure for develop, test, review, and deploy code projects. Integrates with GitHub Actions and Git flow actions like Push and PR/Merge.
+- PowerBI has ChatGTP integrations now, too. This will help with generating reports with tempated style and consistent chart types, without the hassle of Chart Wizards and property setting.
+- Bing integration with ChatGPT, AI Safety, and Copilot integration with Windows, Microsoft 365, Azure, and more.
+- Custom Copilots can be built. They are simply an API, running as a web service (perhaps in Azure), and so are easily extensible.
+- Microsoft provides the _platform_ upon which developers will implement solutions based on AI and Language Learning Models.
+- Microsoft made it very clear that trustworthy computing (and services) are key to enabling open development and utilization of the platform.
+
+In between MSFT Build sessions, I worked on implementing AbstractSequentialList interface to a custom LinkedList class I recently created. Although the implementations aren't working yet, I learned a few things:
+
+- Lists can be randomly accessed, or sequentially accessed. An ArrayList is the former type, and a LinkedList is the latter.
+- In the context of a Singly-LinkedList, sequential access moving forward is relatively easy, moving backward is a bit more of a chore.
+- I was able to create `@Override public Iterator<E> iterator()` method without much trouble. It contains `hasNext()`, `next()`, and `remove()` methods, and meets some interface implementation requirements. The rest of the requirements are hidden in `ListIterator<E>`.
+- Java's Object Class has a default `hashMap()` function that is not guaranteed to produce unique hash codes (but is likely to due to sourcing hashmap from the memory location of the object) and can be relied on in most basic cases of needing a hashing function. Some cases will require overriding hashMap to include private field data that can uniquely identify an instance. This is not very different from C#.
+- I'm starting to wonder if implementing ListIterator at the LinkedList class level is part of the problem. Does it need to be implemented at a wrapper-class level? ...Or at the Node level? TBD.
+
+References for today:
+
+- [Three Cursors in Java Collections (Medium.com)](https://abhimanyu081.medium.com/three-cursors-in-java-collections-c93f75f69b16)
+- [Abstract Sequential List (Docs.Oracle.com)](https://docs.oracle.com/javase/7/docs/api/java/util/AbstractSequentialList.html)
+
+## Monday 22-May-2023
+
+Long volunteer weekend in Portland was fun, supporting the Multiple Sclerosis Society's Walk MS event. Great people, great cause.
+
+Java Scanner class review key takeaways:
+
+- A detailed, thorough discussion of Scanner can be found at [Oracle Java Docs - Scanner](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html)
+- Scanner parses primitive types and strings using regular expressions.
+- Supply Scanner with an 'input stream' type such as `FileInputStream`.
+- If using FileInputStream, remember to add checked `IOException`.
+- Always close scanner when done using it e.g. `scanner.close()`.
+- Scanner's `.close()` method _closes the source too_, which will affect other instances of Scanner.
+- Reading 'tokenized' data is performed with `scanner.next()`.
+- Scanner has a regex method `.useDelimiter(string regex)` that works as expected. The default delimiter is an empty String. Multiple delimiters can be used in _regex_ as a single string token.
+- If a match is not found, throw (or catch) `NoSuchElementException`.
+- Scanner method `nextLine()` reads the entire line into a processable token.
+- To avoid missing input data from an ignored LF/CRLS, use `nextLine()` an additional time, or use `scanner.skip("\r\n")` to force Scanner to move past New Line character(s).
+- Generally speaking, use `BufferedReader` to process lines from a file, instead of `scanner.nextLine()`.
+- Capture input from the console: `new Scanner(System.in)`: Accepts a `ByteArrayInputStream` (as an `InputStream`).
+- Review my notes on [Java Streams](./java-io-data-object-streams.html) and [Baeldung.com](https://www.baeldung.com/java-scanner) for details.
+- Use `.next()`, `.nextInt()`, and `.nextDouble()` to identify tokens as those types natively. These are basically conversion methods with specific output types: string, int, and double, respectively.
+- To search for a pattern use `.findInLine(string regex)` and the matched token will be returned. To search a wider scope use `.findWithinHorizon(string regex, int count)` to define the domain/boundary of the search.
+
+Rummaging through Java Collections library I discovered a few handy things:
+
+- Types that implement the List Interface can leverage the List Factory method `List.of()` in the constructor.
+- Certain Collection member types differentiate between returning Null, False, or throwing an Exception. This is because some implementations do not allow storing Null elements within the list type. For example, it is probably better to throw a `NullPointerException` or `false` when an element doesn't exist, versus returning `null` in the same situation.
+- Use Abstract Types over Concrete Types to make methods flexible. Return type should be `Collection` for any collection types, and if the method accepts a parameter that could be an `ArrayList<E>` or `LinkedList<E>`, then set the parameter as a `List<E>` Interface type.
+- Similar to the previous point, avoid returning `null` when a method returns a Collection Type (or Interface), instead return an empty collection.
+
+Using the List Interface Factory Method in a Constructor:
+
+```java
+List<String> testLL = new LinkedList<>(List.of("alpha", "bravo", "charlie"));
+```
+
+As I experimented with Java based on inspiration from the above readings, I felt like I needed to review [java collections and generics best practices](codejava.net/java-core/collections/18-java-collections-and-generics-best-practices). This led me back to some Java code examples I wrote while configuring VSCode for Java several weeks ago. Collections in Java include various types of Lists and Maps, and the supporting interfaces help drive functionality implementation and inherited capabilities. Turns out writing a custom LinkedList (or other collection type) class can be assisted by extending `AbstractSequentialList` and other interfaces from the Java Collections library. I spent a few hours refactoring existing code into a Collections-extended, custom LinkedList class.
+
 ## Thursday 18-May-2023
 
 VS Code's twitter account linked to a VSCode YouTube Channel event featuring Dan Shiffman (@shiffman) discussing [p5js usage in VSCode](./coding-with-p5.html). It was inspiring and lots of fun.
