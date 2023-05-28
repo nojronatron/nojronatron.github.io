@@ -4,7 +4,7 @@ Semi-regular notes taken during my software developer journey.
 
 ## Saturday 27-May-2023
 
-Completed implementing an Express server with Jest tests and GitHub Action that builds, tests, and deploys the server to Azure App Service. Next step is to apply what I've learned here to LingoBingo API server so that tests can be implemented and deployment is automatic. :tada:
+Completed implementing an Express server with Jest tests and GitHub Action that builds, tests, and deploys the server to Azure App Service. Next step is to apply what I've learned to LingoBingo API server so that tests can be implemented and deployment will be automatic. :tada:
 
 ## Friday 26-May-2023
 
