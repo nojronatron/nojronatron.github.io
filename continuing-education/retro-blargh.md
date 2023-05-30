@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 29-May-2023
+
+My Portfolio project React App was using something in SCSS called 'transparentize'. It was used to adjust the opaqueness of the background color of icons. Although it did the job I decided to change it to RGBA instead. Transparentize accepted hex values for color, and RGBA uses integers 0-254 for each color channel, and a decimal representing alpha from 0 to 1. I had not used these styling techniques before and they worked well.
+
+Next time I decide to use DevIcons or Iconify, I need to use Iconify's [search tool](https://icon-sets.iconify.design/) to get me started. Iconify has DevIcon sets within its massive store of icons, and the search tools has code in the search results for implementing in HTML, React, etc.
+
+## Sunday 28-May-2023
+
+Deployed LBJS API using a YAML file! Assigned the task to a specific branch (not main) so that deployments would be managed with specific PRs. One issue is there are no tests yet, and that should really be part of the pipeline operations.
+
 ## Saturday 27-May-2023
 
 Completed implementing an Express server with Jest tests and GitHub Action that builds, tests, and deploys the server to Azure App Service. Next step is to apply what I've learned to LingoBingo API server so that tests can be implemented and deployment will be automatic. :tada:
