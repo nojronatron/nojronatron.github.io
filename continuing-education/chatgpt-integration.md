@@ -74,6 +74,47 @@ Going Forward:
 
 [YouTube Video](https://www.youtube.com/watch?v=FgxwCaL6UTA&ab_channel=SimonWillison)
 
+Host/Speaker: Simon Willison
+
+### What Is It?
+
+An attack against apps built on top of AI Chat models.
+
+### Dangers of Prompt Injection
+
+Is this dangerous? If so, in what situations?
+
+- Generating an email that targets a user that has an LLM integration that could execute instructions in the Subject or Body of the email.
+- Prompt Designer and "attackers" can go back and forth with attacks and AI-based defenses.
+- Bing has a built-in GPT LLM capability and it reads the web pages the user visits. The website can have instructions for the LLM to carry out something nefarious. This has been proven to work.
+
+### Securing AI Prompts
+
+Would it be smarter to subvert attacks on prompt inputs _without AI_?
+
+- Detect attacks in the input:
+- Detect at attack in the output:
+- AI revolves around probability.
+- Security cannot be focused just on probability.
+- Security success means greater than 99% secure.
+- Unless AI defenses can get to 100%, it is not going to be a viable solution.
+
+Simon has proposed a solution:
+
+- Use 2 LLMS: Privileged, and Quarantined.
+- Only trusted inputs to go Privileged LLM.
+- Privileged LLM has rights to do things such as Edit and Delete.
+- Privileged LLM manages the Quarantined LLM and directs it.
+- Quarantined LLM actually acts upon instructions as filtered by the Privileged LLM.
+- Q LLM has no permissions to anything else.
+
+The problems remain though:
+
+- Should AI/LLM's be used to secure AI/LLM's? Is it effective?
+- There lacks enough reserach into this topic to know what best practices will be to secure against prompt injection.
+
+"If you don't consider prompt injection you are doomed to implement it." _[Simon Willison]_
+
 ## References
 
 [Learn how to work with the ChatGPT and GPT-4 Models](https://learn.microsoft.com/en-us/azure/cognitive-services/openai/how-to/chatgpt?pivots=programming-language-chat-completions).
