@@ -6,7 +6,7 @@ Semi-regular notes taken during my software developer journey.
 
 Learned a little about integrating Chat GPT into applications, and some of the issues with securing an LLM Prompt.
 
-Was able to finish configuring a Raspberry Pi security camera for watching the yard. There is some tweaking to do but it is ready for deployment, later today.
+Was able to finish configuring a Raspberry Pi security camera for watching the yard. There is some tweaking to do but it is ready for deployment, later today. The problem with focus was due to the manually adjustable lens. Simply turning it clockwise or counter-clockwise (slowly) adjusts the focal length.
 
 Started refactoring the Portfolio project to better handle skills icons and simplifying code. My first attempt was changing too many ui and data elements, which broke rendering completely.
 
