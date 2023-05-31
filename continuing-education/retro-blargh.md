@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 30-May-2023
+
+Lots of administrative stuff to do today, including volunteer-related emails, research, and preparations. The Ride Around Mt. Rainier in One Day (RAMROD) communcations team was looking for help so I signed up for that event, in the latter half of July.
+
+Completed initial setup of a Raspberry Pi-based motion-sensing, streaming camera. It was a bit of a pain to set up, but I finally got it going. The video quality is quite low and appears to be completely out of focus. I'l have to do a bit more testing, with the camera set up to view items farther than just a few feet to confirm this is a known issue with some Pi Cams that set the focal distance to something less than infinite.
+
 ## Monday 29-May-2023
 
 My Portfolio project React App was using something in SCSS called 'transparentize'. It was used to adjust the opaqueness of the background color of icons. Although it did the job I decided to change it to RGBA instead. Transparentize accepted hex values for color, and RGBA uses integers 0-254 for each color channel, and a decimal representing alpha from 0 to 1. I had not used these styling techniques before and they worked well.
