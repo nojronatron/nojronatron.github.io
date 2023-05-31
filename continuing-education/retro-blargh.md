@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 31-May-2023
+
+Learned a little about integrating Chat GPT into applications, and some of the issues with securing an LLM Prompt.
+
+Was able to finish configuring a Raspberry Pi security camera for watching the yard. There is some tweaking to do but it is ready for deployment, later today.
+
+Started refactoring the Portfolio project to better handle skills icons and simplifying code. My first attempt was changing too many ui and data elements, which broke rendering completely.
+
 ## Tuesday 30-May-2023
 
 Lots of administrative stuff to do today, including volunteer-related emails, research, and preparations. The Ride Around Mt. Rainier in One Day (RAMROD) communcations team was looking for help so I signed up for that event, in the latter half of July.
