@@ -10,8 +10,7 @@ Azure [learnings](#azure-learnings).
 
 ### Things I Want To Learn More About
 
-- [ ] Learn how to build a ChatGPT Plugin (MSFT Build 2023).
-- [ ] Attend MSFT Build 2023 and [take notes](./msbuild-20230-notes.html).
+- [ ] Learn how to build a ChatGPT Plugin and [integrating ChatGPT into Apps](./chatgpt-integration.html).
 - [ ] Continue learning about Data Structures and Algorithms. See [DSA Notes](./dsa-notes.html) for documentation and review.
 - [ ] Get a better grasp on [Machine Learning](./about-machine-learning.html) to increase awareness and familiarity.
 - [ ] Learn how to use SendGrid API.
@@ -31,7 +30,6 @@ Azure [learnings](#azure-learnings).
 - [ ] Review [Method Chaining](../code301-files/methodChaining-DBs-Mongoose-Atlas-SeedData-ReactLifecycle.html) in preparation for LingoBingo v.Next.
 - [ ] Learn about [SVG files](svg-files.html) and how to use them.
 - [ ] Look into [Playwright](playwright-notes.html).
-- [ ] Investigate [Cheerio](https://cheerio.js.org/) - notes [started here](cheerio.html).
 - [ ] Review the 'n+1 problem'. This has been mentioned multiple times recently in context with GraphQL.
 - [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
 - [ ] Learn about Flutter, a mobile framework. Bellingham Codes group mentioned it, along with some praise.
@@ -47,6 +45,8 @@ Azure [learnings](#azure-learnings).
 
 ### Notes And Takeaways from Research and Experience
 
+- [x] Investigate [Cheerio](https://cheerio.js.org/) - notes [started here](cheerio.html).
+- [x] Attend MSFT Build 2023 and [take notes](./msbuild-20230-notes.html).
 - [x] MongoDB and Mongoose [notes](../code301-files/mongo-and-mongoose.html).
 - [x] Review Java Scanner at [Oracle Java Docs - Scanner](https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html) and [Baeldung - Java Scanner](https://www.baeldung.com/java-scanner).
 - [x] [Promises](./promises-promises.html) in JavaScript.
