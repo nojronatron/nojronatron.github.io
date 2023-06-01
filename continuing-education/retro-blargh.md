@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 1-June-2023
+
+While working through Portfolio project tasks, I found the templated code used JavaScript 'var' to initialize a new variable. It was assigned within an `if` statement code block, and was later used in the contianing function, appearing to be referenced before being declared. In C# and Java, var is used to limit the typing necessary to instantiate something that is otherwise obviously a specific Type. For example `var newNode = new MyLLNode<Integer>(some_value);`. In JavaScript, `var` is used to create and assign a variable that is scoped to the containing method (or globally if not in a nested function). This feature is allowed due to `var hoisting`, which causes var declarations to be processed before other variables. The result is the variable is effectively assigned at the top of the function. [MDN Var Statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var). Next time I dive into that code I'll leverage this capability, and undo some of the code I added prior to understanding how to properly use the var statement.
+
+Had a phone conversation with another software developer, Ken, about the C# language. Was great to meet him, geek out on programming languages, and share some empathy around the challenges of learning syntax, patterns, and frameworks.
+
 ## Wednesday 31-May-2023
 
 Learned a little about integrating Chat GPT into applications, and some of the issues with securing an LLM Prompt.
