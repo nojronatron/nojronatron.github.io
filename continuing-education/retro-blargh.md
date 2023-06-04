@@ -2,6 +2,48 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 3-June-2023
+
+Spent 4 hours this morning at a volunteer event in Kenmore, which was a good experience overall. Beautiful day for an outdoor activity!
+
+Researched WPF Controls and connected aspects, looking to find a solution to the Issue discussed yesterday. Not sure if my solution will meet the Issue (because the description is a little ambiguous), but I'll see how I feel after attempting to address it, and decide from there what to do.
+
+## Friday 2-June-2023
+
+Worked through a code challenge in JavaScript, sourced from CodeWars. Took about 2 hours to do everything except for actual code, and about an hour to implement code and unit tests, and perform debugging (majority of the debugging was of the unit tests, not the implemented code).
+
+Took some time out to look at some MSFT open-source code (C#). It was interesting trying to piece together a large, multi-project solution I hadn't seen before. Drilling-down into a posted GitHub Issue in the project, I found the area that would need the fix, and started on a quest to re-learn the components that are necessary to adjust in order to address the Issue.
+
+## Thursday 1-June-2023
+
+While working through Portfolio project tasks, I found the templated code used JavaScript 'var' to initialize a new variable. It was assigned within an `if` statement code block, and was later used in the contianing function, appearing to be referenced before being declared. In C# and Java, var is used to limit the typing necessary to instantiate something that is otherwise obviously a specific Type. For example `var newNode = new MyLLNode<Integer>(some_value);`. In JavaScript, `var` is used to create and assign a variable that is scoped to the containing method (or globally if not in a nested function). This feature is allowed due to `var hoisting`, which causes var declarations to be processed before other variables. The result is the variable is effectively assigned at the top of the function. [MDN Var Statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var). Next time I dive into that code I'll leverage this capability, and undo some of the code I added prior to understanding how to properly use the var statement.
+
+Had a phone conversation with another software developer, Ken, about the C# language. Was great to meet him, geek out on programming languages, and share some empathy around the challenges of learning syntax, patterns, and frameworks.
+
+## Wednesday 31-May-2023
+
+Learned a little about integrating Chat GPT into applications, and some of the issues with securing an LLM Prompt.
+
+Was able to finish configuring a Raspberry Pi security camera for watching the yard. There is some tweaking to do but it is ready for deployment, later today. The problem with focus was due to the manually adjustable lens. Simply turning it clockwise or counter-clockwise (slowly) adjusts the focal length.
+
+Started refactoring the Portfolio project to better handle skills icons and simplifying code. My first attempt was changing too many ui and data elements, which broke rendering completely.
+
+## Tuesday 30-May-2023
+
+Lots of administrative stuff to do today, including volunteer-related emails, research, and preparations. The Ride Around Mt. Rainier in One Day (RAMROD) communcations team was looking for help so I signed up for that event, in the latter half of July.
+
+Completed initial setup of a Raspberry Pi-based motion-sensing, streaming camera. It was a bit of a pain to set up, but I finally got it going. The video quality is quite low and appears to be completely out of focus. I'l have to do a bit more testing, with the camera set up to view items farther than just a few feet to confirm this is a known issue with some Pi Cams that set the focal distance to something less than infinite.
+
+## Monday 29-May-2023
+
+My Portfolio project React App was using something in SCSS called 'transparentize'. It was used to adjust the opaqueness of the background color of icons. Although it did the job I decided to change it to RGBA instead. Transparentize accepted hex values for color, and RGBA uses integers 0-254 for each color channel, and a decimal representing alpha from 0 to 1. I had not used these styling techniques before and they worked well.
+
+Next time I decide to use DevIcons or Iconify, I need to use Iconify's [search tool](https://icon-sets.iconify.design/) to get me started. Iconify has DevIcon sets within its massive store of icons, and the search tools has code in the search results for implementing in HTML, React, etc.
+
+## Sunday 28-May-2023
+
+Deployed LBJS API using a YAML file! Assigned the task to a specific branch (not main) so that deployments would be managed with specific PRs. One issue is there are no tests yet, and that should really be part of the pipeline operations.
+
 ## Saturday 27-May-2023
 
 Completed implementing an Express server with Jest tests and GitHub Action that builds, tests, and deploys the server to Azure App Service. Next step is to apply what I've learned to LingoBingo API server so that tests can be implemented and deployment will be automatic. :tada:
