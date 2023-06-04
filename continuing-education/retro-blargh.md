@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 3-June-2023
+
+Spent 4 hours this morning at a volunteer event in Kenmore, which was a good experience overall. Beautiful day for an outdoor activity!
+
+Researched WPF Controls and connected aspects, looking to find a solution to the Issue discussed yesterday. Not sure if my solution will meet the Issue (because the description is a little ambiguous), but I'll see how I feel after attempting to address it, and decide from there what to do.
+
+## Friday 2-June-2023
+
+Worked through a code challenge in JavaScript, sourced from CodeWars. Took about 2 hours to do everything except for actual code, and about an hour to implement code and unit tests, and perform debugging (majority of the debugging was of the unit tests, not the implemented code).
+
+Took some time out to look at some MSFT open-source code (C#). It was interesting trying to piece together a large, multi-project solution I hadn't seen before. Drilling-down into a posted GitHub Issue in the project, I found the area that would need the fix, and started on a quest to re-learn the components that are necessary to adjust in order to address the Issue.
+
 ## Thursday 1-June-2023
 
 While working through Portfolio project tasks, I found the templated code used JavaScript 'var' to initialize a new variable. It was assigned within an `if` statement code block, and was later used in the contianing function, appearing to be referenced before being declared. In C# and Java, var is used to limit the typing necessary to instantiate something that is otherwise obviously a specific Type. For example `var newNode = new MyLLNode<Integer>(some_value);`. In JavaScript, `var` is used to create and assign a variable that is scoped to the containing method (or globally if not in a nested function). This feature is allowed due to `var hoisting`, which causes var declarations to be processed before other variables. The result is the variable is effectively assigned at the top of the function. [MDN Var Statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var). Next time I dive into that code I'll leverage this capability, and undo some of the code I added prior to understanding how to properly use the var statement.
