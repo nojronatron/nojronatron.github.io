@@ -23,8 +23,8 @@ In addition, I am challenging myself to complete the following:
 
 - [x] Read up on how Extensions are built.
 - [x] Create an exploratory project to experiment with.
-- [ ] Develop the MVP feature target.
-- [ ] Develop functions that implement the features.
+- [x] Develop the MVP feature target.
+- [x] Develop functions that implement the features.
 - [ ] Implement tests to validation functionality for MVP.
 - [ ] Design walk-throughs and pix/video for publication.
 - [ ] Design stellar documentation.
@@ -255,6 +255,12 @@ Packaging tool: `vsce` the Visual Studio Code Extensions packaing and publishing
 1. Specify the Git Repository field in teh package.json.
 1. Specify the publisher field in the root of package.json: `{ ..., "publisher": "{publisher_name_created_previously}", ...}`.
 1. Publish the extension using `vsce publish`.
+
+## References
+
+[VSCode Extension Samples](https://github.com/microsoft/vscode-extension-samples)
+
+[VSCode Extensions API](https://code.visualstudio.com/api/)
 
 ## Footer
 
