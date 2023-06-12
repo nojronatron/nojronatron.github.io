@@ -2,6 +2,19 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 12-June-2023
+
+Was introduced to [JSDoc](https://jsdoc.app/) this morning while listening to the Syntax Podcast. Historically I think I've done a pretty okay documenting my code. In some instances it hasn't happened until after the implementations (and maybe even testing) are completed. Turns out, my default mode of documenting seems to be compatible with JSDoc `/** This function returns ~something~ */` so if/when I decide to use JSDoc it should be pretty simple getting going.
+
+```javascript
+/**
+ * Find the first occurrence of a second level heading in the document.
+ * @returns Number The line number of the first 2nd Level Heading of the page.
+ * @param {vscode.TextEditor} editor The active text editor.
+ */
+module.exports = function findFirstSecondLevelHeading(editor, topHeading) { ... }
+```
+
 ## Thursday 8-June-2023
 
 Focused on learning VSCode Extensions. I have a working idea for an MVP and am currently working on unit tests, documentation, and meeting VSCode Extension standards. :tada: :smiley:
