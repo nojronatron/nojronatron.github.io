@@ -2,6 +2,20 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 8-June-2023
+
+Focused on learning VSCode Extensions. I have a working idea for an MVP and am currently working on unit tests, documentation, and meeting VSCode Extension standards. :tada: :smiley:
+
+## Tuesday 6-June-2023
+
+Caught up on VSCode happenings with an episode of VSCode Day from earlier this year. Appended some notes from this session to the [github-copilot](./github-copilot.html) from a few weeks ago.
+
+Started reading up on VSCode Extensions, and worked on developing an idea.
+
+## Monday 5-June-2023
+
+Completed a personal challenge: Update the Quicksort algorithm to accept any Number types, or other Types that implement `Comparable<T>`. Final code can be found in [java-code-challenges, Quicksort.java](https://github.com/nojronatron/java-code-challenges/blob/main/lib/src/main/java/myJava/code/Sorters/Quicksort.java).
+
 ## Saturday 3-June-2023
 
 Spent 4 hours this morning at a volunteer event in Kenmore, which was a good experience overall. Beautiful day for an outdoor activity!
