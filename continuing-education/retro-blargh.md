@@ -15,6 +15,30 @@ Was introduced to [JSDoc](https://jsdoc.app/) this morning while listening to th
 module.exports = function findFirstSecondLevelHeading(editor, topHeading) { ... }
 ```
 
+Key Takeaways Using Jest:
+
+- If a test _should_ be passing (console logs etc show correct, matching output of sut), go to [JestJS.io Documentation](https://jestjs.io/docs/using-matchers) and confirm the correct _Matcher_ is being used. For example: Strings are matched using `.toMatch()` and `.not.toMatch()`, whereas Numbers are matched using `toBe()`, `toEqual()`, `toBeCloseTo()` (etc).
+- Leverage node module 'path' to help locate files for running unit tests. For example: Tests that import modules across a separate directory branch can try `const rootDir = path.resolve(__dirname, '../../sut-functions');` and similar to help simplify traversing the directory tree.
+
+Have to remember that Linux and Windows "slash" characters are different. For example:
+
+- Linux: `/`
+- Windows: `\`
+- Node.js: `/`
+- Developing Node.js on Windows: `/`
+
+Fun.
+
+VS Code Extension development status:
+
+- YAML file activation GH Action to ensure unit tests run on push.
+- README getting close to finished.
+- Implemented code is working in expected cases.
+- Opened an Issue on GitHub to start tracking items.
+- Completed full manual testing and testing using Mocha and Electron.
+
+There are several more steps to take before publishing. It is getting close!
+
 ## Thursday 8-June-2023
 
 Focused on learning VSCode Extensions. I have a working idea for an MVP and am currently working on unit tests, documentation, and meeting VSCode Extension standards. :tada: :smiley:
