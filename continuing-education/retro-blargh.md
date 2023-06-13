@@ -2,6 +2,25 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 13-June-2023
+
+Completed a code challenge: Sum rows and columns from a 2D Array of Numbers. Key takeaways:
+
+- Within an algorithm, avoid hard-coding input array or collection length (size). Instead, use methods to get the length of the input array, and apply the return value to iterators, indexers, etc.
+- 2D Arrays are not always symmetric. Jagged arrays have unequal row and/or column lengths.
+- JavaScript Arrays may not handle empty elements the way I expect them to, so 'undefined' or 'NaN' may be returned. See previous bullet point.
+- Using indexing to get and set values in a JavaScript Array is effective.
+- Leveraging built-in functions can drastically alter the algorithmic performance, example: `const arr = new Array(100).fill(0)` is an iterating structure and counts toward Big O calculations.
+- Collapsing summing operations within a for loop reduces the number of variables to track within an algorithm.
+- Creating an Object with Array fields in JavaScript is easy: `const result = { rowSum: [], colSum: [], }`.
+
+Watched a presentation about Azure Bicep:
+
+- Is yet another markup language similar to YAML used to define Azure Containers.
+- Container environment(s) can be applied to Kubernetes.
+- Local dev-test environment configuration via Bicep is possible.
+- Azure Bicep is seeing relatively active development in [GitHub](https://github.com/Azure/bicep).
+
 ## Monday 12-June-2023
 
 Was introduced to [JSDoc](https://jsdoc.app/) this morning while listening to the Syntax Podcast. Historically I think I've done a pretty okay documenting my code. In some instances it hasn't happened until after the implementations (and maybe even testing) are completed. Turns out, my default mode of documenting seems to be compatible with JSDoc `/** This function returns ~something~ */` so if/when I decide to use JSDoc it should be pretty simple getting going.
