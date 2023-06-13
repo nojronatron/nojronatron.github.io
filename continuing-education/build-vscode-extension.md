@@ -57,7 +57,28 @@ Yeoman supports NPM, Yarn, and PNPM.
 
 Update Package.json:
 
+- Name.
+- Display Name.
 - Project description.
+- Version (as updates are made).
+
+### Debug in Special VSCode Instance
+
+1. Save changes.
+2. Press [F5]. This launches the Extension Development Host.
+3. Open a file or target folder location if necessary.
+4. Open the Command Palette (Press CTRL + SHIFT + P).
+5. Type the name of the command as indicated in Package.json as the Command Title.
+
+### Reloading After Making Code Changes
+
+1. Launch the Extension Development Host.
+2. Make changes to your code in the VS Code instance that is in "Run and Debug" mode.
+3. Save code changes.
+4. Open the Command Palette in Ext Dev Host.
+5. Type 'Developer: Reload Window'.
+
+Newly saved code is now running.
 
 ### Notes While Learning
 
@@ -228,6 +249,27 @@ Requirements:
 Capabilities:
 
 - Continuous Integration e.g. Azure DevOps!
+
+### Electron
+
+[Electron](https://code.visualstudio.com/api/working-with-extensions/testing-extension#migrating-from-vscode) is going to be the way to test VSCode Extensions going forward.
+
+- Replaces `vscode` dependency.
+- Instead of `engines.vscode: 1.3`, install `'@types/vscode': '^1.30.0'` to package.json dependencies.
+- No longer requires `'postinstall': 'node ./node_modules/vscode/bin/install'` in package.json.
+- If using TypeScript: Point `test` script in package.json to the compiled output of `runTest.ts`.
+- A [test runner script](https://github.com/microsoft/vscode-extension-samples/blob/main/helloworld-test-sample/src/test/suite/index.ts) will be needed as a starting point.
+- `mocha@4` and `glob` will need to be in devDependencies if the above steps were taken.
+
+### Testing Extension in GitHub Actions
+
+When targeting Linux in YAML, ensure `Xvfb` enabled environment is targeted, otherwise test will fail.
+
+See GitHub Actions subsection in [Working With Extensions](https://code.visualstudio.com/api/working-with-extensions/continuous-integration).
+
+### Publication via GitHub Actions
+
+See GitHub Actions Automated Publishing subsection in [Working With Extensions](https://code.visualstudio.com/api/working-with-extensions/continuous-integration)
 
 ### Publishing
 
