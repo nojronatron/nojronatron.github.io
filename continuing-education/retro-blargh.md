@@ -21,6 +21,12 @@ Watched a presentation about Azure Bicep:
 - Local dev-test environment configuration via Bicep is possible.
 - Azure Bicep is seeing relatively active development in [GitHub](https://github.com/Azure/bicep).
 
+Worked through some preparatory work to get my VS Code Extension published. While I could have just published it the way it is, I decided to continue working on the last few unit tests to get better code coverage. Some key takeaways:
+
+- The vscode module is available during testing!
+- The templated Mocha test harness is set up to run a full GUI version of VSCode and I need to sort out how to work with documents in that scenario.
+- I probably won't need Jest for the custom module file unit tests, and can stick with Mocha instead after I read up a little and get used to it.
+
 ## Monday 12-June-2023
 
 Was introduced to [JSDoc](https://jsdoc.app/) this morning while listening to the Syntax Podcast. Historically I think I've done a pretty okay documenting my code. In some instances it hasn't happened until after the implementations (and maybe even testing) are completed. Turns out, my default mode of documenting seems to be compatible with JSDoc `/** This function returns ~something~ */` so if/when I decide to use JSDoc it should be pretty simple getting going.
