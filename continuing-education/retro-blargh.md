@@ -2,6 +2,15 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 16-June-2023
+
+VSCode API: The TextDocument interface `lineAt()` function defines 2 overloads:
+
+- LineAt(position: Position): Returns a TextLine
+- LineAt(position: Position): Returns a number
+
+The TextLine interface defines `lineNumber` (a Number primitive) but does not differentiate between what I would expect to be "Line Numbers" in a text document, and the zero-based numbering system for a structure like a Collection. So, when processing a TextDocument Type, be careful with handling line numbers to avoid unexpected results.
+
 ## Thursday 15-June-2023
 
 Took some time out this morning to help a fellow ham with some email-over-ham technology setup steps. He was close, and together we got the configuration squared away.
