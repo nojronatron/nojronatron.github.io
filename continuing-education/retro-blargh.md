@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 15-June-2023
+
+Took some time out this morning to help a fellow ham with some email-over-ham technology setup steps. He was close, and together we got the configuration squared away.
+
+## Wednesday 14-June-2023
+
+Worked on building out tests to increase code coverage to the remaining two functions in my VS Code Extension.
+
+Lots of effort put into preparing for various upcoming events, including an all volunteer meeting tonight that included a presentation I was pegged to deliver on the agenda.
+
 ## Tuesday 13-June-2023
 
 Completed a code challenge: Sum rows and columns from a 2D Array of Numbers. Key takeaways:
