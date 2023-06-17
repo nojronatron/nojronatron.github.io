@@ -1,68 +1,35 @@
 # Linux and Terminal Learnings and Reference Page
 
-This page was created to store random notes, throughts, and snippets regarding:  
+This page was created to store random notes, throughts, and snippets regarding:
 
-- Linux, its subsystems and behaviour, etc.  
-- Bash and other linux-y shells, specifically commands that I forget about or haven't yet learned.  
+- Linux, its subsystems and behaviour, etc.
+- Bash and other linux-y shells, specifically commands that I forget about or haven't yet learned.
 
-The primary resource for these notes was through reading [Ryans Tutorials](https://ryanstutorials.net/linuxtutorial/).  
+The primary resource for these notes was through reading [Ryans Tutorials](https://ryanstutorials.net/linuxtutorial/).
 
 NOTE: I am no longer making any effort to verify any of these work in Windows PowerShell, as I have moved to a pure-Linux workstation.
 
 ## Table of Contents
 
-- [relative and absolute paths](#about-relative-and-absolute-paths)
-- [aliases](#aliases)
-- [chaining commands](#chaining-commands-with-semicolons)
-- [compression tools](#compress-zip-tar-files-for-archiving)
-- [hidden files](#create-and-view-hidden-files)
-- [cups printing system](#cups-printing-system)
-- [display file contents](#display-file-contents-on-screen)
-- [environment variables](#environment-variables)
-- [everything is a file](#everything-is-a-file)
-- [file operations](#file-operations-in-linux)
-- [the find tool](#find)
-- [getting all the things](#get-all-the-things)
-- [grepping](#grepping)
-- [image converter tool](#image-converter)
-- [install software](#install-software)
-- [disk and files](#interrogate-files-and-disk)
-- [network interfaces](#interrogate-network-interfaces)
-- [hardware](#interrogating-hardware)
-- [linux version and details](#interrogating-linux)
-- [escape characters](#linux-escape-characters)
-- [facts and figures](#linux-facts-and-figures)
-- [case sensitivity](#linux-is-case-sensitive)
-- [file extensions](#linux-is-extensionless)
-- [space sensitivity](#linux-is-space-sensitive-too)
-- [manuals](#linux-manuals)
-- [list files](#list-files)
-- [managing processes](#manage-processes)
-- [managing software packages](#manage-software-packages)
-- [file manipulation](#manipulating-files)
-- [manual tricks](#manual-tricks)
-- [terminal options](#many-terminal-options)
-- [more about finding files](#more-about-finding-files)
-- [nano text editor](#nano-text-editor)
-- [permissions](#permissions)
+- [Linux Facts and Figures](#linux-facts-and-figures)
+- [Linux MANuals](#linux-manuals)
+- [Using SHELLS](#using-shells)
+- [File Operations in Linux](#file-operations-in-linux)
+- [Text Editing in Linux](#text-editing-in-linux)
+- [Use Piping and Redirection](#use-piping-and-redirection)
+- [Chaining Commands with Semicolons](#chaining-commands-with-semicolons)
+- [Get All The Things](#get-all-the-things)
+- [Server Services](#server-services)
+- [System Stuff](#system-stuff)
+- [Install Software](#install-software)
+- [Specialized Tools](#specialized-tools)
+- [Primer How Linux Works](#primer-how-linux-works)
 - [References](#references)
-- [server services](#server-services)
-- [specialized tools](#specialized-tools)
-- [system stuff](#system-stuff)
-- [text editing](#text-editing-in-linux)
-- [updating apt repo](#updating-the-local-apt-repo)
-- [using filters](#use-filters)
-- [piping and redirection](#use-piping-and-redirection)
-- [wildcards](#use-wildcards)
-- [shells](#using-shells)
-- [vi text editor](#vi-text-editor)
-- [internal logs](#view-internal-logs)
-- [yarn](#yarn)
-- [primer: how linux works](#primer-how-linux-works)
+- [Footer](#footer)
 
 ## Linux Facts and Figures
 
-Many of these concepts will also apply to Unix and other unix-based operating systems.  
+Many of these concepts will also apply to Unix and other unix-based operating systems.
 
 ### Many Terminal Options
 
@@ -75,37 +42,37 @@ Despite having an "add on shell" like ZSH, I can still "drop to a Bash" shell wi
 I could also use `sh` but since ZSH is installed, it really just loads ZSH again.  
 If I was in a remote terminal session I could force-load ZSH with `sh` or `zsh` at the prompt and it would work.
 
-In Windows, I stick with *PowerShell* because it has much greater capability than 'cmd.exe', and can be well-integrated into the OS and to apps like Visual Studio.  
+In Windows, I stick with _PowerShell_ because it has much greater capability than 'cmd.exe', and can be well-integrated into the OS and to apps like Visual Studio.
 
 ### Everything Is A File
 
 - System will have read, write, or both permissions, based on what the file represents and the underlying capabilities.
-- An audio card is repreented by System write-only file, for example (meaning System can only write to it).  
-- Folders are actually files with different properties than the files they 'contain'.  
+- An audio card is repreented by System write-only file, for example (meaning System can only write to it).
+- Folders are actually files with different properties than the files they 'contain'.
 
 ### Linux Is Extensionless
 
-- Windows relies on file extensions to associate an applicable parent or executor program.  
-  - Ex: `.txt` is usually associatd with `Notepad.exe` and is of FileTyle `text` or `plaintext`.  
+- Windows relies on file extensions to associate an applicable parent or executor program.
+  - Ex: `.txt` is usually associatd with `Notepad.exe` and is of FileTyle `text` or `plaintext`.
 - Linux 'looks inside' a file to determine its 'type'.
 
-### Linux Is Case SENSITIVE  
+### Linux Is Case SENSITIVE
 
 - Windows is case INsensitive
-- Terminal commands in a Linux shell will fail if CaSe rUlEs aRe nOt fOlLoWeD.  
-  - This applies to filenames as well for ex: `file_name.txt` is not the same as `FileName.txt`.  
+- Terminal commands in a Linux shell will fail if CaSe rUlEs aRe nOt fOlLoWeD.
+  - This applies to filenames as well for ex: `file_name.txt` is not the same as `FileName.txt`.
 
 ### Linux is Space-Sensitive Too
 
-Quote Around Spaces or get frustrated (your choice).  
+Quote Around Spaces or get frustrated (your choice).
 
-- Use single `'` or double `"` quotation marks to identify a file or folder name that contains a space.  
-  - Ex: `ls spacey folder name` returns an error.  
-  - Ex: `ls 'spacey folder name'` works.  
+- Use single `'` or double `"` quotation marks to identify a file or folder name that contains a space.
+  - Ex: `ls spacey folder name` returns an error.
+  - Ex: `ls 'spacey folder name'` works.
 
 ### Linux Escape Characters
 
-Use a backslash `\` to escape (nullify) the special meaning of reserved characters like spaces e.g.:  
+Use a backslash `\` to escape (nullify) the special meaning of reserved characters like spaces e.g.:
 
 ```bash
 user@bash: pwd
@@ -127,7 +94,7 @@ To search terms WITHIN a MAN page display: `/ <search_term>` then press `n` for 
 
 ### MANual Tricks
 
-`man` clears the screen on exit. You can keep the output in the terminal scrollback using less. *[Bellingham Codes participant: Remington]*
+`man` clears the screen on exit. You can keep the output in the terminal scrollback using less. _[Bellingham Codes participant: Remington]_
 
 For example, I want to see a section of MAN pages about SSH:
 
@@ -165,10 +132,10 @@ There are MANY options, see the LS MAN pages for more.
 
 Just prefix the file or folder name with a dot:
 
-- Folder `my_configurations` can be made hidden by renaming to `.my_configurations`  
-- File `config` can be made hidden by renaming to `.config`  
+- Folder `my_configurations` can be made hidden by renaming to `.my_configurations`
+- File `config` can be made hidden by renaming to `.config`
 
-> Use `ls -a` to list hidden files in a directory.  
+> Use `ls -a` to list hidden files in a directory.
 
 ### Manipulating Files
 
@@ -182,8 +149,8 @@ Recursively remove files and directories: `rm -r <filespec>`
 
 Remove an empty directory: `rmdir <name>`
 
-- Can be used to remove multiple directories in one command.  
-- Directories will not be removed unless they are empty of files and child directories.  
+- Can be used to remove multiple directories in one command.
+- Directories will not be removed unless they are empty of files and child directories.
 
 Create a new blank file: `touch <path>/<filename>[.ext]`
 
@@ -200,7 +167,7 @@ Note: Moving directories will rename if paths are the same except:
 - Directory rename: dest_path directory name is only difference.
 - File rename: dest_path filename is only difference.
 
-Bulk-copy files and rename them, but file extension: `basename -s .jpg -a *.jpg | xargs -n1 -i cp {}.jpg {}_original.jpg`  
+Bulk-copy files and rename them, but file extension: `basename -s .jpg -a *.jpg | xargs -n1 -i cp {}.jpg {}_original.jpg`
 
 ### About Relative and Absolute Paths
 
@@ -208,7 +175,7 @@ PATHs can be absolute or relative.
 
 Linux file strucuture is hierarchical.
 
-Folders ARE files, but with a 'd' flag set, so folders *and* files are part of the path.
+Folders ARE files, but with a 'd' flag set, so folders _and_ files are part of the path.
 
 Absolute paths start with a forward slash `/` e.g.: `/etch`
 
@@ -228,9 +195,9 @@ List files in the pwd whose 1st character is a 'Q' or 'q', 2nd character is with
 
 Not: `^`
 
-*Note about Not*: As the first character within a range wildcard causes the filter to eliminate files that match that first character range wildcard characters.
+_Note about Not_: As the first character within a range wildcard causes the filter to eliminate files that match that first character range wildcard characters.
 
-*Remember*: Wildcards affect the entire pathspec, which includes directories and filenames and file extensions.  
+_Remember_: Wildcards affect the entire pathspec, which includes directories and filenames and file extensions.
 
 ## Text Editing in Linux
 
@@ -249,15 +216,15 @@ A much more capable text editor.
 Should be kept in mind for driving around text files in a native Linux viewer/editor.  
 All CLI, no UI.
 
-Two modes:  
+Two modes:
 
-1. Insert/Input Mode: Enter data into a file: Tap `i` to change to INSERT mode and `--INSERT--` will be displayed at bottom of screen.  
-2. Edit Mode: Move around the file, add, delete, or copy data, search for data and replace data. Tap `[esc]` to change to EDIT mode.  
+1. Insert/Input Mode: Enter data into a file: Tap `i` to change to INSERT mode and `--INSERT--` will be displayed at bottom of screen.
+2. Edit Mode: Move around the file, add, delete, or copy data, search for data and replace data. Tap `[esc]` to change to EDIT mode.
 
-Launch VI: `vi <filename>`  
+Launch VI: `vi <filename>`
 
-- Will create a new file if `<filename>` does not exist already.  
-- Starts VI in EDIT mode.  
+- Will create a new file if `<filename>` does not exist already.
+- Starts VI in EDIT mode.
 
 Command usage:
 
@@ -265,16 +232,16 @@ Commands starting with a colon require pressing `[Enter]` to execute them.
 
 Save and Close (multple options):
 
-- Save AND Exit: `ZZ`  
-- Discard changes and exit: `:q!`  
-- Save changes (no exit): `:w`  
-- Save changes and exit: `:wq`  
-- Sets 'line numbers' in file view: `:set nu`  
+- Save AND Exit: `ZZ`
+- Discard changes and exit: `:q!`
+- Save changes (no exit): `:w`
+- Save changes and exit: `:wq`
+- Sets 'line numbers' in file view: `:set nu`
 
 Advice:
 
-- Use the man pages for more details on commands.  
-- Also check out [Ryans Tutorials VI page](https://ryanstutorials.net/linuxtutorial/vi.php) for more.  
+- Use the man pages for more details on commands.
+- Also check out [Ryans Tutorials VI page](https://ryanstutorials.net/linuxtutorial/vi.php) for more.
 
 ### Display File Contents On Screen
 
@@ -286,7 +253,7 @@ Use `tail <filespec>` to get a quick 'end-of-the-file' view. `tail -n NUM` to sh
 
 Grep is used to filter data for viewing: `grep`
 
-*Note*: See more grep usage in [Grepping](#grepping)
+_Note_: See more grep usage in [Grepping](#grepping)
 
 ## Use Piping and Redirection
 
@@ -342,7 +309,7 @@ BEFORE context and AFTER context: `-B 4 -A 4` prints 4 lines prior-to and follow
 
 Regex: Follow standard regex rules, including Multipliers and Anchors.
 
-*Note*: Check out [regularexpressions101](https://regex101.com/) for an easy tool to test RegEx before you 'buy' results. :-)  
+_Note_: Check out [regularexpressions101](https://regex101.com/) for an easy tool to test RegEx before you 'buy' results. :-)
 
 ### Use Filters
 
@@ -352,7 +319,7 @@ Show the first n lines: `head -n number`
 
 Show the last n lines: `tail -n number`
 
-Sort lines in a given way:  `sort`
+Sort lines in a given way: `sort`
 
 Word Count, including characters and lines: `wc`
 
@@ -362,7 +329,7 @@ Search for a given pattern: `grep`
 
 ### CUPS Printing System
 
-Developed by Apple Inc. for macOS and *nix OSes.
+Developed by Apple Inc. for macOS and \*nix OSes.
 
 Cannonical includes it with Ubuntu 18.x and above.
 
@@ -372,7 +339,7 @@ Check version and architecture: `dpkg -l cups-browsed`
 
 View device info: `lpstat -v`
 
-*Note*: At midnight the CUPS Logging mechanism 'rolls over' and a CUPS reset is initiated, which causes a [popup notification every night at midnight](https://bugs.launchpad.net/ubuntu/+source/cups-filters/+bug/1869981). There is a way to work around this (basically stop forced CUPS daemon restart) but there is no harm in allowing the restart to be executed.
+_Note_: At midnight the CUPS Logging mechanism 'rolls over' and a CUPS reset is initiated, which causes a [popup notification every night at midnight](https://bugs.launchpad.net/ubuntu/+source/cups-filters/+bug/1869981). There is a way to work around this (basically stop forced CUPS daemon restart) but there is no harm in allowing the restart to be executed.
 
 ## System Stuff
 
@@ -382,9 +349,9 @@ Linux permissions place rules on what can be done with a file:
 
 Read: `r`  
 Write: `w`  
-Exectute: `x`  
+Exectute: `x`
 
-Linux defines three groups that permissions can be applied to:  
+Linux defines three groups that permissions can be applied to:
 
 - Owner: Typically the username that created the file.
 - Group: Every file must belong to a single group.
@@ -417,7 +384,7 @@ Update Alternatives: `update-alternatives --list java` displays path to java JDK
 
 Display all environment variables in the current context: `printenv`
 
-Display a specific environment variable: `printenv VAR_NAME`  e.g. `printenv JAVA_HOME`
+Display a specific environment variable: `printenv VAR_NAME` e.g. `printenv JAVA_HOME`
 
 Display the existing PATH environment variable: `echo $PATH`
 
@@ -458,11 +425,11 @@ Add an alias for AndroidStudio:
 
 ### Interrogate Files and Disk
 
-Beyond creating, copying, moving, and deleting files, use these commands to manage the file *system* and disks.  
+Beyond creating, copying, moving, and deleting files, use these commands to manage the file _system_ and disks.
 
 Find the size of directories in pwd: `du -sh ./*`  
 Disk space utilization report: `df -h`  
-Find files modified within last 24 hours in a specified directory: `find $directory -mtime -1`  
+Find files modified within last 24 hours in a specified directory: `find $directory -mtime -1`
 
 #### More About Finding Files
 
@@ -483,24 +450,24 @@ find . -name "jdk" -type d # find jdk directory starting from here
 
 List PCI Hardware/Driver info: `lspci` or `lspci -k` or `lspci -nnk`  
 Check LSB Module State: `lsb_release -a`  
-Report on hardware driver info: `sudo lshw`  
+Report on hardware driver info: `sudo lshw`
 
 ### Interrogate Network Interfaces
 
 Get IP info from an interface: `ip a`  
-Get network driver info: `inxi -n`  
+Get network driver info: `inxi -n`
 
 ### View Internal Logs
 
 Many system program logs are stored in `/var/log`  
 Device Message Logs: `sudo dmesg`  
 Messages in Logs related to network(s): `sudo dmesg | grep iwl`  
-Network Manager Log: `sudo journalctl -b 0 -u NetworkManager`  
+Network Manager Log: `sudo journalctl -b 0 -u NetworkManager`
 
 ### Manage Processes
 
 Cancel a running operation: `[CTRL] + C`  
-Cancel a *process* by its ID: `kill $process_id`  
+Cancel a _process_ by its ID: `kill $process_id`  
 Force canceling a 'stubborn' process: `kill $process_id -9`  
 Show list of running processes and IDs: `ps`  
 Put currently running process onto a background (paused) thread: `[CTRL] + z`  
@@ -509,7 +476,7 @@ Move background process to foreground: `fg $job_number`
 List ALL services, running AND not running: `service --status-all`  
 Use grep to find specific not/running: `service --status-all | grep '\[+\]'`  
 List services using systemctl: `systemctl list-units`  
-Check a specific service state using ps: `ps -ef | grep postgres`  
+Check a specific service state using ps: `ps -ef | grep postgres`
 
 ## Install Software
 
@@ -518,13 +485,13 @@ Commonly used program binaries are stored in `/bin`
 Other program binaries, perhaps related to users (rather than system) are stored in `/usr/bin`  
 Reinstall Ubuntu package 'linux-firmware': `sudo apt-get install --reinstall linux-firmware`  
 Apt is the primary software manager utility: `apt get install $package`  
-DPKG is the *underlying package management system*: `dpkg -i $deb_package`  
-As stated at AskUbuntu.com: `dpkg => apt-get, aptitude => Synaptic, Software Center`  
+DPKG is the _underlying package management system_: `dpkg -i $deb_package`  
+As stated at AskUbuntu.com: `dpkg => apt-get, aptitude => Synaptic, Software Center`
 
 ### Updating The Local Apt Repo
 
 The Local Apt Repo is usually stored in `/etc/apt/sources.list.d/pgdg.list`  
-An example repo update will look something like this (for postgresQL):  
+An example repo update will look something like this (for postgresQL):
 
 ```sh
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
@@ -532,7 +499,7 @@ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)
 
 Common steps to update Apt and Install from new sources:
 
-1. Update local apt repo with latest info *from the source*
+1. Update local apt repo with latest info _from the source_
 1. Optionally add an asc key
 1. 'sudo apt-get update'
 1. 'sudo apt-get -y install $package_name'
@@ -543,7 +510,7 @@ Installed packages will probably have an entry in $PATH that should be interroga
 Listing and Removing packages might leave behind $PATH entries.  
 List existing packages: `dpkg -l $package_name_in_single_quotes`  
 Remove a package: `dpkg -r $package_name`  
-Purge remaining package artifacts: `dpkg -P $package_name`  
+Purge remaining package artifacts: `dpkg -P $package_name`
 
 ## Specialized Tools
 
@@ -563,9 +530,7 @@ New Project: `yarn init [project-name]`
 
 Add dependency:
 
-> `yarn add [package]`
-> `yarn add [package]@[version]`
-> `yarn add [package]@[tag]`
+> `yarn add [package]` > `yarn add [package]@[version]` > `yarn add [package]@[tag]`
 
 Upgrade: `yarn upgrade [package]`
 
@@ -587,13 +552,13 @@ Scale an image: `convert -scale ${percentage}%`. A simplified version of `-resiz
 
 Compress Image: `convert -compress type`
 
-Add a Caption: Consider creating a label instead. See the *Usage* link above for details.
+Add a Caption: Consider creating a label instead. See the _Usage_ link above for details.
 
 Vertical or horizontal flip: `convert -flip` or `convert -flop`, respectively.
 
 ### Compress, Zip, Tar Files for Archiving
 
-*NOTE*: This Section Is Under Development
+_NOTE_: This Section Is Under Development
 
 Tar
 
@@ -638,7 +603,7 @@ Hardware: RAM, CPU, USB devices, etc.
 Kernel: In-memory; Assigns tasks to CPU; Manages hardware; Inteface between running programs and hardware.
 User Processes: All programs that are running and managed by the Kernel e.g. Email, Code, word processing, browser, etc.
 User Mode/Space: Access to only subset of memory and "safe CPU operations"; cannot crash entire system.
-Kernel Mode/Space: *Unrestricted* access to processor and RAM; Can crash entire system.
+Kernel Mode/Space: _Unrestricted_ access to processor and RAM; Can crash entire system.
 
 ### Main Memory
 
@@ -669,7 +634,7 @@ Memory Management:
 - Allocate axiliary space if necessary.
 - Ensures processes stick to their own space.
 - Splits memory into subdivisions, for processes.
-- Tracks the *state* of each RAM subdivision.
+- Tracks the _state_ of each RAM subdivision.
 
 Device Management:
 
@@ -690,7 +655,7 @@ Summary:
 
 - Lives in Kernel space.
 - Works in kernel mode.
-- Allocates in *user space*.
+- Allocates in _user space_.
 
 #### User Space
 
@@ -757,7 +722,7 @@ Boot: '/boot' Contains boot loader and the kernel (loader).
 Binaries: '/bin' Executables and most Unix commands.
 Many others: Too many to list, and varies by Linux distribution.
 
-Everything in Linux is seen and accessible as a *file*. This allows comon tools to manage files, data, processes, etc.
+Everything in Linux is seen and accessible as a _file_. This allows comon tools to manage files, data, processes, etc.
 
 USR:
 
@@ -804,13 +769,13 @@ Check out notes from Microsoft Reactor session [linux on azure](../continuing-ed
 
 ## References
 
-A great deal of the basics were gleened from [Ryan's Tutorials](https://ryanstutorials.net/linuxtutorial)  
+A great deal of the basics were gleened from [Ryan's Tutorials](https://ryanstutorials.net/linuxtutorial)
 
-Specific grep, filter, and some other commands were copied from Ryan's Tutorials' [Linux Cheatsheet](https://ryanstutorials.net/linuxtutorial/cheatsheet.php) and [Grep Cheatsheet](https://ryanstutorials.net/linuxtutorial/cheatsheetgrep.php) and whenever possible, variables were changed to protect the innocent.  
+Specific grep, filter, and some other commands were copied from Ryan's Tutorials' [Linux Cheatsheet](https://ryanstutorials.net/linuxtutorial/cheatsheet.php) and [Grep Cheatsheet](https://ryanstutorials.net/linuxtutorial/cheatsheetgrep.php) and whenever possible, variables were changed to protect the innocent.
 
-Apt and DPKG details were gleened from [this AskUbuntu.com article](https://askubuntu.com/questions/40779/how-do-i-install-a-deb-file-via-the-command-line)  
+Apt and DPKG details were gleened from [this AskUbuntu.com article](https://askubuntu.com/questions/40779/how-do-i-install-a-deb-file-via-the-command-line)
 
-[TechRepublic](https://www.techrepublic.com/article/how-to-add-an-openpgp-repository-key-now-that-apt-key-is-deprecated/) discusses adding an openGPG key, now that apt-key is deprecated.  
+[TechRepublic](https://www.techrepublic.com/article/how-to-add-an-openpgp-repository-key-now-that-apt-key-is-deprecated/) discusses adding an openGPG key, now that apt-key is deprecated.
 
 [ChrisJean.com](https://chrisjean.com/4-great-tools-to-find-files-quickly-in-ubuntu/) for tips on 'which' and 'find' tools.
 
@@ -818,4 +783,4 @@ Apt and DPKG details were gleened from [this AskUbuntu.com article](https://asku
 
 ## Footer
 
-Return to [Root readme](../README.html)  
+Return to [Root readme](../README.html)
