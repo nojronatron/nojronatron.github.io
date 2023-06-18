@@ -2,6 +2,87 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 16-June-2023
+
+VSCode API: The TextDocument interface `lineAt()` function defines 2 overloads:
+
+- LineAt(position: Position): Returns a TextLine
+- LineAt(position: Position): Returns a number
+
+The TextLine interface defines `lineNumber` (a Number primitive) but does not differentiate between what I would expect to be "Line Numbers" in a text document, and the zero-based numbering system for a structure like a Collection. So, when processing a TextDocument Type, be careful with handling line numbers to avoid unexpected results.
+
+## Thursday 15-June-2023
+
+Took some time out this morning to help a fellow ham with some email-over-ham technology setup steps. He was close, and together we got the configuration squared away.
+
+## Wednesday 14-June-2023
+
+Worked on building out tests to increase code coverage to the remaining two functions in my VS Code Extension.
+
+Lots of effort put into preparing for various upcoming events, including an all volunteer meeting tonight that included a presentation I was pegged to deliver on the agenda.
+
+## Tuesday 13-June-2023
+
+Completed a code challenge: Sum rows and columns from a 2D Array of Numbers. Key takeaways:
+
+- Within an algorithm, avoid hard-coding input array or collection length (size). Instead, use methods to get the length of the input array, and apply the return value to iterators, indexers, etc.
+- 2D Arrays are not always symmetric. Jagged arrays have unequal row and/or column lengths.
+- JavaScript Arrays may not handle empty elements the way I expect them to, so 'undefined' or 'NaN' may be returned. See previous bullet point.
+- Using indexing to get and set values in a JavaScript Array is effective.
+- Leveraging built-in functions can drastically alter the algorithmic performance, example: `const arr = new Array(100).fill(0)` is an iterating structure and counts toward Big O calculations.
+- Collapsing summing operations within a for loop reduces the number of variables to track within an algorithm.
+- Creating an Object with Array fields in JavaScript is easy: `const result = { rowSum: [], colSum: [], }`.
+
+Watched a presentation about Azure Bicep:
+
+- Is yet another markup language similar to YAML used to define Azure Containers.
+- Container environment(s) can be applied to Kubernetes.
+- Local dev-test environment configuration via Bicep is possible.
+- Azure Bicep is seeing relatively active development in [GitHub](https://github.com/Azure/bicep).
+
+Worked through some preparatory work to get my VS Code Extension published. While I could have just published it the way it is, I decided to continue working on the last few unit tests to get better code coverage. Some key takeaways:
+
+- The vscode module is available during testing!
+- The templated Mocha test harness is set up to run a full GUI version of VSCode and I need to sort out how to work with documents in that scenario.
+- I probably won't need Jest for the custom module file unit tests, and can stick with Mocha instead after I read up a little and get used to it.
+
+## Monday 12-June-2023
+
+Was introduced to [JSDoc](https://jsdoc.app/) this morning while listening to the Syntax Podcast. Historically I think I've done a pretty okay documenting my code. In some instances it hasn't happened until after the implementations (and maybe even testing) are completed. Turns out, my default mode of documenting seems to be compatible with JSDoc `/** This function returns ~something~ */` so if/when I decide to use JSDoc it should be pretty simple getting going.
+
+```javascript
+/**
+ * Find the first occurrence of a second level heading in the document.
+ * @returns Number The line number of the first 2nd Level Heading of the page.
+ * @param {vscode.TextEditor} editor The active text editor.
+ */
+module.exports = function findFirstSecondLevelHeading(editor, topHeading) { ... }
+```
+
+Key Takeaways Using Jest:
+
+- If a test _should_ be passing (console logs etc show correct, matching output of sut), go to [JestJS.io Documentation](https://jestjs.io/docs/using-matchers) and confirm the correct _Matcher_ is being used. For example: Strings are matched using `.toMatch()` and `.not.toMatch()`, whereas Numbers are matched using `toBe()`, `toEqual()`, `toBeCloseTo()` (etc).
+- Leverage node module 'path' to help locate files for running unit tests. For example: Tests that import modules across a separate directory branch can try `const rootDir = path.resolve(__dirname, '../../sut-functions');` and similar to help simplify traversing the directory tree.
+
+Have to remember that Linux and Windows "slash" characters are different. For example:
+
+- Linux: `/`
+- Windows: `\`
+- Node.js: `/`
+- Developing Node.js on Windows: `/`
+
+Fun.
+
+VS Code Extension development status:
+
+- YAML file activation GH Action to ensure unit tests run on push.
+- README getting close to finished.
+- Implemented code is working in expected cases.
+- Opened an Issue on GitHub to start tracking items.
+- Completed full manual testing and testing using Mocha and Electron.
+
+There are several more steps to take before publishing. It is getting close!
+
 ## Thursday 8-June-2023
 
 Focused on learning VSCode Extensions. I have a working idea for an MVP and am currently working on unit tests, documentation, and meeting VSCode Extension standards. :tada: :smiley:
