@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 18-June-2023
+
+Webpage design thoughts:
+
+- Layout: ebsite design and look rely on layout. Layout design is critical in how inner elements are nested and the impacts that might have on event bubbling.
+- Styling: A well designed, attractive styling will help bring viewers to a website and keep them. It can be a real bear to maintain a website with styling that is not well thought out, with poor choises of class names and use of deprecated style properties.
+- Responsive style: Using 'px' instead of other relative units when defining style properties can risk reducing website responsiveness to different view ports and devices.
+
 ## Friday 16-June-2023
 
 VSCode API: The TextDocument interface `lineAt()` function defines 2 overloads:
