@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 19-June-2023
+
+Webpage design learnings and takeaways:
+
+- In the Events system `event.keyCode` is deprecated: Instead, use `event.code` and use `Key_` where the underscore represents the key, for example: `if (event.code == KeyL) { // returns true if key 'N' is pressed }`.
+- Utilize `window.onLoad()` method to make set calls on DOM elements.
+- There are cases where setting a Style property directly on elements makes more sense than developing a CSS class. One of them is while testing. Another case is if there are just a few elements that need some minor adjustments or specialized adjustments (i.e. an event-driven style change).
+
 ## Sunday 18-June-2023
 
 Webpage design thoughts:
