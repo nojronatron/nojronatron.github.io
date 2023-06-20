@@ -2,6 +2,21 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 20-June-2023
+
+Updated my Portfolio project today and started to figure out how a few more code blocks work.
+
+- Themes: The basic gist is an alternate set of SCSS definitions get applied based on whether a bit is set (true) or unset (false) in the DOM 'body' element. I didn't look closely enough to verify this, but it seems like child Components, when loaded, can be passed props so they 'know' which theme is selected, and the SCSS properties simply override default settings, or otherwise defined settings.
+- Displaying DevIcons in React can be done via the minified CSS file (see below).
+- The 'spinning icon' feature does not appear to be working (which is okay) but I am curious as to why it fails to spin. I don't intend to implement that now, because I've replaced the laptop icon with my mugshot in front of my computer desk.
+
+DevIcons in React - options:
+
+- Usually, adding an icon will not require much adjustment unless the icon doesn't have contrasting colors to the page it's on.
+- In React, one way to add files is directly through imports at the top of the component that needs to display them. This is not particularly dynamic.
+- In HTML5, a Link element rel stylesheet, href to a minified DevIcon css file allows calling the icons directly in the body of the HTML like `class='deficon-vscode-plain colored'`.
+- So one solution is to add an import statement to the SCSS file like `@import url('https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css');` which enables settings the 'class' attribute with multiple values like 'colored'.
+
 ## Monday 19-June-2023
 
 Webpage design learnings and takeaways:
