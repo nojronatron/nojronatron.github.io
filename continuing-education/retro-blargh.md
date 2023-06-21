@@ -17,6 +17,32 @@ DevIcons in React - options:
 - In HTML5, a Link element rel stylesheet, href to a minified DevIcon css file allows calling the icons directly in the body of the HTML like `class='deficon-vscode-plain colored'`.
 - So one solution is to add an import statement to the SCSS file like `@import url('https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css');` which enables settings the 'class' attribute with multiple values like 'colored'.
 
+It occurred to me that one of the issues with the Bigfoot Winlink Form is it is not obvious which element is currently selected, especially while 'tabbing around' the form. A solution could be to apply a 'box-shadow' to the element types that need to be highlighted when they have focus.
+
+```css
+input:focus {
+  background-color: rgba(200, 200, 200, 0.2);
+  box-shadow: 2px 2px 10px rgba(16, 194, 45, 0.7), -2px -2px 10px rgba(16, 194, 45, 0.7);
+}
+```
+
+Other input types can be targeted with this pseudo-class, including `select:focus`, `text:focus`, and `textarea:focus`. The downside is the solution is 'heavy handed' in that every single element targeted gets this background-color and box-shadow. Another approach is to leverage `onfocus` and `onblur` events on the specific elements themselves:
+
+```html
+<input
+  title="Send your responses to the survey."
+  class="submitButton"
+  enctype="multipart/form-data"
+  id="submit"
+  method="Post"
+  name="submit"
+  value="SUBMIT"
+  type="submit"
+  onfocus="style.boxShadow='2px 2px 10px rgba(16, 194, 45, 0.7), -2px -2px 10px rgba(16, 194, 45, 0.7)'"
+  onblur="style.boxShadow='0px 0px 0px rgba(0, 0, 0, 0.0), 0px 0px 0px rgba(0, 0, 0, 0.0)'"
+/>
+```
+
 ## Monday 19-June-2023
 
 Webpage design learnings and takeaways:
