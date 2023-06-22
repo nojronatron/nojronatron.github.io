@@ -1,14 +1,15 @@
 # DotNET Conf Notes November 2022
 
-## Index
+Notes taken from live streams and recorded sessions of DotNET Conference, held in November 2022.
 
-[WASM Improvments in DotNET7](#wasm-improvements-in-dotnet7)
+## Table of Contents
 
-[The State of DotNET MAUI](#the-state-of-dotnet-maui)
-
-[Container Apps](#container-apps)
-
-[Azure Functions in DotNET](#azure-functions-in-dotnet)
+- [WASM Improvements in DotNet7](#wasm-improvements-in-dotnet7)
+- [The State of DotNET MAUI](#the-state-of-dotnet-maui)
+- [Container Apps](#container-apps)
+- [Azure Functions in DotNET](#azure-functions-in-dotnet)
+- [Upgrading from NET Framework to DotNET 7](#upgrading-from-net-framework-to-dotnet-7)
+- [Footer](#footer)
 
 ## WASM Improvements in DotNet7
 
@@ -112,7 +113,7 @@ Learning:
 
 New Features:
 
-- Foldable device support (*.AndoroidX.Window)
+- Foldable device support (\*.AndoroidX.Window)
 - Window Positioning
 - Tool Tips
 - Context Menus
@@ -122,7 +123,7 @@ URL Routing:
 
 - DotNET MAUI supports this.
 - Overcomes navigation problems between Blazor, Mobile, and Desktop app types.
-- Desktop App buttons are *native* with built-in capability.
+- Desktop App buttons are _native_ with built-in capability.
 
 About [.NET MAUI](https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui?view=net-maui-7.0)
 
@@ -168,7 +169,7 @@ DotNET 7 support in Azure Functions.
 
 DotNET Framework support in Azure Functions v4.
 
-Event-driven, serverless compute service. *[MSFT, DotNET Conference]*
+Event-driven, serverless compute service. _[MSFT, DotNET Conference]_
 
 Built on top of Web Jobs.
 
@@ -233,6 +234,90 @@ Migrating: Functions 3.0 and 1.0 can be migrated to v4, and guides are available
 Roadmap:
 
 - Closing the gab between in-proc and isolated proc models, then will stop releasing in-proc models.
+
+## Upgrading from NET Framework to DotNET 7
+
+I have a WPF application that was built using DotNET Framework 4.x, and I want to upgrade it to DotNET 7.x (or at least DotNET 6.x LTS) so that I can continue to learn, as well as grow the project into new capabilities of DotNET and C#.
+
+An additional goal of migrating to the latest SDK, is to ensure application compatibility and support with existing and future platforms, especialy Windows, but including Linux (especially with DotNET 6+ where Linux apps can be built and deployed in a Windows SDK environment).
+
+There are [differences with WPF DotNET](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/migration/differences-from-net-framework?view=netdesktop-7.0).
+
+DotNET 7 Upgrade [WPF](https://aka.ms/dotnet/upgrade).
+
+How to [upgrade WPF Desktop App to DotNET 7](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/migration/?view=netdesktop-7.0&WT.mc_id=dotnet-35129-website).
+
+### Workflow Recommendation
+
+- Identify dependencies: Some could be upgraded, others removed and/or replaced completely.
+- Upgrade project and NuGet references: Target the net project SDK.
+- Upgrade source code and other project assets: Tools exist to help along the way.
+- Test and Deploy: Unit testing is necessary and integration and runtime testing are too.
+
+#### Dependencies
+
+Dependencies could include:
+
+- .NET APIs
+- NuGet packages
+- Project-to-project dependencies (references)
+- Loose binaries
+
+#### Upgrade Project and NuGet References
+
+Project configurations are in the new SDK format, which is not compatible with DotNET Framework SDK project definitions!
+
+- Upgrade in-place
+- Upgrade incrementally
+
+#### Upgrade Source Code and Project Assets
+
+- Use the DotNET Upgrade Assistant
+- Incremental Migration Tooling can help
+
+#### Test and Deploy
+
+- Some changes are only visible at runtime
+- Cross-platform migration will require additional integration testing: Live/Runtime testing
+
+### Upgrading In Place
+
+- Works for projects updated in-place to DotNET Standard or _multi-targeted_ between DotNET 7 and DotNET Framework.
+- Fastest path to full migration.
+- Prevents duplicate code.
+- Recommended for non-ASP.NET scenarios (WPF, Console, etc).
+- DotNET Upgrade Assistant can help with this scenario.
+
+Suggested workflow:
+
+1. Make a tree map of the projects in the Solution.
+2. Map-in the dependant projects.
+3. Map-in the dependent Libraries.
+4. For every leaf node (has no child dependencies), start an upgrade there.
+
+Note: Multi-targeting is an option.
+
+Microsoft highly recommends this option whenever possible (except ASP.NET due to differences in ASP.NET Core) and very large Libraries.
+
+### Side-by-side
+
+- New project(s) created and implementation is moved-over gradually.
+- Build and deploy can continue throughout migration.
+- Recommended for ASP.NET or very large class libary project/solutions.
+- [VS Extension for incremental migration](https://devblogs.microsoft.com/dotnet/migrating-from-asp-net-to-asp-net-core-part-4) is an available tool.
+
+1. Create a new version based on the target SDK.
+2. Migrate individual libraries to migrate over.
+
+A reverse-proxy is used to manage directing requests to the original ASP.NET, or the new ASP.CORE app, on a feature-by-feature basis.
+
+Visual Studio Extension "YARP" exists to help migrate legacy ASP.NET Project to ASP.NET Core within the VS IDE.
+
+- Not a be-all, end-all tool.
+- Will help accelerate migrations.
+- Some manual effort will still be required.
+
+There are "Adapters" for System.Web that help migrate to ASP.NET Core, and move away from legacy functionality.
 
 ## Footer
 

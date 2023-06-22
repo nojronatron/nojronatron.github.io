@@ -2,6 +2,53 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 21-June-2023
+
+Happy Summer Solstice!
+
+In an effort to add more completed projects to my portfolio, I started working on upgrading Home Sales Tracker App (from 2019 - 2021) from DotNET Framework 4.7 to DotNET 6. Here are some takeaways:
+
+1. Use Visual Studio 2022, not VSCode (even with the VS Solutions Extension it is more complicated in VSCode).
+2. Ensure dependencies are installed after cloning (i.e. SQL Server).
+3. Ensure the correct Project is set as Startup and then do a Build on the Solution.
+4. Install DotNET Upgrade Assistant using the Extensions Manager is VS 2022.
+5. Diagram the Solution into a dependency tree to identify leaf Projects, and to find other dependancies and supporting files.
+6. Run the DotNET Upgrade Assistant on the leaf-node projects first, and then clean the build for that Project, then run Build on the Project. Solve any issues.
+7. Repeat step 6 for the remaining leaf project.
+8. Repeat step 6 for the remaining parent project(s) up to the last, most-common/root project.
+9. Update or add NuGet package Microsoft Extension Configuration to use `appsettings.json`, in place of `App.config` files.
+
+There could be some errors along the way:
+
+- When using a SQL DB there will be a Connection String dependency somewhere.
+- A unit test project might not have access to a database whose connection string is stored in another project such as a Data Access library. Upgrading and building that depenedant project will be necessary before running tests.
+- DotNET Targeting might not be compatible with the new SDK "way" of targeting in the Project file(s).
+- If a Project won't build (like a Test Project) it could be because another Project has not been cleaned and built, or there are still problems that need to be resolved before it will build successfully. This is because the Build process outputs binaries (dll files)
+
+The following will cause an error when building a WPF project:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+</Project>
+```
+
+The solution is to target DotNET 6 using `-windows` as a suffix:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+  </PropertyGroup>
+</Project>
+```
+
+I made some other notes in [dotnetconf-2022](./dotnetconf-2022.html) with some added reference links.
+
+Also GH Copilot Extension exists for VS 2022! Will have to investigate other Extensions as well.
+
 ## Tuesday 20-June-2023
 
 Updated my Portfolio project today and started to figure out how a few more code blocks work.
