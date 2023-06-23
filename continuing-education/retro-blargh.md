@@ -2,6 +2,20 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 22-June-2023
+
+Continued efforts cleaning up the Bigfoot Winlink form:
+
+- Lots of code that just doesn't do anything.
+- Rewrote the help text so it applies to the form as it is intended to be operated.
+- Debugging issues with saving and loading data provided me with an excuse to write a test SPA with a Form so I can experiment with using LocalStorage and interacting with Files.
+
+Working with the Home Sales Tracker Example app, in an attempt to get video and screen shots of it in operation, I ran into some bugs:
+
+- In the past I was not aware of how to deal with null objects.
+- Returning a null object when a concrete instance was expected causes the application to throw an Exception (understandable).
+- In the past year and a half I have picked up enough experience to work through that type of situation (or avoid making it happen in the first place), which is a true sign of moving forward! :clap: :clap:
+
 ## Wednesday 21-June-2023
 
 Happy Summer Solstice!
