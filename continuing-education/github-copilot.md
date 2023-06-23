@@ -4,7 +4,20 @@ Liam Champton @liamchampton
 
 Kory - Cloud Advocate @koreyspace
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Codespaces](#codespaces)
+- [Copilot](#copilot)
+- [The GitHub Next Team and Project](#the-github-next-team-and-project)
+- [References](#references)
+- [Footer](#footer)
+
 ## Overview
+
+GitHub Copilot is an AI-powered utility that can help you code, debug, and refactor your solutions.
+
+Note: GitHub and Microsoft are working to develop "Co-Pilots" for many scenarios, other than coding.
 
 ## Codespaces
 
