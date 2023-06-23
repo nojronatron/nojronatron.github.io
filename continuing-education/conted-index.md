@@ -4,11 +4,12 @@ A collection of continuing education, research notes, and references.
 
 ## Table of Contents
 
-Learn [todos](#things-i-want-to-learn-more-about).  
-Research and [takeaways from experience](#notes-and-takeaways-from-research-and-experience).  
-Azure [learnings](#azure-learnings).
+- [Things I Want To Learn More About](#things-i-want-to-learn-more-about)
+- [Notes And Takeaways from Research and Experience](#notes-and-takeaways-from-research-and-experience)
+- [Azure Learnings](#azure-learnings)
+- [Footer](#footer)
 
-### Things I Want To Learn More About
+## Things I Want To Learn More About
 
 - [ ] Learn how to build a ChatGPT Plugin and [integrating ChatGPT into Apps](./chatgpt-integration.html).
 - [ ] Continue learning about Data Structures and Algorithms. See [DSA Notes](./dsa-notes.html) for documentation and review.
@@ -43,7 +44,7 @@ Azure [learnings](#azure-learnings).
 - [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).
 - [ ] Wiring Repositories in [Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa).
 
-### Notes And Takeaways from Research and Experience
+## Notes And Takeaways from Research and Experience
 
 - [x] Investigate [Cheerio](https://cheerio.js.org/) - notes [started here](cheerio.html).
 - [x] Attend MSFT Build 2023 and [take notes](./msbuild-20230-notes.html).
@@ -86,7 +87,7 @@ Azure [learnings](#azure-learnings).
 - [x] Trees and Decision Trees have perplexed me for a while I'd like to get over that.
 - [x] Configuring Linux and Windows to support "IDEA ." to open IntelliJ [at current directory](../linux-terminal-files/bash-stuff.html###aliases).
 
-### Azure Learnings
+## Azure Learnings
 
 - About [Monitoring Azure Resources](./azure-monitoring-resources.html).
 - Developing [Azure Functions](./azure-functions.html) in Python (and other languages, too).
