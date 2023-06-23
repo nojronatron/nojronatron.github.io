@@ -2,6 +2,14 @@
 
 This document will store my experiences learning about, and interacting with the process of building a VSCode Extension.
 
+## Table of Contents
+
+- [Goals](#goals)
+- [Planning](#planning)
+- [Learning How To Build Extensions](#learning-how-to-build-extensions)
+- [References](#references)
+- [Footer](#footer)
+
 ## Goals
 
 At the end of this experience, I hope to have learned the following:
@@ -25,10 +33,10 @@ In addition, I am challenging myself to complete the following:
 - [x] Create an exploratory project to experiment with.
 - [x] Develop the MVP feature target.
 - [x] Develop functions that implement the features.
-- [ ] Implement tests to validation functionality for MVP.
-- [ ] Design walk-throughs and pix/video for publication.
-- [ ] Design stellar documentation.
-- [ ] Consider ongoing support and/or feedback options for user-driven improvement.
+- [x] Implement tests to validation functionality for MVP.
+- [x] Design walk-throughs and pix/video for publication.
+- [x] Design stellar documentation.
+- [x] Consider ongoing support and/or feedback options for user-driven improvement.
 
 ## Learning How To Build Extensions
 
