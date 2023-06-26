@@ -2,6 +2,166 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 25-June-2023
+
+Continued efforts with the Winlink Form have paid off. The form now features:
+
+- High contrast color palette.
+- Responsive design supporting both large and small viewports.
+- Use of labels and `for` attributes to improve accessibility (Lighthouse Score: 100).
+- Fixed LocalStorage issues with capturing and storing data.
+- Fixed File Save and Load operations by implementing JSON format commpletely.
+
+One note about responsive design: I tried to keep all API usages compatible all the way back to Windows 7-era browsers, but have not tested outside of Chrome, Edge, and Firefox, so there is a possibility that Opera, Safari, or phone-based browsers won't see the benefits of these efforts. This is a low-risk situation because Winlink Express requires Windows 7 and newer, and most smart phones support Chrome or Firefox at a reasonable API level. I'm not sure about Opera or Safari, I guess I'll find out one way or another.
+
+Major wins this week:
+
+- Diagramming code functions that someone else wrote, to learn the code and to enable faster, more effective refactoring and debugging.
+- Use of Media Queries to implement responsive design. I've known about this for over a year now, but have not decided to work with it directly until now.
+
+## Saturday 24-June-2023
+
+Diagramming software is pretty fun, and very helpful. Looking at the functions listed in the Bigfoot Winlink Form, it is hard to trace the paths and where the paths split, and which functions return anything, or affect the UI in some way. The diagram documented the following key components:
+
+- Function name and whether it returned anything, and an arrow to any other function it called.
+- Events that are triggered by the API (focus, blur, etc) and those triggered by the user (click) and one that is triggered by another event handler (change).
+- Built-in API functions that are called by the event handlers and other functions such as LocalStorage, FileReader, and the Windown object.
+
+I discovered several things while developing the diagram:
+
+- The HTML element 'textarea' is _not_ an input element. It is a container element that can contain text, and it can be used to input text, but it is not an input element.
+- Most of the input elements on the form are of type 'text' and 'button' (not surprising).
+- There are two 'hidden' type elements that are used to store data for save and load functionality (which is weird considering LocalStorage is used -- partially).
+
+## Friday 23-June-2023
+
+Exploring use of FileReader, setting element values, and saving/loading data to/from localStorage.
+
+- Setting an Option element, selected property to true is more challenging than I anticipated. There are many ways to make the selection, and looking at [alvarotrigo.com](https://alvarotrigo.com/blog/javascript-select-option/) some methods to do it aren't possible depending on whether multiple selections are allowed. In the end I impelmented a comparison that returned the index of the selected option, and then set the `selected` property on that indexed option attribute to `true`.
+- If a user changes the selected option, and then the saved file data is reloaded, the selected option will not be updated. I'm not sure exactly why this happens, but I suspect it has to do with a lack of event handling.
+- Saving and loading files is a little tricky as well. Prepare a sensible file format early on that is easily traversable. Ensure it is also portable between [Web API Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) and your HTML Form or data.
+- In some situations it might appear to make sense to store all data entered into a `textarea` element, but in the case of the Bigfoot Winlink form, it is better to _not_ maintain the location suffix with the rest of the bib records and instead just append that data when writing back to the server.
+
+I have some work to do to figure out how to get that last bullet point solved. Although it seems simple, the challenge is going to be how to solve it _on the existing form_ without undesireable, unanticipated side effects. This could take a few days to solve completely, but I feel like I'm getting close to a solution.
+
+## Thursday 22-June-2023
+
+Continued efforts cleaning up the Bigfoot Winlink form:
+
+- Lots of code that just doesn't do anything.
+- Rewrote the help text so it applies to the form as it is intended to be operated.
+- Debugging issues with saving and loading data provided me with an excuse to write a test SPA with a Form so I can experiment with using LocalStorage and interacting with Files.
+
+Working with the Home Sales Tracker Example app, in an attempt to get video and screen shots of it in operation, I ran into some bugs:
+
+- In the past I was not aware of how to deal with null objects.
+- Returning a null object when a concrete instance was expected causes the application to throw an Exception (understandable).
+- In the past year and a half I have picked up enough experience to work through that type of situation (or avoid making it happen in the first place), which is a true sign of moving forward! :clap: :clap:
+
+## Wednesday 21-June-2023
+
+Happy Summer Solstice!
+
+In an effort to add more completed projects to my portfolio, I started working on upgrading Home Sales Tracker App (from 2019 - 2021) from DotNET Framework 4.7 to DotNET 6. Here are some takeaways:
+
+1. Use Visual Studio 2022, not VSCode (even with the VS Solutions Extension it is more complicated in VSCode).
+2. Ensure dependencies are installed after cloning (i.e. SQL Server).
+3. Ensure the correct Project is set as Startup and then do a Build on the Solution.
+4. Install DotNET Upgrade Assistant using the Extensions Manager is VS 2022.
+5. Diagram the Solution into a dependency tree to identify leaf Projects, and to find other dependancies and supporting files.
+6. Run the DotNET Upgrade Assistant on the leaf-node projects first, and then clean the build for that Project, then run Build on the Project. Solve any issues.
+7. Repeat step 6 for the remaining leaf project.
+8. Repeat step 6 for the remaining parent project(s) up to the last, most-common/root project.
+9. Update or add NuGet package Microsoft Extension Configuration to use `appsettings.json`, in place of `App.config` files.
+
+There could be some errors along the way:
+
+- When using a SQL DB there will be a Connection String dependency somewhere.
+- A unit test project might not have access to a database whose connection string is stored in another project such as a Data Access library. Upgrading and building that depenedant project will be necessary before running tests.
+- DotNET Targeting might not be compatible with the new SDK "way" of targeting in the Project file(s).
+- If a Project won't build (like a Test Project) it could be because another Project has not been cleaned and built, or there are still problems that need to be resolved before it will build successfully. This is because the Build process outputs binaries (dll files)
+
+The following will cause an error when building a WPF project:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+</Project>
+```
+
+The solution is to target DotNET 6 using `-windows` as a suffix:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+  </PropertyGroup>
+</Project>
+```
+
+I made some other notes in [dotnetconf-2022](./dotnetconf-2022.html) with some added reference links.
+
+Also GH Copilot Extension exists for VS 2022! Will have to investigate other Extensions as well.
+
+## Tuesday 20-June-2023
+
+Updated my Portfolio project today and started to figure out how a few more code blocks work.
+
+- Themes: The basic gist is an alternate set of SCSS definitions get applied based on whether a bit is set (true) or unset (false) in the DOM 'body' element. I didn't look closely enough to verify this, but it seems like child Components, when loaded, can be passed props so they 'know' which theme is selected, and the SCSS properties simply override default settings, or otherwise defined settings.
+- Displaying DevIcons in React can be done via the minified CSS file (see below).
+- The 'spinning icon' feature does not appear to be working (which is okay) but I am curious as to why it fails to spin. I don't intend to implement that now, because I've replaced the laptop icon with my mugshot in front of my computer desk.
+
+DevIcons in React - options:
+
+- Usually, adding an icon will not require much adjustment unless the icon doesn't have contrasting colors to the page it's on.
+- In React, one way to add files is directly through imports at the top of the component that needs to display them. This is not particularly dynamic.
+- In HTML5, a Link element rel stylesheet, href to a minified DevIcon css file allows calling the icons directly in the body of the HTML like `class='deficon-vscode-plain colored'`.
+- So one solution is to add an import statement to the SCSS file like `@import url('https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css');` which enables settings the 'class' attribute with multiple values like 'colored'.
+
+It occurred to me that one of the issues with the Bigfoot Winlink Form is it is not obvious which element is currently selected, especially while 'tabbing around' the form. A solution could be to apply a 'box-shadow' to the element types that need to be highlighted when they have focus.
+
+```css
+input:focus {
+  background-color: rgba(200, 200, 200, 0.2);
+  box-shadow: 2px 2px 10px rgba(16, 194, 45, 0.7), -2px -2px 10px rgba(16, 194, 45, 0.7);
+}
+```
+
+Other input types can be targeted with this pseudo-class, including `select:focus`, `text:focus`, and `textarea:focus`. The downside is the solution is 'heavy handed' in that every single element targeted gets this background-color and box-shadow. Another approach is to leverage `onfocus` and `onblur` events on the specific elements themselves:
+
+```html
+<input
+  title="Send your responses to the survey."
+  class="submitButton"
+  enctype="multipart/form-data"
+  id="submit"
+  method="Post"
+  name="submit"
+  value="SUBMIT"
+  type="submit"
+  onfocus="style.boxShadow='2px 2px 10px rgba(16, 194, 45, 0.7), -2px -2px 10px rgba(16, 194, 45, 0.7)'"
+  onblur="style.boxShadow='0px 0px 0px rgba(0, 0, 0, 0.0), 0px 0px 0px rgba(0, 0, 0, 0.0)'"
+/>
+```
+
+## Monday 19-June-2023
+
+Webpage design learnings and takeaways:
+
+- In the Events system `event.keyCode` is deprecated: Instead, use `event.code` and use `Key_` where the underscore represents the key, for example: `if (event.code == KeyL) { // returns true if key 'N' is pressed }`.
+- Utilize `window.onLoad()` method to make set calls on DOM elements.
+- There are cases where setting a Style property directly on elements makes more sense than developing a CSS class. One of them is while testing. Another case is if there are just a few elements that need some minor adjustments or specialized adjustments (i.e. an event-driven style change).
+
+## Sunday 18-June-2023
+
+Webpage design thoughts:
+
+- Layout: ebsite design and look rely on layout. Layout design is critical in how inner elements are nested and the impacts that might have on event bubbling.
+- Styling: A well designed, attractive styling will help bring viewers to a website and keep them. It can be a real bear to maintain a website with styling that is not well thought out, with poor choises of class names and use of deprecated style properties.
+- Responsive style: Using 'px' instead of other relative units when defining style properties can risk reducing website responsiveness to different view ports and devices.
+
 ## Friday 16-June-2023
 
 VSCode API: The TextDocument interface `lineAt()` function defines 2 overloads:

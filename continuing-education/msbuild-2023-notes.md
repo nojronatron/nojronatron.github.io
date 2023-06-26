@@ -4,6 +4,19 @@ Twitter: @msdev, #MSBuild
 
 Official [Build Playlist (Spotify)](aka.ms/buildplaylist)
 
+## Table of Contents
+
+- [Keynote](#keynote)
+- [GitHub Copilot](#github-copilot)
+- [Microsoft DevBox](#microsoft-devbox)
+- [Self Serve App Infrastructure Using Azure Deployment Environments](#self-serve-app-infrastructure-using-azure-deployment-environments)
+- [Shaping the Future of Work with AI](#shaping-the-future-of-work-with-ai)
+- [Dev Joy with Scott Hanselman and Friends](#dev-joy-with-scott-hanselman-and-friends)
+- [Open QA About Java at Microsoft](#open-qa-about-java-at-microsoft)
+- [Just Say No](#just-say-no)
+- [Resources](#resources)
+- [Footer](#footer)
+
 ## Keynote
 
 Speakers and Demonstrators:
@@ -207,7 +220,7 @@ Azure Deployment Environments, with Shayne Boyer Principal Progrma Manager, MSFT
 
 Now Generally Available.
 
-## Selef Serve App Infrastructure Using Azure Deployment Environments
+## Self Serve App Infrastructure Using Azure Deployment Environments
 
 Presenters
 
@@ -536,7 +549,7 @@ General Notes:
 - DevHome: DSC/YAML will also allow DevHome to manage _software that you do not want_ e.g. Ensure the correct version of Node is installed.
 - DevHome: Supports GitHub, Azure DevOps, PowerPlatform, and more.
 
-## Open Q&A About Java at Microsoft
+## Open QA About Java at Microsoft
 
 Java Binaries, Licensing, and the open-source JDK:
 
