@@ -2,6 +2,179 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 26-June-2023
+
+Posted an update to LinkedIn about completion of my VS Code extension create-markdown-toc. I added a short description and a few in-action screen shots. As I complete other projects I look forward to doing the same.
+
+Looking at an older team project - EZ-PC-Shopper - I realize just how much I have learned about HTML, CSS, and JavaScript. The website leaves a lot to be desired (like figuring out to click the image of the item to edit in the shopping cart), but many aspects of the project were new to each of us and we powered through and presented it with smiles and sales-pitchey-ness. :smiley:
+
+Some code snippets I developed these last few days working on the Winlink Form project:
+
+- Use of media queries! Scales the font size and some element sizes depending on the detected size of the viewport.
+- Centering items without using 'flexbox' or 'float' for extended browser compatibility.
+- Identifying a read-only text input `<input type='text' class='readOnlyText' readonly />` to be different than regular (read + write) text inputs, providing a hint of alternate functionality. A user can still select and copy the generated text from the readonly text input without accidentally editing or deleting it.
+- Providing hints that an input is currently selected and can be clicked and used, through border alterations and cursor changes.
+- Code Fellows taught me to how to plan the layout of a page using HTML elements, and then apply CSS for the desired look and feel. This training helped me to arrange `<div>` elements in conjunction with CSS to help move elements around when the viewport size changes. This may seem like simple stuff to experienced JS developers, but it is a big win for me.
+- Simplifying use of Local Storage API. The API itself is fairly simple, but the Winlink Form code was a bit convoluted and unnecessarily complex. By simplifying the code to simply add values from existing elements to a JSON object and then storing it (or, for the converse action, loading the JSON object from Local Storage and just reading-in values directly to the page elements) the code is much easier to read and troubleshoot.
+
+Media queries to control font size and element size:
+
+```css
+@media screen and (width < 650px) {
+  label,
+  input,
+  textarea,
+  select,
+  button {
+    font-size: 0.7em;
+  }
+  input {
+    margin: 0.2em 0.2em;
+  }
+  input[type='checkbox'] {
+    width: 1em;
+    height: 1em;
+  }
+  .formTitleHeader {
+    font-size: 2em;
+  }
+  .msgHeaderTitle {
+    font-size: 0.7em;
+  }
+  .addressInput {
+    min-width: 70%;
+  }
+}
+
+@media screen and (width >= 650px) {
+  label,
+  input,
+  textarea,
+  select,
+  button {
+    font-size: 1em;
+  }
+  input {
+    margin: 0.3em 0.3em;
+  }
+  input[type='checkbox'] {
+    width: 1.2em;
+    height: 1.2em;
+  }
+  .formTitleHeader {
+    font-size: 3em;
+  }
+  .msgHeaderTitle {
+    font-size: 1.1em;
+  }
+  .addressInput {
+    max-width: 55%;
+  }
+}
+```
+
+Centering elements without using flexbox or float:
+
+```css
+.div-across-auto-align {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+```
+
+Read only text input field decoration:
+
+```css
+.readOnlyText {
+  color: rgb(84, 84, 84) !important;
+  outline: none !important;
+  cursor: default !important;
+  opacity: unset !important;
+}
+```
+
+Items that are hovered over change the cursor, opacity, and border style for visual feedback:
+
+```css
+input {
+  padding: 0.2em 0.2em;
+  border-radius: 0.5rem;
+}
+textarea,
+select {
+  padding: 0.3em 0.3em;
+  border: rgb(0, 0, 0) solid 0.15em;
+  border-radius: 0.5rem;
+}
+input:hover,
+textarea:hover,
+select:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+```
+
+An active element (clicked or tabbed-in to) border style changes for visual feedback:
+
+```css
+input {
+  padding: 0.2em 0.2em;
+  border-radius: 0.5rem;
+}
+textarea,
+select {
+  padding: 0.3em 0.3em;
+  border: rgb(0, 0, 0) solid 0.15em;
+  border-radius: 0.5rem;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: rgb(255, 153, 0) solid 3px;
+}
+```
+
+Simple local storage API usage:
+
+```javascript
+// store Form element values into localStorage
+function storeElementValueToLocalStorage() {
+  var addressFormatted = document.getElementById('address');
+  localStorage.setItem('addressKey', addressFormatted.value);
+}
+// load values from localStorage and populate elements in a Form
+function loadValueFromLocalStorage() {
+  const storedAddress = localStorage.getItem('addressKey');
+  if (document.getElementById('address').value == '' && storedAddress != '') {
+    document.getElementById('address').value = storedAddress;
+  }
+}
+```
+
+Use of JSON Stringify to store multiple values into a single element value:
+
+```javascript
+// this is useful for storing values destined
+// for localStorage or for saving to a file
+function captureValuesToHiddenElement() {
+  // call this function prior to saving data to a file
+  const address = document.getElementById('address').value;
+  const Location = document.getElementById('location').value;
+  const message = document.getElementById('message').value;
+  const formObject = JSON.stringify({
+    address,
+    location,
+    message,
+  });
+  // when the saveToFile function is called it will save
+  // the values stored in hiddenData element to a file
+  document.getElementById('hiddenData').value = formObject;
+}
+```
+
+There is plenty more work to do with this project, but that will wait until after some of the intended users have a chance to use the latest update and provide some feedback.
+
 ## Sunday 25-June-2023
 
 Continued efforts with the Winlink Form have paid off. The form now features:
@@ -16,8 +189,10 @@ One note about responsive design: I tried to keep all API usages compatible all 
 
 Major wins this week:
 
-- Diagramming code functions that someone else wrote, to learn the code and to enable faster, more effective refactoring and debugging.
 - Use of Media Queries to implement responsive design. I've known about this for over a year now, but have not decided to work with it directly until now.
+- Diagramming code functions that someone else wrote, to learn the code and to enable faster, more effective refactoring and debugging (see image below).
+
+![Bigfoot Bib Tracker Form Functional Diagram](images/bigfoot-bib-tracker-form-functional-diagram.jpg)
 
 ## Saturday 24-June-2023
 
