@@ -2,6 +2,48 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 25-June-2023
+
+Continued efforts with the Winlink Form have paid off. The form now features:
+
+- High contrast color palette.
+- Responsive design supporting both large and small viewports.
+- Use of labels and `for` attributes to improve accessibility (Lighthouse Score: 100).
+- Fixed LocalStorage issues with capturing and storing data.
+- Fixed File Save and Load operations by implementing JSON format commpletely.
+
+One note about responsive design: I tried to keep all API usages compatible all the way back to Windows 7-era browsers, but have not tested outside of Chrome, Edge, and Firefox, so there is a possibility that Opera, Safari, or phone-based browsers won't see the benefits of these efforts. This is a low-risk situation because Winlink Express requires Windows 7 and newer, and most smart phones support Chrome or Firefox at a reasonable API level. I'm not sure about Opera or Safari, I guess I'll find out one way or another.
+
+Major wins this week:
+
+- Diagramming code functions that someone else wrote, to learn the code and to enable faster, more effective refactoring and debugging.
+- Use of Media Queries to implement responsive design. I've known about this for over a year now, but have not decided to work with it directly until now.
+
+## Saturday 24-June-2023
+
+Diagramming software is pretty fun, and very helpful. Looking at the functions listed in the Bigfoot Winlink Form, it is hard to trace the paths and where the paths split, and which functions return anything, or affect the UI in some way. The diagram documented the following key components:
+
+- Function name and whether it returned anything, and an arrow to any other function it called.
+- Events that are triggered by the API (focus, blur, etc) and those triggered by the user (click) and one that is triggered by another event handler (change).
+- Built-in API functions that are called by the event handlers and other functions such as LocalStorage, FileReader, and the Windown object.
+
+I discovered several things while developing the diagram:
+
+- The HTML element 'textarea' is _not_ an input element. It is a container element that can contain text, and it can be used to input text, but it is not an input element.
+- Most of the input elements on the form are of type 'text' and 'button' (not surprising).
+- There are two 'hidden' type elements that are used to store data for save and load functionality (which is weird considering LocalStorage is used -- partially).
+
+## Friday 23-June-2023
+
+Exploring use of FileReader, setting element values, and saving/loading data to/from localStorage.
+
+- Setting an Option element, selected property to true is more challenging than I anticipated. There are many ways to make the selection, and looking at [alvarotrigo.com](https://alvarotrigo.com/blog/javascript-select-option/) some methods to do it aren't possible depending on whether multiple selections are allowed. In the end I impelmented a comparison that returned the index of the selected option, and then set the `selected` property on that indexed option attribute to `true`.
+- If a user changes the selected option, and then the saved file data is reloaded, the selected option will not be updated. I'm not sure exactly why this happens, but I suspect it has to do with a lack of event handling.
+- Saving and loading files is a little tricky as well. Prepare a sensible file format early on that is easily traversable. Ensure it is also portable between [Web API Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) and your HTML Form or data.
+- In some situations it might appear to make sense to store all data entered into a `textarea` element, but in the case of the Bigfoot Winlink form, it is better to _not_ maintain the location suffix with the rest of the bib records and instead just append that data when writing back to the server.
+
+I have some work to do to figure out how to get that last bullet point solved. Although it seems simple, the challenge is going to be how to solve it _on the existing form_ without undesireable, unanticipated side effects. This could take a few days to solve completely, but I feel like I'm getting close to a solution.
+
 ## Thursday 22-June-2023
 
 Continued efforts cleaning up the Bigfoot Winlink form:
