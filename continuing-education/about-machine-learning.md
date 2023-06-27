@@ -2,6 +2,13 @@
 
 Introduction to Machine Learning
 
+## Table of Contents
+
+- [About AI and ML](#about-ai-and-ml)
+- [Classical Machine Learning](#classical-machine-learning)
+- [Resources and Attributions](#resources-and-attributions)
+- [Footer](#footer)
+
 ## About AI and ML
 
 Artificial Intelligence (AI): Science of getting machines to accomplish tasks that typically require human level experience and skills.
