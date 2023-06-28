@@ -2,6 +2,34 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 27-June-2023
+
+Refined a bug description in project markdown-toc: This markdown file contains L2 headings that include a dash `-` character in the name. My code generates fragmented links for these headings. An Issue is already in the project and is capturing problem experiences so that I can generate a list of test cases to use when I get to fixing the bug.
+
+I worked through a new code challenge and learned a few things, and then updated code and tests to a previous challenge due to lack of code coverage that I hadn't noticed before:
+
+- Blind spot: I need to remember to review my written code immediately after writing it to remove code that is not needed. For example, I wrote a block of code that checked for a condition, and then after a (rather long) for loop I wrote code that did the same check. This resulted in a lowered code coverage score.
+- Blind spot: In the subsection of code where an if statement returns false if any sub-array size is less than 9, I failed to check for a sub-array size _greater than_ 9. To ensure catching either case, the correct test is `if (thisSubArr != 0) {...}` instead of `if (thisSubArr < 9) {...}`.
+- EditorConfig: Somehow I didn't know (or forgot) that `.editorconfig` works to enforce linting on the encompassing project, and can target specific files and file types. Updating this in the `js-code-challenges` simplifies execution of Prettier without having to battle with VS Code settings or `ESLint` settings.
+- Because my `yaml` workflow asks to lint files on merge or push, I still have to retain the `.eslintrc.json` but I could simplify it a bit by removing items that the `.editorconfig` file will handle. Perhaps this is still duplicating effort? I'll figure that out some time.
+- Arrays and Maps have different properties. This is somewhat obvious: Maps have a `.size` property (like Java), and Arrays have a `.length` property.
+- The `package.json` file was targeting dependencies that were out of date. I removed the existing `node_modules` folder, then uninstalled and reinstalled the dependencies to ensure they would be to the latest versions.
+- Also, `package.json` has a schema (of course) that I'd _never looked at before_. Today I did and learned that I should be using a few settings like `private` and `repository {type, url}`. Also, there is not only an `author` (a person) but also `contributors` (collection of people). `name`, `email`, and `url` are Person properties that I should be including.
+- Lastly, I tried using `chai` and it wasn't too difficult. There is some syntax that I would need to learn (or get used to looking up) that make it different than Jest, but overall is a viable option. I'm not sure what the benefit of using one over another is, but I'll figure it out some day.
+
+```javascript
+// fast fail if any zeroes are detected or if size of a row is not equal to 9
+if (rowMap.size != 9 || rowMap.has(0)) {
+  return false;
+}
+
+// later on...
+if (thisCol.size < 9) {
+  // not as precise as the previous if statement and is never true if the previous is true
+  return false;
+}
+```
+
 ## Monday 26-June-2023
 
 Posted an update to LinkedIn about completion of my VS Code extension create-markdown-toc. I added a short description and a few in-action screen shots. As I complete other projects I look forward to doing the same.
