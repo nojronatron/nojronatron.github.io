@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 28-June-2023
+
+Last night I finished implementing some fixes to my create-markdown-toc VS Code Extension. The bug was related to how the extension handled unsupported characters in link fragments. The result of the bug was a linter warning that (in most cases) would be easy to fix by hand. Since the extension creates the entries that should be legitimate but aren't, it's a bug. The solution uses `string.replaceAll(/regex/)` to find a list of unwanted characters from the captured heading's "title text", and replace them with nothing (remove them). The result is a link fragment that is more likely to work as expected. I added unit tests to support the new code and am working on some manual-test scenarios to further test the code before publishing the update to the VS Code Marketplace.
+
+GitHub Copilot has been helpful. I've learned how to prompt it to generate better suggestions. Microsoft Build had a session discussing how to leverage GitHub Copilot, and it turns out I was using some of those techniques already.
+
 ## Tuesday 27-June-2023
 
 Refined a bug description in project markdown-toc: This markdown file contains L2 headings that include a dash `-` character in the name. My code generates fragmented links for these headings. An Issue is already in the project and is capturing problem experiences so that I can generate a list of test cases to use when I get to fixing the bug.
@@ -34,7 +40,11 @@ if (thisCol.size < 9) {
 
 Posted an update to LinkedIn about completion of my VS Code extension create-markdown-toc. I added a short description and a few in-action screen shots. As I complete other projects I look forward to doing the same.
 
-Looking at an older team project - EZ-PC-Shopper - I realize just how much I have learned about HTML, CSS, and JavaScript. The website leaves a lot to be desired (like figuring out to click the image of the item to edit in the shopping cart), but many aspects of the project were new to each of us and we powered through and presented it with smiles and sales-pitchey-ness. :smiley:
+Looking at an older team project - EZ-PC-Shopper:
+
+- I realize just how much I have learned about HTML, CSS, and JavaScript.
+- The website leaves a lot to be desired (like figuring out to click the image of the item to edit in the shopping cart).
+- However, many aspects of the project were new to ALL of us on the team and we powered through and presented it with smiles and sales-pitchey delivery. :smiley:
 
 Some code snippets I developed these last few days working on the Winlink Form project:
 
