@@ -129,6 +129,58 @@ Diagnostic panel: Problems View as an example. Other tools can be put in the Dia
 
 Webview Panel: The list of tools like Explorer, Extensions like ThunderClient or Azure, the Extensions add/remove tool, Profile/Login status icon, and the Settings icon.
 
+## Pragmatic Techniques To Get The Most Out Of GitHub Copilot
+
+### Presenters
+
+Allison Weins: Senior Product Manager, GitHub
+
+Burke Holland: Principal Cloud Advocate, Microsoft
+
+### Limitations
+
+- Training data: More data is better but it is not always available (COBOL vs JavaScript). Also, not all code is _good_ code, such as abandond repositories.
+- Copilot is not a compiler: There is no guarantee that the code will compile or run. Use your experience and existing in-IDE tools to ensure the code is buildable and runnable.
+- AI cannot read your mind (just like a pair programming human).
+
+### Single, Specific, Short
+
+- Single: Focus on performing one thing at a time.
+- Specific: Be specific with your input. Use very specific plain language.
+- Short: Expect a short answer in response.
+
+### Examples via Demos
+
+- Write a comment that follows the 3S's rule, above.
+- Sometimes a 'nudge' is needed to get Copilot started. For example, after your
+- Write: `function removeHTMLCharsFromStr(str) {}` and Copilot might write the entire function if it is just a line or two.
+- Copilot excels at patterns and "stuff you've forgotten".
+- Press `ALT + Slash` to open Copilot _inline chat_.
+- "Trust but Verify": Ask Copilot what a code block or line of code does - then use VS Code extensions and tools to validate the code.
+- Copilot Chat will include necessary imports in addition to actual code, whereas VS Code features like IntelliSense will not.
+
+### Provide Effective Intents
+
+- Craft effective prompts within code comments.
+- Iterate your prompts to get better results.
+- Sometimes it is better to remove existing (previously generated) code and allow the iterated prmopt processing.
+
+### Relevent Inputs and Context
+
+- Copilot will use other open windows to help it find a possible solution.
+- Copilot can be allowed to continue writing line-by-line, or you can stop it and provide a new prompt.
+- Copilot does _not_ look at your entire project.
+- Copilot _will_ look at other open files in your editor during your session.
+- Copilot _will_ look at the code at and around your cursor.
+
+_Remember_: Prompts are limited, so as not to overwhelm the network, or the cloud-based processing.
+
+### Highlight Suggestions
+
+1. Highlight code and the suggestions lightbulb will appear.
+1. Click the lightbulb and Copilot will provide suggestions for the highlighted code.
+1. You have the option to accept or reject the suggestion.
+
 ## References
 
 [General Links](https://aka.ms/levelup-links) from 'Level Up Your App Development Using GitHub Copilot and Codespaces' MSFT Reactor Session.
