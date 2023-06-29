@@ -245,6 +245,16 @@ LSP: Language Server Protocol
 
 ### Testing Extensions
 
+The Workbench can be put into 'readonly' mode to prevent changes to specific files, however files that match cannot be edited in the Editor:
+
+- files.readonlyInclude: Paths/globs to make files readonly.
+- files.readonlyExclude: Paths/globs to skip files that match `files.readonlyInclude`.
+- file.readonlyFromPermissions: Readonly status provided by file permissions attributes.
+
+#### Launch.json
+
+- Launches extension inside a new window when Run (F5) is executed.
+
 VSCode Documentation on [Testing Extensions](https://code.visualstudio.com/api/working-with-extensions/testing-extension).
 
 Requirements:
