@@ -2,6 +2,27 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 29-June-2023
+
+Learned something about CSS, by accident, while looking at a fun project at [github.com/jdan/98.css](https://github.com/jdan/98.css):
+
+- The horizontal run `<hr />` by default appears as a single line across the width of it parent container.
+- Not only can the width of the `<hr />` be set, but also the height. This effectively makes a box outline.
+- Basically, borders are the way to style the `<hr />` element.
+
+```css
+/* just showing some styling possibilities */
+hr {
+  height: 0.5rem;
+  width: 90%;
+  text-decoration: none;
+  border-top: 1px dashed rgb(0, 0, 0);
+  border-bottom: 2px solid rgb(255, 0, 0);
+  border-left: none;
+  border-right: none;
+}
+```
+
 ## Wednesday 28-June-2023
 
 Last night I finished implementing some fixes to my create-markdown-toc VS Code Extension. The bug was related to how the extension handled unsupported characters in link fragments. The result of the bug was a linter warning that (in most cases) would be easy to fix by hand. Since the extension creates the entries that should be legitimate but aren't, it's a bug. The solution uses `string.replaceAll(/regex/)` to find a list of unwanted characters from the captured heading's "title text", and replace them with nothing (remove them). The result is a link fragment that is more likely to work as expected. I added unit tests to support the new code and am working on some manual-test scenarios to further test the code before publishing the update to the VS Code Marketplace.
