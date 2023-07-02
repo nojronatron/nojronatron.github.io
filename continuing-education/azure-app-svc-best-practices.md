@@ -4,6 +4,11 @@ Presented by Scott 'runs everything on Azure AppService' Hanselman.
 
 Guest: Byron Tardif.
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Footer](#footer)
+
 ## Overview
 
 What is going on with your App Service?
@@ -40,7 +45,7 @@ Log Analytics:
 
 - Write queries to look for entries in the App Service Logs.
 - Azure Log Analytics can be connected to Splunk and other log analyzers!
-- There are *many* log categories and individual logs, so it would be a good idea to get familiar with this (Azure doesn't solve that problem for you).
+- There are _many_ log categories and individual logs, so it would be a good idea to get familiar with this (Azure doesn't solve that problem for you).
 - Code-generated output logs are also captured in Azure App Service Logs.
 - Alerts can be generated based on Logs! Custom message to email, text, webhook, etc. Alert severity can be selected.
 

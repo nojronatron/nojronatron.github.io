@@ -1,5 +1,15 @@
 # Testing Android Studio Applications
 
+## Table of Contents
+
+- [Overview](#overview)
+- [What To Unit Test](#what-to-unit-test)
+- [UI Tests](#ui-tests)
+- [Specialized Tests](#specialized-tests)
+- [What To AVOID Testing](#what-to-avoid-testing)
+- [References](#references)
+- [Footer](#footer)
+
 ## Overview
 
 Unit testing your code implementations that are dependent on Android platform libraries requires one or more of the following:

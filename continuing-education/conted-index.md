@@ -11,6 +11,7 @@ A collection of continuing education, research notes, and references.
 
 ## Things I Want To Learn More About
 
+- [ ] [DotNetTools C# Devkit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit).
 - [ ] Learn how to build a ChatGPT Plugin and [integrating ChatGPT into Apps](./chatgpt-integration.html).
 - [ ] Continue learning about Data Structures and Algorithms. See [DSA Notes](./dsa-notes.html) for documentation and review.
 - [ ] Get a better grasp on [Machine Learning](./about-machine-learning.html) to increase awareness and familiarity.
