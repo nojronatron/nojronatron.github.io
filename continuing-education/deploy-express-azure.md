@@ -1,5 +1,26 @@
 # Deploy NodeJS To Azure App Service
 
+## Table of Contents
+
+- [Objectives](#objectives)
+- [Azure Services](#azure-services)
+- [Tools](#tools)
+- [App Service Plan](#app-service-plan)
+- [App Settings at Creation](#app-settings-at-creation)
+- [Post-Creation Settings](#post-creation-settings)
+- [Env Settings](#env-settings)
+- [Public WebApp URL](#public-webapp-url)
+- [Default Web App](#default-web-app)
+- [Authentication](#authentication)
+- [App Service Node Components](#app-service-node-components)
+- [NPM Packages](#npm-packages)
+- [Build Process](#build-process)
+- [Deployment Tasks](#deployment-tasks)
+- [Application Insights](#application-insights)
+- [Tips](#tips)
+- [Resources](#resources)
+- [Footer](#footer)
+
 ## Objectives
 
 - ID correct options for deploying Node.js App to Azure
@@ -35,7 +56,7 @@ Use the Azure tools to:
 - Select the proper Subscription.
 - Select the proper Tenent to create Resources and Resource Group in.
 
-*Note*: From my workstation, the Azure Extension was very slow.
+_Note_: From my workstation, the Azure Extension was very slow.
 
 ## App Service Plan
 
@@ -68,7 +89,7 @@ Required Configuration Items:
 - Pricing Tier
 - Azure Application Insights: Captures app metrics and logs to the cloud (rather than in the App Container).
 
-*Note*: It looks like Application Insights must be enabled at the Azure Portal.
+_Note_: It looks like Application Insights must be enabled at the Azure Portal.
 
 ## Post-Creation Settings
 
@@ -87,7 +108,7 @@ Required Configuration Items:
 
 ## Public WebApp URL
 
-'https://your-resource-name.azurewebsites.net/'
+URL like: `https://your-resource-name.azurewebsites.net/`
 
 ## Default Web App
 

@@ -4,6 +4,13 @@ Page dedicated to storing randome notes and thoughts about various data structur
 
 Goal is to have a reference to path experiences with DSAs.
 
+## Table of Contents
+
+- [Quicksort](#quicksort)
+- [DSA Key Takeaways](#dsa-key-takeaways)
+- [Resources](#resources)
+- [Footer](#footer)
+
 ## Quicksort
 
 This kept me busy for a long time. Several attempts to solve this without looking directly at a solution were difficult experiences. There were times when I got close, and a few common issues would crop up:
