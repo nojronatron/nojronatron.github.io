@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 2-July-2023
+
+Updated my Create-Markdown-TOC VSCode extension to version 0.2.1 with bug fixes and an enhancement (based on the bug fix). The Visual Studio Marketplace page has some metrics on downloads and page views that might be worth watching as I continue to develop the extension. The automatic update was seamless and I verified functionality on a few files locally.
+
+Takeaways:
+
+- Continue following the Test-Driven-Development (TDD) process, it worked well for this project to squash bugs and implement the feature more fully.
+- Ensure the package.json has the version listed in it, which allows `vsce publish` to package and publish the correct version to the marketplace.
+- Using the changelog file is a little tedious but it is a good way to track changes and to ensure the version number is updated.
+
 ## Thursday 29-June-2023
 
 Learned something about CSS, by accident, while looking at a fun project at [github.com/jdan/98.css](https://github.com/jdan/98.css):
