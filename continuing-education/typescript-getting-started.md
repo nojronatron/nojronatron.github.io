@@ -2,6 +2,15 @@
 
 The language has been gaining steam and I am growing increasingly curious. These notes will be mostly ad-hoc to start.
 
+## Table of Contents
+
+- [Microsft Reactor Typescript For Beginners](#microsft-reactor-typescript-for-beginners)
+- [Build a Project in TS](#build-a-project-in-ts)
+- [Building a Typescript React App](#building-a-typescript-react-app)
+- [Deploy React TS to Azure Static Web Apps](#deploy-react-ts-to-azure-static-web-apps)
+- [References](#references)
+- [Footer](#footer)
+
 ## Microsft Reactor Typescript For Beginners
 
 Microsoft Reactor held a series of presentations series about Typescript.
@@ -108,10 +117,10 @@ Editorial: It feels like a TS Tuple boils-down to an Object with fields in JavaS
 
 ```typescript
 function foo(fooInfo: { fooName: string; fooEmail: string; fooTime: boolean }) {
-  console.log("fooInfo:", fooInfo);
+  console.log('fooInfo:', fooInfo);
 }
 
-foo("bar", "baz", true);
+foo('bar', 'baz', true);
 ```
 
 ### Compiling
