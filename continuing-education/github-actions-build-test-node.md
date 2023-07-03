@@ -1,5 +1,20 @@
 # Build and Test Node.js with GitHub Actions
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Runners](#runners)
+- [Workflows](#workflows)
+- [GitHub Actions](#github-actions)
+- [With](#with)
+- [Run](#run)
+- [Node-Version](#node-version)
+- [Workflow Artifact Storage](#workflow-artifact-storage)
+- [Pushing to Package Registries](#pushing-to-package-registries)
+- [My Exeperiences](#my-exeperiences)
+- [References](#references)
+- [Footer](#footer)
+
 ## Overview
 
 GitHub Actions provides Runners with Linux, Windows, or Apple OSes, and supports installing dependencies and executing shell commands to build, test, and deploy node.js apps.
@@ -48,6 +63,7 @@ _Note_: Private registry installation using `.npmrc` file is supported. Use `set
 - `uses`: Defines the GitHub action to run.
 - `with`: Defines the parameters to pass to the action.
 - `run`: Defines the shell commands to run.
+- `env`: Define local environment variables, and cloud-based environment variables and secrets.
 
 ## GitHub Actions
 
@@ -87,10 +103,40 @@ See GitHub Docs [Storing workflow data as artifacts](https://docs.github.com/en/
 
 See GitHub Docs [Publishing Node.js packages](https://docs.github.com/en/actions/guides/publishing-nodejs-packages).
 
+## My Exeperiences
+
+### Deploying NodeJS to Azure App Service
+
+GitHub Actions:
+
+- Specified a branch that will be deployed, in this case NOT main but 'azure-deploy'.
+- Used `env` environment variables to define Webapp Name, Package Path, and Node Version.
+- Set `jobs` to `build-and-deploy` running on `ubuntu-latest`.
+- Specified `actions/checkout@v2` and `actions/setup-node@v1`.
+- Called shell commands `npm install`, `npm run build --if-present`, `npm run test --if-present`.
+- Specified `actions/webapps-deploy@v2`, and pointed to the AppName and PublishProfile environment variables.
+
+Environment Variables:
+
+- `AZURE_WEBAPP_NAME`: Name of the Azure Webapp.
+- `AZURE_WEBAPP_PACKAGE_PATH`: Path to the package to deploy. In this case `.` (repository root).
+- `NODE_VERSION`: Node version to use. In this case `16.x`.
+
+GitHub Actions Secrets:
+
+- `AZURE_WEBAPP_PUBLISH_PROFILE`: Repository Secret that contains the Azure Webapp Publish Profile.
+
+#### Improvements
+
+I can do the following to improve the above build-test-deploy script:
+
+- Use `npm ci` instead of `npm install`.
+
 ## References
 
 - [Build and Test Node.js with GitHub Actions](https://docs.github.com/en/actions/guides/building-and-testing-nodejs)
 - NPM Blog [IOntroducing npm ci for faster, more reliable builds](https://blog.npmjs.org/post/171556855892/introducing-npm-ci-for-faster-more-reliable).
+- Deploy to Azure App Service [GitHub Action](https://github.com/Azure/webapps-deploy);
 
 ## Footer
 
