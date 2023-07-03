@@ -11,6 +11,7 @@ A collection of continuing education, research notes, and references.
 
 ## Things I Want To Learn More About
 
+- [x] Build and Test Node.js using [GitHub Actions for Node.js](./github-actions-build-test-node.html).
 - [ ] [Coding with P5js](./coding-with-p5.html).
 - [ ] [DotNetTools C# Devkit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit).
 - [ ] Learn how to build a ChatGPT Plugin and [integrating ChatGPT into Apps](./chatgpt-integration.html).
