@@ -8,6 +8,8 @@ Cleaned up documentation references in this repo - there were a few floating doc
 
 Updated Azure-Deploy YAML in LingoBingo API server repository (only on the azure-deploy branch). My notes on [GitHub Actions: Build and Test Node.js App](./github-actions-build-test-node.html) has details.
 
+My Portfolio React SPA has several dependencies that have moderate vulnerabilities and/or are no longer supported (deprecated). I've removed a few of the dependencies that weren't needed, updated others to the latest version, and set a plan to replace the Vertical Timeline component sometime in the future.
+
 ## Sunday 2-July-2023
 
 Updated my Create-Markdown-TOC VSCode extension to version 0.2.1 with bug fixes and an enhancement (based on the bug fix). The Visual Studio Marketplace page has some metrics on downloads and page views that might be worth watching as I continue to develop the extension. The automatic update was seamless and I verified functionality on a few files locally.
