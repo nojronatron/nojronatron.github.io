@@ -2,11 +2,21 @@
 
 I've used Jest, and run into Mocha and Chai many times in the last year or so. This is a quick exploration of the differences between the three.
 
+## Table of Contents
+
+- [Jest](#jest)
+- [Mocha](#mocha)
+- [Chai](#chai)
+- [References](#references)
+- [Footer](#footer)
+
 ## Jest
 
 This will be filled in at a later time.
 
 ## Mocha
+
+Claim: "Simple and Fun". Fair enough.
 
 ### Mocha Basics
 
@@ -24,6 +34,18 @@ Can be used to test synchronous and asynchronous code.
 Can be run [in a command line](https://mochajs.org/#command-line-usage).
 
 Install: `npm install --save-dev mocha`
+
+```javascript
+// basic test code example lifted from https://mochajs.org/#getting-started
+var assert = require('assert');
+describe('Array', function () {
+  describe('#indexOf()', function () {
+    it('should return -1 when the value is not present', function () {
+      assert.equal([1, 2, 3].indexOf(4), -1);
+    });
+  });
+});
+```
 
 ### Mocha Configuration
 
@@ -87,6 +109,14 @@ describe('hooks', function () {
   // test cases
 });
 ```
+
+Hooks can be Sync or Async.
+
+Use Hooks to clear a database and set test data before each test.
+
+Root Hooks: Any Hook set at the top Scope of the test file.
+
+[Root Hook Plugins](https://mochajs.org/#root-hook-plugins): Preferred over Root Hooks.
 
 ## Chai
 
