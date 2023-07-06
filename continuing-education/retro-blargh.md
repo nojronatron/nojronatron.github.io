@@ -2,6 +2,24 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 6-July-2023
+
+Here are some key takeaways from reading about Java Stream Collectors:
+
+- Creating a custom Type based on an existing or custom Interface will ensure the correct members are available to the Type.
+- The `@Override` annotation is used to indicate the method is overriding an Interface-defined member.
+- Use `Arrays.asList(...)` to rapidly create a `List<T>` from a comma-separated list of items. This is helpful in testing or when managing custom inputs from a user or process.
+- The `Function<T, U>` Interface represents a function that takes an argument of type `T` and returns a result of type `U`. When this is used, the output type of the function is determined by the return type of the `apply` method.
+
+Overall I am feeling a bit more comfortable with Java Streams API. I will need to practice more to get a better feel for the syntax and how to use it effectively.
+
+I've been reviewing the Chai Assertion Library the last few days:
+
+- Tight, chained, readable assertion syntax.
+- Somewhat extensible for custom models and allows building custom plug-ins (also has a bunch of plug-ins already available).
+
+In a future JS project I will try using Chai for assertions.
+
 ## Wednesday 5-July-2023
 
 Completed a code challenge in Java. Two things I'd forgot about
