@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 5-July-2023
+
+Completed a code challenge in Java. Two things I'd forgot about
+
+1. Java Primitive Types cannot be assigned a null value. Jumping around from Java to JS to C# and back has probably contributed to this confusion.
+2. Array types in Java _can_ be null. I actually remembered this but didn't think about it while designing the algorithm for a two-dimension Array. In multi-dimensional Arrays, the parent Array contains Arrays as items, so a null value represents a row that has no items.
+
+## Tuesday 4-July-2023
+
+Did some self-study of JavaScript frameworks. Notes are linked from the [Conted Index](./conted-index.html) page.
+
 ## Monday 3-July-2023
 
 Cleaned up documentation references in this repo - there were a few floating documents with no links to them so they were difficult to find.
