@@ -122,6 +122,8 @@ Root Hooks: Any Hook set at the top Scope of the test file.
 
 Chai is an assertion library. It can be used with Mocha, or any other JS testing framework.
 
+Note: The [GitHub Repo](https://github.com/chaijs/chai) seems to have very little recent activity. All branches are considered 'stale' and the most recent open PR is dated February 2022. This doesn't mean Chai is not useful, but it does mean that it is not actively being developed and could become obsolete sooner than later.
+
 ### Chai Install
 
 Install as a dev dependency using the `*` version tag to ensure it is always the latest.
