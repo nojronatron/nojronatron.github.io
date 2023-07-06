@@ -229,6 +229,8 @@ var chai = require('chai'),
 chai.use(chaiModel); // similar to how Express.js initializes API Utilities
 ```
 
+There are _many many_ plugins already available for Chai, check them out [here](https://www.chaijs.com/plugins/).
+
 #### Building a Helper
 
 There is a [helper tutorial](https://www.chaijs.com/guide/helpers/) at the Chaijs.com website.
