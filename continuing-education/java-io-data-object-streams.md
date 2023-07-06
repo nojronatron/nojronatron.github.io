@@ -2,6 +2,17 @@
 
 This page is a collection of notes taken while working through Oracle Java Tutorials and supplemental information made public by Baeldung.com.
 
+## Table of Contents
+
+- [Oracle Java Tutorials Basic IO](#oracle-java-tutorials-basic-io)
+- [Notes from Baeldung Readings](#notes-from-baeldung-readings)
+- [Stream FindAny and FindFirst](#stream-findany-and-findfirst)
+- [Streams Functional Interfaces in Java 8](#streams-functional-interfaces-in-java-8)
+- [Stream Collectors](#stream-collectors)
+- [Key Takeaways](#key-takeaways)
+- [Resources](#resources)
+- [Footer](#footer)
+
 ## Oracle Java Tutorials Basic IO
 
 ### The Generic Interface Stream
@@ -1252,16 +1263,25 @@ Example of Standard Library Function Type: `Map.computeIfAbsent()`
 - Represented in the java code, below:
 
 ```java
+// for a HashMap<String, Integer> myHashMap...
 myHashMap.computeIfAbsent(string, (item) -> item.length);
-// looks for key String and if not found inserts String into map with value item.length
+// computeIfAbsent looks for key String and if not found inserts String into map with value item.length
+
+// another way to look at it:
+myHashMap.computeIfAbsent(string key, function( (string item) -> return new int(item.length)) );
+
+// breaking it down to a simple implementation:
+string foundValueOrNull = computeIfAbsent(string, {calculateValue(arg)});
 ```
 
 Converting to a functional interface:
 
 ```java
 myHashMap.computeIfAbsent(string, String::length);
-// the pair of colons means think of this as a lambda function
+// consider the pair of colons to imply this is a lambda function
 ```
+
+#### The Built-in Compose Method
 
 Function Interface has default `compose()` method.
 
@@ -1283,13 +1303,14 @@ Function<Integer, String> intToString = Object::toString;
 Function<String, String> quote = s -> "'" + s + "'";
 // function calls intToString, passing in quote and executes its built-in compose() method
 Function<Integer, String> quoteIntToString = quote.compose(intToString);
-// use assertion to verify output is as expected
-assertEquals("'5'", quoteIntToString.apply(5));
+// using the compose in-line to print to the console without creating quoteIntToString
+System.out.println(quote.compose(intToString).apply(5));
+// prints '5' to the console
 ```
 
 ### Primitive Function Specializations
 
-Primitives cannot be generic type arguments.
+Primitive Types cannot be a generic type argument.
 
 Function Interface has ability to use `double`, `int`, `long`, and combinations thereof.
 
@@ -1327,7 +1348,7 @@ byte[] expectedArray = {(byte) 2, (byte) 4, (byte) 6};
 assertArrayEquals(expectedArray, transformedArray);
 ```
 
-This is an excellent example of why an Interface is important in object oriented programming. If any function was passed in but did not have the `.applyAsByte(short s)` method, the code would not compile.
+This is an excellent example of why an Interface is important in object oriented programming. If any function was passed in but did not have the `.applyAsByte(short s)` method applied, the code would not compile.
 
 ### Two-Arity Function Specializations
 
@@ -1429,6 +1450,142 @@ Generally speaking:
 - Within 'Concurrency APIs' are Interfaces 'Runnable' and 'Callable' interfaces.
 - In Java8 these interfaces are decorated with `@FunctionalInterface` annotation.
 
+## Stream Collectors
+
+Used as a final step in processing a Stream.
+
+Useful in _parallel processing_.
+
+### Stream.collect()
+
+Stream API _terminal_ method.
+
+Used to perform operations on _mutable_ elements.
+
+Processing could be many types of logic including concatenation, grouping, etc.
+
+### Collectors
+
+Import static collectors from `java.util.stream.Collectors.*`.
+
+Singly-import specific Collectors e.g. `java.util.stream.Collectors.toList`.
+
+Collectors toList and toUnmodifiableList functions:
+
+- Stream elements are collected into a List instance.
+- Does NOT guarantee order of elements.
+- Type return is `List<T>`.
+
+```java
+List<Integer> listResult = temperatures.stream().collect(toList());
+List<Integer> unmodifiableListResult = temperatures.stream().collect(toUnmodifiableList());
+```
+
+See [Oracle Java Docs: List Interface, unmodifiableList](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html#unmodifiable).
+
+Collectors toSet and toUnmodifiableSet functions:
+
+- Stream elements collected into a Set instanace.
+- Type return is `Set<T>`.
+- Example: `Set<Integer> temperatures = temps.stream().collect(stSet());`
+
+Collectors toCollection function:
+
+- Allows defining a custom Collection implementation to the Collector function output List/Set type.
+- Only works on _mutable_ Collection types.
+- Example: `Collection<Integer> temperatures = temps.stream().collect(toCollection(LinkedList::new));`
+
+Collectors toMap and toUnmodifiableMap functions:
+
+- Stream elements into a Map instance.
+- Two functions required: `keyMapper()` and `valueMapper()`.
+- Extract Keys from Stream elements and Values from Stream elements and reassociate them into the resulting Map instance.
+- `Function.identity()`: Shortcut function that accepts and returns the same value.
+- Uses 'binary operator' which instructs toMap how to handle duplicate keys.
+
+```java
+Map<String, Integer> temperatures = temps.stream().collect(toMap(Function.identity(). String::length));
+Map<String, Integer> tempsWithDuplicates = temps
+  .stream()
+  .collect(toMap(Function.identity(), String::length,
+    (item, identicalItem) -> item // binary operator
+));
+```
+
+Collectors collectingAndThen() function:
+
+- Perform another action on a result.
+- Chained functions.
+- Executes after the Collector function.
+- Example: `List<Integer> temperatures = temps.stream().collect(collectingAndThen(toList(), ImmutableList::copyOf));`
+
+Collectors joining function:
+
+- Joins `Stream<T>` elements.
+- Example: `String concatenatedWords = words.stream().collect(joining());`
+- Custom separators: `String sentence = words.string().collect(joining(" "));`
+- PRE/POST fixing: `String alteredWords = words.stream().collect(joining(" ", "Here:", " Done!"));` returns "Here: word1 word2 Done!".
+
+Collectors counting function:
+
+- Returns an Long representing the count of elements in a Stream.
+- Example: `Long count = words.stream().collect(counting());`
+- Equivalent to: `Long count = words.stream().reducing(0L, e -> 1L, Long::sum);`
+
+Collectors summarizingDouble summarizingLong summarizingInt functions:
+
+- Good for storing statistics about the Stream data.
+- Allows using `getAverage()`, `getCount()`, `getMax()`, `getMin()`, and `getSum()` functions on the summarized Collector.
+
+Collectors averagingDouble averagingLong averagingInt functions:
+
+- Returns an average of extracted elements in the Stream.
+- Example: `String averageCityNameLength = cityNames.stream().collect(averagingDouble(String::length));`
+
+Collectors summingDouble summingLong summingInt functions:
+
+- Returns a sum of extracted elements in the Stream.
+- Example: `String sumOfCityNameLengths = cityNames.stream().collect(summingDouble(String::length));`
+
+Collectors maxBy and minBy functions:
+
+- Returns biggest or smallest element in a Stream (respectively).
+- Must provide a Comparator to compare elements in the Stream.
+- Example: `Optional<String> longestCityName = cityNames.stream().collect(maxBy(Comparator.comparing(String::length)));`
+
+Collectors groupingBy function:
+
+- Used to group objects.
+- A property of the elements in the Stream must be used for grouping.
+- Returns a Map instance.
+- Example: `Map<Integer, List<String>> cityNamesByLength = cityNames.stream().collect(groupingBy(String::length));`
+
+Collectors partitioningBy function:
+
+- Takes a Predicate instance and collects Stream elements into a Map instance `Map<boolean, Collection<T>>`.
+- Key is result of the Predicate.
+- Value is a collection of elements that match (true) or did not match (false).
+
+Collectors teeing function:
+
+- Takes two Collector function operations and combines the results into a single result.
+- An example, slightly modified from the Baeldung website example: `numbers.stream().collection(teeing(minBy(Integer::compareTo), maxBy(Integer::compareTo), (min, max) -> min + ", " + max));`
+- The result of the above example would be a String of the min and max values in the Stream.
+
+### Custom Collectors
+
+Implement the `Collector` interface: `public interface Collector<T, A, R> { ... }`.
+
+1. Implement a class that will be used as the Collector.
+2. Use `implements Collector<T, A, R>` where A and R are defined like `ImmutableSet.Builder<T>` and `ImmutableSet<T>` respectively (as an example).
+3. Implement the `supplier()`, `accumulator()`, `combiner()`, `finisher()` and `characteristics()` functions, using `@Override` annotation.
+4. Instantiate the custom Collector class and use it to capture the stream collect _toYourCustomCollector_ output.
+
+`characteristics()` function:
+
+- Provides a Stream with information.
+- For example, the `UNORDERED` characteristic tells the Stream that the Collector does not guarantee the order of elements in the resulting Collection.
+
 ## Key Takeaways
 
 - Streams can be instantiated and have references to them using intermediate operations.
@@ -1437,8 +1594,9 @@ Generally speaking:
 - Streams are for _applying a finite sequence of operations to a source of elements_.
 - Streams are _not_ for storing data.
 - Operate on Stream elements using `functional style` operations.
+- Collectors are specialized interfaces that help process data in a Stream, such as calculating averages, sums, and sorting or grouping items by some preticate/criteria.
 
-Operate on a Collection, not the Stream itself:
+_Important_: Operate on a Collection not the Stream itself:
 
 ```java
 List<String> elements = Stream
