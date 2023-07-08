@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 7-July-2023
+
+I completed a code challenge that required parsing through a string of alphanumerics and spaces. The idea was to reverse the _case_ of the alpha characters such that Upper Case letters would become Lower Case, and vice versa. Non-alpha characters would not be affected. One rule was to keep the function _pure_, and to develop it as a _prototype_ (in JavaScript) e.g. `String.prototype.toAlternateCase()`. Takeaways:
+
+1. Just because `String.split("");` is effective does not mean it is the right way to go. This will force the code to process string items in an array regardless if they are alpha or not.
+1. Using a regex like `String.match(/\d|\W/g)` can be effective but it is not always _necessary_ if it is a 'default case'.
+1. Using `String.replace()` would not work because that would mutate the input.
+1. Use `String.at()` to iterate through the characters of a string without having to deal with an array.
+1. Simply detecting if the `String.at(idx)` character is uppercase or lowercase is all that is necessary _for Strings_.
+1. Applying `String.toUpperCase()` (or lower) is an 'all are welcome' operation and will not fail if the character is not alpha.
+
 ## Thursday 6-July-2023
 
 Here are some key takeaways from reading about Java Stream Collectors:
