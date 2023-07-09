@@ -2,6 +2,70 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 7-July-2023
+
+I completed a code challenge that required parsing through a string of alphanumerics and spaces. The idea was to reverse the _case_ of the alpha characters such that Upper Case letters would become Lower Case, and vice versa. Non-alpha characters would not be affected. One rule was to keep the function _pure_, and to develop it as a _prototype_ (in JavaScript) e.g. `String.prototype.toAlternateCase()`. Takeaways:
+
+1. Just because `String.split("");` is effective does not mean it is the right way to go. This will force the code to process string items in an array regardless if they are alpha or not.
+1. Using a regex like `String.match(/\d|\W/g)` can be effective but it is not always _necessary_ if it is a 'default case'.
+1. Using `String.replace()` would not work because that would mutate the input.
+1. Use `String.at()` to iterate through the characters of a string without having to deal with an array.
+1. Simply detecting if the `String.at(idx)` character is uppercase or lowercase is all that is necessary _for Strings_.
+1. Applying `String.toUpperCase()` (or lower) is an 'all are welcome' operation and will not fail if the character is not alpha.
+
+Testing with Chai:
+
+- Figured out how to install Chai and use Expect syntax in a node.js project.
+- Test runs using `npm test` probably because it is driven by Jest framework.
+- The Chai test fails due to missing function `toAlternatingCase()`, so I'll need to work out how to get that prototype function to be available to the test.
+
+## Thursday 6-July-2023
+
+Here are some key takeaways from reading about Java Stream Collectors:
+
+- Creating a custom Type based on an existing or custom Interface will ensure the correct members are available to the Type.
+- The `@Override` annotation is used to indicate the method is overriding an Interface-defined member.
+- Use `Arrays.asList(...)` to rapidly create a `List<T>` from a comma-separated list of items. This is helpful in testing or when managing custom inputs from a user or process.
+- The `Function<T, U>` Interface represents a function that takes an argument of type `T` and returns a result of type `U`. When this is used, the output type of the function is determined by the return type of the `apply` method.
+
+Overall I am feeling a bit more comfortable with Java Streams API. I will need to practice more to get a better feel for the syntax and how to use it effectively.
+
+I've been reviewing the Chai Assertion Library the last few days:
+
+- Tight, chained, readable assertion syntax.
+- Somewhat extensible for custom models and allows building custom plug-ins (also has a bunch of plug-ins already available).
+
+In a future JS project I will try using Chai for assertions.
+
+## Wednesday 5-July-2023
+
+Completed a code challenge in Java. Two things I'd forgot about
+
+1. Java Primitive Types cannot be assigned a null value. Jumping around from Java to JS to C# and back has probably contributed to this confusion.
+2. Array types in Java _can_ be null. I actually remembered this but didn't think about it while designing the algorithm for a two-dimension Array. In multi-dimensional Arrays, the parent Array contains Arrays as items, so a null value represents a row that has no items.
+
+## Tuesday 4-July-2023
+
+Did some self-study of JavaScript frameworks. Notes are linked from the [Conted Index](./conted-index.html) page.
+
+## Monday 3-July-2023
+
+Cleaned up documentation references in this repo - there were a few floating documents with no links to them so they were difficult to find.
+
+Updated Azure-Deploy YAML in LingoBingo API server repository (only on the azure-deploy branch). My notes on [GitHub Actions: Build and Test Node.js App](./github-actions-build-test-node.html) has details.
+
+My Portfolio React SPA has several dependencies that have moderate vulnerabilities and/or are no longer supported (deprecated). I've removed a few of the dependencies that weren't needed, updated others to the latest version, and set a plan to replace the Vertical Timeline component sometime in the future.
+
+## Sunday 2-July-2023
+
+Updated my Create-Markdown-TOC VSCode extension to version 0.2.1 with bug fixes and an enhancement (based on the bug fix). The Visual Studio Marketplace page has some metrics on downloads and page views that might be worth watching as I continue to develop the extension. The automatic update was seamless and I verified functionality on a few files locally.
+
+Takeaways:
+
+- Continue following the Test-Driven-Development (TDD) process, it worked well for this project to squash bugs and implement the feature more fully.
+- Ensure the package.json has the version listed in it, which allows `vsce publish` to package and publish the correct version to the marketplace.
+- Using the changelog file is a little tedious but it is a good way to track changes and to ensure the version number is updated.
+
 ## Thursday 29-June-2023
 
 Learned something about CSS, by accident, while looking at a fun project at [github.com/jdan/98.css](https://github.com/jdan/98.css):

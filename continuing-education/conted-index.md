@@ -11,6 +11,9 @@ A collection of continuing education, research notes, and references.
 
 ## Things I Want To Learn More About
 
+- [ ] Jest vs Mocha vs Chai [JS Testing Frameworks](./js-testing-frameworks.html).
+- [x] Build and Test Node.js using [GitHub Actions for Node.js](./github-actions-build-test-node.html).
+- [ ] [Coding with P5js](./coding-with-p5.html).
 - [ ] [DotNetTools C# Devkit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit).
 - [ ] Learn how to build a ChatGPT Plugin and [integrating ChatGPT into Apps](./chatgpt-integration.html).
 - [ ] Continue learning about Data Structures and Algorithms. See [DSA Notes](./dsa-notes.html) for documentation and review.
@@ -47,6 +50,9 @@ A collection of continuing education, research notes, and references.
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] React [Hooks](./react-hooks.html).
+- [x] Deploying to [Linux on Azure](./linux-on-azure.html).
+- [x] Build a [VS Code Extension](./build-vscode-extension.html).
 - [x] Investigate [Cheerio](https://cheerio.js.org/) - notes [started here](cheerio.html).
 - [x] Attend MSFT Build 2023 and [take notes](./msbuild-20230-notes.html).
 - [x] MongoDB and Mongoose [notes](../code301-files/mongo-and-mongoose.html).

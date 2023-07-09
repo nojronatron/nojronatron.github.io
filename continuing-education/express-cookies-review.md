@@ -1,5 +1,18 @@
 # Using Cookies with Express
 
+## Table of Contents
+
+- [Overview of Cookies](#overview-of-cookies)
+- [Cookie KVP and Attributes](#cookie-kvp-and-attributes)
+- [Cookies and Authentication](#cookies-and-authentication)
+- [Other Means of Tracking](#other-means-of-tracking)
+- [SameSite Key](#samesite-key)
+- [Important Cookie Considerations](#important-cookie-considerations)
+- [Cookie Parser](#cookie-parser)
+- [Cookie Gotchas](#cookie-gotchas)
+- [Resources Used For These Notes](#resources-used-for-these-notes)
+- [Footer](#footer)
+
 ## Overview of Cookies
 
 Cookies are just Key-Value Pairs with some additional Attributes that define when and where the cookie can be used.
@@ -17,7 +30,7 @@ Generally:
 - Data previously entered into forms.
 - Authentication cookies used to make a logon 'sticky', identifying which authenticated account is being used.
 - Tracking cookies compile long-term data about a browser's usage and traversal through the web.
-- Non-essential cookie use and storage will require *consent* in some countries (example: EU requires *informed consent*).
+- Non-essential cookie use and storage will require _consent_ in some countries (example: EU requires _informed consent_).
 - User Agent (Browser's) privacy settings could block cookies.
 
 Technically:
@@ -25,15 +38,15 @@ Technically:
 - A header field called 'set-cookie' is a name-value-pair with attributes storing expiration, domai, and flags.
 - Older RFC created 'set-cookie2' field, but was soon deprecated and is no longer in use.
 - Session-Cookie: In-memory cookie / Transient cookie. Only available while the user navigates a website and expire when the browser is closed. Do not have an expiration date identified in the header.
-- Persistent Cookie: Has a specified  (`Expires` or `Max-Age`) in the header. Referred to as 'Tracking Cookies'. Used for ads, and for tracking Authentication / logon state, to reduce logon prompts at every visit.
+- Persistent Cookie: Has a specified (`Expires` or `Max-Age`) in the header. Referred to as 'Tracking Cookies'. Used for ads, and for tracking Authentication / logon state, to reduce logon prompts at every visit.
 - Secure Cookie: Only allowed over a secured (https) connection. Enable the 'Secure' flag on the cookie to set it as secure only.
 - HTTP-only Cookie: Cannot be accessed by client-side APIs (javascript). Thwarts XSS threats. Vulnerable to XST and CSRF attacks. Add 'HttpOnly' flag to enable it.
 - Same-site Cookie: Defines if cookie should be restricted to 1st-party or same-site context.
 - Third-party Cookies: Another domain's server sets a cookie on the web browser through the actual server (for example: Images or other components stored in the third-party's domain).
-- Cookies can be *any size* or length, there is no limit (see next point).
+- Cookies can be _any size_ or length, there is no limit (see next point).
 - Cookie Specifications require browsers to enforce limits: Up to 4 KB; 50 cookies per domain; 3k cookies total.
 - Force-expiring a cookie server-side by sending 'Set-cookie' with an 'Expires' date in the past.
-- Cookie *Attributes* are one-way: Server to Client. When the browser returns with set cookies, the Attributes are not included.
+- Cookie _Attributes_ are one-way: Server to Client. When the browser returns with set cookies, the Attributes are not included.
 
 ## Cookie KVP and Attributes
 
@@ -53,7 +66,7 @@ As mentioned elsewhere `SameSite=None` must be followed by `Secure` otherwise th
 ### Supercookies
 
 - Most cookies are attached to a specific website or domain such as 'me.mydomain.com'.
-- Supercookies are attached to the *top level domain* such as '.com' or '.net'.
+- Supercookies are attached to the _top level domain_ such as '.com' or '.net'.
 - Present a security threat.
 - Most browsers block by default.
 - The 'Public Suffix List' mitigates Supercookie risks by providing list of domain name suffixes.
@@ -170,17 +183,17 @@ Possible values:
 - Is default value if SameSite not specified at all.
 - Browser compatibility varies - None might be default which requires `Secure=true` else Cookie is ignored.
 
-*Note*: Browsers might implement 'Lax-Allowing-Unsafe' to enable cross-site unsafe requests within a short timeframe, therefore a value *should* be set by the developer.
+_Note_: Browsers might implement 'Lax-Allowing-Unsafe' to enable cross-site unsafe requests within a short timeframe, therefore a value _should_ be set by the developer.
 
 ### Strict
 
-- Cookies *only* sent in 1st-party context.
+- Cookies _only_ sent in 1st-party context.
 - Any 3rd party requests will not include Strict cookies.
 
 ### None
 
 - Cookies sent in ALL contexts including 1st-party, and cross-site.
-- *Requires* `Secure` attribute to be set else cookie will be blocked.
+- _Requires_ `Secure` attribute to be set else cookie will be blocked.
 
 ## Important Cookie Considerations
 

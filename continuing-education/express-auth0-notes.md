@@ -2,6 +2,26 @@
 
 A collection of notes for future review about implementing Auth0 server-side for an Expressjs app.
 
+## Table of Contents
+
+- [Required Reading](#required-reading)
+- [Quick Summaries](#quick-summaries)
+- [Terminology](#terminology)
+- [React Auth0 Requirements](#react-auth0-requirements)
+- [Keys](#keys)
+- [Auth0 Social Authenticators](#auth0-social-authenticators)
+- [Auth0 Username Password Authenticator](#auth0-username-password-authenticator)
+- [Login and Logout](#login-and-logout)
+- [Cookies for Application Login and Logout](#cookies-for-application-login-and-logout)
+- [Redirect After Logout](#redirect-after-logout)
+- [Username Password Authentication](#username-password-authentication)
+- [User Management in Auth0](#user-management-in-auth0)
+- [Enabling API Authentication the Auth0 Way](#enabling-api-authentication-the-auth0-way)
+- [Enabling Authentication to your Custom Backend the CodeFellows Way](#enabling-authentication-to-your-custom-backend-the-codefellows-way)
+- [Auth0 Tenants](#auth0-tenants)
+- [References](#references)
+- [Footer](#footer)
+
 ## Required Reading
 
 - Auth0 Docs [Authentication API](https://auth0.com/docs/api/authentication#introduction).
@@ -61,7 +81,7 @@ JWT: Java Web Token. Check out [JWT.io](https://jwt.io/introduction) and [Auth0 
 
 - JWT are similar to SAML Tokens but SAML are much larger (XML based). JWT are JSON objects and are easily used in HTTP and at scale.
 - Use for Authentication, Authorization, and secure (signed) information exchange.
-- JWT are *plain text* and therefore can be sniffed over an unencrypted connection. Always use HTTPS when exchanging JWT.
+- JWT are _plain text_ and therefore can be sniffed over an unencrypted connection. Always use HTTPS when exchanging JWT.
 - JWT can contain claims, which can be used for fine-grained Authorization logic by the Application.
 
 Security Algorithms:
@@ -76,11 +96,11 @@ Auth0 SDKs:
 
 In-code:
 
-If a JWT Parser or Validator returns an error message 'jwt malformed' your code *must reject the request* to remain secure.
+If a JWT Parser or Validator returns an error message 'jwt malformed' your code _must reject the request_ to remain secure.
 
 JWT Aud and Scope Fields:
 
-- After validation and parsing, the JWT will have Aud and Scope fields, known as *Claims*.
+- After validation and parsing, the JWT will have Aud and Scope fields, known as _Claims_.
 - These are determined and set at Token creation time. Configure your Auth0 App settings to configure these fields.
 - Aud: Audience. This has the URI of the intended resource that the Token was designed for.
 - Scope: A space-separated list of permissions that can be applied to API endpoints or routes.
@@ -100,7 +120,7 @@ JWT Makeup:
 - Segements separated by dots.
 - 1st Segment is Token Metadata including crypto used to secure the Token.
 - 2nd Segment is "payload". Contains claims and the ID of the user and their permissions.
-- 3rd Segment is "signature". Use this to validate Token trustworthiness and integrity. Validation is a *required step* prior to storing and using the Token.
+- 3rd Segment is "signature". Use this to validate Token trustworthiness and integrity. Validation is a _required step_ prior to storing and using the Token.
 
 ### Refresh Tookens
 
@@ -148,7 +168,7 @@ The most critical configuration items to set up:
 - Allowed callback URLs. Should include dev, test, and deployed environment URL(s). Dev start => 'http://localhost:3000'
 - Allowed logout URLs. Same as callback URLs but for expiring user's token.
 - Allowed web origins. Defines allowed origins for cross-origin, device flow, and web message-response mode. Dev start => 'http://localhost:3000'
-- Allowed Origins (CORS). Start with localhost for dev. Include *other* origins only if needed.
+- Allowed Origins (CORS). Start with localhost for dev. Include _other_ origins only if needed.
 
 API Setting:
 
@@ -219,17 +239,17 @@ Auth0 Paid Tiers allow more.
 
 In the free tier, Auth0 will support capture and use of end-users custom usernames and passwords.
 
-- [X] I need to look into how this works and how it can be leveraged for LingoBingo.
+- [x] I need to look into how this works and how it can be leveraged for LingoBingo.
 
 ## Login and Logout
 
 Three layers of authentication:
 
-- Application Session: Requires the Application track users via Cookies in order to *log the user out of your application*.
+- Application Session: Requires the Application track users via Cookies in order to _log the user out of your application_.
 - Auth0 Session: Auth0 has their own Session Layer SSO Cookie that they use to SSO re-authentication.
 - Identity Providers Session (Google, Facebook, etc): It is not necessary to log a user out of their Identity Provider!
 
-- [X] Implement cookies on an Express server to enable Application Logout.
+- [x] Implement cookies on an Express server to enable Application Logout.
 
 Note: An Auth0 Tenant-level 'Login URI' is available that can be used to effect all Applications within that Tenant.
 
@@ -243,8 +263,8 @@ Response Cookie: When setting properties of the Response object, each Cookie is 
 
 Setting a Cookie in Response:
 
-- Set a cookie named 'auth0user_${useremail}': `res.cookie('auth0user_${useremail}', ${value}, { maxAge: ${30minutes} }`
-- Forget a cookie named 'auth0user_${useremail}': `res.clearCookie('auth0user_${useremail}' , ${value}, { maxAge: ${30minutes} )`
+- Set a cookie named 'auth0user*${useremail}': `res.cookie('auth0user*${useremail}', ${value}, { maxAge: ${30minutes} }`
+- Forget a cookie named 'auth0user*${useremail}': `res.clearCookie('auth0user*${useremail}' , ${value}, { maxAge: ${30minutes} )`
 
 Cookie Options:
 
@@ -259,7 +279,7 @@ Cookie Options:
 - signed: Boolean => Should the cookie by signed?
 - sameSite: Boolean|String => Set value of 'SameSite' Set-Cookie attribute.
 
-*Note*: res.clearCookie must match *all parameters and options* in order to clear the identified cookie.
+_Note_: res.clearCookie must match _all parameters and options_ in order to clear the identified cookie.
 
 See [ExpressJS 4x API](http://expressjs.com/en/4x/api.html#res.cookie) for details.
 
@@ -298,7 +318,7 @@ Code Fellows suggested using:
 
 - jsonwebtoken
 - jwks-rsa
-- Auth0 front-end App advanced setting `JSON Web Key Set` URI (avoids having to request authorization from the Auth0 API Server *but* limits authorization to allow/deny without fine-grained permissions control).
+- Auth0 front-end App advanced setting `JSON Web Key Set` URI (avoids having to request authorization from the Auth0 API Server _but_ limits authorization to allow/deny without fine-grained permissions control).
 
 ## Enabling API Authentication the Auth0 Way
 
@@ -309,9 +329,9 @@ Code Fellows suggested using:
 1. Configure your Front-end with the API Server settings and an Audience setting (the URL to your back-end server).
 1. Follow the Auth0 documentation to programmatically check for authorization on the Front end.
 1. Follow the Auth0 documentation for your back-end to ensure it is registered as an M2M App with Auth0, and that it has the Auth0 API settings for validating the user Authorization Token.
-1. Be sure that the front-end acquires *the correct Auth Token from Auth0 API* before trying to get authorization from your custom backend server.
+1. Be sure that the front-end acquires _the correct Auth Token from Auth0 API_ before trying to get authorization from your custom backend server.
 
-*Note*: You *MUST* include the following '/' in the 'issuer' entry. Not doing so will not authorize the jwt token and an error 'jwt issuer invalid' will be returned.
+_Note_: You _MUST_ include the following '/' in the 'issuer' entry. Not doing so will not authorize the jwt token and an error 'jwt issuer invalid' will be returned.
 
 ## Enabling Authentication to your Custom Backend the CodeFellows Way
 
@@ -319,17 +339,17 @@ This method relies on using the Asymmetric Keys available in the Single Page App
 
 Express Back End:
 
-1. Install `cors`, `dotenv`, `jsonwebtoken`, and `jwks-rsa`. Redirects *will not work* without CORS installed.
+1. Install `cors`, `dotenv`, `jsonwebtoken`, and `jwks-rsa`. Redirects _will not work_ without CORS installed.
 1. Implement an Authorization module that uses `jsonwebtoken` and `jwks-rsa`. Implement a client by configuring jwksClient with the JSON Web Key Set URI of the front-end server. Implement getKey function that calls `client.getSigningKey()` and has a callback (supplying the signingKey) for `jwt.verify()` to use. Implement `verifyUser()` function that extracts a valid token from `req.headers.authorization` and supplies that token to `jwt.verify()` alogn with getKey, and empty object `{}`, and `errorFirstOrUserCallbackFunction`. Catch any errors. Export `verifyUser` from the module.
 1. Require `verifyUser` (the custom module from previous step) and insert it (as a middleware) to each route that requires authorization to access.
 
 React Front End:
 
 1. Install `@auth0/auth0-react` and perhaps `axios` (else use `fetch`).
-1. Import `{Auth0Provider}` from auth0-react and *wrap all child Components within the `render()`*. Remember to configure Auth0Provider with Auth_Domain, Auth_ClientID, and Auth_Redirect.
+1. Import `{Auth0Provider}` from auth0-react and _wrap all child Components within the `render()`_. Remember to configure Auth0Provider with Auth_Domain, Auth_ClientID, and Auth_Redirect.
 1. Optional: Create Login and Logout buttons (see info below).
-1. Child components that need authorization: Import `{ withAuth0 }`. With this module comes `auth0.isAuthenticated` for free. Use isAuthenticated to show/hide components. The Module that uses 'withAuth0' *must* export like: `export default withAuth0(child);` where 'child' is the name of the component e.g. 'App'.
-1. Child Components that require use of `useAuth0` functions or properties *must* import it. Functions include `user`, `isAuthenticated`, `isLoading`...
+1. Child components that need authorization: Import `{ withAuth0 }`. With this module comes `auth0.isAuthenticated` for free. Use isAuthenticated to show/hide components. The Module that uses 'withAuth0' _must_ export like: `export default withAuth0(child);` where 'child' is the name of the component e.g. 'App'.
+1. Child Components that require use of `useAuth0` functions or properties _must_ import it. Functions include `user`, `isAuthenticated`, `isLoading`...
 
 ### Get a Token and Configure Axios to Call With Authorization
 
@@ -338,11 +358,11 @@ Within the front-end app, create a component that checks for authentication and 
 1. Import `withAuth0` and `axios` (and perhaps React).
 1. Check for authentication with `auth0.isAuthenticated`.
 1. If authenticated, get claims with `auth0.getIdTokenClaims()`.
-1. Define variable `jwt = res.__raw` *two underscores*.
-1. Create an Axios configuration object with `method`, `baseURL` (server base address, optionally acquired from env vars), `url` (target path), `headers: { 'Authorization': 'Bearer ${jwt}'}`. *Note: Last part is a back-ticked template literal*!
+1. Define variable `jwt = res.__raw` _two underscores_.
+1. Create an Axios configuration object with `method`, `baseURL` (server base address, optionally acquired from env vars), `url` (target path), `headers: { 'Authorization': 'Bearer ${jwt}'}`. _Note: Last part is a back-ticked template literal_!
 1. Execute the Axios call a-la `const results = await axios(config);` and the authorization header will be included. If path requires token validation (authorization) that will happen automatically on the back end and the appropriate HTTP Status Code (and optional message) should be returned/expected.
 
-*Note*: Much of this code will need to within asynchronous method(s), and could be executed within `componentDidMount()` or a `useEffect()`.
+_Note_: Much of this code will need to within asynchronous method(s), and could be executed within `componentDidMount()` or a `useEffect()`.
 
 ### Login and Logout Buttons
 
@@ -398,7 +418,7 @@ Separate user communities.
 
 Sandboxes: Use to test different deployment scripts or implementation without impacting an existing deployment/production tenant.
 
-If deleted, a Tenant Name *can never by used again*.
+If deleted, a Tenant Name _can never by used again_.
 
 Enter a name, logo, and support email so customers can confirm they are in the right place, and get support if necessary.
 
