@@ -13,6 +13,12 @@ I completed a code challenge that required parsing through a string of alphanume
 1. Simply detecting if the `String.at(idx)` character is uppercase or lowercase is all that is necessary _for Strings_.
 1. Applying `String.toUpperCase()` (or lower) is an 'all are welcome' operation and will not fail if the character is not alpha.
 
+Testing with Chai:
+
+- Figured out how to install Chai and use Expect syntax in a node.js project.
+- Test runs using `npm test` probably because it is driven by Jest framework.
+- The Chai test fails due to missing function `toAlternatingCase()`, so I'll need to work out how to get that prototype function to be available to the test.
+
 ## Thursday 6-July-2023
 
 Here are some key takeaways from reading about Java Stream Collectors:
