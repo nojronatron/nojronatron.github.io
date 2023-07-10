@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 8-July-2023
+
+Continued setting up Chai and learning how to integrated it into the JS-code-challenges repo and test the code challenge from yesterday. Some key takeaways:
+
+- Since the code challenge implementation was a prototype added to the String object, the test file simply needed to require the file containing the prototype function. No module exports were necessary.
+- Testing non-alpha string characters for upper- and lower-case is futile. Just test for if the String is an upper-case character and if so do the appropriate processing otherwise do the _other_ processing for any other case.
+- Chai: Standard assertions library is required like `const assert = require('chai').assert;` and then the `assert` object is used to make assertions like `assert.typeOf('', 'string');`.
+- Chai: Expect style syntax is required like `const expect = require('chai').expect;` and then `expect` is used to make assertions like `expect('').to.be.a('string');`.
+- Chai: Should() style syntax is reuqired like `const should = require('chai).should();`, including the `()` at the end. Then `should` is used to make assertions like `' '.should.be.a('string');`.
+- Testing for a 'pure' function is a matter of checking if the output is referencing the same object instance as the input, by using the `strictly equals operator`: `const in='me', out='me'; assert.isTrue(in !== out);`.
+
 ## Saturday 7-July-2023
 
 I completed a code challenge that required parsing through a string of alphanumerics and spaces. The idea was to reverse the _case_ of the alpha characters such that Upper Case letters would become Lower Case, and vice versa. Non-alpha characters would not be affected. One rule was to keep the function _pure_, and to develop it as a _prototype_ (in JavaScript) e.g. `String.prototype.toAlternateCase()`. Takeaways:
