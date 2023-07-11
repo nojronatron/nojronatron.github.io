@@ -2,9 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 9-July-2023
+
+Updated my Portfolio WebApp with the Bigfoot Form project at version 1.0.6. There are some issues I need to resolve with the Portfolio WebApp when I get a chance:
+
+- Awesome Slider is a legacy dependency that is no longer supported so I should replace it.
+- The React design is pre-React Hooks, so I could start updating it to with useState, useEffect, etc.
+
+One of my backlog items is to learn how to build, bundle, package, and publish a project. For this exercise I will use React as a starting point.
+
 ## Sunday 8-July-2023
 
-Continued setting up Chai and learning how to integrated it into the JS-code-challenges repo and test the code challenge from yesterday. Some key takeaways:
+Continued working with Chai and learning how to integrated it into the JS-code-challenges repo and test the code challenge from yesterday. Some key takeaways:
 
 - Since the code challenge implementation was a prototype added to the String object, the test file simply needed to require the file containing the prototype function. No module exports were necessary.
 - Testing non-alpha string characters for upper- and lower-case is futile. Just test for if the String is an upper-case character and if so do the appropriate processing otherwise do the _other_ processing for any other case.
@@ -12,6 +21,8 @@ Continued setting up Chai and learning how to integrated it into the JS-code-cha
 - Chai: Expect style syntax is required like `const expect = require('chai').expect;` and then `expect` is used to make assertions like `expect('').to.be.a('string');`.
 - Chai: Should() style syntax is reuqired like `const should = require('chai).should();`, including the `()` at the end. Then `should` is used to make assertions like `' '.should.be.a('string');`.
 - Testing for a 'pure' function is a matter of checking if the output is referencing the same object instance as the input, by using the `strictly equals operator`: `const in='me', out='me'; assert.isTrue(in !== out);`.
+
+On the Bigfoot Form front, enough time has passed since advertising changes without hearing of any problems that I went ahead and closed issues and merged-in fixes and enhancements. The first volunteer meeting is coming up on Monday, where I anticipate having a moment to talk about the form, how it is working, and provide general guidance on using Winlink for Bigfoot.
 
 ## Saturday 7-July-2023
 
@@ -50,7 +61,7 @@ In a future JS project I will try using Chai for assertions.
 
 ## Wednesday 5-July-2023
 
-Completed a code challenge in Java. Two things I'd forgot about
+Completed a code challenge in Java. Two things I'd forgotten about:
 
 1. Java Primitive Types cannot be assigned a null value. Jumping around from Java to JS to C# and back has probably contributed to this confusion.
 2. Array types in Java _can_ be null. I actually remembered this but didn't think about it while designing the algorithm for a two-dimension Array. In multi-dimensional Arrays, the parent Array contains Arrays as items, so a null value represents a row that has no items.
