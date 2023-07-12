@@ -2,6 +2,22 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 12-July-2023
+
+I've been slowly working through Next.js getting started documentation. Some takeaways so far (what I think I'm learning):
+
+- React is used as the view layer for Next.js. Certain aspects of, and components of React are wrapped by Next.js to make them simpler to use.
+- Statically generated pages are rendered at build time. These are reusable pages that load fast but cannot fetch remote data.
+- Server-side rendering (SSR) happens at request time and is slower than static pages but allows for fetching data from external sources.
+- SSR also keep processing code from executing on the client, so accessing databases, or APIs that require protected keys (etc) is less of a security risk than if the code was running on the client.
+- Routing is built-in to Next.js so there is no need to use React Router.
+- Next.js helps with styling by wrapping CSS into two layers: Global and Component. Also, Next.js has support for SCSS and Sass.
+- Next.js wraps other features of Node like 'fetch', and they are just poly-filled at build-time. This means fewer imports.
+- Use `getStaticProps()` to fetch data for request-time rendering.
+- Dynamic route files are identified with a filename starting with `[` and ending with `]`, e.g. `[id].js`.
+
+The Next.js documentation sprinkles all sorts of info within it. I'm not sure if that's a good thing for me, or not. :smiley:
+
 ## Tuesday 11-July-2023
 
 Sorted through a bunch of in-progress projects and those that are on the back-burner. I didn't remove any, but did some re-prioritization, and added a couple new ones. Then, while looking up how to package and publish code, I ran into Next.js documentation, which is something I'd wanted to look at for a while so I started a new project to learn how to use it. I'll get back to the build, bundle, package, and publish exercise later (if anything, this Next.js documentation has been helping understand the processes involved).
