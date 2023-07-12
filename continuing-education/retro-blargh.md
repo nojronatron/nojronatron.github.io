@@ -2,7 +2,13 @@
 
 Semi-regular notes taken during my software developer journey.
 
-## Monday 9-July-2023
+## Tuesday 11-July-2023
+
+Sorted through a bunch of in-progress projects and those that are on the back-burner. I didn't remove any, but did some re-prioritization, and added a couple new ones. Then, while looking up how to package and publish code, I ran into Next.js documentation, which is something I'd wanted to look at for a while so I started a new project to learn how to use it. I'll get back to the build, bundle, package, and publish exercise later (if anything, this Next.js documentation has been helping understand the processes involved).
+
+I also worked on some documentation for the Bigfoot Winlink form. I'll need to review the Readme and update instructions now that the form is in a good state. Mostly importantly, the instructions on how to share files between Windows and Android devices needs to be added. Some of that documentation took some time to look up and validate, but it will be really helpful for users.
+
+## Monday 10-July-2023
 
 Updated my Portfolio WebApp with the Bigfoot Form project at version 1.0.6. There are some issues I need to resolve with the Portfolio WebApp when I get a chance:
 
@@ -11,7 +17,7 @@ Updated my Portfolio WebApp with the Bigfoot Form project at version 1.0.6. Ther
 
 One of my backlog items is to learn how to build, bundle, package, and publish a project. For this exercise I will use React as a starting point.
 
-## Sunday 8-July-2023
+## Sunday 9-July-2023
 
 Continued working with Chai and learning how to integrated it into the JS-code-challenges repo and test the code challenge from yesterday. Some key takeaways:
 
@@ -24,7 +30,7 @@ Continued working with Chai and learning how to integrated it into the JS-code-c
 
 On the Bigfoot Form front, enough time has passed since advertising changes without hearing of any problems that I went ahead and closed issues and merged-in fixes and enhancements. The first volunteer meeting is coming up on Monday, where I anticipate having a moment to talk about the form, how it is working, and provide general guidance on using Winlink for Bigfoot.
 
-## Saturday 7-July-2023
+## Saturday 8-July-2023
 
 I completed a code challenge that required parsing through a string of alphanumerics and spaces. The idea was to reverse the _case_ of the alpha characters such that Upper Case letters would become Lower Case, and vice versa. Non-alpha characters would not be affected. One rule was to keep the function _pure_, and to develop it as a _prototype_ (in JavaScript) e.g. `String.prototype.toAlternateCase()`. Takeaways:
 
