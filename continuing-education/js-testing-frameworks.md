@@ -189,6 +189,17 @@ Two ways to mock functions:
 const mockCallback = jest.fn(() => {...});
 ```
 
+The mock property is part of Jest mock keyword functionality e.g. `const mockFunc = jest.fn();`.
+
+Use it to discover the following about the the SUT:
+
+- How many times the function was called.
+- Arguments supplied to the function.
+- Return value(s) resulting from the function execution.
+- How many times the function was instantiated.
+- Object properties that were returned, and their value(s).
+- And more... see [Mock Property](https://jestjs.io/docs/mock-functions#mock-property) for more.
+
 ## Mocha
 
 Claim: "Simple and Fun". Fair enough.

@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 13-July-2023
+
+Worked through Jest.JS documentation and took notes for future reference.
+
 ## Tuesday 11-July-2023
 
 Sorted through a bunch of in-progress projects and those that are on the back-burner. I didn't remove any, but did some re-prioritization, and added a couple new ones. Then, while looking up how to package and publish code, I ran into Next.js documentation, which is something I'd wanted to look at for a while so I started a new project to learn how to use it. I'll get back to the build, bundle, package, and publish exercise later (if anything, this Next.js documentation has been helping understand the processes involved).
