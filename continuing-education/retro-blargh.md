@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 13-July-2023
+
+Worked through Jest.JS documentation and took notes for future reference.
+
 ## Wednesday 12-July-2023
 
 I've been slowly working through Next.js getting started documentation. Some takeaways so far (what I think I'm learning):
@@ -15,8 +19,6 @@ I've been slowly working through Next.js getting started documentation. Some tak
 - Next.js wraps other features of Node like 'fetch', and they are just poly-filled at build-time. This means fewer imports.
 - Use `getStaticProps()` to fetch data for request-time rendering.
 - Dynamic route files are identified with a filename starting with `[` and ending with `]`, e.g. `[id].js`.
-
-The Next.js documentation sprinkles all sorts of info within it. I'm not sure if that's a good thing for me, or not. :smiley:
 
 ## Tuesday 11-July-2023
 
