@@ -2,7 +2,53 @@
 
 Semi-regular notes taken during my software developer journey.
 
-## Saturday 7-July-2023
+## Thursday 13-July-2023
+
+Worked through Jest.JS documentation and took notes for future reference.
+
+## Wednesday 12-July-2023
+
+I've been slowly working through Next.js getting started documentation. Some takeaways so far (what I think I'm learning):
+
+- React is used as the view layer for Next.js. Certain aspects of, and components of React are wrapped by Next.js to make them simpler to use.
+- Statically generated pages are rendered at build time. These are reusable pages that load fast but cannot fetch remote data.
+- Server-side rendering (SSR) happens at request time and is slower than static pages but allows for fetching data from external sources.
+- SSR also keep processing code from executing on the client, so accessing databases, or APIs that require protected keys (etc) is less of a security risk than if the code was running on the client.
+- Routing is built-in to Next.js so there is no need to use React Router.
+- Next.js helps with styling by wrapping CSS into two layers: Global and Component. Also, Next.js has support for SCSS and Sass.
+- Next.js wraps other features of Node like 'fetch', and they are just poly-filled at build-time. This means fewer imports.
+- Use `getStaticProps()` to fetch data for request-time rendering.
+- Dynamic route files are identified with a filename starting with `[` and ending with `]`, e.g. `[id].js`.
+
+## Tuesday 11-July-2023
+
+Sorted through a bunch of in-progress projects and those that are on the back-burner. I didn't remove any, but did some re-prioritization, and added a couple new ones. Then, while looking up how to package and publish code, I ran into Next.js documentation, which is something I'd wanted to look at for a while so I started a new project to learn how to use it. I'll get back to the build, bundle, package, and publish exercise later (if anything, this Next.js documentation has been helping understand the processes involved).
+
+I also worked on some documentation for the Bigfoot Winlink form. I'll need to review the Readme and update instructions now that the form is in a good state. Mostly importantly, the instructions on how to share files between Windows and Android devices needs to be added. Some of that documentation took some time to look up and validate, but it will be really helpful for users.
+
+## Monday 10-July-2023
+
+Updated my Portfolio WebApp with the Bigfoot Form project at version 1.0.6. There are some issues I need to resolve with the Portfolio WebApp when I get a chance:
+
+- Awesome Slider is a legacy dependency that is no longer supported so I should replace it.
+- The React design is pre-React Hooks, so I could start updating it to with useState, useEffect, etc.
+
+One of my backlog items is to learn how to build, bundle, package, and publish a project. For this exercise I will use React as a starting point.
+
+## Sunday 9-July-2023
+
+Continued working with Chai and learning how to integrated it into the JS-code-challenges repo and test the code challenge from yesterday. Some key takeaways:
+
+- Since the code challenge implementation was a prototype added to the String object, the test file simply needed to require the file containing the prototype function. No module exports were necessary.
+- Testing non-alpha string characters for upper- and lower-case is futile. Just test for if the String is an upper-case character and if so do the appropriate processing otherwise do the _other_ processing for any other case.
+- Chai: Standard assertions library is required like `const assert = require('chai').assert;` and then the `assert` object is used to make assertions like `assert.typeOf('', 'string');`.
+- Chai: Expect style syntax is required like `const expect = require('chai').expect;` and then `expect` is used to make assertions like `expect('').to.be.a('string');`.
+- Chai: Should() style syntax is reuqired like `const should = require('chai).should();`, including the `()` at the end. Then `should` is used to make assertions like `' '.should.be.a('string');`.
+- Testing for a 'pure' function is a matter of checking if the output is referencing the same object instance as the input, by using the `strictly equals operator`: `const in='me', out='me'; assert.isTrue(in !== out);`.
+
+On the Bigfoot Form front, enough time has passed since advertising changes without hearing of any problems that I went ahead and closed issues and merged-in fixes and enhancements. The first volunteer meeting is coming up on Monday, where I anticipate having a moment to talk about the form, how it is working, and provide general guidance on using Winlink for Bigfoot.
+
+## Saturday 8-July-2023
 
 I completed a code challenge that required parsing through a string of alphanumerics and spaces. The idea was to reverse the _case_ of the alpha characters such that Upper Case letters would become Lower Case, and vice versa. Non-alpha characters would not be affected. One rule was to keep the function _pure_, and to develop it as a _prototype_ (in JavaScript) e.g. `String.prototype.toAlternateCase()`. Takeaways:
 
@@ -39,7 +85,7 @@ In a future JS project I will try using Chai for assertions.
 
 ## Wednesday 5-July-2023
 
-Completed a code challenge in Java. Two things I'd forgot about
+Completed a code challenge in Java. Two things I'd forgotten about:
 
 1. Java Primitive Types cannot be assigned a null value. Jumping around from Java to JS to C# and back has probably contributed to this confusion.
 2. Array types in Java _can_ be null. I actually remembered this but didn't think about it while designing the algorithm for a two-dimension Array. In multi-dimensional Arrays, the parent Array contains Arrays as items, so a null value represents a row that has no items.

@@ -12,7 +12,193 @@ I've used Jest, and run into Mocha and Chai many times in the last year or so. T
 
 ## Jest
 
-This will be filled in at a later time.
+I already have a fair amount of experience with Jest, but I expect to learn a few more things here.
+
+[Jest API](https://jestjs.io/docs/api)
+
+### Jest Basics
+
+1. `npm install --save-dev jest`
+1. Identify the file to test e.g. `myModule.js`
+1. Create a test file e.g. `myModule.test.js`
+1. Import the file to test to the test file e.g. `const myModule = require('./myModule');`
+1. Update `package.json` to include a test script e.g. `"test": "jest"`
+1. Run the test script e.g. `npm test`
+
+### Jest Command Line
+
+1. Install Jest globally to call it from the command line: `npm install -g jest`.
+1. Run Jest and get native OS output: `jest myModule --notify --config=config.json`.
+
+Jest [CLI Options](https://jestjs.io/docs/cli)
+
+### Jest Configuration
+
+`jest --init` creates a baseline configuration file.
+
+### Jest With Babel
+
+1. `npm install --save-dev babel-jest @babel/core @babel/preset-env`.
+1. Create a babel config file (see example below from _[JestJS.io]_).
+
+```javascript
+module.exports = {
+  presents: [
+    [
+      '@babel/preset-env',
+      {
+        targets: {
+          node: 'current',
+        },
+      },
+    ],
+  ],
+};
+```
+
+See [Babel Docs](https://babeljs.io/docs/en/) for Babel configuration details.
+
+_Note_: `babel-jest` is installed automatically with Jest and will automatically transform files for you. This behavior can be disabled by setting configuration option `transform: {}`.
+
+### Jest Interop With Other Libraries and Frameworks
+
+- Webpack: Jest can be used, but can be challenging. See Webpack docs for details.
+- Vite (+ Native ESM): Jest is not fully supported due to the Vite Plugin System. There is a `vite-jest` module, with other limitations. See the vite guide for details.
+- Parcel bundler: Zero-configuration, works well with Jest. See Parcell official docs for info.
+- TypeScript: Supported, via Babel. See instructions below.
+
+#### Jest and TypeScript
+
+1. `npm install --save-dev @babel/preset-typescript`.
+1. Create a babel config file `babel.config.js`.
+1. Add `@babel/preset-typescript` to list of presets.
+
+Example babel.config.js from _[JestJS.io]_:
+
+```javascript
+module.exports = {
+  presets: [
+    ['@babel/preset-env', { targets: { node: 'current' } }],
+    '@babel/preset-typescript',
+  ],
+};
+```
+
+_Important_: TypeScript is not directly supported by Jest, and Babel transpiles TS to JS prior to Jest executing tests. This means type-checking is not done.
+
+Options are to:
+
+- Use `ts-jest` to enable type-checking Jest tests.
+- Run `tsc` separately or as part of the build process.
+
+See [JestJS TS Types Testing](https://jestjs.io/docs/getting-started#type-definitions) for more info.
+
+### Jest Matchers
+
+Matchers are used to test values.
+
+Always use the most precise matcher available.
+
+Common Matchers:
+
+- `toBe()`: Strict equality (===).
+- `toEqual()`: Deep equality e.g. recursive matching in an array-like object.
+- `not`: Inverts the matcher, e.g. `expect(0).not.toBe(1)`.
+- `toBeNull()`: Matches only null.
+- `toBeUndefined()`: Matches only undefined.
+- `toBeDefined()`: Matches anything that is not undefined.
+- `toBeTruthy()`: Matches anything that is not falsy.
+- `toBeFalsy()`: Matches anything that is falsy.
+
+#### Jest Floating Point Equality
+
+Use `toBeCloseTo` to compare floating point numbers. This avoids match errors due to rounding.
+
+#### Jest String Matching
+
+Use `toMatch()` and `not.toMatch()`.
+
+The function accepts Regular Expressions.
+
+Does _not_ default to doing a full string match, e.g. can find a substring that matches the regex.
+
+#### Jest Matching Arrays And Iterables
+
+Use `to.Contain(string)` for arrays and iterables.
+
+#### Jest Error Matching
+
+Use `.toThrow([error])`.
+
+Error is an optional argument. If provided, the error message must match the string or regex provided.
+
+#### Jest Matcher Reference
+
+[Jest Expect API Documentation](https://jestjs.io/docs/expect).
+
+### Jest Asynchronous Testing
+
+Jest supports testing asynchronous code using these approaches:
+
+- Promises: Add the matcher to the `.then()` block.
+- Rejected Promises: Use the `.catch((error) => {...})` code block.
+- Async/Await: Within the test definition, put `async` in front of the lambda expression, then use `await` in from of the awaitable function call.
+- `.resolves` and `.rejects`: Compatible with Async/Await usage. Simple pre-pend resolves or rejects keywords to the intended matcher, as part of a `return` statement.
+- Callbacks: Include `done` as an argument to the test definition. Call `done()` when the test is complete. Place a `done()` in both the success and failure code blocks e.g. `try{}` and `catch(error){...}`.
+
+_Note_: Do _not_ mix Promises and Callbacks else the test is guaranteed to fail.
+
+### Jest Test Setups and Cleanups
+
+Repeat setup and cleanup code using `beforeEach()`, `afterEach()`, `beforeAll()`, and `afterAll()`.
+
+Simply run the code in the setup or cleanup block that should run:
+
+- Before all test: `beforeAll(() => {...})`
+- Before each test: `beforeEach(() => {...})`
+- After every test: `afterEach(() => {...})`
+- After all tests: `afterAll(() => {...})`
+
+#### Scoping Setups and Cleanups
+
+Place the `beforeEach()` etc statement within the `Describe` block for the test of tests the setup/cleanup should apply to.
+
+_Note_: Scoping setups/cleanups like this can cause unexpected order-of-operations. See [JestJS Setup Teardown Order of Operations](https://jestjs.io/docs/setup-teardown#order-of-execution) for more.
+
+#### Jest Single-Test Run
+
+Use `test.only()` to run a single test. This can be helpful to isolate a test run to a specific test for debugging.
+
+### Jest Mocking
+
+Tests links between code "by erasing the actual implementation of a function, capturing calls to the function..., and allowing test-time configuration of return values."
+
+Two ways to mock functions:
+
+1. Create a mock function for use in the test.
+1. Write `manual mock` to override a dependency.
+
+#### Jest Mock Function
+
+1. Import the module to test (SUT).
+1. Create a function to store in the imported module function's callback.
+1. Call the SUT and supply it input arguments including the mockCallback function.
+
+```javascript
+// create a mock function
+const mockCallback = jest.fn(() => {...});
+```
+
+The mock property is part of Jest mock keyword functionality e.g. `const mockFunc = jest.fn();`.
+
+Use it to discover the following about the the SUT:
+
+- How many times the function was called.
+- Arguments supplied to the function.
+- Return value(s) resulting from the function execution.
+- How many times the function was instantiated.
+- Object properties that were returned, and their value(s).
+- And more... see [Mock Property](https://jestjs.io/docs/mock-functions#mock-property) for more.
 
 ## Mocha
 
