@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 16-July-2023
+
+Worked through several JS challenges in CodeWars and completed one in the style of a whiteboard interview: URL Spaces.
+
+- Doing the whiteboard in Miro was tough because the latency was very high. I had to stop after completing I/O depiction, algorithm and analysis, test approach and cases, and javascript code (free-hand).
+- Because I was working on CodeWars, many of the solutions did not get put into a local project, and none of them were pushed to GitHub.
+- Developing solutions on my local workstation provided a few opportunities to practice using Mocha and Chai.
+
+I reserached several companies with interesting open positions, none of them were in industries (or locations) that were exciting to me.
+
 ## Thursday 13-July-2023
 
 Worked through Jest.JS documentation and took notes for future reference.
