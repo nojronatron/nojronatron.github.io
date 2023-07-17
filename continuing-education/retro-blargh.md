@@ -2,6 +2,19 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 17-July-2023
+
+Completed the rest of the JS challenge started yesterday. Miro was still being sluggish but I completed the challenge anyway. Take aways:
+
+- No need to test for function purity when the input and output are primitives.
+- I should do a better job of describing the challenge requirements in the code comments, for example: `Do not use the built in 'replace()' function for your chosen language` was a requirement but I somehow failed to add that to the code comments.
+
+Finished up research and writing about Mocha, Jest, and Chai. Key takeaways:
+
+- Jest is a basic yet useful test framework for javascript and node. Add-on other libraries to extend it.
+- Mocha is a more feature-rich JS/Node/Web testing framework.
+- Chai is an assertion library that can be added to Jest, Mocha, or other testing frameworks, to enhance assertions for a given test framework.
+
 ## Sunday 16-July-2023
 
 Worked through several JS challenges in CodeWars and completed one in the style of a whiteboard interview: URL Spaces.
