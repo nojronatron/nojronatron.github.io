@@ -15,6 +15,13 @@ Finished up research and writing about Mocha, Jest, and Chai. Key takeaways:
 - Mocha is a more feature-rich JS/Node/Web testing framework.
 - Chai is an assertion library that can be added to Jest, Mocha, or other testing frameworks, to enhance assertions for a given test framework.
 
+Made some progress working through a new Issue raised by a Bigfoot ham: Allow storing and incrementing the Message Number.
+
+- Local Storage seems to be a good resource to help solve this.
+- I created a mock WLE server so I could see the form submission from the form, enabling more rapid testing without having to launch Winlink Express and copy files around.
+- Have not addressed 'copy most recent supplied entry' when posting portion of the enhancement request yet. Shouldn't be too difficult.
+- Between the 2 parts of the request, the Form's screen real estate will start to get tight and I might want to consider ways to keep the UI from feeling cramped.
+
 ## Sunday 16-July-2023
 
 Worked through several JS challenges in CodeWars and completed one in the style of a whiteboard interview: URL Spaces.
