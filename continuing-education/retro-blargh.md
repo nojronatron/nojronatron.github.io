@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 18-July-2023
+
+I came up with an idea as to how to address the issue request 'copy most recent supplied entry' for the Bigfoot WL Form project. At first I thought I could get away with just using Local Storage and saving the data to a file, but I didn't quite implement it correctly. So I took another tact, trying to implement a forced save during Form Submit event, but I failed to block the default form action so the data would get lost instead of stored. I then realized that Local Storage will do the trick, however I need to block the default form action before setting the "last record" values into LS, then the form can close. The challenge will be setting the form items correctly into the multi-part form transfer that the Winlink Express 'server' will require. That's my goal for tomorrow.
+
+Key takeaways:
+
+- Always (always, always) analyze the problem domain first, then design a solution, then look at existing code to see how to plug-in the solution, then implement, then test.
+- My gut told me to try blocking default form/submit event action, but I passed it off as "a React thing" but it turns out that was the solution to the timing issue trying to store items after the Submit button was pressed.
+- GitHub Copilot and ChatGPT provided detailed syntax for code segments that I was uncertain how to write (or would have written 10 lines instead of one or two).
+
 ## Monday 17-July-2023
 
 Completed the rest of the JS challenge started yesterday. Miro was still being sluggish but I completed the challenge anyway. Take aways:
