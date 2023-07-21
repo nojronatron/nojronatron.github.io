@@ -2,6 +2,38 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 21-July-2023
+
+Finished implementing the mock server basic functionality of:
+
+- Accept a GET request, find a specific file, replace a string in the text, then serve the file to the requesting host.
+- Implement the load file and replace string functionality as a middleware.
+- Middleware also returns the HTML in the response.
+- Middleware will call default error handler route using `next(err)` syntax.
+
+## Thursday 20-July-2023
+
+Fiddled with my mock WLE server code trying to get it to read a specific file, edit a specific string within the file, and sending the entire file with changes back to the requesting client.
+
+Key Takeaways:
+
+- Asynchronous method(s) might be required due to reading-in and editing file processes.
+- The POST route appears to be working well after lots of usage yesterday and today.
+
+## Wednesday 19-July-2023
+
+I've started writing custom scripts for Package.json in node-based projects. In today's case, I had to re-write a small section of an HTML file prior to the web-server loading it as a static page.
+
+Key takeaways:
+
+- Module `path` must be installed using the `npm registry`.
+- `path.join()` accepts an _array of strings_ as arguments to string-together a directory path OR a fully qualified directory path and filename (depends on which you will need).
+- Module `fs` is built-in to node.js and does not need to be installed.
+- Use `fs.readfile(path.join(...), 'utf8', (err, data) => {...});` to do the work.
+- Use the `scripts` section of Package.json to create a scriptName key like `"rewriteAction":`, with a value `"node path/scriptName.js"`.
+- Execute the script in the expected way using `npm run rewriteAction` and node will do the rest for you.
+- For this project I hard-coded the arguments for the JS function, but in the future I should allow sending custom params in the package.json script.
+
 ## Tuesday 18-July-2023
 
 I came up with an idea as to how to address the issue request 'copy most recent supplied entry' for the Bigfoot WL Form project. At first I thought I could get away with just using Local Storage and saving the data to a file, but I didn't quite implement it correctly. So I took another tact, trying to implement a forced save during Form Submit event, but I failed to block the default form action so the data would get lost instead of stored. I then realized that Local Storage will do the trick, however I need to block the default form action before setting the "last record" values into LS, then the form can close. The challenge will be setting the form items correctly into the multi-part form transfer that the Winlink Express 'server' will require. That's my goal for tomorrow.
