@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 22-July-2023
+
+Not much to write about due to other tasks interspersed with working on the BF Winlink Form, and planning around some of my personal goals for the next few months.
+
 ## Friday 21-July-2023
 
 Finished implementing the mock server basic functionality of:
