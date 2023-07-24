@@ -200,6 +200,10 @@ Use it to discover the following about the the SUT:
 - Object properties that were returned, and their value(s).
 - And more... see [Mock Property](https://jestjs.io/docs/mock-functions#mock-property) for more.
 
+### Jest Limitations
+
+Interop issue with other libraries and frameworks [Webpack](https://webpack.js.org/) [unique challenges](https://jestjs.io/docs/29.1/getting-started#using-webpack) and [Vite](https://vitejs.dev/) [plugin system incompatibilities](https://jestjs.io/docs/29.1/getting-started#using-vite).
+
 ## Mocha
 
 Claim: "Simple and Fun". Fair enough.
@@ -303,6 +307,12 @@ Use Hooks to clear a database and set test data before each test.
 Root Hooks: Any Hook set at the top Scope of the test file.
 
 [Root Hook Plugins](https://mochajs.org/#root-hook-plugins): Preferred over Root Hooks.
+
+### Mocha Limitations
+
+Mocha has a long list of dependecies, which means any one could have issues (known or unknown) that could impact Mocha's functionality and capability.
+
+The flip-side is the capabilities are arguably above Jest, and it appears to have no compatibility issues with WebPack or Vite.
 
 ## Chai
 
@@ -492,9 +502,19 @@ The Three Template Tags:
 - `#{exp}`: The expected value (if provided in the assert).
 - `#{act}`: The actual value. Defaults to `_obj` but can be overwritten.
 
+### Chai Pros and Cons
+
+Chai is an assertion library, not a test framework, so there is a reliance on using Jest, Mocha, or another framework to find, execute, and gather results from unit tests.
+
+The benefit is Chai extends the ability to Assert more complex conditions with fairly simple syntax, and integrates well with Jest and Mocha.
+
 ## References
 
-[MochaJS](https://mochajs.org/)
+Feature rich JS test framework for Node.js and in-browser testing with [MochaJS](https://mochajs.org/)
+
+Delightful Testing with [Jest JS](https://jestjs.io/).
+
+BDD-TDD assertion library for node using [Chai](https://www.chaijs.com/).
 
 ## Footer
 

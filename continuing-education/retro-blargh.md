@@ -2,6 +2,82 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 22-July-2023
+
+Not much to write about due to other tasks interspersed with working on the BF Winlink Form, and planning around some of my personal goals for the next few months.
+
+## Friday 21-July-2023
+
+Finished implementing the mock server basic functionality of:
+
+- Accept a GET request, find a specific file, replace a string in the text, then serve the file to the requesting host.
+- Implement the load file and replace string functionality as a middleware.
+- Middleware also returns the HTML in the response.
+- Middleware will call default error handler route using `next(err)` syntax.
+
+## Thursday 20-July-2023
+
+Fiddled with my mock WLE server code trying to get it to read a specific file, edit a specific string within the file, and sending the entire file with changes back to the requesting client.
+
+Key Takeaways:
+
+- Asynchronous method(s) might be required due to reading-in and editing file processes.
+- The POST route appears to be working well after lots of usage yesterday and today.
+
+## Wednesday 19-July-2023
+
+I've started writing custom scripts for Package.json in node-based projects. In today's case, I had to re-write a small section of an HTML file prior to the web-server loading it as a static page.
+
+Key takeaways:
+
+- Module `path` must be installed using the `npm registry`.
+- `path.join()` accepts an _array of strings_ as arguments to string-together a directory path OR a fully qualified directory path and filename (depends on which you will need).
+- Module `fs` is built-in to node.js and does not need to be installed.
+- Use `fs.readfile(path.join(...), 'utf8', (err, data) => {...});` to do the work.
+- Use the `scripts` section of Package.json to create a scriptName key like `"rewriteAction":`, with a value `"node path/scriptName.js"`.
+- Execute the script in the expected way using `npm run rewriteAction` and node will do the rest for you.
+- For this project I hard-coded the arguments for the JS function, but in the future I should allow sending custom params in the package.json script.
+
+## Tuesday 18-July-2023
+
+I came up with an idea as to how to address the issue request 'copy most recent supplied entry' for the Bigfoot WL Form project. At first I thought I could get away with just using Local Storage and saving the data to a file, but I didn't quite implement it correctly. So I took another tact, trying to implement a forced save during Form Submit event, but I failed to block the default form action so the data would get lost instead of stored. I then realized that Local Storage will do the trick, however I need to block the default form action before setting the "last record" values into LS, then the form can close. The challenge will be setting the form items correctly into the multi-part form transfer that the Winlink Express 'server' will require. That's my goal for tomorrow.
+
+Key takeaways:
+
+- Always (always, always) analyze the problem domain first, then design a solution, then look at existing code to see how to plug-in the solution, then implement, then test.
+- My gut told me to try blocking default form/submit event action, but I passed it off as "a React thing" but it turns out that was the solution to the timing issue trying to store items after the Submit button was pressed.
+- GitHub Copilot and ChatGPT provided detailed syntax for code segments that I was uncertain how to write (or would have written 10 lines instead of one or two).
+
+## Monday 17-July-2023
+
+Completed the rest of the JS challenge started yesterday. Miro was still being sluggish but I completed the challenge anyway. Take aways:
+
+- No need to test for function purity when the input and output are primitives.
+- I should do a better job of describing the challenge requirements in the code comments, for example: `Do not use the built in 'replace()' function for your chosen language` was a requirement but I somehow failed to add that to the code comments.
+
+Finished up research and writing about Mocha, Jest, and Chai. Key takeaways:
+
+- Jest is a basic yet useful test framework for javascript and node. Add-on other libraries to extend it.
+- Mocha is a more feature-rich JS/Node/Web testing framework.
+- Chai is an assertion library that can be added to Jest, Mocha, or other testing frameworks, to enhance assertions for a given test framework.
+
+Made some progress working through a new Issue raised by a Bigfoot ham: Allow storing and incrementing the Message Number.
+
+- Local Storage seems to be a good resource to help solve this.
+- I created a mock WLE server so I could see the form submission from the form, enabling more rapid testing without having to launch Winlink Express and copy files around.
+- Have not addressed 'copy most recent supplied entry' when posting portion of the enhancement request yet. Shouldn't be too difficult.
+- Between the 2 parts of the request, the Form's screen real estate will start to get tight and I might want to consider ways to keep the UI from feeling cramped.
+
+## Sunday 16-July-2023
+
+Worked through several JS challenges in CodeWars and completed one in the style of a whiteboard interview: URL Spaces.
+
+- Doing the whiteboard in Miro was tough because the latency was very high. I had to stop after completing I/O depiction, algorithm and analysis, test approach and cases, and javascript code (free-hand).
+- Because I was working on CodeWars, many of the solutions did not get put into a local project, and none of them were pushed to GitHub.
+- Developing solutions on my local workstation provided a few opportunities to practice using Mocha and Chai.
+
+I reserached several companies with interesting open positions, none of them were in industries (or locations) that were exciting to me.
+
 ## Thursday 13-July-2023
 
 Worked through Jest.JS documentation and took notes for future reference.
