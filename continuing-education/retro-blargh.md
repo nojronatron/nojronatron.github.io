@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 24-July-2023
+
+Attended a MSFT Reactor session about DotNET MAUI. Key takeaways:
+
+- Develop using Windows Visual Studio or Visual Studio for Mac.
+- Build for any platform on Windows, Andoid, or Mac.
+- Linux was not directly address so I will want to research that option.
+- Onboard Emulators for Android and iOS are included in Visual Studio.
+- DotNET MAUI project startup provides a few different options for the core Project type: Device, Web, or Hybrid.
+- Hybrid mode in DotNET MAUI places Blazor at the root of the application UI so C-sharp, XAML, XML, and ASP.NET Core code paradigms are followed.
+- I have a few "Want To Do" items in my backlog that could be completed as DotNET MAUI, and will fulfill my want to develop a mobile app.
+
 ## Saturday 22-July-2023
 
 Not much to write about due to other tasks interspersed with working on the BF Winlink Form, and planning around some of my personal goals for the next few months.
