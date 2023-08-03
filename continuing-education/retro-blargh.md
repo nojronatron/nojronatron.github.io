@@ -14,6 +14,13 @@ Attended a MSFT Reactor session about DotNET MAUI. Key takeaways:
 - Hybrid mode in DotNET MAUI places Blazor at the root of the application UI so C-sharp, XAML, XML, and ASP.NET Core code paradigms are followed.
 - I have a few "Want To Do" items in my backlog that could be completed as DotNET MAUI, and will fulfill my want to develop a mobile app.
 
+Recall NextJS Project setup steps:
+
+```powershell
+npx create-next-app@latest myProjectName --use-npm
+set-location -Path myProjectName
+```
+
 ## Saturday 22-July-2023
 
 Not much to write about due to other tasks interspersed with working on the BF Winlink Form, and planning around some of my personal goals for the next few months.
