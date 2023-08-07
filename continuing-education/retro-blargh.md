@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 7-Aug-2023
+
+Attended a MSFT [DotNET MAUI presentation: Databinding in MVVM](./maui-databinding-mvvm.html). I've been away from C# for some time but recall working within an MVVM model to develop WPF applications. For DotNET MAUI it isn't too different, and there is now a [toolkit](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/) developed by Microsoft to help implement the MVVM model. This was an informative introduction, and I look forward to working on a DotNET MAUI project in the future.
+
 ## Thursday 3-Aug-2023
 
 I have a new project idea, related to the Bigfoot Bib Report Form project, that will require some research and time to design. At the moment I believe Socket.IO to be a good candidate as the underlying infrastructure for the project:
