@@ -51,6 +51,7 @@ A collection of continuing education, research notes, and references.
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] DotNET MAUI [Data Binding in MVVM](./maui-databinding-mvvm.html).
 - [x] React [Hooks](./react-hooks.html).
 - [x] Deploying to [Linux on Azure](./linux-on-azure.html).
 - [x] Build a [VS Code Extension](./build-vscode-extension.html).
