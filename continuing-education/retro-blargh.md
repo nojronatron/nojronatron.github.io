@@ -2,6 +2,27 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 7-Aug-2023
+
+Attended a MSFT [DotNET MAUI presentation: Databinding in MVVM](./maui-databinding-mvvm.html). I've been away from C# for some time but recall working within an MVVM model to develop WPF applications. For DotNET MAUI it isn't too different, and there is now a [toolkit](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/) developed by Microsoft to help implement the MVVM model. This was an informative introduction, and I look forward to working on a DotNET MAUI project in the future.
+
+## Thursday 3-Aug-2023
+
+I have a new project idea, related to the Bigfoot Bib Report Form project, that will require some research and time to design. At the moment I believe Socket.IO to be a good candidate as the underlying infrastructure for the project:
+
+- Does not require software installation.
+- Utilizes basic HTTP-like communication between network hosts and itself.
+- Can be easily updated using ECMA Script/JS syntax and frameworks.
+- Can have a local or remote database attached for a data store.
+
+Experimented with [Watcher](https://github.com/fabiospampinato/watcher) to utilize as a means to watch a file system for a specific file type. Once a file change is discovered, a separate module can be called to parse the file to capture the necessary data. This was a very early experiment, but there are a few takeaways:
+
+- Successfully converted from Common JS (CJS) to ESM module type in `package.json` (not difficult in itself, but its effects can be).
+- Remember `import` statements in ESM? No? `import express from 'express'` instead of `const express = require('express')`.
+- `DotEnv` can be configured by using `import 'dotenv/config'` instead of `require('dotenv').config()`.
+
+These changes will take a bit of time to sink in to my grey matter.
+
 ## Monday 24-July-2023
 
 Attended a MSFT Reactor session about DotNET MAUI. Key takeaways:
