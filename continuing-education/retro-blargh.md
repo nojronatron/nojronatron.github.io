@@ -6,6 +6,8 @@ Semi-regular notes taken during my software developer journey.
 
 Completed a first-pass of a client-server solution that copies specific file data from a client (or at the server) into a MongoDB document store. The idea is to help solve the problem of copying 'bib data' from multiple Winlink Express workstations to a central "database server" workstation without having to manually sneaker-net or Telnet the files to the "server" computer. This exercise proved-out some design possibilities, some problems with my initial approach, and will help drive a better overall design for a possible future solution.
 
+Began working on a possible WPF based solution for this file synchronizing utility. It is nice working with C# again, but I don't miss XAML. Why can't I just use CSS? :laughing:
+
 ## Friday 18-Aug-2023
 
 It's been a super busy week, followed by a couple days of travel mixed with some relaxation. Now it's back to work time.
