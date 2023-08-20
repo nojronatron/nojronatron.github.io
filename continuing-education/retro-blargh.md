@@ -2,6 +2,24 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 19-Aug-2023
+
+Completed a first-pass of a client-server solution that copies specific file data from a client (or at the server) into a MongoDB document store. The idea is to help solve the problem of copying 'bib data' from multiple Winlink Express workstations to a central "database server" workstation without having to manually sneaker-net or Telnet the files to the "server" computer. This exercise proved-out some design possibilities, some problems with my initial approach, and will help drive a better overall design for a possible future solution.
+
+Began working on a possible WPF based solution for this file synchronizing utility. It is nice working with C# again, but I don't miss XAML. Why can't I just use CSS? :laughing:
+
+## Friday 18-Aug-2023
+
+It's been a super busy week, followed by a couple days of travel mixed with some relaxation. Now it's back to work time.
+
+- Exploring file event detection and actions: Currently using Express-js and an NPM package called [watcher](https://github.com/fabiospampinato/watcher#readme). The idea is to design a solution that will scrape Winlink Express messages and import "bib data" into a database automatically, among distributed Winlink Express instances on a LAN/PAN.
+- Received some good feedback on the Bigfoot Bib Report form. There are a few areas with room for improvement (of course). I plan to make some calls for feedback.
+
+Some Key Takeaways for the day:
+
+- POST request data must be parsed in order to be used by Express-js. The easiest is to use 'body-parser' and configure a JSON, Text, or UrlEncoded parsing middleware configuration.
+- Explicitly defining an Options object is not required but it simplifies tweaking middleware, and also removed questions about limits, filters, or priorities settings in a middleware.
+
 ## Monday 7-Aug-2023
 
 Attended a MSFT [DotNET MAUI presentation: Databinding in MVVM](./maui-databinding-mvvm.html). I've been away from C# for some time but recall working within an MVVM model to develop WPF applications. For DotNET MAUI it isn't too different, and there is now a [toolkit](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/) developed by Microsoft to help implement the MVVM model. This was an informative introduction, and I look forward to working on a DotNET MAUI project in the future.
