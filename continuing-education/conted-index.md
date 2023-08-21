@@ -11,9 +11,9 @@ A collection of continuing education, research notes, and references.
 
 ## Things I Want To Learn More About
 
+- [ ] [MVVM](./wpf-mvvm-learnings.html) in DotNET using C#. I've done this before but need a refresher for a project that will help solve a problem for someone else.
 - [ ] DotNET MAUI for desktop and mobile app development [mobile-to-deskto-dotnet-maui](./mobile-to-desktop-dotnet-maui.html).
 - [ ] Jest vs Mocha vs Chai [JS Testing Frameworks](./js-testing-frameworks.html).
-- [x] Build and Test Node.js using [GitHub Actions for Node.js](./github-actions-build-test-node.html).
 - [ ] [Coding with P5js](./coding-with-p5.html).
 - [ ] [DotNetTools C# Devkit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit).
 - [ ] Learn how to build a ChatGPT Plugin and [integrating ChatGPT into Apps](./chatgpt-integration.html).
@@ -51,6 +51,7 @@ A collection of continuing education, research notes, and references.
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] Build and Test Node.js using [GitHub Actions for Node.js](./github-actions-build-test-node.html).
 - [x] DotNET MAUI [Data Binding in MVVM](./maui-databinding-mvvm.html).
 - [x] React [Hooks](./react-hooks.html).
 - [x] Deploying to [Linux on Azure](./linux-on-azure.html).
