@@ -2,6 +2,27 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 20-Aug-2023
+
+Struggled a bit with getting starting features up and running with this WPF app. Some notes:
+
+- App.xaml seems to be the entry-point and it has a property `StartupUri` that takes a string, pointing to another file in the Project. Putting code-behind at App.xaml doesn't appear to have any effect when this property is set.
+- MainWindow.xaml can have `Loaded` and `Closing` properties set, which allow WPF to call specific code-behind methods. This is optional but can be useful to help bring-up or tear-down the WPF application when the `Window` opens or closes.
+
+However, I was able to implement some good practices without too much heartache:
+
+- Implementing the Disposable Pattern using IDisposable. This ensures processes like logging mechanisms or filesystem monitors get properly disposed when they are shut down.
+- Passing-in instance classes like Logger so the instantiated class can use it immediately.
+
+TODO Items:
+
+- Set up databinding to allow the UI to show the current File Watch folder, Filter, and any Server Address (if set).
+- Configure Dependency Injection (The 'D' principle in SOLID), to modularize (decouple) and ensure Singleton-instance usage where necessary.
+- Set up Collection(s) with sturdy Classes and sorting so that data can be manipulated as needed.
+- Configure a database back-end for storing data.
+- Implement API Endpoints so remote data-shipments from other clients can be received and processed.
+- Update the status window with notifications like "File monitor started", etc.
+
 ## Saturday 19-Aug-2023
 
 Completed a first-pass of a client-server solution that copies specific file data from a client (or at the server) into a MongoDB document store. The idea is to help solve the problem of copying 'bib data' from multiple Winlink Express workstations to a central "database server" workstation without having to manually sneaker-net or Telnet the files to the "server" computer. This exercise proved-out some design possibilities, some problems with my initial approach, and will help drive a better overall design for a possible future solution.
