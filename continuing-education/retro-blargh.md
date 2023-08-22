@@ -2,6 +2,8 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 22-Aug-2023
+
 ## Monday 21-Aug-2023
 
 Revamped the Project layout in the file-sync-win Solution so that it is better arranged for building future features and will be easier to test and debug.

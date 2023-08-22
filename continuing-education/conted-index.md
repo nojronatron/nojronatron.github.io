@@ -99,6 +99,7 @@ A collection of continuing education, research notes, and references.
 
 ## Azure Learnings
 
+- MS Reactor: Azure Integration Services [Exploring Message Queueing with Azure Service Bus](./azure-integration-svcs-message-q.html).
 - About [Monitoring Azure Resources](./azure-monitoring-resources.html).
 - Developing [Azure Functions](./azure-functions.html) in Python (and other languages, too).
 - Managing and [Reporting on Costs and Billing in Azure](./azure-reporting-costs.md).
