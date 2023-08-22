@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 21-Aug-2023
+
+Revamped the Project layout in the file-sync-win Solution so that it is better arranged for building future features and will be easier to test and debug.
+
+Completed a few exercises on using MVVM in WPF. Seems like Caliburn.Micro is a great way to go so I'll give that a spin. I'll want to reorganize the files (some more) to support Inversion of Control (Dependency Injection), but after some research it might make more sense to get Caliburn.Micro installed and functional first, then take on DI if it will still be helpful.
+
+After some work refactoring and adding Caliburn.Micro, I have the main UI functioning again. Takeaways:
+
+- Event Actions in a View must have a related `Can` prefixed Property for the Action that can en/disable the action based on state.
+- In order to flip-flop a state (e.g. one button pressed becomes inactive, other button becomes active), the state must be flip-flopped and `NotifyOfPropertyChanged()` must point to the `Can`-prefixed Property so it "knows" the state has changed.
+- Namespaces in DotNET can be complex. Not only do the Project `csproj` files track it, so do the Class `cs` files, as well as the `xaml` files in XML-style namespace definitions. Visual Studio doesn't help much when there is a bad Namespace entry, and the error message might be pointing to the wrong problem source, so tread carefully.
+
 ## Sunday 20-Aug-2023
 
 Struggled a bit with getting starting features up and running with this WPF app. Some notes:

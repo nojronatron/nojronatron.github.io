@@ -56,18 +56,16 @@ namespace MyNamespace
 }
 ```
 
-Add the following to `<ResourceDictionary>` in App.xaml:
+Add the following `<ResourceDictionary>` hive to `<Application.Resources>` in App.xaml:
 
 ```xml
-<Application.Resources>
-    <ResourceDictionary>
-        <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary>
-                <local:Bootstrapper x:Key="Bootstrapper" />
-            </ResourceDictionary>
-        </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
-</Application.Resources>
+<ResourceDictionary>
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary>
+            <local:Bootstrapper x:Key="Bootstrapper" />
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
 ```
 
 ## Caliburn.Micro
