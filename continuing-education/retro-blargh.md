@@ -4,6 +4,61 @@ Semi-regular notes taken during my software developer journey.
 
 ## Tuesday 22-Aug-2023
 
+What I learned today: When I start loading a class constructor with lots of logic...
+
+```csharp
+public class DataProcessor {
+  private SomeHelperClass someHelperClass = new SomeHelperClass();
+
+  public DataProcessor(string[] someComplexData) {
+    _logger = new Logger();
+    foreach(var dataItem in someComplexData) {
+      do {
+        // process the data here
+      }
+    }
+  }
+}
+```
+
+...what I should _really_ do is refactor the solution to include a helper class that will do the heavy lifting and employ Inversion of Control (IoC or Dependency Injection) so the class is always ready, either as a Singleton or as a Dynamically instantiated dependency:
+
+```csharp
+using Caliburn.Micro; // for example
+// more usings...
+namespace MyNamespace {
+  public class Bootstrapper : BootstrapperBase {
+    private SimpleContainer _conatainer = new SimpleContainer();
+    public Bootstrapper() {
+      Initialize();
+    }
+    protected override void Configure() {
+      _container.Instance(_container);
+      _conatiner
+        // various .Singleton<>() entries...
+        .Singleton<IDataProcessorHelper, DataProcessorHelper>();
+      // foreach to find ViewModels using Reflection, for example
+    }
+    // other Caliburn.Micro DI-related methods here
+  }
+}
+public class DataProcessor {
+  private IDataProcessorHelper _dataProcessorHelper;
+  public DataProcessor(IDataProcessorHelper dataProcessorHelper) {
+    _dataProcessorHelper = dataProcessorHelper;
+  }
+  public bool ProcessData(stringp[ someComplexData]) {
+    do {
+      // process the data here using _dataProcessorHelper methods
+    }
+  }
+}
+```
+
+It is safer and cleaner to stictly initialize an object instance within a CTOR, and not introduce lots of processing. What if something goes wrong? Try-Catch won't help you within a Constructor (the instance won't get initialized properly). With DI, all requirements to instantiate an object are handled ahead of time, so the instance is ready to respond to Method calls.
+
+See more at the [Caliburn Micro home page](https://caliburnmicro.com/).
+
 ## Monday 21-Aug-2023
 
 Revamped the Project layout in the file-sync-win Solution so that it is better arranged for building future features and will be easier to test and debug.
