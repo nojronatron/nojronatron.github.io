@@ -2,6 +2,96 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 22-Aug-2023
+
+What I learned today: When I start loading a class constructor with lots of logic...
+
+```csharp
+public class DataProcessor {
+  private SomeHelperClass someHelperClass = new SomeHelperClass();
+
+  public DataProcessor(string[] someComplexData) {
+    _logger = new Logger();
+    foreach(var dataItem in someComplexData) {
+      do {
+        // process the data here
+      }
+    }
+  }
+}
+```
+
+...what I should _really_ do is refactor the solution to include a helper class that will do the heavy lifting and employ Inversion of Control (IoC or Dependency Injection) so the class is always ready, either as a Singleton or as a Dynamically instantiated dependency:
+
+```csharp
+using Caliburn.Micro; // for example
+// more usings...
+namespace MyNamespace {
+  public class Bootstrapper : BootstrapperBase {
+    private SimpleContainer _conatainer = new SimpleContainer();
+    public Bootstrapper() {
+      Initialize();
+    }
+    protected override void Configure() {
+      _container.Instance(_container);
+      _conatiner
+        // various .Singleton<>() entries...
+        .Singleton<IDataProcessorHelper, DataProcessorHelper>();
+      // foreach to find ViewModels using Reflection, for example
+    }
+    // other Caliburn.Micro DI-related methods here
+  }
+}
+public class DataProcessor {
+  private IDataProcessorHelper _dataProcessorHelper;
+  public DataProcessor(IDataProcessorHelper dataProcessorHelper) {
+    _dataProcessorHelper = dataProcessorHelper;
+  }
+  public bool ProcessData(stringp[ someComplexData]) {
+    do {
+      // process the data here using _dataProcessorHelper methods
+    }
+  }
+}
+```
+
+It is safer and cleaner to stictly initialize an object instance within a CTOR, and not introduce lots of processing. What if something goes wrong? Try-Catch won't help you within a Constructor (the instance won't get initialized properly). With DI, all requirements to instantiate an object are handled ahead of time, so the instance is ready to respond to Method calls.
+
+See more at the [Caliburn Micro home page](https://caliburnmicro.com/).
+
+## Monday 21-Aug-2023
+
+Revamped the Project layout in the file-sync-win Solution so that it is better arranged for building future features and will be easier to test and debug.
+
+Completed a few exercises on using MVVM in WPF. Seems like Caliburn.Micro is a great way to go so I'll give that a spin. I'll want to reorganize the files (some more) to support Inversion of Control (Dependency Injection), but after some research it might make more sense to get Caliburn.Micro installed and functional first, then take on DI if it will still be helpful.
+
+After some work refactoring and adding Caliburn.Micro, I have the main UI functioning again. Takeaways:
+
+- Event Actions in a View must have a related `Can` prefixed Property for the Action that can en/disable the action based on state.
+- In order to flip-flop a state (e.g. one button pressed becomes inactive, other button becomes active), the state must be flip-flopped and `NotifyOfPropertyChanged()` must point to the `Can`-prefixed Property so it "knows" the state has changed.
+- Namespaces in DotNET can be complex. Not only do the Project `csproj` files track it, so do the Class `cs` files, as well as the `xaml` files in XML-style namespace definitions. Visual Studio doesn't help much when there is a bad Namespace entry, and the error message might be pointing to the wrong problem source, so tread carefully.
+
+## Sunday 20-Aug-2023
+
+Struggled a bit with getting starting features up and running with this WPF app. Some notes:
+
+- App.xaml seems to be the entry-point and it has a property `StartupUri` that takes a string, pointing to another file in the Project. Putting code-behind at App.xaml doesn't appear to have any effect when this property is set.
+- MainWindow.xaml can have `Loaded` and `Closing` properties set, which allow WPF to call specific code-behind methods. This is optional but can be useful to help bring-up or tear-down the WPF application when the `Window` opens or closes.
+
+However, I was able to implement some good practices without too much heartache:
+
+- Implementing the Disposable Pattern using IDisposable. This ensures processes like logging mechanisms or filesystem monitors get properly disposed when they are shut down.
+- Passing-in instance classes like Logger so the instantiated class can use it immediately.
+
+TODO Items:
+
+- Set up databinding to allow the UI to show the current File Watch folder, Filter, and any Server Address (if set).
+- Configure Dependency Injection (The 'D' principle in SOLID), to modularize (decouple) and ensure Singleton-instance usage where necessary.
+- Set up Collection(s) with sturdy Classes and sorting so that data can be manipulated as needed.
+- Configure a database back-end for storing data.
+- Implement API Endpoints so remote data-shipments from other clients can be received and processed.
+- Update the status window with notifications like "File monitor started", etc.
+
 ## Saturday 19-Aug-2023
 
 Completed a first-pass of a client-server solution that copies specific file data from a client (or at the server) into a MongoDB document store. The idea is to help solve the problem of copying 'bib data' from multiple Winlink Express workstations to a central "database server" workstation without having to manually sneaker-net or Telnet the files to the "server" computer. This exercise proved-out some design possibilities, some problems with my initial approach, and will help drive a better overall design for a possible future solution.
