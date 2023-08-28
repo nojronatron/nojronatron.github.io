@@ -2,6 +2,29 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 29-Aug-2023
+
+Completed a 2-node network at home using the following equipment:
+
+- TP-Link CPE200 AREDN Node at about 15 feet AGL pointed SSW (although I'm in an 'rf hole' so there is little chance it will 'see' other mesh nodes).
+- Mikrotik hAP-Lite AREDN Node indoors, with 5 GHz AP enabled.
+- TP-Link SG105E VLAN switch connecting the CPE200 and hAP-Lite via an AREDN "DtD" connection (Device-to-Device).
+- A deep cycle battery on solar charging to power devices (future).
+
+For now all devices but the VLAN Switch are powered by 120v PoE injection. These will eventually by powered by a battery instead, via a buck-boost device, or a small inverter. A second 'site' will require its own power source(s), and as I get closer to goal #3, this will get addressed.
+
+**Back to coding!**
+
+## Weekend of Aug 27th and 28th
+
+On Saturday I attended an AREDN Mesh workshop and learned how to load AREDN firmware into some cheap 2 GHz and 5 GHz routers and APs (AREDN stands for Amateur Radio Emergency Data Network, and is a non-profit organization of volunteer software developers). It has been a bit since I last had to do any serious networking, and I managed to get firmware loaded on two of the devices - a TPLink CPE-210 and a MikroTik hAP Lite. I had purchased three devices including a GL-iNet AR300M for use with AREDN, but have since decided that hte GL-AR300M is better utilized as an access-point/repeater with built-in firewall for use in hotels, coffee shops. It could be used as an AP for a local WiFi LAN for AREDN too, but many of the AREDN devices are setup as 2 GHz 'mesh' radios with 5 GHz 'WiFi' (LAN) radios, so the AR300 is banded for the MESH, rather than the end-device network.
+
+My Goals Working With AREDN:
+
+1. Short-term: Learn about AREDN and become familiar with common setups and usages, including how to implement DHPC, DNS, Port Forwarding, and Tunneling as appropriate.
+2. Mid-term: Learn how to leverage it for services like chat, Winlink Express, and perhaps file sharing.
+3. Longer-term: Develop a set of steps to deploy a 2-site private mesh, where strike teams of 4 or fewer WiFi users at two sites (perhaps five or more miles apart) can relay messages more rapidly than usual ham RF links such as 1200/9600 baud packet on VHF/UHF. This will require some experimentation, and possibly so additional hardware purchases.
+
 ## Tuesday 22-Aug-2023
 
 What I learned today: When I start loading a class constructor with lots of logic...
