@@ -15,6 +15,12 @@ For now all devices but the VLAN Switch are powered by 120v PoE injection. These
 
 **Back to coding!**
 
+Some key takeaways:
+
+- When using IoC, custom classes can be configured as the injected `TService`. If using a custom class that inherits an existing interface such as `ICollection`, it is _not_ a good idea to use that as the `TService` for containerizing the Singleton. For example, identifying `TService` as `ICollection` caused the Singleton to instantiate a bare Collection that did not support my custom collection type as expected. Using `IMyCustomCollection` that inherits ICollection worked as expected.
+- `System.IO.FileSystemWatcher` needs to be configured to call an event handler like `OnCreated(object caller, FileSystemEventArgs e)`, and have `EnableRaisingEvents` field set to 'true' else it won't work as expected.
+- The `OnCreated` handler does _not_ have to be a static method, as indicated in the FileSystemWatcher [docs](https://learn.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher?view=netframework-4.7.2). I think the example was written that way because it is instantiating the watcher within `static void Main()` (silly). Using a non-static event handler works just fine, and simplifies further processing when the handler is called.
+
 ## Weekend of Aug 27th and 28th
 
 On Saturday I attended an AREDN Mesh workshop and learned how to load AREDN firmware into some cheap 2 GHz and 5 GHz routers and APs (AREDN stands for Amateur Radio Emergency Data Network, and is a non-profit organization of volunteer software developers). It has been a bit since I last had to do any serious networking, and I managed to get firmware loaded on two of the devices - a TPLink CPE-210 and a MikroTik hAP Lite. I had purchased three devices including a GL-iNet AR300M for use with AREDN, but have since decided that hte GL-AR300M is better utilized as an access-point/repeater with built-in firewall for use in hotels, coffee shops. It could be used as an AP for a local WiFi LAN for AREDN too, but many of the AREDN devices are setup as 2 GHz 'mesh' radios with 5 GHz 'WiFi' (LAN) radios, so the AR300 is banded for the MESH, rather than the end-device network.
