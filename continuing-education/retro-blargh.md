@@ -2,7 +2,33 @@
 
 Semi-regular notes taken during my software developer journey.
 
-## Monday 29-Aug-2023
+## Tuesday 29-Aug-2023
+
+Back to work on the file sync tool:
+
+- Completed automating `POST` execution to push valid bib data to the 'server-side'.
+- When launching a child ViewModel via Caliburn.Micro, it is important to allow Caliburn.Micro to do the instantiating for you, rather than filling the ViewModel's constructor yourself. The correct code is `ActivateItem(IoC.Get<TService>())`. Wouldn't hurt to verify the Bootstrapper Container is configured to look for valid ViewModels, too.
+- Configuration Manager must be used to call `<appSettings>` for any runtime-configured items.
+- Create models for the API Controllers to work with, even if existing models in other libraries would work. The primary reason to do this is so the API Models can detect nullable or empty payload objects and handle them gracefully.
+- There is some work I could do to simplify the code within the Controller class. In the long run, it will end up calling a member on another class that will some something like write data to a database.
+- Working through the many models necessary to get the Library and API talking to each other reminded me about [AutoMapper](https://automapper.org/), which helps map objects to each other, minimizing duplicated code. I want to take a closer look at this in the future.
+- The subtle differences between DotNET Framework 4.x and DotNET 6 sometimes catch me by surprise. For example, a Type can be uninitialized and null in DotNET Framework, and in DotNET 6 the 'nullable reference type' `T?` is necessary and null-checking the nullable reference type will cause warnings in the Error List. Generally speaking, with smaller DotNET Framework 4 Console and Desktop projects, it was fairly easy to avoid an unexpected null reference situation. It makes sense to be explicit about it, so as to avoid the less obvious failures that could occur.
+- After completing coding for the night, I notice I had the overriden `Configure()` method calling `base.Configure()` at the end. Looking at the definition, the method is empty and only exists to be overridden, so going forward it doesn't make sense to have that 'base' call within the method.
+
+As it stands now, the application is able to successfully:
+
+- Detect files of a certain type when they are created in the configured directory.
+- Ignore files with data that does not match the bib pattern e.g. `{bib_number}\t{action}\t{24hr_time}\t{day_of_month}\t{2_char_location}`.
+- Store 'bib pattern' data into an in-memory collection.
+- Submit arrays of bib data to the FileSyncAPI webservice.
+
+The feature set is nearly complete, so the project is well on its way to MVP. The following work must still be completed:
+
+- Ensure the webservice logs the received bib data to a file in plain-text, tab-deliminted format.
+- Implement unittests to verify functionality, stability, security, and modularity of the code.
+- Spruce up the UI just a little, so it is more presentable and contextually similar to the Bigfoot Bib Report Form.
+
+## Monday 28-Aug-2023
 
 Completed a 2-node network at home using the following equipment:
 
