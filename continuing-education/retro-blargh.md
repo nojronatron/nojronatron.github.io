@@ -2,6 +2,22 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 31-Aug-2023
+
+Microsoft's WPF has an interesting feature: `DispatcherUnhandledException` class. Basically, in the startup App class 'App.xaml', an event handler can be bound to any raised `DispatcherUnhandledException` Type. The event handler (in code-behind file 'App.xaml.cs') is like any other handler in Dot NET: `private void OnDispatcherUnhandledException(caller object, DispatcherUnahndledExceptionEventArgs e) {...}` where error handling implementation is expected. After reviewing [Application.DispatcherUnchandledExceptionEvent](https://learn.microsoft.com/en-us/dotnet/api/system.windows.application.dispatcherunhandledexception?view=netframework-4.7.2) documentation, it is clear there are some requirements:
+
+1. The xaml parent class must inherit from the `Application` class.
+1. The handler must be written as described above.
+1. The original Exception must have occurred on the main UI Thread (Application-inheriting instance).
+
+For Exception-type events that occur on threads with their own Dispatcher (or no Dispatcher at all):
+
+1. Handle the event locally, such as with a Try-Catch-Finally block.
+1. Dispatch the event to the main UI thread.
+1. Rethrow events on the main UI thread w/o handling them.
+
+Caliburn.Micro has a virtual method `OnUnhandledException(object, DispatcherUnhandledExceptionEventArgs)` that can be overridden and used to call a custom handler. One way to handle this is to show a MessageBox with information for the user (if that makes sense to do). Another would be to log the event somewhere (especially if the user couldn't do anything about it anyway).
+
 ## Wednesday 30-Aug-2023
 
 While looking up best practices converting custom types, I ran into this [ASP.NET Core Best Practices for DotNET 7](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/best-practices?view=aspnetcore-7.0). There are several items in the list that could apply to my current pet project, once it is out of MVP and growing.
