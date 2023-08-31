@@ -2,6 +2,23 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 30-Aug-2023
+
+While looking up best practices converting custom types, I ran into this [ASP.NET Core Best Practices for DotNET 7](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/best-practices?view=aspnetcore-7.0). There are several items in the list that could apply to my current pet project, once it is out of MVP and growing.
+
+Completed bug squashing and updating the README for the current version of the sync tool. One thing occurred to me: I'd forgotten how to build and deploy apps from Visual Studio.
+
+Key takeaways:
+
+- Set the build type for each Project from DEBUG to RELEASE before running a build.
+- Library files should be built first, to ensure there are no build errors.
+- The Application that depend on the Library Files (WPF Desktop App in this case) needs to be Published. This can target a local folder and will produce a setup executable and a folder full of dependencies.
+- The ASP.NET web service is a little different, but much simpler than it was 5 years ago. Build the ASP.NET Project for Release, then click Publish. **Select a local file** (that's right) and a fully encapsulated webservice will get published with all requisite files.
+
+Check out [ASP.NET Core 6.0 Fundamentals](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-6.0&tabs=windows) for more details on Publishing an ASP.NET project.
+
+My custom logging is a little messy, and probably too verbose. While it is true the logging can be turned on or off, the way I am going about it is not how it is done using Dot NET assemblies. So I took a look at Microsoft.Extensions.Configuration, Microsoft.Extensions.DependencyInjection (for review), Microsoft.Extensions.Hosting, and Serilog. Next step is to try and refactor the logging within the Projects so I have better control over what is logged and when. For example, while debugging and developing, lots of logging can be a good thing. However, a released product should avoid producing a ton of logs (be default).
+
 ## Tuesday 29-Aug-2023
 
 Back to work on the file sync tool:
