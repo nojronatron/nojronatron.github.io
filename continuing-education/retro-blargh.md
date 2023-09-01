@@ -2,6 +2,28 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 1-Sept-2023
+
+Was tough to get a working solution to implementing a structured logging interface like Serilog. Code-wise it is fairly simple, but dependency-wise there are issues. Also, there are upgrade-related issues in Caliburn.Micro that a project upgrade to NET 6 will bring about. So for now I'm stuck with Dot NET 4 WPF project, unless I move away from Caliburn.Micro, or wait for v5.0.0 to be released (which there is no published date, just a 12-word roadmap).
+
+Key takeaways:
+
+- Avoid naming conflicts with your customer logger. For example "Logger" is _not_ a good choice as Microsoft.Extensions has used that name, and it is a well designed and tested Logging library that should either be wrapped, or just avoided.
+- Using Microsoft.Extensions Logger class provides lots of structured logging capability, but does have several dependencies. The more modern (and IMHO more effective) Logging class and interface are available in Dot NET 6, and leverages 'appsettings.json', which DotNET 4.x does not (without a lot of work or a slew of dependencies and myriad related issues).
+- WPF: Ensure that buttons that do things like initialize new instances of things can be toggled on/off, and under the hood any existing instance(s) are disposed before creating a new one.
+- Caliburn.Micro makes toggling button Enabled status easy, however it is done by naming convention, and it is _critical_ to get the naming right otherwise it simply won't work.
+- Logging: Try not to go crazy. It's great to have logs with lots of info, but from what I've read (and experienced), the noisier the log the less likely it will be read.
+- Exception Handling: WPF XAML allows creating specific handlers such as 'StartUp', 'Exit', and 'DispatcherUnhandledException' (see comments on 31-Aug-2023). It is good practice to implement a handler to deal with Dispatcher-attached and/or UI Thread Exceptions that aren't handled elsewhere. Logging should write an entry when an Unhandled Dispatcher event happens, for improved troubleshooting.
+- Exception Handling: Avoid putting Try-Catch-Finally blocks everywhere. Instead, allow callers to capture Exceptions _when they are raised_, and handle the exceptions based on the Exception Type(s), rather than passing the Exception up the chain. One example is a Class Library: It can handle an exception it has a lot of information about, but it cannot tell the calling function what it means in the context of the original call. Therefore, the Library can catch its own exception and return details the caller could use, or simply rely on the caller to catch its thrown Exception so that the caller can use the Exception type and content information, along with its own context, to properly handle the situation and continue running the application.
+
+The project is at a point where the primary features are working in a development environment. The next planned steps, roughly in order:
+
+1. Test the app in DEBUG mode outside of Visual Studio.
+1. Publish a Release version of the app for testing on multiple computers.
+1. Run the app, monitoring a Winlink Express folder structure, to verify timings and file handling will work properly (I should have done this a LONG time ago because I don't necessarily _know_ how Winlink Express manages its file handles other than _where_ the message files are stored).
+1. Clean-up the code and add xml comments to custom methods.
+1. Clean-up the UI and apply a theme that meets some (or all) Accessibility standards. Longer term I will apply specifications from [W3C](https://www.w3.org/WAI/fundamentals/accessibility-principles/) and [A11y](https://www.a11yproject.com/).
+
 ## Thursday 31-Aug-2023
 
 Microsoft's WPF has an interesting feature: `DispatcherUnhandledException` class. Basically, in the startup App class 'App.xaml', an event handler can be bound to any raised `DispatcherUnhandledException` Type. The event handler (in code-behind file 'App.xaml.cs') is like any other handler in Dot NET: `private void OnDispatcherUnhandledException(caller object, DispatcherUnahndledExceptionEventArgs e) {...}` where error handling implementation is expected. After reviewing [Application.DispatcherUnchandledExceptionEvent](https://learn.microsoft.com/en-us/dotnet/api/system.windows.application.dispatcherunhandledexception?view=netframework-4.7.2) documentation, it is clear there are some requirements:
