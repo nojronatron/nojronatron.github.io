@@ -2,6 +2,118 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 1-Sept-2023
+
+Was tough to get a working solution to implementing a structured logging interface like Serilog. Code-wise it is fairly simple, but dependency-wise there are issues. Also, there are upgrade-related issues in Caliburn.Micro that a project upgrade to NET 6 will bring about. So for now I'm stuck with Dot NET 4 WPF project, unless I move away from Caliburn.Micro, or wait for v5.0.0 to be released (which there is no published date, just a 12-word roadmap).
+
+Key takeaways:
+
+- Avoid naming conflicts with your customer logger. For example "Logger" is _not_ a good choice as Microsoft.Extensions has used that name, and it is a well designed and tested Logging library that should either be wrapped, or just avoided.
+- Using Microsoft.Extensions Logger class provides lots of structured logging capability, but does have several dependencies. The more modern (and IMHO more effective) Logging class and interface are available in Dot NET 6, and leverages 'appsettings.json', which DotNET 4.x does not (without a lot of work or a slew of dependencies and myriad related issues).
+- WPF: Ensure that buttons that do things like initialize new instances of things can be toggled on/off, and under the hood any existing instance(s) are disposed before creating a new one.
+- Caliburn.Micro makes toggling button Enabled status easy, however it is done by naming convention, and it is _critical_ to get the naming right otherwise it simply won't work.
+- Logging: Try not to go crazy. It's great to have logs with lots of info, but from what I've read (and experienced), the noisier the log the less likely it will be read.
+- Exception Handling: WPF XAML allows creating specific handlers such as 'StartUp', 'Exit', and 'DispatcherUnhandledException' (see comments on 31-Aug-2023). It is good practice to implement a handler to deal with Dispatcher-attached and/or UI Thread Exceptions that aren't handled elsewhere. Logging should write an entry when an Unhandled Dispatcher event happens, for improved troubleshooting.
+- Exception Handling: Avoid putting Try-Catch-Finally blocks everywhere. Instead, allow callers to capture Exceptions _when they are raised_, and handle the exceptions based on the Exception Type(s), rather than passing the Exception up the chain. One example is a Class Library: It can handle an exception it has a lot of information about, but it cannot tell the calling function what it means in the context of the original call. Therefore, the Library can catch its own exception and return details the caller could use, or simply rely on the caller to catch its thrown Exception so that the caller can use the Exception type and content information, along with its own context, to properly handle the situation and continue running the application.
+
+The project is at a point where the primary features are working in a development environment. The next planned steps, roughly in order:
+
+1. Test the app in DEBUG mode outside of Visual Studio.
+1. Publish a Release version of the app for testing on multiple computers.
+1. Run the app, monitoring a Winlink Express folder structure, to verify timings and file handling will work properly (I should have done this a LONG time ago because I don't necessarily _know_ how Winlink Express manages its file handles other than _where_ the message files are stored).
+1. Clean-up the code and add xml comments to custom methods.
+1. Clean-up the UI and apply a theme that meets some (or all) Accessibility standards. Longer term I will apply specifications from [W3C](https://www.w3.org/WAI/fundamentals/accessibility-principles/) and [A11y](https://www.a11yproject.com/).
+
+By the end of the day the Desktop and the Web Service are functioning as expected and are stable. I took a look at notes I'd been taking on paper and realized there is a lot more yet to do just to get to MVP. However, some sorting through all of these items has allowed my to prioritize them, and decide what _really_ needs to be done, versus what can wait (or not be done at all if the end users don't need it). So I set up a Trello board to track everything so I can stay on top of it. There are plenty more ideas for this project, so a backlog column was added to capture my ideas, as well as those from end users, once they are engaged as I close-in on MVP.
+
+## Thursday 31-Aug-2023
+
+Microsoft's WPF has an interesting feature: `DispatcherUnhandledException` class. Basically, in the startup App class 'App.xaml', an event handler can be bound to any raised `DispatcherUnhandledException` Type. The event handler (in code-behind file 'App.xaml.cs') is like any other handler in Dot NET: `private void OnDispatcherUnhandledException(caller object, DispatcherUnahndledExceptionEventArgs e) {...}` where error handling implementation is expected. After reviewing [Application.DispatcherUnchandledExceptionEvent](https://learn.microsoft.com/en-us/dotnet/api/system.windows.application.dispatcherunhandledexception?view=netframework-4.7.2) documentation, it is clear there are some requirements:
+
+1. The xaml parent class must inherit from the `Application` class.
+1. The handler must be written as described above.
+1. The original Exception must have occurred on the main UI Thread (Application-inheriting instance).
+
+For Exception-type events that occur on threads with their own Dispatcher (or no Dispatcher at all):
+
+1. Handle the event locally, such as with a Try-Catch-Finally block.
+1. Dispatch the event to the main UI thread.
+1. Rethrow events on the main UI thread w/o handling them.
+
+Caliburn.Micro has a virtual method `OnUnhandledException(object, DispatcherUnhandledExceptionEventArgs)` that can be overridden and used to call a custom handler. One way to handle this is to show a MessageBox with information for the user (if that makes sense to do). Another would be to log the event somewhere (especially if the user couldn't do anything about it anyway).
+
+## Wednesday 30-Aug-2023
+
+While looking up best practices converting custom types, I ran into this [ASP.NET Core Best Practices for DotNET 7](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/best-practices?view=aspnetcore-7.0). There are several items in the list that could apply to my current pet project, once it is out of MVP and growing.
+
+Completed bug squashing and updating the README for the current version of the sync tool. One thing occurred to me: I'd forgotten how to build and deploy apps from Visual Studio.
+
+Key takeaways:
+
+- Set the build type for each Project from DEBUG to RELEASE before running a build.
+- Library files should be built first, to ensure there are no build errors.
+- The Application that depend on the Library Files (WPF Desktop App in this case) needs to be Published. This can target a local folder and will produce a setup executable and a folder full of dependencies.
+- The ASP.NET web service is a little different, but much simpler than it was 5 years ago. Build the ASP.NET Project for Release, then click Publish. **Select a local file** (that's right) and a fully encapsulated webservice will get published with all requisite files.
+
+Check out [ASP.NET Core 6.0 Fundamentals](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-6.0&tabs=windows) for more details on Publishing an ASP.NET project.
+
+My custom logging is a little messy, and probably too verbose. While it is true the logging can be turned on or off, the way I am going about it is not how it is done using Dot NET assemblies. So I took a look at Microsoft.Extensions.Configuration, Microsoft.Extensions.DependencyInjection (for review), Microsoft.Extensions.Hosting, and Serilog. Next step is to try and refactor the logging within the Projects so I have better control over what is logged and when. For example, while debugging and developing, lots of logging can be a good thing. However, a released product should avoid producing a ton of logs (be default).
+
+## Tuesday 29-Aug-2023
+
+Back to work on the file sync tool:
+
+- Completed automating `POST` execution to push valid bib data to the 'server-side'.
+- When launching a child ViewModel via Caliburn.Micro, it is important to allow Caliburn.Micro to do the instantiating for you, rather than filling the ViewModel's constructor yourself. The correct code is `ActivateItem(IoC.Get<TService>())`. Wouldn't hurt to verify the Bootstrapper Container is configured to look for valid ViewModels, too.
+- Configuration Manager must be used to call `<appSettings>` for any runtime-configured items.
+- Create models for the API Controllers to work with, even if existing models in other libraries would work. The primary reason to do this is so the API Models can detect nullable or empty payload objects and handle them gracefully.
+- There is some work I could do to simplify the code within the Controller class. In the long run, it will end up calling a member on another class that will some something like write data to a database.
+- Working through the many models necessary to get the Library and API talking to each other reminded me about [AutoMapper](https://automapper.org/), which helps map objects to each other, minimizing duplicated code. I want to take a closer look at this in the future.
+- The subtle differences between DotNET Framework 4.x and DotNET 6 sometimes catch me by surprise. For example, a Type can be uninitialized and null in DotNET Framework, and in DotNET 6 the 'nullable reference type' `T?` is necessary and null-checking the nullable reference type will cause warnings in the Error List. Generally speaking, with smaller DotNET Framework 4 Console and Desktop projects, it was fairly easy to avoid an unexpected null reference situation. It makes sense to be explicit about it, so as to avoid the less obvious failures that could occur.
+- After completing coding for the night, I notice I had the overriden `Configure()` method calling `base.Configure()` at the end. Looking at the definition, the method is empty and only exists to be overridden, so going forward it doesn't make sense to have that 'base' call within the method.
+
+As it stands now, the application is able to successfully:
+
+- Detect files of a certain type when they are created in the configured directory.
+- Ignore files with data that does not match the bib pattern e.g. `{bib_number}\t{action}\t{24hr_time}\t{day_of_month}\t{2_char_location}`.
+- Store 'bib pattern' data into an in-memory collection.
+- Submit arrays of bib data to the FileSyncAPI webservice.
+
+The feature set is nearly complete, so the project is well on its way to MVP. The following work must still be completed:
+
+- Ensure the webservice logs the received bib data to a file in plain-text, tab-deliminted format.
+- Implement unittests to verify functionality, stability, security, and modularity of the code.
+- Spruce up the UI just a little, so it is more presentable and contextually similar to the Bigfoot Bib Report Form.
+
+## Monday 28-Aug-2023
+
+Completed a 2-node network at home using the following equipment:
+
+- TP-Link CPE200 AREDN Node at about 15 feet AGL pointed SSW (although I'm in an 'rf hole' so there is little chance it will 'see' other mesh nodes).
+- Mikrotik hAP-Lite AREDN Node indoors, with 5 GHz AP enabled.
+- TP-Link SG105E VLAN switch connecting the CPE200 and hAP-Lite via an AREDN "DtD" connection (Device-to-Device).
+- A deep cycle battery on solar charging to power devices (future).
+
+For now all devices but the VLAN Switch are powered by 120v PoE injection. These will eventually by powered by a battery instead, via a buck-boost device, or a small inverter. A second 'site' will require its own power source(s), and as I get closer to goal #3, this will get addressed.
+
+**Back to coding!**
+
+Some key takeaways:
+
+- When using IoC, custom classes can be configured as the injected `TService`. If using a custom class that inherits an existing interface such as `ICollection`, it is _not_ a good idea to use that as the `TService` for containerizing the Singleton. For example, identifying `TService` as `ICollection` caused the Singleton to instantiate a bare Collection that did not support my custom collection type as expected. Using `IMyCustomCollection` that inherits ICollection worked as expected.
+- `System.IO.FileSystemWatcher` needs to be configured to call an event handler like `OnCreated(object caller, FileSystemEventArgs e)`, and have `EnableRaisingEvents` field set to 'true' else it won't work as expected.
+- The `OnCreated` handler does _not_ have to be a static method, as indicated in the FileSystemWatcher [docs](https://learn.microsoft.com/en-us/dotnet/api/system.io.filesystemwatcher?view=netframework-4.7.2). I think the example was written that way because it is instantiating the watcher within `static void Main()` (silly). Using a non-static event handler works just fine, and simplifies further processing when the handler is called.
+
+## Weekend of Aug 27th and 28th
+
+On Saturday I attended an AREDN Mesh workshop and learned how to load AREDN firmware into some cheap 2 GHz and 5 GHz routers and APs (AREDN stands for Amateur Radio Emergency Data Network, and is a non-profit organization of volunteer software developers). It has been a bit since I last had to do any serious networking, and I managed to get firmware loaded on two of the devices - a TPLink CPE-210 and a MikroTik hAP Lite. I had purchased three devices including a GL-iNet AR300M for use with AREDN, but have since decided that hte GL-AR300M is better utilized as an access-point/repeater with built-in firewall for use in hotels, coffee shops. It could be used as an AP for a local WiFi LAN for AREDN too, but many of the AREDN devices are setup as 2 GHz 'mesh' radios with 5 GHz 'WiFi' (LAN) radios, so the AR300 is banded for the MESH, rather than the end-device network.
+
+My Goals Working With AREDN:
+
+1. Short-term: Learn about AREDN and become familiar with common setups and usages, including how to implement DHPC, DNS, Port Forwarding, and Tunneling as appropriate.
+2. Mid-term: Learn how to leverage it for services like chat, Winlink Express, and perhaps file sharing.
+3. Longer-term: Develop a set of steps to deploy a 2-site private mesh, where strike teams of 4 or fewer WiFi users at two sites (perhaps five or more miles apart) can relay messages more rapidly than usual ham RF links such as 1200/9600 baud packet on VHF/UHF. This will require some experimentation, and possibly so additional hardware purchases.
+
 ## Tuesday 22-Aug-2023
 
 What I learned today: When I start loading a class constructor with lots of logic...
