@@ -11,6 +11,8 @@ Ran a few experiments with AREDN Mesh over the weekend into today:
 - Moved the hAP node to the other side of the house from the beam and effecitvely have a 2-node Mesh running on my property now.
 - Entered some service advertisements for Winlink Express so that Telnet P2P messages can be passed. This can be useful for testing Forms and my in-development synchronization tool.
 
+I was beginning to believe Caliburn.Micro may _never_ get updated to support Dot NET MAUI, then I ran into [Ken Tucker's Blog](https://vb2ae.github.io/2022/08/14/Caliburn.Micro.Maui.html). He includes instructions on how to setup Caliburn.Micro and use it in your MAUI workload. :smiley: Ken also has a repo named [ClientNoSqlDB](https://github.com/vb2ae/ClientNoSqlDB) that might be interesting for my current synchronizing project, so I'll take a peek at that soon.
+
 ## Friday 1-Sept-2023
 
 Was tough to get a working solution to implementing a structured logging interface like Serilog. Code-wise it is fairly simple, but dependency-wise there are issues. Also, there are upgrade-related issues in Caliburn.Micro that a project upgrade to NET 6 will bring about. So for now I'm stuck with Dot NET 4 WPF project, unless I move away from Caliburn.Micro, or wait for v5.0.0 to be released (which there is no published date, just a 12-word roadmap).
