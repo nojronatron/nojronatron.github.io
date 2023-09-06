@@ -6,53 +6,21 @@ A collection of continuing education, research notes, and references.
 
 - [Things I Want To Learn More About](#things-i-want-to-learn-more-about)
 - [Notes And Takeaways from Research and Experience](#notes-and-takeaways-from-research-and-experience)
+- [DotNET MAUI](#dotnet-maui)
 - [Azure Learnings](#azure-learnings)
 - [Footer](#footer)
 
 ## Things I Want To Learn More About
 
-- [ ] [MVVM](./wpf-mvvm-learnings.html) in DotNET using C#. I've done this before but need a refresher for a project that will help solve a problem for someone else.
-- [ ] DotNET MAUI for desktop and mobile app development [mobile-to-deskto-dotnet-maui](./mobile-to-desktop-dotnet-maui.html).
-- [ ] Jest vs Mocha vs Chai [JS Testing Frameworks](./js-testing-frameworks.html).
-- [ ] [Coding with P5js](./coding-with-p5.html).
-- [ ] [DotNetTools C# Devkit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit).
-- [ ] Learn how to build a ChatGPT Plugin and [integrating ChatGPT into Apps](./chatgpt-integration.html).
-- [ ] Continue learning about Data Structures and Algorithms. See [DSA Notes](./dsa-notes.html) for documentation and review.
-- [ ] Get a better grasp on [Machine Learning](./about-machine-learning.html) to increase awareness and familiarity.
-- [ ] Learn how to use SendGrid API.
-- [ ] Learn about TOML files, when to use them, etc.
-- [ ] Within a larger Java Project are several Packages. Learn how to build, test, and execute specific packages within the larger project.
-- [ ] Learn how to properly log to WebApp hosts like Netlify (from a React SPA) or Azure App Service (from a Node-js service).
-- [ ] Learn about WebSockets, start with [Socket.IO](https://github.com/socketio/socket.io).
-- [ ] Look into [Apache Kafka](https://kafka.apache.org/), especially how Java is used with/for it. Some companies are using Kafka in/with their deliverables.
-- [ ] Vercel [Next.js](https://nextjs.org/learn/basics/create-nextjs-app). Just get a feel for it.
-- [ ] Microtasks in JavaScript: [MDN queueMicrotask()](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide).
-- [ ] [AlpineJS](https://alpinejs.dev/).
-- [ ] [Typescript](./typescript-getting-started.html). Just get a feel for it.
-- [ ] Using [Secure Cookies](http://expressjs.com/en/advanced/best-practice-security.html#use-cookies-securely) in ExpressJS.
-- [ ] Oracle: Developing a [Microservices-based RESTfull Java Application](https://www.oracle.com/explore/java-oci-1?source=:ow:de:te::::RC_WWSA220204P00012:EM22_TEC_EV_CO65_M0601_SO061YO19_DO1043_AO01_RO001&intcmp=:ow:de:te::::RC_WWSA220204P00012:EM22_TEC_EV_CO65_M0601_SO061YO19_DO1043_AO01_RO001) using Java.
-- [ ] Vue.js, the [progressive javascript framework](https://vuejs.org/). Just get a feel for it.
-- [ ] Consider deploying a [Swagger UI for ExpressJS](https://github.com/scottie1984/swagger-ui-express) to better interact with Express during development.
-- [ ] Review [Method Chaining](../code301-files/methodChaining-DBs-Mongoose-Atlas-SeedData-ReactLifecycle.html) in preparation for LingoBingo v.Next.
-- [ ] Learn about [SVG files](svg-files.html) and how to use them.
-- [ ] Look into [Playwright](playwright-notes.html).
-- [ ] Review the 'n+1 problem'. This has been mentioned multiple times recently in context with GraphQL.
+This list became so large it was unmanageable in an MD file, so all items have moved to a private Trello board so I can better manage my own backlog in a unified way.
+
 - [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
-- [ ] Learn about Flutter, a mobile framework. Bellingham Codes group mentioned it, along with some praise.
-- [ ] [Tailwind C S S](https://tailwindcss.com/).
-- [ ] Review Doubly Linked Lists, when to use them, and code-up a traversals for practice.
-- [ ] Review and gain experience with topics in [Best Practices With Generics And Collections](https://www.codejava.net/java-core/collections/18-java-collections-and-generics-best-practices) from codejava.net.
-- [ ] Java: Investigate [Rest-assured](https://rest-assured.io/) and [rest-assured github](https://github.com/rest-assured/rest-assured/wiki/GettingStarted) - a test framework library 'for REST built on HTTPBuilder' for Java.
-- [ ] Investigate [replit.com](https://replit.com)'s unit testing tool.
-- [ ] CSS 3: When overlapped objects must have a transparency or alternate color assignment, what CSS property should be used? See [cssbattle 15](https://cssbattle.dev/play/15) for an example.
-- [ ] Mocking for unit testing in AndroidStudio.
-- [ ] Android: Implementing and managing data from a DB [in a Spinner](https://developer.android.com/guide/topics/ui/controls/spinner).
-- [ ] Wiring Repositories in [Spring Data JPA](https://www.baeldung.com/the-persistence-layer-with-spring-data-jpa).
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] [MVVM](./wpf-mvvm-learnings.html) in DotNET using C#. I've done this before but need a refresher for a project that will help solve a problem for someone else.
 - [x] Build and Test Node.js using [GitHub Actions for Node.js](./github-actions-build-test-node.html).
-- [x] DotNET MAUI [Data Binding in MVVM](./maui-databinding-mvvm.html).
+- [x] Jest vs Mocha vs Chai [JS Testing Frameworks](./js-testing-frameworks.html).
 - [x] React [Hooks](./react-hooks.html).
 - [x] Deploying to [Linux on Azure](./linux-on-azure.html).
 - [x] Build a [VS Code Extension](./build-vscode-extension.html).
@@ -96,6 +64,12 @@ A collection of continuing education, research notes, and references.
 - [x] Interfaces: See [OOP, Inheritance, Interfaces](../code401-files/oop-inhrtnce-intfaces.html).
 - [x] Trees and Decision Trees have perplexed me for a while I'd like to get over that.
 - [x] Configuring Linux and Windows to support "IDEA ." to open IntelliJ [at current directory](../linux-terminal-files/bash-stuff.html###aliases).
+
+## DotNET MAUI
+
+- [ ] DotNET MAUI for desktop and mobile app development [mobile-to-deskto-dotnet-maui](./mobile-to-desktop-dotnet-maui.html).
+- [x] DotNET MAUI [Handlers: Native Controls](./maui-handlers-native-controls.html).
+- [x] DotNET MAUI [Data Binding in MVVM](./maui-databinding-mvvm.html).
 
 ## Azure Learnings
 
