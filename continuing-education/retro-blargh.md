@@ -2,6 +2,16 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 6-Sept-2023
+
+Attended a MSFT Reactor session on [.NET MAUI Handlers and Native Controls](./maui-handlers-native-controls.html). After looking at the MAUI repo and Microsoft Learn pages about MAUI, it is still in its infancy, but there is a lot of activity and [documentation](https://learn.microsoft.com/en-us/dotnet/maui/) supporting development. One key drawback on developing MAUI apps is developing iOS native requires 'a networked Mac' (presumedly to run Mac Catalyst). I've missed some sessions in the series so I intend to catch up on those.
+
+## Tuesday 5-Sept-2023
+
+"When coding gets hard, it might be because the design isn't following best practices." -Me
+
+I've found several areas where I wasn't following good coding practice, and the code was becoming tough to read and too complex. After some refactoring, moving classes around and simplifying various methods by breaking them out into multiple functions, it became easier to read, edit, debug, and add-on to.
+
 ## Monday 4-Sept-2023
 
 Ran a few experiments with AREDN Mesh over the weekend into today:
@@ -19,7 +29,7 @@ Was tough to get a working solution to implementing a structured logging interfa
 
 Key takeaways:
 
-- Avoid naming conflicts with your customer logger. For example "Logger" is _not_ a good choice as Microsoft.Extensions has used that name, and it is a well designed and tested Logging library that should either be wrapped, or just avoided.
+- Avoid naming conflicts with your custom logger. For example "Logger" is _not_ a good choice as Microsoft.Extensions has used that name, and it is a well designed and tested Logging library that should either be wrapped, or just avoided.
 - Using Microsoft.Extensions Logger class provides lots of structured logging capability, but does have several dependencies. The more modern (and IMHO more effective) Logging class and interface are available in Dot NET 6, and leverages 'appsettings.json', which DotNET 4.x does not (without a lot of work or a slew of dependencies and myriad related issues).
 - WPF: Ensure that buttons that do things like initialize new instances of things can be toggled on/off, and under the hood any existing instance(s) are disposed before creating a new one.
 - Caliburn.Micro makes toggling button Enabled status easy, however it is done by naming convention, and it is _critical_ to get the naming right otherwise it simply won't work.
