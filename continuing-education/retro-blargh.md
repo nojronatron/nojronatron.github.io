@@ -2,13 +2,87 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 7-Sept-2023
+
+The final big tests of the sync tool were yesterday and today, and after a good deal of troubleshooting and researching, the tool is now able to transfer data across a WiFi network between computers without errors. My lack of familiarity with the HTTP-based modules, especially Dot NET 6 and ASP.NET Core, made for a big challenge. The basic setup is a client computer wants to POST some data to another computer on the network, on a specific port. Besides the obvious requirement of "the server must be listening", there are several other requirements.
+
+Here is a list of takeaways from ASP.NET and POSTing REST calls across a network:
+
+- Exception.InnerException handling: ASP.NET HTTP-related modules are fairly well encapsulated so Exceptions tend to 'bubble-up' a few layers. The final representation of an Exception might be too abstact to be helpful, so calling for details from InnerException.StackTrace and InnerException.Message can be really helpful.
+- HTTPS Redirection: An ASP.NET Core Project will have a Program class that sets up the WebApplication and various middlewares. `UseHttpsRedirection()` tells the web server host to reply to the caller with a redirect when an HTTP path is used, so the caller knows they must send TLS-based traffic on on the reply. There are probably some additional coding steps needed on the callers' side to handle those redirects properly (something I have yet to figure out). For this MVP app, using unsecure HTTP is fine (there is no data worth hiding anywhere in the pipeline) so this feature is shut off.
+- CORS: CORS isn't meant to make your application more secure, rather it changes the configuration to _fine tune the security_ for the web service to operate as intended. In this project I didn't anticipate having a CORS configuration situations, but I enable and configure it for some of my troubleshooting steps when Server was refusing to respond to client Post requests.
+- Firewall settings - both TCP _and_ UDP: A RESTful POST request might include both TCP and UDP traffic. Any firewall at each host, or in between them, will need to allow the correct port, direction, and protocol configured to allow the traffic. Thankfully, my local WiFi didn't require additional Firewall edits, but the Server host did.
+- Kestrel: This web service was designed for local debug, and for proxy-protected deployemnts like Azure App Services. The idea is traffic arrives at the Edge on port 80, and is then proxied internally to Kestrel's HTTP and HTTPS ports which are usually in the 5000's. This means that _Kestrel is expecting only local traffic_. Short of deploying a full-on IIS server for this project, Kestrel is still a better option since it is a _portable_ web server service.
+- Configuring Kestrel: There are several ways to do it including `Program.cs` in the `WebApplication.CreateBuilder` method, and using `appsettings.json` _kestrel_ settings. In my experience, the former way of configuring Kestrel allowed accessing the service from another host on the network, although more reading and understanding is needed on my part to know how and when to leverage each.
+
+Example Code Drilling into an InnerException:
+
+```csharp
+public async Task<Tuple<bool, string>> PostStuff(MyModel model) {
+  // some code...
+  try
+  {
+    using (HttpResponseMessage response = await _apiHelper.ApiClient.PostAsync(requestUri, httpContent))
+    {
+      if (response.IsSuccessStatusCode)
+      {
+        result = true;
+        message = "Succeeded.";
+      }
+    }
+  }
+  catch (ArgumentNullException ArgNullEx)
+  {
+    message = $"Argument Null Exception Stacktrace: {ArgNullEx.StackTrace} Message: {ArgNullEx.Message}";
+    if (ArgNullEx.InnerException != null)
+    {
+      // tack-on any child message.
+      message += $"\nInner Exception Message: {ArgNullEx.InnerException.Message}";
+    }
+  }
+  // other Exception catch blocks here...
+  return result;
+}
+```
+
+Example Host Firewall Allowances:
+
+```text
+Name,Group,Profile,Enabled,Action,Program,LocalAddr,RemoteAddr,Proto,LocalPort,RemotePort
+filesyncapi.exe,public,yes,allow,{filepath},Any,Any,TCP,Any,Any
+filesyncapi.exe,public,yes,allow,{filepath},Any,Any,UDP,Any,Any
+```
+
+## Wednesday 6-Sept-2023
+
+Attended a MSFT Reactor session on [.NET MAUI Handlers and Native Controls](./maui-handlers-native-controls.html). After looking at the MAUI repo and Microsoft Learn pages about MAUI, it is still in its infancy, but there is a lot of activity and [documentation](https://learn.microsoft.com/en-us/dotnet/maui/) supporting development. One key drawback on developing MAUI apps is developing iOS native requires 'a networked Mac' (presumedly to run Mac Catalyst). I've missed some sessions in the series so I intend to catch up on those.
+
+I tested using the Client-side sync tool while a live Winlink Express app was creating and receiving messages. The file accessing operations don't seem to interfere with each other. This was an important test and a good win! :boom:
+
+## Tuesday 5-Sept-2023
+
+"When coding becomes difficult, it might be because the coder isn't following best practices." -Me
+
+I've found several areas where I wasn't following good coding practice, and the code was becoming tough to read and too complex. After some refactoring, moving classes around and simplifying various methods by breaking them out into multiple functions, it became easier to read, edit, debug, and add-on to.
+
+## Monday 4-Sept-2023
+
+Ran a few experiments with AREDN Mesh over the weekend into today:
+
+- Placed a beam on a mast at about 20 feet AGL. There is no sign of other AREDN nodes, although I didn't do a full survey of the horizon. RF Propagation estimation software indicated poor access to other areas beyond 100 meters to 1 km without raising the mast to 100 meters or more (which isn't going to happen).
+- Moved the beam indoors and verified I could VLAN it and my hAP node together without issue. _success_!
+- Moved the hAP node to the other side of the house from the beam and effecitvely have a 2-node Mesh running on my property now.
+- Entered some service advertisements for Winlink Express so that Telnet P2P messages can be passed. This can be useful for testing Forms and my in-development synchronization tool.
+
+I was beginning to believe Caliburn.Micro may _never_ get updated to support Dot NET MAUI, then I ran into [Ken Tucker's Blog](https://vb2ae.github.io/2022/08/14/Caliburn.Micro.Maui.html). He includes instructions on how to setup Caliburn.Micro and use it in your MAUI workload. :smiley: Ken also has a repo named [ClientNoSqlDB](https://github.com/vb2ae/ClientNoSqlDB) that might be interesting for my current synchronizing project, so I'll take a peek at that soon.
+
 ## Friday 1-Sept-2023
 
 Was tough to get a working solution to implementing a structured logging interface like Serilog. Code-wise it is fairly simple, but dependency-wise there are issues. Also, there are upgrade-related issues in Caliburn.Micro that a project upgrade to NET 6 will bring about. So for now I'm stuck with Dot NET 4 WPF project, unless I move away from Caliburn.Micro, or wait for v5.0.0 to be released (which there is no published date, just a 12-word roadmap).
 
 Key takeaways:
 
-- Avoid naming conflicts with your customer logger. For example "Logger" is _not_ a good choice as Microsoft.Extensions has used that name, and it is a well designed and tested Logging library that should either be wrapped, or just avoided.
+- Avoid naming conflicts with your custom logger. For example "Logger" is _not_ a good choice as Microsoft.Extensions has used that name, and it is a well designed and tested Logging library that should either be wrapped, or just avoided.
 - Using Microsoft.Extensions Logger class provides lots of structured logging capability, but does have several dependencies. The more modern (and IMHO more effective) Logging class and interface are available in Dot NET 6, and leverages 'appsettings.json', which DotNET 4.x does not (without a lot of work or a slew of dependencies and myriad related issues).
 - WPF: Ensure that buttons that do things like initialize new instances of things can be toggled on/off, and under the hood any existing instance(s) are disposed before creating a new one.
 - Caliburn.Micro makes toggling button Enabled status easy, however it is done by naming convention, and it is _critical_ to get the naming right otherwise it simply won't work.
