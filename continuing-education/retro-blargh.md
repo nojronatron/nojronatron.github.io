@@ -2,6 +2,39 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 13-Sept-2023
+
+I've been reading up on a bunch of different topics, but the only one worth mentioning here is the Liskov Substitution Principle. Tim Corey of "IAmTimCorey" fame states "this is the L in SOLID". At a very high level, the principle states that substituting inherited types should not break the application. For example, inheritors should not make changes to an inherited class when using polymorphism. The way Tim Corey explains how to work around it is to extract Interfaces from the most parent class, and create an abstract base class that implements that interface, from which other classes can inherit. Those inheritors should then have Interfaces that describe the differing behavior (from the Base Class) to more strongly define their specific sub-types -- the "extra stuff". Also, functionality should require Interface Types (rather than concrete types) to ensure only those types that _should_ use that functionality actually can. Doing all of this just ensures that all child classes _are indeed_ "IS A" base class. A nice benefit of following the Liskov Substitution Principle carefully is the Compiler will catch coding errors at compile time, rather than runtime (harder to debug).
+
+Key takeaways:
+
+- Inheritance does not mean everything inherits from everything else.
+- Lots of repeated code: Doesn't mean LSP has (or hasn't) been violated, so look first at DRY (Don't Repeat Yourself).
+
+Ask Yourself:
+
+- When is a Foo _not_ a Bar?
+- Do these things have an IS-A relationship?
+- Is the difference between things about what they ARE (Fields and Properties) or what they DO (Methods/Implementation)?
+- Tim Corey used the example of a Cars and Desk Chairs both having wheels: They are not within the same inheritance hierarchy, so a shared implementation could be used to avoid repeating code without forcing the Types to have Variance (see below).
+- Review my notes about [Java Generics](continuing-education\generics-java-strongtypelangs.html) for some reminders.
+
+In terms of derived types:
+
+- Contravariant: Use the Type specified or _one that is less derived_ (more generic).
+- Covariant: Use the Type specified or _any that is more derived_.
+- Invariance: Only use the specified Type (neither Contraveriant nor Covariant).
+
+See [Covariance and contravariance in generics](https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance) at Microsoft Learn.
+
+Related vocabulary:
+
+- Variance: Having Covariant, Contravariant, or Bivariant properties. "How should a function that returns Cat relate to a function that returns Animal?" _[Wikipedia]_
+- Covariance: Preserve the ordering of types from more specific to more generic. Think of this as walking UP the inheritance chain toward the Base.
+- Contravariance: Preserves the order of types from more generic to more specific. Think of this as walking DOWN the inheritance chain to the last leaf type.
+- Invariance: Not variant. Comparison of types can only be done upon a single type e.g. `Object`
+- Bivariance: Both Covariance and Contravariance apply.
+
 ## Thursday 7-Sept-2023
 
 The final big tests of the sync tool were yesterday and today, and after a good deal of troubleshooting and researching, the tool is now able to transfer data across a WiFi network between computers without errors. My lack of familiarity with the HTTP-based modules, especially Dot NET 6 and ASP.NET Core, made for a big challenge. The basic setup is a client computer wants to POST some data to another computer on the network, on a specific port. Besides the obvious requirement of "the server must be listening", there are several other requirements.
