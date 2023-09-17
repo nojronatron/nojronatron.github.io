@@ -2,6 +2,59 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 16-Sept-2023
+
+And I though CSS was challenging. Customizing screen elements and applying style to WPF Apps using XAML is a bit of a bear. Somem key takeaways:
+
+- Use `ResourceDictionary` XAML classes to define often used `Color` and `SolidColorBrush` settings.
+- Add each `ResourceDictionary` to a `ResourceDictionary.MergedDictionaries` element so they can be looked up behind the scenes.
+- WPF knows how to utilize `Application.Resources` like `ResourceDictionary` through use of `{StaticResource ...}` properties.
+- To make rounded-corner Windows, it is necessary to set `Background="Transparent` and `WindowStyle="None"`. This will get the App out of "Windows 95 mode". :laughing:
+- When setting `Background="Transparent"`, that sets _the entire Window background_, so it is a good idea to have an image to display _in place of the now transparent Window_. Otherwise, your Window Controls can get lost in the now amongst any Desktop images, icons, or other Windows that might be behind your App.
+
+This work will continue into Sunday.
+
+## Friday 15-Sept-2023
+
+Working with .NET and C# the last few days, specifically my Coordinate Conversion Utility, I learned a couple things:
+
+- Data-bound Classes: Create classes that store data and only include critical functionality necessary. Other functionality that is either shared or otherwise not specific to the Class can live in other helper classes.
+- While creating and using interfaces is helpful to ensure type matching and handling metamorphic variances in code, static methods are not supported. If static methods are actually necessary, move them into a helper class since they will be shared and not specific to the Interface-template class.
+- Inheritance shouldn't be implemented just because several classes are somewhat similar, or in the end share some of the same state. While my implementation works, and some basic state information is extended using inheritance, much of the functionality is actually different between the family of Classes so inheritance didn't provide any real benefit (but it was a good challenge to complete at the time!).
+
+## Wednesday 13-Sept-2023
+
+I've been reading up on a bunch of different topics, but the only one worth mentioning here is the Liskov Substitution Principle. Tim Corey of "IAmTimCorey" fame states "this is the L in SOLID". At a very high level, the principle states that substituting inherited types should not break the application. For example, inheritors should not make changes to an inherited class when using polymorphism. The way Tim Corey explains how to work around it is to extract Interfaces from the most parent class, and create an abstract base class that implements that interface, from which other classes can inherit. Those inheritors should then have Interfaces that describe the differing behavior (from the Base Class) to more strongly define their specific sub-types -- the "extra stuff". Also, functionality should require Interface Types (rather than concrete types) to ensure only those types that _should_ use that functionality actually can. Doing all of this just ensures that all child classes _are indeed_ "IS A" base class. A nice benefit of following the Liskov Substitution Principle carefully is the Compiler will catch coding errors at compile time, rather than runtime (harder to debug).
+
+Key takeaways:
+
+- Inheritance does not mean everything inherits from everything else.
+- Lots of repeated code: Doesn't mean LSP has (or hasn't) been violated, so look first at DRY (Don't Repeat Yourself).
+
+Ask Yourself:
+
+- When is a Foo _not_ a Bar?
+- Do these things have an IS-A relationship?
+- Is the difference between things about what they ARE (Fields and Properties) or what they DO (Methods/Implementation)?
+- Tim Corey used the example of a Cars and Desk Chairs both having wheels: They are not within the same inheritance hierarchy, so a shared implementation could be used to avoid repeating code without forcing the Types to have Variance (see below).
+- Review my notes about [Java Generics](continuing-education\generics-java-strongtypelangs.html) for some reminders.
+
+In terms of derived types:
+
+- Contravariant: Use the Type specified or _one that is less derived_ (more generic).
+- Covariant: Use the Type specified or _any that is more derived_.
+- Invariance: Only use the specified Type (neither Contraveriant nor Covariant).
+
+See [Covariance and contravariance in generics](https://learn.microsoft.com/en-us/dotnet/standard/generics/covariance-and-contravariance) at Microsoft Learn.
+
+Related vocabulary:
+
+- Variance: Having Covariant, Contravariant, or Bivariant properties. "How should a function that returns Cat relate to a function that returns Animal?" _[Wikipedia]_
+- Covariance: Preserve the ordering of types from more specific to more generic. Think of this as walking UP the inheritance chain toward the Base.
+- Contravariance: Preserves the order of types from more generic to more specific. Think of this as walking DOWN the inheritance chain to the last leaf type.
+- Invariance: Not variant. Comparison of types can only be done upon a single type e.g. `Object`
+- Bivariance: Both Covariance and Contravariance apply.
+
 ## Thursday 7-Sept-2023
 
 The final big tests of the sync tool were yesterday and today, and after a good deal of troubleshooting and researching, the tool is now able to transfer data across a WiFi network between computers without errors. My lack of familiarity with the HTTP-based modules, especially Dot NET 6 and ASP.NET Core, made for a big challenge. The basic setup is a client computer wants to POST some data to another computer on the network, on a specific port. Besides the obvious requirement of "the server must be listening", there are several other requirements.
