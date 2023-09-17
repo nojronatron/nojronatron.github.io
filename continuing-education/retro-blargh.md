@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 16-Sept-2023
+
+And I though CSS was challenging. Customizing screen elements and applying style to WPF Apps using XAML is a bit of a bear. Somem key takeaways:
+
+- Use `ResourceDictionary` XAML classes to define often used `Color` and `SolidColorBrush` settings.
+- Add each `ResourceDictionary` to a `ResourceDictionary.MergedDictionaries` element so they can be looked up behind the scenes.
+- WPF knows how to utilize `Application.Resources` like `ResourceDictionary` through use of `{StaticResource ...}` properties.
+- To make rounded-corner Windows, it is necessary to set `Background="Transparent` and `WindowStyle="None"`. This will get the App out of "Windows 95 mode". :laughing:
+- When setting `Background="Transparent"`, that sets _the entire Window background_, so it is a good idea to have an image to display _in place of the now transparent Window_. Otherwise, your Window Controls can get lost in the now amongst any Desktop images, icons, or other Windows that might be behind your App.
+
+This work will continue into Sunday.
+
 ## Friday 15-Sept-2023
 
 Working with .NET and C# the last few days, specifically my Coordinate Conversion Utility, I learned a couple things:
