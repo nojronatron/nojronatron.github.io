@@ -2,6 +2,18 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 18-Sept-2023
+
+Lots of studying and working with XAML templating. Blend helps out a bit in getting lots of configuration set on Controls, and even has a state management toolbar. Some takeaways:
+
+- Each Control (example `Border`) can have a `VisualStateManager` attached to it so that visual states like `Normal`, `MouseOver`, `Pressed` can have custom colors or other properties like `BorderThickness`.
+- The `VisualStateManager` enables setting `Storyboard` instances where `ObjectAnimationUsingKeyFrames` can be configured. This gets a little complex IMHO but a well-formed configuration (by Blend :tm:) is not too difficult to read through and get an idea of what it is doing.
+- `Style` can be configured as a _key_ with a `TargetType` that points to a Control like `Button`.
+- Within a `Style` element, `Setters` are used to set properties like `Width`.
+- A special `Template` Setter Property has a `Setter.Value` property that a `ControlTemplate` can be configured within for a specifc `TargetType` (like `Button`).
+- `Color` and `SolidColorBrush` are _not_ the same Types, nor are they Polymorphic to one another. Some Properties require a `Color` to set it, others take a `SolidColorBrush`.
+- _Be aware_ of sillyness like `<SolidColorBrush Color="{StaticResource ControlMouseOverColor}" />` (a Color, _not_ a SolidColorBrush), and `<Setter Property="Foreground" Value="{StaticResource PrimaryBlackBrush}" />` (a SolidColorBrush, not a Color).
+
 ## Sunday 17-Sept-2023
 
 Many of the items learned yesterday were implemented today in the File Sync Tool. The tool is getting close to ready, but a few tasks still need to be completed:
