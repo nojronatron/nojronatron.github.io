@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 1-Oct-2023
+
+After much consternation, I have a pill-shaped button with custom colors and responsive design that changes the button design between normal, hovered, and clicked. I still need to settle on color scheme and also add the disabled state design. At least now the basic template for how state changes are achieved is worked out.
+
 ## Monday 18-Sept-2023
 
 Lots of studying and working with XAML templating. Blend helps out a bit in getting lots of configuration set on Controls, and even has a state management toolbar. Some takeaways:
