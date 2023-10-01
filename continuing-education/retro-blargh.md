@@ -2,6 +2,34 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 18-Sept-2023
+
+Lots of studying and working with XAML templating. Blend helps out a bit in getting lots of configuration set on Controls, and even has a state management toolbar. Some takeaways:
+
+- Each Control (example `Border`) can have a `VisualStateManager` attached to it so that visual states like `Normal`, `MouseOver`, `Pressed` can have custom colors or other properties like `BorderThickness`.
+- The `VisualStateManager` enables setting `Storyboard` instances where `ObjectAnimationUsingKeyFrames` can be configured. This gets a little complex IMHO but a well-formed configuration (by Blend :tm:) is not too difficult to read through and get an idea of what it is doing.
+- `Style` can be configured as a _key_ with a `TargetType` that points to a Control like `Button`.
+- Within a `Style` element, `Setters` are used to set properties like `Width`.
+- A special `Template` Setter Property has a `Setter.Value` property that a `ControlTemplate` can be configured within for a specifc `TargetType` (like `Button`).
+- `Color` and `SolidColorBrush` are _not_ the same Types, nor are they Polymorphic to one another. Some Properties require a `Color` to set it, others take a `SolidColorBrush`.
+- _Be aware_ of sillyness like `<SolidColorBrush Color="{StaticResource ControlMouseOverColor}" />` (a Color, _not_ a SolidColorBrush), and `<Setter Property="Foreground" Value="{StaticResource PrimaryBlackBrush}" />` (a SolidColorBrush, not a Color).
+
+## Sunday 17-Sept-2023
+
+Many of the items learned yesterday were implemented today in the File Sync Tool. The tool is getting close to ready, but a few tasks still need to be completed:
+
+- FileListView needs to be styled to match MainWindowView.
+- Final system testing in a multi-node environment.
+- Planning and scripting a presentation to demonstrate MVP.
+- Update customized buttons so they change when clicked, highlight when hovered, etc.
+- Update text fields so they are highlighted when selected.
+- Allow closing the FileListView when it is no longer needed.
+
+Some other takeaways using Caliburn.Micro and customizing buttons:
+
+- WPF Button customizations also override basic functionality that must be re-enabled, such as clicking a button needs a visual queue, and the difference between an Enabled and Non-enabled button should be visually clear.
+- Using prefix `Can` as a Getter in a ViewModel will break the Button Click handling functionality of Caliburn.Micro. This makes sense since the `Can` prefix is meant to control the enabled state of controls, not manage the action taken when the control event occurs.
+
 ## Saturday 16-Sept-2023
 
 And I though CSS was challenging. Customizing screen elements and applying style to WPF Apps using XAML is a bit of a bear. Somem key takeaways:
@@ -16,7 +44,7 @@ This work will continue into Sunday.
 
 ## Friday 15-Sept-2023
 
-Working with .NET and C# the last few days, specifically my Coordinate Conversion Utility, I learned a couple things:
+Working with .NET and C# the last few days, specifically my Coordinate Conversion Utility, I learned a few things:
 
 - Data-bound Classes: Create classes that store data and only include critical functionality necessary. Other functionality that is either shared or otherwise not specific to the Class can live in other helper classes.
 - While creating and using interfaces is helpful to ensure type matching and handling metamorphic variances in code, static methods are not supported. If static methods are actually necessary, move them into a helper class since they will be shared and not specific to the Interface-template class.
