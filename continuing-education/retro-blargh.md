@@ -6,6 +6,22 @@ Semi-regular notes taken during my software developer journey.
 
 After much consternation, I have a pill-shaped button with custom colors and responsive design that changes the button design between normal, hovered, and clicked. I still need to settle on color scheme and also add the disabled state design. At least now the basic template for how state changes are achieved is worked out.
 
+An interesting and helpful Style property, `BasedOn`, allows application of merged Style resources to a target type. For example:
+
+```xml
+<Style x:Key="DefaultPillStyling"
+       TargetType="{x:Type Button}">
+  <Setter Property="..." Value="..." /> <!-- etc -->
+</Style>
+<Style x:Key="ButtonPillStyle"
+       TargetType="Button"
+       BasedOn="{StaticResource DefaultPillStyling}">
+  <Setter Property="..." Value="..." /> <!-- etc -->
+</Style>
+```
+
+The applies Style settings from both configurations, allowing some buttons to apply just the DefaultPillStyling, and others to apply that _and more_.
+
 ## Monday 18-Sept-2023
 
 Lots of studying and working with XAML templating. Blend helps out a bit in getting lots of configuration set on Controls, and even has a state management toolbar. Some takeaways:
