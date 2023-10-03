@@ -2,6 +2,25 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 2-Oct-2023
+
+Completed implementing hover actions over custom 'pill' shaped and round buttons used in the file sync project. In the time it took me to sort all of this out, I could have written 3 full websites with React and CSS (maybe 4 using Bootstrap :wink:). The reasons are:
+
+1. I've not done this much WPF customization before.
+2. It seems like XAML requires replacing events and triggers when custom animations are used to transition colors and other properties.
+3. If making simple event changes to states like 'IsHover' the process is much easier but seems to be limited i.e. cannot animate the transition.
+
+For now, I think I have the basic gist of how XAML UI customization is done, but it will be some time before I _know what I am doing_. In the meantime, the project is practically at MVP!
+
+Next steps:
+
+1. Script the most basic use case for demoing usage on a single computer.
+1. Script the use case of a set of computers on a LAN or local WiFi, all pointing to the same server.
+1. Record the use cases videos with walk-and-talk-through audio to use as stand-alone demo products.
+1. Develop very short, silent video demos that could work as animated JPGs.
+
+One additional thing I am proud of in this project is implementing accessibility features. ToolTips were added to buttons and textboxes, and a color palette that maintains high contrast for users with any of the 3 types of color-blindness that 1-in-10 adults experience to some degree. These often overlooked design considerations are not difficult to implement when using resources to help implement them, and enables additional users to utilize the software.
+
 ## Sunday 1-Oct-2023
 
 After much consternation, I have a pill-shaped button with custom colors and responsive design that changes the button design between normal, hovered, and clicked. I still need to settle on color scheme and also add the disabled state design. At least now the basic template for how state changes are achieved is worked out.
