@@ -78,6 +78,74 @@ Native UI elements are utilized despite being a Blazor base-element format!
 
 Example: Presenting a MessageBox is abstracted behind the scenes so the native UI Control is utilized for web, Android, or iOS platforms (whichever is needed at compilation).
 
+## Build Mobile and Desktop Apps Training Notes
+
+MAUI assists with architecture between platforms:
+
+- While the processing libraries can be similar (or the same) on various platforms, the UI and hardware devices differ between desktop, and various mobile and wearable devices.
+- User interface implementations, APIs, various sizes, and capabilities like rotation need to be addressed.
+
+MAUI supports creating consistent interfaces on varying hardware platforms, all within a unified project.
+
+### MAUI Tech Stack
+
+A common layer pulls all the API differences together, called a Base Common Library, starting with .NET 6.
+
+- Mono is an open-source version of the .NET Runtime, and supports Android, iOS, and macOS.
+- Win32 does the same with various optimizations for mobile and other form-factor devices.
+- Platform-specific Libraries are leveraged to access specific hardware features and capability.
+
+#### New Dot Nets
+
+These come with .NET MAUI:
+
+- .NET for Android
+- .NET for iOS
+- .NET for mac
+- WinUI
+
+_Note_: WinUI3 is provided by the Mono project.
+
+#### DotNET BCL 6
+
+The new Dot Net Libraries sit on top of BCL.
+
+BCL sits on top of Mono Runtime and WinRT runtime.
+
+#### Mono and WinRT
+
+These parallel APIs are layered on top of Android, macOS, iOS, and Windows platform APIs.
+
+DotNET MAUI ties these components together in the stack to get cross-platform build-and-run capability.
+
+### XAML
+
+Use XAML to describe the UI and Controls, just like in WPF.
+
+Semantic Properties are used to support Accessibility throughout the UI.
+
+_Note_: UI can be assembled using pure code to enable dynamic responsiveness on the fly.
+
+### Native Code
+
+MAUI always generates native code for the target platform.
+
+Optimizations are performed during the build.
+
+### DotNET MAUI UI Provisions
+
+- Layout Engine
+- Page Types for rich navigation
+- Data Binding
+- Custom Handers for events and presentation
+- Access to abstracted APIs (for the target platform)
+
+### MAUI Install Requirements
+
+Visual Studio 2022 v17.3 or newer and '.NET MAUI Multi-platform App UI Development' workload.
+
+_Note_: There is a preview version of Visual Studio that supports MAUI development on Mac.
+
 ## References
 
 MSReactor YouTube Channel for past [recordings](https://www.youtube.com/@MicrosoftReactor).
