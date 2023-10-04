@@ -2,6 +2,15 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 3-Oct-2023
+
+Catching up from yesterday:
+
+- Started a training module on .NET MAUI and am adding sparse notes in a [conted](./mobile-to-desktop-dotnet-maui.html) subtopic.
+- Completed an outline of a slide deck for the MVP presentation.
+- Discovered training course [Accessibility Fundamentals](https://learn.microsoft.com/en-us/training/paths/accessibility-fundamentals/) at Microsoft's Learn website, referenced from A11y Project.
+- A11y project actually has a large listing of [training resources](https://www.a11yproject.com/resources/#courses) focused on accessibility design and development strategies and tools.
+
 ## Monday 2-Oct-2023
 
 Completed implementing hover actions over custom 'pill' shaped and round buttons used in the file sync project. In the time it took me to sort all of this out, I could have written 3 full websites with React and CSS (maybe 4 using Bootstrap :wink:). The reasons are:
