@@ -156,8 +156,8 @@ Three Project Templates are available with .NET MAUI:
 
 ### MAUI App Structure and Startup
 
-- AppShell.xaml: MAUI Application main structure (styling, URI-based navigation, layout options, etc). Jon: Consider this the 'Root' view a-la React.
-- App.xaml: Just like WPF, this is the default XAML Resource-defining file. Resource Dictionaries (and Merged Dictionaries) are supported, as in WPF.
+- AppShell.xaml: MAUI Application main structure (styling, URI-based navigation, layout options, etc). Jon: Consider this the 'Root' component, a-la React.
+- App.xaml: Just like WPF, this is the default XAML Resource-defining file. Resource Dictionaries (and Merged Dictionaries) are supported, as in WPF.Creates the initial Window for the App.
 - App.xaml.cs: Like WPF, defines the App Class, and initializes the Application. Common (platform neutral) lifecycle events can be overridden here (OnStart, OnResume, OnSleep...). Also, MainPage is initialized as a new AppShell.
 - MainPage.xaml: The UI-defining code page. Controls View items and Controls like Stacks, Images, labels, etc.
 - MainPage.xaml.cs: Define event handler logic triggered by the XAML-defined controls.
@@ -166,6 +166,81 @@ Three Project Templates are available with .NET MAUI:
 - Platforms Folder: Platform-specific initialization code files and resources.
 
 _Note_: `SemanticScreenReader` is a MAUI class with a static member `Announce(string)` that tells a screen reader what to say. Apply this to event handlers in code-behind.
+
+App Class:
+
+- Contains the MAUI App as a whole.
+- Inherits default behaviors from the Application class.
+- Creates AppShell instance and assigns it to the MainPage property (assigning the first screen the user sees upon launch).
+- Methods handle lifecycle events including background/foreground.
+- Methods create new `Windows` for the App. Default is a single window but additional can be launched.
+
+Shell Class:
+
+- Contains fundamental features most apps require.
+- Common Navigation scheme and methodology (URI-based).
+- Integrated Search handler.
+- `Flyout`: Parent object to `FlyoutItem`s.
+- `TabBar`: Bottom bar used for bottom-of-screen navigation. Contains `Tab` items representing each navigation point.
+- `ShellContent`: Represents the ContentPage objects for each Tab.
+
+Pages Class:
+
+- Root of UI hierarchy.
+- Inside of `Shell` Class.
+- `ContentPage` displays contents (most common page type).
+- `TabbedPage`: Used for tab navigation.
+- `FlyoutPage`: Enables Master/Detail style presentation. Lists Items for display in a child view.
+
+Views Class:
+
+- Content pages display Views, typically.
+- Retreive and present data.
+- `ContentView`: The default View.
+- `ScrollView`: Adds a scroller to move contens in the View.
+- `CarouselView`: Scrollable view using 'swipe' to move through content.
+- `CollectionView`: Retreive data from named data source, presenting each using \_format template_s.
+
+_Note_: Create a `Screen` using the `Page` Class.
+
+#### Controls and Layouts
+
+Views contain a single Control (button, label, etc).
+
+Layouts define rules for how Controls are arranged in a View.
+
+StackLayouts:
+
+- Vertical: Top-to-bottom.
+- Horizontal: Left-to-right.
+- StackLayout.StackOrientation: Adjusts display when user rotates the device.
+
+Other Layouts:
+
+- AbsoluteLayout: Based on _exact coordinates_.
+- FlexLayout: Similar to StackLayout, it wraps child controls if they won't fit. Apply alignment rules (like FlexBox child-targeting rules) to align contents left, right, center, etc.
+- GridLayout: Defines layout based on rows and columns.
+
+#### Modifying Control Properties
+
+Can do this in C# code:
+
+```c#
+CounterBtn.Text = $"Clicked {count} times";
+```
+
+A View can be _definied purely in C#_ if wanted:
+
+1. Create a partial class and inherit from `ContentPage`.
+1. Add fields as needed. Controls can be declared a Class member!!
+1. In the constructor, initialize the Views and Layouts, and assign initial values to Fields (like a Label, Button text, etc).
+1. Add Event Handler members to execute when Controls are clicked, etc.
+
+_Note_: It will be necessary to take the instantiated Controls and add them to View instances, updating layout options such as `LayoutOptions.Center` and so-on.
+
+Margin and Padding are properties of Controls that the various Layout classes will respect.
+
+VerticalStackLayout and HorizontalStackLayout also have a `Spacing` property that affects the Margin of the child items within the layout.
 
 ### Project File Noteworthy Elements
 
@@ -178,6 +253,35 @@ Initial `PropertyGroup` specifies platform frameworks to target, app title, AppI
 ### Android MAUI App
 
 Tools -> Android -> Android Device Manager: Create a new phone (emulator) and API Level (Google API implementation version).
+
+Debug (Green Arrow) drop-down -> Andoid Emulator -> Pick the correct emulator.
+
+_Note_: Enable Hyper-V on the workstation to improve emulator performance.
+
+_Note2_: A dedicated graphics processor and a Mid- to High-end processor will be necessary to run the Android Emulator without crashing or severe lagging.
+
+### Android Manifest Updates
+
+Make updates to the Android Manifest to allow using native implementation such as dialing the phone.
+
+MAUI abstracts these away into namespaces like `Microsoft.Maui.ApplicationModel.Communication`.
+
+Drill-in to the `Platforms` folder to get to the manifest file for each platform.
+
+If the default Manifest view does not show the needed item(s), use `Open With` dialog to use `Automatic Editor Selector (XML)` to make the edits.
+
+For example, to use the Phone, create an intent element with action and data:
+
+```xml
+<...>
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.DIAL" />
+      <data android:scheme="tel" />
+    </intent>
+  </queries>
+</...>
+```
 
 ## About Tizen
 
