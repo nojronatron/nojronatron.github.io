@@ -146,6 +146,20 @@ Visual Studio 2022 v17.3 or newer and '.NET MAUI Multi-platform App UI Developme
 
 _Note_: There is a preview version of Visual Studio that supports MAUI development on Mac.
 
+### Creating a MAUI App
+
+Three Project Templates are available with .NET MAUI:
+
+- .NET MAUI App
+- .NET MAUI Blazor
+- .NET MAUI Class Library
+
+### MAUI App Structure and Startup
+
+App.xaml: Just like WPF, this is the default XAML Resource-defining file. Resource Dictionaries (and Merged Dictionaries) are supported, as in WPF.
+Resources Folder: Contains various resources such as Styles, Fonts, Images, etc.
+App.xaml.cs: Like WPF, defines the App Class. Common (platform neutral) lifecycle events can be overridden here.
+
 ## References
 
 MSReactor YouTube Channel for past [recordings](https://www.youtube.com/@MicrosoftReactor).
