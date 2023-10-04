@@ -156,10 +156,40 @@ Three Project Templates are available with .NET MAUI:
 
 ### MAUI App Structure and Startup
 
-App.xaml: Just like WPF, this is the default XAML Resource-defining file. Resource Dictionaries (and Merged Dictionaries) are supported, as in WPF.
-Resources Folder: Contains various resources such as Styles, Fonts, Images, etc.
-App.xaml.cs: Like WPF, defines the App Class. Common (platform neutral) lifecycle events can be overridden here (OnStart, OnResume, OnSleep...). Also, MainPage is initialized as a new AppShell.
-AppShell.xaml: MAUI Application main structure (styling, URI-based nav, layouts, etc).
+- AppShell.xaml: MAUI Application main structure (styling, URI-based navigation, layout options, etc). Jon: Consider this the 'Root' view a-la React.
+- App.xaml: Just like WPF, this is the default XAML Resource-defining file. Resource Dictionaries (and Merged Dictionaries) are supported, as in WPF.
+- App.xaml.cs: Like WPF, defines the App Class, and initializes the Application. Common (platform neutral) lifecycle events can be overridden here (OnStart, OnResume, OnSleep...). Also, MainPage is initialized as a new AppShell.
+- MainPage.xaml: The UI-defining code page. Controls View items and Controls like Stacks, Images, labels, etc.
+- MainPage.xaml.cs: Define event handler logic triggered by the XAML-defined controls.
+- MauiProgram.cs: Platform-specific code calls CreateMauiApp method which is leveraged when building for the specified platform. Register fonts, configure DI services and ncustom handlers for controls, etc.
+- Resources Folder: Contains various resources such as Styles, Fonts, Images, etc.
+- Platforms Folder: Platform-specific initialization code files and resources.
+
+_Note_: `SemanticScreenReader` is a MAUI class with a static member `Announce(string)` that tells a screen reader what to say. Apply this to event handlers in code-behind.
+
+### Project File Noteworthy Elements
+
+Initial `PropertyGroup` specifies platform frameworks to target, app title, AppID, version, display, and supported OSes. These can be ammended as needed.
+
+`ItemGroup` following that allows specifying image and color for splash screen (app loading visual). Set default locations for fonts, images, and other assets used by the app. See `Resources Folder` for storing the actual items referenced. These should be REGISTERED using `MauiApp.CreateBuilder()` in `MauiProgram.cs`.
+
+### Debug Mode
+
+### Android MAUI App
+
+Tools -> Android -> Android Device Manager: Create a new phone (emulator) and API Level (Google API implementation version).
+
+## About Tizen
+
+Tizen is an open-source Linux distribution that supports IoT, TV, Mobile, and Wearable device profiles.
+
+Tizen supports headed and headless products.
+
+Driven by [The Linux Foundation](https://www.linuxfoundation.org/)
+
+[Tizen Org](https://www.tizen.org/)
+
+Question: Does this mean .NET MAUI can target Linux devices like RPi or full x86/AMD architectures?
 
 ## References
 

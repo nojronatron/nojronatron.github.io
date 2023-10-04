@@ -2,6 +2,8 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 4-Oct-2023
+
 ## Tuesday 3-Oct-2023
 
 Catching up from yesterday:
