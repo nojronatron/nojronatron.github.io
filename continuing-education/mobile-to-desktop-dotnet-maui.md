@@ -158,7 +158,8 @@ Three Project Templates are available with .NET MAUI:
 
 App.xaml: Just like WPF, this is the default XAML Resource-defining file. Resource Dictionaries (and Merged Dictionaries) are supported, as in WPF.
 Resources Folder: Contains various resources such as Styles, Fonts, Images, etc.
-App.xaml.cs: Like WPF, defines the App Class. Common (platform neutral) lifecycle events can be overridden here.
+App.xaml.cs: Like WPF, defines the App Class. Common (platform neutral) lifecycle events can be overridden here (OnStart, OnResume, OnSleep...). Also, MainPage is initialized as a new AppShell.
+AppShell.xaml: MAUI Application main structure (styling, URI-based nav, layouts, etc).
 
 ## References
 
