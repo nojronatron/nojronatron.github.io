@@ -1,12 +1,12 @@
 # Continuing Education Index of Resources
 
-A collection of continuing education, research notes, and references.
+A collection of notes from research and continuing education, with references for future use.
 
 ## Table of Contents
 
 - [Things I Want To Learn More About](#things-i-want-to-learn-more-about)
+- [Currently Active Learnings](#currently-active-learnings)
 - [Notes And Takeaways from Research and Experience](#notes-and-takeaways-from-research-and-experience)
-- [DotNET MAUI](#dotnet-maui)
 - [Azure Learnings](#azure-learnings)
 - [Footer](#footer)
 
@@ -16,8 +16,16 @@ This list became so large it was unmanageable in an MD file, so all items have m
 
 - [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
 
+## Currently Active Learnings
+
+- [ ] MSFT Learn Module [Create a UI Using XAML](./dotnet-maui-learnings.html#create-a-ui-in-a-dotnet-maui-app-by-using-xaml).
+- [x] MSFT Learn Module [Build Mobile and Desktop Apps Training](./dotnet-maui-learnings.html#build-mobile-and-desktop-apps-training-notes).
+
 ## Notes And Takeaways from Research and Experience
 
+- [x] DotNET MAUI for desktop and mobile app development [mobile-to-deskto-dotnet-maui](./mobile-to-desktop-dotnet-maui.html).
+- [x] DotNET MAUI [Handlers: Native Controls](./maui-handlers-native-controls.html).
+- [x] DotNET MAUI [Data Binding in MVVM](./maui-databinding-mvvm.html).
 - [x] [MVVM](./wpf-mvvm-learnings.html) in DotNET using C#. I've done this before but need a refresher for a project that will help solve a problem for someone else.
 - [x] Build and Test Node.js using [GitHub Actions for Node.js](./github-actions-build-test-node.html).
 - [x] Jest vs Mocha vs Chai [JS Testing Frameworks](./js-testing-frameworks.html).
@@ -64,12 +72,6 @@ This list became so large it was unmanageable in an MD file, so all items have m
 - [x] Interfaces: See [OOP, Inheritance, Interfaces](../code401-files/oop-inhrtnce-intfaces.html).
 - [x] Trees and Decision Trees have perplexed me for a while I'd like to get over that.
 - [x] Configuring Linux and Windows to support "IDEA ." to open IntelliJ [at current directory](../linux-terminal-files/bash-stuff.html###aliases).
-
-## DotNET MAUI
-
-- [ ] DotNET MAUI for desktop and mobile app development [mobile-to-deskto-dotnet-maui](./mobile-to-desktop-dotnet-maui.html).
-- [x] DotNET MAUI [Handlers: Native Controls](./maui-handlers-native-controls.html).
-- [x] DotNET MAUI [Data Binding in MVVM](./maui-databinding-mvvm.html).
 
 ## Azure Learnings
 

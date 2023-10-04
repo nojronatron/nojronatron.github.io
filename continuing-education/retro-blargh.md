@@ -4,6 +4,8 @@ Semi-regular notes taken during my software developer journey.
 
 ## Wednesday 4-Oct-2023
 
+Completed MAUI modules, creating Apps for Windows and Android. Documented learnings in a new [conted file](./dotnet-maui-learnings.html). Most of the MSFT Learn module notes are moved to this new file from the 'mobile-to-desktop' one referenced yesterday.
+
 ## Tuesday 3-Oct-2023
 
 Catching up from yesterday:
