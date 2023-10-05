@@ -113,7 +113,155 @@ The example given shows a `<VerticalStackLayout>` parent element with a `<Label 
 
 ### Event Handling in XAML
 
-...
+- Uses standard event handling via .NET code patterns.
+- Controls need unique `x:Name`s.
+- `x:Name` represents a POCO private field for interacting with the element.
+- `x:Name` represents a path for other XAML elements to access the element.
+- `InitializeComponent()` must be executed in order for `x:Name` fields to become available.
+
+#### Event Signatures
+
+Required event handler signature components by .NET convention:
+
+- Must return void.
+- Must take 2 parameters, an `object` representing what triggered the event, and an `EventArgs` parameter containing args passed by the sender.
+- Should be marked `private`.
+- Optional: Async if it needs to execute asynchronous code.
+
+#### Separation of Concerns
+
+Some issues:
+
+- Event handling as described above tightly couples behaviors to the UI.
+- Compiler does _not_ catch missing Fields in XAML e.g. "A removed handler isn't caught by the compiler".
+
+Wiring Event Handlers in Code:
+
+- Use subscription syntax `Counter.Clicked += OnCounterClicked;`
+- Add the event handler method e.g. `private void OnCounterClicked(object sender, EventArgs e) {...}`
+- Optionally, un-subscribe using `Counter.Clicked -= OnCounterClicked;`
+
+### XAML Markup Extensions
+
+Most XAML definitions will be settled at compile time.
+
+Run-time determined variables are sorted using XAML Markup Extensions.
+
+- Specialized class.
+- Allows XAML to access runtime values.
+- Helps to define attributes with same value settings in one place.
+- Replaces hard-coded literal value assignment.
+
+Create a XAML Markup Extension - Implement the ProvideValue method as defined by IServiceProvider interface:
+
+- Accessibility: public.
+- Returns: An `object` type.
+- Input parameter must match `IServiceProvider` interface.
+- Name must be `ProvideValue`.
+
+Drawbacks:
+
+- Must _know_ the actual return value for example a FontSize attribute will expect a `Double` value.
+- Added Class is necessary.
+- Added Class must implement IMarkupExtension.
+
+Benefits:
+
+- Simply define default values within the code-behind as a static Property.
+- Write the value once then use Markup Extensions reference in XAML to use it.
+
+Apply the Markup Extension to a Control:
+
+- Import the namespace in which the Extension Class and its `ProvideValue` member are defined in.
+- For the attribute where the value is needed, the value should be defined like: `"{mycode:NameOfExtensionMethod}"`.
+
+_Note_: MAUI XAML recognizes the naming convention with the suffix `Extension` as a XAML Markup Extension, so the namespace import and alias does not need to include `Extension` during assignment in the XAML header.
+
+#### StaticExtension Class
+
+StaticExtension (aka 'Static') is a short-hand way of creating and using a XAML Markup Extension.
+
+```C#
+[ContentProperty("Member")]
+public class StaticExtension : IMarkupExtension
+{
+  public string Member {get; set;}
+  public object ProvideValue (IServiceProvider serviceProvider)
+  {
+    // code returns a type that inherits from Object
+  }
+}
+```
+
+Utilize this extension the same way as before:
+
+- Import the namespace where the StaticExtension class is defined.
+- Define the value for the attribute using `"{x:Static Member=mycode:MainPage.NameOfExtensionMethod}"`
+
+### Platform Specific Values in XAML
+
+Fine-tune your UI for each platform.
+
+Layout management is provided in MAUI.
+
+`DevinceInfo` Class:
+
+- Provides device-specific info about the device on which the code is running.
+- Properties are used to expose the information.
+- `DeviceInfo.Platform` returns a string such as "Android", "iOS", "WinUI", or "macOS".
+
+For situations where applying an attribute (like `Padding`) to solve a layout problem on one device _won't solve the problem_ on all devices, necessarily.
+
+Use a turnary clause to provide the correct values depending on the device type return by `DeviceInfo.Platform`.
+
+Example provided by MSFT Learn:
+
+```C#
+MyStackLayout.Padding =
+  DeviceInfo.Platform == DevicePlatform.iOS // struct iOS returns a string
+    ? new Thickness(30, 60, 30, 30) // shift content down for iOS only
+    : new Thickness(30); // default margin for non-iOS devices
+```
+
+_Note_: Since the tweak is for the UI, it is usually preferred to make these types of changes in the UI layer, i.e. XAML. The next sub-section addresses this.
+
+#### OnPlatform Markup Extension
+
+Enables detecting the runtime platform within XAML!
+
+- Apply extension as part of XAML code that sets a property value.
+- Requires providing type of property.
+- Requires setting values to property via series of `<On Platform="..." Value="..." />` blocks.
+- OnPlatform is generic and accepts a `type` parameter.
+
+Example provided by MSFT Learn:
+
+```XML
+<VerticalStackLayout>
+  <VerticalStackLayout.Padding>
+    <OnPlatform x:TypeArguments="Thickness">
+      <On Platform="iOS" Value="30,60,30,30" />
+      <On Platform="Android" Value="30" />
+      <On Platform="WinUI" Value="30" />
+    </OnPlatform>
+  </VerticalStackLayout.Padding>
+  <!-- XAML for other controls go here -->
+</VerticalStackLayout>
+```
+
+Use this extension to define other attribute values such as `x:TypeArguments="Color"`, etc.
+
+Key Takeaway: Customize the UI for each platform using `OnPlatform`.
+
+##### OnPlatform Reduced Syntax
+
+Simplify by using a Default Value for any non-match (example provided by MSFT Learn):
+
+```XML
+<VerticalStackLayout Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
+  <!-- XAML for other controls go here -->
+</VerticalStackLayout>
+```
 
 ## Build Mobile and Desktop Apps Training Notes
 
