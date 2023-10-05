@@ -555,6 +555,44 @@ Optimized StackLayouts:
 - Offers best layout performance.
 - Also simplifies `Spacing` property setting.
 
+### Grid Layout Panel
+
+- Rows and Columns (think Grid in Bootstrap and React-Bootstrap).
+- Content (and Controls) are placed inside the 'cells' at teh intersections of each ROW and COLUMN.
+- Rows and Columns can be different sizes or set to auto-adapt to the size of child items within the cells.
+- Use `RowDefinition` and `ColumnDefinition` to set the height of each row and the width of each column.
+- Width and Height properties are of type `GridLength`, with its own properties `GridUnitType` and `Value`.
+- GridUnitType value Absolute: A specified unit e.g. 1-100.
+- GridUnitType value Auto: Sets row/col size to fit child Controls.
+- GridUnitType Star (\*): Proportional sizing, determined using a ration formula from total available space and requested space by all cols/rows.
+
+GridUnitTypeStar, same effect, both ways:
+
+- Code: `new GridLength(2, GridUnitType.Star);`
+- XAML: `<RowDefinition Height="2*" />`
+
+_Note_: The default size for any Row or Column is `1*`.
+
+XAML definitions can be shortened like this:
+
+```XML
+<Grid RowDefinitions="*, *, *" ColumnDefinitions="*, *">
+  <!-- row and grid controls -->
+</Grid>
+```
+
+#### Grid Layout Attached Properties
+
+Attached Properties are defined in one class but set on objects of other Types.
+
+- KVP's that are part of a View.
+- IDs are zero-indexed (starting with 0 for the first cardinal instance).
+- Use `<BoxView Grid.Row="1" Grid.Column="2" ... />` to tell the BoxView to stay in Row 1, Column 2 of the Grid.
+
+#### Grid Spanning
+
+Span BoxView across 2 columns (cols must be previously defined): `<BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ... />`
+
 ## Android Emulator
 
 Requirements:
