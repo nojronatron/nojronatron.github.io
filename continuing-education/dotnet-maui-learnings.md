@@ -6,12 +6,218 @@ For starters, notes will be made while following MSFT Learn modules.
 
 ## Table of Contents
 
-- [Create a UI in a DotNET MAUI App By Using XAML](#create-a-ui-in-a-dotnet-maui-app-by-using-xaml)
 - [Build Mobile and Desktop Apps Training Notes](#build-mobile-and-desktop-apps-training-notes)
+- [Create a UI in a DotNET MAUI App By Using XAML](#create-a-ui-in-a-dotnet-maui-app-by-using-xaml)
+- [Customize XAML Pages Layout](#customize-xaml-pages-layout)
 - [Android Emulator](#android-emulator)
 - [About Tizen](#about-tizen)
 - [Resources and References](#resources-and-references)
 - [Footer](#footer)
+
+## Build Mobile and Desktop Apps Training Notes
+
+MAUI assists with architecture between platforms:
+
+- While the processing libraries can be similar (or the same) on various platforms, the UI and hardware devices differ between desktop, and various mobile and wearable devices.
+- User interface implementations, APIs, various sizes, and capabilities like rotation need to be addressed.
+
+MAUI supports creating consistent interfaces on varying hardware platforms, all within a unified project.
+
+### MAUI Tech Stack
+
+A common layer pulls all the API differences together, called a Base Common Library, starting with .NET 6.
+
+- Mono is an open-source version of the .NET Runtime, and supports Android, iOS, and macOS.
+- Win32 does the same with various optimizations for mobile and other form-factor devices.
+- Platform-specific Libraries are leveraged to access specific hardware features and capability.
+
+#### New Dot Nets
+
+These come with .NET MAUI:
+
+- .NET for Android
+- .NET for iOS
+- .NET for mac
+- WinUI
+
+_Note_: WinUI3 is provided by the Mono project.
+
+#### DotNET BCL 6
+
+The new Dot Net Libraries sit on top of BCL.
+
+BCL sits on top of Mono Runtime and WinRT runtime.
+
+#### Mono and WinRT
+
+These parallel APIs are layered on top of Android, macOS, iOS, and Windows platform APIs.
+
+DotNET MAUI ties these components together in the stack to get cross-platform build-and-run capability.
+
+### XAML
+
+Use XAML to describe the UI and Controls, just like in WPF.
+
+Semantic Properties are used to support Accessibility throughout the UI.
+
+_Note_: UI can be assembled using pure code to enable dynamic responsiveness on the fly.
+
+### Native Code
+
+MAUI always generates native code for the target platform.
+
+Optimizations are performed during the build.
+
+### DotNET MAUI UI Provisions
+
+- Layout Engine
+- Page Types for rich navigation
+- Data Binding
+- Custom Handers for events and presentation
+- Access to abstracted APIs (for the target platform)
+
+### MAUI Install Requirements
+
+Visual Studio 2022 v17.3 or newer and '.NET MAUI Multi-platform App UI Development' workload.
+
+_Note_: There is a preview version of Visual Studio that supports MAUI development on Mac.
+
+### Creating a MAUI App
+
+Three Project Templates are available with .NET MAUI:
+
+- .NET MAUI App
+- .NET MAUI Blazor
+- .NET MAUI Class Library
+
+### MAUI App Structure and Startup
+
+- AppShell.xaml: MAUI Application main structure (styling, URI-based navigation, layout options, etc). Jon: Consider this the 'Root' component, a-la React.
+- App.xaml: Just like WPF, this is the default XAML Resource-defining file. Resource Dictionaries (and Merged Dictionaries) are supported, as in WPF.Creates the initial Window for the App.
+- App.xaml.cs: Like WPF, defines the App Class, and initializes the Application. Common (platform neutral) lifecycle events can be overridden here (OnStart, OnResume, OnSleep...). Also, MainPage is initialized as a new AppShell.
+- MainPage.xaml: The UI-defining code page. Controls View items and Controls like Stacks, Images, labels, etc.
+- MainPage.xaml.cs: Define event handler logic triggered by the XAML-defined controls.
+- MauiProgram.cs: Platform-specific code calls CreateMauiApp method which is leveraged when building for the specified platform. Register fonts, configure DI services and ncustom handlers for controls, etc.
+- Resources Folder: Contains various resources such as Styles, Fonts, Images, etc.
+- Platforms Folder: Platform-specific initialization code files and resources.
+
+_Note_: `SemanticScreenReader` is a MAUI class with a static member `Announce(string)` that tells a screen reader what to say. Apply this to event handlers in code-behind.
+
+App Class:
+
+- Contains the MAUI App as a whole.
+- Inherits default behaviors from the Application class.
+- Creates AppShell instance and assigns it to the MainPage property (assigning the first screen the user sees upon launch).
+- Methods handle lifecycle events including background/foreground.
+- Methods create new `Windows` for the App. Default is a single window but additional can be launched.
+
+Shell Class:
+
+- Contains fundamental features most apps require.
+- Common Navigation scheme and methodology (URI-based).
+- Integrated Search handler.
+- `Flyout`: Parent object to `FlyoutItem`s.
+- `TabBar`: Bottom bar used for bottom-of-screen navigation. Contains `Tab` items representing each navigation point.
+- `ShellContent`: Represents the ContentPage objects for each Tab.
+
+Pages Class:
+
+- Root of UI hierarchy.
+- Inside of `Shell` Class.
+- `ContentPage` displays contents (most common page type).
+- `TabbedPage`: Used for tab navigation.
+- `FlyoutPage`: Enables Master/Detail style presentation. Lists Items for display in a child view.
+
+Views Class:
+
+- Content pages display Views, typically.
+- Retreive and present data.
+- `ContentView`: The default View.
+- `ScrollView`: Adds a scroller to move contens in the View.
+- `CarouselView`: Scrollable view using 'swipe' to move through content.
+- `CollectionView`: Retreive data from named data source, presenting each using \_format template_s.
+
+_Note_: Create a `Screen` using the `Page` Class.
+
+#### Controls and Layouts
+
+Views contain a single Control (button, label, etc).
+
+Layouts define rules for how Controls are arranged in a View.
+
+StackLayouts:
+
+- Vertical: Top-to-bottom.
+- Horizontal: Left-to-right.
+- StackLayout.StackOrientation: Adjusts display when user rotates the device.
+
+Other Layouts:
+
+- AbsoluteLayout: Based on _exact coordinates_.
+- FlexLayout: Similar to StackLayout, it wraps child controls if they won't fit. Apply alignment rules (like FlexBox child-targeting rules) to align contents left, right, center, etc.
+- GridLayout: Defines layout based on rows and columns.
+
+#### Modifying Control Properties
+
+Can do this in C# code:
+
+```c#
+CounterBtn.Text = $"Clicked {count} times";
+```
+
+A View can be _definied purely in C#_ if wanted:
+
+1. Create a partial class and inherit from `ContentPage`.
+1. Add fields as needed. Controls can be declared a Class member!!
+1. In the constructor, initialize the Views and Layouts, and assign initial values to Fields (like a Label, Button text, etc).
+1. Add Event Handler members to execute when Controls are clicked, etc.
+
+_Note_: It will be necessary to take the instantiated Controls and add them to View instances, updating layout options such as `LayoutOptions.Center` and so-on.
+
+Margin and Padding are properties of Controls that the various Layout classes will respect.
+
+VerticalStackLayout and HorizontalStackLayout also have a `Spacing` property that affects the Margin of the child items within the layout.
+
+### Project File Noteworthy Elements
+
+Initial `PropertyGroup` specifies platform frameworks to target, app title, AppID, version, display, and supported OSes. These can be ammended as needed.
+
+`ItemGroup` following that allows specifying image and color for splash screen (app loading visual). Set default locations for fonts, images, and other assets used by the app. See `Resources Folder` for storing the actual items referenced. These should be REGISTERED using `MauiApp.CreateBuilder()` in `MauiProgram.cs`.
+
+### Debug Mode
+
+### Android MAUI App
+
+Tools -> Android -> Android Device Manager: Create a new phone (emulator) and API Level (Google API implementation version).
+
+Debug (Green Arrow) drop-down -> Andoid Emulator -> Pick the correct emulator.
+
+_Note_: Enable Hyper-V on the workstation to improve emulator performance.
+
+_Note2_: A dedicated graphics processor and a Mid- to High-end processor will be necessary to run the Android Emulator without crashing or severe lagging.
+
+### Android Manifest Updates
+
+Make updates to the Android Manifest to allow using native implementation such as dialing the phone.
+
+MAUI abstracts these away into namespaces like `Microsoft.Maui.ApplicationModel.Communication`.
+
+Drill-in to the `Platforms` folder to get to the manifest file for each platform.
+
+If the default Manifest view does not show the needed item(s), use `Open With` dialog to use `Automatic Editor Selector (XML)` to make the edits.
+
+For example, to use the Phone, create an intent element with action and data:
+
+```xml
+<...>
+  <queries>
+    <intent>
+      <action android:name="android.intent.action.DIAL" />
+      <data android:scheme="tel" />
+    </intent>
+  </queries>
+</...>
+```
 
 ## Create a UI in a DotNET MAUI App By Using XAML
 
@@ -263,210 +469,91 @@ Simplify by using a Default Value for any non-match (example provided by MSFT Le
 </VerticalStackLayout>
 ```
 
-## Build Mobile and Desktop Apps Training Notes
+## Customize XAML Pages Layout
 
-MAUI assists with architecture between platforms:
+Specify View Size:
 
-- While the processing libraries can be similar (or the same) on various platforms, the UI and hardware devices differ between desktop, and various mobile and wearable devices.
-- User interface implementations, APIs, various sizes, and capabilities like rotation need to be addressed.
+- Various devices have varying default view sizes and pixel ensities.
+- Mobile, tablet, phone, desktop, wearable, etc.
+  -Layout Panels build consistens UIs, controlling sizing and positioning of child controls.
 
-MAUI supports creating consistent interfaces on varying hardware platforms, all within a unified project.
+### Layout Panel
 
-### MAUI Tech Stack
+- Hold collections of child views (Controls).
+- Determines size and position.
+- Recalculation of position and size are automatic.
+- Support device rotation.
+- Stack, Absolute, Grid, and Flex Layout Panels are available.
+- StackLayout: Single row or column.
+- VerticalStackLayout, HorizontalStackLayout: Columnar or horizontal alignment, respectively.
+- AbsoluteLayout: Utilizes x,y coordinates to place child Controls.
+- FlexLayout: Enables wrapping child Controls if they don't fit into a single row or column.
+- Grid: Child Controls are placed within identified row or column IDs, and can be told to stay within that 'cell', or to span cells (rows or columns).
 
-A common layer pulls all the API differences together, called a Base Common Library, starting with .NET 6.
+_Note_: RelativeLayout is similar to FlexLayout, but _FlexLayout should be used due to better performance_.
 
-- Mono is an open-source version of the .NET Runtime, and supports Android, iOS, and macOS.
-- Win32 does the same with various optimizations for mobile and other form-factor devices.
-- Platform-specific Libraries are leveraged to access specific hardware features and capability.
+### View Size Configuration
 
-#### New Dot Nets
+Affects how the parent element sizes itself around its content.
 
-These come with .NET MAUI:
+Un-set: Element will auto-grow to be large enough to fit around its content.
+Set: WidthRequest and/or HeightRequest attribute(s) are configured on the element.
 
-- .NET for Android
-- .NET for iOS
-- .NET for mac
-- WinUI
+The `Request` portion means at run time the App will make a final decision on size based on available space for the element and its contents.
 
-_Note_: WinUI3 is provided by the Mono project.
+### Platform Sizing Considerations
 
-#### DotNET BCL 6
+Size units are different on some platforms:
 
-The new Dot Net Libraries sit on top of BCL.
+- iOS: points.
+- Android: DIPs (density-independent pixels).
 
-BCL sits on top of Mono Runtime and WinRT runtime.
+MAUI _does not use device-specific values at all_:
 
-#### Mono and WinRT
+- Stores the value as a `double`.
+- Abstracts the actual unit concerns away from the developer.
+- The Device OS makes the final conversion during run time.
 
-These parallel APIs are layered on top of Android, macOS, iOS, and Windows platform APIs.
+Rendered Size of a View:
 
-DotNET MAUI ties these components together in the stack to get cross-platform build-and-run capability.
+- The View Class stores actual rendered size values.
+- Hidden properties store actual _rendered values_.
+- Width and Height (as expected).
+- Request\* property will still be as set at build time, but actual Width and Height (rendered) properties might be different.
 
-### XAML
+### Positioning Considerations
 
-Use XAML to describe the UI and Controls, just like in WPF.
+Left, right, or center of the screen?
 
-Semantic Properties are used to support Accessibility throughout the UI.
+Left, right, or center of the parent element?
 
-_Note_: UI can be assembled using pure code to enable dynamic responsiveness on the fly.
+View base class has VerticalOptions and HorizontalOptions properties:
 
-### Native Code
+- Enables aligning with one of the 'four edges' of the content 'box'.
+- Allows centering within the box.
+- Properties are of type `LayoutOptions`: A struct with properties `<LayoutAlignment>Alignment` and `<bool>Expands`.
+- `LayoutAlignmnet` Type is an `enumeration` of Start, Center, End, and Fill.
+- `LayoutAlignmnet` controls how child view is positions within the box, given inheritance from it's parent Layout Panel.
+- `Expands` property allows requesting extra space if available (from `Xamarin.Forms`). Is obsolete in MAUI, use `Grid` instead!
 
-MAUI always generates native code for the target platform.
+### Layout Properties
 
-Optimizations are performed during the build.
+- StackLayout Spacing: Add units to put space between each child Control.
+- Stack Orientation in XAML: `<StackLayout x:Name="stack" Orientation="Horizontal">`
+- HeightRequest and WidthRequest get swapped (rotated) when Orientation is changed from default (StackLayout default=Vertical, HeightRequest={width}, WidthRequest={height}).
 
-### DotNET MAUI UI Provisions
+_Note_: Recall VerticalStackLayout and HorizontalStackLayout handle StackLayout `Orientation` property automatically.
 
-- Layout Engine
-- Page Types for rich navigation
-- Data Binding
-- Custom Handers for events and presentation
-- Access to abstracted APIs (for the target platform)
+`Expands` deprecated property replaced by `StartAndExpand`, `CenterAndExpand`, `EndAndExpand`, or `FillAndExpand`:
 
-### MAUI Install Requirements
+- In Xamarin.Forms, `AndExpand` option should be replaced with the MAUI versions.
 
-Visual Studio 2022 v17.3 or newer and '.NET MAUI Multi-platform App UI Development' workload.
+Optimized StackLayouts:
 
-_Note_: There is a preview version of Visual Studio that supports MAUI development on Mac.
-
-### Creating a MAUI App
-
-Three Project Templates are available with .NET MAUI:
-
-- .NET MAUI App
-- .NET MAUI Blazor
-- .NET MAUI Class Library
-
-### MAUI App Structure and Startup
-
-- AppShell.xaml: MAUI Application main structure (styling, URI-based navigation, layout options, etc). Jon: Consider this the 'Root' component, a-la React.
-- App.xaml: Just like WPF, this is the default XAML Resource-defining file. Resource Dictionaries (and Merged Dictionaries) are supported, as in WPF.Creates the initial Window for the App.
-- App.xaml.cs: Like WPF, defines the App Class, and initializes the Application. Common (platform neutral) lifecycle events can be overridden here (OnStart, OnResume, OnSleep...). Also, MainPage is initialized as a new AppShell.
-- MainPage.xaml: The UI-defining code page. Controls View items and Controls like Stacks, Images, labels, etc.
-- MainPage.xaml.cs: Define event handler logic triggered by the XAML-defined controls.
-- MauiProgram.cs: Platform-specific code calls CreateMauiApp method which is leveraged when building for the specified platform. Register fonts, configure DI services and ncustom handlers for controls, etc.
-- Resources Folder: Contains various resources such as Styles, Fonts, Images, etc.
-- Platforms Folder: Platform-specific initialization code files and resources.
-
-_Note_: `SemanticScreenReader` is a MAUI class with a static member `Announce(string)` that tells a screen reader what to say. Apply this to event handlers in code-behind.
-
-App Class:
-
-- Contains the MAUI App as a whole.
-- Inherits default behaviors from the Application class.
-- Creates AppShell instance and assigns it to the MainPage property (assigning the first screen the user sees upon launch).
-- Methods handle lifecycle events including background/foreground.
-- Methods create new `Windows` for the App. Default is a single window but additional can be launched.
-
-Shell Class:
-
-- Contains fundamental features most apps require.
-- Common Navigation scheme and methodology (URI-based).
-- Integrated Search handler.
-- `Flyout`: Parent object to `FlyoutItem`s.
-- `TabBar`: Bottom bar used for bottom-of-screen navigation. Contains `Tab` items representing each navigation point.
-- `ShellContent`: Represents the ContentPage objects for each Tab.
-
-Pages Class:
-
-- Root of UI hierarchy.
-- Inside of `Shell` Class.
-- `ContentPage` displays contents (most common page type).
-- `TabbedPage`: Used for tab navigation.
-- `FlyoutPage`: Enables Master/Detail style presentation. Lists Items for display in a child view.
-
-Views Class:
-
-- Content pages display Views, typically.
-- Retreive and present data.
-- `ContentView`: The default View.
-- `ScrollView`: Adds a scroller to move contens in the View.
-- `CarouselView`: Scrollable view using 'swipe' to move through content.
-- `CollectionView`: Retreive data from named data source, presenting each using \_format template_s.
-
-_Note_: Create a `Screen` using the `Page` Class.
-
-#### Controls and Layouts
-
-Views contain a single Control (button, label, etc).
-
-Layouts define rules for how Controls are arranged in a View.
-
-StackLayouts:
-
-- Vertical: Top-to-bottom.
-- Horizontal: Left-to-right.
-- StackLayout.StackOrientation: Adjusts display when user rotates the device.
-
-Other Layouts:
-
-- AbsoluteLayout: Based on _exact coordinates_.
-- FlexLayout: Similar to StackLayout, it wraps child controls if they won't fit. Apply alignment rules (like FlexBox child-targeting rules) to align contents left, right, center, etc.
-- GridLayout: Defines layout based on rows and columns.
-
-#### Modifying Control Properties
-
-Can do this in C# code:
-
-```c#
-CounterBtn.Text = $"Clicked {count} times";
-```
-
-A View can be _definied purely in C#_ if wanted:
-
-1. Create a partial class and inherit from `ContentPage`.
-1. Add fields as needed. Controls can be declared a Class member!!
-1. In the constructor, initialize the Views and Layouts, and assign initial values to Fields (like a Label, Button text, etc).
-1. Add Event Handler members to execute when Controls are clicked, etc.
-
-_Note_: It will be necessary to take the instantiated Controls and add them to View instances, updating layout options such as `LayoutOptions.Center` and so-on.
-
-Margin and Padding are properties of Controls that the various Layout classes will respect.
-
-VerticalStackLayout and HorizontalStackLayout also have a `Spacing` property that affects the Margin of the child items within the layout.
-
-### Project File Noteworthy Elements
-
-Initial `PropertyGroup` specifies platform frameworks to target, app title, AppID, version, display, and supported OSes. These can be ammended as needed.
-
-`ItemGroup` following that allows specifying image and color for splash screen (app loading visual). Set default locations for fonts, images, and other assets used by the app. See `Resources Folder` for storing the actual items referenced. These should be REGISTERED using `MauiApp.CreateBuilder()` in `MauiProgram.cs`.
-
-### Debug Mode
-
-### Android MAUI App
-
-Tools -> Android -> Android Device Manager: Create a new phone (emulator) and API Level (Google API implementation version).
-
-Debug (Green Arrow) drop-down -> Andoid Emulator -> Pick the correct emulator.
-
-_Note_: Enable Hyper-V on the workstation to improve emulator performance.
-
-_Note2_: A dedicated graphics processor and a Mid- to High-end processor will be necessary to run the Android Emulator without crashing or severe lagging.
-
-### Android Manifest Updates
-
-Make updates to the Android Manifest to allow using native implementation such as dialing the phone.
-
-MAUI abstracts these away into namespaces like `Microsoft.Maui.ApplicationModel.Communication`.
-
-Drill-in to the `Platforms` folder to get to the manifest file for each platform.
-
-If the default Manifest view does not show the needed item(s), use `Open With` dialog to use `Automatic Editor Selector (XML)` to make the edits.
-
-For example, to use the Phone, create an intent element with action and data:
-
-```xml
-<...>
-  <queries>
-    <intent>
-      <action android:name="android.intent.action.DIAL" />
-      <data android:scheme="tel" />
-    </intent>
-  </queries>
-</...>
-```
+- `VerticalStackLayout` and `HorizontalStackLayout`.
+- Simpler to use than `StackLayout` plus its options.
+- Offers best layout performance.
+- Also simplifies `Spacing` property setting.
 
 ## Android Emulator
 
