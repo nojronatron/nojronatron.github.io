@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 5-Oct-2023
+
+Completed more MAUI modules, creating Apps for Windows and Android. There is a bunch of borrowed syntax from WPF XAML that converting most of my development experience to MAUI should be fairly straightforward. There are a few changes in some of the syntax due to the extra layer MAUI adds over all 4 supported platforms, but those changes (so far) aren't too difficult to understand. Thinking ahead, even if the Bib Sync Tool doesn't get ported to MAUI (right away or ever), I have at least two backlogged mobile/Android projects I want to work on someday, and MAUI might be a good path to getting those want-to-dos done.
+
 ## Wednesday 4-Oct-2023
 
 Completed MAUI modules, creating Apps for Windows and Android. Documented learnings in a new [conted file](./dotnet-maui-learnings.html). Most of the MSFT Learn module notes are moved to this new file from the 'mobile-to-desktop' one referenced yesterday.

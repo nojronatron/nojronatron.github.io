@@ -90,6 +90,8 @@ Three Project Templates are available with .NET MAUI:
 - .NET MAUI Blazor
 - .NET MAUI Class Library
 
+_Note_: Create projects _as close to a drive's root folder as possible_ because directory structure lengths can get very long _especially for Android_ projects.
+
 ### MAUI App Structure and Startup
 
 - AppShell.xaml: MAUI Application main structure (styling, URI-based navigation, layout options, etc). Jon: Consider this the 'Root' component, a-la React.
@@ -592,6 +594,92 @@ Attached Properties are defined in one class but set on objects of other Types.
 #### Grid Spanning
 
 Span BoxView across 2 columns (cols must be previously defined): `<BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ... />`
+
+## Static and Dynamic Resources
+
+Define style information in one place and have MAUI "look them up" so they are applied consistently across your APp.
+
+- Fonts
+- Font and Foreground Colors
+- Background Colors
+- Borders and other style settings
+
+### XAML Resources
+
+Symbolic constants are defined in one place and referenced everywhere it is needed.
+
+`Style` and `OnPlatform` instances can be set as Resources!
+
+Define a XAML Resource (from MSFT Learn documentation):
+
+```XML
+<Color x:Key="PageControlTextColor">Blue</Color>
+```
+
+Store Resources in a Resource Dictionary
+
+### XAML Resource Dictionary
+
+.NET MAUI has a specific class for this: `ResourceDictionary`.
+
+- Customized for use with UI resoruces.
+- Stores Key-Value pairs.
+- Create an instance of ResourceDictionary before tyring to use it.
+
+```XML
+<ContentPage.Resources> <!-- this is REQUIRED -->
+  <ResourceDictionary> <!-- this is actually OPTIONAL -->
+    <Color x:Key="PageControlTextColor">Azure</Color>
+    <!-- more Resources defined here -->
+  </ReseourceDictionary>
+</ContentPage.Resources>
+```
+
+Ways to use Resource Dictionaries:
+
+- Create Control-specific Resources and Resource Dictionaries in-line with the Control definition.
+- Create page-specific Resource Dictionariese within the Page where the resources are needed.
+- Create a separate Resource Dictionary code page that multiple pages within the App can use.
+
+### Apply a Static Resource
+
+Markup Extension looks up resources in a resource dictionary, by Key.
+
+Static Resources are only looked up _once_. Changing the resource during Run Time will _not have an effect_.
+
+Code courtesy of MSFT Learn:
+
+```XML
+<Label TextColor="{StaticResource PageControlTextColor}" ... />
+<!-- Key is 'PageControlTextColor' and the value returned will be placed in the TextColor attribute at Run Time -->
+```
+
+_Note_: Static Resources will throw a Runtime Exception if the Key is not found.
+
+### Intrinsic Types
+
+Remember these in C#? Well, they exist in XAML, too!
+
+For example, initializing a Double variable in XAML is this simple: `<x:Double x:Key="MyDouble">12.3</x:Double>`.
+
+This applies to FONTs as Strings, Font Size as Double, and other intrinsic Types like Boolean, Int64, Byte, etc.
+
+### Platform-Specific Values for a Resource
+
+Use `OnPlatform` to get slightly different UI Control Styles and settings based on the Platform at build time.
+
+Code courtesy of MSFT Learn:
+
+```XML
+<ContentPage.Resources>
+  <OnPlatform x:Key="textColor" x:TypeArguments="Color">
+    <On Platform="iOS" Value="Silver" />
+    <On Platform="Android" Value="Green" />
+    <On Platform="WinUI" Value="Azure" />
+    <On Platform="MacCatalyst" Value="Pink" />
+  </OnPlatform>
+</ContentPage.Resources>
+```
 
 ## Android Emulator
 
