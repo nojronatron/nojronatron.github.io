@@ -422,7 +422,7 @@ For situations where applying an attribute (like `Padding`) to solve a layout pr
 
 Use a turnary clause to provide the correct values depending on the device type return by `DeviceInfo.Platform`.
 
-Example provided by MSFT Learn:
+Example provided by _[MSFT Learn]_:
 
 ```C#
 MyStackLayout.Padding =
@@ -442,7 +442,7 @@ Enables detecting the runtime platform within XAML!
 - Requires setting values to property via series of `<On Platform="..." Value="..." />` blocks.
 - OnPlatform is generic and accepts a `type` parameter.
 
-Example provided by MSFT Learn:
+Example provided by _[MSFT Learn]_:
 
 ```XML
 <VerticalStackLayout>
@@ -463,7 +463,7 @@ Key Takeaway: Customize the UI for each platform using `OnPlatform`.
 
 ##### OnPlatform Reduced Syntax
 
-Simplify by using a Default Value for any non-match (example provided by MSFT Learn):
+Simplify by using a Default Value for any non-match _[MSFT Learn example]_:
 
 ```XML
 <VerticalStackLayout Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
@@ -610,7 +610,7 @@ Symbolic constants are defined in one place and referenced everywhere it is need
 
 `Style` and `OnPlatform` instances can be set as Resources!
 
-Define a XAML Resource (from MSFT Learn documentation):
+Define a XAML Resource _[MSFT Learn example]_:
 
 ```XML
 <Color x:Key="PageControlTextColor">Blue</Color>
@@ -641,13 +641,15 @@ Ways to use Resource Dictionaries:
 - Create page-specific Resource Dictionariese within the Page where the resources are needed.
 - Create a separate Resource Dictionary code page that multiple pages within the App can use.
 
+_Note_: The order of entries within a Resource Dictionary are important, especially in cases where Style [BasedOn](#basedon-style-inheritance) and Style [overrides](#override-a-style) are used.
+
 ### Apply a Static Resource
 
 Markup Extension looks up resources in a resource dictionary, by Key.
 
 Static Resources are only looked up _once_. Changing the resource during Run Time will _not have an effect_.
 
-Code courtesy of MSFT Learn:
+Code courtesy of _[MSFT Learn]_:
 
 ```XML
 <Label TextColor="{StaticResource PageControlTextColor}" ... />
@@ -668,7 +670,7 @@ This applies to FONTs as Strings, Font Size as Double, and other intrinsic Types
 
 Use `OnPlatform` to get slightly different UI Control Styles and settings based on the Platform at build time.
 
-Code courtesy of MSFT Learn:
+Code courtesy of _[MSFT Learn]_:
 
 ```XML
 <ContentPage.Resources>
@@ -680,6 +682,322 @@ Code courtesy of MSFT Learn:
   </OnPlatform>
 </ContentPage.Resources>
 ```
+
+### Dynamic Resources
+
+Another Markup Extension!
+
+- Performs a dictionary lookup, like Static Resoruces.
+- Lookup happens when Control is _created_.
+- Listens for _changes_ to the Resource Dictionary and when detected, _automatically updates the UI_ during Run Time.
+
+Places to use Dynamic Resources instead of Static:
+
+- Values that must be changed at Run Time.
+- User-controlled theme color schemes.
+- User-preferences are stored in a DB and loaded at next login, then applied to the user's UX.
+
+Dynamic Resources are scanned dynamically at RunTime, whereas Static Resources are scanned just once, and that scanned-in value is used for the lifetime of the App.
+
+Imposes a small resource penalty on the Application, vs Static Resources.
+
+#### Update Dynamic Resources at Run Time
+
+Add new, Remove or Update existing Resources!
+
+Code-behind allows making these changes _[MSFT Learn example]_:
+
+```C#
+this.Resources["PanelBackgroundColor"] = Colors.Green;
+```
+
+Reference Dynamic Resources similarly to Static Resources in XAML _[MSFT Learn example]_:
+
+```XML
+<StackLayout BackgroundColor="{DynamicResource PanelBackgroundColor}">
+```
+
+### Style Setters
+
+Using StaticResource and DynamicResource can start to clutter XAML.
+
+Defining new, or editing existing Controls takes a fair amount of XAML code and can make a Page XAML code hard to read and maintain.
+
+Use a Setter to help solve this problem:
+
+- Container for a property/value pair.
+- Represents an _assignment statement_.
+- Specify a property, then assign a value.
+- Values can be hard-coded, StaticResource, or a DynamicResource!
+
+_Note_: All Properties on Controls in .NET MAUI whose name suffix is `Property` is a _Bindable Property_ and is necessary for use in Setters. For example, `TextColorProperty` is a BindableProperty and can be used directly in a Setter. Other Properties of Controls that are not already bindable properties must be handled differently. Thankfully, _most of the time_ MAUI's built-in Control Properties already have a bindable property definition.
+
+Styles are a collection of Setters targeting a specific Control Type.
+
+- This is a Type-safe operation.
+- Ensures Properties that a Control _can_ take are applied, and not ones it cannot support.
+- If a collection of Setters (a Style) targets on Control Type and has properties that another Type does not support, it _cannot_ be applied to that other Control Type.
+
+Define Styles as resources within a Resource Dictionary object.
+
+- Simplifies use across multiple Controls.
+- Applies across an entire page _or the entire application_, you choose.
+- Use Key-Value syntax to create Style using Setters.
+
+Example from _[MSFT Learn documentation]_
+
+```XML
+<ContentPage.Resources>
+  <Style x:Key="MyButtonStyle" TargetType="Button">
+    <!-- Setter collection here -->
+  </Style>
+</ContentPage.Resources>
+```
+
+### Applying a Style
+
+Attach a Style through the Style property of a Control (_[MSFT Learn example code]_):
+
+```XML
+<Button Text="OK" Style="{StaticResource MyButtonStyle}" />
+<Button Text="Cancel" Style="{DynamicResource CancelButtonStyle}" />
+```
+
+### Implicit Styles for Multiple Controls
+
+Apply the same Style to all Controls on a page (or App):
+
+- Add a Style to a resoruce dictionary.
+- Do _not_ assign an `x:Key` identifier.
+- `TargetType` is used instead, to apply Style to all Controls of the same Type.
+
+Limitations:
+
+- `TargetType` _must be an exact match_.
+- Inheritance _does not count_ and the Style Setters will be ignored.
+- Instead use `Style.ApplyToDerivedTypes` attribute and set to `True` in the Style definition.
+
+### Override a Style
+
+Use this technique when a closely-matched Control exists, and just override a few of the Setters.
+
+Explicitly set Style settings are applied _after_ the base Control styles, so they will override.
+
+Steps:
+
+1. All buttons except one need to have the same Style applied.
+2. Create the Style using Setters and assign an `x:Key` KVP name and `TargetType` so the styles will be applied.
+3. For the button that needs Style overrides, only update the properties that need to be changed.
+
+For example, all buttons are configured to have a Green background and Grray foreground, except the 'Exit' button which needs to be Black background and White foreground:
+
+```XML
+<!-- Buttons will have Green background, Gray text, and a medium-thin border with curved corners -->
+<Style x:Key="MyButtonStyle" TargetType="Button">
+  <Setter Property="BackgroundColor" Value="Green" />
+  <Setter Property="BorderRadius" Value="12" />
+  <Setter Property="BorderWidth" Value="4" />
+  <Setter Property="TextColor" Value="Gray" />
+</Style>
+
+<!-- set Exit button overrides TextColor and BackgroundColor just for itself -->
+<Button Text="Exit"
+        Style="{StaticResource MyButtonStyle}"
+        TextColor="White"
+        BackgroundColor="Black" />
+```
+
+### Target an Ancestor
+
+Use `TargetType` set to 'VisualElement', a base Class for several Controls (e.g. Button and Label).
+
+### BasedOn Style Inheritance
+
+Many Style definitions will repeat lots of the same Setters, such as BackgroundColor.
+
+Example _[MSFT Learn]_ code:
+
+```XML
+<!-- base Style to base another off of -->
+<Style x:Key="MyVisualElementStyle" TargetType="VisualElement">
+  <Setter Property="BackgroundColor" Value="Blue" />
+</Style>
+
+<!-- altered Style based on MyVisualElementStyle, simplifying the code -->
+<Style x:Key="MyButtonStyle" TargetType="Button" BasedOn="{StaticResource MyVisualElementStyle}">
+  <Setter Property="BorderColor" Value="Navy" />
+  <Setter Property="BorderWidth" Value="5" />
+</Style>
+```
+
+### Application-Wide Resources
+
+When defining Resources within a specific Page of an App, those Resources are _only available to that same page_.
+
+Avoiding repeated code throughout your application, especially as it gets bigger and more complex, will require an App-Wide Resource Dictionary - a single place to set UI Control Styles.
+
+About `VisualElement`:
+
+- A Class.
+- Defines `Resources` property.
+- Controls, pages, and layouts inherit from VisualElement.
+- `Application` Class defines its own Resources property.
+- Each Resources property can hold their own `ResourceDictionary` of Resources.
+
+Diagram of MAUI Application Organization:
+
+```text
+=================================================
+|           Application Layer                   |
+- - - - - - - - - - - - - - - - - - - - - - - - -
+|     Page            |   |   Page              |
+- - - - - - - - - - - -   - - - - - - - - - - - -
+|     Layout          |   |   Layout            |
+- - - - - - - - - - - -   - - - - - - - - - - - -
+| View | View | View  |   | View | View | View  |
+=======================   =======================
+```
+
+Therefore, define Application-level Resources at the Application layer through the `Application` Class like this example from _[MSFT Learn]_:
+
+```XML
+<Application.Resources>
+  <Color x:Key="MyTextcolor">Azure</Color>
+</Application.Resources>
+```
+
+#### How MAUI Searches for a Resource
+
+Searches the tree for the _first instance of the key_ and then uses that value.
+
+1. Search the VisualElement instance ResourceDictionary.
+2. Search the parent Control ResourceDictionary e.g. Layout.
+3. Search the parent Control ResourceDictionary e.g. Page.
+4. Search the Application Class ResourceDictionary.
+5. If Key is not found, App will use default values for Styling.
+
+`x:Key` definitions can be duplicated across layers without issue (technically).
+
+- Code might be more difficult to understand if Layout, Page, and Application all have the same Key with different settings!
+- Debugging the UI might be more difficult.
+
+Jon's Advice: Push Style setters to the highest possible Resource Dictionary.
+
+- Putting it too high causes the Search for the ID to consume more resources.
+- Putting it too low (e.g. in the View), blocks Layout or Page level Controls from using that same key setting.
+
+## App Navigation in MAUI
+
+Flyout:
+
+- Window of menu items slides (flies) from the side of the device screen.
+- Invoked by tapping a "hamburger menu" icon like [:hamburger:].
+
+Tab:
+
+- A row of touchable controls is permanently displayed at top or bottom of the screen.
+- Mechanism to select between pages in a multi-page app.
+
+### Flyout Navigation
+
+Composed of:
+
+- Header
+- FlyoutItems
+- MenuItems
+- Footer
+
+Usually used to allow navigation between different pages of an App.
+
+Class: `FlyoutItem`
+
+- Implements flyout navigation.
+- Part of the [Shell App Developpment paradigm](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/) in MAUI.
+- Subclass of `Shell` class.
+- Sibling to `TabBar` class.
+- `ShellContent` property defines the page that is desplayed when the flyout... flies out.
+- Requires hosting within a `Shell` page.
+- Unlimited number of Flyouts are allowed within a Shell page.
+
+Implicit Conversion simplifies implementation:
+
+- Container Hierarchy: `Shell` can only contain `FlyoutItem` or `TabBar` objects, both of which can only contain `Tab` objects, which can only contain `ShellContent` objects.
+- Therefore a `Shell` class can contain `ShellContent` objects directly.
+
+Example code snippets from _[MSFT Learn]_:
+
+```XML
+<Shell xmlns="..."
+  >
+  <ShellContent Title="Cats"
+                Icon="cat.png"
+                ContentTemplate="{DataTemplate views:CatsPage}" />
+  <!-- additional ShellContent instances here -->
+</Shell>
+```
+
+#### Flyout Menu Items
+
+`MenuItem` object:
+
+- Similar to `Button` Class.
+- Tappable.
+- Can add these to a Flyout.
+- Order of declaration determines visual order in the Flyout.
+
+#### Flyout Header and Footer
+
+Content that optionally appears at top (or bottom) of Flyout.
+
+Appearance defined by `Shell.FlyoutHeader` (or `Shell.FlyoutFooter`) bindable property.
+
+Code snippet from _[MSFT Learn]_:
+
+```XML
+<Shell ...>
+  <Shell.FlyoutHeader>
+    <Grid>
+      <Image Source="....jpg" />
+    </Grid>
+  </Shell.FlyoutHeader>
+</Shell>
+```
+
+Same with Footer.
+
+### Tab Navigation
+
+Navigate a user on a permanent tab strip at the top or bottom of their device screen.
+
+- Each Tab in a tab strip represents specific section or page of an App.
+- Tabs are usually indicated using icons, usually with single-word descriptions.
+- Tab strips are _always visible_ on the screen.
+- Upon clicking/tapping, user is navigated to the connected page.
+- Use to connect frequently access pages within the App.
+
+_Note_: If more than 4-5 items in a tab strip, consider using a different navigation scheme.
+
+#### TabBar Object
+
+Implement Tab navigation using `TabBar`:
+
+- Displays a set of tabs.
+- Automatically switches displayed content when user selects a tab.
+- Contains a content area that displays a `Page`.
+- Contains `Tab`s with icons + short words for navigating the App.
+
+TabBar _must_ be instantiated as a child to the `Shell` class.
+
+Add `Tab` objects to the `TabBar`.
+
+Within a Tab object, a `ShellContent` object should be set to a `ContentPage` object.
+
+Create a Tabbed Page:
+
+1. Define an xmlns path to the folder that will contain the Tab Pages.
+1. Define `<TabBar>` within `<Shell>`.
+1. Instantiate a `<Tab>` with a Title and perhaps an Icon property.
+1. Set a `<ShellContent>` object with a `ContentTemplate` property pointing to a DataTemplate property referencing the `Page` that should be displayed.
 
 ## Android Emulator
 
@@ -705,7 +1023,9 @@ Question: Does this mean .NET MAUI can target Linux devices like RPi or full x86
 
 ## Resources and References
 
-[Learn.Microsoft.com](https://learn.microosft.com/en-us/training/modules/create-user-interface-xaml)
+[Learn.Microsoft.com](https://learn.microsoft.com/en-us/training/modules/create-user-interface-xaml)
+
+Code segments copied from various Modules at [Microsoft Learn](https://learn.microsoft.com/en-us/training/)
 
 ## Footer
 

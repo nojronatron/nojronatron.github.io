@@ -2,6 +2,46 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 6-Oct-2023
+
+While working through more MAUI modules, a wonderful discovery is the `DynamicResource` Type, and the ability to edit K-V pairs in it at Run Time. Just use C# code to index into the dynamic resource collection and set each KVP accordingly, then update the XAML to use `"{DynamicResource DynResName}"` for the references that need a dynamically set value!
+
+```XML
+<!-- portions of this code are from MSFT Learn MAUI Modules -->
+<ContentPage ...>
+    <ContentPage.Resources>
+        <Color x:Key="fgColor">#0000AD</Color>
+    </ContentPage.Resources>
+  <Grid ...>
+    <Label TextColor="{DynamicResource fgColor}" FontSize="{StaticResource fontSize}">My Label</Label>
+    <!-- more XAML Controls here -->
+  </Grid>
+</ContentPage>
+```
+
+...and...
+
+```C#
+public partial Class MyAppClass
+{
+  // CTOR etc here
+
+  // handler for the Light button
+  void OnLight(object sender, EventArgs e)
+  {
+      Resources["fgColor"] = colorNavy;
+      Resources["bgColor"] = colorSilver;
+  }
+
+  // handler for the Dark button
+  void OnDark(object sender, EventArgs e)
+  {
+      Resources["fgColor"] = colorSilver;
+      Resources["bgColor"] = colorNavy;
+  }
+}
+```
+
 ## Thursday 5-Oct-2023
 
 Completed more MAUI modules, creating Apps for Windows and Android. There is a bunch of borrowed syntax from WPF XAML that converting most of my development experience to MAUI should be fairly straightforward. There are a few changes in some of the syntax due to the extra layer MAUI adds over all 4 supported platforms, but those changes (so far) aren't too difficult to understand. Thinking ahead, even if the Bib Sync Tool doesn't get ported to MAUI (right away or ever), I have at least two backlogged mobile/Android projects I want to work on someday, and MAUI might be a good path to getting those want-to-dos done.
