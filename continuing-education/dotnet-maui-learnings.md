@@ -898,6 +898,12 @@ Tab:
 - A row of touchable controls is permanently displayed at top or bottom of the screen.
 - Mechanism to select between pages in a multi-page app.
 
+Stack:
+
+- URI-based navigation.
+- Allows drilling-down into content.
+- Routes to any page in the app, forward and backwards.
+
 ### Flyout Navigation
 
 Composed of:
@@ -915,7 +921,7 @@ Class: `FlyoutItem`
 - Part of the [Shell App Developpment paradigm](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/) in MAUI.
 - Subclass of `Shell` class.
 - Sibling to `TabBar` class.
-- `ShellContent` property defines the page that is desplayed when the flyout... flies out.
+- `ShellContent` property defines the page that is displayed when the flyout... flies out.
 - Requires hosting within a `Shell` page.
 - Unlimited number of Flyouts are allowed within a Shell page.
 
@@ -998,6 +1004,74 @@ Create a Tabbed Page:
 1. Define `<TabBar>` within `<Shell>`.
 1. Instantiate a `<Tab>` with a Title and perhaps an Icon property.
 1. Set a `<ShellContent>` object with a `ContentTemplate` property pointing to a DataTemplate property referencing the `Page` that should be displayed.
+
+### Stack Navigation
+
+Shell class defines navigation properties:
+
+- `BackButtonBehavior` of type `BackButtonBehavior` is an attached property. Defines behavior of the Back button.
+- `CurrentItem` of type `ShellItem`: The currently selected Item.
+- `CurrentPage` of type `Page`: The currently selected Page.
+- `CurrentState` of type `ShellNavigationState`: Current navigation state of the Shell.
+- `Current` of type `Shell`: Type-casted alias for `Application.Current.MainPage`.
+
+This is a good choice when there are any number of target content pages to navigate to:
+
+- More than 4-5 tabbed or flyout items could be replaced with Stack Navigation using Registered Routes.
+- Other external (to the visual tree) content should be referenced through Stack Navigation.
+
+#### Stack Nav Routes
+
+Navigation requires a URI to navigate TO:
+
+- Route: Defines path to content that is part of Shell visual hierarchy.
+- Page: Can be 'pushed' onto the Navigation Stack as required.
+- Query Parameters: Can be passed to destination Page during navigation.
+- All three components results in: `//route/page?queryParameters`.
+
+##### Register Routes
+
+Routes can be defined on these Types by using their `Route` properties:
+
+- FlyoutItem
+- TabBar
+- Tab
+- ShellContent
+
+Example Route property from _[MSFT Learn]_:
+
+```XML
+<Shell ...>
+  <FlyoutItem ...
+    Route="astronomy">
+      <ShellContent ...
+        Route="moonphase" />
+      <!-- etc -->
+  </FlyoutItem>
+</Shell>
+```
+
+Absolute route URI to moonphase is `//astronomy/moonphase`.
+
+##### Register Detail Routes
+
+For any content that is not in the Visual Hierarchy, register the route then navigate to it using the registered name value:
+
+- `Routing.RegisterRoute`: Supply description and a `typeof()` with the pagename as the type argument.
+- `await Shell.Current.GoToAsync("myCustomPageIdentifier");`: Navigates to the registered route.
+
+Backward Nav:
+
+- Similar to traversing a folder hierarchy, use `..` as the target definition.
+
+Passing Data:
+
+- Primitives can be passed as `string`-based query params.
+- Just like in REST-based query, use the `?` symbol and `ID=value` syntax.
+
+Retreiving Data:
+
+- Use the `QueryPropertyAttribe` decorator when defining the body page class.
 
 ## Android Emulator
 
