@@ -2,6 +2,102 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 6-Oct-2023
+
+While working through more MAUI modules, a wonderful discovery is the `DynamicResource` Type, and the ability to edit K-V pairs in it at Run Time. Just use C# code to index into the dynamic resource collection and set each KVP accordingly, then update the XAML to use `"{DynamicResource DynResName}"` for the references that need a dynamically set value!
+
+```XML
+<!-- portions of this code are from MSFT Learn MAUI Modules -->
+<ContentPage ...>
+    <ContentPage.Resources>
+        <Color x:Key="fgColor">#0000AD</Color>
+    </ContentPage.Resources>
+  <Grid ...>
+    <Label TextColor="{DynamicResource fgColor}" FontSize="{StaticResource fontSize}">My Label</Label>
+    <!-- more XAML Controls here -->
+  </Grid>
+</ContentPage>
+```
+
+...and...
+
+```C#
+public partial Class MyAppClass
+{
+  // CTOR etc here
+
+  // handler for the Light button
+  void OnLight(object sender, EventArgs e)
+  {
+      Resources["fgColor"] = colorNavy;
+      Resources["bgColor"] = colorSilver;
+  }
+
+  // handler for the Dark button
+  void OnDark(object sender, EventArgs e)
+  {
+      Resources["fgColor"] = colorSilver;
+      Resources["bgColor"] = colorNavy;
+  }
+}
+```
+
+## Thursday 5-Oct-2023
+
+Completed more MAUI modules, creating Apps for Windows and Android. There is a bunch of borrowed syntax from WPF XAML that converting most of my development experience to MAUI should be fairly straightforward. There are a few changes in some of the syntax due to the extra layer MAUI adds over all 4 supported platforms, but those changes (so far) aren't too difficult to understand. Thinking ahead, even if the Bib Sync Tool doesn't get ported to MAUI (right away or ever), I have at least two backlogged mobile/Android projects I want to work on someday, and MAUI might be a good path to getting those want-to-dos done.
+
+## Wednesday 4-Oct-2023
+
+Completed MAUI modules, creating Apps for Windows and Android. Documented learnings in a new [conted file](./dotnet-maui-learnings.html). Most of the MSFT Learn module notes are moved to this new file from the 'mobile-to-desktop' one referenced yesterday.
+
+## Tuesday 3-Oct-2023
+
+Catching up from yesterday:
+
+- Started a training module on .NET MAUI and am adding sparse notes in a [conted](./mobile-to-desktop-dotnet-maui.html) subtopic.
+- Completed an outline of a slide deck for the MVP presentation.
+- Discovered training course [Accessibility Fundamentals](https://learn.microsoft.com/en-us/training/paths/accessibility-fundamentals/) at Microsoft's Learn website, referenced from A11y Project.
+- A11y project actually has a large listing of [training resources](https://www.a11yproject.com/resources/#courses) focused on accessibility design and development strategies and tools.
+
+## Monday 2-Oct-2023
+
+Completed implementing hover actions over custom 'pill' shaped and round buttons used in the file sync project. In the time it took me to sort all of this out, I could have written 3 full websites with React and CSS (maybe 4 using Bootstrap :wink:). The reasons are:
+
+1. I've not done this much WPF customization before.
+2. It seems like XAML requires replacing events and triggers when custom animations are used to transition colors and other properties.
+3. If making simple event changes to states like 'IsHover' the process is much easier but seems to be limited i.e. cannot animate the transition.
+
+For now, I think I have the basic gist of how XAML UI customization is done, but it will be some time before I _know what I am doing_. In the meantime, the project is practically at MVP!
+
+Next steps:
+
+1. Script the most basic use case for demoing usage on a single computer.
+1. Script the use case of a set of computers on a LAN or local WiFi, all pointing to the same server.
+1. Record the use cases videos with walk-and-talk-through audio to use as stand-alone demo products.
+1. Develop very short, silent video demos that could work as animated JPGs.
+
+One additional thing I am proud of in this project is implementing accessibility features. ToolTips were added to buttons and textboxes, and a color palette that maintains high contrast for users with any of the 3 types of color-blindness that 1-in-10 adults experience to some degree. These often overlooked design considerations are not difficult to implement when using resources to help implement them, and enables additional users to utilize the software.
+
+## Sunday 1-Oct-2023
+
+After much consternation, I have a pill-shaped button with custom colors and responsive design that changes the button design between normal, hovered, and clicked. I still need to settle on color scheme and also add the disabled state design. At least now the basic template for how state changes are achieved is worked out.
+
+An interesting and helpful Style property, `BasedOn`, allows application of merged Style resources to a target type. For example:
+
+```xml
+<Style x:Key="DefaultPillStyling"
+       TargetType="{x:Type Button}">
+  <Setter Property="..." Value="..." /> <!-- etc -->
+</Style>
+<Style x:Key="ButtonPillStyle"
+       TargetType="Button"
+       BasedOn="{StaticResource DefaultPillStyling}">
+  <Setter Property="..." Value="..." /> <!-- etc -->
+</Style>
+```
+
+The applies Style settings from both configurations, allowing some buttons to apply just the DefaultPillStyling, and others to apply that _and more_.
+
 ## Monday 18-Sept-2023
 
 Lots of studying and working with XAML templating. Blend helps out a bit in getting lots of configuration set on Controls, and even has a state management toolbar. Some takeaways:

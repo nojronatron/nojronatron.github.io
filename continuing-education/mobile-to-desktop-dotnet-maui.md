@@ -1,5 +1,14 @@
 # MS Reactor From Mobile to Desktop DotNET MAUI
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Overview](#overview)
+- [New Project Demo Notes](#new-project-demo-notes)
+- [Hybrid Development](#hybrid-development)
+- [References](#references)
+- [Footer](#footer)
+
 ## Introduction
 
 Luis Beltran @darkicebeam - Microsoft MVP
