@@ -1242,6 +1242,128 @@ catch(HttpRequestException hrex) {
 }
 ```
 
+### Platform-Specific Features
+
+MAUI Templates map HttpClient to a layer that handles native networking stacks of each platform.
+
+Varying platforms have different security layer implementations, but MAUI manages that for you -- to a point.
+
+#### App Transport Security on iOS
+
+ATS requires Http Apps to use TLS 1.2 or above.
+
+Apps that don't use ATS will be denied network access.
+
+How to work with ATS:
+
+1. Change endpoint to adhere to ATS policy, or
+2. Opt-out of using ATS altogether.
+
+Opt-out:
+
+1. Add new key to `Info.plist` file (a Dictionary) called `NSAppTransportSecurity`.
+2. Add a new key to `Info.plist` called `NSExceptionDomains`.
+3. Add children to it for each endpoint your App will taget.
+
+Editing `Info.plist` can be done using Visual Studio's generic PList Editor, or by editing the XML directly.
+
+Targeting Keys look like this example from _[MS Learn]_:
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+   <key>NSExceptionDomains</key>
+      <dict>
+      <key>dotnet.microsoft.com</key>
+      <dict>
+        <key>NSExceptionMinimumTLSVersion</key>
+        <string>TLSv1.0</string>
+        <key>NSExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+      </dict>
+   </dict>
+</dict>
+```
+
+It is helpful to use the OPT-OUT method for locally debugging a service on the dev machine like this example from _[MS Learn]_:
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsLocalNetworking</key>
+    <true/>
+</dict>
+```
+
+Optionally, ATS can be disabled completely using code like this example from _[MS Learn]_:
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+   <key>NSAllowsArbitraryLoads</key>
+   <true/>
+</dict>
+```
+
+#### Configure Android Network Security
+
+API Level 28 (Android 9) introduced a policy that disables non-HTTP clear text traffic.
+
+This policy blocks downloading images or files from servers that are not configured for HTTPS, or there are no development certificates installed during dev or debug time.
+
+To permit clear text traffic:
+
+1. Create a new AML file in `Resources/xml` and name it `network_security_config.xml`.
+2. Add element `network-security-config` with a `domain-config` child element.
+
+Permitting clear text traffic look like this example from _[MS Learn]_:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <domain-config cleartextTrafficPermitted="true">
+    <domain includeSubdomains="true">10.0.2.2</domain> <!-- Debug port -->
+    <domain includeSubdomains="true">microsoft.com</domain>
+  </domain-config>
+</network-security-config>
+```
+
+Securing _all_ traffic on Android device regardless of target API level:
+
+1. Set `domain-config` child element `cleartextTrafficPermitted` to false in `network_security_config.xml`.
+2. Enable Android to use the xml by setting the `application` element according to the examle code from _[MSF Learn]_, below.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+    <application android:networkSecurityConfig="@xml/network_security_config" ...></application>
+</manifest>
+```
+
+#### Debug Apps Locally
+
+Use iOS Simulator and Android Emulator to consume ASP.NET Core web services running locally over HTTP.
+
+- iOS: Opt-out of ATS by specifying `NSAllowsLocalNetworking`.
+- Android: Use IP address `10.0.2.2`, an alias for `127.0.0.1`, and set up the network security configuration for using the loopback address.
+
+For example the `GET` request would be sent to localhost by configuring `http://10.0.2.2:/api/myEndpoint`.
+
+#### Detect the Operating System
+
+Use `DeviceInfo` class to determine OS the App is running on.
+
+Set the `BaseAddress` for calling the API Endpoint to a different value based on the detected OS value.
+
+Example code snippet from _[MSFT Learn]_:
+
+```c#
+public static string BaseAddress = DeviceInfo.Platform == DevicePlatform.Android
+  ? "http://10.0.2.2:5000"
+  : "http://localhost:5000"
+public static string ItemsUrl = $"{BaseAddress}/api/items/";
+```
+
 ## Android Emulator
 
 Requirements:

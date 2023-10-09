@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Monday 9-Oct-2023
+
+The weekend was busy, mostly with other tasks and committments. I'm back on the MAUI training path again.
+
 ## Friday 6-Oct-2023
 
 While working through more MAUI modules, a wonderful discovery is the `DynamicResource` Type, and the ability to edit K-V pairs in it at Run Time. Just use C# code to index into the dynamic resource collection and set each KVP accordingly, then update the XAML to use `"{DynamicResource DynResName}"` for the references that need a dynamically set value!
