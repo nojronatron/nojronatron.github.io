@@ -1197,7 +1197,7 @@ client.DefaultRequestHeaders.Accept.Add(new TypeWithQualityHeaderValue("applicat
 
 #### Update a Resource
 
-Use `HttpRequestMessage` initialized with `PUT` verb (code snippets from \_[MSFT Learn]):
+Use `HttpRequestMessage` initialized with `PUT` verb (code snippets from _[MSFT Learn]_):
 
 ```c#
 HttpClient client = new HttpClient();
@@ -1363,6 +1363,8 @@ public static string BaseAddress = DeviceInfo.Platform == DevicePlatform.Android
   : "http://localhost:5000"
 public static string ItemsUrl = $"{BaseAddress}/api/items/";
 ```
+
+### Store Local Data with SQLite
 
 ## Android Emulator
 

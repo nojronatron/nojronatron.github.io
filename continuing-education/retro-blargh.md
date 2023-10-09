@@ -6,6 +6,15 @@ Semi-regular notes taken during my software developer journey.
 
 The weekend was busy, mostly with other tasks and committments. I'm back on the MAUI training path again.
 
+After completing several .NET MAUI modules, I'm learning my code style usually over-codes, and under-utilizes built-in framework capabilities for things like making REST calls to an API. A few of the concepts are relatively new like `Connectivity.Current.NetworkAccess` and the `NetworkAccess` enumeration, other Classes and Properties of `System.Net.Http` are not new, and I have failed to make the best use of them.
+
+Key takeaways (so far):
+
+- Consider taking ASP.NET training modules on MSFT Learn to get a better understanding of the frameworks for HTTP in .NET.
+- Review previous MVP code and look into alternate ways of accomplishing the same task(s) by using framework classes, instead of custom code.
+- When building an app that uses a database, it is okay to implement a non-database solution such as the MAUI team has done such as in the [ToDo App](https://github.com/dotnet/maui-samples/blob/main/7.0/WebServices/TodoREST/TodoAPI/Services/TodoRepository.cs).
+- The fact that the MAUI training courses are answering questions for apps that I am planning to build, indicates I am planning ahead correctly (and take pride in that).
+
 ## Friday 6-Oct-2023
 
 While working through more MAUI modules, a wonderful discovery is the `DynamicResource` Type, and the ability to edit K-V pairs in it at Run Time. Just use C# code to index into the dynamic resource collection and set each KVP accordingly, then update the XAML to use `"{DynamicResource DynResName}"` for the references that need a dynamically set value!
