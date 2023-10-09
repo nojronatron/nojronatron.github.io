@@ -1060,6 +1060,8 @@ For any content that is not in the Visual Hierarchy, register the route then nav
 - `Routing.RegisterRoute`: Supply description and a `typeof()` with the pagename as the type argument.
 - `await Shell.Current.GoToAsync("myCustomPageIdentifier");`: Navigates to the registered route.
 
+This includes navigating between pages _within tabbed pages_.
+
 Backward Nav:
 
 - Similar to traversing a folder hierarchy, use `..` as the target definition.
@@ -1072,6 +1074,173 @@ Passing Data:
 Retreiving Data:
 
 - Use the `QueryPropertyAttribe` decorator when defining the body page class.
+
+## Consuming REST Web Services
+
+- Use `HttpClient`.
+- Perform basic CRUD operations.
+- Detect when connected to the internet.
+- Utilize native networking stacks.
+
+### Handling Network Connectivity Overview
+
+Connections could be WiFi or Cellular so your App needs to not fail when connectivity changes:
+
+- WiFi bandwidth might be higher than Cellular.
+- Cellular might be available but WiFi not, even though WiFi radio is on.
+- Connections are not guaranteed especially while travelling by car, bus, airplane, etc.
+
+Responding to network-related issues:
+
+- App could handle the loss of connectivity silently.
+- If network connection is required but not available, App should tell user what is wrong and whether changing a setting could fix it.
+
+### Detecting Network Connectivity
+
+Use `Connectivity` class.
+
+- Exposes `NetworkAccess` property, which has an enumeration called `NetworkAccess`.
+- Event `ConnectivityChanged` is also exposed
+- `NetworkAcess` property is available via the `Current` property.
+- Platform-specific code is managed under the `Current` property.
+
+NetworkAccess enumeration:
+
+- `ConstrainedInternet`
+- `Internet`
+- `Local`
+- `None`: No access to the internet!
+- `Unknown`
+
+Example code from _[MSFT Learn]_:
+
+```c#
+if (Connectivity.Current.NetowrkAccess == NetworkAccess.None)
+{
+  ...
+}
+```
+
+Event `ConnectivityChanged` is triggerred automatically when network connectivity changes.
+
+- `ConnectivityChangedEventArgs`: Passed to the event handler.
+- `IsConnected`: Boolean, member of `ConnectivityChangedEventArgs`.
+
+Portions of this code are from _[MSFT Learn]_:
+
+```c#
+// register the event handler
+Connectivity.Current.ConnectivityChanged += Connectivity_ConnectivityChanged;
+
+// event handler
+void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+{
+  // leverage the EventArgs inheritor built-in property to get connectivity status
+  bool stillConnected = e.IsConnected;
+}
+```
+
+### Consume a REST Service
+
+REST architecture uses well-defined _verbs_ representing operations in requests.
+
+REST verbs enable CRUD operations (Create, Read, Update, and Delete).
+
+REST service respond to requests in a standardized way.
+
+The `HttpClient` class:
+
+- `System.Net.Http`.
+- Use to send HTTP requests.
+- Use to receive HTTP responses from a REST service.
+- URIs are used to identify web service endpoints and include the "address" and "name of the resource" the REST endpoint.
+- Uses a _Task-based API_.
+- Exposes HTTP Headers.
+- Exposes Request message bodies.
+
+CRUD to REST translation:
+
+> CREATE <==> POST
+> READ <==> GET
+> UPDATE <==> PUT
+> DELETE <==> DELETE
+
+#### Create a Resource
+
+Create a new Resource with code from _[MSFT Learn]_:
+
+```c#
+// this is an async method code block
+HttpClient client = new HttpClient();
+// request contains http verb 'Post' and url 'url'
+HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, url);
+// serialize the 'parp' variable into JSON for sending to REST service
+message.Content = JsonContent.Create<Part>(part);
+HttpResponseMessage response = await client.SendAsync(message);
+```
+
+#### Read a Resource
+
+Convenience methods are included with HttpClient that shorten code in an HTTP Request:
+
+Example code portions from _[MSFT Learn]_:
+
+```c#
+HttpClient client = new HttpClient();
+// response will be returned as a string, which could be XML, JSON, or some other formatting
+string text = await client.GetStringAsync(url);
+
+// if response is going to be JSON then use the following instead
+client.DefaultRequestHeaders.Accept.Add(new TypeWithQualityHeaderValue("application/json"));
+// only response message body is returned within an HttpResponsemessage object instance
+```
+
+#### Update a Resource
+
+Use `HttpRequestMessage` initialized with `PUT` verb (code snippets from \_[MSFT Learn]):
+
+```c#
+HttpClient client = new HttpClient();
+HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Put, url);
+message.Content = JsonContent.Create<Part>(part);
+HttpResponseMessage response = await client.SendAsync(message);
+```
+
+Idempotency: The same operation will always have the same result. Submitting multiple PUT requests in a row with the same data will perform the exact same action as the 1st request. Submitting multiple POST requests with the same data will continue to create new items at each request. Server-response codes and messages might be different in subsequent identical requests regardless of the idempotency of the request type.
+
+#### Handle Response from Request
+
+Always expect a response message.
+
+- Includes which 'verb' was used.
+- Potentially, the requested resource.
+- A response code (200, 201, 202, 400, 403, 404, 500, etc).
+
+Redirection codes:
+
+- Codes in the 3xx range are 'redirect' codes.
+- A different address might actually be handling the request.
+
+Verify the status code in a response message, from _[MSFT Learn]_:
+
+```c#
+static readonly HttpClient client = new HttpClient();
+
+...
+// call asynchronous network methods in a try-catch block to handle exceptions
+try
+{
+  // initiate the HttpRequest
+  HttpResponseMessage response = await client.SendAsync(msg);
+  response.EnsureSuccessStatusCode(); // check that code IS WITHIN the 2xx range otherwise throw HttpRequestException
+  string responseBOdy = await response.Content.ReadAsStringAsync();
+  // handle the response
+  ...
+}
+catch(HttpRequestException hrex) {
+  // handle status codes from `e.StatusCode` that indicate the error condition
+}
+```
 
 ## Android Emulator
 
