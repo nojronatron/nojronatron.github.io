@@ -1364,7 +1364,269 @@ public static string BaseAddress = DeviceInfo.Platform == DevicePlatform.Android
 public static string ItemsUrl = $"{BaseAddress}/api/items/";
 ```
 
-### Store Local Data with SQLite
+## Store Local Data with SQLite
+
+There are several storage options in .NET MAUI applications including relational and no-SQL database types.
+
+Use asynchronous techniques to access databases while keeping the UI responsive.
+
+### Storage Options
+
+Mobile apps often store data locally for performance reasons, same is true for .NET MAUI.
+
+- Filesystem: Device files store the data locally.
+- SQLite: Light-weight relational data storage.
+- Preferences: KVP storage.
+
+### Preferences
+
+- Simple data types such as string, boolean, integer, etc.
+- Often used to store User Selections.
+- Application configuration.
+- Key-value pairs.
+- Cannot store complex types such as Lists, Collections, or Arrays (use File System or Database instead).
+
+`Preferences` can be used directly to set and get KVPs:
+
+```C#
+string dataToStore = "data to be stored locally.";
+Preferences.Set("dataKeyAlpha", dataToStore);
+var savedPreference = Preferences.Get("dataKeyAlpha", false);
+```
+
+`Preferences` also has methods:
+
+- `ContainsKey` -> boolean
+- `Remove` -> removes a key
+- `Clear` -> all Preference data is removed
+
+### File System
+
+Appropriate for:
+
+- Saving 'loose' files like XML, binary, or text.
+- Log data.
+- Serialized data structures.
+- Data structures to store during shutdown/restart that will be reconstituted to memory on startup/login.
+- JSON formatted is fairly universal, but other plain text formats will suffice.
+
+Use `System.Text.Json` and `System.IO`:
+
+```C#
+using System.Text.Json;
+using System.IO;
+
+List<Item> items = ...;
+
+// serialize and save
+string fileName = "data-store.json";
+var serializedData = JsonSerializer.Serialize(Items);
+File.WriteAllText(fileName, serializedData);
+
+// read and deserialize
+var rawData = File.ReadAllText(fileName);
+items = JsonSerializer.Deserialize<List<Item>>(rawData);
+...
+```
+
+#### App Sandbox
+
+Private area within the MAUI App for writing and reading files.
+
+Only the Platform OS and the current User can access the App Sandbox.
+
+`AppDataDirectory` is a static property of `FileSystem` that returns a string representing the sandbox path.
+
+- Is an abstraction.
+- Each platform has it's own underlying implementation.
+- Developers do _not_ have to access drive-specific paths in code.
+- Best practice is to use the Sandbox path instead of drive-specific paths.
+
+Apple Sandbox Guidelines:
+
+- Library: Returned by `AppDataDirectory`. Use to store App-generated data.
+- Documents: `Environment.SpecialFolder.MyDocuments`. Store user-generated data (stored in direct response to a user action).
+
+## When to use a Database
+
+- When using Relational data.
+- When using complex data types like Lists, Collection, Arrays, and etc.
+- When unique data should be stored.
+- When filtering of data is necessary.
+- When searching data is necessary and search performance is important.
+
+### SQLite
+
+Database _is a file_ that must be stored.
+
+- Recommend `AppDataDirectory`.
+- Common SQLite implementation is `SQLite-net`.
+- Lightweight local DB.
+- Cross-platform.
+- Industry standard for mobile.
+- Not server required.
+- Single-file storage on device file-system.
+- Read/Write operations are done _directly against the DB file_.
+
+A Caveat: Android and iOS native SQLite implementation support C/C++ but not .NET directly.
+
+Note: There are other C# "wrappers" for SQLite.
+
+### SQLite-net Features
+
+- An Object-Relational Mapper (ORM).
+- Simplifies schema design.
+- Use native-code models to define the schema and entities.
+
+Requires:
+
+- NuGet
+- `sqlite-net-pcl`
+- For Android support also include `SQLitePCLRaw.provider.dynamic_cdecl` package
+
+See the SQLList Project Home and Wiki links in the [Resources and References](#resources-and-references) section.
+
+### Connect SQLite
+
+Use `SQLiteConnection` object.
+
+- Pass-in the filename for the DB file.
+
+```C#
+using System.IO;
+using SQLite;
+string filename = Path.Combine(FileSystem.AppDataDirectory, "my-sqlite.db");
+SQLiteConnection connection = new SQLiteConnection(filename);
+```
+
+### Create a Table
+
+Define a C Sharp Class and use `CreateTable` on the `SQLiteConnection` class to generate a table.
+
+```C#
+[Table("myData")]
+public class MyData
+{
+  // PK is usually numeric
+  [PrimaryKey, AutoIncrement, Column("_id")]
+  public int Id { get; set; }
+
+  [MaxLength(100), Unique]
+  public int bibNumber { get; set; }
+
+  // more class-code...
+}
+```
+
+Table Attributes:
+
+- Table: Needs a name. Default is the name of the Class.
+- PrimaryKey: Column must be specified.
+- AutoIncrement: Boolean. If true, increases column value when new row is inserted.
+- Column: Needs a Name. Default is the Class Property for which it represents.
+- MaxLength: Max number of _characters_ that can be used in the column.
+- Unique: Boolean. Enforces uniqueness at the Table level.
+
+Create the table:
+
+```C#
+connection.CreateTable<MyData>();
+```
+
+_Note_: If table exists and schema is different, `CreateTable<T>()` attempts to update the schema to the properties of Type 'T'.
+
+### Read and Write Operations
+
+Insert:
+
+- Provide an object.
+- Must be properly typed.
+- Data is inserted.
+
+```C#
+public int AddNewBib(Bib bib)
+{
+  // todo: verify bib is not null?
+  int result = connection.Insert(bib);
+  // returns the number of row(s) that were updated
+  return result;
+}
+```
+
+Read _All_ Rows in a Table:
+
+- Use the `Table` method.
+- Returns a Collection of objects.
+- Collection _could be empty_.
+
+```C#
+public List<Bibs> GetAllBibs()
+{
+  List<Bib> bibs = connection.Table<Bib>.ToList();
+  return bibs;
+}
+```
+
+### Execute Queries Using LINQ
+
+Selecting data within a table can be done using LINQ queries. Supports:
+
+- Where
+- Take
+- Skip
+- OrderBy
+- OrderByDescending
+- ThenBy
+- ElementAt
+- First
+- FirstOrDefault
+- ThenByDescending
+- Count
+
+Use _extension method syntax_ to extend the LINQ query to a fully functional query:
+
+```C#
+public List<Bib> GetByAction(string action)
+{
+  var bibs = from b in connection.Table<Bib>()
+             where b.Action == action
+             select b;
+  return bibs.ToList();
+}
+```
+
+### Update and Delete
+
+Use the `SQLiteConnection` object.
+
+The `Update()` method updates a single record in a Table:
+
+- Returns the number of row(s) changed (should be 1 right?).
+- Accepts a plain-old C# Class/Object.
+
+```C#
+public int UpdateItem(Item item)
+{
+  int result = 0;
+  result = connection.Update(item);
+  return result;
+}
+```
+
+The `Delete(key)` method removes row(s) from a Table:
+
+- Requires the primary key of the item in teh Table.
+- Method is generic, requiring a Type parameter.
+- Returns the number of row(s) affected.
+
+```C#
+public int DeleteItem(int itemID)
+{
+  int result = 0;
+  result = connection.Delete<Item>(itemID);
+  return result;
+}
+```
 
 ## Android Emulator
 
@@ -1393,6 +1655,12 @@ Question: Does this mean .NET MAUI can target Linux devices like RPi or full x86
 [Learn.Microsoft.com](https://learn.microsoft.com/en-us/training/modules/create-user-interface-xaml)
 
 Code segments copied from various Modules at [Microsoft Learn](https://learn.microsoft.com/en-us/training/)
+
+[File System Helpers](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows)
+
+[SQLite](https://github.com/praeclarum/sqlite-net) project home
+
+[SQLite Wiki](https://github.com/praeclarum/sqlite-net/wiki/Getting-Started)
 
 ## Footer
 
