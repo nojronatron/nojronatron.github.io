@@ -2,6 +2,26 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 10-Oct-2023
+
+Continuing MAUI training, nearly done!
+
+Key Takeaways:
+
+- When using SQLite, create a Repository Class that stores the DB path, status message, and `SQLiteAsyncConnection` field, calls init (only if connection is null), has a constructor that accepts the connection string as a string, and has basic Table operations such as Add, Update, GetAll, etc.
+- Use DI to create a Singleton of the SQLite Repository instance and initialize it at the App level (in `App.xaml.cs`) so it is available while the app is running.
+- In asynchronous coding, the return type of an async function should be a `Task` type, not a void (Task can be null).
+- When the framework documentation tells you to install a very specific NuGet package, just do it. :smile:
+
+I completed the learning path and acheived the trophy "Build mobile and desktop apps with .NET MAUI"! This adds to my collection of Achievements from a couple years ago:
+
+- Work with data in C#
+- Add logic to applications with C#
+- Build .NET applications with C#
+- Taking your first steps with C#
+
+The Azure DevOps Learning Path was only a single module? Maybe they've been updating modules and that one was legacy. Whatever, moving on.
+
 ## Monday 9-Oct-2023
 
 The weekend was busy, mostly with other tasks and committments. I'm back on the MAUI training path again.

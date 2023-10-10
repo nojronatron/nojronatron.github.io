@@ -9,6 +9,12 @@ For starters, notes will be made while following MSFT Learn modules.
 - [Build Mobile and Desktop Apps Training Notes](#build-mobile-and-desktop-apps-training-notes)
 - [Create a UI in a DotNET MAUI App By Using XAML](#create-a-ui-in-a-dotnet-maui-app-by-using-xaml)
 - [Customize XAML Pages Layout](#customize-xaml-pages-layout)
+- [Static and Dynamic Resources](#static-and-dynamic-resources)
+- [App Navigation in MAUI](#app-navigation-in-maui)
+- [Consuming REST Web Services](#consuming-rest-web-services)
+- [Store Local Data with SQLite](#store-local-data-with-sqlite)
+- [Using Databases with MAUI](#using-databases-with-maui)
+- [SQLite Asynchronous Operation](#sqlite-asynchronous-operation)
 - [Android Emulator](#android-emulator)
 - [About Tizen](#about-tizen)
 - [Resources and References](#resources-and-references)
@@ -1447,13 +1453,15 @@ Apple Sandbox Guidelines:
 - Library: Returned by `AppDataDirectory`. Use to store App-generated data.
 - Documents: `Environment.SpecialFolder.MyDocuments`. Store user-generated data (stored in direct response to a user action).
 
-## When to use a Database
+## Using Databases with MAUI
 
-- When using Relational data.
-- When using complex data types like Lists, Collection, Arrays, and etc.
-- When unique data should be stored.
-- When filtering of data is necessary.
-- When searching data is necessary and search performance is important.
+When to use a database:
+
+- Using Relational data.
+- Using complex data types like Lists, Collection, Arrays, and etc.
+- Unique data should be stored.
+- Filtering of data is necessary.
+- Searching data is necessary and search performance is important.
 
 ### SQLite
 
@@ -1486,7 +1494,9 @@ Requires:
 
 See the SQLList Project Home and Wiki links in the [Resources and References](#resources-and-references) section.
 
-### Connect SQLite
+_Note_: Skipping `SQLitePCLRaw.provider.dynamic_cdecl` package will ensure an initialization error in the SQLite Connection constructor. See [Type Initializer for SQLite.SLiteConnection threw an exception](https://stackoverflow.com/questions/46915404/the-type-initializer-for-sqlite-sqliteconnection-threw-an-exception) on StackOverflow.
+
+### SQLite Connect
 
 Use `SQLiteConnection` object.
 
@@ -1499,7 +1509,7 @@ string filename = Path.Combine(FileSystem.AppDataDirectory, "my-sqlite.db");
 SQLiteConnection connection = new SQLiteConnection(filename);
 ```
 
-### Create a Table
+### SQLite Create a Table
 
 Define a C Sharp Class and use `CreateTable` on the `SQLiteConnection` class to generate a table.
 
@@ -1535,7 +1545,7 @@ connection.CreateTable<MyData>();
 
 _Note_: If table exists and schema is different, `CreateTable<T>()` attempts to update the schema to the properties of Type 'T'.
 
-### Read and Write Operations
+### SQLite Read and Write Operations
 
 Insert:
 
@@ -1567,7 +1577,7 @@ public List<Bibs> GetAllBibs()
 }
 ```
 
-### Execute Queries Using LINQ
+### SQLite Queries Using LINQ
 
 Selecting data within a table can be done using LINQ queries. Supports:
 
@@ -1595,7 +1605,7 @@ public List<Bib> GetByAction(string action)
 }
 ```
 
-### Update and Delete
+### SQLite Update and Delete
 
 Use the `SQLiteConnection` object.
 
@@ -1627,6 +1637,27 @@ public int DeleteItem(int itemID)
   return result;
 }
 ```
+
+## SQLite Asynchronous Operation
+
+Use Async operations to ensure the UI remains responsive to the user.
+
+### Async Queries
+
+Execute queries on a separate thread, not the UI thread.
+
+- All operations are Task-based to support background usage.
+- Async API via `SQLiteAsyncConnection` class: `var connection = new SQLiteAsyncConnection(databasePath);`.
+- Create Table asynchronously: `await connection.CreateTableAsync<Item>();`.
+- `DropTableAsync(class)`: Drop Table, by correlated Class.
+- `GetAsync(primaryKey)`: Gets record in table based on class, matching PK.
+- `InsertAsync(newItem)`: Insert new record.
+- `UpdateAsync(updatedItem)`: Updates existing record.
+- `DeleteAsync(primaryKey)`: Remove record that matches table, PK.
+- `QueryAsync()`: Direct SQL query and returns an object.
+- `ExecuteAsync()`: Direct SQL query returns count of affected rows.
+- `ExecuteScalarAsync()`: Direct SQL query returns _single result_.
+- `ToListAsync()`: Converts Table Query result to a `List<T>` type.
 
 ## Android Emulator
 
