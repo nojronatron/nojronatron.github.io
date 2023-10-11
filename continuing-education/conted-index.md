@@ -23,6 +23,7 @@ This list became so large it was unmanageable in an MD file, so all items have m
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] [Web Accessibility Basics](./web-accessibility-basics.html) notes from Microsoft Learn module.
 - [x] DotNET MAUI for desktop and mobile app development [mobile-to-deskto-dotnet-maui](./mobile-to-desktop-dotnet-maui.html).
 - [x] DotNET MAUI [Handlers: Native Controls](./maui-handlers-native-controls.html).
 - [x] DotNET MAUI [Data Binding in MVVM](./maui-databinding-mvvm.html).
