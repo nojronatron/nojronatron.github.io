@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 11-Oct-2023
+
+Working through more training modules. Key takeaways:
+
+- Minimal APIs: Introduced with .NET 6.0, it really is minimal! The `WebApplication` class now has `MapGet()` and other HTTP verb-suffixed mapping functions that define routes and executable code or references, rather than using Controllers like in MVC. Even the `WebApplication` class `CreateBuilder()` and `builder.Build()` functions are single-line
+
 ## Tuesday 10-Oct-2023
 
 Continuing MAUI training, nearly done!
