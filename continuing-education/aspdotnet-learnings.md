@@ -2,6 +2,15 @@
 
 Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET Core, and .NET 6.
 
+## Table of Contents
+
+- [Minimal APIs](#minimal-apis)
+- [Entity Framework Core](#entity-framework-core)
+- [Full Stack ASP Dot Net Development](#full-stack-asp-dot-net-development)
+- [GitHub CodeSpaces](#github-codespaces)
+- [Resources](#resources)
+- [Footer](#footer)
+
 ## Minimal APIs
 
 Get started developing an API with just a few lines of code, as opposed to the many files and code blocks necessary using previous templates and frameworks of DotNET.
@@ -305,6 +314,219 @@ app.MapDelete("/thing/{id}", async (ThingDb db, int id) =>
   return Results.Ok();
 });
 ```
+
+## Full Stack ASP Dot Net Development
+
+Create a full stack webapp using:
+
+- ASP.NET Core
+- Minimal APIs
+- React
+- CORS
+
+### Front-end Development Concerns
+
+- How user interacts with features.
+- Designing an effective layout.
+- Designing a user flow for positive interaction.
+
+Users manage data on the app front-end:
+
+- Create
+- Read
+- Update
+- Delete
+
+### Front-end Development Design Systems
+
+Ideas that guide:
+
+- Design Principles: Site design.
+- Brand Values: Overall design to trigger specific emotions in users.
+
+Rules and guidelines:
+
+- Brand Style Guide: Using the brand's visual identity correctly.
+- Content Guidelines: Writing content that is in line with the organization's mission and values.
+- Accessibility Guidelines: Make the site accessible to all users.
+
+Collections of Components:
+
+- Component Library: Reusable code for building applications.
+- Pattern Library: Navigation bars, Footers, Forms, and other componentized code, for reusable, consistend App look-and-feel.
+- Icon Library: Icons used within the site.
+
+Design Tokens: Names representing hard-coded values for visual elments e.g. Spacing, Color, Typography.
+
+#### Common Design Systems
+
+- [Material Design](https://material.io/)
+- [Fluent UI](https://developer.microsoft.com/fluentui/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Chakra UI](https://chakra-ui.com/)
+
+### Selecting a Design System
+
+- Learn what features the system has, and if it has the features _you need_.
+- Can the design system be customized, or are the components canned and as-is?
+- Does the design system provide accessibility?
+- How large in the community? Is the community active?
+- How is support (does it exist)? If it does, is it free? Is their a paid option, or paid only?
+- Is there an initial cost in money to use the system or is it free? One-time cost or is it a subscription?
+- What framework(s) are supported? Does it support the framework you are using?
+- Does the system allow using only the features you need? Can it be optimized? Is there a way to minimize unused code?
+- Does it support the target browsers your app needs to run on?
+- How large is the system when implemented i.e. does it slow browser load-time? Can it be tweaked to meet specific performance metrics?
+- What are the dependencies of the system? Are they still available and supported? Does it include dependencies you _do not want to use_?
+
+### Additional Design System Considerations
+
+CSS Styles:
+
+- CSS vs JSX syntax
+- Preprocessors (SASS, LESS, Stylus) and Postprocessors (Autoprefixer, PostCSS, CSSNano)
+
+CSS in Javascript:
+
+- Manageability and maintainability. Good for teams in close design and FE build collaboration.
+- Consistency: Easier to maintain a consistent look and feel.
+- Dynamic Styling: More concise and adaptable code.
+- Onboarding a migration might be difficult.
+- Delivery and Performance: Slower packaging and site rendering due to larger size of packaged files and site generation.
+
+Component Composability:
+
+- Organization: Layout components that define DOM hierarchy and where controls are in the page.
+- Presentation: Interactive and display components like Buttons, Sliders, Text boxes, etc.
+
+Typography:
+
+- Serif Fonts: Lines/decorations/tails could lead to more difficult rendering or contrast/vision issues.
+- Sans-serif: Plain fonts are higher contrast but not as 'interesting'.
+- Display Fonts: Fancier fonts usually used for Titles, Headings, or other eye-catching purposes.
+- Optimized typography enables smaller download size and better rendering performance on your App.
+- Rendering _order_ and performance can affect how Fonts appear to the user. Flash of Invisible Text (FOIT) and Flash of Unstyled Text (FOUT) are 2 possible problems that can occur when typography and design are not carefully planned.
+
+Icons:
+
+- Usually used for Navigation and Button faces.
+- Select similar/same family icon designs to maintain consistency through the App/Site.
+
+### Single Page App Frameworks
+
+An SPA:
+
+- Uses a single main view page.
+- Navigation is moving other pages in/out of the main view page.
+- URL stays the same.
+- Only content is changed.
+- Lots of JavaScript is used to manipulate the DOM to make this happen.
+
+React:
+
+- Uses EF6 and TypeScript/JavaScript.
+- Engaged tooling community.
+- 3rd party components are available.
+
+Angular:
+
+- Heavy use of TypeScript.
+- Good tooling.
+
+Vue.js:
+
+- Popular (that's all MSFT Learn had to say about it).
+
+Svelte:
+
+- Powerful compiler.
+- Hides framework parts.
+- Looks a lot like just HTML, CSS, and JavaScript.
+
+Next.js:
+
+- Hybrid static + server-side rendering (SSR).
+
+### Bundlers
+
+Takes JS, CSS, images, etc and creates one or more 'bundled files'.
+
+- Reduces files and file sizes for download to the client.
+- Webpack: Used by many framewoks with lots of features and is configurable.
+- Parcel: Easy to use, lots of features, but no configuration.
+- Vite: Focused on speed and simplicity. Configured templates are used to target various frameworks.
+
+### Front-end Development Server
+
+Used to service HTTP requests while developing the App. SPAs are hosted applications - a server on an HTTP port and possibly behind a proxy will serve up content based on browser requests.
+
+Configurable settings:
+
+- Port: The TCP port the server listens on.
+- Proxy: Whether one is used as a bridge between the browser and the back-end API.
+
+### Data Binding
+
+One-way:
+
+- Passing parameters from Parent component to Child component.
+- Child component cannot change the data.
+- Child can send a message to Parent to change the data.
+- Parent component is only one that can change data.
+- In React this allows Parent component to control when Child component(s) are rendered (and re-rendered).
+- Pass a Callback Function from Parent to Child so Child component can use it to get updated data.
+
+React UseState:
+
+- Allow Parent to store and update data (parameters).
+- Parent can send UseState variables _as params_ to the Child component as callbacks!
+- Child can then set the callback param as an `onClick` to tell the Parent to update the data.
+- When Button is clicked on child component, the data sent with the 'set' callback will update the Parent and the Child will be re-rendered.
+
+### State Management
+
+This needs to be planned to ensure effecient component rendering:
+
+- React has its own State Management system: `useState` hook.
+- Redux is an alternative.
+- `useState` 'hooks' into the Component lifecycle to add functionality.
+- Carefully plan how params from useState will be sent to Child components.
+- Carefully plan how Child components can use a callback to tell Parent to update State.
+
+### Scaffold an App
+
+Using Vite:
+
+1. Use the Terminal.
+2. `npm create vite@latest ProjectName --template react`
+3. Set package name, framework, and variant (JS or TS).
+4. Install dependencies using `npm install`.
+5. Update `vite.config.js` to set a static server port. 3000 is suggested.
+6. Run the package using `npm run dev` and open the URI in a browser to see the rendered site.
+
+## GitHub CodeSpaces
+
+The Full-stack learning module used a GitHub CodeSpace as a development container. This section will contain notes about CodeSpaces and my experience using them.
+
+### Challenges
+
+- I hadn't used CodeSpaces before (but the value seems high).
+- When launching the template CodeSpace, there are six projects within the solution so learning the layout of the files and projects slowed progress.
+- A Dev Certificate had expired in the Template and there was no information within the MSFT Learn Module about working with Dev certificates (this is partially on me, I should learn how to manage Dev Certificates if I want to regularly work in DotNET development).
+
+### Cost
+
+CodeSpaces are not free, at least after 60 hours per month:
+
+- [ ] How to monitor usage?
+- [ ] Cost after surpassing 60 hours?
+- [ ] What features are included in CodeSpaces?
+
+### Cleaning Up Codespace
+
+Go to the [CodeSpaces Dashboard](https://github.com/codespaces) and find the CodeSpace to clean up and click the Delete button.
+
+At the very least, 'Stop' the CodeSpace until you need it next.
 
 ## Resources
 

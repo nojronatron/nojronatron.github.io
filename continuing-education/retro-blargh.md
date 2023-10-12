@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 12-Oct-2023
+
+MSFT Learn took me down a strange trip as I worked through the Create Web Apps and Services with AS.NET Core path. The learning tools they presented included React, Vite, and MaterialUI, as well as GitHub CodeSpaces. Nothing wrong with any of that, it was just unexpected given the context was ASP.NET - I would have guessed they would have done a Blazor or Minimal API framework for the training, instead.
+
+At any rate, it was good to do that since I hadn't done much with React recently, and have not previously been exposed to Vite or MaterialUI, and had yet to take advantage of GitHub CodeSpaces. _All good!_
+
+A lot of good information was contained in that module, including [Front-End Development Concerns](./aspdotnet-learnings.html#front-end-development-concerns), [Selecting a Design System](./aspdotnet-learnings.html#selecting-a-design-system), and [SPA Frameworks](./aspdotnet-learnings.html#single-page-app-frameworks).
+
 ## Wednesday 11-Oct-2023
 
 Working through more training modules. Key takeaways:
