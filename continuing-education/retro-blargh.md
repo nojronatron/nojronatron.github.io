@@ -10,6 +10,15 @@ At any rate, it was good to do that since I hadn't done much with React recently
 
 A lot of good information was contained in that module, including [Front-End Development Concerns](./aspdotnet-learnings.html#front-end-development-concerns), [Selecting a Design System](./aspdotnet-learnings.html#selecting-a-design-system), and [SPA Frameworks](./aspdotnet-learnings.html#single-page-app-frameworks).
 
+In C#, Casting to a specific type _truncates_ rather than rounds the value up or down:
+
+```c#
+int numerator = 5;
+int denominator = 2;
+int total = (int)numerator / denominator;
+// total will be 2
+```
+
 ## Wednesday 11-Oct-2023
 
 Working through more training modules. Key takeaways:
