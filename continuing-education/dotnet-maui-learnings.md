@@ -7,14 +7,18 @@ For starters, notes will be made while following MSFT Learn modules.
 ## Table of Contents
 
 - [Build Mobile and Desktop Apps Training Notes](#build-mobile-and-desktop-apps-training-notes)
+- [Installing MAUI](#installing-maui)
+- [MAUI UI](#maui-ui)
+- [Debug Mode](#debug-mode)
 - [Create a UI in a DotNET MAUI App By Using XAML](#create-a-ui-in-a-dotnet-maui-app-by-using-xaml)
 - [Customize XAML Pages Layout](#customize-xaml-pages-layout)
 - [Static and Dynamic Resources](#static-and-dynamic-resources)
 - [App Navigation in MAUI](#app-navigation-in-maui)
 - [Consuming REST Web Services](#consuming-rest-web-services)
-- [Store Local Data with SQLite](#store-local-data-with-sqlite)
-- [Using Databases with MAUI](#using-databases-with-maui)
-- [SQLite Asynchronous Operation](#sqlite-asynchronous-operation)
+- [Storing Data Locally](#storing-data-locally)
+- [Preferences](#preferences)
+- [File System](#file-system)
+- [SQLite Database Storage](#sqlite-database-storage)
 - [Android Emulator](#android-emulator)
 - [About Tizen](#about-tizen)
 - [Resources and References](#resources-and-references)
@@ -37,7 +41,7 @@ A common layer pulls all the API differences together, called a Base Common Libr
 - Win32 does the same with various optimizations for mobile and other form-factor devices.
 - Platform-specific Libraries are leveraged to access specific hardware features and capability.
 
-#### New Dot Nets
+### New Dot Nets
 
 These come with .NET MAUI:
 
@@ -48,13 +52,13 @@ These come with .NET MAUI:
 
 _Note_: WinUI3 is provided by the Mono project.
 
-#### DotNET BCL 6
+### DotNET BCL 6
 
 The new Dot Net Libraries sit on top of BCL.
 
 BCL sits on top of Mono Runtime and WinRT runtime.
 
-#### Mono and WinRT
+### Mono and WinRT
 
 These parallel APIs are layered on top of Android, macOS, iOS, and Windows platform APIs.
 
@@ -81,6 +85,10 @@ Optimizations are performed during the build.
 - Data Binding
 - Custom Handers for events and presentation
 - Access to abstracted APIs (for the target platform)
+
+## Installing MAUI
+
+Requirements, App creation, App structure, and Startup.
 
 ### MAUI Install Requirements
 
@@ -147,7 +155,17 @@ Views Class:
 
 _Note_: Create a `Screen` using the `Page` Class.
 
-#### Controls and Layouts
+### Project File Noteworthy Elements
+
+Initial `PropertyGroup` specifies platform frameworks to target, app title, AppID, version, display, and supported OSes. These can be ammended as needed.
+
+`ItemGroup` following that allows specifying image and color for splash screen (app loading visual). Set default locations for fonts, images, and other assets used by the app. See `Resources Folder` for storing the actual items referenced. These should be REGISTERED using `MauiApp.CreateBuilder()` in `MauiProgram.cs`.
+
+## MAUI UI
+
+Controls and Layouts, and modifying Control properties.
+
+### Controls and Layouts
 
 Views contain a single Control (button, label, etc).
 
@@ -165,7 +183,7 @@ Other Layouts:
 - FlexLayout: Similar to StackLayout, it wraps child controls if they won't fit. Apply alignment rules (like FlexBox child-targeting rules) to align contents left, right, center, etc.
 - GridLayout: Defines layout based on rows and columns.
 
-#### Modifying Control Properties
+### Modifying Control Properties
 
 Can do this in C# code:
 
@@ -186,15 +204,11 @@ Margin and Padding are properties of Controls that the various Layout classes wi
 
 VerticalStackLayout and HorizontalStackLayout also have a `Spacing` property that affects the Margin of the child items within the layout.
 
-### Project File Noteworthy Elements
+## Debug Mode
 
-Initial `PropertyGroup` specifies platform frameworks to target, app title, AppID, version, display, and supported OSes. These can be ammended as needed.
+Setup Debugging for Android. Other modes are possible but are not yet documented here.
 
-`ItemGroup` following that allows specifying image and color for splash screen (app loading visual). Set default locations for fonts, images, and other assets used by the app. See `Resources Folder` for storing the actual items referenced. These should be REGISTERED using `MauiApp.CreateBuilder()` in `MauiProgram.cs`.
-
-### Debug Mode
-
-### Android MAUI App
+### Debug Android MAUI App
 
 Tools -> Android -> Android Device Manager: Create a new phone (emulator) and API Level (Google API implementation version).
 
@@ -1370,21 +1384,17 @@ public static string BaseAddress = DeviceInfo.Platform == DevicePlatform.Android
 public static string ItemsUrl = $"{BaseAddress}/api/items/";
 ```
 
-## Store Local Data with SQLite
-
-There are several storage options in .NET MAUI applications including relational and no-SQL database types.
-
-Use asynchronous techniques to access databases while keeping the UI responsive.
-
-### Storage Options
+## Storing Data Locally
 
 Mobile apps often store data locally for performance reasons, same is true for .NET MAUI.
 
-- Filesystem: Device files store the data locally.
-- SQLite: Light-weight relational data storage.
-- Preferences: KVP storage.
+There are several storage options in .NET MAUI applications:
 
-### Preferences
+- Filesystem: Device files store the data locally.
+- Preferences: KVP storage.
+- SQLite: Light-weight relational data storage.
+
+## Preferences
 
 - Simple data types such as string, boolean, integer, etc.
 - Often used to store User Selections.
@@ -1406,7 +1416,7 @@ var savedPreference = Preferences.Get("dataKeyAlpha", false);
 - `Remove` -> removes a key
 - `Clear` -> all Preference data is removed
 
-### File System
+## File System
 
 Appropriate for:
 
@@ -1435,7 +1445,7 @@ items = JsonSerializer.Deserialize<List<Item>>(rawData);
 ...
 ```
 
-#### App Sandbox
+### App Sandbox
 
 Private area within the MAUI App for writing and reading files.
 
@@ -1453,7 +1463,7 @@ Apple Sandbox Guidelines:
 - Library: Returned by `AppDataDirectory`. Use to store App-generated data.
 - Documents: `Environment.SpecialFolder.MyDocuments`. Store user-generated data (stored in direct response to a user action).
 
-## Using Databases with MAUI
+## SQLite Database Storage
 
 When to use a database:
 
@@ -1462,8 +1472,6 @@ When to use a database:
 - Unique data should be stored.
 - Filtering of data is necessary.
 - Searching data is necessary and search performance is important.
-
-### SQLite
 
 Database _is a file_ that must be stored.
 
@@ -1638,15 +1646,14 @@ public int DeleteItem(int itemID)
 }
 ```
 
-## SQLite Asynchronous Operation
+### SQLite Asynchronous Operation
 
 Use Async operations to ensure the UI remains responsive to the user.
 
-### Async Queries
+Asynchronous features execute queries on a separate thread, not the UI thread.
 
-Execute queries on a separate thread, not the UI thread.
+All operations are Task-based to support background usage:
 
-- All operations are Task-based to support background usage.
 - Async API via `SQLiteAsyncConnection` class: `var connection = new SQLiteAsyncConnection(databasePath);`.
 - Create Table asynchronously: `await connection.CreateTableAsync<Item>();`.
 - `DropTableAsync(class)`: Drop Table, by correlated Class.
