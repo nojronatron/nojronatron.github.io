@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 13-Oct-2023
+
+Started working on initial plan for a MAUI mobile app for Windows + Android. The goal is to make an app that can be published to Google Play Store. Expected completion is by end of 2023. There are several other projects I am currently working on that will slow initial progress of this project, but as November wraps up I expect to be able to dedicate more time through December. I'm excited! :grinning:
+
 ## Thursday 12-Oct-2023
 
 MSFT Learn took me down a strange trip as I worked through the Create Web Apps and Services with AS.NET Core path. The learning tools they presented included React, Vite, and MaterialUI, as well as GitHub CodeSpaces. Nothing wrong with any of that, it was just unexpected given the context was ASP.NET - I would have guessed they would have done a Blazor or Minimal API framework for the training, instead.
