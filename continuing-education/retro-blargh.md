@@ -2,6 +2,66 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 13-Oct-2023
+
+Started working on initial plan for a MAUI mobile app for Windows + Android. The goal is to make an app that can be published to Google Play Store. Expected completion is by end of 2023. There are several other projects I am currently working on that will slow initial progress of this project, but as November wraps up I expect to be able to dedicate more time through December. I'm excited! :grinning:
+
+## Thursday 12-Oct-2023
+
+MSFT Learn took me down a strange trip as I worked through the Create Web Apps and Services with AS.NET Core path. The learning tools they presented included React, Vite, and MaterialUI, as well as GitHub CodeSpaces. Nothing wrong with any of that, it was just unexpected given the context was ASP.NET - I would have guessed they would have done a Blazor or Minimal API framework for the training, instead.
+
+At any rate, it was good to do that since I hadn't done much with React recently, and have not previously been exposed to Vite or MaterialUI, and had yet to take advantage of GitHub CodeSpaces. _All good!_
+
+A lot of good information was contained in that module, including [Front-End Development Concerns](./aspdotnet-learnings.html#front-end-development-concerns), [Selecting a Design System](./aspdotnet-learnings.html#selecting-a-design-system), and [SPA Frameworks](./aspdotnet-learnings.html#single-page-app-frameworks).
+
+In C#, Casting to a specific type _truncates_ rather than rounds the value up or down:
+
+```c#
+int numerator = 5;
+int denominator = 2;
+int total = (int)numerator / denominator;
+// total will be 2
+```
+
+## Wednesday 11-Oct-2023
+
+Working through more training modules. Key takeaways:
+
+- Minimal APIs: Introduced with .NET 6.0, it really is minimal! The `WebApplication` class now has `MapGet()` and other HTTP verb-suffixed mapping functions that define routes and executable code or references, rather than using Controllers like in MVC. Even the `WebApplication` class `CreateBuilder()` and `builder.Build()` functions are single-line
+
+## Tuesday 10-Oct-2023
+
+Continuing MAUI training, nearly done!
+
+Key Takeaways:
+
+- When using SQLite, create a Repository Class that stores the DB path, status message, and `SQLiteAsyncConnection` field, calls init (only if connection is null), has a constructor that accepts the connection string as a string, and has basic Table operations such as Add, Update, GetAll, etc.
+- Use DI to create a Singleton of the SQLite Repository instance and initialize it at the App level (in `App.xaml.cs`) so it is available while the app is running.
+- In asynchronous coding, the return type of an async function should be a `Task` type, not a void (Task can be null).
+- When the framework documentation tells you to install a very specific NuGet package, just do it. :smile:
+
+I completed the learning path and acheived the trophy "Build mobile and desktop apps with .NET MAUI"! This adds to my collection of Achievements from a couple years ago:
+
+- Work with data in C#
+- Add logic to applications with C#
+- Build .NET applications with C#
+- Taking your first steps with C#
+
+The Azure DevOps Learning Path was only a single module? Maybe they've been updating modules and that one was legacy. Whatever, moving on.
+
+## Monday 9-Oct-2023
+
+The weekend was busy, mostly with other tasks and committments. I'm back on the MAUI training path again.
+
+After completing several .NET MAUI modules, I'm learning my code style usually over-codes, and under-utilizes built-in framework capabilities for things like making REST calls to an API. A few of the concepts are relatively new like `Connectivity.Current.NetworkAccess` and the `NetworkAccess` enumeration, other Classes and Properties of `System.Net.Http` are not new, and I have failed to make the best use of them.
+
+Key takeaways (so far):
+
+- Consider taking ASP.NET training modules on MSFT Learn to get a better understanding of the frameworks for HTTP in .NET.
+- Review previous MVP code and look into alternate ways of accomplishing the same task(s) by using framework classes, instead of custom code.
+- When building an app that uses a database, it is okay to implement a non-database solution such as the MAUI team has done such as in the [ToDo App](https://github.com/dotnet/maui-samples/blob/main/7.0/WebServices/TodoREST/TodoAPI/Services/TodoRepository.cs).
+- The fact that the MAUI training courses are answering questions for apps that I am planning to build, indicates I am planning ahead correctly (and take pride in that).
+
 ## Friday 6-Oct-2023
 
 While working through more MAUI modules, a wonderful discovery is the `DynamicResource` Type, and the ability to edit K-V pairs in it at Run Time. Just use C# code to index into the dynamic resource collection and set each KVP accordingly, then update the XAML to use `"{DynamicResource DynResName}"` for the references that need a dynamically set value!

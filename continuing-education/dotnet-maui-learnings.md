@@ -7,8 +7,18 @@ For starters, notes will be made while following MSFT Learn modules.
 ## Table of Contents
 
 - [Build Mobile and Desktop Apps Training Notes](#build-mobile-and-desktop-apps-training-notes)
+- [Installing MAUI](#installing-maui)
+- [MAUI UI](#maui-ui)
+- [Debug Mode](#debug-mode)
 - [Create a UI in a DotNET MAUI App By Using XAML](#create-a-ui-in-a-dotnet-maui-app-by-using-xaml)
 - [Customize XAML Pages Layout](#customize-xaml-pages-layout)
+- [Static and Dynamic Resources](#static-and-dynamic-resources)
+- [App Navigation in MAUI](#app-navigation-in-maui)
+- [Consuming REST Web Services](#consuming-rest-web-services)
+- [Storing Data Locally](#storing-data-locally)
+- [Preferences](#preferences)
+- [File System](#file-system)
+- [SQLite Database Storage](#sqlite-database-storage)
 - [Android Emulator](#android-emulator)
 - [About Tizen](#about-tizen)
 - [Resources and References](#resources-and-references)
@@ -31,7 +41,7 @@ A common layer pulls all the API differences together, called a Base Common Libr
 - Win32 does the same with various optimizations for mobile and other form-factor devices.
 - Platform-specific Libraries are leveraged to access specific hardware features and capability.
 
-#### New Dot Nets
+### New Dot Nets
 
 These come with .NET MAUI:
 
@@ -42,13 +52,13 @@ These come with .NET MAUI:
 
 _Note_: WinUI3 is provided by the Mono project.
 
-#### DotNET BCL 6
+### DotNET BCL 6
 
 The new Dot Net Libraries sit on top of BCL.
 
 BCL sits on top of Mono Runtime and WinRT runtime.
 
-#### Mono and WinRT
+### Mono and WinRT
 
 These parallel APIs are layered on top of Android, macOS, iOS, and Windows platform APIs.
 
@@ -75,6 +85,10 @@ Optimizations are performed during the build.
 - Data Binding
 - Custom Handers for events and presentation
 - Access to abstracted APIs (for the target platform)
+
+## Installing MAUI
+
+Requirements, App creation, App structure, and Startup.
 
 ### MAUI Install Requirements
 
@@ -141,7 +155,17 @@ Views Class:
 
 _Note_: Create a `Screen` using the `Page` Class.
 
-#### Controls and Layouts
+### Project File Noteworthy Elements
+
+Initial `PropertyGroup` specifies platform frameworks to target, app title, AppID, version, display, and supported OSes. These can be ammended as needed.
+
+`ItemGroup` following that allows specifying image and color for splash screen (app loading visual). Set default locations for fonts, images, and other assets used by the app. See `Resources Folder` for storing the actual items referenced. These should be REGISTERED using `MauiApp.CreateBuilder()` in `MauiProgram.cs`.
+
+## MAUI UI
+
+Controls and Layouts, and modifying Control properties.
+
+### Controls and Layouts
 
 Views contain a single Control (button, label, etc).
 
@@ -159,7 +183,7 @@ Other Layouts:
 - FlexLayout: Similar to StackLayout, it wraps child controls if they won't fit. Apply alignment rules (like FlexBox child-targeting rules) to align contents left, right, center, etc.
 - GridLayout: Defines layout based on rows and columns.
 
-#### Modifying Control Properties
+### Modifying Control Properties
 
 Can do this in C# code:
 
@@ -180,15 +204,11 @@ Margin and Padding are properties of Controls that the various Layout classes wi
 
 VerticalStackLayout and HorizontalStackLayout also have a `Spacing` property that affects the Margin of the child items within the layout.
 
-### Project File Noteworthy Elements
+## Debug Mode
 
-Initial `PropertyGroup` specifies platform frameworks to target, app title, AppID, version, display, and supported OSes. These can be ammended as needed.
+Setup Debugging for Android. Other modes are possible but are not yet documented here.
 
-`ItemGroup` following that allows specifying image and color for splash screen (app loading visual). Set default locations for fonts, images, and other assets used by the app. See `Resources Folder` for storing the actual items referenced. These should be REGISTERED using `MauiApp.CreateBuilder()` in `MauiProgram.cs`.
-
-### Debug Mode
-
-### Android MAUI App
+### Debug Android MAUI App
 
 Tools -> Android -> Android Device Manager: Create a new phone (emulator) and API Level (Google API implementation version).
 
@@ -1060,6 +1080,8 @@ For any content that is not in the Visual Hierarchy, register the route then nav
 - `Routing.RegisterRoute`: Supply description and a `typeof()` with the pagename as the type argument.
 - `await Shell.Current.GoToAsync("myCustomPageIdentifier");`: Navigates to the registered route.
 
+This includes navigating between pages _within tabbed pages_.
+
 Backward Nav:
 
 - Similar to traversing a folder hierarchy, use `..` as the target definition.
@@ -1072,6 +1094,577 @@ Passing Data:
 Retreiving Data:
 
 - Use the `QueryPropertyAttribe` decorator when defining the body page class.
+
+## Consuming REST Web Services
+
+- Use `HttpClient`.
+- Perform basic CRUD operations.
+- Detect when connected to the internet.
+- Utilize native networking stacks.
+
+### Handling Network Connectivity Overview
+
+Connections could be WiFi or Cellular so your App needs to not fail when connectivity changes:
+
+- WiFi bandwidth might be higher than Cellular.
+- Cellular might be available but WiFi not, even though WiFi radio is on.
+- Connections are not guaranteed especially while travelling by car, bus, airplane, etc.
+
+Responding to network-related issues:
+
+- App could handle the loss of connectivity silently.
+- If network connection is required but not available, App should tell user what is wrong and whether changing a setting could fix it.
+
+### Detecting Network Connectivity
+
+Use `Connectivity` class.
+
+- Exposes `NetworkAccess` property, which has an enumeration called `NetworkAccess`.
+- Event `ConnectivityChanged` is also exposed
+- `NetworkAcess` property is available via the `Current` property.
+- Platform-specific code is managed under the `Current` property.
+
+NetworkAccess enumeration:
+
+- `ConstrainedInternet`
+- `Internet`
+- `Local`
+- `None`: No access to the internet!
+- `Unknown`
+
+Example code from _[MSFT Learn]_:
+
+```c#
+if (Connectivity.Current.NetowrkAccess == NetworkAccess.None)
+{
+  ...
+}
+```
+
+Event `ConnectivityChanged` is triggerred automatically when network connectivity changes.
+
+- `ConnectivityChangedEventArgs`: Passed to the event handler.
+- `IsConnected`: Boolean, member of `ConnectivityChangedEventArgs`.
+
+Portions of this code are from _[MSFT Learn]_:
+
+```c#
+// register the event handler
+Connectivity.Current.ConnectivityChanged += Connectivity_ConnectivityChanged;
+
+// event handler
+void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+{
+  // leverage the EventArgs inheritor built-in property to get connectivity status
+  bool stillConnected = e.IsConnected;
+}
+```
+
+### Consume a REST Service
+
+REST architecture uses well-defined _verbs_ representing operations in requests.
+
+REST verbs enable CRUD operations (Create, Read, Update, and Delete).
+
+REST service respond to requests in a standardized way.
+
+The `HttpClient` class:
+
+- `System.Net.Http`.
+- Use to send HTTP requests.
+- Use to receive HTTP responses from a REST service.
+- URIs are used to identify web service endpoints and include the "address" and "name of the resource" the REST endpoint.
+- Uses a _Task-based API_.
+- Exposes HTTP Headers.
+- Exposes Request message bodies.
+
+CRUD to REST translation:
+
+> CREATE <==> POST
+> READ <==> GET
+> UPDATE <==> PUT
+> DELETE <==> DELETE
+
+#### Create a Resource
+
+Create a new Resource with code from _[MSFT Learn]_:
+
+```c#
+// this is an async method code block
+HttpClient client = new HttpClient();
+// request contains http verb 'Post' and url 'url'
+HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, url);
+// serialize the 'parp' variable into JSON for sending to REST service
+message.Content = JsonContent.Create<Part>(part);
+HttpResponseMessage response = await client.SendAsync(message);
+```
+
+#### Read a Resource
+
+Convenience methods are included with HttpClient that shorten code in an HTTP Request:
+
+Example code portions from _[MSFT Learn]_:
+
+```c#
+HttpClient client = new HttpClient();
+// response will be returned as a string, which could be XML, JSON, or some other formatting
+string text = await client.GetStringAsync(url);
+
+// if response is going to be JSON then use the following instead
+client.DefaultRequestHeaders.Accept.Add(new TypeWithQualityHeaderValue("application/json"));
+// only response message body is returned within an HttpResponsemessage object instance
+```
+
+#### Update a Resource
+
+Use `HttpRequestMessage` initialized with `PUT` verb (code snippets from _[MSFT Learn]_):
+
+```c#
+HttpClient client = new HttpClient();
+HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Put, url);
+message.Content = JsonContent.Create<Part>(part);
+HttpResponseMessage response = await client.SendAsync(message);
+```
+
+Idempotency: The same operation will always have the same result. Submitting multiple PUT requests in a row with the same data will perform the exact same action as the 1st request. Submitting multiple POST requests with the same data will continue to create new items at each request. Server-response codes and messages might be different in subsequent identical requests regardless of the idempotency of the request type.
+
+#### Handle Response from Request
+
+Always expect a response message.
+
+- Includes which 'verb' was used.
+- Potentially, the requested resource.
+- A response code (200, 201, 202, 400, 403, 404, 500, etc).
+
+Redirection codes:
+
+- Codes in the 3xx range are 'redirect' codes.
+- A different address might actually be handling the request.
+
+Verify the status code in a response message, from _[MSFT Learn]_:
+
+```c#
+static readonly HttpClient client = new HttpClient();
+
+...
+// call asynchronous network methods in a try-catch block to handle exceptions
+try
+{
+  // initiate the HttpRequest
+  HttpResponseMessage response = await client.SendAsync(msg);
+  response.EnsureSuccessStatusCode(); // check that code IS WITHIN the 2xx range otherwise throw HttpRequestException
+  string responseBOdy = await response.Content.ReadAsStringAsync();
+  // handle the response
+  ...
+}
+catch(HttpRequestException hrex) {
+  // handle status codes from `e.StatusCode` that indicate the error condition
+}
+```
+
+### Platform-Specific Features
+
+MAUI Templates map HttpClient to a layer that handles native networking stacks of each platform.
+
+Varying platforms have different security layer implementations, but MAUI manages that for you -- to a point.
+
+#### App Transport Security on iOS
+
+ATS requires Http Apps to use TLS 1.2 or above.
+
+Apps that don't use ATS will be denied network access.
+
+How to work with ATS:
+
+1. Change endpoint to adhere to ATS policy, or
+2. Opt-out of using ATS altogether.
+
+Opt-out:
+
+1. Add new key to `Info.plist` file (a Dictionary) called `NSAppTransportSecurity`.
+2. Add a new key to `Info.plist` called `NSExceptionDomains`.
+3. Add children to it for each endpoint your App will taget.
+
+Editing `Info.plist` can be done using Visual Studio's generic PList Editor, or by editing the XML directly.
+
+Targeting Keys look like this example from _[MS Learn]_:
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+   <key>NSExceptionDomains</key>
+      <dict>
+      <key>dotnet.microsoft.com</key>
+      <dict>
+        <key>NSExceptionMinimumTLSVersion</key>
+        <string>TLSv1.0</string>
+        <key>NSExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+      </dict>
+   </dict>
+</dict>
+```
+
+It is helpful to use the OPT-OUT method for locally debugging a service on the dev machine like this example from _[MS Learn]_:
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+    <key>NSAllowsLocalNetworking</key>
+    <true/>
+</dict>
+```
+
+Optionally, ATS can be disabled completely using code like this example from _[MS Learn]_:
+
+```xml
+<key>NSAppTransportSecurity</key>
+<dict>
+   <key>NSAllowsArbitraryLoads</key>
+   <true/>
+</dict>
+```
+
+#### Configure Android Network Security
+
+API Level 28 (Android 9) introduced a policy that disables non-HTTP clear text traffic.
+
+This policy blocks downloading images or files from servers that are not configured for HTTPS, or there are no development certificates installed during dev or debug time.
+
+To permit clear text traffic:
+
+1. Create a new AML file in `Resources/xml` and name it `network_security_config.xml`.
+2. Add element `network-security-config` with a `domain-config` child element.
+
+Permitting clear text traffic look like this example from _[MS Learn]_:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <domain-config cleartextTrafficPermitted="true">
+    <domain includeSubdomains="true">10.0.2.2</domain> <!-- Debug port -->
+    <domain includeSubdomains="true">microsoft.com</domain>
+  </domain-config>
+</network-security-config>
+```
+
+Securing _all_ traffic on Android device regardless of target API level:
+
+1. Set `domain-config` child element `cleartextTrafficPermitted` to false in `network_security_config.xml`.
+2. Enable Android to use the xml by setting the `application` element according to the examle code from _[MSF Learn]_, below.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+    <application android:networkSecurityConfig="@xml/network_security_config" ...></application>
+</manifest>
+```
+
+#### Debug Apps Locally
+
+Use iOS Simulator and Android Emulator to consume ASP.NET Core web services running locally over HTTP.
+
+- iOS: Opt-out of ATS by specifying `NSAllowsLocalNetworking`.
+- Android: Use IP address `10.0.2.2`, an alias for `127.0.0.1`, and set up the network security configuration for using the loopback address.
+
+For example the `GET` request would be sent to localhost by configuring `http://10.0.2.2:/api/myEndpoint`.
+
+#### Detect the Operating System
+
+Use `DeviceInfo` class to determine OS the App is running on.
+
+Set the `BaseAddress` for calling the API Endpoint to a different value based on the detected OS value.
+
+Example code snippet from _[MSFT Learn]_:
+
+```c#
+public static string BaseAddress = DeviceInfo.Platform == DevicePlatform.Android
+  ? "http://10.0.2.2:5000"
+  : "http://localhost:5000"
+public static string ItemsUrl = $"{BaseAddress}/api/items/";
+```
+
+## Storing Data Locally
+
+Mobile apps often store data locally for performance reasons, same is true for .NET MAUI.
+
+There are several storage options in .NET MAUI applications:
+
+- Filesystem: Device files store the data locally.
+- Preferences: KVP storage.
+- SQLite: Light-weight relational data storage.
+
+## Preferences
+
+- Simple data types such as string, boolean, integer, etc.
+- Often used to store User Selections.
+- Application configuration.
+- Key-value pairs.
+- Cannot store complex types such as Lists, Collections, or Arrays (use File System or Database instead).
+
+`Preferences` can be used directly to set and get KVPs:
+
+```C#
+string dataToStore = "data to be stored locally.";
+Preferences.Set("dataKeyAlpha", dataToStore);
+var savedPreference = Preferences.Get("dataKeyAlpha", false);
+```
+
+`Preferences` also has methods:
+
+- `ContainsKey` -> boolean
+- `Remove` -> removes a key
+- `Clear` -> all Preference data is removed
+
+## File System
+
+Appropriate for:
+
+- Saving 'loose' files like XML, binary, or text.
+- Log data.
+- Serialized data structures.
+- Data structures to store during shutdown/restart that will be reconstituted to memory on startup/login.
+- JSON formatted is fairly universal, but other plain text formats will suffice.
+
+Use `System.Text.Json` and `System.IO`:
+
+```C#
+using System.Text.Json;
+using System.IO;
+
+List<Item> items = ...;
+
+// serialize and save
+string fileName = "data-store.json";
+var serializedData = JsonSerializer.Serialize(Items);
+File.WriteAllText(fileName, serializedData);
+
+// read and deserialize
+var rawData = File.ReadAllText(fileName);
+items = JsonSerializer.Deserialize<List<Item>>(rawData);
+...
+```
+
+### App Sandbox
+
+Private area within the MAUI App for writing and reading files.
+
+Only the Platform OS and the current User can access the App Sandbox.
+
+`AppDataDirectory` is a static property of `FileSystem` that returns a string representing the sandbox path.
+
+- Is an abstraction.
+- Each platform has it's own underlying implementation.
+- Developers do _not_ have to access drive-specific paths in code.
+- Best practice is to use the Sandbox path instead of drive-specific paths.
+
+Apple Sandbox Guidelines:
+
+- Library: Returned by `AppDataDirectory`. Use to store App-generated data.
+- Documents: `Environment.SpecialFolder.MyDocuments`. Store user-generated data (stored in direct response to a user action).
+
+## SQLite Database Storage
+
+When to use a database:
+
+- Using Relational data.
+- Using complex data types like Lists, Collection, Arrays, and etc.
+- Unique data should be stored.
+- Filtering of data is necessary.
+- Searching data is necessary and search performance is important.
+
+Database _is a file_ that must be stored.
+
+- Recommend `AppDataDirectory`.
+- Common SQLite implementation is `SQLite-net`.
+- Lightweight local DB.
+- Cross-platform.
+- Industry standard for mobile.
+- Not server required.
+- Single-file storage on device file-system.
+- Read/Write operations are done _directly against the DB file_.
+
+A Caveat: Android and iOS native SQLite implementation support C/C++ but not .NET directly.
+
+Note: There are other C# "wrappers" for SQLite.
+
+### SQLite-net Features
+
+- An Object-Relational Mapper (ORM).
+- Simplifies schema design.
+- Use native-code models to define the schema and entities.
+
+Requires:
+
+- NuGet
+- `sqlite-net-pcl`
+- For Android support also include `SQLitePCLRaw.provider.dynamic_cdecl` package
+
+See the SQLList Project Home and Wiki links in the [Resources and References](#resources-and-references) section.
+
+_Note_: Skipping `SQLitePCLRaw.provider.dynamic_cdecl` package will ensure an initialization error in the SQLite Connection constructor. See [Type Initializer for SQLite.SLiteConnection threw an exception](https://stackoverflow.com/questions/46915404/the-type-initializer-for-sqlite-sqliteconnection-threw-an-exception) on StackOverflow.
+
+### SQLite Connect
+
+Use `SQLiteConnection` object.
+
+- Pass-in the filename for the DB file.
+
+```C#
+using System.IO;
+using SQLite;
+string filename = Path.Combine(FileSystem.AppDataDirectory, "my-sqlite.db");
+SQLiteConnection connection = new SQLiteConnection(filename);
+```
+
+### SQLite Create a Table
+
+Define a C Sharp Class and use `CreateTable` on the `SQLiteConnection` class to generate a table.
+
+```C#
+[Table("myData")]
+public class MyData
+{
+  // PK is usually numeric
+  [PrimaryKey, AutoIncrement, Column("_id")]
+  public int Id { get; set; }
+
+  [MaxLength(100), Unique]
+  public int bibNumber { get; set; }
+
+  // more class-code...
+}
+```
+
+Table Attributes:
+
+- Table: Needs a name. Default is the name of the Class.
+- PrimaryKey: Column must be specified.
+- AutoIncrement: Boolean. If true, increases column value when new row is inserted.
+- Column: Needs a Name. Default is the Class Property for which it represents.
+- MaxLength: Max number of _characters_ that can be used in the column.
+- Unique: Boolean. Enforces uniqueness at the Table level.
+
+Create the table:
+
+```C#
+connection.CreateTable<MyData>();
+```
+
+_Note_: If table exists and schema is different, `CreateTable<T>()` attempts to update the schema to the properties of Type 'T'.
+
+### SQLite Read and Write Operations
+
+Insert:
+
+- Provide an object.
+- Must be properly typed.
+- Data is inserted.
+
+```C#
+public int AddNewBib(Bib bib)
+{
+  // todo: verify bib is not null?
+  int result = connection.Insert(bib);
+  // returns the number of row(s) that were updated
+  return result;
+}
+```
+
+Read _All_ Rows in a Table:
+
+- Use the `Table` method.
+- Returns a Collection of objects.
+- Collection _could be empty_.
+
+```C#
+public List<Bibs> GetAllBibs()
+{
+  List<Bib> bibs = connection.Table<Bib>.ToList();
+  return bibs;
+}
+```
+
+### SQLite Queries Using LINQ
+
+Selecting data within a table can be done using LINQ queries. Supports:
+
+- Where
+- Take
+- Skip
+- OrderBy
+- OrderByDescending
+- ThenBy
+- ElementAt
+- First
+- FirstOrDefault
+- ThenByDescending
+- Count
+
+Use _extension method syntax_ to extend the LINQ query to a fully functional query:
+
+```C#
+public List<Bib> GetByAction(string action)
+{
+  var bibs = from b in connection.Table<Bib>()
+             where b.Action == action
+             select b;
+  return bibs.ToList();
+}
+```
+
+### SQLite Update and Delete
+
+Use the `SQLiteConnection` object.
+
+The `Update()` method updates a single record in a Table:
+
+- Returns the number of row(s) changed (should be 1 right?).
+- Accepts a plain-old C# Class/Object.
+
+```C#
+public int UpdateItem(Item item)
+{
+  int result = 0;
+  result = connection.Update(item);
+  return result;
+}
+```
+
+The `Delete(key)` method removes row(s) from a Table:
+
+- Requires the primary key of the item in teh Table.
+- Method is generic, requiring a Type parameter.
+- Returns the number of row(s) affected.
+
+```C#
+public int DeleteItem(int itemID)
+{
+  int result = 0;
+  result = connection.Delete<Item>(itemID);
+  return result;
+}
+```
+
+### SQLite Asynchronous Operation
+
+Use Async operations to ensure the UI remains responsive to the user.
+
+Asynchronous features execute queries on a separate thread, not the UI thread.
+
+All operations are Task-based to support background usage:
+
+- Async API via `SQLiteAsyncConnection` class: `var connection = new SQLiteAsyncConnection(databasePath);`.
+- Create Table asynchronously: `await connection.CreateTableAsync<Item>();`.
+- `DropTableAsync(class)`: Drop Table, by correlated Class.
+- `GetAsync(primaryKey)`: Gets record in table based on class, matching PK.
+- `InsertAsync(newItem)`: Insert new record.
+- `UpdateAsync(updatedItem)`: Updates existing record.
+- `DeleteAsync(primaryKey)`: Remove record that matches table, PK.
+- `QueryAsync()`: Direct SQL query and returns an object.
+- `ExecuteAsync()`: Direct SQL query returns count of affected rows.
+- `ExecuteScalarAsync()`: Direct SQL query returns _single result_.
+- `ToListAsync()`: Converts Table Query result to a `List<T>` type.
 
 ## Android Emulator
 
@@ -1100,6 +1693,12 @@ Question: Does this mean .NET MAUI can target Linux devices like RPi or full x86
 [Learn.Microsoft.com](https://learn.microsoft.com/en-us/training/modules/create-user-interface-xaml)
 
 Code segments copied from various Modules at [Microsoft Learn](https://learn.microsoft.com/en-us/training/)
+
+[File System Helpers](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows)
+
+[SQLite](https://github.com/praeclarum/sqlite-net) project home
+
+[SQLite Wiki](https://github.com/praeclarum/sqlite-net/wiki/Getting-Started)
 
 ## Footer
 
