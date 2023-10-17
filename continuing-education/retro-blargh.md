@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 17-Oct-2023
+
+Lots of project planning, emailing, and organizing going on the last few days. There are some good things coming up across the next few weeks including project presentations, and a few training session I will be leading. Lots more work to do (not enough coding but that will come soon enough).
+
 ## Friday 13-Oct-2023
 
 Started working on initial plan for a MAUI mobile app for Windows + Android. The goal is to make an app that can be published to Google Play Store. Expected completion is by end of 2023. There are several other projects I am currently working on that will slow initial progress of this project, but as November wraps up I expect to be able to dedicate more time through December. I'm excited! :grinning:
