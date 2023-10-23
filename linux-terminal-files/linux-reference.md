@@ -423,6 +423,23 @@ Add an alias for AndroidStudio:
 3. Restart your shell.
 4. Traverse to the Android project directory and type: `androidstudio .` and your project will open.
 
+#### IntelliJ Recommendation
+
+Installing JetBrains Toolbox before installing Android Studio or IDEA and use that to install those (and any other IDEs), then follow these steps to manual set up `idea .` or `studio .` to launch from current directory:
+
+1. Launch JetBrains Toolbox
+2. Click on 'Toolbox App Menu'
+3. Click 'Settings'
+4. Expand the 'Tools' subsection
+5. Copy the user profile location listed in `Shell scripts location`
+6. Open PowerShell (sh or zsh for Linux) and you'll see command (script) files that launch IntelliJ apps
+7. Add an Alias for each command (script) and name it accordingly
+
+The Alias for IDEA would look like:
+
+- Windows PSE prompt: `set-alias -Name "idea" -Value "$env:userprofile\AppData\Local\JetBrains\Toolbox\scripts\idea.cmd"`
+- ZSH in .zshrc file: `alias idea={path}`
+
 ### Interrogate Files and Disk
 
 Beyond creating, copying, moving, and deleting files, use these commands to manage the file _system_ and disks.

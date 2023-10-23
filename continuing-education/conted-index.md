@@ -73,7 +73,7 @@ This list became so large it was unmanageable in an MD file, so all items have m
 - [x] Spring MVC especially SQL and other DB APIs.
 - [x] Interfaces: See [OOP, Inheritance, Interfaces](../code401-files/oop-inhrtnce-intfaces.html).
 - [x] Trees and Decision Trees have perplexed me for a while I'd like to get over that.
-- [x] Configuring Linux and Windows to support "IDEA ." to open IntelliJ [at current directory](../linux-terminal-files/bash-stuff.html###aliases).
+- [x] Configuring Linux and Windows to support "IDEA ." to open IntelliJ [at current directory](../linux-terminal-files/linux-reference.md#Aliases).
 
 ## Azure Learnings
 
