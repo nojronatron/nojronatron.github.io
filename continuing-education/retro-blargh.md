@@ -2,6 +2,20 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 24-Oct-2023
+
+The last week has been very busy will getting ready for training sessions I am running over the next 4 weeks. Last weekend was the first one and it went well. Feedback during this first 'basics' class led to some changes in the presentation content and order, so the next group that gets that presentation will reap the rewards. The 'intermediate' class won't be until November, but I have a bit of work to do:
+
+- Complete the lesson plan to summarize need-to-know basics and get into the meat of the content as soon as possible.
+- The intermediate class is 'hands on' meaning equipment will be set up and configured, so I want to come up with a few approaches to solving some issues as rapidly as possible, to keep the class moving forward as a whole.
+- Various emails with the registrants to ensure they know how to get to the venue, what to bring (and not), etc.
+- Trial-run the presentation decks to get the timing down and ensure continuity and flow of content makes sense.
+- Develop a final list of resources where students can learn more about the topic.
+
+I also want to send out PDF 'certificates' of accomplishment to everyone that participates, so I need to complete filling and sending these out for the basics class, and start getting them ready for the intermediate one.
+
+In case that's not enough, I need to exercise my newly acquired .NET MAUI knowledge, so my plan is to start developing a small mobile Weather App. Whiteboard planning is just about done already. UI wireframing, the request/response cycle, and data handling all need to be designed and debugged before I can start coding.
+
 ## Tuesday 17-Oct-2023
 
 Lots of project planning, emailing, and organizing going on the last few days. There are some good things coming up across the next few weeks including project presentations, and a few training session I will be leading. Lots more work to do (not enough coding but that will come soon enough).
