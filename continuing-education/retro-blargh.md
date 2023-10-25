@@ -12,9 +12,13 @@ The last week has been very busy will getting ready for training sessions I am r
 - Trial-run the presentation decks to get the timing down and ensure continuity and flow of content makes sense.
 - Develop a final list of resources where students can learn more about the topic.
 
-I also want to send out PDF 'certificates' of accomplishment to everyone that participates, so I need to complete filling and sending these out for the basics class, and start getting them ready for the intermediate one.
+I also want to send out PDF'd certificates of accomplishment to everyone that participates, so I need to complete filling and sending these out for the basics class, and start getting them ready for the intermediate one.
 
 In case that's not enough, I need to exercise my newly acquired .NET MAUI knowledge, so my plan is to start developing a small mobile Weather App. Whiteboard planning is just about done already. UI wireframing, the request/response cycle, and data handling all need to be designed and debugged before I can start coding.
+
+Investigating the NOAA Weather API has been easy. Last year I tried this and it didn't make much sense to me but today, it is simple. My experiences building and utilizing APIs is paying off. There is even a Swagger-UI-like interface for the API. It isn't as well documented as I would like, but the data schema and examples are there, along with expected Result bodies and codes. The part of the documentation that is challenging is the NOAA syntax for zones, areas, and etc. I suppose that will become apparent after additional research.
+
+The harder part will be sorting out what data is worth caching and ready for display, and what can be skipped over. For example, if the App displays the current conditions, and the user then wants to see the forecast for the week, that data should already be available either through an advanced query or the cache already has that info from a previous call (before the cache expiration). This will take a little more work on my part to figure out. If I keep focused on the simple answer, I'll find the right solution to implement, and will go forward from there.
 
 ## Tuesday 17-Oct-2023
 
