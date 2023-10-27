@@ -255,17 +255,17 @@ For example, to use the Phone, create an intent element with action and data:
 - Separate UI design from behavior using XAML + code, making both easier to manage.
 - Code-only design can get difficult for a human to read, especially when the UI is complex.
 - XAML is purely _declarative_, and _represent_ objects instantiated in the App.
-- XAML is based on MSFT 2009 XAML spec, but is _only sytactical_ specifications.
+- XAML is based on MSFT 2009 XAML spec, but are _only sytactical_ specifications.
 - WPF, UWP, WinUI 3 all use XAML and elements will change.
-- .NET MAUI changes some of the Class names and Properties (from WPF et al).
+- .NET MAUI changes some of the Class names and Properties (from WPF, Xamarin).
 - XAML can generate a simple login page in fewer lines than using C# to do the same (although code-behind will add to the count in most instances).
 - `InitializeComponent` is _not_ necessary if XAML is not used to define a page layout and controls.
 
-Most importantly: Separate the definition o fthe UI from teh logic of the app.
+Most importantly: Separate the definition of the UI from the logic of the app.
 
 ### Types and Properties
 
-XAML Parser takes XAML and creates objects given the elements with set properties from teh XAML definitions.
+XAML Parser takes XAML and creates objects given the elements with set properties from the XAML definitions.
 
 Most MAUI Controls are located in `Microsoft.Maui.Controls` namespace.
 
@@ -497,7 +497,7 @@ Specify View Size:
 
 - Various devices have varying default view sizes and pixel ensities.
 - Mobile, tablet, phone, desktop, wearable, etc.
-  -Layout Panels build consistens UIs, controlling sizing and positioning of child controls.
+- Layout Panels build consistent UIs, controlling sizing and positioning of child controls.
 
 ### Layout Panel
 
@@ -507,7 +507,7 @@ Specify View Size:
 - Support device rotation.
 - Stack, Absolute, Grid, and Flex Layout Panels are available.
 - StackLayout: Single row or column.
-- VerticalStackLayout, HorizontalStackLayout: Columnar or horizontal alignment, respectively.
+- VerticalStackLayout, HorizontalStackLayout: Vertical or horizontal alignment, respectively.
 - AbsoluteLayout: Utilizes x,y coordinates to place child Controls.
 - FlexLayout: Enables wrapping child Controls if they don't fit into a single row or column.
 - Grid: Child Controls are placed within identified row or column IDs, and can be told to stay within that 'cell', or to span cells (rows or columns).
@@ -518,8 +518,8 @@ _Note_: RelativeLayout is similar to FlexLayout, but _FlexLayout should be used 
 
 Affects how the parent element sizes itself around its content.
 
-Un-set: Element will auto-grow to be large enough to fit around its content.
-Set: WidthRequest and/or HeightRequest attribute(s) are configured on the element.
+- Un-set: Element will auto-grow to be large enough to fit around its content.
+- Set: WidthRequest and/or HeightRequest attribute(s) are configured on the element.
 
 The `Request` portion means at run time the App will make a final decision on size based on available space for the element and its contents.
 

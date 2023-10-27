@@ -2,6 +2,20 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 27-Oct-2023
+
+Working with MAUI the last few days I have learned a bunch, after riding a roller-coaster of "this is easy and cool" to "does this really work?" to "what was I thinking?!?".
+
+Key takeaways:
+
+- Routing: Step 1 is Register a route in the Shell.xaml.cs. Step 2 is to use Shell's `GoToAsync()` method.
+- Images and Icons: Place then in `Resources\Images` and be sure to avoid dash `-` characters in the name. Also, stick with `png` files. Note: `svg` files are converted to `png` during build.
+- Write Debug output. I'd learned this before several years ago but forgot how to do it in C#: `Debug.WriteLine(string)`. Use the `Output` window set to `Debug` in Visual Studio to see the logged output.
+- Button controls: By default there might not be any animation when hovered or clicked. Be prepared to set up `Style` configureations in a `ResourceDictionary` to make controls interactive.
+- Dependancy Inversion/Injection: This is supported in MAUI however there is a slight change due to the use of MAUI's `Shell` class. Check out [Are You Using DI In Your MAUI App Yet?](https://blog.ewers-peters.de/are-you-using-dependency-injection-in-your-net-maui-app-yet) for an enlightening walk through.
+
+The Mobile Weather app is now in a much better place than it was at any time over the last 2 days. :smiley:
+
 ## Tuesday 24-Oct-2023
 
 The last week has been very busy will getting ready for training sessions I am running over the next 4 weeks. Last weekend was the first one and it went well. Feedback during this first 'basics' class led to some changes in the presentation content and order, so the next group that gets that presentation will reap the rewards. The 'intermediate' class won't be until November, but I have a bit of work to do:
