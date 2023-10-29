@@ -2,6 +2,53 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 28-Oct-2023
+
+Working through the MAUI Weather App again. There was a bug that kept crashing the app, and it was inconsistent. Here are my key takeaways:
+
+- I should have started a unit test project sooner. It would allow me to test theories and learn how to use some of the framework components more rapidly.
+- I should have implemented Try-Catch blocks on areas of code that were failing, must sooner. Once I finally added them, I was able to gain more insight into the issues I was seeing.
+- MAUI appears to be targeting .NET 8 (due out in November 2023), and I was using .NET 6 (LTS). However, .NET 7 is closer to where MAUI development is happening, and there were a few bugs in the MAUI project site that indicated .NET 7 was the way to go.
+- Upgrading from .NET 6 to .NET 7 was not an issue _except_ MAUI project files use a slightly different set of SDK definitions and build type setup elements (because it supports Android, iOS/Mac, and Linux). Good thing I checked a MAUI .NET 7 project template to simplify the process by diff'ing them.
+- When figuring out how to model data, be sure to pay attention to all _types_, whether intrinsic (like `int` or `string`), collections `[ ]` of things, or other specific objects that contain other properties. An example JSON file where _not everything is a string_: `{ "@context": [ {...}, {...} ], "gridId": "SEW", "gridX": 128, ... }`. 128 is a Number type, not a String type.
+- `System.Text.Json` makes Serializing and Deserializing JSON and Objects fairly straightforward. Just watch out for camelCase vs PascalCase, and for the Type of each entry: String, Collection, or Number (see above).
+
+As it stands right now, the MAUI Wx App is moving forward, albeit a little slower than I had hoped.
+
+I received email back from key (to bo) stakeholders of another project I'm working on. At least 1 is interested in a demo. In the next few days I will walk through my demonstration using actual PCs to verify the demo script is good, and then try to record it for posterity. Perhaps next week a live demo will be done with some of the to be stakeholders.
+
+## Friday 27-Oct-2023
+
+Working with MAUI the last few days I have learned a bunch, after riding a roller-coaster of "this is easy and cool" to "does this really work?" to "what was I thinking?!?".
+
+Key takeaways:
+
+- Routing: Step 1 is Register a route in the Shell.xaml.cs. Step 2 is to use Shell's `GoToAsync()` method.
+- Images and Icons: Place then in `Resources\Images` and be sure to avoid dash `-` characters in the name. Also, stick with `png` files. Note: `svg` files are converted to `png` during build.
+- Write Debug output. I'd learned this before several years ago but forgot how to do it in C#: `Debug.WriteLine(string)`. Use the `Output` window set to `Debug` in Visual Studio to see the logged output.
+- Button controls: By default there might not be any animation when hovered or clicked. Be prepared to set up `Style` configureations in a `ResourceDictionary` to make controls interactive.
+- Dependancy Inversion/Injection: This is supported in MAUI however there is a slight change due to the use of MAUI's `Shell` class. Check out [Are You Using DI In Your MAUI App Yet?](https://blog.ewers-peters.de/are-you-using-dependency-injection-in-your-net-maui-app-yet) for an enlightening walk through.
+
+The Mobile Weather app is now in a much better place than it was at any time over the last 2 days. :smiley:
+
+## Tuesday 24-Oct-2023
+
+The last week has been very busy will getting ready for training sessions I am running over the next 4 weeks. Last weekend was the first one and it went well. Feedback during this first 'basics' class led to some changes in the presentation content and order, so the next group that gets that presentation will reap the rewards. The 'intermediate' class won't be until November, but I have a bit of work to do:
+
+- Complete the lesson plan to summarize need-to-know basics and get into the meat of the content as soon as possible.
+- The intermediate class is 'hands on' meaning equipment will be set up and configured, so I want to come up with a few approaches to solving some issues as rapidly as possible, to keep the class moving forward as a whole.
+- Various emails with the registrants to ensure they know how to get to the venue, what to bring (and not), etc.
+- Trial-run the presentation decks to get the timing down and ensure continuity and flow of content makes sense.
+- Develop a final list of resources where students can learn more about the topic.
+
+I also want to send out PDF'd certificates of accomplishment to everyone that participates, so I need to complete filling and sending these out for the basics class, and start getting them ready for the intermediate one.
+
+In case that's not enough, I need to exercise my newly acquired .NET MAUI knowledge, so my plan is to start developing a small mobile Weather App. Whiteboard planning is just about done already. UI wireframing, the request/response cycle, and data handling all need to be designed and debugged before I can start coding.
+
+Investigating the NOAA Weather API has been easy. Last year I tried this and it didn't make much sense to me but today, it is simple. My experiences building and utilizing APIs is paying off. There is even a Swagger-UI-like interface for the API. It isn't as well documented as I would like, but the data schema and examples are there, along with expected Result bodies and codes. The part of the documentation that is challenging is the NOAA syntax for zones, areas, and etc. I suppose that will become apparent after additional research.
+
+The harder part will be sorting out what data is worth caching and ready for display, and what can be skipped over. For example, if the App displays the current conditions, and the user then wants to see the forecast for the week, that data should already be available either through an advanced query or the cache already has that info from a previous call (before the cache expiration). This will take a little more work on my part to figure out. If I keep focused on the simple answer, I'll find the right solution to implement, and will go forward from there.
+
 ## Tuesday 17-Oct-2023
 
 Lots of project planning, emailing, and organizing going on the last few days. There are some good things coming up across the next few weeks including project presentations, and a few training session I will be leading. Lots more work to do (not enough coding but that will come soon enough).
@@ -12,7 +59,7 @@ Started working on initial plan for a MAUI mobile app for Windows + Android. The
 
 ## Thursday 12-Oct-2023
 
-MSFT Learn took me down a strange trip as I worked through the Create Web Apps and Services with AS.NET Core path. The learning tools they presented included React, Vite, and MaterialUI, as well as GitHub CodeSpaces. Nothing wrong with any of that, it was just unexpected given the context was ASP.NET - I would have guessed they would have done a Blazor or Minimal API framework for the training, instead.
+MSFT Learn took me down a strange trip as I worked through the Create Web Apps and Services with ASP.NET Core path. The learning tools they presented included React, Vite, and MaterialUI, as well as GitHub CodeSpaces. Nothing wrong with any of that, it was just unexpected given the context was ASP.NET - I would have guessed they would have done a Blazor or Minimal API framework for the training, instead.
 
 At any rate, it was good to do that since I hadn't done much with React recently, and have not previously been exposed to Vite or MaterialUI, and had yet to take advantage of GitHub CodeSpaces. _All good!_
 
