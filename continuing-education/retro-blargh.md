@@ -2,6 +2,21 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 28-Oct-2023
+
+Working through the MAUI Weather App again. There was a bug that kept crashing the app, and it was inconsistent. Here are my key takeaways:
+
+- I should have started a unit test project sooner. It would allow me to test theories and learn how to use some of the framework components more rapidly.
+- I should have implemented Try-Catch blocks on areas of code that were failing, must sooner. Once I finally added them, I was able to gain more insight into the issues I was seeing.
+- MAUI appears to be targeting .NET 8 (due out in November 2023), and I was using .NET 6 (LTS). However, .NET 7 is closer to where MAUI development is happening, and there were a few bugs in the MAUI project site that indicated .NET 7 was the way to go.
+- Upgrading from .NET 6 to .NET 7 was not an issue _except_ MAUI project files use a slightly different set of SDK definitions and build type setup elements (because it supports Android, iOS/Mac, and Linux). Good thing I checked a MAUI .NET 7 project template to simplify the process by diff'ing them.
+- When figuring out how to model data, be sure to pay attention to all _types_, whether intrinsic (like `int` or `string`), collections `[ ]` of things, or other specific objects that contain other properties. An example JSON file where _not everything is a string_: `{ "@context": [ {...}, {...} ], "gridId": "SEW", "gridX": 128, ... }`. 128 is a Number type, not a String type.
+- `System.Text.Json` makes Serializing and Deserializing JSON and Objects fairly straightforward. Just watch out for camelCase vs PascalCase, and for the Type of each entry: String, Collection, or Number (see above).
+
+As it stands right now, the MAUI Wx App is moving forward, albeit a little slower than I had hoped.
+
+I received email back from key (to bo) stakeholders of another project I'm working on. At least 1 is interested in a demo. In the next few days I will walk through my demonstration using actual PCs to verify the demo script is good, and then try to record it for posterity. Perhaps next week a live demo will be done with some of the to be stakeholders.
+
 ## Friday 27-Oct-2023
 
 Working with MAUI the last few days I have learned a bunch, after riding a roller-coaster of "this is easy and cool" to "does this really work?" to "what was I thinking?!?".
@@ -44,7 +59,7 @@ Started working on initial plan for a MAUI mobile app for Windows + Android. The
 
 ## Thursday 12-Oct-2023
 
-MSFT Learn took me down a strange trip as I worked through the Create Web Apps and Services with AS.NET Core path. The learning tools they presented included React, Vite, and MaterialUI, as well as GitHub CodeSpaces. Nothing wrong with any of that, it was just unexpected given the context was ASP.NET - I would have guessed they would have done a Blazor or Minimal API framework for the training, instead.
+MSFT Learn took me down a strange trip as I worked through the Create Web Apps and Services with ASP.NET Core path. The learning tools they presented included React, Vite, and MaterialUI, as well as GitHub CodeSpaces. Nothing wrong with any of that, it was just unexpected given the context was ASP.NET - I would have guessed they would have done a Blazor or Minimal API framework for the training, instead.
 
 At any rate, it was good to do that since I hadn't done much with React recently, and have not previously been exposed to Vite or MaterialUI, and had yet to take advantage of GitHub CodeSpaces. _All good!_
 
