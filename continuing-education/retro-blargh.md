@@ -2,6 +2,25 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 31-Oct-2023
+
+I spent half of yesterday handling administrative tasks that needed attention, and stuff around the house too. As for coding, some key takeaways:
+
+- I stumbled upon Darek Banas on YouTube by searching for MAUI stuff and he has a rather long (but free) [.NET MAUI Tutorial Full Course](https://www.youtube.com/watch?v=FT5P5ZktzZI&ab_channel=DerekBanas) walking the viewer through lots of MAUI components, libarary usage, and behavior. TODO: Continue referencing this.
+- Navigation and routing in MAUI shouldn't be as hard as I've found it to be so far. After somem studying it, there are several ways to handle navigation under the hood, but it at least two cases it boils-down to web-like navigation concepts using Async libraries and URI-like addressing. TODO: Keep at it.
+- Deserializing JSON from an API. This was more challenging than I expected. Probably the biggest "whoopsie" moments are ones where I get confused while building model classes, and end up with a corrupt model tree of what I'm trying to deserialize. The next problem was finding acceptable `Type`s that the .NET library `System.Text.Json` could easily handle. In many cases I needed to use custom classes to handle what looked like `IDictionary` items or `Tuples`.
+- Implement `Nullable` Types when possible, adding `?` and the `[AllowNull]` attribute to classes where necessary. You cannot trust that API data will have values at all elements!
+
+Some better practices to use next time I have to work with deserializing JSON:
+
+1. Start by setting up Unit Tests and importing the expected JSON from a file. This will add clarity of what is going on, while speeding development.
+2. Look at the Root of the JSON object and just define a few simple items, run the test, resolve bugs.
+3. Repeat step 2 for the remaining necessary Root-bound element.
+4. Add child elements that don't have children, debugging along the way like in step 2.
+5. Create custom objects as needed.
+6. Move to the first grandchild element and repeat steps starting with 2, continuing until all _necessary_ elements are deserialized successfully and there are no crashes or issues.
+7. Implement what was designed in the Unit Test(s) in the real code.
+
 ## Saturday 28-Oct-2023
 
 Working through the MAUI Weather App again. There was a bug that kept crashing the app, and it was inconsistent. Here are my key takeaways:
