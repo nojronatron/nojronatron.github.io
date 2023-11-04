@@ -2,6 +2,14 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 2-Nov-2023
+
+Recorded videos of the setup and usage of the sync tool, demonstrating the expected straight-line workflow. After several run-throughs of the presentation deck and recoding these videos, I updated the README file because I realized it was not very concise in a few spots, and actually needed some minor corrections to be helpful.
+
+It turned out to be a blessing that I recorded videos of what I had planned to demo, because my webcam wouldn't record video of two PCs with any clarity (just a cheap web cam), and my main computer was not allowing installation of Winlink Express to run Zoom and the demo there, instead.
+
+The attendees were understanding, and the slide-deck presentation and demonstration went well, along with a little Q and A before 45 minutes was up. We went long with additional Q and A and basically agreed to go forward with the project! :tada: :tada: :tada:
+
 ## Tuesday 31-Oct-2023
 
 I spent half of yesterday handling administrative tasks that needed attention, and stuff around the house too. As for coding, some key takeaways:
