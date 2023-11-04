@@ -2,6 +2,90 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 3-Nov-2023
+
+Finished up some initial "V1" planning for the sync tool. There are some challenges to overcome, but nothing a little planning ahead and maybe some additional design drawings and test-driven development can't help out with. Some takeaways:
+
+- Indexing doesn't have to be done with just an integer. JavaScript and the `[]` selector expression taught me to implement the same behavior on a custom Collection. The danger is the keys will be infinite, so boundaries must be set around the code and it's callers. Code is below.
+- Dispose pattern code: Visual Studio 2022 will fill-in reasonable Dispose() code when selecting `Implement Dispose pattern through existing Class`. It is only necessary to deploy the full Dispose() pattern on a custom class that doesn't already implement it. Code example below.
+- Overriding Equals has always been a challenge. Same with `IComparable<T>` and `IEqualityComparer<T>`. Turning to C-Sharp training from Bellevue College, I found the answer. Code is below.
+
+Indexing with a string instead of an integer:
+
+```c#
+public class MyWrapperClassCollection : IList<MyWrapperClass>
+{
+  private IList<MyWrapperClass> _myWrapperClasses
+  public MyWrapperClass this[string name]
+  {
+      get
+      {
+          foreach (MyWrapperClass item in _myWrapperClasses)
+          {
+              // MyWrapperClass has a Name method that returns a unique string for an instance
+              if (item.Name == name)
+              {
+                  return item;
+              }
+          }
+          // This is where the caller needs to have an exception handler.
+          throw new KeyNotFoundException($"{name} not found in collection");
+      }
+  }
+}
+```
+
+Implementing IDispose() pattern on a wrapper class:
+
+```c#
+public class MyWrapperClass : IDisposable
+{
+  private SomeClass _someClass; // SomeClass implements IDisposable
+  public void Dispose()
+  {
+      Stop();
+      Path = string.Empty;
+      Filter = string.Empty;
+      ((IDisposable)_someClass).Dispose();
+  }
+}
+```
+
+Implementing Equals() override method:
+
+```c#
+public override bool Equals(object? obj)
+{
+  if (obj == null)
+  {
+    return false;
+  }
+  // use a cast to enable comparing instance properties
+  MyWrapperClass other = (MyWrapperClass)obj;
+  if (this == other)
+  {
+    // the items are the same
+    return true;
+  }
+  if (this.Name == other.Name && this.Size == other.Size)
+  {
+    return true;
+  }
+  return false;
+}
+```
+
+Alternatively, it could be necessary to include a test comparing _references_ between `this` and `obj other`:
+
+```c#
+// method bool accepts two parameters (object a, object b) and cannot be overridden
+Object.ReferenceEquals(a, b);
+
+// NOTE: 'interned' reference types will not evaluate properly, nor will boxed value types.
+```
+
+Anyway, I have completed building a small Library that can serve as a model for the future sync tool, that includes disposal, collections with enumerators, equality checks, and unit tests. This work should put me on a good path toward a well-built synchronization tool.
+
 ## Thursday 2-Nov-2023
 
 Recorded videos of the setup and usage of the sync tool, demonstrating the expected straight-line workflow. After several run-throughs of the presentation deck and recoding these videos, I updated the README file because I realized it was not very concise in a few spots, and actually needed some minor corrections to be helpful.
