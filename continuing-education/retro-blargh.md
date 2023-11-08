@@ -2,6 +2,34 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 7-Nov-2023
+
+Completed a code challenge developing a custom Stack. I wasn't able to write any code after designing and analyzing a solution so that is a failure. However, it's been some time since I've challenged myself in this way. A few hours later I wrote the code solution using TDD and within about an hour had a working library with unittests.
+
+## Saturday 4-Nov-2023
+
+Accessing the filesystem can be tricky. There are things to remember:
+
+- When opening a new file, be sure all handles to the process doing the opening are released by wrapping the Disposable with `using()`. This is the recommended method per Microsoft.
+- If there is no following codeblock, then an alternative is to call `.Close()` at the end.
+
+```c#
+// this function creates a new file and adds data to it while respecting the Dispose() pattern
+private void CreateFile(string filename, byte[] utf8buffer)
+{
+  using (System.File.IO.FileStream fs = File.Create(filename))
+  {
+    fs.Write(utf8buffer, 0, utf8buffer.length);
+  }
+}
+
+// this function creates a new file and closes so another process can access the file
+private void CreateFile(string filename)
+{
+  System.IO.File.Create(filename).Close();
+}
+```
+
 ## Friday 3-Nov-2023
 
 Finished up some initial "V1" planning for the sync tool. There are some challenges to overcome, but nothing a little planning ahead and maybe some additional design drawings and test-driven development can't help out with. Some takeaways:
