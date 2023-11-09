@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 8-Nov-2023
+
+Completed a few code challenges provided by MSFT Reactor - [CoPilot Adventures](https://github.com/microsoft/CopilotAdventures). The purpose is to exercise using GitHub CoPilot and learn some of its commands and capabilities. For example:
+
+- `CTRL + i` opens the command window.
+- "Slash Commands" are shortcuts to common tools.
+- `/doc`: Create code documentation. This is pretty good.
+- `/fix`: Attempts to fix problems with code. Occasionally this overrites perfectly good code that isn't related to the problem. Pay close attention while using it.
+- `/explain`: Explains what highlighted code does. This is fairly good, but it seems to give-up on occasion without providing a response. Trying again later usually works.
+- `/tests`: Generate unit tests for the highlighted code. This seems a little wonky and it doesn't do any setup like creating a test Project, installing dependencies for the test type (XUnit et al).
+
 ## Tuesday 7-Nov-2023
 
 Completed a code challenge developing a custom Stack. I wasn't able to write any code after designing and analyzing a solution so that is a failure. However, it's been some time since I've challenged myself in this way. A few hours later I wrote the code solution using TDD and within about an hour had a working library with unittests.
