@@ -2,6 +2,156 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 8-Nov-2023
+
+Completed a few code challenges provided by MSFT Reactor - [CoPilot Adventures](https://github.com/microsoft/CopilotAdventures). The purpose is to exercise using GitHub CoPilot and learn some of its commands and capabilities. For example:
+
+- `CTRL + i` opens the command window.
+- "Slash Commands" are shortcuts to common tools.
+- `/doc`: Create code documentation. This is pretty good.
+- `/fix`: Attempts to fix problems with code. Occasionally this overrites perfectly good code that isn't related to the problem. Pay close attention while using it.
+- `/explain`: Explains what highlighted code does. This is fairly good, but it seems to give-up on occasion without providing a response. Trying again later usually works.
+- `/tests`: Generate unit tests for the highlighted code. This seems a little wonky and it doesn't do any setup like creating a test Project, installing dependencies for the test type (XUnit et al).
+
+## Tuesday 7-Nov-2023
+
+Completed a code challenge developing a custom Stack. I wasn't able to write any code after designing and analyzing a solution so that is a failure. However, it's been some time since I've challenged myself in this way. A few hours later I wrote the code solution using TDD and within about an hour had a working library with unittests.
+
+## Saturday 4-Nov-2023
+
+Accessing the filesystem can be tricky. There are things to remember:
+
+- When opening a new file, be sure all handles to the process doing the opening are released by wrapping the Disposable with `using()`. This is the recommended method per Microsoft.
+- If there is no following codeblock, then an alternative is to call `.Close()` at the end.
+
+```c#
+// this function creates a new file and adds data to it while respecting the Dispose() pattern
+private void CreateFile(string filename, byte[] utf8buffer)
+{
+  using (System.File.IO.FileStream fs = File.Create(filename))
+  {
+    fs.Write(utf8buffer, 0, utf8buffer.length);
+  }
+}
+
+// this function creates a new file and closes so another process can access the file
+private void CreateFile(string filename)
+{
+  System.IO.File.Create(filename).Close();
+}
+```
+
+## Friday 3-Nov-2023
+
+Finished up some initial "V1" planning for the sync tool. There are some challenges to overcome, but nothing a little planning ahead and maybe some additional design drawings and test-driven development can't help out with. Some takeaways:
+
+- Indexing doesn't have to be done with just an integer. JavaScript and the `[]` selector expression taught me to implement the same behavior on a custom Collection. The danger is the keys will be infinite, so boundaries must be set around the code and it's callers. Code is below.
+- Dispose pattern code: Visual Studio 2022 will fill-in reasonable Dispose() code when selecting `Implement Dispose pattern through existing Class`. It is only necessary to deploy the full Dispose() pattern on a custom class that doesn't already implement it. Code example below.
+- Overriding Equals has always been a challenge. Same with `IComparable<T>` and `IEqualityComparer<T>`. Turning to C-Sharp training from Bellevue College, I found the answer. Code is below.
+
+Indexing with a string instead of an integer:
+
+```c#
+public class MyWrapperClassCollection : IList<MyWrapperClass>
+{
+  private IList<MyWrapperClass> _myWrapperClasses
+  public MyWrapperClass this[string name]
+  {
+      get
+      {
+          foreach (MyWrapperClass item in _myWrapperClasses)
+          {
+              // MyWrapperClass has a Name method that returns a unique string for an instance
+              if (item.Name == name)
+              {
+                  return item;
+              }
+          }
+          // This is where the caller needs to have an exception handler.
+          throw new KeyNotFoundException($"{name} not found in collection");
+      }
+  }
+}
+```
+
+Implementing IDispose() pattern on a wrapper class:
+
+```c#
+public class MyWrapperClass : IDisposable
+{
+  private SomeClass _someClass; // SomeClass implements IDisposable
+  public void Dispose()
+  {
+      Stop();
+      Path = string.Empty;
+      Filter = string.Empty;
+      ((IDisposable)_someClass).Dispose();
+  }
+}
+```
+
+Implementing Equals() override method:
+
+```c#
+public override bool Equals(object? obj)
+{
+  if (obj == null)
+  {
+    return false;
+  }
+  // use a cast to enable comparing instance properties
+  MyWrapperClass other = (MyWrapperClass)obj;
+  if (this == other)
+  {
+    // the items are the same
+    return true;
+  }
+  if (this.Name == other.Name && this.Size == other.Size)
+  {
+    return true;
+  }
+  return false;
+}
+```
+
+Alternatively, it could be necessary to include a test comparing _references_ between `this` and `obj other`:
+
+```c#
+// method bool accepts two parameters (object a, object b) and cannot be overridden
+Object.ReferenceEquals(a, b);
+
+// NOTE: 'interned' reference types will not evaluate properly, nor will boxed value types.
+```
+
+Anyway, I have completed building a small Library that can serve as a model for the future sync tool, that includes disposal, collections with enumerators, equality checks, and unit tests. This work should put me on a good path toward a well-built synchronization tool.
+
+## Thursday 2-Nov-2023
+
+Recorded videos of the setup and usage of the sync tool, demonstrating the expected straight-line workflow. After several run-throughs of the presentation deck and recoding these videos, I updated the README file because I realized it was not very concise in a few spots, and actually needed some minor corrections to be helpful.
+
+It turned out to be a blessing that I recorded videos of what I had planned to demo, because my webcam wouldn't record video of two PCs with any clarity (just a cheap web cam), and my main computer was not allowing installation of Winlink Express to run Zoom and the demo there, instead.
+
+The attendees were understanding, and the slide-deck presentation and demonstration went well, along with a little Q and A before 45 minutes was up. We went long with additional Q and A and basically agreed to go forward with the project! :tada: :tada: :tada:
+
+## Tuesday 31-Oct-2023
+
+I spent half of yesterday handling administrative tasks that needed attention, and stuff around the house too. As for coding, some key takeaways:
+
+- I stumbled upon Darek Banas on YouTube by searching for MAUI stuff and he has a rather long (but free) [.NET MAUI Tutorial Full Course](https://www.youtube.com/watch?v=FT5P5ZktzZI&ab_channel=DerekBanas) walking the viewer through lots of MAUI components, libarary usage, and behavior. TODO: Continue referencing this.
+- Navigation and routing in MAUI shouldn't be as hard as I've found it to be so far. After somem studying it, there are several ways to handle navigation under the hood, but it at least two cases it boils-down to web-like navigation concepts using Async libraries and URI-like addressing. TODO: Keep at it.
+- Deserializing JSON from an API. This was more challenging than I expected. Probably the biggest "whoopsie" moments are ones where I get confused while building model classes, and end up with a corrupt model tree of what I'm trying to deserialize. The next problem was finding acceptable `Type`s that the .NET library `System.Text.Json` could easily handle. In many cases I needed to use custom classes to handle what looked like `IDictionary` items or `Tuples`.
+- Implement `Nullable` Types when possible, adding `?` and the `[AllowNull]` attribute to classes where necessary. You cannot trust that API data will have values at all elements!
+
+Some better practices to use next time I have to work with deserializing JSON:
+
+1. Start by setting up Unit Tests and importing the expected JSON from a file. This will add clarity of what is going on, while speeding development.
+2. Look at the Root of the JSON object and just define a few simple items, run the test, resolve bugs.
+3. Repeat step 2 for the remaining necessary Root-bound element.
+4. Add child elements that don't have children, debugging along the way like in step 2.
+5. Create custom objects as needed.
+6. Move to the first grandchild element and repeat steps starting with 2, continuing until all _necessary_ elements are deserialized successfully and there are no crashes or issues.
+7. Implement what was designed in the Unit Test(s) in the real code.
+
 ## Saturday 28-Oct-2023
 
 Working through the MAUI Weather App again. There was a bug that kept crashing the app, and it was inconsistent. Here are my key takeaways:

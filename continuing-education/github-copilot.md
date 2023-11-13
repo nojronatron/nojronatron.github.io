@@ -181,6 +181,41 @@ _Remember_: Prompts are limited, so as not to overwhelm the network, or the clou
 1. Click the lightbulb and Copilot will provide suggestions for the highlighted code.
 1. You have the option to accept or reject the suggestion.
 
+## MS Dev Labs Adventures with GitHub Copilot in VSCode
+
+These are notes from a livestream hosted by
+Olivia Guzzardo
+Marc Baiza Tech Progm MSFT AI + ML
+Abril DevTools at MSFT
+
+### Copilot Adventures
+
+[Repo](https://aka.ms/CopilotAdventures) set up with challenges to solve using GitHub Copilot.
+
+There are beginner, intermediate, and advanced level challenges.
+
+### CoPilot Chat
+
+Press `CTRL + i` to launch CoPilot Chat in VSCode or CodeSpaces.
+
+Plaintext inputs:
+
+- Be specific. If you want Python code, then identify that.
+- Be clear. If you are looking for a doubly-linked list then you'll want to specify that condition.
+
+Slash Commands:
+
+- Shortcuts to common CoPilot Chat inputs.
+- `/doc`: CoPilot writes a code comment for existing adjacent code.
+
+How can GH CoPilot help me?
+
+- Explain how existing code works.
+- Write code for you.
+- Write unit tests.
+- Find errors in code.
+- Ask it how to make existing code more maintainable and readable.
+
 ## References
 
 [General Links](https://aka.ms/levelup-links) from 'Level Up Your App Development Using GitHub Copilot and Codespaces' MSFT Reactor Session.
