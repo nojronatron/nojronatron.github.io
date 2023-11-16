@@ -2,6 +2,31 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 16-Nov-2023
+
+I've been watching .NET Conf 2023 videos and working through more MS Learn Modules focused on C#.
+
+Today's most interesting .NET Conf session was on .NET Community Toolkits. These toolkits could be useful for my mobile weather app and the future file sync tool v1 projects.
+
+- Community Toolkits are all open source, MIT Licensed, and available at [github.com/CommunityToolkits](https://github.com/CommunityToolkit).
+- The .NET Foundation manages these projects with the help of MSFT.
+- Extend .NET, but agnostic to the project template in use.
+- Targeted to best practices and often-used/requested use cases with patterns and specific code to meet common needs.
+- Multiple kits (see the repo), most interesting to me: MVVM, MAUI, and Windows.
+- Includes C# Markup Extensions.
+- Originally released with .NET 7, updated for .NET 8!
+- Animations: C# and XAML patterns!
+- Behaviors: Focus/selection, headers, and notifications!
+- Converters!
+- WPF _Polyfills_! :tada:
+- Updated styles for WinUI (v2 and 3) and Uno.
+
+Open source collaboration is welcome:
+
+- Found a bug? Search Issues, communicate with the team, and possibly submit a PR.
+- Input requested on new ideas. Add a :thumbsup: to threads with ideas that are most interesting.
+- Currently the most active projects are: Tooling-Windows-Submodule, Maui, Maui.Markup, Labs-Windows, and Windows.
+
 ## Monday 13-Nov-2023
 
 In between other tasks I worked through [Copilot Adventures](https://github.com/microsoft/CopilotAdventures) to gain more experience with GH Copilot and learn a few things. I still need to get Copilot to write tests for me (my last attempt resulted in a non-functional test project in VS Code) but I'll work around that in Visual Studio and try again. Key lessons:
