@@ -2,6 +2,50 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 24-Nov-2023
+
+I ran into a common issue in MAUI when leveraging Dependency Injection: "Missing default constructor for {viewModel name}". This happens when a new constructor is implemented. MAUI ContentPage.BindingContext expects a ViewModel codepage to have a parameterless constructor for initializing the object. The error also mentions a _missing type converter_.
+
+- Searching for "missing type converter" didn't return any obviously useable results.
+- Further research led me to [Resolve XAML BindingContexts from ServiceCollection](https://github.com/dotnet/maui/issues/5544), where a proposed solution is in the "future" pipeline, and participants in the discussion offered alternate solutions that work today.
+
+For example, instead of doing this:
+
+```xml
+<ContentPage
+  ...
+  xmlns:viewModels="clr-namespace:MyProject.ViewModels"
+  x:Class="MyProject.MainPage">
+...
+<ContentPage.BindingContext>
+  <viewModels:MyViewModel />
+</ContentPage.BindingContext>
+...
+```
+
+...maintain the viewModels, x:class, and models xmlns namespace statements in XML, add the ViewModel to MainProgram.cs like this example:
+
+```c#
+...
+  builder.Services.AddSingleton<MainPageViewModel>();
+...
+```
+
+...and then add to the code-behind a BindingContext initializer with the injected ViewModel instance:
+
+```c#
+public partial class MainPage : ContentPage
+{
+  private MainPageViewModel _viewModel;
+  public MainPage(MainPageViewModel viewModel)
+  {
+    InitializeComponent();
+    _viewModel = viewModel;
+    BindingContext = _viewModel;
+  }
+}
+```
+
 ## Thursday 23-Nov-2023
 
 Completed "Get Started with C#" learning path hosted by Microsoft Learn. Also passed the FreeCodeCamp Foundational C# with Microsoft Certification Exam with a score of 90% in 40 minutes. There was at least one question that was not covered in the course content, and three other questions that were not phrased well and/or the "best answer" didn't appear to be syntactically correct. Glad I did it, and will continue to look for other opportunities like that one.
