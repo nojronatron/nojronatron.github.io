@@ -2,6 +2,73 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 23-Nov-2023
+
+Completed "Get Started with C#" learning path hosted by Microsoft Learn. Also passed the FreeCodeCamp Foundational C# with Microsoft Certification Exam with a score of 90% in 40 minutes. There was at least one question that was not covered in the course content, and three other questions that were not phrased well and/or the "best answer" didn't appear to be syntactically correct. Glad I did it, and will continue to look for other opportunities like that one.
+
+Back to work on the MAUI Weather App. I discovered my REST call Headers were not quite right, so I was getting JSON back that was more difficult to work with than I had hoped. All of my models needed to be updated so that the parsing mechanism can capture the data properly. Next step is to rework the Page ViewModels to correctly use the model data, and go from there.
+
+## Thursday 16-Nov-2023
+
+I've been watching .NET Conf 2023 videos and working through more MS Learn Modules focused on C#.
+
+Today's most interesting .NET Conf session was on .NET Community Toolkits. These toolkits could be useful for my mobile weather app and the future file sync tool v1 projects.
+
+- Community Toolkits are all open source, MIT Licensed, and available at [github.com/CommunityToolkits](https://github.com/CommunityToolkit).
+- The .NET Foundation manages these projects with the help of MSFT.
+- Extend .NET, but agnostic to the project template in use.
+- Targeted to best practices and often-used/requested use cases with patterns and specific code to meet common needs.
+- Multiple kits (see the repo), most interesting to me: MVVM, MAUI, and Windows.
+- Includes C# Markup Extensions.
+- Originally released with .NET 7, updated for .NET 8!
+- Animations: C# and XAML patterns!
+- Behaviors: Focus/selection, headers, and notifications!
+- Converters!
+- WPF _Polyfills_! :tada:
+- Updated styles for WinUI (v2 and 3) and Uno.
+
+Open source collaboration is welcome:
+
+- Found a bug? Search Issues, communicate with the team, and possibly submit a PR.
+- Input requested on new ideas. Add a :thumbsup: to threads with ideas that are most interesting.
+- Currently the most active projects are: Tooling-Windows-Submodule, Maui, Maui.Markup, Labs-Windows, and Windows.
+
+## Monday 13-Nov-2023
+
+In between other tasks I worked through [Copilot Adventures](https://github.com/microsoft/CopilotAdventures) to gain more experience with GH Copilot and learn a few things. I still need to get Copilot to write tests for me (my last attempt resulted in a non-functional test project in VS Code) but I'll work around that in Visual Studio and try again. Key lessons:
+
+- While GitHub Copilot (C#) is _great_ for generating single-line expressions or simple code blocks like short, well-defined methods, it stuggles to put together anything more complex than that.
+- GitHub Copilot has a ways to go when it comes to refactoring larger classes or methods. If multiple attempts don't net good results, GitHub Copilot will start regenerating _the same code as before_, again and again.
+- Some niche issues are handled well at a high level by Copilot, but the deeper into the issue, the less helpful the suggestions are, and the more likely the same low-value suggestion will be made again.
+
+An example of the last point: Printing emoji to a Console window requires a little know-how and some visual padding.
+
+```c#
+// this icon will take up a certain amount of character space
+public static string DragonIcon => "🐉 ";
+
+// this icons takes up a certain amount of character space
+public static string AlphaCharacter => "a ";
+
+// net result of printing 3 of each:
+🐉 🐉 🐉
+a a a
+
+// the Console class must be configured to display UTF8 or other non-standard encoded characters
+Cosnole.OutputEncoding = System.Text.Encoding.UTF8; // for the dragon icon above
+
+// then the spacing must be fixed for the output to line up in an expected way
+public static string AlphaCharacter => " a ";
+
+// net result of printing 3 of each:
+🐉 🐉 🐉
+ a  a  a
+
+// note: the MD rendering environment does not do the demonstration any justice.
+```
+
+Tomorrow through Thursday is .NET Conf 2023! I'm looking forward to seeing what .NET 8 and the latest release of C# have to offer.
+
 ## Wednesday 8-Nov-2023
 
 Completed a few code challenges provided by MSFT Reactor - [CoPilot Adventures](https://github.com/microsoft/CopilotAdventures). The purpose is to exercise using GitHub CoPilot and learn some of its commands and capabilities. For example:
