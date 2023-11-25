@@ -46,6 +46,65 @@ public partial class MainPage : ContentPage
 }
 ```
 
+Dealing with Null values and Nullable Types:
+
+- Sometimes when calling an API, a null is returned in place of a value or reference type.
+- Custom classes that must be initilized with nulls must be prepared to accept nulls. In .NET 7 & 8, use of '?' following the type helps by allowing null types.
+- A caveat to using nullable types is when the object needs to be returned as a string. The compiler will show warnings about possible null values/types. My attempt to address this issue is by testing for null and if so, replace the null with a printable string "null" instead. See example below.
+
+```c#
+public class ReceivedApiObject
+{
+  // when the API responds with null the class can still
+  // be initialized without adding any other complexity
+  public string? UnitCode {get; set;}
+  public string? Value {get; set;}
+  // but when printing to the screen there could be issues
+  public override string ToString()
+  {
+    if(string.IsNullOrEmpty(UnitCode))
+    {
+      UnitCode = ":null";
+    }
+    string? itemValue; // prepare for a null or empty value
+    if (!string.IsNullOrWhitespace(Value))
+    {
+      itemValue = Value;
+    }
+    // additional code here to return the desired string
+  }
+}
+```
+
+```c#
+public class AnotherApiObject
+{
+  public string? UnitCode {get; set;}
+  // in this case the value is an int instead of a string
+  public int? Value {get; set;}
+  public override string ToString()
+  {
+    // same code as above to replace UnitCode with ":null"
+    string? itemValue; // prepare for null or empty int
+    if (Value != null)
+    {
+      itemValue = Value.ToString(); // stringify it
+    }
+    else
+    {
+      itemValue = string.Empty; // empty, but not null
+    }
+    if (itemValue!.IndexOf('.') < 0) // ! tells the compiler to be quiet about possibly null value
+    {
+      return $"{itemValue} {UnitCode}";
+    }
+    // rest of code finds the decimal and trims to the hudreths place
+  }
+}
+```
+
+When these code blocks run, and either UnitCode or Value are null, they are replaced with a printable string value that should be safe for the calling method to use, and also will provide information on the null situation(s).
+
 ## Thursday 23-Nov-2023
 
 Completed "Get Started with C#" learning path hosted by Microsoft Learn. Also passed the FreeCodeCamp Foundational C# with Microsoft Certification Exam with a score of 90% in 40 minutes. There was at least one question that was not covered in the course content, and three other questions that were not phrased well and/or the "best answer" didn't appear to be syntactically correct. Glad I did it, and will continue to look for other opportunities like that one.
