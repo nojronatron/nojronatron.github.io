@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 26-Nov-2023
+
+More investigating MAUI Mobile Weather App design and implementation: Using DI and a collection based on `Collection<T>`, in conjunction with an MVVM design model, data from a web API can added to a page. The Collection base class provides generic storage of custom Types - value or reference, includes an indexer, and implemented methods following IList and IEnumerable interfaces (among others), like Add, Clear, IndexOf, Remove, and several more.
+
 ## Friday 24-Nov-2023
 
 I ran into a common issue in MAUI when leveraging Dependency Injection: "Missing default constructor for {viewModel name}". This happens when a new constructor is implemented. MAUI ContentPage.BindingContext expects a ViewModel codepage to have a parameterless constructor for initializing the object. The error also mentions a _missing type converter_.
@@ -14,8 +18,7 @@ For example, instead of doing this:
 ```xml
 <ContentPage
   ...
-  xmlns:viewModels="clr-namespace:MyProject.ViewModels"
-  x:Class="MyProject.MainPage">
+  >
 ...
 <ContentPage.BindingContext>
   <viewModels:MyViewModel />
@@ -23,25 +26,26 @@ For example, instead of doing this:
 ...
 ```
 
-...maintain the viewModels, x:class, and models xmlns namespace statements in XML, add the ViewModel to MainProgram.cs like this example:
+...remove `<ContentPage.BindingContext>` element(s) and update the DI Container (in MauiProgram.cs) to register the Views and ViewModels:
 
 ```c#
 ...
+  // add the view
+  builder.Services.AddTransient<MainPageView>();
+  // add the view model
   builder.Services.AddSingleton<MainPageViewModel>();
 ...
 ```
 
-...and then add to the code-behind a BindingContext initializer with the injected ViewModel instance:
+...and then add to the code-behind of each registered View, a BindingContext assignment to the CTOR-injected view model:
 
 ```c#
 public partial class MainPage : ContentPage
 {
-  private MainPageViewModel _viewModel;
   public MainPage(MainPageViewModel viewModel)
   {
+    BindingContext = viewModel;
     InitializeComponent();
-    _viewModel = viewModel;
-    BindingContext = _viewModel;
   }
 }
 ```
@@ -55,55 +59,50 @@ Dealing with Null values and Nullable Types:
 ```c#
 public class ReceivedApiObject
 {
-  // when the API responds with null the class can still
-  // be initialized without adding any other complexity
-  public string? UnitCode {get; set;}
-  public string? Value {get; set;}
-  // but when printing to the screen there could be issues
-  public override string ToString()
-  {
-    if(string.IsNullOrEmpty(UnitCode))
+  // when the API responds with null value types the class can be instantiated 
+  // and its members called without having to catch NullValueExceptions
+    public string? UnitCode { get; set; }
+    public int? Value { get; set; }
+    public override string ToString()
     {
-      UnitCode = ":null";
+      // check for null and use a temporary value type to store an appropriate value
+      string tempUnitCode = string.IsNullOrWhiteSpace(UnitCode) ? ":null" : UnitCode;
+      // same for the Value property
+      string? itemValue = Value == null ? "null" : Value.ToString();
+      // trim the temp value without mutating the source property
+      string fixedUnitCode = tempUnitCode.Substring(tempUnitCode.IndexOf(':') + 1);
+      // return values despite possible null Properties
+      return $"{itemValue} {fixedUnitCode}";
     }
-    string? itemValue; // prepare for a null or empty value
-    if (!string.IsNullOrWhitespace(Value))
-    {
-      itemValue = Value;
-    }
-    // additional code here to return the desired string
   }
 }
 ```
 
 ```c#
-public class AnotherApiObject
+public class AnotherApiObjectThatReturnsAnDouble
 {
-  public string? UnitCode {get; set;}
-  // in this case the value is an int instead of a string
-  public int? Value {get; set;}
+  public string? UnitCode { get; set; }
+  public double? Value { get; set; }
   public override string ToString()
   {
-    // same code as above to replace UnitCode with ":null"
-    string? itemValue; // prepare for null or empty int
-    if (Value != null)
+    // Similar idea here as to the previous example
+    string tempUnitCode = string.IsNullOrWhiteSpace(UnitCode) ? ":null" : UnitCode;
+    // again, avoid mutating the Properties
+    string? itemValue = Value == null ? "null" : Value.ToString();
+    string fixedUnitCode = UnitCode.Substring(UnitCode.IndexOf(':') + 1);
+    // return the replacement value as soon as possible
+    if (itemValue != null && itemValue.IndexOf('.') < 0)
     {
-      itemValue = Value.ToString(); // stringify it
+        return $"{itemValue} {fixedUnitCode}";
     }
-    else
-    {
-      itemValue = string.Empty; // empty, but not null
-    }
-    if (itemValue!.IndexOf('.') < 0) // ! tells the compiler to be quiet about possibly null value
-    {
-      return $"{itemValue} {UnitCode}";
-    }
-    // rest of code finds the decimal and trims to the hudreths place
+    // in this case I only want no more than 2 hundredths decimal places
+    string trimmedValue = itemValue!.Substring(startIndex: 0, length:itemValue.IndexOf('.') + 3);
+    return $"{trimmedValue} {fixedUnitCode}";
   }
 }
 ```
 
-When these code blocks run, and either UnitCode or Value are null, they are replaced with a printable string value that should be safe for the calling method to use, and also will provide information on the null situation(s).
+When these code blocks run, and either UnitCode or Value are null, they are replaced with a printable string value that should be safe for the calling method to use. The actual returned values also provide evidence of null-returns without having to catch an Exception.
 
 ## Thursday 23-Nov-2023
 
