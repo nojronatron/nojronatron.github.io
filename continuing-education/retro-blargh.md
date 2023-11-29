@@ -2,6 +2,33 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 29-Nov-2023
+
+I've had a few adventures in MAUI over the last several days. Here's an overview with key takeaways:
+
+### Adding a Test Project
+
+MAUI build definitions return binary executables, not DLL libraries, because it is building for platforms. A Test Project wants to consume a DLL to perform tests against, so a couple things need to happen besides just making the target project a dependency:
+
+- Use XUnit. Apparently this is what .NET Developers are using, going forward.
+- Use a MAUI Library Testing Project Template. I might have the name wrong, but the test project needs to "understand MAUI" in order to test it.
+- It might be necessary to add a build definition in the PROJ files and possibly the SLN file, telling it to utilize .NET 8 SDK, in addition to the custom _Net8.0 Windows10-blah-blah_ that is the default "Windows Machine" build type.
+- There might be more, I'm not sure I understand all of the requirements, but at least these changes allowed my Solution to build.
+
+More on this as I work on unit testing MAUI in the future.
+
+### Displaying Image Icons from the NWS API
+
+The API requires the caller to include custom Accept and UserAgent headers to define `application/ld+json` and `(its just me, name@email.etc)` identifiers. There is no API Key at this time (although the documentation promises that will be necssary "in the future"). This is true of the several endpoints I have worked with so far.
+
+One call has perplexed me, however. Here is an overview of my movements through _wondering_, _confusion_, and finally _realization_:
+
+- Wondering: How am I going to load an image from the NWS API into a page, when custom headers are required? I tried developing custom methods that would download each image (in the 20-period listing of forecasts, each has one image) for caching, but I was having trouble getting the resulting stream captured into a friendly cache that *wasn't* stored as a binary file.
+- Confusion: XAML `<Image>` elements accept a `Source=""` property that tells the Image class where to look to 'load' the image. It could be a local file, a `Stream` type (which is an abstract class and can only be "looked at" once), or loaded as an HTTP request. But _what about custom headers_?? The API documentation noted that the `/image` end point was _deprecated_. How could that be? It's in their `ld+json` response?!?
+- Realization: Did I actually _confirm_ that custom headers were necessary to download the weather Icons from the NWS API? Turns out _NO_. I had make ThunderClient calls down download images separately while _assuming_ the `/image` endpoint required the same custom headers. It _does not_.
+
+One additional note: I tried to leverage the MAUI Lifecycle eventing system, but the associated ViewModel was already inheriting ObservableObject (for simplified property update notifications) and in order to register and consume Lifecycle Events it would need to inherit from Window. Multiple inheritance is not supported in C#, and I wasn't willing to factor-out the ObservableObject inheritance to create a base implementation to provide the capability. That's okay, I don't need to leverage lifecycle events just yet.
+
 ## Sunday 26-Nov-2023
 
 More investigating MAUI Mobile Weather App design and implementation: Using DI and a collection based on `Collection<T>`, in conjunction with an MVVM design model, data from a web API can added to a page. The Collection base class provides generic storage of custom Types - value or reference, includes an indexer, and implemented methods following IList and IEnumerable interfaces (among others), like Add, Clear, IndexOf, Remove, and several more.
