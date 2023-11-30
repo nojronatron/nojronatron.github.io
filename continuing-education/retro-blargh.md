@@ -26,8 +26,13 @@ One call has perplexed me, however. Here is an overview of my movements through 
 - Wondering: How am I going to load an image from the NWS API into a page, when custom headers are required? I tried developing custom methods that would download each image (in the 20-period listing of forecasts, each has one image) for caching, but I was having trouble getting the resulting stream captured into a friendly cache that *wasn't* stored as a binary file.
 - Confusion: XAML `<Image>` elements accept a `Source=""` property that tells the Image class where to look to 'load' the image. It could be a local file, a `Stream` type (which is an abstract class and can only be "looked at" once), or loaded as an HTTP request. But _what about custom headers_?? The API documentation noted that the `/image` end point was _deprecated_. How could that be? It's in their `ld+json` response?!?
 - Realization: Did I actually _confirm_ that custom headers were necessary to download the weather Icons from the NWS API? Turns out _NO_. I had make ThunderClient calls down download images separately while _assuming_ the `/image` endpoint required the same custom headers. It _does not_.
+- The remaining issue is the endpoint does not reveal the content type nor a filename with extension, and the image won't appear in the XAML (even with the simplest of property settings e.g. `source=` and `HeightRequest`). Despite MAUI being able to process a REST Response stream, I believe the problem has to do with the undefined content type.
 
 One additional note: I tried to leverage the MAUI Lifecycle eventing system, but the associated ViewModel was already inheriting ObservableObject (for simplified property update notifications) and in order to register and consume Lifecycle Events it would need to inherit from Window. Multiple inheritance is not supported in C#, and I wasn't willing to factor-out the ObservableObject inheritance to create a base implementation to provide the capability. That's okay, I don't need to leverage lifecycle events just yet.
+
+### Mobile Location Feature
+
+Started looking into enabling the Android built-in location capability. Since this might take a while, and right now the app is working and looks okay, I also initialized a GitHub repo to track changes, helping me to document actions going forward, or roll-back dev branches that don't need to be completed.
 
 ## Sunday 26-Nov-2023
 
