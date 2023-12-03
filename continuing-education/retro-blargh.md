@@ -2,6 +2,10 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 2-Dec-2023
+
+A few days ago I completed an MS Learn training module "C# Null Safety" and added [my thoughts](./dotnet-csharp-stuff.html).
+
 ## Wednesday 29-Nov-2023
 
 I've had a few adventures in MAUI over the last several days. Here's an overview with key takeaways:
