@@ -2,6 +2,144 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 2-Dec-2023
+
+A few days ago I completed an MS Learn training module "C# Null Safety" and added [my thoughts](./dotnet-csharp-stuff.html).
+
+## Wednesday 29-Nov-2023
+
+I've had a few adventures in MAUI over the last several days. Here's an overview with key takeaways:
+
+### Adding a Test Project
+
+MAUI build definitions return binary executables, not DLL libraries, because it is building for platforms. A Test Project wants to consume a DLL to perform tests against, so a couple things need to happen besides just making the target project a dependency:
+
+- Use XUnit. Apparently this is what .NET Developers are using, going forward.
+- Use a MAUI Library Testing Project Template. I might have the name wrong, but the test project needs to "understand MAUI" in order to test it.
+- It might be necessary to add a build definition in the PROJ files and possibly the SLN file, telling it to utilize .NET 8 SDK, in addition to the custom _Net8.0 Windows10-blah-blah_ that is the default "Windows Machine" build type.
+- There might be more, I'm not sure I understand all of the requirements, but at least these changes allowed my Solution to build.
+
+More on this as I work on unit testing MAUI in the future.
+
+### Displaying Image Icons from the NWS API
+
+The API requires the caller to include custom Accept and UserAgent headers to define `application/ld+json` and `(its just me, name@email.etc)` identifiers. There is no API Key at this time (although the documentation promises that will be necssary "in the future"). This is true of the several endpoints I have worked with so far.
+
+One call has perplexed me, however. Here is an overview of my movements through _wondering_, _confusion_, and finally _realization_:
+
+- Wondering: How am I going to load an image from the NWS API into a page, when custom headers are required? I tried developing custom methods that would download each image (in the 20-period listing of forecasts, each has one image) for caching, but I was having trouble getting the resulting stream captured into a friendly cache that *wasn't* stored as a binary file.
+- Confusion: XAML `<Image>` elements accept a `Source=""` property that tells the Image class where to look to 'load' the image. It could be a local file, a `Stream` type (which is an abstract class and can only be "looked at" once), or loaded as an HTTP request. But _what about custom headers_?? The API documentation noted that the `/image` end point was _deprecated_. How could that be? It's in their `ld+json` response?!?
+- Realization: Did I actually _confirm_ that custom headers were necessary to download the weather Icons from the NWS API? Turns out _NO_. I had make ThunderClient calls down download images separately while _assuming_ the `/image` endpoint required the same custom headers. It _does not_.
+- The remaining issue is the endpoint does not reveal the content type nor a filename with extension, and the image won't appear in the XAML (even with the simplest of property settings e.g. `source=` and `HeightRequest`). Despite MAUI being able to process a REST Response stream, I believe the problem has to do with the undefined content type.
+
+One additional note: I tried to leverage the MAUI Lifecycle eventing system, but the associated ViewModel was already inheriting ObservableObject (for simplified property update notifications) and in order to register and consume Lifecycle Events it would need to inherit from Window. Multiple inheritance is not supported in C#, and I wasn't willing to factor-out the ObservableObject inheritance to create a base implementation to provide the capability. That's okay, I don't need to leverage lifecycle events just yet.
+
+### Mobile Location Feature
+
+Started looking into enabling the Android built-in location capability. Since this might take a while, and right now the app is working and looks okay, I also initialized a GitHub repo to track changes, helping me to document actions going forward, or roll-back dev branches that don't need to be completed.
+
+## Sunday 26-Nov-2023
+
+More investigating MAUI Mobile Weather App design and implementation: Using DI and a collection based on `Collection<T>`, in conjunction with an MVVM design model, data from a web API can added to a page. The Collection base class provides generic storage of custom Types - value or reference, includes an indexer, and implemented methods following IList and IEnumerable interfaces (among others), like Add, Clear, IndexOf, Remove, and several more.
+
+## Friday 24-Nov-2023
+
+I ran into a common issue in MAUI when leveraging Dependency Injection: "Missing default constructor for {viewModel name}". This happens when a new constructor is implemented. MAUI ContentPage.BindingContext expects a ViewModel codepage to have a parameterless constructor for initializing the object. The error also mentions a _missing type converter_.
+
+- Searching for "missing type converter" didn't return any obviously useable results.
+- Further research led me to [Resolve XAML BindingContexts from ServiceCollection](https://github.com/dotnet/maui/issues/5544), where a proposed solution is in the "future" pipeline, and participants in the discussion offered alternate solutions that work today.
+
+For example, instead of doing this:
+
+```xml
+<ContentPage
+  ...
+  >
+...
+<ContentPage.BindingContext>
+  <viewModels:MyViewModel />
+</ContentPage.BindingContext>
+...
+```
+
+...remove `<ContentPage.BindingContext>` element(s) and update the DI Container (in MauiProgram.cs) to register the Views and ViewModels:
+
+```c#
+...
+  // add the view
+  builder.Services.AddTransient<MainPageView>();
+  // add the view model
+  builder.Services.AddSingleton<MainPageViewModel>();
+...
+```
+
+...and then add to the code-behind of each registered View, a BindingContext assignment to the CTOR-injected view model:
+
+```c#
+public partial class MainPage : ContentPage
+{
+  public MainPage(MainPageViewModel viewModel)
+  {
+    BindingContext = viewModel;
+    InitializeComponent();
+  }
+}
+```
+
+Dealing with Null values and Nullable Types:
+
+- Sometimes when calling an API, a null is returned in place of a value or reference type.
+- Custom classes that must be initilized with nulls must be prepared to accept nulls. In .NET 7 & 8, use of '?' following the type helps by allowing null types.
+- A caveat to using nullable types is when the object needs to be returned as a string. The compiler will show warnings about possible null values/types. My attempt to address this issue is by testing for null and if so, replace the null with a printable string "null" instead. See example below.
+
+```c#
+public class ReceivedApiObject
+{
+  // when the API responds with null value types the class can be instantiated 
+  // and its members called without having to catch NullValueExceptions
+    public string? UnitCode { get; set; }
+    public int? Value { get; set; }
+    public override string ToString()
+    {
+      // check for null and use a temporary value type to store an appropriate value
+      string tempUnitCode = string.IsNullOrWhiteSpace(UnitCode) ? ":null" : UnitCode;
+      // same for the Value property
+      string? itemValue = Value == null ? "null" : Value.ToString();
+      // trim the temp value without mutating the source property
+      string fixedUnitCode = tempUnitCode.Substring(tempUnitCode.IndexOf(':') + 1);
+      // return values despite possible null Properties
+      return $"{itemValue} {fixedUnitCode}";
+    }
+  }
+}
+```
+
+```c#
+public class AnotherApiObjectThatReturnsAnDouble
+{
+  public string? UnitCode { get; set; }
+  public double? Value { get; set; }
+  public override string ToString()
+  {
+    // Similar idea here as to the previous example
+    string tempUnitCode = string.IsNullOrWhiteSpace(UnitCode) ? ":null" : UnitCode;
+    // again, avoid mutating the Properties
+    string? itemValue = Value == null ? "null" : Value.ToString();
+    string fixedUnitCode = UnitCode.Substring(UnitCode.IndexOf(':') + 1);
+    // return the replacement value as soon as possible
+    if (itemValue != null && itemValue.IndexOf('.') < 0)
+    {
+        return $"{itemValue} {fixedUnitCode}";
+    }
+    // in this case I only want no more than 2 hundredths decimal places
+    string trimmedValue = itemValue!.Substring(startIndex: 0, length:itemValue.IndexOf('.') + 3);
+    return $"{trimmedValue} {fixedUnitCode}";
+  }
+}
+```
+
+When these code blocks run, and either UnitCode or Value are null, they are replaced with a printable string value that should be safe for the calling method to use. The actual returned values also provide evidence of null-returns without having to catch an Exception.
+
 ## Thursday 23-Nov-2023
 
 Completed "Get Started with C#" learning path hosted by Microsoft Learn. Also passed the FreeCodeCamp Foundational C# with Microsoft Certification Exam with a score of 90% in 40 minutes. There was at least one question that was not covered in the course content, and three other questions that were not phrased well and/or the "best answer" didn't appear to be syntactically correct. Glad I did it, and will continue to look for other opportunities like that one.

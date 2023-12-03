@@ -2,6 +2,14 @@
 
 A collection of notes related to developing and building upon MVVM in DotNET WPF.
 
+## Table of Contents
+
+- [Requirements](#requirements)
+- [WPF with MVVM Project Setup](#wpf-with-mvvm-project-setup)
+- [Caliburn.Micro](#caliburnmicro)
+- [Random Notes](#random-notes)
+- [Footer](#footer)
+
 ## Requirements
 
 Visual Studio 2019 or newer.

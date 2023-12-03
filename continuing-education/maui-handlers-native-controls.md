@@ -1,5 +1,14 @@
 # DotNET MAUI Handlers and Native Controls
 
+## Table of Contents
+
+- [Presenters](#presenters)
+- [Overview](#overview)
+- [Xamarin FOrms Custom Renderers](#xamarin-forms-custom-renderers)
+- [Steps](#steps)
+- [References](#references)
+- [Footer](#footer)
+
 ## Presenters
 
 - Bruno Capuano @elbruno
