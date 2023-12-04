@@ -2,6 +2,17 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Sunday 3-Dec-2023
+
+One of the challenges of designing a MAUI app is how to handle platform-specific actions, such as accessing Location Services. Windows, macOS, and iOS all handle such features differently and they are not completely abstracted in the framework. So `#if` `#else` and `#endif` statements must be sprinkles through the code so that these platform-specific calls can be made when they return true, e.g. `#if ANDROID`.
+
+I experience some challenges in this context:
+
+1. Barring previous experience with basically all involved platforms, it is not always obvious that a platform-specific call must be made. To be fair through, _many_ platform-specific features and capabilitys _have been abstracted_ especially in the UI, and in the build processes.
+1. Intellisense and the C# Language tools do a _very poor_ job of linting and formatting code when the platform-specific logic code blocks are added. First of all, they are all left-aligned all the way to the gutter, which breaks continuity within the class and method of the current statement/code block it is surrounding. Secondly, Visual Studio tries to reconcile brackets while writing code and usually will get the wrong (inserting or deleting them while typing) when the platform-specific decision syntax is added or moved.
+
+`/soapbox`
+
 ## Saturday 2-Dec-2023
 
 A few days ago I completed an MS Learn training module "C# Null Safety" and added [my thoughts](./dotnet-csharp-stuff.html).
