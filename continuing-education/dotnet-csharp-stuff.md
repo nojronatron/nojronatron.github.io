@@ -2,9 +2,14 @@
 
 Notes on various topics while developing software with, or learning more about, C# and .NET.
 
+## Table of Contents
+
+- [Null Safety in CSharp](#null-safety-in-csharp)
+- [Footer](#footer)
+
 ## Null Safety in CSharp
 
-Null detection and handling changes were set in earnest in C# 2.0 and greater, and .NET 6.
+Null detection and handling changes in C# 2.0 and greater provide a means to better avoid null reference exceptions in an app.
 
 ### Overview
 
@@ -39,7 +44,7 @@ Settings are available:
 
 There are several operators dedicated to working with nullable references:
 
-`?` (ternary) conditional operator:
+Conditional operator (ternary) `?`:
 
 - Tells the compiler the object is _intended to be nullable_.
 - Enables shorter boolean expressions such as `int bar = foo > 20 ? foo : 0`
