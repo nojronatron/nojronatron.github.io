@@ -2,9 +2,33 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 14-Dec-2023
+
+Time is going by pretty fast. Lots happening the last week or so slowed or blocked coding progress. Nonetheless I eeked out some time to:
+
+- Build a Blazor SSR service for capturing and storing APK files. Partially done for fun, partially to help me keep track of Published versions of my mobile weather app as it progresses.
+- Examine ways to manage downloading and processing images, for just-in-time web-request capture and display to user. This also applied to the mobile weather app.
+- Attempted to solve the above issue by preemptively downloading a collection of images and storing them as local assets for the app. The solution was clunky, and the code is incomplete and will probably stay that way.
+- Explored the .NET MAUI Community Toolkit and it myriad tools, utilities, and patterns. There is a lot more to discover here, and I will be wise to continue exploring it.
+- Leveraged the .NET MAUI Community Toolkit to solve the NOA Weather image icon download problem. :tada:
+- Worked on some MSFT Learn Modules re: Blazor App. There is more to do here, but should be on the back-burner until at least after the mobile weather app is completed.
+- Completed a challenge "Count the Islands" which is a 2-D Array traversal challenge. The idea is to cound the number of "islands" (1's) among a sea of zeros. In this case the most efficient solution was to use a recursive function and "walk" each island, similar to how a Graph is traversed with "visited node" tracking.
+- Completed a few other code challenges like: Find 2 numbers in an array that, when summed, equal a target value; Determine the maximum profit possible from a listing of stock valuations throughout a timeperiod; Recursively reversing a linked list; Replacing and/or managing null values and references.
+
+What I've learned while exploring the .NET MAUI Community Toolkit:
+
+- Using inheritance and composition to get features and behaviors into Views (Pages) and ViewModels. This also simplifies use of built-in lifecycle methods like `OnAppearing` and `OnDisappearing`.
+- Implementing color schemes and light/dark mode theme toggles.
+- Converting byte-array types to ImageSource Types for rendering on any MAUI-enabled platform.
+
+Future .NET MAUI Community Toolkit exploration:
+
+- Use of BingMapsPortal to display maps and get started with GeoCoding.
+- LazyView (lazy-load child pages).
+
 ## Sunday 3-Dec-2023
 
-One of the challenges of designing a MAUI app is how to handle platform-specific actions, such as accessing Location Services. Windows, macOS, and iOS all handle such features differently and they are not completely abstracted in the framework. So `#if` `#else` and `#endif` statements must be sprinkles through the code so that these platform-specific calls can be made when they return true, e.g. `#if ANDROID`.
+One of the challenges of designing a MAUI app is how to handle platform-specific actions, such as accessing Location Services. Windows, macOS, and iOS all handle such features differently and they are not completely abstracted in the framework. So `#if` `#else` and `#endif` statements must be sprinkled through the code so that these platform-specific calls can be made when they return true, e.g. `#if ANDROID`.
 
 I experience some challenges in this context:
 
