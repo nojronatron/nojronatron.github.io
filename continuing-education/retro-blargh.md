@@ -2,6 +2,19 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 16-Dec-2023
+
+Completed initial color scheme and light/dark theme implementation for the mobile weather app. Some key takeaways:
+
+- Using a tool like [Web AIM Color Contrast Checker](https://webaim.org/resources/contrastchecker/) can be really helpful in picking high contrast colors.
+- Miro came in handy to demonstrate what sets of colors had high color contrast ratios so it would be easier to pick background colors given a foreground color (or vice-versa).
+- Created an app icon totally custom for this app using Miro magic. Now, when the app is installed, the custom icon is displayed rather than the ".NET" icon incorporated with the MAUI template used to initialize the project.
+
+The mobile weather app has been deployed a few times for Android now. Here are some take-aways:
+
+- It was a good idea to set up a web-based file server for capturing the Published "Distribution" APK file, simplifying side-loading on my actual phone.
+- Deploying a mobile app is a little different than a standard Windows app or a Web App. It is critical that the Distributed version of the file (after signing et al) is the APK that is used, otherwise it will not usable via sideload (or the Android Play ecosystem, for that matter).
+
 ## Thursday 14-Dec-2023
 
 Time is going by pretty fast. Lots happening the last week or so slowed or blocked coding progress. Nonetheless I eeked out some time to:
