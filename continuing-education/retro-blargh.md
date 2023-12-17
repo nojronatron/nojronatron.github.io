@@ -2,6 +2,54 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Saturday 16-Dec-2023
+
+Completed initial color scheme and light/dark theme implementation for the mobile weather app. Some key takeaways:
+
+- Using a tool like [Web AIM Color Contrast Checker](https://webaim.org/resources/contrastchecker/) can be really helpful in picking high contrast colors.
+- Miro came in handy to demonstrate what sets of colors had high color contrast ratios so it would be easier to pick background colors given a foreground color (or vice-versa).
+- Created an app icon totally custom for this app using Miro magic. Now, when the app is installed, the custom icon is displayed rather than the ".NET" icon incorporated with the MAUI template used to initialize the project.
+
+The mobile weather app has been deployed a few times for Android now. Here are some take-aways:
+
+- It was a good idea to set up a web-based file server for capturing the Published "Distribution" APK file, simplifying side-loading on my actual phone.
+- Deploying a mobile app is a little different than a standard Windows app or a Web App. It is critical that the Distributed version of the file (after signing et al) is the APK that is used, otherwise it will not usable via sideload (or the Android Play ecosystem, for that matter).
+
+## Thursday 14-Dec-2023
+
+Time is going by pretty fast. Lots happening the last week or so slowed or blocked coding progress. Nonetheless I eeked out some time to:
+
+- Build a Blazor SSR service for capturing and storing APK files. Partially done for fun, partially to help me keep track of Published versions of my mobile weather app as it progresses.
+- Examine ways to manage downloading and processing images, for just-in-time web-request capture and display to user. This also applied to the mobile weather app.
+- Attempted to solve the above issue by preemptively downloading a collection of images and storing them as local assets for the app. The solution was clunky, and the code is incomplete and will probably stay that way.
+- Explored the .NET MAUI Community Toolkit and it myriad tools, utilities, and patterns. There is a lot more to discover here, and I will be wise to continue exploring it.
+- Leveraged the .NET MAUI Community Toolkit to solve the NOA Weather image icon download problem. :tada:
+- Worked on some MSFT Learn Modules re: Blazor App. There is more to do here, but should be on the back-burner until at least after the mobile weather app is completed.
+- Completed a challenge "Count the Islands" which is a 2-D Array traversal challenge. The idea is to cound the number of "islands" (1's) among a sea of zeros. In this case the most efficient solution was to use a recursive function and "walk" each island, similar to how a Graph is traversed with "visited node" tracking.
+- Completed a few other code challenges like: Find 2 numbers in an array that, when summed, equal a target value; Determine the maximum profit possible from a listing of stock valuations throughout a timeperiod; Recursively reversing a linked list; Replacing and/or managing null values and references.
+
+What I've learned while exploring the .NET MAUI Community Toolkit:
+
+- Using inheritance and composition to get features and behaviors into Views (Pages) and ViewModels. This also simplifies use of built-in lifecycle methods like `OnAppearing` and `OnDisappearing`.
+- Implementing color schemes and light/dark mode theme toggles.
+- Converting byte-array types to ImageSource Types for rendering on any MAUI-enabled platform.
+
+Future .NET MAUI Community Toolkit exploration:
+
+- Use of BingMapsPortal to display maps and get started with GeoCoding.
+- LazyView (lazy-load child pages).
+
+## Sunday 3-Dec-2023
+
+One of the challenges of designing a MAUI app is how to handle platform-specific actions, such as accessing Location Services. Windows, macOS, and iOS all handle such features differently and they are not completely abstracted in the framework. So `#if` `#else` and `#endif` statements must be sprinkled through the code so that these platform-specific calls can be made when they return true, e.g. `#if ANDROID`.
+
+I experience some challenges in this context:
+
+1. Barring previous experience with basically all involved platforms, it is not always obvious that a platform-specific call must be made. To be fair through, _many_ platform-specific features and capabilitys _have been abstracted_ especially in the UI, and in the build processes.
+1. Intellisense and the C# Language tools do a _very poor_ job of linting and formatting code when the platform-specific logic code blocks are added. First of all, they are all left-aligned all the way to the gutter, which breaks continuity within the class and method of the current statement/code block it is surrounding. Secondly, Visual Studio tries to reconcile brackets while writing code and usually will get the wrong (inserting or deleting them while typing) when the platform-specific decision syntax is added or moved.
+
+`/soapbox`
+
 ## Saturday 2-Dec-2023
 
 A few days ago I completed an MS Learn training module "C# Null Safety" and added [my thoughts](./dotnet-csharp-stuff.html).
