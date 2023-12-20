@@ -2,6 +2,25 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Tuesday 20-Dec-2023
+
+Working on adding NWS Alert information to the mobile weather app. One approach has been devised in a separate dev/test project. I also explored using Google's Geocoding API to get Lat/Lon for a city name. The API isn't perfect (and in fact the API and the JSON output are both fairly complex), but for most common US city names it works well enough. I might look into alternatives or skip requesting a city name and instead try to use a map-based geocoding solution. MAUI 8 appears to have library functions that will help with that.
+
+The basic idea for handling Alerts is:
+
+- Add a model that will store the complex JSON data from the Alert reseponse.
+- Implement the asynchronous HTTP REST call to the alert uri.
+- Process the response and determine if there is data to display.
+- If there is data, indicate an Alert has data and display it. For the Console dev/test project it simply output the data. For the mobile app the plan is to make the alert icon visible and click/tappable so the alert data can be viewed separately.
+
+An alert JSON object is actually an array of objects, so in the event there are multiple alerts my app will need to iterate through them all and ensure readable output to the mobile app UI.
+
+I've been wanting to clean-up some of the code and UI look-and-feel in the mobile weather app:
+
+- Dead code. Some areas have legacy code that is no longer needed, or code that was never necessary. Identify and remove, testing along the way.
+- Duplicate code. When hooking into Android Location Services, the code base ended up having two code paths with some duplicate code. Factor-out the duplicated code into abstracted class method(s).
+- UI Text placement and wording is not consistent: Some elements are not quite aligned properly, and some elements output 'null' when it should be '0', or otherwise don't quite output the correct text.
+
 ## Saturday 16-Dec-2023
 
 Completed initial color scheme and light/dark theme implementation for the mobile weather app. Some key takeaways:
