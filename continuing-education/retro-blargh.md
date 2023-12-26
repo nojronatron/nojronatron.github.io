@@ -2,6 +2,102 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Friday 23-Dec-2023
+
+Completed Quick-sort and Insertion-sort at [FreeCodeCamp](https://freecodecamp.org).
+
+Quick-sort is a divide-and-conquer algorithm that utilizes recursion to split values within the array between larger-than, and smaller-than values. A `pivot value` is determined (carefully) so that all values greater than or equal to it are moved into a `right` array, and those lower than it are moved to a `left` array. The reason the pivot is so crucial is a poorly selected pivot will allow the recursive calls to exhaust the stack, rather than pick sets of values to put into each sub-array (left and right). Until today I wasn't aware of the Big O complexity in time of `spread syntax` (aka spread operator) in JavaScript, but I assumed it would be no worse than simply iterating over each array that I intend to merge. According to [this StackOverflow conversation](https://stackoverflow.com/questions/57032373/whats-the-time-complexity-of-javascript-spread-syntax-in-arrays), it is O(n) in time.
+
+One hurdle was determining how to define a sensible pivot. It took a while to find one that would work on the small datasets i was working with:
+
+```JavaScript
+// two items in the array and not the same number
+let pivotVal = ((array[0] + array[1]) / 2);
+
+// three or more items in the array
+let last = array.length - 1;
+let pivotVal = ((array[0] + array[1] + array[last]) / 3);
+```
+
+These codelines are not necessarily robust solutions for any input, but they worked for the existing data-sets. For a more robust algorithm, it would be beneficial to use a randomized value, or a more mathematically-derived number, given all values in the array.
+
+As an aside, I ran into a sub-challenge where JavaScript would treat a single-item array in a function argument as a String or Number instead of an Array. Before I gated the Quick-sort function with a minimum 2-item array limit, I was forcing a re-cast or verifing the `Type` ahead of taking actin on the input:
+
+```JavaScript
+function func1(inputArr) {
+  if (inputArr.length == 1) {
+    if (Array.isArray(inputArr)) {
+      ...
+    }
+    ...
+  }
+  ...
+}
+```
+
+Insertion-sort is a small, stable sorting algorithm that also utilizes a common value-swapping algorithm. Frakly, it is easy to confuse this one with Bubble-sort, however it tends to sort items toward the "left" side of the array rather than buble high-values up to the top. Time effeciency is O(n^2) and space O(1), and is good enough for small arrays so it can easily be used as an alternative to another algorithm or perhaps as part of a recursive portion of a larger sorting algorithm.
+
+## Thursday 22-Dec-2023
+
+After struggling with the NWS API for several hours, I discovered it has experienced a partial outage. Being relatively new to the API, I wasn't sure my code was doing the right things so I was focused on debugging and other troubleshooting steps. The NWS says the partial outage will continue until early 2024, so development on the weather app will be on hold for at least another couple weeks.
+
+Meanwhile, I completed several [FreeCodeCamp](https://freecodecamp.org) challenges including a bubble-sort algorithm.
+
+Bubble-sort Key Takeaways:
+
+- As with any sorting algorithm, an array of length 1 is sorted.
+- Per the usual, empty in? Empty out (no crash or throw).
+- Starting with the lowest index of the input array, enter a while loop that continues until all indices have been checked onces without any swapping.
+- Iterate through the array comparing adjacent items and swap items that are out-of-order.
+- Bubble "up" unsorted values toward the high end (ascending order) (see code below).
+- When a swap has happened, flip a bit to record that a change was made (see while loop, above).
+- Bubble Sort is not very time efficient at O(n^2), but space effeciency is linear at O(1), as an in-place sorting algorithm.
+
+```c#
+private static void BubbleSort(int[] arr)
+{
+  ...
+  while (unchanged == false)
+  {
+    ...
+    if (idx+1 < arr.Length && arr[idx] > arr[idx+1])
+    {
+      // this is a common swapping algorithm
+      int temp = arr[idx];
+      arr[idx] = arr[idx+1];
+      arr[idx + 1] = temp;
+      itemSwapped = true;
+    }
+    // track the inverse of itemSwapped outside of the swapping loop
+    unchanged = !itemSwapped;
+  }
+  return; // in-place array sorting algorithm
+}
+```
+
+## Tuesday 20-Dec-2023
+
+Working on adding NWS Alert information to the mobile weather app. One approach has been devised in a separate dev/test project. I also explored using Google's Geocoding API to get Lat/Lon for a city name. The API isn't perfect (and in fact the API and the JSON output are both fairly complex), but for most common US city names it works well enough. I might look into alternatives or skip requesting a city name and instead try to use a map-based geocoding solution. MAUI 8 appears to have library functions that will help with that.
+
+The basic idea for gathering and displaying any weather alert is to:
+
+- Add a model that will store the complex JSON data from the Alert reseponse.
+- Implement the asynchronous HTTP REST call to the alert uri.
+- Process the response and determine if there is data to display.
+- If there is data, indicate an Alert has data and display it. For the Console dev/test project it simply output the data. For the mobile app the plan is to make the alert icon visible and click/tappable so the alert data can be viewed separately.
+
+An alert JSON object is actually an array of objects, so in the event there are multiple alerts my app will need to iterate through them all and ensure readable output to the mobile app UI.
+
+I've been wanting to clean-up some of the code and UI look-and-feel in the mobile weather app:
+
+- Dead code. Some areas have legacy code that is no longer needed, or code that was never necessary. Identify and remove, testing along the way.
+- Duplicate code. When hooking into Android Location Services, the code base ended up having two code paths with some duplicate code. Factor-out the duplicated code into abstracted class method(s).
+- UI Text placement and wording is not consistent: Some elements are not quite aligned properly, and some elements output 'null' when it should be '0', or otherwise don't quite output the correct text.
+
+Another feature that needs to be implemented: Applying secrets and configuration to the app. If I'm going to use my own secrets, I don't want to store them with the code.
+
+Now I've been humbled: While exploring the NWS API some more, I've come to realize my weather app is looking at only _forecast_ data and not current conditions or observation station data. I'll be able to use the existing code for the most part, but I will need to insert the current observations code into the app and move the forecast data to other pages. This means navigation will be necessary, so I'll have to start working on navigation sooner than later.
+
 ## Saturday 16-Dec-2023
 
 Completed initial color scheme and light/dark theme implementation for the mobile weather app. Some key takeaways:
