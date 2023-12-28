@@ -2,6 +2,31 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Wednesday 27-Dec-2023
+
+Compared TabBar and Flyout Shell view implementations for my mobile weather app.
+
+The TabBar implementation is closer to what I envisioned:
+
+- Bottom of the screen, but only on Android.
+- Icons represent tools/actions.
+- Titles can be added to the icons.
+- Clicking icons navigates about the app.
+
+The problem is it _does not support custom color images_ and instead relies on black and white or font-based icons. :upside_down_face:
+
+Flyout seemed to be a good enough fit and actually has a few perks that TabBar does not:
+
+- Hamburger menu icon can be overridden (Windows app) with a custom, color icon/image.
+- Android does not render the custom hamburger menu image - but this is probably an easy fix that I just need to look up.
+- Individual entries can have a custom icon along with text. :grin:
+- Implementation is similar to TabBar in that Routing Registration is no longer necessary.
+- There are properties to help define and tweak Flyout items for better customization than TabBar will fulfill.
+
+## Tuesday 26-Dec-2023
+
+Started redesigning the weather app navigation, with the goal of including a navigation bar at the bottom of the app. This requires designing some icons, updating AppShell, among other things.
+
 ## Friday 23-Dec-2023
 
 Completed Quick-sort and Insertion-sort at [FreeCodeCamp](https://freecodecamp.org).
