@@ -2,6 +2,12 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Thursday 28-Dec-2023
+
+I managed to work through designing a functional Merge-Sort algorithm, started yesterday, and lots of sketching and planning then and this morning, and my custom-designed Jest tests are passing. However, it does not pass the same test when run on the FreeCodeCamp webpage. Not sure what that is about, but I'm going to move on to other challenges so I don't get stuck.
+
+The next challenge was Binary Search. This wasn't too difficult, but I could not complete it within 45 minutes, so it is difficult to say if I'd complete it during an actual technical whiteboard session. Regardless, I was able to complete it.
+
 ## Wednesday 27-Dec-2023
 
 Compared TabBar and Flyout Shell view implementations for my mobile weather app.
