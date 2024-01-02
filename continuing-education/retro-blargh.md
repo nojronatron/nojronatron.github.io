@@ -2,6 +2,45 @@
 
 Semi-regular notes taken during my software developer journey.
 
+## Final Entry of 2023
+
+I've been considering changing-up this semi-irregular blogging style note taking for something that will be more helpful when I need to reference it in the future. While it is good for me (generally) to continue to write about my experiences in tech, the future me usually gets frustrated searching through past-me notes because the solutions aren't always documented in a reproducable way. This will take some time to sort out, and will be part of what I hope will be a slight reconfiguration of my routines and methodologies, so I can continue to improve and not get stuck in any ruts.
+
+The Mobile Weather App color and theming and tabbed-based navigation have been implemented and there appear to be very few issues. Next step is to produce a point build for on-phone testing (upgrading the current point-release version) and moving forward with the next goals for the app. Hopefully I'll have the app in a useable state before the end of January 2024. Meanwhile, I have several other tasks to accomplish especially around the house here, so I have plenty to do!
+
+Happy new year! :tada:
+
+## Thursday 28-Dec-2023
+
+I managed to work through designing a functional Merge-Sort algorithm, started yesterday, and lots of sketching and planning then and this morning, and my custom-designed Jest tests are passing. However, it does not pass the same test when run on the FreeCodeCamp webpage. Not sure what that is about, but I'm going to move on to other challenges so I don't get stuck.
+
+The next challenge was Binary Search. This wasn't too difficult, but I could not complete it within 45 minutes so it is difficult to say if I'd complete it during an actual technical whiteboard session.
+
+## Wednesday 27-Dec-2023
+
+Compared TabBar and Flyout Shell view implementations for my mobile weather app.
+
+The TabBar implementation is closer to what I envisioned:
+
+- Bottom of the screen, but only on Android.
+- Icons represent tools/actions.
+- Titles can be added to the icons.
+- Clicking icons navigates about the app.
+
+The problem is it _does not support custom color images_ and instead relies on black and white or font-based icons. :upside_down_face:
+
+Flyout seemed to be a good enough fit and actually has a few perks that TabBar does not:
+
+- Hamburger menu icon can be overridden (Windows app) with a custom, color icon/image.
+- Android does not render the custom hamburger menu image - but this is probably an easy fix that I just need to look up.
+- Individual entries can have a custom icon along with text. :grin:
+- Implementation is similar to TabBar in that Routing Registration is no longer necessary.
+- There are properties to help define and tweak Flyout items for better customization than TabBar will fulfill.
+
+## Tuesday 26-Dec-2023
+
+Started redesigning the weather app navigation, with the goal of including a navigation bar at the bottom of the app. This requires designing some icons, updating AppShell, among other things.
+
 ## Friday 23-Dec-2023
 
 Completed Quick-sort and Insertion-sort at [FreeCodeCamp](https://freecodecamp.org).
