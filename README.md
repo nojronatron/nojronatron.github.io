@@ -16,9 +16,11 @@ Reference [links](#reference-links)
 
 Continuing Research [Index of Learnings and Notes](./continuing-education/conted-index.html)
 
-## Retros
+## Retro / Blogs
 
-[Post Code Fellows Retros](./continuing-education/retro-blargh.md)
+[Blogging Space for cy 2024](./continuing-education/nojronablog-2024.html).
+
+[Post Code Fellows Retros](./continuing-education/retro-blargh.html).
 
 ## Advanced Software Development
 
