@@ -102,7 +102,7 @@ Miro is really helpful creating materials for images and icons. Some things to k
 - So long as Images are placed into the Resource hierarchy at `Project\Resources\Images\`, they will automatically be assiged the Build property `MauiImage`.
 - When adding/removing images from a MAUI project it is a good idea to check the Project file for `<ItemGroup>` entries with both `include` and `remove` attributes. Clean-up the entries with `remove` attribute before the next build-deploy cycle to avoid some possible deployment errors.
 
-### Publish Android APK
+### Publish Android APK using Visual Studio
 
 So many times I've done this and yet the process is just un-obvious enough that I stumble through it pretty much everytime. The goal here is to document it so that I no longer need to look it up. :smiley:
 
@@ -120,6 +120,71 @@ So many times I've done this and yet the process is just un-obvious enough that 
 12. If there were no problems, click `Open Distribution` at the bottom of the Archive Manager window to gain access to an APK file that can be side-loaded onto an appropriate Android API Level phone.
 
 Note: Select `Open Folder` to see the signed-apks folder, archive.xml, and deployable APK file.
+
+### JavaScript Arrow Functions
+
+Areas where I've been struggling with JavaScript recently:
+
+- Creating a Function as if it were a class with its own members.
+- When to use Arrow functions, anonymous functions, etc inside of a Class or Function-style class.
+
+```javascript
+// Functional "class"
+const MyThing = function() {
+  this.kvpStore = {};
+  this.has = (key) => {
+    return this.kvpStore.hasOwnProperty(key);
+  };
+}
+```
+
+I need to sort this out in my head so it is less frustrating next time:
+
+- [ ] Why are we using `this.has = (param) => {}` here, instead of `this.has = function(param) {}`? The problem is they don't have their own meaning of `this`, resulting in unexpected results. So method definitions should _not_ use this syntax. Normal methods should be written using class 'method' syntax (see below). _[MDN JavaScript Reference]_
+
+```javascript
+// anonymous function
+(function (num) {
+  return num / 100; 
+});
+
+// basic arrow function removes keyword 'function' and parens and braces not necessary for one-line code block and single (simple) params
+num => num / 100;
+
+// braces and 'return' keyword required for multi-line code blocks
+num => {
+  const temp = num / 100;
+  return temp + 100;
+};
+```
+
+- Do _not_ return expression body syntax e.g. `const func = () => { foo: 'baz' };`
+- Instead, wrap object literal in parenthesis: `const func = () => ({ foo: 'baz' });`
+- Don't do this either `const func = () => { foo: function () {...} };`
+- Don't return a function like this either: `const func = () => { foo() {...} };`
+- There is no concept of `arguments` binding in arrow functions.
+- Arrow functions lack a `prototype` property, and will throw an error when called with the `new` keyword. 
+
+Note: The above examples are slightly modified versions from _[MDN Javascript Reference]_, accessed 5-Jan-24.
+
+```javascript
+// class method syntax example with public function definitions
+const obj = {
+  foo() {
+    return 'bar';
+  },
+};
+
+// the slightly longer form of the above:
+const obj = {
+  foo: function () {
+    return 'bar';
+  },
+};
+```
+
+- MDN Reference Material about [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions).
+- MDN Reference Material about [Class Method Definitions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions).
 
 ## Footer
 
