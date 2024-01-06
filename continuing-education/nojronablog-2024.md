@@ -1,6 +1,6 @@
 # Nojronablog 2024
 
-A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey in 2024.
+A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
 ## Week 1
 
