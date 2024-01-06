@@ -4,6 +4,8 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## Week 1
 
+### MAUI Color and Theming
+
 Working through implementing a usable About page for MobWxApp:
 
 - Implementing a "Hyperlink" Style for things like opening the GitHub Project or LinkedIn Profile in a browser is fairly straightforword so long as you _do not_ use `<span>`s.
@@ -89,9 +91,18 @@ private async Task BrowserOpen(string url) {
 }
 ```
 
+Theming In Particular:
+
+- It seems like a good idea to leverage `AppThemeBinding`s everywhere once it is used somewhere on a View, otherwise there can be some unexpected results.
+- Use `transparent` color type when necessary to allow the Theme application to a parent View/Control to show through.
+
+Link-Like Label Styling:
+
 The code I implemented for launching the browser and displaying a "link"-like Label are functional on Windows and Android (emulator API 32+).
 
 _Note:_ [`IBrowser.OpenAsync()` documentation](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.applicationmodel.ibrowser?view=net-maui-8.0) does not mention any Exception type that might get thrown.
+
+Custom Images and Icons:
 
 Miro is really helpful creating materials for images and icons. Some things to keep in mind when creating materials for .NET MAUI 8:
 
@@ -102,7 +113,7 @@ Miro is really helpful creating materials for images and icons. Some things to k
 - So long as Images are placed into the Resource hierarchy at `Project\Resources\Images\`, they will automatically be assiged the Build property `MauiImage`.
 - When adding/removing images from a MAUI project it is a good idea to check the Project file for `<ItemGroup>` entries with both `include` and `remove` attributes. Clean-up the entries with `remove` attribute before the next build-deploy cycle to avoid some possible deployment errors.
 
-### Publish Android APK using Visual Studio
+### Publishing a Private Android APK using Visual Studio
 
 So many times I've done this and yet the process is just un-obvious enough that I stumble through it pretty much everytime. The goal here is to document it so that I no longer need to look it up. :smiley:
 
@@ -121,9 +132,9 @@ So many times I've done this and yet the process is just un-obvious enough that 
 
 Note: Select `Open Folder` to see the signed-apks folder, archive.xml, and deployable APK file.
 
-### JavaScript Arrow Functions
+### Week 1 JavaScript Fun
 
-Areas where I've been struggling with JavaScript recently:
+Areas where I've been struggling with JavaScript recently: Arrow Functions!
 
 - Creating a Function as if it were a class with its own members.
 - When to use Arrow functions, anonymous functions, etc inside of a Class or Function-style class.
@@ -185,6 +196,20 @@ const obj = {
 
 - MDN Reference Material about [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions).
 - MDN Reference Material about [Class Method Definitions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Method_definitions).
+
+JavaScript Delete Operator
+
+This is an odd one! Delete operator allows removing a property from an Object. Identify the object and property to perform the removal.
+
+```JavaScript
+var HashTable = function() {
+  this.collection = {}; // a key-value pair storage i.e. [hashcode, value]
+  this.remove = (key) => {
+    delete this.collection[key];
+  }
+  // add, has, and other functions...
+}
+```
 
 ## Footer
 
