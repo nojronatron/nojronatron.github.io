@@ -499,6 +499,46 @@ Specify View Size:
 - Mobile, tablet, phone, desktop, wearable, etc.
 - Layout Panels build consistent UIs, controlling sizing and positioning of child controls.
 
+### Views, Pages, and Layouts
+
+UI Controls are the parent class to `Pages`, `Layouts`, and `Views`.
+
+Pages:
+
+- A VisualElement that occupies/fills the screen/window.
+- Can contain at least 1 Layout.
+- `ContentPage`: A single View containing content.
+- `FlyoutPage`: Contain `FlyoutItem`s and detail pages.
+- `NavigationPage`: A hierarchical navigation concept.
+- `TabbedPage`: A series of Pages, loaded by `TabBar` instances, located at the top (default) or bottom of a Page.
+- Inheritance: Object :arrow_right: BindableObject :arrow_right: Element :arrow_right: NavigableElement :arrow_right: VisualElement :arrow_right: Page.
+- Implements: IElementConfigiration\<Page>, IElementController, ILayout, IPaddingElement, IPageController, IVisualElementController, IElement, ISafeAreaView, ITitledElement, IToolbarElement, ITransform, IView.
+
+Layouts:
+
+- Derives from `View` class.
+- Used to compose UI controls into _visual structures_.
+- Can contain multiple Views (and therefore multiple Controls aka Widgets).
+- Can contain logic to set and configure child elements.
+- Use to position and size child elements in `Microsoft.Maui.Controls` apps.
+- Examples include: Grid, FlexLayout, Horizontal/VerticalStackLayout, etc.
+- Inheritance: Object :arrow_right: BindableObject :arrow_right: Element :arrow_right: NavigableElement :arrow_right: VisualElement :arrow_right: View :arrow_right: Layout.
+- Implements: IBindableLayout, IPaddingElement, IContainer, IElement, ILayout, IPadding, ISafeAreaView, ITransform, IView, IVisualTreeElement, ICollection\<IView>, ICollection\<T>, IEnumerable\<IView>, IEnumerable\<T>, IList\<IView>, IEnumerable, ICrossPlatformLayout.
+
+Views:
+
+- Synonymous with Controls.
+- Also known as Widgets.
+- Used to place Layouts and Controls on a Screen.
+- Inheritance: Object :arrow_right: BindableObject :arrow_right: Element :arrow_right: NavigableElement :arrow_right: VisualElement :arrow_right: View.
+- Implements: IElementController, IGestureRecognizer, IGestureController, IViewController, IVisualElementController, IHotReloadableView, IElement, IPropertyMapperView, IReplaceableView, ITransform, IView
+
+Note the common parent at `VisualElement`:
+
+- VisualElement :arrow_right: Page.
+- VisualElement :arrow_right: View.
+- VisualElement :arrow_right: View :arrow_right: Layout.
+
 ### Layout Panel
 
 - Hold collections of child views (Controls).
@@ -938,12 +978,14 @@ Usually used to allow navigation between different pages of an App.
 Class: `FlyoutItem`
 
 - Implements flyout navigation.
-- Part of the [Shell App Developpment paradigm](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/) in MAUI.
+- Part of the [Shell App Development paradigm](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/) in MAUI.
 - Subclass of `Shell` class.
 - Sibling to `TabBar` class.
 - `ShellContent` property defines the page that is displayed when the flyout... flies out.
 - Requires hosting within a `Shell` page.
 - Unlimited number of Flyouts are allowed within a Shell page.
+- ISA `ShellItem` class instance (Note: `ShellItem` implements `IVisualTreeElement`).
+- `FlyoutItem` inherits from `BaseShellItem` vs `FlyoutPage` which inherits from `VisualElement` (an important distinction).
 
 Implicit Conversion simplifies implementation:
 
@@ -983,13 +1025,13 @@ Code snippet from _[MSFT Learn]_:
 <Shell ...>
   <Shell.FlyoutHeader>
     <Grid>
-      <Image Source="....jpg" />
+      <Image Source="..." />
     </Grid>
   </Shell.FlyoutHeader>
 </Shell>
 ```
 
-Same with Footer.
+Note: `<Shell.FlyoutFooter>` uses similar code.
 
 ### Tab Navigation
 
@@ -1012,7 +1054,7 @@ Implement Tab navigation using `TabBar`:
 - Contains a content area that displays a `Page`.
 - Contains `Tab`s with icons + short words for navigating the App.
 
-TabBar _must_ be instantiated as a child to the `Shell` class.
+`TabBar` _must_ be instantiated as a child to the `Shell` class.
 
 Add `Tab` objects to the `TabBar`.
 
@@ -1044,10 +1086,12 @@ This is a good choice when there are any number of target content pages to navig
 
 Navigation requires a URI to navigate TO:
 
-- Route: Defines path to content that is part of Shell visual hierarchy.
+- Route: Defines path to content that is part of `Shell` visual hierarchy.
 - Page: Can be 'pushed' onto the Navigation Stack as required.
 - Query Parameters: Can be passed to destination Page during navigation.
 - All three components results in: `//route/page?queryParameters`.
+
+Note: `Shell` is a component of Navigation, including Page and Query Params.
 
 ##### Register Routes
 
@@ -1094,6 +1138,16 @@ Passing Data:
 Retreiving Data:
 
 - Use the `QueryPropertyAttribe` decorator when defining the body page class.
+
+### Navigation vs Shell
+
+```c#
+// to move to antoher page using Navigation:
+Navigation.PushAsync(target);
+
+// to move to another page using Shell:
+Shell.Current.GoToAsync(target);
+```
 
 ## Consuming REST Web Services
 
