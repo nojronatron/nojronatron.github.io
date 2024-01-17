@@ -2,6 +2,15 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 3
+
+Watched a MSFT Reactor presentation today on continous integration (CI) with LLMs and AI Models. There were two guests with the host, and one of them mentioned Vector Databases and briefly described it. So, what is a vector database?
+
+- What is vector encoding?
+- What vector database tools are out there?
+
+I'll take a peek at this in the near future and post an update.
+
 ## Week 1
 
 ### MAUI Color and Theming
