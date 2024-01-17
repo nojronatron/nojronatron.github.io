@@ -25,6 +25,7 @@ This list became so large it was unmanageable in an MD file, so all items have m
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] MSFT [Vector DB and Semantic Kernel](./msft-semantickernel-vectordb.html).
 - [x] [Build Minimal API using ASP.NET Core](./aspdotnet-learnings.html).
 - [x] [Create a UI Using XAML in MAUI](./dotnet-maui-learnings.html#create-a-ui-in-a-dotnet-maui-app-by-using-xaml).
 - [x] [Build Mobile and Desktop Apps in MAUI](./dotnet-maui-learnings.html#build-mobile-and-desktop-apps-training-notes).

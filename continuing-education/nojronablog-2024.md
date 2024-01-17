@@ -4,12 +4,11 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## Week 3
 
-Watched a MSFT Reactor presentation today on continous integration (CI) with LLMs and AI Models. There were two guests with the host, and one of them mentioned Vector Databases and briefly described it. So, what is a vector database?
+Watched a MSFT Reactor presentation today on continous integration (CI) with LLMs and AI Models. There were two guests with the host, and one of them mentioned Vector Databases and briefly described it.
 
-- What is vector encoding?
-- What vector database tools are out there?
+Here are my [notes about vector database](./msft-semantickernel-vectordb.html) and MSFT's Semantic Kernel.
 
-I'll take a peek at this in the near future and post an update.
+Also see [About Machine Learning](./about-machine-learning.html) for somewhat related notes from a previous MSFT Reactor session.
 
 ### Git Console Commands and Flow
 
