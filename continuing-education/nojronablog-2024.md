@@ -2,6 +2,162 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 4
+
+### MAUI ListView Control
+
+I've been trying to understand how to leverage composition in .NET MAUI 8 to display a list of object instances within a scrollable page. In other frameworks I've been able to get this to do the work for me, including:
+
+- React
+- Spring Framework
+
+The high-level problem is the same, and the solution includes composing bits of UI and data to get an iterated output, which improves code reuse and limits boilerplate boringness.
+
+Here is the high level steps to get ListView to display properly in a Content Page view:
+
+1. Define a data model. Ensure it has public properties with `get` accessors.
+2. Define a "View Template" (a `ContentView`) that contains a Frame that binds the data model properties to Labels and other standard controls, common to each data model instance properties. Store this template in a separate folder such as "ViewTemplates".
+3. In the View Template code-behind, create public, static, readonly `BindableProperty` properties - one for each data model property. Avoid naming conflicts.
+4. Create a content page e.g. `PageView.xaml` and ensure it has `<ContentPage.Resources>` referencing the View Template (in this case "CardView") that will actually display the data, and also defines an `x:Class` that points to itself (I assume this is to ensure a reference to the collection and binding context that will be set in the next 2 steps).
+5. In the content page code-behind, define a collection that is an ObservableCollection (or inherits from it or implements an Observable interface). Ensure it is a public property with at least a `get` accessor.
+6. Also in the content page code-behind, set `BindingContext` to `this`.
+
+Code samples to follow:
+
+```c#
+// DATA MODEL with get accessors
+  public class Language
+  {
+  private string _title = string.Empty;
+
+  public string Title
+  {
+    get { return _title; }
+    set { _title = value; }
+  }
+
+  // ...more properties...
+
+  private string _cardColor = "Azure";
+  public string CardColor
+  {
+    get { return _cardColor; }
+    set { _cardColor = value; }
+  }
+}
+```
+
+```xml
+<!-- The "View Template" aka "CardView"-->
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView ...
+             x:Class="MyProject.ViewTemplates.CardView"
+             x:Name="this">
+    <Frame BackgroundColor="{Binding CardColor}"
+           BorderColor="{Binding BorderColor}">
+        <Grid RowDefinitions="Auto,Auto,Auto"
+              ColumnDefinitions="*">
+            <Frame BorderColor="{Binding BorderColor}"
+                   Grid.Row="0">
+                <Label Text="{Binding Title}"/>
+            </Frame>
+            <Label Text="{Binding Name}"
+                   Grid.Row="1"/>
+            <BoxView BackgroundColor="{Binding BorderColor}"
+                     Grid.Row="2"/>
+            <Label Text="{Binding Description}"
+                   Grid.Row="3"/>
+        </Grid>
+    </Frame>
+</ContentView>
+```
+
+```c#
+// View Template Code-Behind
+public static readonly BindableProperty TitleProperty =
+    BindableProperty.Create(nameof(Title),
+        typeof(string),
+        typeof(CardView),
+        string.Empty);
+
+public string Title
+{
+    get => (string)GetValue(CardView.TitleProperty);
+    set => SetValue(CardView.TitleProperty, value);
+}
+
+// ... more VindableProperty properties here ...
+
+public static readonly BindableProperty CardColorProperty =
+    BindableProperty.Create(nameof(CardColor),
+        typeof(string),
+        typeof(CardView),
+        string.Empty);
+public string CardColor
+{
+    get => (string)GetValue(CardView.CardColorProperty);
+    set => SetValue(CardView.CardColorProperty, value);
+}
+// CTOR
+public ViewTemplate()
+{
+  InitializeComponent();
+}
+```
+
+```xml
+<!-- Content Page "PageView.xaml" -->
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage ...
+             x:Class="MyProject.Views.MyContentPage"
+             xmlns:controls="clr-namespace:MyProject.ViewTemplates"
+             xmlns:views="clr-namespace:MyProject.Views"
+             Title="MyContentPage">
+    <ContentPage.Resources>
+        <controls:CardView x:Key="controls:CardView" />
+    </ContentPage.Resources>
+    <ListView ItemsSource="{Binding Languages}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <controls:CardView />
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
+```
+
+```c#
+// "View Template" code-behind
+private ObservableCollection<Language> _languages = [];
+
+public ObservableCollection<Language> Languages
+{
+  get { return _languages; }
+  set {  _languages = value; }
+}
+
+public MyContentPage()
+{
+  InitializeComponent();
+  // this could be a REST/JSON result object or database query result, etc
+  // so long as it is an ObservableCollection<T>
+  Languages = new ObservableCollection<Language>(
+  [
+    new Language { Name = "C#", Title = "C Sharp", Description = "The primary programming language that is used to develop apps for the Microsoft platform." },
+    new Language { Name = "F#", Title = "F Sharp", Description = "Declarative-function, object-oriented, language for .NET apps." },
+      // more entries...
+  ]);
+  this.BindingContext = this;
+}
+```
+
+Some key ListView takeaways:
+
+- Enables customization of the appearance of list items displayed on screen.
+- Each item _automatically_ has its `BindingContext` set to the corresponding item in the data source, therefore only the _properties_ of the item need specific bindings.
+
 ## Week 3
 
 Watched a MSFT Reactor presentation today on continous integration (CI) with LLMs and AI Models. There were two guests with the host, and one of them mentioned Vector Databases and briefly described it.
