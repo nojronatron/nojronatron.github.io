@@ -18,12 +18,14 @@ This list became so large it was unmanageable in an MD file, so all items have m
 
 ## Currently Active Learnings
 
+- [.NET Publish command](./dotnet-publishing-apps.html) and types of published packages.
 - .NET [MAUI 8](https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui?view=net-maui-8.0) for Windows and Android
 - .NET [MAUI Community Toolkit](https://github.com/CommunityToolkit/Maui)
 - Brandon Minnick's [Async Await Best Practices](https://github.com/brminnick/AsyncAwaitBestPractices) and the NuGet package [instructions](https://www.nuget.org/packages/AsyncAwaitBestPractices.MVVM/#asyncawaitbestpracticesmvvm-2), and even more at Brandon's [Code Traveler.io](https://codetraveler.io/) website.
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] MSFT [Vector DB and Semantic Kernel](./msft-semantickernel-vectordb.html).
 - [x] [Build Minimal API using ASP.NET Core](./aspdotnet-learnings.html).
 - [x] [Create a UI Using XAML in MAUI](./dotnet-maui-learnings.html#create-a-ui-in-a-dotnet-maui-app-by-using-xaml).
 - [x] [Build Mobile and Desktop Apps in MAUI](./dotnet-maui-learnings.html#build-mobile-and-desktop-apps-training-notes).
