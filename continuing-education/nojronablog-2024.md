@@ -4,9 +4,53 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## Week 4
 
+### ListView and MVVM
+
+Implementing ListView with a Template in an MVVM environment is similar to what is described below, except for where in the component tree the data becomes available, and how bindings much be changed to accommodate that change:
+
+- Template XAML does _not_ include an x:Name = "this" definition.
+- `BindableProperty` properties are configured in the Template code-behind like before.
+- The View code-behind does not include any reference to the incoming data (that will be up to the ViewModel now).
+- The MVVM View class still needs XAML references to the binding source and template. So, in the View XAML a custom namespace ('xmlns') kvp is set to point to the ViewModels and associates an `x:TypeArguments` with the actual ViewModel class that contains the ObservableCollection. A `Class` namespace also points to the ViewModel. Another namespace points to the Templates directory, and in a local `ResourceDictionary`, an `x:Key` reference points to the Template file based on the template reference set in the xmlns declaration. See example XAML below.
+- Unfortunately, it seems like the ViewCell in the View's XAML needs to have direct mappings to each Property that should be displayed. It's not clear to me why this is, but without these mappings, no data is displayed at all. See code below for an example of how this looks in the `<ListView.ItemTemplate>` element.
+
+```xml
+<!-- ForecastView.xaml code for MVVM environment, utilizing a ListView with a View Template -->
+<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseView ...
+                x:Class="MobWxUI.Views.MyView"
+                xmlns:views="clr-namespace:MyProject.Views"
+                xmlns:vm="clr-namespace:MyProject.ViewModels"
+                x:TypeArguments="vm:MyViewModel"
+                xmlns:controls="clr-namespace:MyProject.Templates">
+    
+    <views:BaseView.Resources>
+        <ResourceDictionary>
+            <controls:CustomCard x:Key="controls:CustomCard" />
+        </ResourceDictionary>
+    </views:BaseView.Resources>
+
+    <ListView ItemsSource="{Binding MyCollection}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <controls:CustomCard Name="{Binding Name}"
+                                         Description="{Binding Description}" >
+                    </controls:CustomCard>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</views:BaseView>
+```
+
+_Note_: In my MVVM project, View and ViewModel inherit from abstract partial classes prefixed "Base". The BaseViewModel inherits from ObservableObject, and the BaseView partial class consumes a ViewModel type in the CTOR, and sets the `BindingContext` to the ViewModel parameter. This reduces duplicated code in every ViewModel class that is created, but makes it more difficult to realize a `BindingContext` does exist in each View.
+
+The next step is styling the ListView items. Because the Bindings are now configured, _theoretically_ all that is needed is to add `BindableProperties` for each Style element and then a binding reference to `Resources\Styles`. First attempt to configure this showed that the default binding is to the Model class (where the data comes from), so there is more investigation needed to solve this part.
+
 ### MAUI ListView Control
 
-I've been trying to understand how to leverage composition in .NET MAUI 8 to display a list of object instances within a scrollable page. In other frameworks I've been able to get this to do the work for me, including:
+I've been trying to understand how to leverage composition (loosely speaking) in .NET MAUI 8 to display a list of object instances within a scrollable page. In other frameworks I've been able to get this to do the work for me, including:
 
 - React
 - Spring Framework
@@ -16,8 +60,8 @@ The high-level problem is the same, and the solution includes composing bits of 
 Here is the high level steps to get ListView to display properly in a Content Page view:
 
 1. Define a data model. Ensure it has public properties with `get` accessors.
-2. Define a "View Template" (a `ContentView`) that contains a Frame that binds the data model properties to Labels and other standard controls, common to each data model instance properties. Store this template in a separate folder such as "ViewTemplates".
-3. In the View Template code-behind, create public, static, readonly `BindableProperty` properties - one for each data model property. Avoid naming conflicts.
+2. Define a "View Template" (a `ContentView`, _not_ `ContentPage`) that contains a Frame that binds the data model properties to Labels and other standard controls, common to each data model instance properties. Store this template in a separate folder such as "ViewTemplates".
+3. In the View Template code-behind (also a `ContentView` class), create public, static, readonly `BindableProperty` properties - one for each data model property. Avoid naming conflicts.
 4. Create a content page e.g. `PageView.xaml` and ensure it has `<ContentPage.Resources>` referencing the View Template (in this case "CardView") that will actually display the data, and also defines an `x:Class` that points to itself (I assume this is to ensure a reference to the collection and binding context that will be set in the next 2 steps).
 5. In the content page code-behind, define a collection that is an ObservableCollection (or inherits from it or implements an Observable interface). Ensure it is a public property with at least a `get` accessor.
 6. Also in the content page code-behind, set `BindingContext` to `this`.
@@ -38,6 +82,7 @@ Code samples to follow:
 
   // ...more properties...
 
+  // add customized colors or other styles if you really want to:
   private string _cardColor = "Azure";
   public string CardColor
   {
@@ -48,7 +93,7 @@ Code samples to follow:
 ```
 
 ```xml
-<!-- The "View Template" aka "CardView"-->
+<!-- The "View Template" named "CardView" in this project -->
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView ...
              x:Class="MyProject.ViewTemplates.CardView"
@@ -86,7 +131,7 @@ public string Title
     set => SetValue(CardView.TitleProperty, value);
 }
 
-// ... more VindableProperty properties here ...
+// ... more BindableProperty properties here ...
 
 public static readonly BindableProperty CardColorProperty =
     BindableProperty.Create(nameof(CardColor),
@@ -157,6 +202,24 @@ Some key ListView takeaways:
 
 - Enables customization of the appearance of list items displayed on screen.
 - Each item _automatically_ has its `BindingContext` set to the corresponding item in the data source, therefore only the _properties_ of the item need specific bindings.
+
+### ListView Versus Content View
+
+It seems that ListView is less-desireable to CollectionView. Performance and customizability were cited in the MAUI documentation as the reasons. I've moved the Forecast page of the Weather app over to CollectionView and it works _great_ in Windows and in Android _debug_ builds. Release builds are a problem though - the data did not show without jumping through a few hoops:
+
+1. Clear all Release and Debug builds.
+2. Remove x:DataType in the template xaml file (it was pointing to itself).
+3. Add a ResourceDictionary element with the relative path to `Styles.xaml`, so it would be considered in the merged resources algorithm, and Style IDs could be found.
+
+Now the Forecast page shows data in Android Release builds, including on a physical device!
+
+Some references:
+
+- [stackoverflow question "CollectionView working in debug but not in release in .NET MAUI"](https://stackoverflow.com/questions/75283345/collectionview-working-in-debug-but-not-in-release-in-net-maui).
+- A related [MAUI Issue (Bug Report) in dotnet maui GitHub](https://github.com/dotnet/maui/issues/20002) that describes the problem and a potential work-around.
+- [Babenlebricolo's DotnetMaui-DataTemplateBug repository](https://github.com/bebenlebricolo/DotnetMaui-DataTemplateBug/tree/main) has code demonstrating the 'broken' and 'fixed' states.
+
+_Note_: The display problem was the same in my environment, but I believe the _cause was different_: In my case, the compiler was probably expecting Styles.xaml to exist alongside the Template xaml, or in the View xaml.
 
 ## Week 3
 
