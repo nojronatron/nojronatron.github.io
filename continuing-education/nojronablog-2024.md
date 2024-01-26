@@ -221,6 +221,32 @@ Some references:
 
 _Note_: The display problem was the same in my environment, but I believe the _cause was different_: In my case, the compiler was probably expecting Styles.xaml to exist alongside the Template xaml, or in the View xaml.
 
+### MAUI Label, Span, and Style
+
+There was a period where the Android Release version of MobWxApp wouldn't display the 7-day forecast data, and it wasn't apparent what the cause was. Also, since I assumed that a Release Build and Debug Build would be _similar enough_, testing in Debug mode would be enough. I was wrong, and here is what was going on:
+
+- Forecast view utilizes a ContentView with various Layouts in a templated page, organizing data from a Collection for organized display.
+- Within each data instance, I wanted to display a Key-Value text output like "Temperature 50 degrees and rising" all within a single Label or other string viewing element.
+- The concatenated text would be styled per the Dark/Light Theme selected by the user, and would also follow the color palette selected for the app.
+- Following .NET MAUI documentation, I applied `Label` elements with the `Label.ForemattedText` attached property, formatting the string text and bound string data within `Span` elements nested in a `FormattedString` element.
+- During Debug build (and run) there were no warnings or errors in the Output tool regarding issues with XAML.
+- During Release build there _were warnings_ indicating the problem: Label elements do not support a child Span elements.
+- Removing the Span elements is an option and instead a custom ToString method could be developed (or edited) to force the output to match the requirements of the UI. _But this is not a good practice_ as the data layer should manage and process the data. _The UI Layer should manage the user interface_, which meant declaratively defining how the output should look.
+- Removing the `Style` attributes that were bound to Styles.xaml seemed to clear up the problem and both Debug and Release builds no longer had the errors and the Forecasts view would work again.
+
+So, what is the problem here?
+
+- Are `Span` elements indeed _not supported_ within `Label`elements?
+- Or is there an issue with my bindings to `Styles.xaml`?
+- In either case, why does the program render and run in Debug, and only fail in Release builds?
+- Also, why are other styles rendered properly within the `CollectionView`?
+
+Debug mode compiles differently than Release mode (obvious, right?). Release build doesn't provide all the feedback that Debug mode does, most notably Breakpoints and Debug log output. Therefore, when developing XAML layouts, content handling, and style application, use Debug build for quick testing, then before moving on, do the following:
+
+1) Perform a Release build.
+2) Watch Debug view in Visual Studio's Output tool during build, it might show errors or warnings that could be clues to possible problems.
+3) Test every control, page, etc to confirm they behave as expected.
+
 ## Week 3
 
 Watched a MSFT Reactor presentation today on continous integration (CI) with LLMs and AI Models. There were two guests with the host, and one of them mentioned Vector Databases and briefly described it.
