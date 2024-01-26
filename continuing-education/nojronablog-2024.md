@@ -247,6 +247,65 @@ Debug mode compiles differently than Release mode (obvious, right?). Release bui
 2) Watch Debug view in Visual Studio's Output tool during build, it might show errors or warnings that could be clues to possible problems.
 3) Test every control, page, etc to confirm they behave as expected.
 
+The solution to the problem of syling `Span` elements within a parent `Label` is to:
+
+1) Apply styles per usual to the `Span` itself, whether through in-line Style, or through Binding.
+2) Ensure that `Span` supported properties are applied (and _not_ Label properties).
+
+So for example instead of:
+
+```xaml
+<!-- Template View, within a Layout, with ResourceDictionary pointing to Styles.xaml -->
+<Label LineBreakMode="NoWrap" Style="{Binding LabelStyle}">
+    <Label.FormattedText>
+        <FormattedString>
+            <Span Text="Hello "
+                  Style="{StaticResource LabelStyle}" />
+            <Span Text="{Binding World}"
+                  Style="{StaticResource LabelStyle}"
+                  />
+        </FormattedString>
+    </Label.FormattedText>
+</Label>
+
+<!-- Styles.xaml showing only the SPAN and LABEL element Style definitions -->
+<Style TargetType="Label" x:Key="LabelStyle">
+  <Setter Property="VisualStateManager.VisualStateGroups">
+    <!-- defined visual state groups that SPAN does not support -->
+  </Setter>
+</Style>
+```
+
+...add a Span-specific styling and avoid relying on Label Styling, like this:
+
+```xaml
+<!-- Template View, within a Layout, with ResourceDictionary pointing to Styles.xaml -->
+<Label LineBreakMode="NoWrap">
+    <Label.FormattedText>
+        <FormattedString>
+            <Span Text="Hello "
+                  Style="{StaticResource SpanForecastItem}" />
+            <Span Text="{Binding World}"
+                  Style="{StaticResource SpanForecastItem}"
+                  />
+        </FormattedString>
+    </Label.FormattedText>
+</Label>
+
+<!-- Styles.xaml showing only the SPAN and LABEL element Style definitions -->
+<Style TargetType="Label">
+  <Setter Property="VisualStateManager.VisualStateGroups">
+    <!-- defined visual state groups that SPAN does not support -->
+  </Setter>
+</Style>
+<Style TargetType="Span" x:Key="SpanStyle">
+  <Setter Property="FontSize" Value="14" />
+  <!-- more SPAN specific setters here -->
+</Style>
+```
+
+Elements `Span` and `Label` do not share Styling properties, despite there being _some overlap_, so explicit bindings are required even through Debug Build will ignore the error, but Release Build and an actual Android platform deployment might not.
+
 ## Week 3
 
 Watched a MSFT Reactor presentation today on continous integration (CI) with LLMs and AI Models. There were two guests with the host, and one of them mentioned Vector Databases and briefly described it.
