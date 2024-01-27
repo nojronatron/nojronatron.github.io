@@ -306,6 +306,12 @@ So for example instead of:
 
 Elements `Span` and `Label` do not share Styling properties, despite there being _some overlap_, so explicit bindings are required even through Debug Build will ignore the error, but Release Build and an actual Android platform deployment might not.
 
+That completes the Forecast page style fix-up for the app. Next steps include:
+
+- Implementing unit tests (I've gone way too long without them).
+- Updating and cleaning up the response models.
+- Implementing SQLite to cache responses.
+
 ## Week 3
 
 Watched a MSFT Reactor presentation today on continous integration (CI) with LLMs and AI Models. There were two guests with the host, and one of them mentioned Vector Databases and briefly described it.
