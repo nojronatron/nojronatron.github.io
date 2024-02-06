@@ -2,6 +2,29 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 6
+
+Although I was out of town for most of week 5, but some software development happened anyway:
+
+- Challenged myself to create an ADIF file validation tool for very specific log files. This was mostly successful in that I have a working console app with separate library classes and a unit test project, and it provided lots of opportunity to refresh my memory on use of *Regex* and its Syntax and best practices. Also, it provided an opportunity to use `dotnet` to build the solution from scratch, and manually add the Library and Unittest projects.
+- Reorganized my plan for the MobWxApp. It is going longer than I had originally intended it to, and I have another project that I promised to deliver in a couple months so I need to move-on from MobWxApp for now. I intended to have it pushed to the Android Play Store, but that will have to wait. Meanwhile, I've cleaned up the UI and the data models a bit, and have generated another Release Build that I will be using on my personal Android phone.
+
+### Iterating Through Characters In A String
+
+- Use `string.IndexOf(char)` instead to avoid iterating.
+- Leverage `Regex.Match` for single-instance searching within a string, and `Regex.Matches` for locating multiple instances of a string.
+- `Match` and `Matches` have helpful properties like `Count` and `StartingIndex` that are probably more efficient than a `for` or `foreach` construct.
+
+### Method Wrapping
+
+While building the ADIF validator toy, I found myself creating "wrapper methods" to the library methods that actually did the work.
+
+- This allowed the Console project to provide minimal information to get the Library method to fire, through a method proxy that would add the correct information for the Library function. This abstracts-away the complexity from the Console project.
+- In the future I should _reconsider_ having wrapper methods do another other work that simply supplying details on behalf of the caller. Having the parent wrapper method change data before sending it to the child method makes bug-hunting and testing more difficult, with no other real benefit.
+- Test the wrapper function _thoroughly_ prior to wiring-up the child (wrapped) method. Then don't edit the parent function again (or risk adding bugs that are difficult to find and squash).
+- Try refactoring the code so that wrapper methods aren't necessary. This could be accomplished with a `ConsoleLib` class that is only used by a Console UI, or some other library that basically acts as an API but otherwise does not analyze or change any data passed in either direction.
+
+
 ## Week 4
 
 ### ListView and MVVM
