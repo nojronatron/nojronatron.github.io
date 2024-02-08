@@ -24,6 +24,23 @@ While building the ADIF validator toy, I found myself creating "wrapper methods"
 - Test the wrapper function _thoroughly_ prior to wiring-up the child (wrapped) method. Then don't edit the parent function again (or risk adding bugs that are difficult to find and squash).
 - Try refactoring the code so that wrapper methods aren't necessary. This could be accomplished with a `ConsoleLib` class that is only used by a Console UI, or some other library that basically acts as an API but otherwise does not analyze or change any data passed in either direction.
 
+### BF BMX Kickoff
+
+Started working on the Bigfoot Bib Message eXtractor project. My current approach to development is:
+
+- Start by designing and building the service that will access and process files.
+- Focus on the data logging portion so other participants in the larger scope of this project have a chance to provide input or refine their tools before launch.
+- Ensure unittests exist and pass for each component.
+- Maintain a stable app that manages Exceptions so it can continue to operate without human intervention.
+- Research other implementation details as necessary along the way.
+
+There are still some questions I need to get answers to (non-exhaustive list):
+
+- How to safely run and monitor multiple file-tracking service instances? Would it be better to just launch multiple client-side apps, or is there a simple enough way to manage multiple threaded tasks?
+- Is Self-Contained App deployment supported in .NET 6? The app will need to support deployment to non-dev machines running Windows 10 and Windows 11.
+- Sensible locations for logs.
+- Sensible Environment Variable names (and not too many of them) so they are easy to remember and set.
+- Whether or not to implement a local database feature. Generally this seems like a good idea, but comes with its own set of complexities. Maybe address this in a later cycle or if there is time prior to launch?
 
 ## Week 4
 
