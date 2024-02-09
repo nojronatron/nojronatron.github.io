@@ -42,6 +42,28 @@ There are still some questions I need to get answers to (non-exhaustive list):
 - Sensible Environment Variable names (and not too many of them) so they are easy to remember and set.
 - Whether or not to implement a local database feature. Generally this seems like a good idea, but comes with its own set of complexities. Maybe address this in a later cycle or if there is time prior to launch?
 
+Exploring ways to get the API Server to utilize a database, item Collection, and logging. Here are a few takeaways:
+
+- Set the ILogger instance to the Class it will be used in, for example `private readonly ILogger<MyClass> _logger;`, otherwise DI cannot inject it into that Class, and compile will fail.
+- EF and EF Core (see notes in next subsection).
+- Observable Collection is the way to go when it comes to updating other objects, especially the UI, whenever the collection changes.
+- Other Collection features can include _being the interface to the database_ so that whenever data is CRUD in the Collection, it is also CRUD in the database.
+
+Exploring file monitoring, asynchronous code, and regular expressions. Here are a few takeaways:
+
+- Microsoft Regex documentation is a little wonky. For example, in the API documentation there are no formal sub-section entries for `Match.Value` and `Match.Success`, yet those properties (and some other methods) exist and are listed in an expansive table! [.NET 6 API Match Class](https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.match?view=net-6.0)
+- Leveraging async-await and Cancellation Tokens sounds like a good idea in order to get file monitor to monitor more than one directory, and process files as they are discovered, and log results.
+
+### Entity Framework and EF Core
+
+This 5-page feature comparison of EF Core and EF6 is probably the best TLDR: [MSFT Learn: Compare EF Core and EF6](https://learn.microsoft.com/en-us/ef/efcore-and-ef6/). It really pushes the idea that EF Core is the way to go with new projects. That's fine, but `which` EF Core? Turns out there are versions of EF Core that are not supported outside of .NET Core, .NET Framework, and .NET Standard 2.0. That's also fine, but it forces designers and developers of _existing_ products that use Entity Framework to more to EF Core (and cross their fingers) or stay with Entity Framework, which is very stable and reliable at this point. What is EF falls out of support completely, and EF Core doesn't support the features your application (or system) rely on?
+
+Tough questions there. Thankfully, I am not going to worry (much) about using either one, outside of the immediate compatibility and feature requirements my current project needs.
+
+Another sticky point is MSFT touts EF and EF Core as having support for so many database interfaces. While it is true there are multiple caveats and tradeoffs to consider. One example is Sqlite - It is supported, and there are EF/EF Core extensions that provide for integrating Sqlite, but Sqlite itself is less focused on being EF/EF Core compatible (and frankly, Windows-ready it seems). While Sqlite _is certainly_ in use and a good solution for many software shops on Windows, I'm chosing to not use it for this project to avoid headaches with platform and framework compatibility and interoperability.
+
+So, I'm going to settle on EF Core and "In Memory Database" as a simple alternative to relying on only collections, or using EF/EF Core with SQL Server or Sqlite. More likely, I'll look to building a [Dapper ORM](https://github.com/DapperLib/Dapper) data layer, as is described by [Tim Corey in his YouTube video Data Access with Dapper and SQL - Minimal API Project Part 1](https://www.youtube.com/watch?v=dwMFg6uxQ0I) where he is using ASP.NET Core Web API in .NET 6.
+
 ## Week 4
 
 ### ListView and MVVM
