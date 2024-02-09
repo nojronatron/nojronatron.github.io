@@ -64,6 +64,41 @@ Another sticky point is MSFT touts EF and EF Core as having support for so many 
 
 So, I'm going to settle on EF Core and "In Memory Database" as a simple alternative to relying on only collections, or using EF/EF Core with SQL Server or Sqlite. More likely, I'll look to building a [Dapper ORM](https://github.com/DapperLib/Dapper) data layer, as is described by [Tim Corey in his YouTube video Data Access with Dapper and SQL - Minimal API Project Part 1](https://www.youtube.com/watch?v=dwMFg6uxQ0I) where he is using ASP.NET Core Web API in .NET 6.
 
+### Old Project Unittests
+
+I picked up where I left off with an exploratory project back in November 2023. At least 2 unittests were not working properly, and one of those was failing outright. At the time I had not worked out why the failing test was having the problem. Today I was able to sort it out:
+
+- The collection inherited from `ObservableCollection<T>`, avoiding lots of boilerplate event handlers and `OnChanged()` coding.
+- In what is now an obviously silly move, I had added a private `IList<T>` field to act as the collection. This is not necessary as the inherited `ObservableCollection<T>` manages an internal list, so the field was removed and implementing `IList<T>` on the class was no longer necessary.
+- Some wrapper code I developed was handling add and remove functions, but were pointing to the shadowing list rather than the collection itself.
+- In an attempt to be 'smart' I implemented an indexing function that would find items by name. A much better (and easier to read) implementation is a `GetByName()` method.
+
+After removing the shadowing List, validating the wrapper code functions, and replacing the indexer with a proper Get function, the Collection would behave as expected and unit tests are now passing.
+
+This is great because the code will get folded-in to a larger exploration that will get folded-in to the BF-BMX project (if it all works out).
+
+```c#
+// one way to find a simple List item by name while inheriting from ObservableCollection<T>
+public class MyCollection : ObservableCollection<MyClass>
+{
+  public MyClass GetItemByName(string name)
+  {
+    foreach (var thing in this)
+    {
+      if (thing.name.Equals(name))
+      {
+        return thing;
+      }
+    }
+
+    // A caller only know about an item that exists in this 
+    // collection so an error here indicates a problem elsewhere  
+    // in the application logic that would need to be dealt with.
+    throw new KeyNotFoundException($"{name} not found in collection.");
+  }
+}
+```
+
 ## Week 4
 
 ### ListView and MVVM
