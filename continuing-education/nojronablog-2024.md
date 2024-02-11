@@ -2,6 +2,103 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 6
+
+Although I was out of town for most of week 5, but some software development happened anyway:
+
+- Challenged myself to create an ADIF file validation tool for very specific log files. This was mostly successful in that I have a working console app with separate library classes and a unit test project, and it provided lots of opportunity to refresh my memory on use of *Regex* and its Syntax and best practices. Also, it provided an opportunity to use `dotnet` to build the solution from scratch, and manually add the Library and Unittest projects.
+- Reorganized my plan for the MobWxApp. It is going longer than I had originally intended it to, and I have another project that I promised to deliver in a couple months so I need to move-on from MobWxApp for now. I intended to have it pushed to the Android Play Store, but that will have to wait. Meanwhile, I've cleaned up the UI and the data models a bit, and have generated another Release Build that I will be using on my personal Android phone.
+
+### Iterating Through Characters In A String
+
+- Use `string.IndexOf(char)` instead to avoid iterating.
+- Leverage `Regex.Match` for single-instance searching within a string, and `Regex.Matches` for locating multiple instances of a string.
+- `Match` and `Matches` have helpful properties like `Count` and `StartingIndex` that are probably more efficient than a `for` or `foreach` construct.
+
+### Method Wrapping
+
+While building the ADIF validator toy, I found myself creating "wrapper methods" to the library methods that actually did the work.
+
+- This allowed the Console project to provide minimal information to get the Library method to fire, through a method proxy that would add the correct information for the Library function. This abstracts-away the complexity from the Console project.
+- In the future I should _reconsider_ having wrapper methods do another other work that simply supplying details on behalf of the caller. Having the parent wrapper method change data before sending it to the child method makes bug-hunting and testing more difficult, with no other real benefit.
+- Test the wrapper function _thoroughly_ prior to wiring-up the child (wrapped) method. Then don't edit the parent function again (or risk adding bugs that are difficult to find and squash).
+- Try refactoring the code so that wrapper methods aren't necessary. This could be accomplished with a `ConsoleLib` class that is only used by a Console UI, or some other library that basically acts as an API but otherwise does not analyze or change any data passed in either direction.
+
+### BF BMX Kickoff
+
+Started working on the Bigfoot Bib Message eXtractor project. My current approach to development is:
+
+- Start by designing and building the service that will access and process files.
+- Focus on the data logging portion so other participants in the larger scope of this project have a chance to provide input or refine their tools before launch.
+- Ensure unittests exist and pass for each component.
+- Maintain a stable app that manages Exceptions so it can continue to operate without human intervention.
+- Research other implementation details as necessary along the way.
+
+There are still some questions I need to get answers to (non-exhaustive list):
+
+- How to safely run and monitor multiple file-tracking service instances? Would it be better to just launch multiple client-side apps, or is there a simple enough way to manage multiple threaded tasks?
+- Is Self-Contained App deployment supported in .NET 6? The app will need to support deployment to non-dev machines running Windows 10 and Windows 11.
+- Sensible locations for logs.
+- Sensible Environment Variable names (and not too many of them) so they are easy to remember and set.
+- Whether or not to implement a local database feature. Generally this seems like a good idea, but comes with its own set of complexities. Maybe address this in a later cycle or if there is time prior to launch?
+
+Exploring ways to get the API Server to utilize a database, item Collection, and logging. Here are a few takeaways:
+
+- Set the ILogger instance to the Class it will be used in, for example `private readonly ILogger<MyClass> _logger;`, otherwise DI cannot inject it into that Class, and compile will fail.
+- EF and EF Core (see notes in next subsection).
+- Observable Collection is the way to go when it comes to updating other objects, especially the UI, whenever the collection changes.
+- Other Collection features can include _being the interface to the database_ so that whenever data is CRUD in the Collection, it is also CRUD in the database.
+
+Exploring file monitoring, asynchronous code, and regular expressions. Here are a few takeaways:
+
+- Microsoft Regex documentation is a little wonky. For example, in the API documentation there are no formal sub-section entries for `Match.Value` and `Match.Success`, yet those properties (and some other methods) exist and are listed in an expansive table! [.NET 6 API Match Class](https://learn.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.match?view=net-6.0)
+- Leveraging async-await and Cancellation Tokens sounds like a good idea in order to get file monitor to monitor more than one directory, and process files as they are discovered, and log results.
+
+### Entity Framework and EF Core
+
+This 5-page feature comparison of EF Core and EF6 is probably the best TLDR: [MSFT Learn: Compare EF Core and EF6](https://learn.microsoft.com/en-us/ef/efcore-and-ef6/). It really pushes the idea that EF Core is the way to go with new projects. That's fine, but `which` EF Core? Turns out there are versions of EF Core that are not supported outside of .NET Core, .NET Framework, and .NET Standard 2.0. That's also fine, but it forces designers and developers of _existing_ products that use Entity Framework to more to EF Core (and cross their fingers) or stay with Entity Framework, which is very stable and reliable at this point. What is EF falls out of support completely, and EF Core doesn't support the features your application (or system) rely on?
+
+Tough questions there. Thankfully, I am not going to worry (much) about using either one, outside of the immediate compatibility and feature requirements my current project needs.
+
+Another sticky point is MSFT touts EF and EF Core as having support for so many database interfaces. While it is true there are multiple caveats and tradeoffs to consider. One example is Sqlite - It is supported, and there are EF/EF Core extensions that provide for integrating Sqlite, but Sqlite itself is less focused on being EF/EF Core compatible (and frankly, Windows-ready it seems). While Sqlite _is certainly_ in use and a good solution for many software shops on Windows, I'm chosing to not use it for this project to avoid headaches with platform and framework compatibility and interoperability.
+
+So, I'm going to settle on EF Core and "In Memory Database" as a simple alternative to relying on only collections, or using EF/EF Core with SQL Server or Sqlite. More likely, I'll look to building a [Dapper ORM](https://github.com/DapperLib/Dapper) data layer, as is described by [Tim Corey in his YouTube video Data Access with Dapper and SQL - Minimal API Project Part 1](https://www.youtube.com/watch?v=dwMFg6uxQ0I) where he is using ASP.NET Core Web API in .NET 6.
+
+### Old Project Unittests
+
+I picked up where I left off with an exploratory project back in November 2023. At least 2 unittests were not working properly, and one of those was failing outright. At the time I had not worked out why the failing test was having the problem. Today I was able to sort it out:
+
+- The collection inherited from `ObservableCollection<T>`, avoiding lots of boilerplate event handlers and `OnChanged()` coding.
+- In what is now an obviously silly move, I had added a private `IList<T>` field to act as the collection. This is not necessary as the inherited `ObservableCollection<T>` manages an internal list, so the field was removed and implementing `IList<T>` on the class was no longer necessary.
+- Some wrapper code I developed was handling add and remove functions, but were pointing to the shadowing list rather than the collection itself.
+- In an attempt to be 'smart' I implemented an indexing function that would find items by name. A much better (and easier to read) implementation is a `GetByName()` method.
+
+After removing the shadowing List, validating the wrapper code functions, and replacing the indexer with a proper Get function, the Collection would behave as expected and unit tests are now passing.
+
+This is great because the code will get folded-in to a larger exploration that will get folded-in to the BF-BMX project (if it all works out).
+
+```c#
+// one way to find a simple List item by name while inheriting from ObservableCollection<T>
+public class MyCollection : ObservableCollection<MyClass>
+{
+  public MyClass GetItemByName(string name)
+  {
+    foreach (var thing in this)
+    {
+      if (thing.name.Equals(name))
+      {
+        return thing;
+      }
+    }
+
+    // A caller only know about an item that exists in this 
+    // collection so an error here indicates a problem elsewhere  
+    // in the application logic that would need to be dealt with.
+    throw new KeyNotFoundException($"{name} not found in collection.");
+  }
+}
+```
+
 ## Week 4
 
 ### ListView and MVVM

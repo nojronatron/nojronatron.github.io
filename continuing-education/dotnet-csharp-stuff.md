@@ -4,12 +4,18 @@ Notes on various topics while developing software with, or learning more about, 
 
 ## Table of Contents
 
-- [Extensions](#extensions)
-- [Aggregation and Composition](#aggregation-and-composition)
-- [Null Safety in CSharp](#null-safety-in-csharp)
+- [Custom Extensions](#custom-extensions)
+- [About Aggregation and Composition](#about-aggregation-and-composition)
+- [Aggregation](#aggregation)
+- [Composition](#composition)
+- [Favor Composition Over Inheritance](#favor-composition-over-inheritance)
+- [Null Safety in CSharp Overview](#null-safety-in-csharp-overview)
+- [Setting Nullability In Your Code](#setting-nullability-in-your-code)
+- [Null Operators](#null-operators)
+- [Best Practices Handling Nullability](#best-practices-handling-nullability)
 - [Footer](#footer)
 
-## Extensions
+## Custom Extensions
 
 Custom extension methods can be created for any class.
 
@@ -26,7 +32,7 @@ Using extension methods via:
 - Functional: Usually requires defensive-coding techniques to avoid nullable or non-guaranteed-returned object instantiations.
 - Bridging OOP and procedural techniques: Create generic functions that can be applied to many Types that do not modify input objects, but guarantee a usable return i.e. not null.
 
-## Aggregation and Composition
+## About Aggregation and Composition
 
 Create larger, more complex Types by piecing together existing, smaller and less complex Types.
 
@@ -34,12 +40,12 @@ Both:
 
 - Specify a whole/part relationship.
 
-### Aggregation
+## Aggregation
 
 - Lifetime of the whole and its parts are not bound together.
 - Parts can exist without the whole.
 
-### Composition
+## Composition
 
 Enable a Class to utilize another class
 
@@ -61,17 +67,15 @@ Use Composition to help overcome issues with inheritance, especially as inherito
 - Utilize nullability to allow assigning a possibly not-enabled capability.
 - Add factory methods to return new instances based on the Composed-class Properties.
 
-### Favor Composition Over Inheritance
+## Favor Composition Over Inheritance
 
 Inheritance is fine, but as complexity increases, inheritance limitations become a barrier to further development.
 
 Composition enables continued added complexity with less repetitive code, guaranteeing valid object generation through factory methods.
 
-## Null Safety in CSharp
+## Null Safety in CSharp Overview
 
 Null detection and handling changes in C# 2.0 and greater provide a means to better avoid null reference exceptions in an app.
-
-### Overview
 
 C# 2.0 introduced `Nullable<T>` where a generic reference type could be initialized as null. Use `T?` to implicitly or explicitly set a null:
 
@@ -86,7 +90,7 @@ Null safety reduces the possibility of `NullReferenceException` occurences, so t
 
 Basically, that last point is the goal: Help to avoid throwing `NullReferenceException` whenever possible.
 
-### Setting Nullability In Your Code
+## Setting Nullability In Your Code
 
 To infer intent of code and enforce desired behavior, set "Nullable Context", using these contexts:
 
@@ -100,7 +104,7 @@ Settings are available:
 - CSPROJ file: `<Nullable>` element. Scopes to entire project.
 - .CS file: '#nullable enable'. Scopes to just that .cs file.
 
-### Null Operators
+## Null Operators
 
 There are several operators dedicated to working with nullable references:
 
@@ -131,7 +135,7 @@ null conditional operators `.?` and `?[]`:
 - Example: `string thingy = foobar?.ToString()`. Equivalent to turnary statement `string thingy = foobar is not null ? foobar.ToString() : default`.
 - When evaluation of left-hand operand returns null, the rest of the statement is short-circuited!
 
-### Best Practices Handling Nullability
+## Best Practices Handling Nullability
 
 - Assign an initial value to initialized objects and structs whenever possible.
 - Avoid relying on the Null Forgiving Operator and instead perform logic statements that ensure nullable references are handled properly.

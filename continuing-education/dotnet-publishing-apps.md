@@ -2,6 +2,16 @@
 
 Various notes regarding application publishing in the .NET Ecosystem.
 
+## Table of Contents
+
+- [Versioning](#versioning)
+- [Publish Self Contained](#publish-self-contained)
+- [Publish Self Contained Command Line](#publish-self-contained-command-line)
+- [ReadyToRun Images](#readytorun-images)
+- [Ahead Of Time (AOT)](#ahead-of-time-aot)
+- [References](#references)
+- [Footer](#footer)
+
 ## Versioning
 
 This note was started on 16-Jan-2024:
@@ -9,7 +19,7 @@ This note was started on 16-Jan-2024:
 - Use referenced resources for the latest information.
 - Initial target is .NET 6 (subsections may cover .NET 8 or others).
 
-## Overview
+## Publish Self Contained
 
 Publish Self-Contained means:
 
@@ -41,7 +51,7 @@ dotnet publish -r win-x64
 dotnet publish -r linux-x64
 ```
 
-### Command Line
+## Publish Self Contained Command Line
 
 Use the `dotnet` `publish` command with argument `--self-contained`:
 
@@ -71,7 +81,7 @@ RIDs need to be _specific_:
 - Do NOT try to parse RIDs to retreive component parts.
 - Only use RIDs that are _already defined for the target platform_.
 
-### ReadyToRun Images
+## ReadyToRun Images
 
 These will improve startup time but will produce an even larger installer file, and do _not_ contain the JIT.
 
@@ -79,7 +89,7 @@ These will improve startup time but will produce an even larger installer file, 
 dotnet publish -c Release -r win-x64 --self-contained -p:PublishReadyToRun=true
 ```
 
-### AOT
+## Ahead Of Time (AOT)
 
 Just a quick list of notes:
 
