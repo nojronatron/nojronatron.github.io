@@ -2,9 +2,30 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 7
+
+Made some good progress the last few days with WPF Input Validation, implementing async functionality, and backup/restore of in-memory data (which was largely completed in week 6).
+
+### WPF Input Validation
+
+I'll overview [Tosker's Corner](https://www.youtube.com/watch?v=5KF0GGObuAQ&ab_channel=ToskersCorner) demonstrations of using input validation in the next four subsections.
+
+_Remember_: Updates to properties must include notifications, for example `IObservableCollection`, or `INotifyPropertyChanged`, etc implementations.
+
+ToskersCorner introduces four ways to accomplish validating input in WPF:
+
+- By Exception
+- By IDataErrorInfo
+- By ValidationRule
+- By Annotations
+
+A couple of these actually rely on Validation by Exception behind the scenes, so there is plenty of crossover.
+
+See my notes in [Conted: WPF MVVM Learnings](./wpf-mvvm-learnings.html#wpf-input-validation).
+
 ## Week 6
 
-Although I was out of town for most of week 5, but some software development happened anyway:
+Although I was out of town for most of week 5 some software development happened anyway:
 
 - Challenged myself to create an ADIF file validation tool for very specific log files. This was mostly successful in that I have a working console app with separate library classes and a unit test project, and it provided lots of opportunity to refresh my memory on use of *Regex* and its Syntax and best practices. Also, it provided an opportunity to use `dotnet` to build the solution from scratch, and manually add the Library and Unittest projects.
 - Reorganized my plan for the MobWxApp. It is going longer than I had originally intended it to, and I have another project that I promised to deliver in a couple months so I need to move-on from MobWxApp for now. I intended to have it pushed to the Android Play Store, but that will have to wait. Meanwhile, I've cleaned up the UI and the data models a bit, and have generated another Release Build that I will be using on my personal Android phone.

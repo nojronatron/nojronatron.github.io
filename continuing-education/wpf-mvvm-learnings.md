@@ -7,7 +7,9 @@ A collection of notes related to developing and building upon MVVM in DotNET WPF
 - [Requirements](#requirements)
 - [WPF with MVVM Project Setup](#wpf-with-mvvm-project-setup)
 - [Caliburn.Micro](#caliburnmicro)
+- [WPF Input Validation](#wpf-input-validation)
 - [Random Notes](#random-notes)
+- [Resources](#resources)
 - [Footer](#footer)
 
 ## Requirements
@@ -216,10 +218,72 @@ public bool CanClearText(string firstName)
 }
 ```
 
+## WPF Input Validation
+
+I'll overview [Tosker's Corner](https://www.youtube.com/watch?v=5KF0GGObuAQ&ab_channel=ToskersCorner) demonstrations of using input validation in the next four subsections.
+
+_Remember_: Updates to properties must include notifications, for example `IObservableCollection`, or `INotifyPropertyChanged`, etc implementations.
+
+### WPF Input Validation By Exception
+
+Throw an Exception type when the property value does not meet specific requirements.
+
+It appears this is a handy way to deal with input validation upon Control submission during debug (because a thrown exception can be handled or ignored), but is useful in a fully developed app.
+
+Attributes can be added to the Binding statement that will cause the App to update the input control decoration when the exception is thrown: `ValidatesOnExceptions=True` and `UpdateSourceTrigger` (set to Explicit, LostFocus, or PropertyChanged).
+
+### WPF Input Validation by IDataErrorInfo
+
+Use IDataErrorInfo interface to define to implement methods that support input validation and response.
+
+Provide a property to evaluate using an indexer property.
+
+Use a Switch-Case construct to identify each property to validate, the requirement to meet (e.g. `Username.Length < 5`), and what to return in both true and false cases.
+
+Returning `null` tells WPF that there is no error. Returning a value indicates an error.
+
+Attributes must be added to the input Binding: `ValidatesOnDataErrors` and `UpdateSourceTrigger`. This enables the control decoration (thin red border on error).
+
+To allow displaying the return message from the indexing property, a Dictionary can be used to add items that the WPF attribute `ToolTip` can be bound to that provides feedback on the index return (if not null).
+
+Perhaps one thing for me to try is to use a separate Label to show the error condition rather than a Tool Tip, to remain A11y compatible.
+
+### WPF Input Validation by ValidationRule
+
+This method utilizes a newly implemented class that inherits from `ValidationRule` and overrides `Validate(object value, CultureInfo cultureInfo)` method, performs the comparison for validation, and returns a `ValidationResult(bool, string)` for WPF to consume.
+
+A valid result is identified by the `Validate()` method returning `new ValidationResult(true, null)`.
+
+WPF must include Attached Properties with a Binding that identifies the Binding Path, `ValidatesOnDataErrors`, and `UpdateSourceTrigger` (just like the previous examples).
+
+A `Binding.ValidationRules` Attached Property must be added that defines the rule argument (in `Validate()` method).
+
+To display an error message, use a `ControlTemplate` in `Application.Resources` to override "errorTemplate", and define a new Control that includes an `AdornedElementPlaceholder` with a `TextBlock` that Binds to the _first error_ (identified as `[0]`) and its property `ErrorContent` e.g. `{Binding [0].ErrorContent}`.
+
+Then, in the Control that needs the in-line error message, add `Validation.ErrorTemplate="{StaticResource errorTemplate}"` so the error message(s) will appear in-line. This might not be a great A11y solution either, but the simplicity in implementation and effectiveness for sighted users is pretty compelling.
+
+### WPF Input Validation by Annotations
+
+Requires adding a reference to `System.ComponentModel.DataAnnotations` (this might be a .NET Framework 4.x requirement - in .net6 and newer, the library might be available in a `using` statement without adding by library reference).
+
+A `ControlTemplate` in `Application.Resources` will be needed here as well.
+
+Ensure the ViewModel (or the data managing class) is inheriting from `ObservableObject`.
+
+Add the Annotations `[Required(ErrorMessage=string)]` and `[Rule...(args, args, ErrorMessage(string))]` to the properties that require validation. TaskersCorner used `[StringLength(50, MinimumLength=5, ErrorMessage="Must be at least 5 characters.")]`.
+
+As in previous methods, the XAML will need to be updated to include special Binding properties. In ToskersCorner, the example used a TextBox with the Text property set to `{Binding Username, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged, Validation.ErrorTemplate="StaticResource errorTemplate}`.
+
+The ViewModel (or data class) will need its Setter updated to include `ValidateProperty(value, string Property)` so that WPF can access a public Property that updates the validation data.
+
 ## Random Notes
 
 - Assembly name can be edited to cause the EXE to be named something other than the project name. See Project Properties to do this.
 - WPF Tools for UI Debugging: Remove it by going to Tools -> Options -> Debugging -> General -> Enable UI Debugging Tools for XAML -> Uncheck "Show Runtime Tools in Application"
+
+## Resources
+
+YouTube [Tosker's Corner](https://www.youtube.com/watch?v=5KF0GGObuAQ&ab_channel=ToskersCorner)
 
 ## Footer
 
