@@ -10,6 +10,8 @@ Made some good progress the last few days with WPF Input Validation, implementin
 
 I'll overview [Tosker's Corner](https://www.youtube.com/watch?v=5KF0GGObuAQ&ab_channel=ToskersCorner) demonstrations of using input validation in the next four subsections.
 
+Also check out [this response by StackOverflow user MrB](https://stackoverflow.com/questions/19539492/implement-validation-for-wpf-textboxes) for more.
+
 _Remember_: Updates to properties must include notifications, for example `IObservableCollection`, or `INotifyPropertyChanged`, etc implementations.
 
 ToskersCorner introduces four ways to accomplish validating input in WPF:
