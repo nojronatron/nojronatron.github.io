@@ -25,6 +25,23 @@ A couple of these actually rely on Validation by Exception behind the scenes, so
 
 See my notes in [Conted: WPF MVVM Learnings](./wpf-mvvm-learnings.html#wpf-input-validation).
 
+### Asynchronous Programming
+
+This is a real rabbit hole, but it is pretty interesting albeit complex. I've written some notes in [dotnet async await notes](./dotnet-async-await-notes.html) to force my brain to process what Stephen Cleary is saying in his blog post/essay.
+
+Some key takeaways:
+
+- Do not mix synchronous and asynchronous code in GUI apps like ASP.NET, WPF, etc.
+- Console App uses a Thread Pool that allows mixing sync and async code.
+- ASP.NET and other GUI apps have a GUI Thread follow a 'one-chunk-at-a-time' thread calls, providing separate Contexts for the GUI and ASP.NET Controllers.
+- Async methods need to return `Task` or `Task<T>`.
+- Event Handlers are the _only_ method type that can return an async void.
+- Prefer using `await Task.WhenAny()` and `await Task.WhenAll()` (use the await keyword).
+- If a delay is needed, use `await Task.Delay()` instead of sleeping a Thread.
+- If a Task Context must be changed using `ConfigureAwait(false)`, be aware that returning a result to the GUI thread will require additional code, so it is easier to add "fire and forget code" when using `ConfigureAwait(false)`.
+
+For BF-BMX, I will probably want to look into using `AsyncCollection<T>` to manage multiple processes pushing data to a common repository.
+
 ## Week 6
 
 Although I was out of town for most of week 5 some software development happened anyway:
