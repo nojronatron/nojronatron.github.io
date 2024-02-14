@@ -136,7 +136,7 @@ Methods that "aren't fully asynchronous" will not return a completed Task.
 
 Async code should not include synchronous, blocking code.
 
-An example as written in *[Async/Await Best Practices in Asynchronous Programming]*
+An example as written in _Async/Await Best Practices in Asynchronous Programming_
 
 ```c#
 public static class NotFullyAsynchronousDemo
@@ -178,7 +178,7 @@ _Advice_: Await teh result of ConfigureAwait whenever possible.
 
 `ConfigureAwaitOptions`:
 
-- An Enum of [options](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.configureawaitoptions?view=net-8.0)
+- An Enum of [configure await options](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.configureawaitoptions?view=net-8.0).
 - ContinueOnCapturedContext: Marshal continuation back to original SynchronizationContext (or TaskScheduler) on calling thread when Task was awaited.
 - ForceYielding: Forces `await` on already completed Task to behave as if Task is not yet completed (forcing a Yield).
 - None: No options specified.
@@ -199,18 +199,20 @@ ConfigureAwait best practices:
 
 ## Solutions To Common Async Problems
 
-> Create a task to execute code: `Task.Run` or `TaskFacotry.StartNet` but _not_ `Task ctor` nor `Task.Start()`.
-> Create a teask wrapper for an operation or event: `TaskFactory.FromAsync` or `TaskCompletionSource<T>`.
-> Support cancellation: `CancellationTokenSource` and `CancellationToken`.
-> Report progress: `IProgress<T>` and `Progress<T>`.
-> Handle streams of data: TPL Dataflow or Reactive Extensions.
-> Synchronize access to a shared resource: `SemaphoreSlim`.
-> Asynchronously initialize a reseource: `AsyncLazy<T>`.
-> Async-ready producer/consumer structures: TPL Dataflow or `AsyncCollection<T>`.
+As written in _Async/Await Best Practices in Asynchronous Programming_:
+
+- Create a task to execute code: `Task.Run` or `TaskFacotry.StartNet` but _not_ `Task ctor` nor `Task.Start()`.
+- Create a teask wrapper for an operation or event: `TaskFactory.FromAsync` or `TaskCompletionSource<T>`.
+- Support cancellation: `CancellationTokenSource` and `CancellationToken`.
+- Report progress: `IProgress<T>` and `Progress<T>`.
+- Handle streams of data: TPL Dataflow or Reactive Extensions.
+- Synchronize access to a shared resource: `SemaphoreSlim`.
+- Asynchronously initialize a reseource: `AsyncLazy<T>`.
+- Async-ready producer/consumer structures: TPL Dataflow or `AsyncCollection<T>`.
 
 ## Other Things To Keep Top Of Mind
 
-`ConfigureAwait` vs just `await`:
+About using `ConfigureAwait` vs using just `await`:
 
 - `ConfigureAwait()` only makes sense when _awaiting Tasks_.
 - `await` acts _on anything awaitable_.
@@ -226,6 +228,8 @@ Controller Actions:
 [Async/Await - Best Practices in Asynchronous Programming](https://learn.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming)
 
 Stephen Cleary [adds a great response to a StackOverflow question](https://stackoverflow.com/questions/13489065/best-practice-to-call-configureawait-for-all-server-side-code) that is worth reviewing, especially in the context of (now legacy) ASP.NET.
+
+Read more about the Task-based Asynchrounous Pattern [TAP in .NET: Introduction and overview on MSDN](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap?redirectedfrom=MSDN).
 
 ## Footer
 
