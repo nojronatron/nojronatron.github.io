@@ -42,6 +42,17 @@ Some key takeaways:
 
 For BF-BMX, I will probably want to look into using `AsyncCollection<T>` to manage multiple processes pushing data to a common repository.
 
+### MVVM Cross
+
+An open-source project supported by the DotNET Foundation, applies MVVM pattern to WPF, iOS, Android, and other platforms. I took a look at MVVM Cross as a possible framework to use in BF-BMX, replacing Caliburn Micro. Here are a few key takeaways:
+
+- It is difficult to set up initially.
+- There are templates to help get a project setup to start, but it is unclear whether these templates are fully supported in (or by) VSCode.
+- There is a "Core" project and then "platform" projects (for example: WPF, or Ios) that make up an MVVM Cross Solution. Essentially it breaks down to the core MVVM framework bits and the developer implemented Models and ViewModels are placed in the "Core" project, and the developer designed Views are put in the "platform" project.
+- The MVVM Cross documentation is voluminous, however I had a difficult time reading through it to get things up and running. I'm pretty context-sensitive so it's probably me, not them.
+- Several references to how to set up MVVM Cross were out of date (MVVM Cross is currently at 9.1.1), dating back two or more years.
+- In the end I developed a basic project following Time Corey's instructions (in an outdated video) and by following several MVVM Cross bugs, Example projects, and StackOverflow.
+
 ## Week 6
 
 Although I was out of town for most of week 5 some software development happened anyway:

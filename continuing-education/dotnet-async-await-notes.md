@@ -27,7 +27,7 @@ Async Void should not be used _except_ in the case of asynchronous Event Handler
 - Implementing Async Void methods in _unmaintainable_ and _not recommended_.
 - Cannot be composed using `Task.WhenAny` or `Task.WhanAll`.
 - MSFT Unit Testing only support async `Task` and `Task<T>` methods.
-- Event Handlers tend to have `private` access, which is also more difficult to test or use composition techniques.
+- Event Handlers tend to have `private` access which is more difficult to test and to compose with other methods.
 
 Async Task methods are preferred when there is no return Type expected:
 
