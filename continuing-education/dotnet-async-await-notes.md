@@ -4,26 +4,6 @@ Notes taken while working through [Stephen Cleary](https://learn.microsoft.com/e
 
 Additional notes were taken while reading [Task-based Asynchronous Programming Patterns](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap) from learn.microsoft.com.
 
-## Table of Contents
-
-- [Best Practices Reading Overview](#best-practices-reading-overview)
-- [Best Practices - Avoid Async Void](#best-practices---avoid-async-void)
-- [Best Practices - Avoid Mixing Synchronous and Asynchronous](#best-practices---avoid-mixing-synchronous-and-asynchronous)
-- [Best Practices - Configure Context](#best-practices---configure-context)
-- [Best Practices - Solutions To Common Async Problems](#best-practices---solutions-to-common-async-problems)
-- [Best Practices - Other Things To Keep Top Of Mind](#best-practices---other-things-to-keep-top-of-mind)
-- [TAP - Overview](#tap---overview)
-- [TAP - Generating Methods](#tap---generating-methods)
-- [TAP - IO and Compute Workloads](#tap---io-and-compute-workloads)
-- [TAP - Consuming TAP](#tap---consuming-tap)
-- [TAP - Canceling Async Operations](#tap---canceling-async-operations)
-- [TAP - Monitoring Async Operation Progress](#tap---monitoring-async-operation-progress)
-- [TAP - Combinators](#tap---combinators)
-- [TAP - Reporting Progress](#tap---reporting-progress)
-- [Things To Review](#things-to-review)
-- [Resources](#resources)
-- [Footer](#footer)
-
 ## Best Practices Reading Overview
 
 There are some basic rules of thumb to follow:
@@ -429,18 +409,7 @@ Monitoring Progress:
 - Pass-in Progress inidating interface to async methods.
 - There is a simple WPF example in the text (see below).
 
-## TAP - Combinators
-
-Built-in Task-based Combinators:
-
-- `Task.Run(Func<Task>())`: Shorthand for `TaskFactory.StartNew()`. Good for offloading async work.
-- `Task.FromResult(arg)`.
-- `Task.WhenAll()`: Wait on multiple async operations represented by Tasks. Multiple Overloads are available. Exceptions propagate out of each Task and can be caught specifically (rather than by an `AggregateException` object).
-
-## TAP - Reporting Progress
-
 ```c#
-// TOPIC: Reporting Progress
 // consume this method by WPF to track download
 // progress initiated by a button event handler
 private async void btnDownload_Click(object sender, RoutedEventArgs e)
@@ -454,6 +423,23 @@ private async void btnDownload_Click(object sender, RoutedEventArgs e)
     finally { btnDownload.IsEnabled = true; }
 }
 ```
+
+## TAP - Combinators
+
+Built-in Task-based Combinators:
+
+- `Task.Run(Func<Task>())`: Shorthand for `TaskFactory.StartNew()`. Good for offloading async work.
+- `Task.FromResult(arg)`: Use when data may already be available and just needs to be returned within a `Task<TResult>`.
+- `Task.WhenAll()`: Wait on multiple async operations represented by `Task` or `TResult`. Multiple Overloads are available. Applies Paralellism to each started `Task`. Exceptions propagate out of each Task and can be caught specifically (rather than by an `AggregateException` object).
+- `Task.WhenAny()`: Await any single Task-based operation for Redundancy (compare 1st completion to others), Interleaving (process each completion _as they complete_), Throttling (Allow other Tasks to start as others complete - an extension of Interleaving), or Early Bailout (As soon as one task returns a cancellation or other 'signal', other incomplete Tasks get cancelled before completing).
+
+### More about Task WhenAll
+
+If a `try-catch` block wraps an `await Task.WhenAll()` operation, the Exceptions _are_ consolidated into `AggregateException`.
+
+Unwrap `AggregateException` by performing a `foreach` in the catch block and iterate through `Task` items selecting by `Task.IsFaulted` and capture each Task Exception using `Task.Exception` property.
+
+
 
 ## Things To Review
 

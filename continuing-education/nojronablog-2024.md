@@ -55,6 +55,10 @@ An open-source project supported by the DotNET Foundation, applies MVVM pattern 
 - Several references to how to set up MVVM Cross were out of date (MVVM Cross is currently at 9.1.1), dating back two or more years.
 - In the end I developed a basic project following Time Corey's instructions (in an outdated video) and by following several MVVM Cross bugs, Example projects, and StackOverflow.
 
+### Mobile Weather App Downloading Images
+
+In the [Interleaving section of MSFT Learn article on Task-based Asynchronous Pattern](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/consuming-the-task-based-asynchronous-pattern#interleaving), example code shows how to utilize `Task.WhenAny(func)` to download images for display to a UI, as they become available. This will apply nicely to Mob-Wx on the 7-day forecasts page.
+
 ## Week 6
 
 Although I was out of town for most of week 5 some software development happened anyway:
