@@ -2,7 +2,29 @@
 
 Notes taken while working through [Stephen Cleary](https://learn.microsoft.com/en-us/archive/msdn-magazine/2013/march/%5Carchive%5Cmsdn-magazine%5Cauthors%5CStephen_Cleary)'s March 2013 article [Async/Await - Best Practices in Asynchronous Programming](https://learn.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming).
 
-## Overview
+Additional notes were taken while reading [Task-based Asynchronous Programming Patterns](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap) from learn.microsoft.com.
+
+## Table of Contents
+
+- [Best Practices Reading Overview](#best-practices-reading-overview)
+- [Best Practices - Avoid Async Void](#best-practices---avoid-async-void)
+- [Best Practices - Avoid Mixing Synchronous and Asynchronous](#best-practices---avoid-mixing-synchronous-and-asynchronous)
+- [Best Practices - Configure Context](#best-practices---configure-context)
+- [Best Practices - Solutions To Common Async Problems](#best-practices---solutions-to-common-async-problems)
+- [Best Practices - Other Things To Keep Top Of Mind](#best-practices---other-things-to-keep-top-of-mind)
+- [TAP - Overview](#tap---overview)
+- [TAP - Generating Methods](#tap---generating-methods)
+- [TAP - IO and Compute Workloads](#tap---io-and-compute-workloads)
+- [TAP - Consuming TAP](#tap---consuming-tap)
+- [TAP - Canceling Async Operations](#tap---canceling-async-operations)
+- [TAP - Monitoring Async Operation Progress](#tap---monitoring-async-operation-progress)
+- [TAP - Combinators](#tap---combinators)
+- [TAP - Reporting Progress](#tap---reporting-progress)
+- [Things To Review](#things-to-review)
+- [Resources](#resources)
+- [Footer](#footer)
+
+## Best Practices Reading Overview
 
 There are some basic rules of thumb to follow:
 
@@ -10,9 +32,9 @@ There are some basic rules of thumb to follow:
 - Async all the way
 - Configure context
 
-These are a mix of good ideas, not necessarily hard-and-fast rules (at least not all of them).
+These are a mix of good ideas, not necessarily hard-and-fast rules, as there are details to each one depending on the DotNET version including ASP.NET, WinForms, WPF, etc.
 
-## Avoid Async Void
+## Best Practices - Avoid Async Void
 
 Async methods can return any of these three types:
 
@@ -98,7 +120,7 @@ Do not "...provide an async implementation (or override) to a void-returning met
 
 See [.net 8 Action\<T>](https://learn.microsoft.com/en-us/dotnet/api/system.action-1?view=net-8.0) for how to utilize `Action<T>` delegate.
 
-## Avoid Mixing Synchronous and Asynchronous
+## Best Practices - Avoid Mixing Synchronous and Asynchronous
 
 There are consequences to doing this:
 
@@ -162,7 +184,7 @@ To Retrieve the results of multiple tasks: _Do not_ use `Task.WaitAll` and _inst
 
 To Wait a period of time: _Do not_ use `Thread.Sleep` and _instead_ use `await Task.Delay`
 
-## Configure Context
+## Best Practices - Configure Context
 
 Context is captured when an incomplete Task is awaited.
 
@@ -197,7 +219,7 @@ ConfigureAwait best practices:
 - Context-free code is more reusable.
 - Minimize code within Context-sensitive Event Handler.
 
-## Solutions To Common Async Problems
+## Best Practices - Solutions To Common Async Problems
 
 As written in _Async/Await Best Practices in Asynchronous Programming_:
 
@@ -210,7 +232,7 @@ As written in _Async/Await Best Practices in Asynchronous Programming_:
 - Asynchronously initialize a reseource: `AsyncLazy<T>`.
 - Async-ready producer/consumer structures: TPL Dataflow or `AsyncCollection<T>`.
 
-## Other Things To Keep Top Of Mind
+## Best Practices - Other Things To Keep Top Of Mind
 
 About using `ConfigureAwait` vs using just `await`:
 
@@ -222,6 +244,222 @@ Controller Actions:
 
 - They have their own Context.
 - Actions called by Controllers _do not_ have their own Context.
+
+## TAP - Overview
+
+This is a brain-dump of concepts and mid-level details from the Summary chapter:
+
+- Method name suffix: Async or TaskAsyc (if former is taken) for awaitable Types.
+- Awaitable Types: `Task`, `Task<TResult>`, `ValueTask`, `ValueTask<TResult>`.
+- TAP Method doesn't return an awaitable type? Name prefix `Start` or `Begin` to imply that the method will not return or throw the result of the async operation.
+- For void return, return a `Task`.
+- For Type return, return a `Task<T>`.
+- AVOID: `OUT` and `REF` keywords in arguments list. Use a `TResult` that is a `Tuple` or custom Type instead.
+- Built-in Combinators: `WhenAll`, `WhenAny`.
+- Minimize Synchronous work within an Async method and keep it at the START of the method.
+- Fast-returning async Tasks could return a COMPLETED Task, acting much like a synchronous call.
+- Usage error Exceptions should NEVER HAPPEN! Ensure all args to a TAP method are validated e.g. no Null inputs that wouldn't be handled.
+- All other Exceptions that could occur within the Async Task should be encapsulated into the returning Task.
+- TAP allows determining where asynchronous execution occurs: UI Thread, some other specific Thread, the Thread Pool, Async I/O, or some attached Context.
+- Continuation Code: Code that runs after an asynchronous operation completes.
+- Task object includes methods to run Continuation Code for e.g. `ContinueWith()` or the `await` keyword.
+- TaskStatus: `Enum`, provides information on Task lifecycle.
+- Tasks created via CTOR are "Cold" meaning they are non-scheduled and state is enum:Created but not running until `Task.Start()` is called on them.
+- Tasks created ANY WAY OTHER THAN CTOR start hot, e.g. scheduled and enum state anything BUT enum:Started.
+- Consumers (calling methods) should NEVER be in charge of calling `Task.Start()` and will always assume a return `Task` is in any state OTHER THAN enum:Created. Calling `Task.Start()` on a returned `Task` will cause `InvalidOperationException` to be thrown.
+- Cancellation is OPTIONAL for both async Consumers and async implementers.
+- If Async method accepts cancellation: Include an async method overload that includes `CancellationToken` argument.
+- Aync operations should monitor `CancellationToken` instance for a cancellation request, and OPTIONALLY act on it to cancel its operation.
+- Prematurely canceled Task should return a state of Canceled, without any available Result or Exception thrown.
+- A Task state of Canceled is considered to be a FINAL STATE for a Task, just like `Faulted` and `RanToCompletion`.
+- Tasks that are Canceled that were called using `Wait()` and `WaitAll()` will continue to run with an Exception.
+- Progress reporting is OPTIONAL: Pass `IProgress<T>` as an async method parameter. Generally used to update UI with Task status info.
+- Implementation of `Progress` is determined by the consuming code.
+- `IProgress` implementation options include: Act upon only the latest update; Buffer all updates; Invoke an action at each update; Control whether update is marshalled to a particular Thread.
+- `IProgress<T>` implementing methods MUST allow IProgress to be Null w/o throwing.
+- `IProgres<T>` updates are SYNCHRONOUS (so that they are immediately reported).
+- `IProgress<T>` could utilize a Tuple with data such as: double:percentComplete, `List<string>`:filesDiscovered; A Custom Type (suffix 'ProgressInfo') that encapsulates the API definition of progress.
+- `IProgress<T>` CTOR allows providing a single Event Handler, or MULTIPLE Event Handlers can be subscribed via the `ProgressChanged` property.
+- When providing Cancellation and Progress capabilities, be sure to provide overloaded async Task methods but usually neither are included which simplifies the params list.
+- If both `IProgress<T>` and `CancellationToken` params are availabe in the async method, then up to 3 added overloads will be required beyond the base params list: MyMethodAsync(obj myParam); MyMethodAsync(CancellationToken cn, obj myParam); MyMethodAsync(`IProgress<T>` progress, obj myParam); MyMethodAsync(CancellationToken cn, `IProgress<T>` progress, obj myParam);
+- Defaults of`CancellationToken`= None and `IProgress<T>` = null can be used to reduce total overloads to only two.
+
+## TAP - Generating Methods
+
+Generating TAP Methods can be done three ways:
+
+1) Compiler: Use the 'async' keyword and returning a `System.Threading.Tasks.Task` or ...`Task<TResult>`. Exceptions are packaged in the Task object and TaskStatus.Faulted state is set. `OperationCanceledException` that are UNHANDLED results in TResult Task.Canceled state.
+2) Manually: Provides better control over implementation. Use `System.Threading.Tasks` and `System.Runtime.CompilerService` namespaces. Create a `TaskCompletionSource<TResult>` object that calls SetResult when completed, or SetException when faulted, or SetCanceled if canceled by token (TrySetException, TrySetException, and TrySetCanceled, accordingly).
+3) Hybrid: Implement TAP pattern manually but delegate core logic to the compiler. Use this to validate arguments and catch Exceptions outside of the Compiler-generated async Task implementation. In essence: Ensure Exceptions are thrown back to the calling function, rather than wrapped in a `System.Threading.Tasks.Task` object. This pattern can also be used to "return a cached Task".
+
+Example MANUAL generation of a TAP method:
+
+```c#
+// Manually generating a TAP method
+public static Task<int> ReadTask(this Stream stream, byte[] buffer, int offset, int count, object state)
+{
+  // Quote: When you implement a TAP method manually
+  // you must complete the resulting task when the
+  // represented asynchronous operation completes.
+    var tcs = new TaskCompletionSource<int>();
+    stream.BeginRead(buffer, offset, count, ar =>
+    {
+        try 
+    { 
+      tcs.SetResult(stream.EndRead(ar)); 
+    }
+        catch (Exception exc) 
+    { 
+      tcs.SetException(exc); 
+    }
+    }, state);
+    return tcs.Task;
+}
+```
+
+Example HYBRID TAP method generation:
+
+```c#
+// Hybrid TAP method generation
+public Task<int> MethodAsync(string input)
+{
+    if (input == null) throw new ArgumentNullException("input");
+    return MethodAsyncInternal(input);
+}
+
+private async Task<int> MethodAsyncInternal(string input)
+{
+   // code that uses await goes here
+   return value;
+}
+```
+
+## TAP - IO and Compute Workloads
+
+### IO Workloads
+
+Includes asynchronous methods that are awaiting (a usually remote) process to return results, but not utilizing compute.
+
+Ensure these are set to be asynchronous:
+
+- Should not back these with a Thread for the entirety of execution!
+- Use`TaskCompletionSource<TResult>`type, which exposes Task property  that returns`Task<TResult>`instance.
+- Task lifecycle will lbe managed by`TaskCompletionSource<TResult>`methods: `SetResult()`, `SetException()`, `SetCanceled()` and their 'TrySet' variants.
+
+### Compute Workloads
+
+Includes asynchronous methods that are performing the computationally heavy processing.
+
+Although these shouldn't be exposed publicly from the library, if they are they should be exposed as Synchronous (NOT async).
+
+The implementation Library can decide whether to offload them to another thread or execute them in parallel.
+
+### Common Compute and IO Implementations
+
+`Task.Run()` and `TaskFactory.StartNew()`:
+
+- Former is shortcut for the latter.
+- Easily launch compute-bound task targeting the thread pool.
+- `TaskFactory.StartNew()`() is well suited for fine-grained control over a Task with `CancellationToken`, `TaskCreationOptions`, and `TaskScheduler` params list overloads.
+- Create a new Task in a private method using `TaskFactory`, then `Start()` the Task separately if needed.
+- "Public methods must only return tasks that have already been started."
+
+`Task.ContinueWith()`:
+
+- Creates new Task that is scheduled when another Task completes.
+- Some overloads allow supplying `CancellationToken`, continuation options, and a TaskScheduler.
+
+`TaskFactory.ContinueWhenAll()` and `TaskFactory.ContinueWhenAny()`:
+
+- Both will create new Task, scheduled for when all (or any) of supplied Task(s) completes.
+- Overloads provide for scheduling and execution of these tasks.
+
+In a Compute-bound Task:
+
+- Accept a `CancellationToken` in the params list.
+- Poll the `CancellationToken` within the body of the method using `token.ThrowIfCancellationRequested()`.
+- If unhandled, the Task will return in the state of `Canceled`.
+- If other unhandled Exceptions are thrown, the Task will end in the state of `Faulted`.
+
+Hybrid Workloads: Compute-bound and IO-bound:
+
+- Utilize a single `CancellationToken` so if IO-bound task returns `Cancelled`, following Task(s) are also returned in `Cancelled` state.
+
+## TAP - Consuming TAP
+
+- Can use Callbacks to wait without blocking by using `Task.ContinueWith()`.
+- Allows async ops within normal control flow and compiler-generated code.
+- await `Task`: Returns void; await `Task<TResult>`: returns TResult.
+- Await actually installs a Callback on the `Task` by using "continuation".
+- The callback resumes async method where it was suspended.
+- When async method is resumed: The Tasks `TResult` is returned (if operation completed successfully). Canceled? `OperationCanceledException` is thrown. Faulted state? Exception that caused the fault is re-thrown.
+- When `Faulted`: Only a single Exception is propagated: `AggregateException`, containing all actually thrown `Exceptions`.
+
+If `SynchronizationContext` object is associated with thread that executed async method when suspended:
+
+- If `SynchronizationContext.Current` property is not null: async method resumes in same context using context's `Post()` method. Null? Relies on `TaskScheduler` object that was current when method was suspended (usually the default `TaskScheduler` on the Thread Pool). Resumption could be executed or scheduled.
+- Async methods synchronously execute body code until the first await expression that has not yet been completed. Invocation is then returned to the calling function.
+- A return statement causes an async method to return a `Task` in state `RanToCompletion`.
+
+Configure Suspend/Resume with `Yield` and `ConfigureAwait`:
+
+- `Task.Yield()`: Equivalent to asynchronously posting or scheduling back to the current Context.
+- `Task.ConfigureAwait()`: Current Context is captured when async method is suspended. This is used to invoke async method continuation point when resumed. Inform the await operation to NOT capture and resume on Context and instead continue wherever the async operation that was being awaited completed.
+
+```c#
+// do not use this if it is important to return
+// to a specific context like the UI thread
+await someTask.ConfigureAwait(continueOnCapturedContext:false);
+```
+
+## TAP - Canceling Async Operations
+
+Canceling Async Operation:
+
+- Use `CancellationTokenSource` to generate a `CancellationToken` i.e. `ConcellationTokenSource.Token`.
+- The source calls `Cancel()` to signal the `CancellationToken`.
+- One token can cancel multiple async invocations.
+- `Cancellation` can be requested FROM ANY THREAD.
+- `Cancellation.None` means "Can not be canceled by Token".
+
+## TAP - Monitoring Async Operation Progress
+
+Monitoring Progress:
+
+- Pass-in Progress inidating interface to async methods.
+- There is a simple WPF example in the text (see below).
+
+## TAP - Combinators
+
+Built-in Task-based Combinators:
+
+- `Task.Run(Func<Task>())`: Shorthand for `TaskFactory.StartNew()`. Good for offloading async work.
+- `Task.FromResult(arg)`.
+- `Task.WhenAll()`: Wait on multiple async operations represented by Tasks. Multiple Overloads are available. Exceptions propagate out of each Task and can be caught specifically (rather than by an `AggregateException` object).
+
+## TAP - Reporting Progress
+
+```c#
+// TOPIC: Reporting Progress
+// consume this method by WPF to track download
+// progress initiated by a button event handler
+private async void btnDownload_Click(object sender, RoutedEventArgs e)
+{
+    btnDownload.IsEnabled = false;
+    try
+    {
+        txtResult.Text = await DownloadStringTaskAsync(txtUrl.Text,
+            new Progress<int>(p => pbDownloadProgress.Value = p));
+    }
+    finally { btnDownload.IsEnabled = true; }
+}
+```
+
+## Things To Review
+
+If cancellation is requested but a result or an exception is still produced, the task should end in the `RanToCompletion` or `Faulted` state.
+
+A TAP method may even have nothing to execute, and may just return a Task that represents the occurrence of a condition elsewhere in the system (for example, a task that represents data arriving at a queued data structure).
 
 ## Resources
 

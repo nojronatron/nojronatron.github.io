@@ -42,6 +42,8 @@ Some key takeaways:
 
 For BF-BMX, I will probably want to look into using `AsyncCollection<T>` to manage multiple processes pushing data to a common repository.
 
+I've added notes about TAP and Aynchronous programming patterns in [DotNET Aync Await Notes](./dotnet-async-await-notes.html).
+
 ### MVVM Cross
 
 An open-source project supported by the DotNET Foundation, applies MVVM pattern to WPF, iOS, Android, and other platforms. I took a look at MVVM Cross as a possible framework to use in BF-BMX, replacing Caliburn Micro. Here are a few key takeaways:
@@ -57,7 +59,7 @@ An open-source project supported by the DotNET Foundation, applies MVVM pattern 
 
 Although I was out of town for most of week 5 some software development happened anyway:
 
-- Challenged myself to create an ADIF file validation tool for very specific log files. This was mostly successful in that I have a working console app with separate library classes and a unit test project, and it provided lots of opportunity to refresh my memory on use of *Regex* and its Syntax and best practices. Also, it provided an opportunity to use `dotnet` to build the solution from scratch, and manually add the Library and Unittest projects.
+- Challenged myself to create an ADIF file validation tool for very specific log files. This was mostly successful in that I have a working console app with separate library classes and a unit test project, and it provided lots of opportunity to refresh my memory on use of _Regex_ and its Syntax and best practices. Also, it provided an opportunity to use `dotnet` to build the solution from scratch, and manually add the Library and Unittest projects.
 - Reorganized my plan for the MobWxApp. It is going longer than I had originally intended it to, and I have another project that I promised to deliver in a couple months so I need to move-on from MobWxApp for now. I intended to have it pushed to the Android Play Store, but that will have to wait. Meanwhile, I've cleaned up the UI and the data models a bit, and have generated another Release Build that I will be using on my personal Android phone.
 
 ### Iterating Through Characters In A String
@@ -685,7 +687,7 @@ num => {
 - Don't do this either `const func = () => { foo: function () {...} };`
 - Don't return a function like this either: `const func = () => { foo() {...} };`
 - There is no concept of `arguments` binding in arrow functions.
-- Arrow functions lack a `prototype` property, and will throw an error when called with the `new` keyword. 
+- Arrow functions lack a `prototype` property, and will throw an error when called with the `new` keyword.
 
 Note: The above examples are slightly modified versions from _[MDN Javascript Reference]_, accessed 5-Jan-24.
 
