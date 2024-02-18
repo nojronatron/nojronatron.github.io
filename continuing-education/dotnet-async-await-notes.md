@@ -489,7 +489,7 @@ Overview (see the actual page for the code):
 
 `WhenAny()` might introduce performance problems because it registers a Continuation with each Task.
 
-Following a technique as explained in [Interleaved Operations](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/consuming-the-task-based-asynchronous-pattern#interleaved-operations) can help to avoid 
+Following a technique as explained in [Interleaved Operations](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/consuming-the-task-based-asynchronous-pattern#interleaved-operations) can help to avoid issues with performance and handling completed and/or failed tasks.
 
 _Note_: Thread safety is important here and using the [Interlocked](https://learn.microsoft.com/en-us/dotnet/api/system.threading.interlocked?view=net-8.0) class might be necessary to avoid preemptive overwriting of an instance variable (for example).
 
