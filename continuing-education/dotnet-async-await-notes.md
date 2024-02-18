@@ -402,6 +402,8 @@ Canceling Async Operation:
 - `Cancellation` can be requested FROM ANY THREAD.
 - `Cancellation.None` means "Can not be canceled by Token".
 
+_Note_: It is also possible for a Task to "self cancel" by calling the passed-in `CancellationToken` and calling its `Cancel()` method!
+
 ## TAP - Monitoring Async Operation Progress
 
 Monitoring Progress:
@@ -433,19 +435,186 @@ Built-in Task-based Combinators:
 - `Task.WhenAll()`: Wait on multiple async operations represented by `Task` or `TResult`. Multiple Overloads are available. Applies Paralellism to each started `Task`. Exceptions propagate out of each Task and can be caught specifically (rather than by an `AggregateException` object).
 - `Task.WhenAny()`: Await any single Task-based operation for Redundancy (compare 1st completion to others), Interleaving (process each completion _as they complete_), Throttling (Allow other Tasks to start as others complete - an extension of Interleaving), or Early Bailout (As soon as one task returns a cancellation or other 'signal', other incomplete Tasks get cancelled before completing).
 
-### More about Task WhenAll
+### About Task WhenAll
 
 If a `try-catch` block wraps an `await Task.WhenAll()` operation, the Exceptions _are_ consolidated into `AggregateException`.
 
 Unwrap `AggregateException` by performing a `foreach` in the catch block and iterate through `Task` items selecting by `Task.IsFaulted` and capture each Task Exception using `Task.Exception` property.
 
+### About Task Delay
 
+Introduce pauses into async method execution:
+
+- Build polling loops.
+- Delay handling on user input.
+- Set timeouts on awaits while calling `Task.WhenAny()`.
+- Use `try` to capture `WhenAny()` or `WhenAll()` execution and a `finally` bock to ensure any continuation code is executed.
+
+Caveats:
+
+- Operation execution could suffer if a Task fails to complete.
+- Developer should include a timeout period while waiting on async ops.
+- `TaskFactory.ContinueWhenAll` and `TaskFactory.ContinueWhenAny()` do _not_ accept timeouts!
+- Synchronous `Task.Wait()`, `Task.WaitAll()`, and `Task.WaitAny()` accept timeouts.
+- Leverage `Task.Delay()` and `Task.WhenAny()` to implement a timeout.
+
+## TAP - Building Task-based Combinators
+
+Several Combinators are included in the .NET Libraries, but custom Combinators can be designed and implemented:
+
+- Synchronous: `RetryOnFault<T>(Func, maxRetries)`
+- Async: Same as synchronous but returns a `Task<T>`, accepts a `Task<T>`, and calls `return await function().ConfigureAwait(false)`
+
+In either of the examples in subsection [RetryOnDefault](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/consuming-the-task-based-asynchronous-pattern#retryonfault), the custom methods attempt to return a function (awaited function using TAP) that might throw. A `catch` statement tests the number of times the attempt has been made (1 to maxRetries) and will `throw` on the last retry, else will iterate until last retry then return `default(t)`.
+
+Other ideas include:
+
+- Adding a timeout/retry for one or more Tasks.
+- Calling a `Func<Task>` between retries to determine when to retry.
+
+### Custom Combinator Example: NeedOnlyOne
+
+If calling multiple APIs but a response from only 1 is needed, pick the 1st one to return and cancel the remaining calls, and return only the 1st completed call.
+
+Overview (see the actual page for the code):
+
+1. Accept a `Func<T>` as an array of Cancellation Token and `Task<T>` instances (`[] functions`).
+2. Iterate through each `function` in `functions` and assign them to new `Task[]` array.
+3. Call `await Task.WhenAny(collectionOfFunctionInstances).ConfigureAwait(false)` and assign the result to a variable e.g. `completed`.
+4. Call `cancellationToken.Cancel`.
+5. Iterate through each `Task` in tasks array and implement `TaskContinuationOptions.OnlyOnFaulted`, assigning them to a variable e.g. `ignored`.
+6. Return `completed` variable (which is a `Task`).
+
+### Custom Combinator Example: Interleaved Operations
+
+`WhenAny()` might introduce performance problems because it registers a Continuation with each Task.
+
+Following a technique as explained in [Interleaved Operations](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/consuming-the-task-based-asynchronous-pattern#interleaved-operations) can help to avoid 
+
+_Note_: Thread safety is important here and using the [Interlocked](https://learn.microsoft.com/en-us/dotnet/api/system.threading.interlocked?view=net-8.0) class might be necessary to avoid preemptive overwriting of an instance variable (for example).
+
+Another possible custom Combinator is `Task<T> WhenAllOrFirstException(IEnumerable<Task<T>>)`:
+
+- Wait for all tasks in a set.
+- UNLESS one of them faults then stop waiting.
+
+## Building Task-Based Data Structures
+
+Leverage `Task` and `Task<TResult>` with data structures in an async-compatible way.
+
+AsyncCache:
+
+- Task might be handed out to multiple consumers.
+- Consumers may await the same task.
+- Consumers may register Continuations with the same task.
+- Consumers may get results or Exceptions from the same task.
+
+The article demonstrates a custom Class of type `TKey, TValue` (a dictionary or KVP), where an internal `ConcurrentDictionary<Tkey, Lazy<Task<TValue>>>` maintains values registered via the CTOR, and accessed using an `indexer` method. Accepting a `Func<TKey, Task<TValue>> valueFactory` delegate ensures previously-added KVPs are rapidly found and a cahced copy can be returned using `key`. Since this is built on top of `System.Threading.Tasks.Task` it is capable of handling concurrent operations (multiple key access).
+
+The [Async Producer Consumer Collection](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/consuming-the-task-based-asynchronous-pattern#asyncproducerconsumercollection):
+
+- Coordinate async activities.
+- Producers generate data.
+- Consumers consume data from Producers.
+- Producers and Consumers can run in parallel.
+- Consumers are _notified_ by a Producer when a Producer has new data available.
+
+An example as written in the _Asunc Producer Consumer Collection_ (linked above):
+
+```c#
+public class AsyncProducerConsumerCollection<T>
+{
+    private readonly Queue<T> m_collection = new Queue<T>();
+    private readonly Queue<TaskCompletionSource<T>> m_waiting =
+        new Queue<TaskCompletionSource<T>>();
+
+    public void Add(T item)
+    {
+        TaskCompletionSource<T> tcs = null;
+        lock (m_collection)
+        {
+            if (m_waiting.Count > 0) tcs = m_waiting.Dequeue();
+            else m_collection.Enqueue(item);
+        }
+        if (tcs != null) tcs.TrySetResult(item);
+    }
+
+    public Task<T> Take()
+    {
+        lock (m_collection)
+        {
+            if (m_collection.Count > 0)
+            {
+                return Task.FromResult(m_collection.Dequeue());
+            }
+            else
+            {
+                var tcs = new TaskCompletionSource<T>();
+                m_waiting.Enqueue(tcs);
+                return tcs.Task;
+            }
+        }
+    }
+}
+```
+
+Now leverage the above code:
+
+```c#
+private static AsyncProducerConsumerCollection<int> m_data = …;
+
+// additional fields, properties
+
+private static async Task ConsumerAsync()
+{
+    while(true)
+    {
+        int nextItem = await m_data.Take();
+        ProcessNextItem(nextItem);
+    }
+}
+
+// additional members
+
+private static void Produce(int data)
+{
+    m_data.Add(data);
+}
+```
+
+With `BufferBlock<T>`:
+
+```c#
+private static BufferBlock<int> m_data = ; // some value
+
+// other fields and props...
+
+private static async Task ConsumerAsync()
+{
+    while(true)
+    {
+        int nextItem = await m_data.ReceiveAsync();
+        ProcessNextItem(nextItem);
+    }
+}
+
+// other members here
+
+private static void Produce(int data)
+{
+    m_data.Post(data);
+}
+```
 
 ## Things To Review
 
 If cancellation is requested but a result or an exception is still produced, the task should end in the `RanToCompletion` or `Faulted` state.
 
 A TAP method may even have nothing to execute, and may just return a Task that represents the occurrence of a condition elsewhere in the system (for example, a task that represents data arriving at a queued data structure).
+
+The Producer-Consumer Collection pattern!
+
+NuGet Package [System.Threading.Tasks.Dataflow](https://www.nuget.org/packages/System.Threading.Tasks.Dataflow).
 
 ## Resources
 

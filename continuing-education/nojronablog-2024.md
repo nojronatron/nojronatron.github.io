@@ -44,6 +44,12 @@ For BF-BMX, I will probably want to look into using `AsyncCollection<T>` to mana
 
 I've added notes about TAP and Aynchronous programming patterns in [DotNET Aync Await Notes](./dotnet-async-await-notes.html).
 
+The next thing to check out is [Data Structures for Parallel Programming](https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/data-structures-for-parallel-programming) at MSFT Learn - I have a feeling this will provide even more insight into patterns that could come in handly when developing BF-BMX.
+
+### Feb 17 DSA
+
+The other night I had a nightmare that I couldn't depict how to zip Linked Lists on paper. I took that as a sign that I am out of practice with DSA exercises. So I took a quick side-trek to review "Big-O Notation", and will prepare for a more regular review of algorithm and data structure challenges to keep my interviewing brain fresh.
+
 ### MVVM Cross
 
 An open-source project supported by the DotNET Foundation, applies MVVM pattern to WPF, iOS, Android, and other platforms. I took a look at MVVM Cross as a possible framework to use in BF-BMX, replacing Caliburn Micro. Here are a few key takeaways:
