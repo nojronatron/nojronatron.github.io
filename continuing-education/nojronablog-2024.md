@@ -2,11 +2,74 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 7
+
+Made some good progress the last few days with WPF Input Validation, implementing async functionality, and backup/restore of in-memory data (which was largely completed in week 6).
+
+### WPF Input Validation
+
+I'll overview [Tosker's Corner](https://www.youtube.com/watch?v=5KF0GGObuAQ&ab_channel=ToskersCorner) demonstrations of using input validation in the next four subsections.
+
+Also check out [this response by StackOverflow user MrB](https://stackoverflow.com/questions/19539492/implement-validation-for-wpf-textboxes) for more.
+
+_Remember_: Updates to properties must include notifications, for example `IObservableCollection`, or `INotifyPropertyChanged`, etc implementations.
+
+ToskersCorner introduces four ways to accomplish validating input in WPF:
+
+- By Exception
+- By IDataErrorInfo
+- By ValidationRule
+- By Annotations
+
+A couple of these actually rely on Validation by Exception behind the scenes, so there is plenty of crossover.
+
+See my notes in [Conted: WPF MVVM Learnings](./wpf-mvvm-learnings.html#wpf-input-validation).
+
+### Asynchronous Programming
+
+This is a real rabbit hole, but it is pretty interesting albeit complex. I've written some notes in [dotnet async await notes](./dotnet-async-await-notes.html) to force my brain to process what Stephen Cleary is saying in his blog post/essay.
+
+Some key takeaways:
+
+- Do not mix synchronous and asynchronous code in GUI apps like ASP.NET, WPF, etc.
+- Console App uses a Thread Pool that allows mixing sync and async code.
+- ASP.NET and other GUI apps have a GUI Thread follow a 'one-chunk-at-a-time' thread calls, providing separate Contexts for the GUI and ASP.NET Controllers.
+- Async methods need to return `Task` or `Task<T>`.
+- Event Handlers are the _only_ method type that can return an async void.
+- Prefer using `await Task.WhenAny()` and `await Task.WhenAll()` (use the await keyword).
+- If a delay is needed, use `await Task.Delay()` instead of sleeping a Thread.
+- If a Task Context must be changed using `ConfigureAwait(false)`, be aware that returning a result to the GUI thread will require additional code, so it is easier to add "fire and forget code" when using `ConfigureAwait(false)`.
+
+For BF-BMX, I will probably want to look into using `AsyncCollection<T>` to manage multiple processes pushing data to a common repository.
+
+I've added notes about TAP and Aynchronous programming patterns in [DotNET Aync Await Notes](./dotnet-async-await-notes.html).
+
+The next thing to check out is [Data Structures for Parallel Programming](https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/data-structures-for-parallel-programming) at MSFT Learn - I have a feeling this will provide even more insight into patterns that could come in handly when developing BF-BMX.
+
+### Feb 17 DSA
+
+The other night I had a nightmare that I couldn't depict how to zip Linked Lists on paper. I took that as a sign that I am out of practice with DSA exercises. So I took a quick side-trek to review "Big-O Notation", and will prepare for a more regular review of algorithm and data structure challenges to keep my interviewing brain fresh.
+
+### MVVM Cross
+
+An open-source project supported by the DotNET Foundation, applies MVVM pattern to WPF, iOS, Android, and other platforms. I took a look at MVVM Cross as a possible framework to use in BF-BMX, replacing Caliburn Micro. Here are a few key takeaways:
+
+- It is difficult to set up initially.
+- There are templates to help get a project setup to start, but it is unclear whether these templates are fully supported in (or by) VSCode.
+- There is a "Core" project and then "platform" projects (for example: WPF, or Ios) that make up an MVVM Cross Solution. Essentially it breaks down to the core MVVM framework bits and the developer implemented Models and ViewModels are placed in the "Core" project, and the developer designed Views are put in the "platform" project.
+- The MVVM Cross documentation is voluminous, however I had a difficult time reading through it to get things up and running. I'm pretty context-sensitive so it's probably me, not them.
+- Several references to how to set up MVVM Cross were out of date (MVVM Cross is currently at 9.1.1), dating back two or more years.
+- In the end I developed a basic project following Time Corey's instructions (in an outdated video) and by following several MVVM Cross bugs, Example projects, and StackOverflow.
+
+### Mobile Weather App Downloading Images
+
+In the [Interleaving section of MSFT Learn article on Task-based Asynchronous Pattern](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/consuming-the-task-based-asynchronous-pattern#interleaving), example code shows how to utilize `Task.WhenAny(func)` to download images for display to a UI, as they become available. This will apply nicely to Mob-Wx on the 7-day forecasts page.
+
 ## Week 6
 
-Although I was out of town for most of week 5, but some software development happened anyway:
+Although I was out of town for most of week 5 some software development happened anyway:
 
-- Challenged myself to create an ADIF file validation tool for very specific log files. This was mostly successful in that I have a working console app with separate library classes and a unit test project, and it provided lots of opportunity to refresh my memory on use of *Regex* and its Syntax and best practices. Also, it provided an opportunity to use `dotnet` to build the solution from scratch, and manually add the Library and Unittest projects.
+- Challenged myself to create an ADIF file validation tool for very specific log files. This was mostly successful in that I have a working console app with separate library classes and a unit test project, and it provided lots of opportunity to refresh my memory on use of _Regex_ and its Syntax and best practices. Also, it provided an opportunity to use `dotnet` to build the solution from scratch, and manually add the Library and Unittest projects.
 - Reorganized my plan for the MobWxApp. It is going longer than I had originally intended it to, and I have another project that I promised to deliver in a couple months so I need to move-on from MobWxApp for now. I intended to have it pushed to the Android Play Store, but that will have to wait. Meanwhile, I've cleaned up the UI and the data models a bit, and have generated another Release Build that I will be using on my personal Android phone.
 
 ### Iterating Through Characters In A String
@@ -634,7 +697,7 @@ num => {
 - Don't do this either `const func = () => { foo: function () {...} };`
 - Don't return a function like this either: `const func = () => { foo() {...} };`
 - There is no concept of `arguments` binding in arrow functions.
-- Arrow functions lack a `prototype` property, and will throw an error when called with the `new` keyword. 
+- Arrow functions lack a `prototype` property, and will throw an error when called with the `new` keyword.
 
 Note: The above examples are slightly modified versions from _[MDN Javascript Reference]_, accessed 5-Jan-24.
 
