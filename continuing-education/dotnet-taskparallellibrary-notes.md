@@ -2,6 +2,25 @@
 
 Notes taken while reviewing MSFT Learn documentation of Task Parallel Library (TPL).
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Reminder: Imperative and Declarative Programming](#reminder-imperative-and-declarative-programming)
+- [TPL - Task Parallel Library](#tpl---task-parallel-library)
+- [TPL - For and ForEach](#tpl---for-and-foreach)
+- [TPL - Create And Run Tasks Implicitly](#tpl---create-and-run-tasks-implicitly)
+- [TPL: Potential Pitfalls](#tpl-potential-pitfalls)
+- [TPL - Concurrent Collections](#tpl---concurrent-collections)
+- [TAP - Task Creation Options](#tap---task-creation-options)
+- [TAP - Creating Detached Child Tasks](#tap---creating-detached-child-tasks)
+- [TAP Attaching State To A Task](#tap-attaching-state-to-a-task)
+- [PLINQ - Overview](#plinq---overview)
+- [PLINQ - ParallelEnumerable Class](#plinq---parallelenumerable-class)
+- [PLINQ - Behaviors Overview](#plinq---behaviors-overview)
+- [PLINQ - Measuring Performance](#plinq---measuring-performance)
+- [References](#references)
+- [Footer](#footer)
+
 ## Overview
 
 The Task parallel Library and PLINQ Execution Engine enable developing scalable code without having to work directly with threads or the thread pool.
@@ -25,6 +44,17 @@ Loop Logic: A delegate or lambda expressing e.g. `Func<int, ParallelLoopState, l
 Thread Local: TBD.
 
 Partition Local: Similar to Thread Local but multiple partitions can run within a single Thread.
+
+## Reminder: Imperative and Declarative Programming
+
+Imperative Programming: Directs teh control flow of the program.
+
+- This is what I want.
+- This is the order things need to run to get what I want.
+
+Declarative Programming: Specifies logic and result without directing program flow.
+
+- This is how to get what I want.
 
 ## TPL - Task Parallel Library
 
@@ -111,6 +141,74 @@ _Note_: Calling `Task.Result` property will ensure the async task will become _b
 - Utilize `CustomData` to create new data instances so that refs are used during each iteration and the data will get updated as expected.
 - Use `Task.AsyncState` property to access `CustomData` instances from within the delegate.
 
+## TPL: Potential Pitfalls
+
+- TAP is not always faster than other patterns. Always measure actual results to know how your code performs with, and without, TAP.
+- Avoid writing to shared memory locations, this will cause race conditions. This includes writing to static variables or class fields. Instead, write `Parallel.For` and `Parallel.ForEach` using `System.Threading.ThreadLocal<T>` variable to store data during execution.
+- Avoid over-parallelizing. The cost of partitioning the data before operating on it can cost more than using other techniques to iterate over a data structure.
+- Avoid nested loops, as this is a common cause of over-parallizing. Stick with parallizing just the outer loop. There are exceptions but this is a good rule-of-thumb.
+- Avoid calling Non-Thread-Safe methods. This can lead to data corruption, and/or throw Exceptions.
+- Limit calls to Thread-Safe methods. Most DotNET methods are thread-safe and can be called by multiple threads concurrently, but there is a cost to synchronizing these calls.
+- Thread Affinity restrictions exists in COM for STA components, Windows Forms, and WPF. This requires code to run on a specific thread e.g. the UI thread for WPF.
+- Waiting in Delegates that are called by `Parallel.Invoke` _might_ cause a deadlock. Specify a timeout on `Wait` operations to ensure one Task cannot block another.
+- TPL iterative Tasks are _not guaranteed to run in parallel_.
+- Starvation of Threads can lead to deadlocks. This is where a single Task thread is started, and awaited by many other threads. If any awaiting Thread blocks the initial Task thread, the initial Task thread will never complete, and all awaiting Task threads will wait forever.
+- Avoid executing Parallel Loops on the UI Thread. Running Parallel Loops on the UI thread will block the UI thread, causing delays in the user interface. This is also related to Thread Affinity restrictions, but not entirely the same. Use Marshalling to grab the update/result to push it to the UI thread.
+
+## TPL - Concurrent Collections
+
+Namespace `System.Collection.Concurrent`.
+
+Provide thread-safe `Add()` and `Remove()` methods.
+
+Avoids locks.
+
+Leverages fine-grained locking when necessary.
+
+User code does _not_ need to explicitly take locks to get these to work.
+
+Multiple threads can add and remove items from these collections.
+
+### Existing Concurrent Collection Classes
+
+`System.Collection.Concurrent.BlockingCollection<T>`:
+
+- Blocking and bounding capable thread-safe collections.
+- [BlockingCollection (.NET 6)](https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.blockingcollection-1?view=net-6.0).
+
+`System.Collections.Concurrent.ConcurrentBag<T>`:
+
+- Thread-safe bag implementation for scalable add and get operations.
+- [ConcurrentBag (.NET 6)](https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentbag-1?view=net-6.0).
+
+`System.Collections.Concurrent.ConcurrentDictionary<TKey,TValue>`:
+
+- Generic Dictionary class.
+- Thread-safe and concurrent-aware.
+- [ConcurrentDictionary (.NET 6)](https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentdictionary-2?view=net-6.0).
+
+`System.Collection.Concurrent.ConcurrentQueue<T>`:
+
+- Generic FIFO Queue class.
+- Thread-safe, concurrent-aware.
+- Uses Interlocked operations.
+- [ConcurrentQueue (.NET 6)](https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentqueue-1?view=net-6.0).
+
+`System.Collections.Concurrent.ConcurrentStack<T>`:
+
+- Generic LIFO Stack class.
+- Thread-safe, concurrent-aware.
+- Uses Interlocked operations.
+- [ConcurrentStack (.NET 6)](https://learn.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentstack-1?view=net-6.0).
+
+`System.Collection.Concurrent.IProducerConsumerCollection<T>`:
+
+- Manipulate thread-safe collections for "Producer-Consumer" usage.
+- Use as an underlying storage mechanism for `Blocking Collection<T>`.
+- Methods: CopyTo, ToArray, TryAdd, TryTake.
+
+[Thread Safe Collections](https://learn.microsoft.com/en-us/dotnet/standard/collections/thread-safe/).
+
 ## TAP - Task Creation Options
 
 Long running task expected? Use `new Task(() => MyLongRunningMethod(), TaskCreationOptions.LongRunning | TaskCreationOptions.PreferFairness);`.
@@ -127,22 +225,77 @@ The parent Task does _not_ wait for the detached child Task to finish (assume `S
 
 The option `TaskCreationOptions.DenyChildAttach` prevents other Tasks from attaching to the configured (parent) task.
 
-## TAP: Attaching State To A Task
+## TAP Attaching State To A Task
 
 Do _not_ inherit from `System.Threading.Tasks.Task` to do this.
 
 _Do_ use `AsyncState` property to associate the data with the Task.
 
-## Imperative and Declarative Programming
+## PLINQ - Overview
 
-Imperative Programming: Directs teh control flow of the program.
+A paralell implementation on LINQ (Language-integrated Query).
 
-- This is what I want.
-- This is the order things need to run to get what I want.
+- Implements standard LINQ query operators as extension metods.
+- Adds operators for TPL (parallel operations).
+- Operate on in-memory `IEnumerable` or `IEnumerable<T>` data sources.
+- Do not execute until the query is enumerated.
+- Data is partitioned (because it relies on TPL under the hood).
 
-Declarative Programming: Specifies logic and result without directing program flow.
+## PLINQ - ParallelEnumerable Class
 
-- This is how to get what I want.
+Class `System.Linq.ParallelEnumerable`.
+
+- Gets compiled into `Syste.Core.dll` assembly.
+- Includes implementation of standard LINQ to Objects operators.
+- Parallelization is not guaranteed.
+
+Opt-in to TPL by invoking `ParallelEnumerable.AsParallel` extension method on the data source.
+
+```c#
+// example from Parallel LINQ (PLINQ) documentation on Learn.Microsoft.com
+// in subsection "The Opt-in Model"
+var source = Enumerable.Range(1, 10000);
+
+// opt-in using AsParallel
+var evenNums = from num in source.AsParallel()
+               where num % 2 == 0
+               select num;
+
+Console.WriteLine("{0} even numbers out of {1} total",
+                  evenNums.Count(), source.Count());
+
+// expected output: 5000 even numbers out of 10000 total
+```
+
+## PLINQ - Behaviors Overview
+
+PLINQ is conservative and will pick safety over speed, and LINQ over PLINQ if parallel operation appears to be expensive compared to sequential execution.
+
+PLINQ will try to use all processors on the host PC. This can be limited to 'no more than n' using `WithDegreeOfParallelism(n)`.
+
+`AsOrdered()` might still operate in Parallel but will maintain the sorting order rules on the source iterable. This will be slower than `AsUnordered()`.
+
+PLINQ will run sequential queries when specific operations require it. Use `AsSequential()` to ensure sequential operation on the PLINQ operation.
+
+PLINQ can be configured to mix sequential and parallel processing.
+
+`ParallelMergeOptions` enumeration is used to tell PLINQ _how_ to merge results from each Thread back into the main thread result variable.
+
+Execution is deferred until a query is enumerated _unless_ a method like `ToList()`, `ToArray()`, or `ToDictionary` are used.
+
+Cancellation is supported by PLINQ by using `WithCancellation(CancellationToken token)`. Setting token to true will cause the PLINQ to cancel execution _on all threads_ and throw `OperationCanceledException`. _Note_: Remaining thread in-execution will run to completion!
+
+PLINQ uses `AggregateException` to capture Exceptions thrown on threads other than the querying thread. Use a single `try-catch` block and capture `AggregateException` just like when using TPL and TAP.
+
+Custom Partitioners can be written for PLINQ., and instantiated with the item source, then executed with `AsParallel().Select(func<T>)` etc.
+
+## PLINQ - Measuring Performance
+
+Overhead of setting up partitioning might not be worth running the work in parallel, so it could be executed sequentially.
+
+Use [Parallel Performance Analyzer](https://learn.microsoft.com/en-us/dotnet/standard/parallel-programming/how-to-measure-plinq-query-performance) in Visual Studio Team Server (ed: HA!) to compare query performance, locate bottlenecks.
+
+Also checkout [Concurrency Visualizer](https://learn.microsoft.com/en-us/visualstudio/profiling/concurrency-visualizer).
 
 ## References
 
