@@ -4,21 +4,21 @@ A collection of notes related to developing and building upon MVVM in DotNET WPF
 
 ## Table of Contents
 
-- [Requirements](#requirements)
-- [WPF with MVVM Project Setup](#wpf-with-mvvm-project-setup)
-- [Caliburn.Micro](#caliburnmicro)
+- [Caliburn Micro - Requirements](#caliburn-micro---requirements)
+- [Caliburn Micro - WPF with MVVM Project Setup](#caliburn-micro---wpf-with-mvvm-project-setup)
+- [Caliburn.Micro - Uses Naming Conventions](#caliburnmicro---uses-naming-conventions)
 - [WPF Input Validation](#wpf-input-validation)
 - [Random Notes](#random-notes)
 - [Resources](#resources)
 - [Footer](#footer)
 
-## Requirements
+## Caliburn Micro - Requirements
 
 Visual Studio 2019 or newer.
 
 DotNET Framework 4.7+
 
-## WPF with MVVM Project Setup
+## Caliburn Micro - WPF with MVVM Project Setup
 
 Reference: [WPF with MVVM Project Setup](https://www.youtube.com/watch?v=p-fmOJMLl0A&list=WL&index=2&ab_channel=IAmTimCorey) video by Tim Corey.
 
@@ -30,7 +30,7 @@ The UI Layer is broken-out into Models, ViewModels, and Views.
 - Models hold the data for the Views to display.
 - ViewModels take the models and bind them to the View.
 
-### Steps
+### Caliburn Micro - Setup Steps
 
 1. Create a ViewModel
 2. Create a View
@@ -78,15 +78,13 @@ Add the following `<ResourceDictionary>` hive to `<Application.Resources>` in Ap
 </ResourceDictionary>
 ```
 
-## Caliburn.Micro
-
-Relies on naming conventions:
+## Caliburn.Micro - Uses Naming Conventions
 
 - Binds ViewModel to View to launch the correct XAML
 - By default: Models, Views, and ViewModels
 - Can be changed but must be configured in Caliburn.Micro to support your custom naming conventions
 
-### Binding Values in ViewModel to a View
+### Caliburn Micro - Binding Values in ViewModel to a View
 
 Caliburn.Micro:
 
@@ -100,7 +98,7 @@ WPF OneWay Binding:
 - The Binding _name_ must match an existing property.
 - OneWay means the Binding will accept a value but not change when the other property value changes.
 
-### NotifyOfPropertyChanged
+### Caliburn Micro - NotifyOfPropertyChanged
 
 - Automates updating properites.
 - Once a Binding exists, use `NotifyOfPropertyChanged` in the ViewModel Property so edits to a OneWay Binding control also get updated.
@@ -120,7 +118,7 @@ public string LastName {
 }
 ```
 
-### Child Forms
+### Caliburn Micro - Child Forms
 
 Keyword `x:Name="ActiveItem"` enables parenting a child View for display.
 
@@ -168,7 +166,7 @@ public namespace MyNamespace
 <ContentControl Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="5" x:Name="ActiveItem" />
 ```
 
-### Binding Collections
+### Caliburn Micro - Binding Collections
 
 Use `BindableCollection<T>` for multi-element controls like ComboBoxes.
 
@@ -189,7 +187,7 @@ Use `BindableCollection<T>` for multi-element controls like ComboBoxes.
 <TextBlock x:Name="SelectedPerson_LastName" />
 ```
 
-### Binding Events
+### Caliburn Micro - Binding Events
 
 Use the naming convention 'Can' + PropertyName. For example, to implement the ability to enable a button only under certain conditions on the state of a Property:
 
@@ -284,6 +282,8 @@ The ViewModel (or data class) will need its Setter updated to include `ValidateP
 ## Resources
 
 YouTube [Tosker's Corner](https://www.youtube.com/watch?v=5KF0GGObuAQ&ab_channel=ToskersCorner)
+
+[WPF with Caliburn.Micro Project Setup](https://www.youtube.com/watch?v=p-fmOJMLl0A&list=WL&index=2&ab_channel=IAmTimCorey)
 
 ## Footer
 
