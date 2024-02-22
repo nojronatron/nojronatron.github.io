@@ -1744,15 +1744,17 @@ Question: Does this mean .NET MAUI can target Linux devices like RPi or full x86
 
 ## Resources and References
 
-[Learn.Microsoft.com](https://learn.microsoft.com/en-us/training/modules/create-user-interface-xaml)
+[Learn.Microsoft.com](https://learn.microsoft.com/en-us/training/modules/create-user-interface-xaml).
 
-Code segments copied from various Modules at [Microsoft Learn](https://learn.microsoft.com/en-us/training/)
+Code segments copied from various Modules at [Microsoft Learn](https://learn.microsoft.com/en-us/training/).
 
-[File System Helpers](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows)
+[File System Helpers](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows).
 
-[SQLite](https://github.com/praeclarum/sqlite-net) project home
+[SQLite](https://github.com/praeclarum/sqlite-net) project home.
 
-[SQLite Wiki](https://github.com/praeclarum/sqlite-net/wiki/Getting-Started)
+[SQLite Wiki](https://github.com/praeclarum/sqlite-net/wiki/Getting-Started).
+
+[Julian Ewers-Peters has a Blog](https://blog.ewers-peters.de/) that is occasionally updated with CommunityToolkit and DetNET MAUI technical details.
 
 ## Footer
 

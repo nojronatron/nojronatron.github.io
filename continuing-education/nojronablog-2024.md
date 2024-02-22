@@ -4,6 +4,153 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## Week 8
 
+### Community Toolkit MVVM
+
+Began reading up on DotNET Foundation project `CommunityToolkit MVVM`. I'm a little worried about this project but initial impressions are it is a handy code-generator for things like object observability, notification, commanding, and messaging in WPF (and UWP, Xamarin, and possibly others).
+
+- Toolkit is very modular and easy to pick and use just the features that are wanted.
+- Code generation (build-time) is pretty snappy and appears to do "all the right things".
+- During the build, documentation claims code trimming is leveraged to remove unused partial implementations that are generated but not implemented (or overridden and referenced).
+
+I'll do some experimentation before I decide whether to utilize the CommunityToolkit for BF-BMX.
+
+### WPF - An Observable Queue?
+
+I had a silly question, wondering if a WPF control could display a Queue of items. To further complicate the question, the queue would be accessed asynchronously by another process to enqueue and dequeue items.
+
+- It appears WPF Controls like ListView are not natively capable of viewing items within a Queue or Stack. Understandable.
+- ListView _can_ enumerate items in a `List<T>`.
+- Adding enumeration to a Queue would take a bit of work.
+- Overriding inherited `List` members to make it _look and act like a Queue_ makes sense.
+- Ensuring all of the Notification infrastructure is in place is not too much work (although with Attribute-based code generation it gets a little abstract and confusing).
+
+I came up with a Synchronous solution that involves inheriting from `List<T>` and overriding `InsertItem()` and `RemoveItem()`, and also adding `Enqueue(Object)` and `Dequeue()` methods for code readability.
+
+First, set up EventArgs for the custom queue:
+
+```c#
+public class PersonChangedEventArgs : EventArgs
+{
+  public readonly Person ChangedItem;
+  public readonly ChangeType ChangeType;
+  public readonly Person? ReplacedWith;
+
+  public PersonChangedEventArgs(ChangeType change, Person item, Person? replacement)
+  {
+    ChangedItem = item;
+    ChangeType = change;
+    ReplacedWith = replacement;
+  }
+}
+
+public enum ChangeType
+{
+  Added,
+  Removed,
+  Replaced,
+  Cleared
+};
+```
+
+Next, inherit from `ObservableCollection<T>` and insert EventHandlers:
+
+```c#
+public partial class ObservableQueue : ObservableCollection<Person>
+{
+  public event EventHandler<PersonChangedEventArgs>? Changed;
+  public List<Person> People { get; } = new List<Person>();
+
+  // add an instance to the end of the List
+  public void Enqueue(Person person)
+  {
+    People.Add(person);
+    base.InsertItem(Count, person);
+  }
+
+  protected override void InsertItem(int index, Person newItem)
+  {
+    base.InsertItem(index, newItem);
+    EventHandler<PersonChangedEventArgs>? temp = Changed;
+    if (temp != null)
+    {
+        temp(this, new PersonChangedEventArgs(ChangeType.Added, newItem, null));
+    }
+  }
+
+  // remove the first item (lowest indexed) from the List
+  public void Dequeue()
+  {
+    RemoveItem(0);
+  }
+
+  protected override void RemoveItem(int index)
+  {
+    Person removedItem = Items[index];
+    base.RemoveItem(index);
+    EventHandler<PersonChangedEventArgs>? temp = Changed;
+    if (temp != null)
+    {
+      temp(this, new PersonChangedEventArgs(ChangeType.Removed, removedItem, null));
+    }
+  }
+}
+```
+
+Then, in the ViewModel, implement the code-generating Attributes:
+
+```c#
+public partial class MainWindowViewModel : ObservableValidator
+{
+  [ObservableProperty]
+  private ObservableQueue people = new();
+  // other observable property fields here like FirstName, LastName, etc
+  [ObservableProperty]
+  private string addPersonButtonText = "Add Person To Database";
+  [ObservableProperty]
+  private string removePersonButtonText = "Remove Person From Database";
+  public string FullName => $"{FirstName} {LastName}";
+  [RelayCommand(CanExecute = nameof(CanSetName))]
+  public void AddPerson()
+  {
+    // instantiate newPerson and other processing, logging, etc code here
+    People.Enqueue(newPerson); // add to end of the list (highest index)
+    PeopleCount++;
+    OnPropertyChanged(nameof(PeopleCount)); // notify change in count
+    // null-out newPerson and FirstName and LastName fields
+  }
+
+  public bool CanSetName()
+  {
+    // if FirstName and LastName have text in them...
+    AddPersonButtonText = $"Add {Fullname} To Database";
+    OnPropertyChanged(nameof(AddPersonButtonText));
+    return true;
+    // else, log this situation...etc
+    return false;
+  }
+
+  [RelayCommand(CanExecute = nameof(CanRemovePerson))]
+  public void RemovePerson()
+  {
+    // other processing, logging, etc code here
+    People.Dequeue(); // first item in the list
+    PeopleCount--;
+    OnPropertyChanged(nameof(PeopleCount));
+  }
+
+  public bool CanRemovePerson()
+  {
+    RemovePersonButtonText = $"Remove Person from DB ({PeopleCount})";
+    OnPropertyChanged(nameof(RemovePersonButtonText)); // notify of button text change
+    // if additional processing is necessary, expand
+    // the return statement to a full if-then code block
+    return PeopleCount > 0 ;
+  }
+}
+```
+
+Implementing asynchronous operations would be the next step, and enabling concurrent access to the List will be another hurdle. If the above code is used, added code to enable async and thread safe concurrency will be posted here.
+
 ## Week 7
 
 Made some good progress the last few days with WPF Input Validation, implementing async functionality, and backup/restore of in-memory data (which was largely completed in week 6).
