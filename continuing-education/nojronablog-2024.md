@@ -151,6 +151,12 @@ public partial class MainWindowViewModel : ObservableValidator
 
 Implementing asynchronous operations would be the next step, and enabling concurrent access to the List will be another hurdle. If the above code is used, added code to enable async and thread safe concurrency will be posted here.
 
+### End of Week 8 Comments
+
+The last few days I have been working on implementing code and tests for the BF-BMX project. I realized there was room for improvement in defining some data details so I'm reaching out to the primary end user to get their preference on what the data should look like. This shouldn't block my progress at all, but might require some refactoring later, depending on what the response is.
+
+There will be several interruptions in the upcoming weeks that will slow project progress, so this next week will be a big push week to get the core of the BF-BMX project ready for building-out and testing functionality. I have time to get this done before Beta testing begins, but I want to stay ahead of the schedule as much as is practical.
+
 ## Week 7
 
 Made some good progress the last few days with WPF Input Validation, implementing async functionality, and backup/restore of in-memory data (which was largely completed in week 6).
