@@ -4,6 +4,29 @@ Notes taken while working through [Stephen Cleary](https://learn.microsoft.com/e
 
 Additional notes were taken while reading [Task-based Asynchronous Programming Patterns](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap) from learn.microsoft.com.
 
+## Table of Contents
+
+- [Best Practices Reading Overview](#best-practices-reading-overview)
+- [Best Practices - Avoid Async Void](#best-practices---avoid-async-void)
+- [Best Practices - Avoid Mixing Synchronous and Asynchronous](#best-practices---avoid-mixing-synchronous-and-asynchronous)
+- [Best Practices - Configure Context](#best-practices---configure-context)
+- [Best Practices - Solutions To Common Async Problems](#best-practices---solutions-to-common-async-problems)
+- [Best Practices - Other Things To Keep Top Of Mind](#best-practices---other-things-to-keep-top-of-mind)
+- [TAP - Common Classes](#tap---common-classes)
+- [TAP - Overview](#tap---overview)
+- [TAP - Generating Methods](#tap---generating-methods)
+- [TAP - IO and Compute Workloads](#tap---io-and-compute-workloads)
+- [TAP - Consuming TAP](#tap---consuming-tap)
+- [TAP - Canceling Async Operations](#tap---canceling-async-operations)
+- [TAP - Monitoring Async Operation Progress](#tap---monitoring-async-operation-progress)
+- [TAP - Combinators](#tap---combinators)
+- [TAP - Building Task-based Combinators](#tap---building-task-based-combinators)
+- [Building Task-Based Data Structures](#building-task-based-data-structures)
+- [Valid Consumption Patterns for ValueTasks](#valid-consumption-patterns-for-valuetasks)
+- [Things To Review](#things-to-review)
+- [Resources](#resources)
+- [Footer](#footer)
+
 ## Best Practices Reading Overview
 
 There are some basic rules of thumb to follow:
@@ -224,6 +247,58 @@ Controller Actions:
 
 - They have their own Context.
 - Actions called by Controllers _do not_ have their own Context.
+
+## TAP - Common Classes
+
+`Task`: A promise of eventual completion of an operation.
+
+- Consider this a link back to the operation that might be underway or completed already.
+- Tasks can be awaited.
+- From a rudimentary level, for every possible value result some number of cached possibilities is generated in IL, potentially allocating lots of RAM.
+- Returning a boolean `Task` requires less caching than an int32 `Task`.
+
+`Task.ContinueWith(delegate callback)`: The callback to call when the Task is completed.
+
+- This is a DotNET Framework 4.x object that helped work around `Task` allocation issues in code generation.
+- `delegate callback` can be a lambda expression.
+
+`ValueTask<TResult>`: A struct that can wrap a `TResult` or a `Task<TResult>` for return from an async method.
+
+- Added in DotNET Core 2.0.
+- `System.Threading.Tasks.Extensions`.
+- Returns (inexpensively) a `ValueTask<TResult>` on Synchronous tasks.
+- `Task<TResult>` is only constructed in an Asynchronous return.
+- Minimizes the size of generated code/cached Tasks by wrapping results so they are a single Type.
+- Wrapping an Exception from a thrown Task execution allows passing-down the Exception using `ValueTask<TResult>`.
+- DotNET Core 2.1 introduced `IValueTaskSource<out TResult>` to support 'pooling' and reuse.
+- DotNET Core 2.1 also introduced augmented `ValueTask<TResult>` to wrap an `IValueTaskSource<TResult>` to represent an Async operation and maintain high performance despite possibly high allocations using the DotNET 4-based `Task` model.
+
+`ValueTask`: Non-generic version of `ValueTask<T>`:
+
+- Introduced in DotNET Core 2.1.
+- Enables allocation-free asynchronous completions.
+- Returns `void`.
+
+Hot Paths:
+
+- Code that is often executed.
+- Hot Path code should be optimized (think Big-O extremes).
+- `ValueTask<TResult>` is the expected return from Hot Paths in DotNET code.
+
+Should every new method return `ValueTask` or `ValueTask<TResult>`?
+
+- NO.
+- Only use when performance implications outweigh usability implications.
+- Harder to use concurrently than `Task` and `Task<TResult>`.
+- Returning `Task` or `Task<bool>` are the most performant awaitable return types.
+- Very strictly speaking, the storage needed to cache `ValueTask<TResult>` is larger than `Task<TResult>` so when every literal `bit` counts, this matters.
+
+Under what situation is is better to choose `ValueResult` over `Task` (or their generic counterparts)?
+
+- You expect consumer to _only_ await them _directly_.
+- Allocation related overhead is important to _avoid_ for your API.
+- You expect synchronous completion to be _very common_, or an effective pooling mechanism is in place for use with your async completion.
+- When additing abstract, virtual, or interface methods: Consider whether these situations will exist in any overrides/implementations.
 
 ## TAP - Overview
 
@@ -489,7 +564,7 @@ Overview (see the actual page for the code):
 
 `WhenAny()` might introduce performance problems because it registers a Continuation with each Task.
 
-Following a technique as explained in [Interleaved Operations](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/consuming-the-task-based-asynchronous-pattern#interleaved-operations) can help to avoid 
+Following a technique as explained in [Interleaved Operations](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/consuming-the-task-based-asynchronous-pattern#interleaved-operations) can help to avoid issues with performance and handling completed and/or failed tasks.
 
 _Note_: Thread safety is important here and using the [Interlocked](https://learn.microsoft.com/en-us/dotnet/api/system.threading.interlocked?view=net-8.0) class might be necessary to avoid preemptive overwriting of an instance variable (for example).
 
@@ -606,6 +681,44 @@ private static void Produce(int data)
 }
 ```
 
+## Valid Consumption Patterns for ValueTasks
+
+This section contains notes gleaned from [DevBlogs.Microsoft.com: Understanding the whys whats and whens of valuetask](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/).
+
+### Limited Surface Area
+
+`ValueTask` and `ValueTask<TResult>` are:
+
+- Meant to simply be awaited and that's nearly all.
+- Wrappers for reusable objects.
+- Constrained consumption compared to `Task` and `Task<TResult>`.
+
+NEVER do the following with `ValueTask` or `ValueTask<TResult>`:
+
+- Awaiting them multiple times: If the underlying object was recycled, the result could be from _a different operation_.
+- Await them concurrently: They expect to work with a single callback from a single consumer. Doing otherwise will introduce a race condition.
+- Using `.GetAwaiter().GetResult()` when the operation state is NOT `Completed`.
+
+Instead, use `AsTask()` or simply `await` or `ConfigureAwait(false)`.
+
+Using `AsTask`:
+
+1. Use `.AsTask()`
+2. Operate on the resulting `Task` or `Task<TResult>`.
+3. _Never_ interact with the current `ValueTask` or `ValueTask<TResult>` again.
+
+Examples using `await`, `ConfigureAwait(false)`, and `AsTask()`:
+
+- `int result = await SomeValueTaskReturningMethodAsync();`
+- `int result = await SomeValueTaskReturningMethodAsync().ConfigureAwait(false);`
+- `Task<int> t = SomeValueTaskReturningMethodAsync().AsTask();`
+
+BENEFITS of using `Task` and `Task<TResult>`:
+
+- Will _never_ transition from `Completed` to `Incomplete` state.
+- Do _support_ any number of concurrent awaits.
+- Do _support_ using `GetAwaiter().GetResult()` and will block the caller (without risk of race condition) until Task completes.
+
 ## Things To Review
 
 If cancellation is requested but a result or an exception is still produced, the task should end in the `RanToCompletion` or `Faulted` state.
@@ -623,6 +736,8 @@ NuGet Package [System.Threading.Tasks.Dataflow](https://www.nuget.org/packages/S
 Stephen Cleary [adds a great response to a StackOverflow question](https://stackoverflow.com/questions/13489065/best-practice-to-call-configureawait-for-all-server-side-code) that is worth reviewing, especially in the context of (now legacy) ASP.NET.
 
 Read more about the Task-based Asynchrounous Pattern [TAP in .NET: Introduction and overview on MSDN](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap?redirectedfrom=MSDN).
+
+MSFT DevBlogs [Understanding The Whys Whats And Whens Of ValueTask](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/).
 
 ## Footer
 

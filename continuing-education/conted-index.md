@@ -18,6 +18,7 @@ This list became so large it was unmanageable in an MD file, so all items have m
 
 ## Currently Active Learnings
 
+- [ ] [MVVM and MSFT MVVM Toolkit](./dotnet-wpf-mvvm-learnings.md). Collection of captured WPF and MVVM project layout implementations and frameworks. Targets .NET Framework 4.6+, and .NET 6+.
 - [ ] MSFT Learn [Task Parallel Library](./dotnet-taskparallellibrary-notes.md).
 
 ## Notes And Takeaways from Research and Experience
@@ -34,7 +35,6 @@ This list became so large it was unmanageable in an MD file, so all items have m
 - [x] DotNET MAUI for desktop and mobile app development [mobile-to-deskto-dotnet-maui](./mobile-to-desktop-dotnet-maui.html).
 - [x] DotNET MAUI [Handlers: Native Controls](./maui-handlers-native-controls.html).
 - [x] DotNET MAUI [Data Binding in MVVM](./maui-databinding-mvvm.html).
-- [x] [MVVM](./wpf-mvvm-learnings.html) in DotNET using C#. I've done this before but need a refresher for a project that will help solve a problem for someone else.
 - [x] Build and Test Node.js using [GitHub Actions for Node.js](./github-actions-build-test-node.html).
 - [x] Jest vs Mocha vs Chai [JS Testing Frameworks](./js-testing-frameworks.html).
 - [x] React [Hooks](./react-hooks.html).
