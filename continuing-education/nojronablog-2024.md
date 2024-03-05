@@ -2,6 +2,16 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 9 and 10
+
+Completed initial BF-BMX API Server build. All updates are documented in the README. There are some open questions about the output logging formats. During implementation, I knew changes to logging might be necessary so I've made it relatively easy to change the logging while minimizing how much code is touched or affected.
+
+Implemented many tests against the BF-BMX service and API, and started running some simple input-output testing using the Swagger UI.
+
+The BF-BMX user interface is the next step. Leveraging .NET 6, WPF, and the Community Toolkit, my goal is to focus on the functionality of the UI. There are several synchronous and asynchronous processes running under the hood, and these need to work in order for this project output to become useful. Once the functionality has been well tested, style and UI tweaks will be added for an attractive, useable interface.
+
+Attended MS Reactor session about dev productivity, dev flow and artificial intelligence, and other resources and tools to help with developer productivity.
+
 ## Week 8
 
 ### Community Toolkit MVVM
