@@ -12,6 +12,62 @@ The BF-BMX user interface is the next step. Leveraging .NET 6, WPF, and the Comm
 
 Attended MS Reactor session about dev productivity, dev flow and artificial intelligence, and other resources and tools to help with developer productivity.
 
+### The Developer "Inner Loop"
+
+- Developing code in VSCode, Visual Studio, and other IDEs.
+- Coding within a DevBox, local machine, other virtual machines or virtual environments.
+- Leveraging GitHub Copilot.
+- Adding and building upon various frameworks.
+- Building and testing code using various tool chains.
+- End-to-end run and test.
+- Managing version control with git and GitHub.
+- Deploying solutions using GitHub Action, Azure Piplelines, and other cloud and local services.
+
+### Azure Developers JavaScript Day Notes
+
+Collection of random thoughts taken while attending Azure Developers JavaScript Day hosted by Microsoft and Microsoft Azure Developers.
+
+What GitHub Copoilot Can Do:
+
+- GitHub Copilot is currently the most widely adopted AI Developer Tool.
+- Other Copilots based on GitHub Copilot.
+- Use comments to trigger Copilot.
+- Use in-line Chat and sidebar Chat to trigger Copilot to write code to meet a goal.
+- Variables in Copilot Chat start with `#`, like `#file`, `#selection`, etc.
+- _Copilot can help with CSS_!!!
+- If Copilot seems to hang, use the `reload` command in the VSCode Palette to restart it.
+- Check out VSCode `Spotlight`. It keeps the Palette open while selecting, scrolling, and editing code!
+
+What is Retrieval Augmented Generation (RAG)? It augments capabilities of LLMs.
+
+What is LangChain/LangChainJS? Framework for developing Apps using backend LLMs.
+
+- Retriever Model: Search DB of relevant documents, and submit the user query and DB results to the Generator.
+- Generator (LLM) Model: Process the Retriever inputs to create a response and supply it to the user.
+
+How can Copilot be configured to query my custom data?
+
+- Build a Plugin! In the demo, the host used TS in (what looks like) a React App.
+- Message Extension-based Plugins are the new thing developers can use.
+- Low-code devs can use Tools to do this too.
+- Message Extensions are composed of: Manifest.json, 
+- Manifest.json: Information about the Plugin including where it can run, and other details including "Azure Bots" and various commands (queries). Can define parameters which are JSON-like payloads including strings or arrays of strings, etc.
+- Teams Toolkit can generate JS/TS to extend functionality or handle commands (function calls) to build the custom plugin.
+- Plugins are real time, and permissions and data compliance rules are allowed (enforced?). They are not integrated into Semantic Index and they are not restricted within the Tenant. Graph Connectors provide more features and Tenant restriction than Plugins.
+
+Related References
+
+- [AdaptiveCards.io Designer](https://adpativecards.io/designer) allows creating UI "Cards" through writing JSON definition code.
+- About [Copilot Plugins](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/)
+- About [Building Message Plugins](https://learn.microsoft.com/en-us/microsoftteams/platform/messaging-extensions/what-are-messaging-extensions?WT.mc_id=m365-38318-cxa&tabs=desktop)
+- About [Graph Connectors](https://learn.microsoft.com/en-us/MicrosoftSearch/connectors-overview)
+- [MSFT 365 Developer Channel on YouTube](https://www.youtube.com/channel/UCc3pNIRzIZ8ynI38GO6H01Q)
+
+### JS Cloud Skill Challenge
+
+- Introduced during "Azure Developers JavaScript Day"
+- Link to [JavaScript Day](https://aka.ms/JavaScriptDay)
+
 ## Week 8
 
 ### Community Toolkit MVVM
