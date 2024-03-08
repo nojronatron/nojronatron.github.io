@@ -38,7 +38,7 @@ What GitHub Copoilot Can Do:
 - If Copilot seems to hang, use the `reload` command in the VSCode Palette to restart it.
 - Check out VSCode `Spotlight`. It keeps the Palette open while selecting, scrolling, and editing code!
 
-What is Retrieval Augmented Generation (RAG)? It augments capabilities of LLMs.
+What is Retrieval Augmented Generation (RAG)? It is a code pattern used to leverage augmented capabilities of LLMs.
 
 What is LangChain/LangChainJS? Framework for developing Apps using backend LLMs.
 
@@ -62,6 +62,14 @@ Related References
 - About [Building Message Plugins](https://learn.microsoft.com/en-us/microsoftteams/platform/messaging-extensions/what-are-messaging-extensions?WT.mc_id=m365-38318-cxa&tabs=desktop)
 - About [Graph Connectors](https://learn.microsoft.com/en-us/MicrosoftSearch/connectors-overview)
 - [MSFT 365 Developer Channel on YouTube](https://www.youtube.com/channel/UCc3pNIRzIZ8ynI38GO6H01Q)
+
+### Playwright
+
+Max and Stephan ran a great overview of Playwright!
+
+- Use `await expect()` to define a test that asserts what controls are visible.
+- Automatically waits until the DOM shows a control (like a Title element) without having to set specific timeouts in the test code.
+- Playwright logging in an Azure Pipeline (GH Action) can be downloaded natively for troubleshooting failed tests.
 
 ### JS Cloud Skill Challenge
 
