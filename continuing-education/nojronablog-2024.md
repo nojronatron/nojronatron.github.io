@@ -2,6 +2,18 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 11 and 12
+
+Completed some interview preparatory work on Monday, and worked through a LeetCode challenge (Roman to Decimal) using JavaScript. I've solved a similar problem some time ago using Java, but it took me about 2.5 hrs to diagram, pseudocode, step-through, code, and evaluate performance. This time the problem was to convert _from_ Roman Numberals to Decimal, and I decided to use JavaScript to solve it.
+
+Some key takeaways solving LeetCode Roman to Decimal:
+
+- I had to use MDN to implement correct usage of indexing JS String types: `string[idx]` is _wrong_, instead use `string.charAt(idx)` in JavaScript.
+- Again I had to use MDN to correct my usage of a Select-Case statement: `select(arg) { case argN: ...;}` is _wrong_ (must be a leftover from my very short Visual Basic experience), instead use `switch(arg) { case argN: ...; break;}`. Subtle difference that I regularly get confused over which to use.
+- I _must_ be more careful in the future with how I increment values and pass them around between functions. On at least 2 occasions during the trial run, I run the code thinking it would execute properly, only to find I was _overwriting_ values instead of _incrementing_ or _decrementing_ them.
+- Using a whiteboard to sketch-out the solution before writing code may have slowed me down initially, but likely would have resolved some up-front issues before getting trapped by them while coding.
+- Final note: This was a fine warm-up to do and I should continue doing this on a regular basis again.
+
 ## Week 9 and 10
 
 Completed initial BF-BMX API Server build. All updates are documented in the README. There are some open questions about the output logging formats. During implementation, I knew changes to logging might be necessary so I've made it relatively easy to change the logging while minimizing how much code is touched or affected.
