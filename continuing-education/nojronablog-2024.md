@@ -4,15 +4,18 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## Week 11 and 12
 
-Completed some interview preparatory work on Monday, and worked through a LeetCode challenge (Roman to Decimal) using JavaScript. I've solved a similar problem some time ago using Java, but it took me about 2.5 hrs to diagram, pseudocode, step-through, code, and evaluate performance. This time the problem was to convert _from_ Roman Numberals to Decimal, and I decided to use JavaScript to solve it.
+Completed some interview preparatory work, including a LeetCode challenge to convert from Roman Numerals to Integers using JavaScript. I've solved a similar problem some time ago using Java, but it took me about 2.5 hrs to diagram, pseudocode, step-through, code, and evaluate its performance.
 
-Some key takeaways solving LeetCode Roman to Decimal:
+Some key takeaways solving LeetCode Roman to Integer:
 
 - I had to use MDN to implement correct usage of indexing JS String types: `string[idx]` is _wrong_, instead use `string.charAt(idx)` in JavaScript.
 - Again I had to use MDN to correct my usage of a Select-Case statement: `select(arg) { case argN: ...;}` is _wrong_ (must be a leftover from my very short Visual Basic experience), instead use `switch(arg) { case argN: ...; break;}`. Subtle difference that I regularly get confused over which to use.
 - I _must_ be more careful in the future with how I increment values and pass them around between functions. On at least 2 occasions during the trial run, I run the code thinking it would execute properly, only to find I was _overwriting_ values instead of _incrementing_ or _decrementing_ them.
 - Using a whiteboard to sketch-out the solution before writing code may have slowed me down initially, but likely would have resolved some up-front issues before getting trapped by them while coding.
+- LeetCode statistics show the Runtime beats '66%' of other JS entries, and memory usage of 53 MB beast _'84%'_ of other JS entries :arrow_right: which are the correct sides of both curves!
 - Final note: This was a fine warm-up to do and I should continue doing this on a regular basis again.
+
+While I was at LeetCode, I took a look at one of my previous submissions and noticed the BigO in Time was very poorly ranked. It took me about 15 minutes to refactor the code to get a better execution time that was closer to 50% of all ranked submissions. Storage space was also average, but the spread of space utilization was so small that it really doesn't matter (i.e. 50MB vs 51 MB is just a rounding error for a C# compiled application size).
 
 ## Week 9 and 10
 
