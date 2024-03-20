@@ -53,6 +53,22 @@ Where I had to trust .NET to do some work for me once I've set up the classes pe
 
 An issue that I knew would come about was Logging from multiple parallel tasks could cause IO Exceptions while attempting to write logging output. At least logging is implemented at a basic level and I can work around parallel IO by redesigning the logging a little bit.
 
+### Dependency Injection and the Factory Pattern
+
+Watched [Factory Pattern with Dependency Injection](https://www.youtube.com/watch?v=2PXAfSfvRKY&ab_channel=IAmTimCorey) by Tim Corey regarding the Factory Pattern. Some key takeaways:
+
+- Avoid instantiating injected services in your code outside of the IoC container. This removes the ability of the container to inject dependencies into the service as it is 'manually' instantiated.
+- Write an Abstract Factory class with paired Interface to inject into the Services collection.
+- Use `Extension Methods` that accept the `IService` services type and use that to inject the dependencies of the Factory classes. This is _not_ required, but it removes lots of code from the IoC Container i.e. fewer `service.AddTransient<TInterface, TImplementation>()` etc.
+- Be _very clear_ about what dependencies the classes or services require. When registering services that are factories, using an Extension Method will help make it clear what dependencies the Factory Classes require, and they will be injected accordingly by the IoC Container.
+
+### About Design Patterns
+
+Tim Corey mentioned the following:
+
+- "The only time to use a design pattern, is when the complexity of the design pattern, is less than the complexity of _not_ using the pattern."
+- "Design patterns are typically complex."
+
 ## Week 9 and 10
 
 Completed initial BF-BMX API Server build. All updates are documented in the README. There are some open questions about the output logging formats. During implementation, I knew changes to logging might be necessary so I've made it relatively easy to change the logging while minimizing how much code is touched or affected.
