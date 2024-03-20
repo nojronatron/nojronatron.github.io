@@ -17,6 +17,42 @@ Some key takeaways solving LeetCode Roman to Integer:
 
 While I was at LeetCode, I took a look at one of my previous submissions and noticed the BigO in Time was very poorly ranked. It took me about 15 minutes to refactor the code to get a better execution time that was closer to 50% of all ranked submissions. Storage space was also average, but the spread of space utilization was so small that it really doesn't matter (i.e. 50MB vs 51 MB is just a rounding error for a C# compiled application size).
 
+After lunch I decided to do another LeetCode challenge. This one was  to return the most common prefix characters from an array of strings:
+
+- Input `["one", "only", "onlay"]` returns `"on"`.
+- Required iterating columns of each string in the input array without tripping an index out of range error, following the given constraint of `string.length <= 200`.
+- Decided to use a `Set` to store items and check for non-unique entries by asserting that only 1 item should be in the set if all characters are the same, then I could iterate over the next character.
+- Used a tracking index variable to manage iterating the columns and also used to return a result derived from `string.substring(startIdx, currentIdx + 1)` of the first string in the input array.
+- If the tracking index was 0 or less that meant no items were stored and function returned `""` (and empty string).
+- This solution scored fairly high in BigO in time (88%) and Space (75% better than other JS submissions), and took me only 40 minutes to sketch-up, code, and debug.
+- One item that I had to look up with how to get the size of the `Set`. I should know by now that a built-in object (and custom types/objects) should contain a `size` property, and it is only objects like `string` and `Array` that implement the `length` property (in both JS and C#).
+- The `Number` object in JavaScript _does_ have a `MAX_VALUE` property, but at the time I couldn't recall it. However, it was better to use the given constraint than to look it up.
+
+### ILogger and Custom Logging
+
+Writing log information is an important feature of an App. During development and debugging, it can provide an audit trail of operations happening under the hood so that issues can be traced to the source more easily. When an App is released, an end user can review the logs to help confirm the App is "doing the right thing" or as breadcrumbs to determine the cause of unexpected behavior. In the past I've developed a couple different logging services that were crude and simplistic (they worked fine for very low activity apps), or utilized .NET built-in ILogger functionality to get Console-level logging output. For BF-BMX, it was important to get a more robust and scalable file-logging solution in place for the desktop application.
+
+I took extra time to learn and understand how to create a custom logger in .NET, and here are a few outcomes from getting it going for the first time:
+
+- For a small App like this one, contention is not expected, so a simple file-logging mechanism can be written as a stand-in, then replaced with a concurrent solution in a future release.
+- Defining an `ILogger`-compliant logging utility requires building a custom Logger class that implements `ILogger`, a custom provider that implements `ILoggerProvider`, and a custom, somewhat abstracted Configuration class.
+- The `ILoggerProvider` implementation must provide a means of configuring a new custom logger, getting a current configuration, and returning a custom logger (`CreateLogger()`) for use when one is called for by the IoC container.
+- The configuration class is not complex, but within the context of IoC, enables using an `IConfiguration` pattern to control logging behavior during IoC Container services setup.
+- The custom Logging class itself is the implementor of the logging mechanism. It must accept loggable input, and direct output to the appropriate device. In my case, I used a simple `StreamWriter` instance to append formatted message data to a file at a location that the custom configuration class can set and App Start-up.
+
+This was a difficult thing to implement because:
+
+- Lots of abstraction is going on.
+- Some aspects were easy to overthink, therefore not follow the design pattern laid-out by .NET.
+
+Where I had to trust .NET to do some work for me once I've set up the classes per the interface requirements:
+
+- Defining the Logging service. There are still areas of this design that I do not fully understand, but once I started to grasp the use of `TState` and `Func<T>` in method params, and the definition and use of the custom Configuration object, it became a bit easier.
+- Adding the sevice to the IoC Service Container was easy to overthink. In the end, `services.Configure<MyLoggerConfiguration>()` was necessary. The param in that method is simply a lambda that sets a `config` item that is actually calling the custom Config object.
+- Not sure why I didn't get this at first, but adding `services.AddLogging()` is absolutely required in order to get _any_ of this to work at all.
+
+An issue that I knew would come about was Logging from multiple parallel tasks could cause IO Exceptions while attempting to write logging output. At least logging is implemented at a basic level and I can work around parallel IO by redesigning the logging a little bit.
+
 ## Week 9 and 10
 
 Completed initial BF-BMX API Server build. All updates are documented in the README. There are some open questions about the output logging formats. During implementation, I knew changes to logging might be necessary so I've made it relatively easy to change the logging while minimizing how much code is touched or affected.
