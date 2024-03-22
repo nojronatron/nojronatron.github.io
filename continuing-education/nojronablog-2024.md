@@ -62,12 +62,42 @@ Watched [Factory Pattern with Dependency Injection](https://www.youtube.com/watc
 - Use `Extension Methods` that accept the `IService` services type and use that to inject the dependencies of the Factory classes. This is _not_ required, but it removes lots of code from the IoC Container i.e. fewer `service.AddTransient<TInterface, TImplementation>()` etc.
 - Be _very clear_ about what dependencies the classes or services require. When registering services that are factories, using an Extension Method will help make it clear what dependencies the Factory Classes require, and they will be injected accordingly by the IoC Container.
 
+### Factory Method Pattern
+
+- Create an instance without specifying the class it should be.
+- Create objects using a `factory method` instead of calling a `constructor`.
+- Simplifies implementation, use, change, testing, and reuse.
+
 ### About Design Patterns
 
-Tim Corey mentioned the following:
+Tim Corey mentioned the following in [Factory Pattern with Dependency Injection](https://www.youtube.com/watch?v=2PXAfSfvRKY&ab_channel=IAmTimCorey):
 
-- "The only time to use a design pattern, is when the complexity of the design pattern, is less than the complexity of _not_ using the pattern."
 - "Design patterns are typically complex."
+- Somewhat paraphrased: "The only time to use a design pattern is when the complexity of the pattern is less than the complexity of _not_ using the pattern."
+
+### Debugging Blazor and Other Async Systems
+
+I ran into an issue where a Blazor app was calling JavaScript (through .Net interop classes), and the JS code would call .Net _back_ to update a field in the razor file, but the change would not show on the page. JS was delayed in returning a response, so some asynchronous processes were at play.
+
+Key takeaways:
+
+- Always try setting a breakpoint in the code at or near where the program fails to do the expected thing.
+- Before diving deep into other aspects of a complex system like `IJSRuntime`, try removing simple and/or asynchronous code blocks like `setTimeout()` in JavaScript to see if everything else is working as expected.
+
+_Note_: Blazor `StateHasChanged()`: Notifies Blazor component that bound properties have been updated.
+
+### Recent LeetCode Challenges Takeaways for March 2024
+
+- Always read, then re-read the problem statement. There are clues in there as to how to start solving the problem. Skimming it twice will leave valid clues on the table and make solving the challenge more difficult.
+- Do not use built-in methods (i.e. `Math.Floor(int number)`) when not completely familiar with it. Doing so could introduce a bug or other unexpected behavior that will be difficult to explain and fix.
+- Solve tiny chunks of the problem separately. As the various individual problems get resolved, integrate the various solution bits and debug along the way.
+- `Console.WriteLine(string message)` will not only slow down the run time of the code, but will also increase the memory usage. Leave these out when submitting a final.
+
+I should start finding ways to make these challenges more fun to complete, rather than over-challenging myself by not preparing for them in any way. For example: When I first see a Linked List challenge that I want to work on, I should:
+
+1. Review how a Linked List can be traversed.
+2. Review the difference between `while` code blocks and recursive methods.
+3. Brain dump the properties and methods of a LinkedList and its Node type.
 
 ## Week 9 and 10
 
