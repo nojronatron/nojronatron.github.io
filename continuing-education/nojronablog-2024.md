@@ -2,6 +2,113 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 11 and 12
+
+Completed some interview preparatory work, including a LeetCode challenge to convert from Roman Numerals to Integers using JavaScript. I've solved a similar problem some time ago using Java, but it took me about 2.5 hrs to diagram, pseudocode, step-through, code, and evaluate its performance.
+
+Some key takeaways solving LeetCode Roman to Integer:
+
+- I had to use MDN to implement correct usage of indexing JS String types: `string[idx]` is _wrong_, instead use `string.charAt(idx)` in JavaScript.
+- Again I had to use MDN to correct my usage of a Select-Case statement: `select(arg) { case argN: ...;}` is _wrong_ (must be a leftover from my very short Visual Basic experience), instead use `switch(arg) { case argN: ...; break;}`. Subtle difference that I regularly get confused over which to use.
+- I _must_ be more careful in the future with how I increment values and pass them around between functions. On at least 2 occasions during the trial run, I run the code thinking it would execute properly, only to find I was _overwriting_ values instead of _incrementing_ or _decrementing_ them.
+- Using a whiteboard to sketch-out the solution before writing code may have slowed me down initially, but likely would have resolved some up-front issues before getting trapped by them while coding.
+- LeetCode statistics show the Runtime beats '66%' of other JS entries, and memory usage of 53 MB beast _'84%'_ of other JS entries :arrow_right: which are the correct sides of both curves!
+- Final note: This was a fine warm-up to do and I should continue doing this on a regular basis again.
+
+While I was at LeetCode, I took a look at one of my previous submissions and noticed the BigO in Time was very poorly ranked. It took me about 15 minutes to refactor the code to get a better execution time that was closer to 50% of all ranked submissions. Storage space was also average, but the spread of space utilization was so small that it really doesn't matter (i.e. 50MB vs 51 MB is just a rounding error for a C# compiled application size).
+
+After lunch I decided to do another LeetCode challenge. This one was  to return the most common prefix characters from an array of strings:
+
+- Input `["one", "only", "onlay"]` returns `"on"`.
+- Required iterating columns of each string in the input array without tripping an index out of range error, following the given constraint of `string.length <= 200`.
+- Decided to use a `Set` to store items and check for non-unique entries by asserting that only 1 item should be in the set if all characters are the same, then I could iterate over the next character.
+- Used a tracking index variable to manage iterating the columns and also used to return a result derived from `string.substring(startIdx, currentIdx + 1)` of the first string in the input array.
+- If the tracking index was 0 or less that meant no items were stored and function returned `""` (and empty string).
+- This solution scored fairly high in BigO in time (88%) and Space (75% better than other JS submissions), and took me only 40 minutes to sketch-up, code, and debug.
+- One item that I had to look up with how to get the size of the `Set`. I should know by now that a built-in object (and custom types/objects) should contain a `size` property, and it is only objects like `string` and `Array` that implement the `length` property (in both JS and C#).
+- The `Number` object in JavaScript _does_ have a `MAX_VALUE` property, but at the time I couldn't recall it. However, it was better to use the given constraint than to look it up.
+
+At the end of the week, I sorted out some known issues with BF-BMX and am getting ready to implement additional "Watchers" in the app:
+
+- Logging was occasionally failing due to file locking contention. Use of a private property of type `Lock` enabled better sharing.
+- Enabling UI feedback when buttons are pressed required a little UI rework, but it helps the overall look-and-feel of the Desktop App during regular interaction.
+
+Lastly, I put in some extra effort to prepare for interviewing. I'm tweaking my schedule to get these tasks to be more regular. There have been a few very interesting open positions posted recently that I look forward to researching to learn more and possibly apply for.
+
+### ILogger and Custom Logging
+
+Writing log information is an important feature of an App. During development and debugging, it can provide an audit trail of operations happening under the hood so that issues can be traced to the source more easily. When an App is released, an end user can review the logs to help confirm the App is "doing the right thing" or as breadcrumbs to determine the cause of unexpected behavior. In the past I've developed a couple different logging services that were crude and simplistic (they worked fine for very low activity apps), or utilized .NET built-in ILogger functionality to get Console-level logging output. For BF-BMX, it was important to get a more robust and scalable file-logging solution in place for the desktop application.
+
+I took extra time to learn and understand how to create a custom logger in .NET, and here are a few outcomes from getting it going for the first time:
+
+- For a small App like this one, contention is not expected, so a simple file-logging mechanism can be written as a stand-in, then replaced with a concurrent solution in a future release.
+- Defining an `ILogger`-compliant logging utility requires building a custom Logger class that implements `ILogger`, a custom provider that implements `ILoggerProvider`, and a custom, somewhat abstracted Configuration class.
+- The `ILoggerProvider` implementation must provide a means of configuring a new custom logger, getting a current configuration, and returning a custom logger (`CreateLogger()`) for use when one is called for by the IoC container.
+- The configuration class is not complex, but within the context of IoC, enables using an `IConfiguration` pattern to control logging behavior during IoC Container services setup.
+- The custom Logging class itself is the implementor of the logging mechanism. It must accept loggable input, and direct output to the appropriate device. In my case, I used a simple `StreamWriter` instance to append formatted message data to a file at a location that the custom configuration class can set and App Start-up.
+
+This was a difficult thing to implement because:
+
+- Lots of abstraction is going on.
+- Some aspects were easy to overthink, therefore not follow the design pattern laid-out by .NET.
+
+Where I had to trust .NET to do some work for me once I've set up the classes per the interface requirements:
+
+- Defining the Logging service. There are still areas of this design that I do not fully understand, but once I started to grasp the use of `TState` and `Func<T>` in method params, and the definition and use of the custom Configuration object, it became a bit easier.
+- Adding the sevice to the IoC Service Container was easy to overthink. In the end, `services.Configure<MyLoggerConfiguration>()` was necessary. The param in that method is simply a lambda that sets a `config` item that is actually calling the custom Config object.
+- Not sure why I didn't get this at first, but adding `services.AddLogging()` is absolutely required in order to get _any_ of this to work at all.
+
+An issue that I knew would come about was Logging from multiple parallel tasks could cause IO Exceptions while attempting to write logging output. At least logging is implemented at a basic level and I can work around parallel IO by redesigning the logging a little bit.
+
+### Dependency Injection and the Factory Pattern
+
+Watched [Factory Pattern with Dependency Injection](https://www.youtube.com/watch?v=2PXAfSfvRKY&ab_channel=IAmTimCorey) by Tim Corey regarding the Factory Pattern. Some key takeaways:
+
+- Avoid instantiating injected services in your code outside of the IoC container. This removes the ability of the container to inject dependencies into the service as it is 'manually' instantiated.
+- Write an Abstract Factory class with paired Interface to inject into the Services collection.
+- Use `Extension Methods` that accept the `IService` services type and use that to inject the dependencies of the Factory classes. This is _not_ required, but it removes lots of code from the IoC Container i.e. fewer `service.AddTransient<TInterface, TImplementation>()` etc.
+- Be _very clear_ about what dependencies the classes or services require. When registering services that are factories, using an Extension Method will help make it clear what dependencies the Factory Classes require, and they will be injected accordingly by the IoC Container.
+
+### Factory Method Pattern
+
+- Create an instance without specifying the class it should be.
+- Create objects using a `factory method` instead of calling a `constructor`.
+- Simplifies implementation, use, change, testing, and reuse.
+
+### About Design Patterns
+
+Tim Corey mentioned the following in [Factory Pattern with Dependency Injection](https://www.youtube.com/watch?v=2PXAfSfvRKY&ab_channel=IAmTimCorey):
+
+- "Design patterns are typically complex."
+- Somewhat paraphrased: "The only time to use a design pattern is when the complexity of the pattern is less than the complexity of _not_ using the pattern."
+
+### Debugging Blazor and Other Async Systems
+
+I ran into an issue where a Blazor app was calling JavaScript (through .Net interop classes), and the JS code would call .Net _back_ to update a field in the razor file, but the change would not show on the page. JS was delayed in returning a response, so some asynchronous processes were at play.
+
+Key takeaways:
+
+- Always try setting a breakpoint in the code at or near where the program fails to do the expected thing.
+- Before diving deep into other aspects of a complex system like `IJSRuntime`, try removing simple and/or asynchronous code blocks like `setTimeout()` in JavaScript to see if everything else is working as expected.
+
+_Note_: Blazor `StateHasChanged()`: Notifies Blazor component that bound properties have been updated.
+
+### Recent LeetCode Practice Session Takeaways for March 2024
+
+- Always read, then re-read the problem statement. There are clues in there as to how to start solving the problem. Skimming it twice will leave valid clues on the table and make solving the challenge more difficult.
+- Do not use built-in methods (i.e. `Math.Floor(int number)`) when not completely familiar with it. Doing so could introduce a bug or other unexpected behavior that will be difficult to explain and fix.
+- Solve tiny chunks of the problem separately. As the various individual problems get resolved, integrate the various solution bits and debug along the way.
+- `Console.WriteLine(string message)` will not only slow down the run time of the code, but will also increase the memory usage. Leave these out when submitting a final.
+- Whiteboard the problem statement as best as possible. Include any limitations or constraints on inputs that might impact actual implementation details.
+- Review my DS and A notes ahead of the next exercise, so that common algorithmic concepts and traversals are well understood. Even though the challenge might be more complex than a simple traversal, understanding the traversal at the basic level will reduce friction to finding the correct implementation for the problem at hand.
+
+I should start finding ways to make these challenges more fun to complete, rather than over-challenging myself by not preparing for them in any way. For example: When I first see a Linked List challenge that I want to work on, I should:
+
+1. Review how a Linked List can be traversed.
+2. Review the difference between `while` code blocks and recursive methods.
+3. Brain dump the properties and methods of a LinkedList and its Node type.
+
+
 ## Week 9 and 10
 
 Completed initial BF-BMX API Server build. All updates are documented in the README. There are some open questions about the output logging formats. During implementation, I knew changes to logging might be necessary so I've made it relatively easy to change the logging while minimizing how much code is touched or affected.
