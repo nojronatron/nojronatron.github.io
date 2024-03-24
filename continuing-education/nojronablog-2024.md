@@ -28,6 +28,13 @@ After lunch I decided to do another LeetCode challenge. This one was  to return 
 - One item that I had to look up with how to get the size of the `Set`. I should know by now that a built-in object (and custom types/objects) should contain a `size` property, and it is only objects like `string` and `Array` that implement the `length` property (in both JS and C#).
 - The `Number` object in JavaScript _does_ have a `MAX_VALUE` property, but at the time I couldn't recall it. However, it was better to use the given constraint than to look it up.
 
+At the end of the week, I sorted out some known issues with BF-BMX and am getting ready to implement additional "Watchers" in the app:
+
+- Logging was occasionally failing due to file locking contention. Use of a private property of type `Lock` enabled better sharing.
+- Enabling UI feedback when buttons are pressed required a little UI rework, but it helps the overall look-and-feel of the Desktop App during regular interaction.
+
+Lastly, I put in some extra effort to prepare for interviewing. I'm tweaking my schedule to get these tasks to be more regular. There have been a few very interesting open positions posted recently that I look forward to researching to learn more and possibly apply for.
+
 ### ILogger and Custom Logging
 
 Writing log information is an important feature of an App. During development and debugging, it can provide an audit trail of operations happening under the hood so that issues can be traced to the source more easily. When an App is released, an end user can review the logs to help confirm the App is "doing the right thing" or as breadcrumbs to determine the cause of unexpected behavior. In the past I've developed a couple different logging services that were crude and simplistic (they worked fine for very low activity apps), or utilized .NET built-in ILogger functionality to get Console-level logging output. For BF-BMX, it was important to get a more robust and scalable file-logging solution in place for the desktop application.
@@ -86,18 +93,21 @@ Key takeaways:
 
 _Note_: Blazor `StateHasChanged()`: Notifies Blazor component that bound properties have been updated.
 
-### Recent LeetCode Challenges Takeaways for March 2024
+### Recent LeetCode Practice Session Takeaways for March 2024
 
 - Always read, then re-read the problem statement. There are clues in there as to how to start solving the problem. Skimming it twice will leave valid clues on the table and make solving the challenge more difficult.
 - Do not use built-in methods (i.e. `Math.Floor(int number)`) when not completely familiar with it. Doing so could introduce a bug or other unexpected behavior that will be difficult to explain and fix.
 - Solve tiny chunks of the problem separately. As the various individual problems get resolved, integrate the various solution bits and debug along the way.
 - `Console.WriteLine(string message)` will not only slow down the run time of the code, but will also increase the memory usage. Leave these out when submitting a final.
+- Whiteboard the problem statement as best as possible. Include any limitations or constraints on inputs that might impact actual implementation details.
+- Review my DS and A notes ahead of the next exercise, so that common algorithmic concepts and traversals are well understood. Even though the challenge might be more complex than a simple traversal, understanding the traversal at the basic level will reduce friction to finding the correct implementation for the problem at hand.
 
 I should start finding ways to make these challenges more fun to complete, rather than over-challenging myself by not preparing for them in any way. For example: When I first see a Linked List challenge that I want to work on, I should:
 
 1. Review how a Linked List can be traversed.
 2. Review the difference between `while` code blocks and recursive methods.
 3. Brain dump the properties and methods of a LinkedList and its Node type.
+
 
 ## Week 9 and 10
 
