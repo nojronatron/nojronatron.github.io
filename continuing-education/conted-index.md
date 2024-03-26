@@ -5,7 +5,7 @@ A collection of notes from research and continuing education, with references fo
 ## Table of Contents
 
 - [Things I Want To Learn More About](#things-i-want-to-learn-more-about)
-- [Currently Active Learnings](#currently-active-learnings)
+- [Currently Active Learning and Activities](#currently-active-learning-and-activities)
 - [Notes And Takeaways from Research and Experience](#notes-and-takeaways-from-research-and-experience)
 - [Azure Learnings](#azure-learnings)
 - [Footer](#footer)
@@ -16,8 +16,11 @@ This list became so large it was unmanageable in an MD file, so all items have m
 
 - [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
 
-## Currently Active Learnings
+## Currently Active Learning and Activities
 
+- [ ] MSFT [Build 2024 Conference](). Notes will be stored elsewhere.
+- [ ] MSFT [JDConf - the Java Conference](). Notes will be stored elsewhere.
+- [ ] Consider obtaining a GitHub Foundations Certification.
 - [ ] [MVVM and MSFT MVVM Toolkit](./dotnet-wpf-mvvm-learnings.html). Collection of captured WPF and MVVM project layout implementations and frameworks. Targets .NET Framework 4.6+, and .NET 6+.
 - [ ] Learn how to effectively (and properly) leverage [Async Await](./dotnet-async-await-notes.html) and [Task Parallel Library](./dotnet-taskparallellibrary-notes.md).
 
