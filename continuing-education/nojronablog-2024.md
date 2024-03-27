@@ -51,6 +51,12 @@ Attended a MSFT Reactor session about GitHub and its Certifications.
 - `Azure Samples` GitHub repo: Available examples of code used for Azure features.
 - Four exams available now, one more on the way: Foundations, GitHub Actions, GitHub Advanced Security, GitHub Admin, and soon: GitHub Copilot.
 
+### From Desktop To Server Side BF-BMX Work
+
+Now that the Desktop component is about 75% functional, it was time to start integration testing to see how Desktop and Server components are working together. They weren't so some debugging was necessary to fix them. Now they are talking to each other and there are fewer exceptions being thrown, however the API Server isn't logging anything to file other than the Message data and Bib records, so that is the next logical step before continuing integration testing. Having file based logs will help with troubleshooting and verifying functionality from here on out!
+
+In the future I'll need to re-write the logging mechanisms to be portable, rather than tied so closely to the Desktop and API Server projects. For now it is good enough, and having a refactoring exercise to perform in the future won't impact the initial release much (if at all).
+
 ## Week 11 and 12
 
 Completed some interview preparatory work, including a LeetCode challenge to convert from Roman Numerals to Integers using JavaScript. I've solved a similar problem some time ago using Java, but it took me about 2.5 hrs to diagram, pseudocode, step-through, code, and evaluate its performance.
