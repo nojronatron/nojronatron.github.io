@@ -19,7 +19,7 @@ This list became so large it was unmanageable in an MD file, so all items have m
 ## Currently Active Learning and Activities
 
 - [ ] MSFT [Build 2024 Conference](). Notes will be stored elsewhere.
-- [ ] MSFT [JDConf - the Java Conference](). Notes will be stored elsewhere.
+- [ ] MSFT [JDConf - the Java Conference](./java-jdconf2024-notes.html).
 - [ ] Consider obtaining a GitHub Foundations Certification.
 - [ ] [MVVM and MSFT MVVM Toolkit](./dotnet-wpf-mvvm-learnings.html). Collection of captured WPF and MVVM project layout implementations and frameworks. Targets .NET Framework 4.6+, and .NET 6+.
 - [ ] Learn how to effectively (and properly) leverage [Async Await](./dotnet-async-await-notes.html) and [Task Parallel Library](./dotnet-taskparallellibrary-notes.md).
