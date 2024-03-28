@@ -57,6 +57,17 @@ Now that the Desktop component is about 75% functional, it was time to start int
 
 In the future I'll need to re-write the logging mechanisms to be portable, rather than tied so closely to the Desktop and API Server projects. For now it is good enough, and having a refactoring exercise to perform in the future won't impact the initial release much (if at all).
 
+### Microsoft JDConf 2024
+
+Interesting online conference about Java, JVM, and support for Java App development in VS Code, and running Java Apps in Azure!
+
+- VSCode Java Extensions are better than ever and support dependency configuration, develop and build, testing with Test Runner, code coverage and other code analytics, SQL-like Database support, and of course deploying to Azure.
+- There are options for how to build Java applications to help reduce "App Warmup" time, such as AOT, Graal, Azule, and others.
+- GitHub Copilot is fully Java-aware and capable of building full-stack Spring applications from the ground up.
+- Microsoft now stongly supports (and has for a while) Java and is involved in open-source JDK releases, and continues to make investments including utilization of Java in Bing, Azure, and other MSFT properties and services.
+
+This is exciting news for the Java community, and for me the onramp to building Java Apps in VS Code is flattened through simplification of Java project setup and other aspects of the software development lifecycle.
+
 ## Week 11 and 12
 
 Completed some interview preparatory work, including a LeetCode challenge to convert from Roman Numerals to Integers using JavaScript. I've solved a similar problem some time ago using Java, but it took me about 2.5 hrs to diagram, pseudocode, step-through, code, and evaluate its performance.
