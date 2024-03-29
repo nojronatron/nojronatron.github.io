@@ -719,6 +719,114 @@ BENEFITS of using `Task` and `Task<TResult>`:
 - Do _support_ any number of concurrent awaits.
 - Do _support_ using `GetAwaiter().GetResult()` and will block the caller (without risk of race condition) until Task completes.
 
+## Hanselman and Toub on Async Await
+
+### Asynchrony Breeds Concurrency
+
+Quoted from Stephen Toub.
+
+- Multiple things might be happening at the same time.
+- Thread pool enables this ability.
+- Concurrency is work that is running _at the same time_ as other work.
+- Asynchrony means the work is queued (ed: and put into an execution loop of somekind?) and executed, interwoven on some main thread e.g. UI Thread.
+- Asynchrony is not necessarily Concurrency, but Concurrency is always an Asynchronous
+- Threads are generally tied to cores!
+- Variables that need to be valid within a call to a thread pool to execute on the value(s) should be copied to a _local variable_ that is _within the queuing code scope_ to ensure the correct value is applied. See the `for()` loop example that Stephen Toub demonstrated (see [Resources](#resources)).
+
+### Delegates
+
+Delegates in C# are 'managed function pointers'.
+
+- Built-in definitions includes a parameterless void-returning method.
+- `delegate`: A generic term for a parameterless, void-returning method.
+- `void Action<T>`: A specific, defined delegate that can be bound as a `delegate`.
+- Lambdas `(()=>{});`: Same as above. Can be bound to `delegate` without having to identify `Action<T>` (for example).
+- `TResult Func<T>`: A specific, defined delegate that returns something other than void.
+
+### Tasks
+
+Consider Tasks to be `Action<T>` delegates, but with super powers:
+
+- Aware of the state of the code running within it including whether it is completed or not.
+- Able to throw an appropriate, descriptive Exception.
+- Can accept a callback delegate that gets executed when the Task is completed. Stephen Toub's example named the Property `ContinueWith(Action action)` backed by a `private Action? _continuation` field. The delegate is stored until the Task work `IsCompleted` is true.
+- Stores and maintains an ExecutionContext that can be restored for thread pool context compliance.
+- Use of a `lock` (potentially oversimplified) in the `IsCompleted` getter, to ensure the `completed` state is not changed by another thread: `lock (this) { return _completed; }`
+- The `Complete(Exception? exception)` method manages a potentially null `_context` and returns the correct state using an `ExceutionContext.Run()` implementation.
+- The ability to `Wait()` is an implementation of a 'Synchronization primitive' called `ManualResetEventSlim?`, then enable signalling so that the process execution state is known to the parent class.
+- Enable a Run method such as `public static MyTask Run(Action action){}` that leverages a ThreadPool mechanism to queue work item(s) for excution on a separate thread. _This is exactly what `Task.Run(delegate)` does_! A `try-catch` block is implemented to actually invoke the delegate.
+
+_Note_ about `lock` on `this`: First off _do not do it_. A `lock` is 'private state', but 'this' is _public_. This enables code to access private state. If _no other code could get a handle on the `lock (this)` code_ then it _might_ be safe. However, a `public` class that when instantiated basically ends up with a public `this`, locking the private state is now accessible to other callers.
+
+Key takeaway:
+
+- `Task` and `Task<T>` are ubiquitously important due to the value-add of managing threaded work execution.
+- Unifies the ability to leverage any asynchronous operation, rolled into a single Type!
+- Absolutely _critical_ to the implementation of `async-away`.
+
+### Exceptions in Tasks
+
+Recall that an Exception instance can be thrown.
+
+- Upside: Simple to implement, like `throw _exception` (when stored in a field).
+- Downside: Details about the field-stored Exception are not all included!
+
+In .NET 4.0 the proper 'rethrow' implementation was to add the `_exception` instance as an InnerException, so that all Watson Trace information is included.
+
+```c#
+// class and function code...
+if (_exception is not null)
+{
+  throw new Exception("comment", _exception); // e.g. (string command, Exception innerException)
+}
+// other code...
+```
+
+Tasks can represent multiple operations!
+
+- Upside: Consolidate Task work implementations!
+- Downside: _Many_ Exceptions could be thrown (or none).
+
+`AggregateException` helps with this by allowing multiple Exceptions to be automatically wrapped without losing the Watson/StackTrace details (reducing code implementation by developers).
+
+### Exception Dispatch Info
+
+This is directly related to how Exceptions within Tasks are (and should be) handled:
+
+- Class `ExceptionDispatchInfo` takes and throws an Exception using an _append_ method. Exception 'state' is appended so that a Stack Trace returns _all_ rethrown Exceptions with full fidelity.
+
+### Foreground and Background Threads
+
+When Main() method exits, should it wait for all the Threads to complete before exiting?
+
+- Background Threads: Are not waited on before closing an App.
+- Foreground Threads: _Are_ waiting to be completed before closing an App.
+
+### Use of Interlocked
+
+Avoids the problem of using `lock()` on a parallel set of operations:
+
+- Locking is a harder to implement.
+- Locking can cause other threads to fail or return unexpected results (unless handled properly).
+- Class `Interlocked` has been available _for the life_ of .NET Framework and .NET Core, .NET Standard, USP, and the latest .NET versions 6, 7, 8, and (apparently) 9!
+- "Enables atomic operations for variables that are shared by multiple threads." _[https://learn.microsoft.com/en-us/dotnet/api/system.threading.interlocked?view=net-6.0]_
+
+### Thread Sleep
+
+This affects _the Thread Pool_ entirely!
+
+- Any other Thread that has work to do is now _blocked_.
+- `await Task.Delay()` causes _just that Thread_ to go do something else until it is signalled that it is time to process more Task work.
+
+### Iterators vs Async Await
+
+Stephen Toub stated the following:
+
+- IEnumerable, with its yeild and MoveNext() statements, enables iterating through a structure more-or-less automatically.
+- State Machines are able to maintain a state, and are useful for capturing (returning) a state, then moving to any next state (move next), until there are no more items to return.
+- Async-Await works _in the same way_ except the completion of one Task, calls MoveNext() to "iterate" to the next Task that needs to be completed, and when there are no more tasks, the Enumerable is expired and the asynchronous tasks are completed, releasing Thread(s) back to the default pool.
+- Exception handling within the Task object treat work that has thrown an Exception as 'completed', but store that Exception (as described above) with full fidelity, so the "next" asynch code block can be executed without blocking.
+
 ## Things To Review
 
 If cancellation is requested but a result or an exception is still produced, the task should end in the `RanToCompletion` or `Faulted` state.
@@ -738,6 +846,8 @@ Stephen Cleary [adds a great response to a StackOverflow question](https://stack
 Read more about the Task-based Asynchrounous Pattern [TAP in .NET: Introduction and overview on MSDN](https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/task-based-asynchronous-pattern-tap?redirectedfrom=MSDN).
 
 MSFT DevBlogs [Understanding The Whys Whats And Whens Of ValueTask](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/).
+
+Stephen Toub, Partner Software Engineer talks with Scott Hanselman about [writing async-await from scratch in C#](https://www.youtube.com/watch?v=R-z2Hv-7nxk&ab_channel=dotnet).
 
 ## Footer
 
