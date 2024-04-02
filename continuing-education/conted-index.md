@@ -26,6 +26,7 @@ This list became so large it was unmanageable in an MD file, so all items have m
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] MSFT Reactor session note on [Azure Container Apps](./azure-serverless-containers-apps.html).
 - [x] [.NET Publish command](./dotnet-publishing-apps.html) and types of published packages.
 - [x] .NET [MAUI 8](https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui?view=net-maui-8.0) for Windows and Android
 - [x] .NET [MAUI Community Toolkit](https://github.com/CommunityToolkit/Maui)
