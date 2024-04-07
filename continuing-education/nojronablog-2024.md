@@ -57,6 +57,12 @@ Now that the Desktop component is about 75% functional, it was time to start int
 
 In the future I'll need to re-write the logging mechanisms to be portable, rather than tied so closely to the Desktop and API Server projects. For now it is good enough, and having a refactoring exercise to perform in the future won't impact the initial release much (if at all).
 
+The ViewModel code is getting a bit lengthy and difficult to read. This tells me I need to encapsulate some of the state and functionality. Doing so will have to wait until a few more features are completed: A meeting with the stakeholders will be necessary (soon) to ensure the outputs and functionality are going to meet expectations, and to tweak (or reset) expectations that have changed or were otherwise not well understood.
+
+Multi-directory monitoring is functioning in debug sessions, and in systems-test scenarios using actual Winlink Express and running SUT Release Builds.
+
+A presentation has been put together that overviews the system main components and features, introduces how to configure the desktop and server, and discusses the operation and logging aspects. In a future meeting (soon, tbd), the presentation and a demo will be performed, which should help coax inputs on necessary changes and tweaks, prior to the scheduled May 1st Beta release.
+
 ### Microsoft JDConf 2024
 
 Interesting online conference about Java, JVM, and support for Java App development in VS Code, and running Java Apps in Azure!
