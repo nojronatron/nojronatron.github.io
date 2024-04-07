@@ -5,7 +5,7 @@ A collection of notes from research and continuing education, with references fo
 ## Table of Contents
 
 - [Things I Want To Learn More About](#things-i-want-to-learn-more-about)
-- [Currently Active Learnings](#currently-active-learnings)
+- [Currently Active Learning and Activities](#currently-active-learning-and-activities)
 - [Notes And Takeaways from Research and Experience](#notes-and-takeaways-from-research-and-experience)
 - [Azure Learnings](#azure-learnings)
 - [Footer](#footer)
@@ -16,13 +16,17 @@ This list became so large it was unmanageable in an MD file, so all items have m
 
 - [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
 
-## Currently Active Learnings
+## Currently Active Learning and Activities
 
-- [ ] [MVVM and MSFT MVVM Toolkit](./dotnet-wpf-mvvm-learnings.html). Collection of captured WPF and MVVM project layout implementations and frameworks. Targets .NET Framework 4.6+, and .NET 6+.
-- [ ] Learn how to effectively (and properly) leverage [Async Await](./dotnet-async-await-notes.html) and [Task Parallel Library](./dotnet-taskparallellibrary-notes.md).
+- [ ] MSFT [Build 2024 Conference](./msbuild-2024-notes.html) will be held on 21-23 May, 2024.
+- [ ] Consider obtaining a GitHub Foundations Certification.
+- [x] [MVVM and MSFT MVVM Toolkit](./dotnet-wpf-mvvm-learnings.html). Collection of captured WPF and MVVM project layout implementations and frameworks. Targets .NET Framework 4.6+, and .NET 6+.
+- [x] Learn how to effectively (and properly) leverage [Async Await](./dotnet-async-await-notes.html) and [Task Parallel Library](./dotnet-taskparallellibrary-notes.html).
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] MSFT [JDConf - the Java Conference](./java-jdconf2024-notes.html).
+- [x] MSFT Reactor session note on [Azure Container Apps](./azure-serverless-containers-apps.html).
 - [x] [.NET Publish command](./dotnet-publishing-apps.html) and types of published packages.
 - [x] .NET [MAUI 8](https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui?view=net-maui-8.0) for Windows and Android
 - [x] .NET [MAUI Community Toolkit](https://github.com/CommunityToolkit/Maui)

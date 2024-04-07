@@ -10,6 +10,8 @@ Kory - Cloud Advocate @koreyspace
 - [Codespaces](#codespaces)
 - [Copilot](#copilot)
 - [The GitHub Next Team and Project](#the-github-next-team-and-project)
+- [Pragmatic Techniques To Get The Most Out Of GitHub Copilot](#pragmatic-techniques-to-get-the-most-out-of-github-copilot)
+- [MS Dev Labs Adventures with GitHub Copilot in VSCode](#ms-dev-labs-adventures-with-github-copilot-in-vscode)
 - [References](#references)
 - [Footer](#footer)
 
@@ -59,6 +61,89 @@ Quickstart templates designed to get up-and-running quickly:
 - Create your own [Custom templates](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-template-repository)
 
 Templates are OSS and there is an _open invitation to contribute_!
+
+### Benefits
+
+- Reduced time to setup an environment.
+- Access to your workspace from anywhere with internet access.
+- Setup, Develop, and Debug, all within one Codespaces "window".
+
+### About Frameworks
+
+- It can take time to install a framework onto your Project.
+- Possible unknown or unexpected issues with old or unused code, un-optimized code, etc.
+
+Codespaces reduces setup and installation time.
+
+Codespaces also helps with framework setup because n+1 workspaces are just clones of the initial setup!
+
+### Cloud Development Challenges
+
+- Must have internet.
+- Must monitor expense.
+- Configuration and Setup time (however this is reduced compared to setup on individual hardware/VMs).
+- Constraints enable constraining machine types, port visibility (public or otherwise), max idle timeouts, and retention periods.
+
+Configure and name the policy and apply it to Codespaces projects to:
+
+- Reduce probability of of charges.
+- Reduce network threat surface.
+
+### Codespaces Environment Benefits
+
+- Promotes accessibility.
+- Scalable across teams.
+- Customizable.
+- (something else).
+- 60 hours free!
+
+Configurable, customized environment!
+
+- Codespaces lifecycle starts at create, ends when deleted. Rebuild can be done anytime between Create and Delete.
+
+Since Codespaces uses a virtual machine behind the scenes, code can be built and executed _in the same window_.
+
+Multi-window layouts support viewing multiple files within the environment window e.g.: Explorer, README.md, some-file.js, and a Terminal window.
+
+Can open a repository using other IDEs:
+
+- VSCode.
+- IntelliJ.
+- Others.
+- GitHub Desktop.
+- Visual Studio.
+
+### Processes That Kick-Off When Creating New
+
+1. VM and storage are assigned to new Codespace.
+2. Container is created.
+3. Connection to Codespace is made.
+4. Post-creation setup is made.
+
+Components:
+
+- Container.json: variables, extensions, and more.
+- Dockerfile: Defin env and dependencies to execute it.
+- docker-compose.yml: Execute multipel containers.
+
+### Compare With GitHub.dev
+
+Differences from Codespaces:
+
+- Free, completely.
+- Available for any GitHub user.
+- Startup: Use right away without installation with just a keypress.
+- Compute: No compute, cannot build and run or use Integrated Terminal.
+- Terminal Access: None
+- Extensions: Only subset of extensions can run (web-run only).
+
+### Codespaces Resources
+
+As of March 2024: Prepare for [GitHub Certification Exams](https://aka.ms/github-certification).
+
+[intro-codespaces repository](https://github.com/gittogethers/intro-codespaces).
+
+[Self-guided Codespaces walkthroughs](https://github.com/skills/code-with-codespaces).
 
 ## Copilot
 

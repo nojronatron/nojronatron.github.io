@@ -2,6 +2,78 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 13 and 14
+
+### Sorted Dictionary and Finding Missing Data
+
+I recently completed a LeetCode exercise where the input was an array of signed integers, and the goal was to return the smallest integer that _was not in the array_. For example, the solution should process an array input of `[ 1, 3, 5, 4, -1 ]` and return the integer 2. Additional constraints were included such as O(n) Runtime and O(n) or better storage.
+
+I used the DotNet class `SortedDictionary<TKey, TValue>` as a simple and fast storage mechanism. Sorting is helpful when looking for specific values, but writing the correct, efficient sorting algorithm is usually challenging and time consuming. By storing the input data to a SortedDictionary, using 'Value' as the 'Key' and the current value index as the 'TValue' value, it is possible to find missing indices. Since the goal is to find the lowest value missing from the input, it is fairly simple to compare the input indices to the stored KVPs in the SortedDictionary, and as soon as an index is not found, return that index and that is the value that was _missing_ from the input.
+
+```c#
+// Basic SortedDictionary<K,V> usage for this challenge
+int[] inputArr = { 1, 3, 5, 4, -1 };
+SortedDictionary<int, int> sortedInput = new();
+for(int idx=0; idx < inputArr.Length; idx++)
+{
+  int currentValue = inputArr[idx];
+  // skip any values that are 0 or less, or greater than the length of the inputArr
+  if (currentValue < 1 || currentValue > inputArr.Length)
+  {
+    // skip to the next iteration to save storage space
+    continue;
+  }
+  // SortedDictionary will throw an Exception if you try to add a KVP that already exists
+  if (sortedInput.ContainsKey(currentValue) == false)
+  {
+    // Add the VALUE of the input as the KEY 
+    sortedInput.Add(currentValue, idx);
+  }
+}
+// more code...
+```
+
+Once the SortedDictionary has all of the values greater than 0 but less than the length of the input array, use the SortedDictionary as a lookup table. Start at index 1 (per constraint) to return a value or null. If null, return that value, otherwise iterate to the next value (SortedDictionary TKey) until one is missing. If all values in the SortedDictionary are contiguous, then the return value is one greater than the count of items in the SortedDictionary.
+
+![Example depiction: Find missing value using SortedDict](./images/sorteddict-find-missing-value-example.png)
+
+I've purposefully avoided giving too much detail above, other than to demonstrate one possible usage of `SortedDictionary<TKey, TValue>` to solve one of many code problems. My solution was _not_ very performant in run time or storage, and it should not be referenced as a basis to solve a similar sounding challenge. Readers are responsible for following code challenge rules which could include _not_ using a resource like this to assist them directly.
+
+### MSFT Reactor GitHub Certifications
+
+Attended a MSFT Reactor session about GitHub and its Certifications.
+
+- There is an exam to attain GitHub certifications [quicklink](https://aka.ms/learn/github-foundations), and [direct link](https://techcommunity.microsoft.com/t5/educator-developer-blog/github-foundations-certification-a-comprehensive-guide/ba-p/4079056?WT.mc_id=academic-127591-cyzanon).
+- Seven domains: Git and GitHub intro, GitHub repos, Collaborating, Modern development, Project management, Security (includes privacy and administration), and GitHub community benefits.
+- Reactor Presenters: Pablo Lopes, MSFT Cloud Advocate, and Cami Hernandez Merhar, GitHub Technical Writer.
+- Reactor overviewed: Branches, GitHub Issues, GitHub CLI ('git status' etc), and a few more.
+- GitHub CLI Demo Notes: _any_ file type can be archived, but various encodings or file-size limitations are enforced (video, large image files, and some others).
+- `Azure Samples` GitHub repo: Available examples of code used for Azure features.
+- Four exams available now, one more on the way: Foundations, GitHub Actions, GitHub Advanced Security, GitHub Admin, and soon: GitHub Copilot.
+
+### From Desktop To Server Side BF-BMX Work
+
+Now that the Desktop component is about 75% functional, it was time to start integration testing to see how Desktop and Server components are working together. They weren't so some debugging was necessary to fix them. Now they are talking to each other and there are fewer exceptions being thrown, however the API Server isn't logging anything to file other than the Message data and Bib records, so that is the next logical step before continuing integration testing. Having file based logs will help with troubleshooting and verifying functionality from here on out!
+
+In the future I'll need to re-write the logging mechanisms to be portable, rather than tied so closely to the Desktop and API Server projects. For now it is good enough, and having a refactoring exercise to perform in the future won't impact the initial release much (if at all).
+
+The ViewModel code is getting a bit lengthy and difficult to read. This tells me I need to encapsulate some of the state and functionality. Doing so will have to wait until a few more features are completed: A meeting with the stakeholders will be necessary (soon) to ensure the outputs and functionality are going to meet expectations, and to tweak (or reset) expectations that have changed or were otherwise not well understood.
+
+Multi-directory monitoring is functioning in debug sessions, and in systems-test scenarios using actual Winlink Express and running SUT Release Builds.
+
+A presentation has been put together that overviews the system main components and features, introduces how to configure the desktop and server, and discusses the operation and logging aspects. In a future meeting (soon, tbd), the presentation and a demo will be performed, which should help coax inputs on necessary changes and tweaks, prior to the scheduled May 1st Beta release.
+
+### Microsoft JDConf 2024
+
+Interesting online conference about Java, JVM, and support for Java App development in VS Code, and running Java Apps in Azure!
+
+- VSCode Java Extensions are better than ever and support dependency configuration, develop and build, testing with Test Runner, code coverage and other code analytics, SQL-like Database support, and of course deploying to Azure.
+- There are options for how to build Java applications to help reduce "App Warmup" time, such as AOT, Graal, Azule, and others.
+- GitHub Copilot is fully Java-aware and capable of building full-stack Spring applications from the ground up.
+- Microsoft now stongly supports (and has for a while) Java and is involved in open-source JDK releases, and continues to make investments including utilization of Java in Bing, Azure, and other MSFT properties and services.
+
+This is exciting news for the Java community, and for me the onramp to building Java Apps in VS Code is flattened through simplification of Java project setup and other aspects of the software development lifecycle.
+
 ## Week 11 and 12
 
 Completed some interview preparatory work, including a LeetCode challenge to convert from Roman Numerals to Integers using JavaScript. I've solved a similar problem some time ago using Java, but it took me about 2.5 hrs to diagram, pseudocode, step-through, code, and evaluate its performance.
