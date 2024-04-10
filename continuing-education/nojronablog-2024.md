@@ -2,6 +2,8 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 15 and 16
+
 ## Week 13 and 14
 
 ### Sorted Dictionary and Finding Missing Data
