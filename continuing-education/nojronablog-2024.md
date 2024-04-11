@@ -4,6 +4,16 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## Week 15 and 16
 
+Throughout this week I've been focused on the BF-BMX project. I'll be meeting soon with at least 1 of the key end users soon to go over current status, find out what needs to be done, and to prioritize that work accordingly. FOr the last several weeks, as I've implemented features and squashed bugs, I've been focused on maintaining a working product between PRs. This has made it possible to work "ahead" of some scheduled work items, yet still be able to "go back" to a previous branch, make progress and/or fix bugs, and still be able to deploy a Debug or Release build for hands-on testing at pretty much any time.
+
+It's surprising how much a project can change, even without specific design instructions to do so. For example, I have built out a custom Linked List to deal with a need for a FIFO-like queue operation with custom features. A standard Queue would not necessarily meet this need. After additional research, it turned out the custom data structure wasn't necessary, so it was removed from the project. This has happened a few times. At least I learn a little each time it happens:
+
+- Leveraging `[ObservableProperty]` should be used to wrap an `ObservableCollection<T>` to ensure notifications flow to subscribers, such as the UI/WPF.
+- Updating the UI within a async method requires calling `App.Current.Dispatcher.Invoke(Action<T>)`.
+- Logging and other code within `Can` methods (i.e. `CanInitializeMonitor()`) makes the code hard to read and probably slows down execution. It is better to build a group of if-then blocks to return boolean as quickly as possible, so that the calling method (probably an `ICommand` type) can execute, and any necessary logging and other processing can happen there.
+
+There are a good number of concerns about how to properly parse plain text, especially if it is delimited in multiple ways (i.e. tabbed, comma, and/or spaces). While tab- and comma-delimited are not too difficult to deal with, I explored enabling space-delimited parsing and it became complex very rapidly. If space-delimited parsing is necessary, it will probably end up being a 2- or 3-stage process to ensure random sections of unimportant/unexpected data are not captured as "possibly good data".
+
 ## Week 13 and 14
 
 ### Sorted Dictionary and Finding Missing Data
