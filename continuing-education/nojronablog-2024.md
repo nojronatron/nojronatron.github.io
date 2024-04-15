@@ -14,6 +14,31 @@ It's surprising how much a project can change, even without specific design inst
 
 There are a good number of concerns about how to properly parse plain text, especially if it is delimited in multiple ways (i.e. tabbed, comma, and/or spaces). While tab- and comma-delimited are not too difficult to deal with, I explored enabling space-delimited parsing and it became complex very rapidly. If space-delimited parsing is necessary, it will probably end up being a 2- or 3-stage process to ensure random sections of unimportant/unexpected data are not captured as "possibly good data".
 
+### Using Moq
+
+I've come to realize that Mocking components of BF-BMX is necessary in order to perform unit testing. It has also become apparent that file access is unavoidable, given the requirements definitions for this solution. So off to reasearch `Moq` and start trying to use it! Here are some key takeaways:
+
+- Interfaces: Create an interface to provide a 'contract' for the behaviors of a class. This is useful not only for Dependency Injection purposes, but also for Mocking behaviors of components under test or their dependencies.
+- Moq will take an Interface as a Type argument to its CTOR, like `var moqThingy = new Mock<IThingy>();`, which allows Moq to create _its own instance of the interface object_.
+- Mocking the behaviors of the Moq-instantiated object is done just-in-time, when the behaviors are needed. If `IThingy` defined a method called `SayHello()` that returned a string like "Hello World", Mocking the behavior will look like `moqThingy.Setup(inst => inst.SayHello()).Returns("It's aliiiive!");`, _overriding_ the behavior of the Mocked instance method.
+- There are still gotchas that I need to investigate as necessary, such as: Concurrency, guarding against file-locking exceptions, and poorly written classes that need refactoring in order to be tested (that's on me).
+
+This [Code Magazine article: Using Moq A Simple Guide To Mocking for .NET](https://www.codemag.com/Article/2305041/Using-Moq-A-Simple-Guide-to-Mocking-for-.NET) was helpful.
+
+### Other Ways To Fake Stuff
+
+Since BFBMX is based on incoming data that is relational in nature, and Entity Framework was already added to the core system for future use, I attended an online discussion about `Bogus`, a `faker.js` spin-off Package for .NET.
+
+In the discussion and demos were some key takeaways, and I feel like Bogus is probably a package I should explore for BFBMX or other project going forward:
+
+- Use `Fluent` or the `Faker<T>` interface, the "Fake fascade", or defining datasets directly.
+- Targets C#, F#, and VB.NET.
+- Creates realistic data.
+- Developers and test engineers do not have to find or create data by hand.
+- Demoing a system to stakeholders with realistic data can improve relaying the goal(s) of the presentation or software.
+- Can integrate with EF Core to "seed" data for testing.
+- Can be configured to use locals other than en/en-us to support various character sets (although, not all of the local data sets are complete just yet).
+
 ## Week 13 and 14
 
 ### Sorted Dictionary and Finding Missing Data

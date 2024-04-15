@@ -14,12 +14,13 @@ A collection of notes from research and continuing education, with references fo
 
 This list became so large it was unmanageable in an MD file, so all items have moved to a private Trello board so I can better manage my own backlog in a unified way.
 
+- [ ] [Bogus for .NET](https://github.com/bchavez/Bogus) a Faker.js port for Dot NET.
+- [ ] MSFT [Build 2024 Conference](./msbuild-2024-notes.html) will be held on 21-23 May, 2024.
+- [ ] Consider obtaining a GitHub Foundations Certification.
 - [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
 
 ## Currently Active Learning and Activities
 
-- [ ] MSFT [Build 2024 Conference](./msbuild-2024-notes.html) will be held on 21-23 May, 2024.
-- [ ] Consider obtaining a GitHub Foundations Certification.
 - [x] [MVVM and MSFT MVVM Toolkit](./dotnet-wpf-mvvm-learnings.html). Collection of captured WPF and MVVM project layout implementations and frameworks. Targets .NET Framework 4.6+, and .NET 6+.
 - [x] Learn how to effectively (and properly) leverage [Async Await](./dotnet-async-await-notes.html) and [Task Parallel Library](./dotnet-taskparallellibrary-notes.html).
 
