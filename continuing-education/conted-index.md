@@ -14,6 +14,7 @@ A collection of notes from research and continuing education, with references fo
 
 This list became so large it was unmanageable in an MD file, so all items have moved to a private Trello board so I can better manage my own backlog in a unified way.
 
+- [ ] Take another look at [Contributing to Open Source Software projects](continuing-education\oss-contrib-humanizer.md).
 - [ ] [Bogus for .NET](https://github.com/bchavez/Bogus) a Faker.js port for Dot NET.
 - [ ] MSFT [Build 2024 Conference](./msbuild-2024-notes.html) will be held on 21-23 May, 2024.
 - [ ] Consider obtaining a GitHub Foundations Certification.
