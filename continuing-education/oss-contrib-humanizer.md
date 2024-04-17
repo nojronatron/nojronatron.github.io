@@ -26,19 +26,48 @@ Build automation is provided in Azure DevOps Pipelines.
 
 The project has an MIT License file, allowing usage, modifiction, and distribution, provided inclusion of the License File.
 
-There are no specific instructions related to how to contribute (that I could find).
+> Before going any farther investigating any Humanizer Issue(s), the following GitHub Issue should probably be resolved [Is This Library Still Maintained?](https://github.com/Humanizr/Humanizer/issues/1303).
+
+### Contributing
+
+Contributing guidelines are in the `.github` directory, in CONTRIBUTING.md.
+
+In summary:
+
+- Raise bugs as Issues in GitHub (or fix and Pull Request).
+- Grab and fix any Issue.
+- `Jump In` labeled Issues are considered "low hanging fruit".
+- Code of Conduct exists and follows `Contributor Covenant`.
+
+#### Contributing Getting Started
+
+- C# 8 language features.
+- SDK-style projects.
+- VS 2018 or newer.
+
+#### Guidelines
+
+Overview:
+
+- There is a checklist of code style requirements to meet (see `.editorconfig` and [PULL_REQUEST_TEMPLATE.md](https://github.com/Humanizr/Humanizer/blob/main/.github/PULL_REQUEST_TEMPLATE.md)).
+- PRs with ReSharper Warnings will not get merged in.
+- Unit Tests required, w/ coverage.
+- Full disclosure and attribution required for any copied code.
+- Few (if any) code comments.
+- XML Documentation must be updated with change(s).
+- Sync with upstream before rebasing.
+- Rebase PR on top of main before submitting.
+- Link to Issue(s) the PR addresses.
+- Update README as applies.
+- Build not *not* have any failures.
 
 ## Solution Overview
 
-The software is a set of Projects attached to a parent Solution file.
-
-There appear to be some custom build and test scripts.
-
-A Test Project exists that appears to use XUnit, relying heavily on `[Theory]` annotated tests with canned inputs and expected outputs in `[InlineData()]` annotations.
-
-Humanizer.csproj is the primary, central-focus project.
-
-Humanizer.InflectorExtensions.cs has a number of static Extension methods that perform actions like pluralize, singularize, Titleize, Pascalize, and more.
+- The software is a set of Projects attached to a parent Solution file.
+- There appear to be some custom build and test scripts.
+- Test Project exists that appears to use XUnit, relying heavily on `[Theory]` annotated tests with canned inputs and expected outputs in `[InlineData()]` annotations.
+- Humanizer.csproj is the primary, central-focus project.
+- Humanizer.InflectorExtensions.cs has a number of static Extension methods that perform actions like pluralize, singularize, Titleize, Pascalize, and more.
 
 ## Issue Description
 
@@ -52,8 +81,7 @@ Examples (`sampling from Humanizer.Tests.InflectorTests.cs`):
 - "CUSTOMER": "cUSTOMER"
 - "customer_first_name goes here": "customerFirstNameGoesHere"
 - "customer name": "customerName"
-
-*Note*: There are more.
+- (There are more)
 
 The Issue asserts that an input like the following is not processed correctly:
 
@@ -70,6 +98,38 @@ Looking at `Humanizer.InflectionExtensions.cs`, the function in question is defi
 - `Pascalize` peforms a Regex Replace, matching the first letter in each capture Group and returns that character as an Upper-case character.
 - `Camelize` then looks at the first character in the string returned by `Pascalize`, performs a `Substring()` to find the first charcter of the string, applies `ToLower()` to that one character, then concatenates the SubString and the original String (minus the first character) as the result.
 
+### Dependencies
+
+Humanizer is targeted as a NuGet Package, and its Project targets several DotNET versions:
+
+- dotnet48?
+- dotnet6.0
+- dotnet7.0
+- dotnet8.0
+- NetStandard2.0
+- BenchmarkDotNet
+
+These dependencies have their own dependencies (not in any order):
+
+- Nerdbank.GitVersioning
+- Polyfill
+- System.Collection.Immutable
+- System.Memory
+- System.ValueTuple
+- NETStandard.Library
+- System.ComponentModel.Annotations
+
+Even the XUnit Tests have multiple dependeny Packages:
+
+- coverlet.collector
+- Microsoft.NET.Test.Sdk
+- Nerdbank.GitVersioning
+- PublicApiGenerator
+- Verify.DiffPlex
+- Verify.Xunit
+- xunit
+- xunit.runner.visualstudio
+
 ### Initial Thoughts
 
 Some naive thoughts about the code under analysis, after only reviewing the specific method, and without building, running, or 'using' the Package at all:
@@ -78,10 +138,11 @@ Some naive thoughts about the code under analysis, after only reviewing the spec
 - `RegEx.Replace()` method is used without any constraints, and the input could potentially be an end-user provided string. This could lead to a risk of an endless loop that could cause an Application crash.
 - The static extension methods provide summary descriptions in code comments, but no obvious indication that they might throw an Exception.
 - The static extension methods do not have any Try-Catch structures in them.
+- Why are the repo owners committing directly to main?
 
 *Note*: The above comments are simply front-of-mind and are no way intended to be negative commentary about code style, structure, stability, capability, or security of Humanizer or its contributing developers. These thoughts are out there as a means to help guide my analysis and (any) future actions I might take to try and resolve the problem.
 
-### Problem Domain
+### Problem Domain Diagram
 
 Future: A diagram of the argument flow and code processing.
 
