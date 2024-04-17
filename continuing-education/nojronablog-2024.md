@@ -39,6 +39,27 @@ In the discussion and demos were some key takeaways, and I feel like Bogus is pr
 - Can integrate with EF Core to "seed" data for testing.
 - Can be configured to use locals other than en/en-us to support various character sets (although, not all of the local data sets are complete just yet).
 
+### Open Source Follies
+
+I took a look at some open source projects that looked interesting to learn, use, and possibly contribute to. A common (and unfortunate) theme a lack of directing members to lead core project activities like managing pipelines/CI-CD, and maintaining release cycles and general project management. On occasion, the situation is related to a parent-project that is going to increment to a new major version, and the child project won't get any updates until after that increment happens to the parent. Another common theme is Issues that are closed (or effectively closed) but still marked as "Needs Help" (or similar), but have not been updated in more than 1 year.
+
+Any or all of these situations make it more difficult to get excited about actually using and becoming a contributing member of the community.
+
+I will plan to revisit Humanizer in a few months, and meanwhile keep my eyes open for other interesting opportunities.
+
+As for my personal OSS projects, it just so happened I needed to set up a Linux environment to work on a second project of mine. This forced me to install and configure WSL on my Surface Pro, and install the latest NVM so I could install the latest Node and NPM, and run the project's Express.js server.
+
+Here are some highlights:
+
+- When activating WSL, it was simplest (IMHO) to do so using the WSL Extension for VSCode (which is the target IDE anyway).
+- WSL leverages a real Linux environment, so selecting a full-on OS like Ubuntu 22.04 (or similar) was necessary.
+- All the usual Linux-y things apply like: setting root account, apt update, etc.
+- I had to look up how to get NVM-SH installed, and Node and NPM installed, but it was simpler than I remember it being in previous experiences. :tada:
+- GitHub no longer allows HTTP-Password authentication, so I had to produce ssh keys (`ssh-keygen`) and send the public key to GitHub so that the WSL environment could push code to remote.
+- Also regarding authentication, an `http origin` is not compatible with an `ssh origin`. Not surprising, I had just forgotten about that fact, so it took a minute to recall how to add a new `remote` that uses SSH instead, but I got it. :tada:
+
+Some more personal OSS experience: I went to explore refactoring some HTML, JS, and CSS website code for a specific purpose. Within 40 minutes I had a (very) simple website up and running with the intended feature functioning. It took a little longer to tweak the feature and determine just how much farther the feature could go (without becoming _a lot of work_), but this resulted in a go-forward plan and I am excited to see how it comes out.
+
 ## Week 13 and 14
 
 ### Sorted Dictionary and Finding Missing Data
