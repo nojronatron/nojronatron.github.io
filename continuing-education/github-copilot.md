@@ -345,7 +345,7 @@ Check out [GitHub Next](https://githubnext.com) for information on what the GitH
 
 Developing [Your First Extension](https://code.visualstudio.com/api/get-started/your-first-extension).
 
-GitHub CLI supports Github Copilot! See [Github Copilot CLI Installer](github.com/cli/cli).
+GitHub CLI supports Github Copilot! See [Github Copilot CLI Installer](https://github.com/cli/cli).
 
 ## Footer
 
