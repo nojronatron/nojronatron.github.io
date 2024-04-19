@@ -60,6 +60,33 @@ Here are some highlights:
 
 Some more personal OSS experience: I went to explore refactoring some HTML, JS, and CSS website code for a specific purpose. Within 40 minutes I had a (very) simple website up and running with the intended feature functioning. It took a little longer to tweak the feature and determine just how much farther the feature could go (without becoming _a lot of work_), but this resulted in a go-forward plan and I am excited to see how it comes out.
 
+### Regex Interpretation of Alternate Meta Sequence
+
+One requirement I had was to match a string of characters that included either a tab, or a comma with an optional following space.
+
+Example cases: `123, ABC` or `123,ABC` or `123\tABC`.
+
+I came up with a Regex Pattern of `\b\d{1-3}(,\s?|\t)\w{1-3}\b` but that would not properly capture all three cases, and it was difficult to understand why not.
+
+After 15 minutes of fiddling with the pattern I asked GitHub Copilot how to build a Regex pattern that would meet a need like "1 to 3 digits followed by either a comma with or without a single space, or a tab, followed by 1 to 3 word characters". GHCP came up with the same pattern and explained (incorrectly, it turns out) how it worked.
+
+So I spent another 20-30 minutes using [regex101.com](regex101.com) to work out what the problem was, and how to create the correct pattern. Microsoft's Learn documentation on [dotnet standard regular expressions](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions) has a link to a PDF Cheat Sheet (that I had forgotten about! :wow:) that also came in handy.
+
+Turns out the problem was how the pattern was _actually_ being interpreted, based on how the Alternate Meta Character was being applied `|`.
+
+In order to avoid the pattern from evaluating as:
+
+"1 to 3 digits followed by a comma and _either an optional space or a tab_..."
+
+The incorrect evaluation was corrected by applying the Non-Capture Group Construct `(?:...)` to surround the alternate comma or tab argument, and to place the tab character _before_ the alternate character like so:
+
+`\b\d{1-3}(?:\t|,\s?)\w{1-3}\b`
+
+Lessons learned:
+
+- Use Non-capture Groups `(?:...)` to group items together correctly.
+- Carefully apply the Alternate character `|` so that it does not fail-fast and evaluate to the wrong sub-pattern match.
+
 ## Week 13 and 14
 
 ### Sorted Dictionary and Finding Missing Data
