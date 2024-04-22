@@ -48,7 +48,7 @@ CallForCode provides assistance to contributors, and there are also pay-out awar
 
 ## Interesting Contrib Opportunities
 
-- [ ] Sequence TubeMap by VGTeam: [Form fields are weirdly wide now](https://github.com/vgteam/sequenceTubeMap/issues/149)
+- [x] Sequence TubeMap by VGTeam: [Form fields are weirdly wide now](https://github.com/vgteam/sequenceTubeMap/issues/149)
 
 > A reference to a bootstrap variant the above project uses [reactstrap](https://reactstrap.github.io/?path=/docs/components-forms--input)
 
@@ -133,6 +133,10 @@ Dev and Test Cycles
 *Note*: Review the project [README](https://github.com/vgteam/sequenceTubeMap) for additional tips of dev and test deployments on local.
 
 *Note*: If you haven't built since the last change, your changes might not take effect!
+
+## OSS Contribution Accepted
+
+The [PR](https://github.com/vgteam/sequenceTubeMap/pull/173) containing my contributed fix was merged and closed in September 2023! :tada:
 
 ## Footer
 

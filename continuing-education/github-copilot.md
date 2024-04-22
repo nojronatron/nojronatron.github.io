@@ -1,21 +1,24 @@
 # GitHub Copilot
 
-Liam Champton @liamchampton
-
-Kory - Cloud Advocate @koreyspace
+This will be a collection of information collected while attending presentations, events, and etc. The first event was an overview of GitHub Copilot at a basic level. Additional topics go into GH Copilot more deeply, providing demonstration, how-tos, and other information.
 
 ## Table of Contents
 
-- [Overview](#overview)
+- [GitHub Copilot Basics - MSFT Reactor](#github-copilot-basics---msft-reactor)
 - [Codespaces](#codespaces)
 - [Copilot](#copilot)
 - [The GitHub Next Team and Project](#the-github-next-team-and-project)
 - [Pragmatic Techniques To Get The Most Out Of GitHub Copilot](#pragmatic-techniques-to-get-the-most-out-of-github-copilot)
 - [MS Dev Labs Adventures with GitHub Copilot in VSCode](#ms-dev-labs-adventures-with-github-copilot-in-vscode)
+- [GitHub Copilot and Infrastructure As Code](#github-copilot-and-infrastructure-as-code)
 - [References](#references)
 - [Footer](#footer)
 
-## Overview
+## GitHub Copilot Basics - MSFT Reactor
+
+Presenter: Liam Champton @liamchampton
+
+Presenter: Kory - Cloud Advocate @koreyspace
 
 GitHub Copilot is an AI-powered utility that can help you code, debug, and refactor your solutions.
 
@@ -301,6 +304,39 @@ How can GH CoPilot help me?
 - Find errors in code.
 - Ask it how to make existing code more maintainable and readable.
 
+## GitHub Copilot and Infrastructure As Code
+
+Presentation: How to Accelerate Infrastructure As Code Adoption - MSFT Reactor
+
+Presenter: Adil Touati - Sr. Cloud Solution Architect, Montreal CA. [GitHub](github.com/Adeelku)
+
+### About GitHub Copilot
+
+Copilot and Copilot Chat:
+
+- VSCode and Visual Studio Extensions.
+- Individual, Business, and Enterprise licensing schemes (free-trial options are available too).
+- AI "pair programmer".
+- Offers in-line actions.
+- Chat adds a chat-bot interface.
+- Accuracy is not always 100%.
+- Prompting is important. Supplying enough information and context will help drive more correct answers.
+
+Advice:
+
+- Always test output for suitability and correctness.
+- Learn from Copilot! It can provide example code that you might not be familiar with, and Copilot can explain in detail.
+- Leverage existing solutions to speed development.
+- Generate large codeblocks quickly!
+
+### Copilot For IaC - In Action
+
+Use prompt-engineering concepts.
+
+Use `#<filename>` to reference all related files when prompting Copilot. Lots of files can be referenced.
+
+Highlight code, press `CTRL` + `I` and the Inline Prompt will automatically use the highlighted code as part of the question context.
+
 ## References
 
 [General Links](https://aka.ms/levelup-links) from 'Level Up Your App Development Using GitHub Copilot and Codespaces' MSFT Reactor Session.
@@ -308,6 +344,8 @@ How can GH CoPilot help me?
 Check out [GitHub Next](https://githubnext.com) for information on what the GitHub Next team is working on.
 
 Developing [Your First Extension](https://code.visualstudio.com/api/get-started/your-first-extension).
+
+GitHub CLI supports Github Copilot! See [Github Copilot CLI Installer](https://github.com/cli/cli).
 
 ## Footer
 

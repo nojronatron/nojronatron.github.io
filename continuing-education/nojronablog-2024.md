@@ -2,6 +2,91 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 15 and 16
+
+Throughout this week I've been focused on the BF-BMX project. I'll be meeting soon with at least 1 of the key end users soon to go over current status, find out what needs to be done, and to prioritize that work accordingly. FOr the last several weeks, as I've implemented features and squashed bugs, I've been focused on maintaining a working product between PRs. This has made it possible to work "ahead" of some scheduled work items, yet still be able to "go back" to a previous branch, make progress and/or fix bugs, and still be able to deploy a Debug or Release build for hands-on testing at pretty much any time.
+
+It's surprising how much a project can change, even without specific design instructions to do so. For example, I have built out a custom Linked List to deal with a need for a FIFO-like queue operation with custom features. A standard Queue would not necessarily meet this need. After additional research, it turned out the custom data structure wasn't necessary, so it was removed from the project. This has happened a few times. At least I learn a little each time it happens:
+
+- Leveraging `[ObservableProperty]` should be used to wrap an `ObservableCollection<T>` to ensure notifications flow to subscribers, such as the UI/WPF.
+- Updating the UI within a async method requires calling `App.Current.Dispatcher.Invoke(Action<T>)`.
+- Logging and other code within `Can` methods (i.e. `CanInitializeMonitor()`) makes the code hard to read and probably slows down execution. It is better to build a group of if-then blocks to return boolean as quickly as possible, so that the calling method (probably an `ICommand` type) can execute, and any necessary logging and other processing can happen there.
+
+There are a good number of concerns about how to properly parse plain text, especially if it is delimited in multiple ways (i.e. tabbed, comma, and/or spaces). While tab- and comma-delimited are not too difficult to deal with, I explored enabling space-delimited parsing and it became complex very rapidly. If space-delimited parsing is necessary, it will probably end up being a 2- or 3-stage process to ensure random sections of unimportant/unexpected data are not captured as "possibly good data".
+
+### Using Moq
+
+I've come to realize that Mocking components of BF-BMX is necessary in order to perform unit testing. It has also become apparent that file access is unavoidable, given the requirements definitions for this solution. So off to reasearch `Moq` and start trying to use it! Here are some key takeaways:
+
+- Interfaces: Create an interface to provide a 'contract' for the behaviors of a class. This is useful not only for Dependency Injection purposes, but also for Mocking behaviors of components under test or their dependencies.
+- Moq will take an Interface as a Type argument to its CTOR, like `var moqThingy = new Mock<IThingy>();`, which allows Moq to create _its own instance of the interface object_.
+- Mocking the behaviors of the Moq-instantiated object is done just-in-time, when the behaviors are needed. If `IThingy` defined a method called `SayHello()` that returned a string like "Hello World", Mocking the behavior will look like `moqThingy.Setup(inst => inst.SayHello()).Returns("It's aliiiive!");`, _overriding_ the behavior of the Mocked instance method.
+- There are still gotchas that I need to investigate as necessary, such as: Concurrency, guarding against file-locking exceptions, and poorly written classes that need refactoring in order to be tested (that's on me).
+
+This [Code Magazine article: Using Moq A Simple Guide To Mocking for .NET](https://www.codemag.com/Article/2305041/Using-Moq-A-Simple-Guide-to-Mocking-for-.NET) was helpful.
+
+### Other Ways To Fake Stuff
+
+Since BFBMX is based on incoming data that is relational in nature, and Entity Framework was already added to the core system for future use, I attended an online discussion about `Bogus`, a `faker.js` spin-off Package for .NET.
+
+In the discussion and demos were some key takeaways, and I feel like Bogus is probably a package I should explore for BFBMX or other project going forward:
+
+- Use `Fluent` or the `Faker<T>` interface, the "Fake fascade", or defining datasets directly.
+- Targets C#, F#, and VB.NET.
+- Creates realistic data.
+- Developers and test engineers do not have to find or create data by hand.
+- Demoing a system to stakeholders with realistic data can improve relaying the goal(s) of the presentation or software.
+- Can integrate with EF Core to "seed" data for testing.
+- Can be configured to use locals other than en/en-us to support various character sets (although, not all of the local data sets are complete just yet).
+
+### Open Source Follies
+
+I took a look at some open source projects that looked interesting to learn, use, and possibly contribute to. A common (and unfortunate) theme a lack of directing members to lead core project activities like managing pipelines/CI-CD, and maintaining release cycles and general project management. On occasion, the situation is related to a parent-project that is going to increment to a new major version, and the child project won't get any updates until after that increment happens to the parent. Another common theme is Issues that are closed (or effectively closed) but still marked as "Needs Help" (or similar), but have not been updated in more than 1 year.
+
+Any or all of these situations make it more difficult to get excited about actually using and becoming a contributing member of the community.
+
+I will plan to revisit Humanizer in a few months, and meanwhile keep my eyes open for other interesting opportunities.
+
+As for my personal OSS projects, it just so happened I needed to set up a Linux environment to work on a second project of mine. This forced me to install and configure WSL on my Surface Pro, and install the latest NVM so I could install the latest Node and NPM, and run the project's Express.js server.
+
+Here are some highlights:
+
+- When activating WSL, it was simplest (IMHO) to do so using the WSL Extension for VSCode (which is the target IDE anyway).
+- WSL leverages a real Linux environment, so selecting a full-on OS like Ubuntu 22.04 (or similar) was necessary.
+- All the usual Linux-y things apply like: setting root account, apt update, etc.
+- I had to look up how to get NVM-SH installed, and Node and NPM installed, but it was simpler than I remember it being in previous experiences. :tada:
+- GitHub no longer allows HTTP-Password authentication, so I had to produce ssh keys (`ssh-keygen`) and send the public key to GitHub so that the WSL environment could push code to remote.
+- Also regarding authentication, an `http origin` is not compatible with an `ssh origin`. Not surprising, I had just forgotten about that fact, so it took a minute to recall how to add a new `remote` that uses SSH instead, but I got it. :tada:
+
+Some more personal OSS experience: I went to explore refactoring some HTML, JS, and CSS website code for a specific purpose. Within 40 minutes I had a (very) simple website up and running with the intended feature functioning. It took a little longer to tweak the feature and determine just how much farther the feature could go (without becoming _a lot of work_), but this resulted in a go-forward plan and I am excited to see how it comes out.
+
+### Regex Interpretation of Alternate Meta Sequence
+
+One requirement I had was to match a string of characters that included either a tab, or a comma with an optional following space.
+
+Example cases: `123, ABC` or `123,ABC` or `123\tABC`.
+
+I came up with a Regex Pattern of `\b\d{1-3}(,\s?|\t)\w{1-3}\b` but that would not properly capture all three cases, and it was difficult to understand why not.
+
+After 15 minutes of fiddling with the pattern I asked GitHub Copilot how to build a Regex pattern that would meet a need like "1 to 3 digits followed by either a comma with or without a single space, or a tab, followed by 1 to 3 word characters". GHCP came up with the same pattern and explained (incorrectly, it turns out) how it worked.
+
+So I spent another 20-30 minutes using [regex101.com](regex101.com) to work out what the problem was, and how to create the correct pattern. Microsoft's Learn documentation on [dotnet standard regular expressions](https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expressions) has a link to a PDF Cheat Sheet (that I had forgotten about! :wow:) that also came in handy.
+
+Turns out the problem was how the pattern was _actually_ being interpreted, based on how the Alternate Meta Character was being applied `|`.
+
+In order to avoid the pattern from evaluating as:
+
+"1 to 3 digits followed by a comma and _either an optional space or a tab_..."
+
+The incorrect evaluation was corrected by applying the Non-Capture Group Construct `(?:...)` to surround the alternate comma or tab argument, and to place the tab character _before_ the alternate character like so:
+
+`\b\d{1-3}(?:\t|,\s?)\w{1-3}\b`
+
+Lessons learned:
+
+- Use Non-capture Groups `(?:...)` to group items together correctly.
+- Carefully apply the Alternate character `|` so that it does not fail-fast and evaluate to the wrong sub-pattern match.
+
 ## Week 13 and 14
 
 ### Sorted Dictionary and Finding Missing Data
