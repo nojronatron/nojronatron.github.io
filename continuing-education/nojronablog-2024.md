@@ -2,6 +2,51 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 17 and 18
+
+### BF Winlink Form
+
+While I had some down time, I took a look at dealing with a few issues with the BF Race Tracker form.
+
+- CSV data entry and editing: This is possible, so I've added an Issue to the GitHub repo so it can get get implemented and a PR prepared.
+- Various code issues: With some research and a little help from Github Copilot, some function refactoring is in the works to hopefully make the code easier to read and remove unused or unnecessary code.
+
+### VS Code Day 2024 Notes
+
+Some succinct takeaways from the 24-April-2024 event I attended (and enjoyed):
+
+- Clinical documentation summaries: How VSCode team approaches writing changelog entries.
+- [ElectronJS](https://www.electronjs.org/): Cross-platform desktop apps framework.
+- VSCode, Slack, and Teams are all based on ElectronJS.
+- VSCode Team took 7 years to build and release Floating Windows feature due to _perceived_ complexity with multi-process file access and editing. See [VSCode Editor Custom Layout](https://code.visualstudio.com/docs/editor/custom-layout) for details on Floating Windows and other Layout features I could (should?) be using.
+- Elegant solutions: A core goal of a developer is to find an elegant solution - simple, correct, and robust.
+- Burke says (sic) if you believe something is inherently complex, you won't go looking for the simple solution.
+- VS Code Terminal _is just a text editor_ (the front-end to the actual Terminal processor).
+- Burke Holland (Principal Cloud Advocate) was using Wes Boz's VSCode Theme "Cobalt2".
+- Simulation Testing: A testing methodology that helps work around issues testing Prompt Engineering processes, as well as AI generative response testing.
+- Stochastic: Unpredictable. A foundational reality with today's AI and AI-based Chat Bots, including Copilot.
+- MSFT (and GitHub) teams believe the best prompt is the one that you _don't have to write_.
+- Copilot `/fix` command: Just use the command, don't bother adding additional prompt text!
+- VSCode launch.json: Enables custom run configuration settings.
+- When VSCode Copilot displays suggested code, the user can update that code _right in the suggested code window_!
+- Search for [Python in VS Code Release News](https://youtube.com/@code/streams) by Dawn Wages (and others). Also see [Python Web Apps: Databases & ORMs](https://developer.microsoft.com/en-us/reactor/events/22170/), also featuring Dawn and others.
+- Check out [Python at Microsoft](https://developer.microsoft.com/en-us/python) see Python WebApps 2024 aka.ms/python-web-apps-2024 also see aka.ms/python
+- C# DevKit Extension includes C# Extention, and IntelliCode for C# Dev Kit.
+- C# DevKit extensions take existing Visual Studio features like dev, test, and run, and integrated them into VS Code!
+- C# DevKit supports VSCode on any platform that VSCode supports!
+- Consider using VSCode _instead of PowerPoint_ for session slides - be like Leslie Richardson, Sr. Prod Manager, MSFT!
+- The .NET SDK is available to install within VSCode's Extentions Marketplace!
+- View and select Project Templates using `Shift` + `CTRL` + `P` and type `Templates`. The Project Template list is the same as those from `dotnet new ...` or Visual Studio's `New Project` menu item.
+- Github Copilot agent can be told to look at your entire Workspace, a File, or a Selection.
+- 'sparkles' are the :stars: that appear in-line with the code indicating Copilot has words.
+- Review the [demo repo](https://gh.io/streamlit): Helps speed-up project start-up.
+- VSCode Terminal right-click has Copilot options, for example: Highlight an error message in Terminal and select "explain this".
+- Rejection (in job interviews) will help you to find the team that is right for you and will help you grow.
+- Copilot can answer questions about your Workspace like: "How can I build this project?" despite the fact it does not have access to your entire codebase. Use `@workspace` and follow with your question!
+- Try `@workspace where's #selection tested?` to find test(s) related to specific code.
+- `Flattening` an Array: To integrate multiple Arrays into one.
+- Treat Copilot interactions _as a conversation_ for the best results. Continuations are used as part of Copilot's overall context it will use to respond to a prompt.
+
 ## Week 15 and 16
 
 Throughout this week I've been focused on the BF-BMX project. I'll be meeting soon with at least 1 of the key end users soon to go over current status, find out what needs to be done, and to prioritize that work accordingly. FOr the last several weeks, as I've implemented features and squashed bugs, I've been focused on maintaining a working product between PRs. This has made it possible to work "ahead" of some scheduled work items, yet still be able to "go back" to a previous branch, make progress and/or fix bugs, and still be able to deploy a Debug or Release build for hands-on testing at pretty much any time.
