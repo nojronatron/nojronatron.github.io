@@ -310,7 +310,6 @@ I should start finding ways to make these challenges more fun to complete, rathe
 2. Review the difference between `while` code blocks and recursive methods.
 3. Brain dump the properties and methods of a LinkedList and its Node type.
 
-
 ## Week 9 and 10
 
 Completed initial BF-BMX API Server build. All updates are documented in the README. There are some open questions about the output logging formats. During implementation, I knew changes to logging might be necessary so I've made it relatively easy to change the logging while minimizing how much code is touched or affected.
@@ -359,7 +358,7 @@ How can Copilot be configured to query my custom data?
 - Build a Plugin! In the demo, the host used TS in (what looks like) a React App.
 - Message Extension-based Plugins are the new thing developers can use.
 - Low-code devs can use Tools to do this too.
-- Message Extensions are composed of: Manifest.json, 
+- Message Extensions are defined in manifest.json.
 - Manifest.json: Information about the Plugin including where it can run, and other details including "Azure Bots" and various commands (queries). Can define parameters which are JSON-like payloads including strings or arrays of strings, etc.
 - Teams Toolkit can generate JS/TS to extend functionality or handle commands (function calls) to build the custom plugin.
 - Plugins are real time, and permissions and data compliance rules are allowed (enforced?). They are not integrated into Semantic Index and they are not restricted within the Tenant. Graph Connectors provide more features and Tenant restriction than Plugins.
