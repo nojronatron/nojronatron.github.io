@@ -21,9 +21,10 @@ NOTE: I am no longer making any effort to verify any of these work in Windows Po
 - [Get All The Things](#get-all-the-things)
 - [Server Services](#server-services)
 - [System Stuff](#system-stuff)
+- [Update Bash Profile By Hand](#update-bash-profile-by-hand)
 - [Install Software](#install-software)
 - [Specialized Tools](#specialized-tools)
-- [Primer How Linux Works](#primer-how-linux-works)
+- [Primer: How Linux Works](#primer-how-linux-works)
 - [References](#references)
 - [Footer](#footer)
 
@@ -380,15 +381,26 @@ Get specific Linux kernel version and type: `uname -sr`
 
 Environment variables like `PATH=` are stored in `/etc/environment`, as well as `.zshrc` and `.config` files, often in the user profile area (but there could be others).
 
-Update Alternatives: `update-alternatives --list java` displays path to java JDK.
+- Update Alternatives: `update-alternatives --list java` displays path to java JDK.
+- Display all environment variables in the current context: `printenv`
+- Display a specific environment variable: `printenv VAR_NAME` e.g. `printenv JAVA_HOME`
+- Display the existing PATH environment variable: `echo $PATH`
+= Update $PATH with a new entry: `export PATH=$PATH:/opt/package/example/bin`
+- Update Bash Profile: See [Update Bash Profile by Hand](#update-bash-profile-by-hand) or use `zsh` or another package to do it for you.
 
-Display all environment variables in the current context: `printenv`
+## Update Bash Profile By Hand
 
-Display a specific environment variable: `printenv VAR_NAME` e.g. `printenv JAVA_HOME`
+`.bashrc`: Contains bash configuration and environment variables, command history, and prompt customization like colors and content.
 
-Display the existing PATH environment variable: `echo $PATH`
+- Functions can be created following a javascript-like pattern: `function_name() { commands... }`.
+- `PS1`: Defines the properties of the 'default prompt'.
+- Setting colors requires implementing ASCII codes. To make the text green, prefix the text with: `\[\033[01;32m\]`. I.e.: `echo -e '\033[1;33mThis is yellow text\033[0m`.
+- When adding special characters like `!` to a bash configuration like `PS1`, it might be required to use single-quote characters `'` instead of double-quote characters `"`, because `!` (and many others) have special meaning and not considered text.
 
-Update $PATH with a new entry: `export PATH=$PATH:/opt/package/example/bin`
+To include the current Git branch in the prompt:
+
+1. Build a function with the the following code: `git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'` (no return statement or semicolon necessary).
+2. Call the function within the `PS1` definition line like: `...\[033[1;33m\]$(branch_function)\[...`.
 
 ### Environment Variable Hierarchy
 
