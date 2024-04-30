@@ -4,6 +4,12 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## Week 17 and 18
 
+### Azure Developers DotNET Day 2024
+
+I attended this very rapid-paced, multi-topical stream of sessions revolving around developing on top of Azure services.
+
+Here are my hastily written [notes](./azure-developer-day-2024.html).
+
 ### BF Winlink Form
 
 While I had some down time, I took a look at dealing with a few issues with the BF Race Tracker form.
