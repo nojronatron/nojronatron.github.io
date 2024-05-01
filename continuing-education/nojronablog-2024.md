@@ -4,6 +4,16 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## Week 17 and 18
 
+### Release Build and Publish Activities
+
+Lessons learned while developing Published App configurations:
+
+- Visual Studio seems to limit the number of Publish configurations per-project to 1? This is painful for those that are publishing self-contained as well as portable and/or architecture-targeted Apps.
+- Publishing to a OneDrive folder is not a good idea. OneDrive quickly gets out of sync with file creation/deletion and wants human input as to what to do with the files, basically asking "I see you deleted files on your computer, should they be deleted from OneDrive, too?". Isn't that _your job_ OneDrive? :smiley:
+- Carefully plan Publishing configurations and naming schemes to take into account: Target architecture or portable, Self-contained or Framework-dependent, Project type (Desktop, service, webapp, etc), and maybe version.
+- Installing Apps on Windows Desktop might requiring bypassing a security pop-up that tries to steer the user away from installing. Without an active Code Signing Certificate ($$$) the only way around this is to tell users how to get around this (perfectly valid) warning window.
+- Using `dotnet` to publish is handy. It includes `--self-contained`, `--framework`, `--configuration {Release...}`, and `--arch {x64}` options, and can be configured to output to a separate folder with `--output {dir}`.
+
 ### Azure Developers DotNET Day 2024
 
 I attended this very rapid-paced, multi-topical stream of sessions revolving around developing on top of Azure services.
