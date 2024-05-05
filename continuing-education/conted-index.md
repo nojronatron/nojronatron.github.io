@@ -28,7 +28,7 @@ This list became so large it was unmanageable in an MD file. Most items have mov
 ## Notes And Takeaways from Research and Experience
 
 - [x] Attended [Azure Developers .NET Day 2024](./azure-developer-day-2024.html) and took a bunch of notes.
-- [x] Attended a .NET Community Standup regarding [simplifying development](./dotnet-simplify-development.html), where PMs and Architects discussed .NET project Project templating, Visual Studio Solution files, C# and F#, and other items such as nullability and global usings.
+- [x] Attended a .NET Community Standup regarding [simplifying development](./dotnet-simplify-development.html), where PMs and Architects discussed .NET project templating, Visual Studio Solution files, C# and F#, and other items such as nullability and global usings.
 - [x] MSFT [JDConf - the Java Conference](./java-jdconf2024-notes.html).
 - [x] MSFT Reactor session note on [Azure Container Apps](./azure-serverless-containers-apps.html).
 - [x] [.NET Publish command](./dotnet-publishing-apps.html) and types of published packages.
