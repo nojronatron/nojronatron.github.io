@@ -2,6 +2,85 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 17 and 18
+
+### Of Course There Are Bugs
+
+When aren't there?
+
+Working though tweaks discovered during the BF-BMX Beta Launch meeting, as well as bugs found since then, I'm confident to say that the bugs will never end. The question is: Can I address the bugs correctly to minimize the impact of remaining bugs, known and unknown, going forward?
+
+Meanwhile, some key takeaways:
+
+- Focus on one bug at a time. Even if a new bug is discovered while addressing the one, just document the newly discovered bug and then complete resolving the initial one.
+- Avoid reformatting code in areas that are not _directly related to the branch that I am currently working on_. Doing otherwise is bound to introduce confusion and possibly more bugs, wastes time in unexpected ways, and produces a lot of unnecessary code churn.
+- Pay attention to the expected input format to a method that is under test. If the method is accepting a string, but inside are special characters like `\r\n` and the like, the test might return a false positive (or false negative), which will slow the debugging process.
+- Be very specific with each test method. Simply testing lots of permutations of input and output data in a single test is hard to track and debug.
+- Name test methods very carefully. Be specific. Consider what will happen several weeks from today how to describe thid test so it is easy to read and understand just from the method name.
+- Don't expect the method name _alone_ to provide enough context to know what the test is doing or what feature(s) it might be testing. Always read through the inputs and the test code to verify understanding, _then_ dive in and make changes _only if those changes are necessary_.
+- Don't be afraid to write a new test method to cover a test case that might be covered elsewhere in unit tests. If it turns out the test overlap, they can be merged together at a later time.
+- Just because a problem seems very hard to solve, or I have been told "it is a tough problem", doesn't mean I can't solve it ever.
+- Look for the most simple yet effective solution possible. Even if there are aspect of the problem that aren't completely solved, start with that simple solution and walk through the test cases and input/output perpmutations. This will help my mind come up with a different, better solution.
+
+### Release Build and Publish Activities
+
+Lessons learned while developing Published App configurations:
+
+- Visual Studio seems to limit the number of Publish configurations per-project to 1? This is painful for those that are publishing self-contained as well as portable and/or architecture-targeted Apps.
+- Publishing to a OneDrive folder is not a good idea. OneDrive quickly gets out of sync with file creation/deletion and wants human input as to what to do with the files, basically asking "I see you deleted files on your computer, should they be deleted from OneDrive, too?". Isn't that _your job_ OneDrive? :smiley:
+- Carefully plan Publishing configurations and naming schemes to take into account: Target architecture or portable, Self-contained or Framework-dependent, Project type (Desktop, service, webapp, etc), and maybe version.
+- Installing Apps on Windows Desktop might requiring bypassing a security pop-up that tries to steer the user away from installing. Without an active Code Signing Certificate ($$$) the only way around this is to tell users how to get around this (perfectly valid) warning window.
+- Using `dotnet` to publish is handy. It includes `--self-contained`, `--framework`, `--configuration {Release...}`, and `--arch {x64}` options, and can be configured to output to a separate folder with `--output {dir}`.
+
+### Azure Developers DotNET Day 2024
+
+I attended this very rapid-paced, multi-topical stream of sessions revolving around developing on top of Azure services.
+
+Here are my hastily written [notes](./azure-developer-day-2024.html).
+
+### BF Winlink Form
+
+While I had some down time, I took a look at dealing with a few issues with the BF Race Tracker form.
+
+- CSV data entry and editing: This is possible, so I've added an Issue to the GitHub repo so it can get get implemented and a PR prepared.
+- Various code issues: With some research and a little help from Github Copilot, some function refactoring is in the works to hopefully make the code easier to read and remove unused or unnecessary code.
+
+### VS Code Day 2024 Notes
+
+Some succinct takeaways from the 24-April-2024 event I attended (and enjoyed):
+
+- Clinical documentation summaries: How VSCode team approaches writing changelog entries.
+- [ElectronJS](https://www.electronjs.org/): Cross-platform desktop apps framework.
+- VSCode, Slack, and Teams are all based on ElectronJS.
+- VSCode Team took 7 years to build and release Floating Windows feature due to _perceived_ complexity with multi-process file access and editing. See [VSCode Editor Custom Layout](https://code.visualstudio.com/docs/editor/custom-layout) for details on Floating Windows and other Layout features I could (should?) be using.
+- Elegant solutions: A core goal of a developer is to find an elegant solution - simple, correct, and robust.
+- Burke says (sic) if you believe something is inherently complex, you won't go looking for the simple solution.
+- VS Code Terminal _is just a text editor_ (the front-end to the actual Terminal processor).
+- Burke Holland (Principal Cloud Advocate) was using Wes Boz's VSCode Theme "Cobalt2".
+- Simulation Testing: A testing methodology that helps work around issues testing Prompt Engineering processes, as well as AI generative response testing.
+- Stochastic: Unpredictable. A foundational reality with today's AI and AI-based Chat Bots, including Copilot.
+- MSFT (and GitHub) teams believe the best prompt is the one that you _don't have to write_.
+- Copilot `/fix` command: Just use the command, don't bother adding additional prompt text!
+- VSCode launch.json: Enables custom run configuration settings.
+- When VSCode Copilot displays suggested code, the user can update that code _right in the suggested code window_!
+- Search for [Python in VS Code Release News](https://youtube.com/@code/streams) by Dawn Wages (and others). Also see [Python Web Apps: Databases & ORMs](https://developer.microsoft.com/en-us/reactor/events/22170/), also featuring Dawn and others.
+- Check out [Python at Microsoft](https://developer.microsoft.com/en-us/python) see Python WebApps 2024 aka.ms/python-web-apps-2024 also see aka.ms/python
+- C# DevKit Extension includes C# Extention, and IntelliCode for C# Dev Kit.
+- C# DevKit extensions take existing Visual Studio features like dev, test, and run, and integrated them into VS Code!
+- C# DevKit supports VSCode on any platform that VSCode supports!
+- Consider using VSCode _instead of PowerPoint_ for session slides - be like Leslie Richardson, Sr. Prod Manager, MSFT!
+- The .NET SDK is available to install within VSCode's Extentions Marketplace!
+- View and select Project Templates using `Shift` + `CTRL` + `P` and type `Templates`. The Project Template list is the same as those from `dotnet new ...` or Visual Studio's `New Project` menu item.
+- Github Copilot agent can be told to look at your entire Workspace, a File, or a Selection.
+- 'sparkles' are the :stars: that appear in-line with the code indicating Copilot has words.
+- Review the [demo repo](https://gh.io/streamlit): Helps speed-up project start-up.
+- VSCode Terminal right-click has Copilot options, for example: Highlight an error message in Terminal and select "explain this".
+- Rejection (in job interviews) will help you to find the team that is right for you and will help you grow.
+- Copilot can answer questions about your Workspace like: "How can I build this project?" despite the fact it does not have access to your entire codebase. Use `@workspace` and follow with your question!
+- Try `@workspace where's #selection tested?` to find test(s) related to specific code.
+- `Flattening` an Array: To integrate multiple Arrays into one.
+- Treat Copilot interactions _as a conversation_ for the best results. Continuations are used as part of Copilot's overall context it will use to respond to a prompt.
+
 ## Week 15 and 16
 
 Throughout this week I've been focused on the BF-BMX project. I'll be meeting soon with at least 1 of the key end users soon to go over current status, find out what needs to be done, and to prioritize that work accordingly. FOr the last several weeks, as I've implemented features and squashed bugs, I've been focused on maintaining a working product between PRs. This has made it possible to work "ahead" of some scheduled work items, yet still be able to "go back" to a previous branch, make progress and/or fix bugs, and still be able to deploy a Debug or Release build for hands-on testing at pretty much any time.
@@ -265,7 +344,6 @@ I should start finding ways to make these challenges more fun to complete, rathe
 2. Review the difference between `while` code blocks and recursive methods.
 3. Brain dump the properties and methods of a LinkedList and its Node type.
 
-
 ## Week 9 and 10
 
 Completed initial BF-BMX API Server build. All updates are documented in the README. There are some open questions about the output logging formats. During implementation, I knew changes to logging might be necessary so I've made it relatively easy to change the logging while minimizing how much code is touched or affected.
@@ -314,7 +392,7 @@ How can Copilot be configured to query my custom data?
 - Build a Plugin! In the demo, the host used TS in (what looks like) a React App.
 - Message Extension-based Plugins are the new thing developers can use.
 - Low-code devs can use Tools to do this too.
-- Message Extensions are composed of: Manifest.json, 
+- Message Extensions are defined in manifest.json.
 - Manifest.json: Information about the Plugin including where it can run, and other details including "Azure Bots" and various commands (queries). Can define parameters which are JSON-like payloads including strings or arrays of strings, etc.
 - Teams Toolkit can generate JS/TS to extend functionality or handle commands (function calls) to build the custom plugin.
 - Plugins are real time, and permissions and data compliance rules are allowed (enforced?). They are not integrated into Semantic Index and they are not restricted within the Tenant. Graph Connectors provide more features and Tenant restriction than Plugins.
