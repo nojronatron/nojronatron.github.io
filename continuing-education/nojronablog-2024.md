@@ -4,6 +4,24 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## Week 17 and 18
 
+### Of Course There Are Bugs
+
+When aren't there?
+
+Working though tweaks discovered during the BF-BMX Beta Launch meeting, as well as bugs found since then, I'm confident to say that the bugs will never end. The question is: Can I address the bugs correctly to minimize the impact of remaining bugs, known and unknown, going forward?
+
+Meanwhile, some key takeaways:
+
+- Focus on one bug at a time. Even if a new bug is discovered while addressing the one, just document the newly discovered bug and then complete resolving the initial one.
+- Avoid reformatting code in areas that are not _directly related to the branch that I am currently working on_. Doing otherwise is bound to introduce confusion and possibly more bugs, wastes time in unexpected ways, and produces a lot of unnecessary code churn.
+- Pay attention to the expected input format to a method that is under test. If the method is accepting a string, but inside are special characters like `\r\n` and the like, the test might return a false positive (or false negative), which will slow the debugging process.
+- Be very specific with each test method. Simply testing lots of permutations of input and output data in a single test is hard to track and debug.
+- Name test methods very carefully. Be specific. Consider what will happen several weeks from today how to describe thid test so it is easy to read and understand just from the method name.
+- Don't expect the method name _alone_ to provide enough context to know what the test is doing or what feature(s) it might be testing. Always read through the inputs and the test code to verify understanding, _then_ dive in and make changes _only if those changes are necessary_.
+- Don't be afraid to write a new test method to cover a test case that might be covered elsewhere in unit tests. If it turns out the test overlap, they can be merged together at a later time.
+- Just because a problem seems very hard to solve, or I have been told "it is a tough problem", doesn't mean I can't solve it ever.
+- Look for the most simple yet effective solution possible. Even if there are aspect of the problem that aren't completely solved, start with that simple solution and walk through the test cases and input/output perpmutations. This will help my mind come up with a different, better solution.
+
 ### Release Build and Publish Activities
 
 Lessons learned while developing Published App configurations:
