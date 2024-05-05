@@ -6,6 +6,7 @@ Various notes regarding application publishing in the .NET Ecosystem.
 
 - [Versioning](#versioning)
 - [Publish Self Contained](#publish-self-contained)
+- [Framework Dependent](#framework-dependent)
 - [Publish Self Contained Command Line](#publish-self-contained-command-line)
 - [ReadyToRun Images](#readytorun-images)
 - [Ahead Of Time (AOT)](#ahead-of-time-aot)
@@ -33,7 +34,9 @@ Drawbacks:
 - Larger portable installer file size.
 - Upgrading .NET version requires new self-contained publish.
 
-The simplest deployment is `Framework-Dependent`:
+## Framework Dependent
+
+The simplest deployment type:
 
 - Cross-platform.
 - Smaller package size (do not include .NET runtime), so user must install if not already has.
@@ -96,11 +99,11 @@ Just a quick list of notes:
 - Requires _.NET 7_+
 - Console apps _only_ in .NET 7
 - Limited libraries available in .NET 7
-- .NET 8 fewer limitations, still incomplete (see [References](#references))
+- .NET 8 fewer limitations, still incomplete (see .NET Native AOT in [References](#references))
 
 Publish apps using Native AOT via the command line.
 
-There are AOT-Compatibility Analyzers that can indivate whether a library is Native AOT ready.
+There are AOT-Compatibility Analyzers that can indicate whether a library is Native AOT ready.
 
 ## References
 
