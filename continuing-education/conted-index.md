@@ -10,23 +10,28 @@ A collection of notes from research and continuing education, with references fo
 - [Azure Learnings](#azure-learnings)
 - [Footer](#footer)
 
+## Currently Active Learning and Activities
+
+- [ ] Read "Inclusive 101 Guidebook" from Microsoft Design.
+- [ ] Build and deploy a functional version of [BF-BMX](https://github.com/nojronatron/BF-BMX) - the message synchronization tool for an upcoming volunteer event.
+- [x] [MVVM and MSFT MVVM Toolkit](./dotnet-wpf-mvvm-learnings.html). Collection of captured WPF and MVVM project layout implementations and frameworks. Targets .NET Framework 4.6+, and .NET 6+.
+- [ ] Update the [BF Bib Report Form](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form) and prepare for possible usage by August 2024.
+
 ## Things I Want To Learn More About
 
-This list became so large it was unmanageable in an MD file. Most items have moved to a private Trello board so I can better manage my own backlog. Here are some newer items:
+Here is a snippet of items I look forward to learning more about:
 
-- [ ] Take another look at [Contributing to Open Source Software projects](continuing-education\oss-contrib-humanizer.md).
+- [ ] Meshtastic [Web](https://github.com/meshtastic/web) is an open source project looking for help. Given my recent interest in LoRa text-message communications, this might be a good [OSS contribution](continuing-education\oss-contrib-meshtastic.md) option for me.
+- [ ] Gain familiarity with [Playwright](https://playwright.dev/), an end-to-end testing framework for .NET.
 - [ ] [Bogus for .NET](https://github.com/bchavez/Bogus) a Faker.js port for .NET.
 - [ ] MSFT [Build 2024 Conference](./msbuild-2024-notes.html) will be held on 21-23 May, 2024.
 - [ ] Consider obtaining a GitHub Foundations Certification.
 - [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
 
-## Currently Active Learning and Activities
-
-- [x] [MVVM and MSFT MVVM Toolkit](./dotnet-wpf-mvvm-learnings.html). Collection of captured WPF and MVVM project layout implementations and frameworks. Targets .NET Framework 4.6+, and .NET 6+.
-- [x] Learn how to effectively (and properly) leverage [Async Await](./dotnet-async-await-notes.html) and [Task Parallel Library](./dotnet-taskparallellibrary-notes.html).
-
 ## Notes And Takeaways from Research and Experience
 
+- [x] Learn how to effectively (and properly) leverage [Async Await](./dotnet-async-await-notes.html) and [Task Parallel Library](./dotnet-taskparallellibrary-notes.html).
+- [x] Complete MS Learn Web Accessibility Basics and [take notes](./web-accessibility-basics.html).
 - [x] Attended [Azure Developers .NET Day 2024](./azure-developer-day-2024.html) and took a bunch of notes.
 - [x] Attended a .NET Community Standup regarding [simplifying development](./dotnet-simplify-development.html), where PMs and Architects discussed .NET project templating, Visual Studio Solution files, C# and F#, and other items such as nullability and global usings.
 - [x] MSFT [JDConf - the Java Conference](./java-jdconf2024-notes.html).

@@ -2,6 +2,49 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 20
+
+### Bugs Bugz Boogz
+
+Sometimes there are surprising features in WPF. For example, implementing Binding Validators on Controls can have the side-effect of the Source property not receiving the data that did not pass validation. I'm sure this is by design and, with a little thought, it can make sense. After a few hours of tracking down a pesky bug in BF-BMX Beta 2, I concluded that the custom validation would not be compatible with updating the on-screen buttons and on-screen status updates. I'll need to look into an alternative means of providing on-screen feedback to the user when they've entered an invalid path.
+
+Another bug that I invented while architecting the file system monitor wrappers is ignoring the difference between the nullable wrapper class, and the nullable FileSystemWatcher class itself:
+
+- Testing for null was accomplished by checking to see if the watcher Wrapper class was null. That's fine until it is instanciated and then destroyed, in which can it is no longer null despite calling the wrapper's `Dispose()` mthod.
+- Nullifying the wrapped FileSystemMonitor class is simple because it implements `IDisposable`, but my wrapper class only wrapped that functionality, rather than integrating it, or (perhaps better yet) doing property null-checks.
+
+Going forward, I'll have to refactor the code to either:
+
+1. Refactor the null-checks to differentiate between the FileSystemWatcher instance being null, vs the wrapper class (and it's encapsulated instance) being null, or
+2. Bubble-up the wrapper-class properties to become `Observable` to the ViewModel.
+
+## Week 19
+
+### BF-BMX Beta 2
+
+At the May 1st meeting, discussion around tweaks and alterations led to a few new features. Implementing them was not too difficult and new builds were produced on 7-May for evaluation.
+
+Some takeaways from this feature-update and debugging work:
+
+- Launching Windows Explorer from a WPF App isn't too complex. The key is in the .NET namespace `System.Diagnostics.Process`: Use `Process.Start(args...)` to point to 'Explorer.exe' and the path to open. The default behavior of this namespace feature is to _not_ attach the process to the process that launches it. This means a user could close BFBMX Desktop without also closing the launched Explorer instance.
+- Adding a day and timestamp to a logging function is fairly straightforword, using String formatting: `string message = $"{dateTimeStamp:M} at {dateTimeStamp:HH:mm:ss} - {message}";`.
+- Adding a logfile service to the Server took a bit more work but boiled down to writing an injectable class that uses async-await and concurrency techniques to ensure it doesn't block. This time I implemented `SemaphoreSlim` in an `async Task` method with a contained `Try-Catch-Finally` error handling structure. The down-side of avoiding blocking a thread is that log writes will often be in an unexpected order.
+- Updating RegEx patterns to catch missing or malformed location information in a Bib Record was difficult and required building a set of tests for specific situations. When I initially implemented RegEx, I had set the patterns as static String Properties and for every line in a message file the RegEx would be reconstructed and executed. This was inefficient so I set the RegEx instance as a static Property instead, along with a RegEx TimeOut (to avoid endless looping situations), then just call the instantiated RegEx static instance when needed to do the work. This is a best practice for RegEx in .NET 6. In .NET 8 there is a better way, but that will have to wait until the entire project is upgraded.
+
+### Web Accessibility Learnings
+
+Completed MS Learn Web Accessibility Basics. It was focused on ASP.NET webapp but concepts can be applied to any website and some aspects can be applied to Windows App, too.
+
+Key takeaways:
+
+- Design and maintain a sensible page hierarchy by using a single `h1` header and use `h2` etc headers to help navigate the page.
+- Use `alt` attribute on `img` tags to succinctly describe the image that is shown. Images that are simply decorative should have an `alt=""`, a blank attribute.
+- Many tools exist for evaluating Accessibility in web sites and Windows Apps. Leverage these to help refine an inclusive experience.
+- Windows 10 and 11 include Narrator :tm: and a Color Filter tool. Use these to evaluate web sites and Apps navigation and color palette selections.
+- Relying on `div` and complex `style` (in-line or otherwise) to make the page "look great" might impede accessibility.
+- Utilize semantic elements such as `header`, `main`, `footer`, `h1` (et al), `img`, `aside` and others (see [MDN Glossary on Semantics in HTML](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#semantics_in_html) for more details). Using semantic elements ensures accessiblility tools like Narrator and Tab-based navigation are possible. You can always _re-style those elements_ without breaking their hierarchical, semantic, and navigation meanings.
+- Use `input type="button"` or `button` elements instead of highly customized `div` elements, to maintain navigability and semantic affect.
+
 ## Week 17 and 18
 
 ### Of Course There Are Bugs
