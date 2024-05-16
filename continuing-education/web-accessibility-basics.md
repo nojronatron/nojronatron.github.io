@@ -146,7 +146,7 @@ Again, using built-in HTML elements and their included attributes will provide a
 - Use `input type="submit"` with `onclick=()` handler attribute to handle form submission.
 - Tab order is important, so designing the page with appropriate elements in a sensible order will provide a good experience for navigation by tabbing.
 
-### Accessibility Inisghts For Web
+### Accessibility Insights For Web
 
 FastPass Tool:
 

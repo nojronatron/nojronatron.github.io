@@ -4,8 +4,8 @@ A collection of notes from research and continuing education, with references fo
 
 ## Table of Contents
 
-- [Things I Want To Learn More About](#things-i-want-to-learn-more-about)
 - [Currently Active Learning and Activities](#currently-active-learning-and-activities)
+- [Things I Want To Learn More About](#things-i-want-to-learn-more-about)
 - [Notes And Takeaways from Research and Experience](#notes-and-takeaways-from-research-and-experience)
 - [Azure Learnings](#azure-learnings)
 - [Footer](#footer)
