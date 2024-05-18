@@ -4,6 +4,124 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## Week 20
 
+### OSS and TS
+
+Coding and transpiling TS is an interesting adventure, especially when looking at a project other than my own. Seems like there are issues with walking dependecy trees, either by the IDE and/or currently installed Extensions, so there are lots of red squigglies on screen. This is very distracting and I've asked around for help but haven't received any responses so far. I'll push forward anyways.
+
+### Blazor Server and Hybrid
+
+After reviewing my progress on MSFT Learn modules after several weeks away from them, I discovered some ASP.NET and Blazor modules I had started but not yet completed. Upon completing those I started looking at Blazor as a framework that could help build several projects going forward:
+
+- BF-BMX: Server-side processing and pre-rendering would be convenient for serving up reports and statistical web content to any brownser. This would avoid having to add-on any features to the Desktop App, and will reduce testing and debugging efforts on that side.
+- Mobile Weather App: This project has been stalled while working on BF-BMX and other tasks. Blazor won't fix that, but Blazor Hybrid could provide a simplified UI development platform for moving it forward.
+
+### DSA Reboot
+
+I've restarted practicing DS&A challenges. In the last few weeks I've lost a bit of familiarity in this area due to focusing on other projects.
+
+Quick review of a Singly Linked List with Insert and GetValueAfter methods:
+
+```c#
+public class LLNode
+{
+  public int? Data {get;set;}
+  public LLNode? Next {get;set;}
+}
+public class SinglyLinkedList
+{
+  public LLNode? Head {get; private set;} = null;
+  public bool IsEmpty => return Head is null;
+  public SinglyLinkedList(int data)
+  {
+    Head = new LLNode(data);
+  }
+  public void Insert(int data)
+  {
+    if (IsEmpty)
+    {
+      Head = new LLNode(data);
+    }
+    else
+    {
+      LLNode newNode = new(data);
+      newNode.Next = Head;
+      Head = newNode;
+    }
+  }
+  public int GetValueAfter(int preceedingData)
+  {
+    LLNode? current = Head;
+    while (current is not null)
+    {
+      if (current.Data == preceedingData &&
+          current.Next is not null)
+        {
+          return current.Next.Data;
+        }
+      current = current.Next;
+    }
+    // If an existing Exception type does not already exist, create one that inherits from Exception
+    Exception NotFoundException = new("Could not find value in this list.");
+    throw NotFoundException;
+  }
+}
+```
+
+Quick review of a Stack datastructure:
+
+```c#
+public class MyStackNode
+{
+  public int Data { get; set; }
+  public MyStackNode? Next { get; set; }
+  public MyStackNode(int data)
+  {
+    Data = data;
+    Next = null;
+  }
+}
+public class MyStack
+{
+  public MyStackNode? Top { get; set;} // null means empty
+  public bool IsEmpty => Top is null;
+  public void Push(int data)
+  {
+    if (IsEmpty)
+    {
+      Top = new MyStackNode(data);
+    }
+    else
+    {
+      MyStackNode newNode = new(data);
+      newNode.Next = Top;
+      Top = newNode;
+    }
+  }
+  public int Peek()
+  {
+    if (IsEmpty)
+    {
+      Exception EmptyStackException = new("This stack is Empty.");
+      throw EmptyStackException;
+    }
+    return Top.Data;
+  }
+  public int Pop()
+  {
+        if (IsEmpty)
+    {
+      Exception EmptyStackException = new("This stack is Empty.");
+      throw EmptyStackException;
+    }
+    MyStackNode temp = Top; // possible null value here
+    int topData = temp.Data
+    Top = Top.Next; // possible null value here
+    temp.Next = null;
+    return topData;
+  }
+}
+```
+
 ### Bugs Bugz Boogz
 
 Sometimes there are surprising features in WPF. For example, implementing Binding Validators on Controls can have the side-effect of the Source property not receiving the data that did not pass validation. I'm sure this is by design and, with a little thought, it can make sense. After a few hours of tracking down a pesky bug in BF-BMX Beta 2, I concluded that the custom validation would not be compatible with updating the on-screen buttons and on-screen status updates. I'll need to look into an alternative means of providing on-screen feedback to the user when they've entered an invalid path.
