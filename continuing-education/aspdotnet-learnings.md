@@ -4,12 +4,159 @@ Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET
 
 ## Table of Contents
 
+- [Blazor](#blazor)
 - [Minimal APIs](#minimal-apis)
 - [Entity Framework Core](#entity-framework-core)
 - [Full Stack ASP Dot Net Development](#full-stack-asp-dot-net-development)
 - [GitHub CodeSpaces](#github-codespaces)
 - [Resources](#resources)
 - [Footer](#footer)
+
+## Blazor
+
+There are 3 "flavors" (my words) of Blazor:
+
+- Blazor Web
+- Blazor Server
+- Blazor Hybrid
+
+Deploy a new Blazor Server using dotnet: `dotnet new blazorserver -o MyBlazorServerProject -f net6.0`. This creates a new Blazor Server Project named "MyBlazorServerProject" using the DotNET 6 SDK.
+
+### Blazor Web
+
+Provides a WebAssembly capabilities where components are executed in the client browser, rather than on the server. Provides cross-platform compatibility and enhanced performance by eliminating round-trip WRRCs.
+
+The number of available .NET APIs is limited, however speed and responsiveness are very high.
+
+### Blazor Server
+
+Serves-up static or dynamic pages to clients, based on ASP.NET Core technologies, and utilizes SignalR for back-end communications with each Web Client connection (WebSockets). Back-end data interop is built-in, and web page interactions are handled locally and by the server depending on the type of action.
+
+Useful for for embedded applications and apps running on the local network.
+
+Some limitation on performance due to WRRC round-trip time requirements.
+
+### Blazor Hybrid
+
+Define UI layout and functionality, similar to React and Vue, and integrates with .NET MAUI for managing multi-platform support such as Android, iOS, and Linux. Designed for native apps, desktop, and mobile.
+
+### Blazor vs Razor
+
+Blazor utilizes Razor Components, which are specially crafed Razor pages, using Razor syntax to integrate C# with HTML.
+
+### Razor Components
+
+Razor Components are Pascal-case files with an extension of `.razor`:
+
+- Contain C# and HTML.
+- Razor Syntax provide additional markup, usually beginning with the `@` character.
+- Razor Markup allows defining the `@page` (URL Path) of the component, and where C# `@code` is allowed within the HTML markup.
+- Razor Markup allows Expressions within HTML code through use of the `@` as well, i.e. `<h3>My @webSiteName</h3>`.
+
+Deploy a new Razor Component using 'dotnet' like so `dotnet new razorcomponent -n ComponentName -o Pages`. This will create a new Razor Component named `ComponentName.razor` in the folder `Pages` of an existing Blazor Server Project.
+
+### Build and Run Blazor
+
+To build Blazor Server use the same methods as with other projects (`dotnet build` or 'F6' using Visual Studio).
+
+To build and run Blazor Server and force it up restart when code is changed (ala `nodemon`) use `dotnet watch` in the Terminal or PowerShell console in the Blazor Server Project path.
+
+### MVC Controllers
+
+- Use `Microsoft.AspNetCore.Mvc` namespace at the top of a Class definition.
+- Add `[Route(string)]` and `[ApiController]` attributes to designate the class as an MVC Controller.
+- CTOR-Inject any required services just like any other class.
+- Use `[HttpGet]`, `[HttpPost]`, `[HttpPatch]`, `[HttpDelete]` (etc) REST call definitions to identify each Controller Method as an HTTP/API endpoint.
+
+### Share Data Between Components
+
+There are 3 ways to do this:
+
+- Use Component Parameters: Parent component provides parameter values to the child component.
+- Use Cascading Parameters: Parent component provides parameter values via child component(s) to grand-children component(s).
+- Share Data using AppState.
+
+#### Component Parameters
+
+- Useful for passing data from Parent Components to Child Component Fragments.
+- Component Fragments are designed to only render a single Control or small subset for the Parent Component.
+- Child Components do _not_ automatically have access to the same data the Parent Component might have.
+- Define Component Parameters _in the child component_ and then set their value(s) _from the parent component_.
+- Use `[Parameter]` attribute to identify the Component Parameter in the Child Component.
+- Use `<ChildComponent Param=Value />` syntax to assign a value to the Component Parameter in the Parent Component.
+
+```c#
+// child Component
+<h1>Hello @Name</h1>
+
+@code {
+  [Parameter]
+  public string Name {get; set;}
+  ...
+}
+```
+
+```c#
+// parent Component
+<h1>The computer says <ChildComponent Name=@UserName /></h1>
+
+@code {
+  public string UserName = "Anony Mouse";
+  ...
+}
+```
+
+#### Cascading Parameters
+
+- Used for passing data farther down the Component hierarchy requires using `CascadingParameters`.
+- Use `[CascadingParameter(Key=string)]` to define the Cascading Parameter in the Component Fragment.
+- Use `<CascadingValue Key=string Value=string>` and `</CascadingValue>` to _wrap_ descendent Component elements so they have access to the Cascading Parameter(s).
+
+_Note_: Objects can be passed using Cascading Parameters, it is not limited to value-type variables.
+
+#### AppState
+
+Define the properties to store in a new Class and register it as a scoped service:
+
+1. Create a new class with the parameters necessary to represent "state".
+2. Register the Class in `Program.cs` as a scoped service: `builder.Services.AddScoped<StateObject>();`.
+3. Inject the registered class into any Component that needs to use it using Razor Syntax: `@inject StateObject stateObj`.
+
+### Data Binding
+
+When an HTML element value is changed, the web page must be refreshed to show it.
+
+- In HTML + JS, this requires additional code.
+- Blazor Server enables data _binding_ to avoid having to write data-refresh code.
+- Razor syntax `@bind` does the hard work for you.
+- `@bind` understands whether `value`, `checked`, `content` or some other attribute is necessary to bind with, based on the element type it is attached to.
+
+Bindings work on events, too:
+
+- `onchange` DOM event: This is default trigger.
+- `oninput` fires whenever any character is entered into a TextBox, for example.
+- Bind to events using `@bind-value` and `@bind-value:event` directives.
+
+#### Bound Value Formatting
+
+Use the `@bind:format` directive to update formatting.
+
+See [Format Strings in Blazor Documentation](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/data-binding#format-strings-1) for details on when `@bind:format` can be used.
+
+_Note_: It is still possible to use pure C# string formatting techniques to apply:
+
+- Specialized formatting rules.
+- Culture-based formatting styles.
+
+### Common Things To Know and Understand
+
+- To _register_ a data access service to the Blazor Server application, implement a Data Model and a Service that can call an ORM or obtain the data from a file or REST call (etc), then register the data access Service in `Program.cs` like `builder.Services.AddSingleton<DataGetterService>();`.
+- OnInitializedAsync(): Event fires when component's initialization is complete and it has received initial parameters but the page has not rendered yet. Override this method to fetch data asynchronously.
+- Work with data access services by using the Blazor Directive `@inject`.
+- EntityFrameworkCore 6.0.8 supports Sqlite 6.0.8 and integrates well with Blazor Server.
+- Adding EntityFrameworkCore and registering a `DbSet<T>` allows adding an ASP.NET Controller that can access the database data.
+- If an _error page_ is returned after creating a new `Controller`, be sure to use `cURL` or similar to query the path and see what is actually returned. _A common scenario_ is routing is not correct and the returned page is _not_ the MVC Controller content, but an _error page_.
+- When passing Parameters around, use `Microsoft.AspNetCore.Components.EventCallback`. This is an event handler delegate type (struct) that can be used to cast an event handler (i.e. onclick() or lambda) to a parameter on the Fragment/Child Razor Component. Similar to passing a function using React `props`.
 
 ## Minimal APIs
 
