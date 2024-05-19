@@ -4,6 +4,7 @@ Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET
 
 ## Table of Contents
 
+- [Blazor](#blazor)
 - [Minimal APIs](#minimal-apis)
 - [Entity Framework Core](#entity-framework-core)
 - [Full Stack ASP Dot Net Development](#full-stack-asp-dot-net-development)
