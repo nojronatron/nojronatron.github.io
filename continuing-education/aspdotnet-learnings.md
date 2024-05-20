@@ -22,6 +22,21 @@ There are 3 "flavors" (my words) of Blazor:
 
 Deploy a new Blazor Server using dotnet: `dotnet new blazorserver -o MyBlazorServerProject -f net6.0`. This creates a new Blazor Server Project named "MyBlazorServerProject" using the DotNET 6 SDK.
 
+### When To Use Blazor (or not)
+
+Consider using Blazor if:
+
+- Full-stack web development framework is necessary.
+- Single .NET team can focus on C# and Razor page and back end components to rapidly develop a solution
+- Apply existing .NET skillsets.
+- High performance, scalable back-end for web is needed.
+
+Consider other options if:
+
+- Need to optimize download size and page-load time of client-side assets (i.e. WASM).
+- Heavy integration with other frontend framework ecosystems is required.
+- Older browser support is required.
+
 ### Blazor Web
 
 Provides a WebAssembly capabilities where components are executed in the client browser, rather than on the server. Provides cross-platform compatibility and enhanced performance by eliminating round-trip WRRCs.
@@ -147,6 +162,24 @@ _Note_: It is still possible to use pure C# string formatting techniques to appl
 
 - Specialized formatting rules.
 - Culture-based formatting styles.
+
+### Form Validation and Events
+
+Blazor Components can be used to validate and respond to client-side events without having to write JavaScript.
+
+- Blazor Event Handlers.
+- Forms in Blazor for data entry.
+- Server-side and client-side Form Validation.
+
+#### Handle Events Using C Sharp
+
+- Blazor Events correspond to DOM events.
+- User-define Events are allowed using Blazor.
+- Write event handlers in C#.
+- Bind Event to the Method.
+- EventArg parameters are added automatically by the Blazor RunTime.
+- Supports mouse clicks, guestures, key codes, and other event types.
+- Event Params can be queried in the event handler and Blazor will automatically add events like `MouseEventArgs` but they _must_ be identified in the handler's parameters list.
 
 ### Common Things To Know and Understand
 
