@@ -2,6 +2,46 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 21
+
+MS Build 2024 is happening this week and will consume a large chunk of time. I have a schedule set, and am looking forward to learning all that MSFT will share during the event!
+
+### Semantic Structural Elements
+
+I've learned that Semantic Elements are helpful when developing accessible, screen-reader-ready websites. While going through Microsoft Learn Blazor Modules, I've been trying to reinforce what I've learned by using. Here is a list of common Semantic Elements, sourced from [Mozilla Developer Network (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element):
+
+- `<body>`: The HTML content of the document. There can be only one! This is the root of all sectioning.
+- `<address>`: Enclosed HTML has contact information for 1 or more people or an organization.
+- `<article>`: Self-contained composition within a document page, application, or site. Intended to be reusable content e.g. a Forum Post, Newspaper article, etc.
+- `<aside>`: Enclosed content is only indirectly related to document's main content.
+- `<footer>`: The bottom of its nearest ancenstor sectioning content, or the root (`<body>`). Usually includes content author(s), copyright data, and/or links to related documents.
+- `<header>`: Introductory content or an area where Navigational aids are contained. May also contain a logo, search form, author, or other elements.
+- `<h1-6>`: Six levels of `<section>` headings. Will be auto-formatted by default CSS. Note: I try to stick with only 3 heading levels. _Note_: For the sake of screen readers, it is better to re-style these elements and use 1 as the top-level, than it is to use a highest level of 3, for example.
+- `<hgroup>`: Heading grouped with any secondary content e.g. Subheadings, Alt Titles, Taglines, etc.
+- `<main>`: The dominant content of the body of a document, or central functionality of an application.
+- `<nav>`: Section of the page that contains navigation links relative to the current document, and/or other documents. Can be used to define Table of Contents, menus, indexes, etc.
+- `<section>`: Generic standalone portion of a document. The least-specific semantic element. _Note_: Be certain to include a heading!
+- `<search>`: Form or controls used for searching or filtering operations.
+
+The above is the list of _content sectioning_ elements. I like to think of these as structurally significant elements that are critical to developing an accessible webpage _from the start_. There are many other element types that can (and should) be used as designed, here are the groups:
+
+- Main root `<html>`.
+- Document Metadata: Things that go inside of `<head>`.
+- Sectioning Root: This was listed above simply because it is directly related to content, but there is only one element in this category, `<body>`.
+- Text Content: Organize blocks or sections of content between the opening and closing `<body>` tags. These are useful for Accessibility and SEO, and related _directly_ to the content they wrap.
+- Inline Text Semantics: Further define content structure, and also include _meaning_ or _style_ to a word, line, or an arbitrary piece of text. _Note_: Use `<strong>` or CSS `font-weight` instead of `<b>`.
+- Image and Multimedia: Wrap map areas, sound content, image content, time-based data, or video content.
+- Embeded Content: Indicate where in the document an external application will provide content for, such as browser plugins, other HTML pages, or other content sources.
+- SVG and MathML: Another embedding category, specific to SVG images and MathML instances.
+- Scripting: Enable or disable scripts or the Canvas Scripting API.
+- Demarcating Edits: The `<ins>` and `<del>` elements used for added or removed content (presumedly in a versioned document representation).
+- Table Content: Defines tables, header cells, header row, columns, rows, and data cells.
+- Forms: It's more than just the `<form>` element! Check out [MDN HTML Element #Forms](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#forms) for details.
+- Interactive Elements: Create interactive user interface objects for widgets and alerts. `<details>` wraps information that is visible only when toggled "open". `<dialog>` wraps an alert or subwindow. `<summary>` provides a legend and also acts as the _toggling function_ for the `<details>` element, to open or close it when clicked.
+- Web Components: `<slot>` is used to provide a markup window for a separate DOM Tree within the document, and `<template>` sets a placeholder for where content _will eventually be added_, usually via a script or other DOM-editing function.
+
+There are also a ton of deprecated elements that _should not be used_.
+
 ## Week 20
 
 ### OSS and TS

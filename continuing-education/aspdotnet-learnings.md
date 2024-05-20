@@ -106,13 +106,15 @@ There are 3 ways to do this:
 }
 ```
 
+See [Razor Lifecycle Events](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-8.0#when-parameters-are-set-setparametersasync) for details about when parameters are set and how to manage that event.
+
 #### Cascading Parameters
 
 - Used for passing data farther down the Component hierarchy requires using `CascadingParameters`.
 - Use `[CascadingParameter(Key=string)]` to define the Cascading Parameter in the Component Fragment.
 - Use `<CascadingValue Key=string Value=string>` and `</CascadingValue>` to _wrap_ descendent Component elements so they have access to the Cascading Parameter(s).
 
-_Note_: Objects can be passed using Cascading Parameters, it is not limited to value-type variables.
+_Note_: Objects can be passed using Cascading Parameters - it is not limited to value-type variables.
 
 #### AppState
 
@@ -147,6 +149,122 @@ _Note_: It is still possible to use pure C# string formatting techniques to appl
 
 - Specialized formatting rules.
 - Culture-based formatting styles.
+
+### Pages, Routing, Layouts, and Navigation
+
+- Router Component: Improves Blazor App navigation using the NavLink component.
+- Route Parameters: Increase Routing functionality.
+- Layouts: Reduce duplicate code.
+
+#### Blazor Routing
+
+Use `@page` directive and `<NavLink>` component both impact routing.
+
+- `@page` helps configure Routes.
+- The query string in the URL contains information for the Router to process.
+- Goal is to direct the user request (query) to the correct page component with all information the component needs to render what the user wants.
+
+Router is configured in `App.razor`:
+
+- `<Found Context="routeData">` and `<NotFound>` components tell the Router what to do.
+- Route data and Layout information are included in the wrapped `<routeData>` details.
+- `<RouteView props...>` defines the RouteData and the DefaultLayout to use.
+- If wanted, an entire page can be defined using HTML elements (or another Razor Fragment) to display a page with links (back home etc) in the `<NotFound>` element content.
+
+The `@page` directive:
+
+- Syntax: `@page "/RouteName"`
+- Specifies the component should _handle requests directly_.
+- More than one `@page` directive can be used to define multiple routes that lead to the same page.
+
+NavigationManager manages handling portions of a URI:
+
+- Full URI: `https://domain.ext/parentRoute/relPath?key=value`
+- Base URI: `https://domain.ext`
+- Base Relative Path: `parentRoute/relPath`
+- Query String: `?key=value`
+
+NavigationManager Usage:
+
+- Must be `@inject`ed into component where values will be used.
+- In the example NavigationManager is used to get BaseUri, and that value is assigned to a variable that is called in the Razor syntax within an Anchor Link, providing a link to the Home Page.
+- NavigationManager has built-in methods to transform a Uri to an Absolute Uri, or other forms.
+- `NavigationManager.NavigateTo(AbsoluteUri | RelativeUri)` will send the user to another component in a code-call. This could be applied to a button `onclick` event, for example.
+
+The `<NavLink>` Component:
+
+- Use these to render Anchor elements to automate toggling the `link:active` style.
+- `<NavLink Match="matcher">` manages _when_ the link is highlighted.
+- `NavLinkMatch.All`: Only highlighted when href matches _entire current URL_.
+- `NavLinkMatch.Prefix`: Only highlighted when href matches _first part of the current URL_. Use this to help the user understand _which section of the website_ they are viewing.
+- Is basically a drop-in replacement for `<a href...>` elements.
+
+#### Route Parameters
+
+Capture a specifid parameter by using `@page "/BaseRelativePath/{parameter}`. This makes the parameter available to the component, like [Component Parameters](#component-parameters).
+
+- Route parameters are case-insensitive.
+- Route parameters are required by default.
+- Route parameters will automatically get bound to a component parameter with the same name, by Blazor Router.
+- Use a `?` question mark to make a route parameter optional. Set a default value within an appropriate Blazor Lifecycle Event such as `OnInitialized()` or `OnParametersSet()` (depending on what behavior is required).
+
+#### Route Constraints
+
+`@page "/BaseRelativePath/{parameter:int}`
+
+Use these to ensure the parameter Type is matched before the Blazor Router sends the parameter to the Component.
+
+Various types are allowed in Route Constraints:
+
+- bool
+- datetime
+- decimal
+- double
+- float
+- guid
+- long
+
+#### Catch-all Route Parameter
+
+Use `*` prefix to capture multiple parameters: `@page"/BaseRelativePath/{*parameter}`
+
+A match of 3 parameters could be stored in a string `[parameter]` on the page and displayed to the user, or processed as input.
+
+#### Blazor Layouts
+
+Use Layout Componets to set reusable page fragments for:
+
+- Consistent branding across pages.
+- Reduce code duplication and reuse common UI elements.
+- Share rendered markup with all components that reference the Layout Component.
+
+Layout files:
+
+- Use the `.razor` extension.
+- Use `@code` razor syntax code blocks.
+- _Must_ inherit from `LayoutComponentBase`.
+- _Must_ include a `@Body` directive in the location where referencing components will render their content.
+
+_Do not_ include an `@page` directive in Layout files - they do not handle requests and do not have routes created for them.
+
+The default Layout file in new Blazor Projects is `Shared/MainLayout.razor`.
+
+Using Layouts in Blazor Components:
+
+1. Add the `@layout` directive with the name of the Layout to apply to this component.
+2. Add the `@body` directive to the targeted Layout for the Component to render into.
+
+Apply a Template to all Blazor Components by using `_Imports.razor`. In this case, using `@layout` is not necessary, and instead the rendering will apply to all Components in the same folder as `_Imports.razor`, and all its sub-folders.
+
+Apply a default layout to every Component in _all folders_ by configuring the `<RouteView>` element and the `DefaultLayout` attribute in `App.razor`.
+
+- Simplifies applying a Layout to an entire site.
+- Components _can_ still declare their own `@layout` directive that will _override_ the settings from `App.razor`.
+
+App.razor:
+
+- Declares how pages are routed.
+- Defines which default Layout is to be used.
 
 ### Common Things To Know and Understand
 
