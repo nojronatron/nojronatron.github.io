@@ -4,73 +4,20 @@ Microsoft Build is a yearly conference aimed at .NET developers and focuses on V
 
 MSBuild takes place on 21 May through 23 May, 2024.
 
-## Imagine Cup Finals
+## Table of Contents
 
-There were 3 finalists, 2 of them were particularly interesting to me:
+- [Keynote - Wednesday](#keynote---wednesday)
+- [Extend Microsoft Copilot Using Copilot Studio](#extend-microsoft-copilot-using-copilot-studio)
+- [Maximize Joy Minimize Toil With Greater Dev Experiences](#maximize-joy-minimize-toil-with-greater-dev-experiences)
+- [AI Everywhere Breakout Session](#ai-everywhere-breakout-session)
+- [Imagine Cup Finals](#imagine-cup-finals)
+- [Keynote - Tuesday](#keynote---tuesday)
+- [Resources](#resources)
+- [Footer](#footer)
 
-- [RoadMap](https://www.planroadmap.com/)
-- [FromYourEyes](https://fromyoureyes.app/) - who won the Imagine Cup, a cash prize, and a mentoring session with Satya Nadella!
+## Keynote - Wednesday
 
-The other finalist was a team that developed hardware to detect emissions in metal fabrication plants, integrated with AI. Great idea for sure, and I wish that team well.
-
-Such a cool and inspiring event overall!
-
-## Keynote - Tuesday
-
-"Information at your Fingertips" - Bill Gates, 30 years ago. MSFT continues this vision, now with AI.
-
-Now, the extension to that is "With AI, you can build what matters".
-
-Highlights from Satya's keynote:
-
-- The scale of the impact of AI is deeper and broader than previous significant technology changes (Azure, Win32, etc).
-- 70 yo dreams: Can computers understand us? With more information digitised, can computers help us reason, plan, and act on all of this information?
-- AI today represents significant break-throughs on both fronts.
-- The rate of diffusion of technology (spreading around the world) is increasing.
-- Pi-Silica: SLM provided in every Copilot PC.
-- Windows Copilot Lirrary + on-device models using RAG, Vector
-- Announcement: PyTorch Native and Web Neural Network powered by DirectML now supported by MSFT.
-- MSFT "has always been a platform company...", enabling developers to build their own tools and applications.
-- "On track to power datacenters 100% by renewable energy by 2024" :astonished:
-- First vendor to support AMD ND MI300X-V5 silicon optimized for MS Azure workloads.
-- Announcement: Azure Maia is new hardware now serving AI Prompts.
-- Announcement: Azure Cobalt based VMs now available.
-- 50k organizations now use Azure AI.
-- GPT 4o allows inputs in multiple languages and also provides responses as such!
-- Announcement: MSFT already provides many models, and at least a dozen more have been added including Hugging Face, in this case directly to Azure AI Studio.
-- SLM: Small Language Model. Phi-3 is an example, and it has a half dozen or so models it leverages.
-- Announcement: KhanAcademy will be using MSFT AI available.
-- Announcement: AI-powered, Real-time Intelligence in Microsoft Fabric. Provides actionable insights.
-- GitHub Copilot Workspace: Automates creating an Issue, then Specing, Planning, and Coding the solution.
-- Announcement: GitHub Copilot Extensions - Customize capabilities from 3rd party services.
-- Announcement: GitHub Copilot for Azure. Where are my resources? ... other questions can be answered.
-- Demo: Using natrual language - Neha Batra VP Eng, GitHub did a demo using voice-command controlled Copilot development...in spanish!
-- Announcement: [TeamCopilot](https://www.microsoft.com/en-us/microsoft-365/blog/2024/05/21/new-agent-capabilities-in-microsoft-copilot-unlock-business-value/) - Facilitiate meetings in Teams, take notes, collaborate with Chats, address unresolved Issues (work items), manage projects, etc, using your organization's information. Coming later in 2024.
-- Looking forward: Copilots and Agents supporting many aspects of business processes and tasks.
-
-Rajesh had some interesting canned demonstrations on Team Copilot, Copilot for MSFT 365, etc.
-
-- Copilot Connectors allow users to go to a single source to get data from multiple sytsems.
-
-Jeff Teper
-
-- Copilot Extensions for _your Copilot_ for Teams, Sharepoint, and more.
-- Creating a custom Copilot takes just a few clicks
-
-Pavan Davuluri
-
-- Qualcomm Snapdragon DevKit for Windows.
-- Volumetric Apps: Partnership with Meta extends Copilot into Mixed-reality Apps - "VolumetricApps" and "VolumetricAPI".
-
-Kevin Scott
-
-- "Count on things getting more robust and cheaper over an agressive clip over time."
-- Aim for things that are truely ambitious, as the next generation of tools become ubiquitous.
-- Salman Khan was invited on stage to chat about AI, ChatGPT and Copilot.
-- Turn concerns and risks into features that focus on the overall mission of the organization.
-- Put up guardrails and constraints at the application layer to help drive safe, effective AI solutions and features.
-- Khan Academy is going to provide AI Teaching Tools "to every teacher in the US".
-- Khan says to focus on specific areas to make use of AI technology to move it and your project(s) forward, and to keep from becoming overwhelmed with (and overwhelming amount of) AI technologies.
+Speakers: (tbd)
 
 ## Extend Microsoft Copilot Using Copilot Studio
 
@@ -228,8 +175,9 @@ Focusing on real world AI, and areas for growth:
 
 NGINX (Brian Ehlert)
 
-- Is now 20 years old, started out solving the question of how to effectively handling 10,000 concurrent connections.
-- Orgs move to cloud struggle, NGINX and Azure can help.
+- NGINX is now 20 years old.
+- Began as a project aimed at solving the question of how to effectively handling 10,000 concurrent HTTP connections.
+- Orgs struggle as they move to cloud, NGINX and Azure can help.
 - NGINX-as-a-Service: Exclusively Intel and Azure! Paid offering, as opposed to NGINX open-source free tier.
 - NGINX JavaScript helps with integration efforts.
 - NGINXaaS: Just bring configuration, and it does the rest! Just select it in the Azure Marketplace.
@@ -248,15 +196,95 @@ Intel (Ken Koyanagi)
 - ONNX Runtime: Applications talk to the ONNX model, various extensions (exceution providers) include DirectML and OpenVINO, and output a result.
 - EPs means "Extensible Execution Providers"
 
+## Imagine Cup Finals
+
+There were 3 finalists, 2 of them were particularly interesting to me:
+
+- [RoadMap](https://www.planroadmap.com/)
+- [FromYourEyes](https://fromyoureyes.app/) - who won the Imagine Cup, a cash prize, and a mentoring session with Satya Nadella!
+
+The other finalist was a team that developed hardware to detect emissions in metal fabrication plants, integrated with AI. Great idea for sure, and I wish that team well.
+
+Such a cool and inspiring event overall!
+
+## Keynote - Tuesday
+
+"Information at your Fingertips" - Bill Gates, 30 years ago. MSFT continues this vision, now with AI.
+
+Now, the extension to that is "With AI, you can build what matters".
+
+Highlights from Satya's keynote:
+
+- The scale of the impact of AI is deeper and broader than previous significant technology changes (Azure, Win32, etc).
+- 70 yo dreams: Can computers understand us? With more information digitised, can computers help us reason, plan, and act on all of this information?
+- AI today represents significant break-throughs on both fronts.
+- The rate of diffusion of technology (spreading around the world) is increasing.
+- Pi-Silica: SLM provided in every Copilot PC.
+- Windows Copilot Lirrary + on-device models using RAG, Vector
+- Announcement: PyTorch Native and Web Neural Network powered by DirectML now supported by MSFT.
+- MSFT "has always been a platform company...", enabling developers to build their own tools and applications.
+- "On track to power datacenters 100% by renewable energy by 2024" :astonished:
+- First vendor to support AMD ND MI300X-V5 silicon optimized for MS Azure workloads.
+- Announcement: Azure Maia is new hardware now serving AI Prompts.
+- Announcement: Azure Cobalt based VMs now available.
+- 50k organizations now use Azure AI.
+- GPT 4o allows inputs in multiple languages and also provides responses as such!
+- Announcement: MSFT already provides many models, and at least a dozen more have been added including Hugging Face, in this case directly to Azure AI Studio.
+- SLM: Small Language Model. Phi-3 is an example, and it has a half dozen or so models it leverages.
+- Announcement: KhanAcademy will be using MSFT AI available.
+- Announcement: AI-powered, Real-time Intelligence in Microsoft Fabric. Provides actionable insights.
+- GitHub Copilot Workspace: Automates creating an Issue, then Specing, Planning, and Coding the solution.
+- Announcement: GitHub Copilot Extensions - Customize capabilities from 3rd party services.
+- Announcement: GitHub Copilot for Azure. Where are my resources? ... other questions can be answered.
+- Demo: Using natrual language - Neha Batra VP Eng, GitHub did a demo using voice-command controlled Copilot development...in spanish!
+- Announcement: [TeamCopilot](https://www.microsoft.com/en-us/microsoft-365/blog/2024/05/21/new-agent-capabilities-in-microsoft-copilot-unlock-business-value/) - Facilitiate meetings in Teams, take notes, collaborate with Chats, address unresolved Issues (work items), manage projects, etc, using your organization's information. Coming later in 2024.
+- Looking forward: Copilots and Agents supporting many aspects of business processes and tasks.
+
+Rajesh had some interesting canned demonstrations on Team Copilot, Copilot for MSFT 365, etc.
+
+- Copilot Connectors allow users to go to a single source to get data from multiple sytsems.
+
+Jeff Teper
+
+- Copilot Extensions for _your Copilot_ for Teams, Sharepoint, and more.
+- Creating a custom Copilot takes just a few clicks
+
+Pavan Davuluri
+
+- Qualcomm Snapdragon DevKit for Windows.
+- Volumetric Apps: Partnership with Meta extends Copilot into Mixed-reality Apps - "VolumetricApps" and "VolumetricAPI".
+
+Kevin Scott
+
+- "Count on things getting more robust and cheaper over an agressive clip over time."
+- Aim for things that are truely ambitious, as the next generation of tools become ubiquitous.
+- Salman Khan was invited on stage to chat about AI, ChatGPT and Copilot.
+- Turn concerns and risks into features that focus on the overall mission of the organization.
+- Put up guardrails and constraints at the application layer to help drive safe, effective AI solutions and features.
+- Khan Academy is going to provide AI Teaching Tools "to every teacher in the US".
+- Khan says to focus on specific areas to make use of AI technology to move it and your project(s) forward, and to keep from becoming overwhelmed with (and overwhelming amount of) AI technologies.
+
 ## Resources
 
-[AI Toolkit for Visual Studio Code](https://learn.microsoft.com/en-us/windows/ai/toolkit/) Overview.
+[DotNET Aspire GA Announcement](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/).
+
+[Windows Developer Center](https://developer.microsoft.com/en-us/windows/).
+
+[AI Toolkit for Visual Studio Code](https://learn.microsoft.com/en-us/windows/ai/toolkit/) Overview (previously named "Windows AI Studio").
 
 SLM: [Small Language Model](https://news.microsoft.com/source/features/ai/the-phi-3-small-language-models-with-big-potential/).
 
+[Phi-3 SLM](https://azure.microsoft.com/en-us/blog/introducing-phi-3-redefining-whats-possible-with-slms/).
+
+[Mistral SLM](https://mistral.ai/).
+
+[ONNX Runtime](https://onnxruntime.ai/blogs/accelerating-phi-3) supports Phi-3 minim models across platforms and devices.
+
+Direct Machine Learning [DirectML Overview](https://learn.microsoft.com/en-us/windows/ai/directml/dml): A low-level API that requires DirectX 12-compatible hardware.
+
 [Microsoft 365 Blog article](https://www.microsoft.com/en-us/microsoft-365/blog/2024/05/21/new-agent-capabilities-in-microsoft-copilot-unlock-business-value/) about Microsoft Copilot's new capabilities.
 
-[Intel Accelerator Engines and Intel AMX](https://www.intel.com/content/www/us/en/products/docs/accelerator-engines/what-is-intel-amx.html)
+[Intel Accelerator Engines and Intel AMX](https://www.intel.com/content/www/us/en/products/docs/accelerator-engines/what-is-intel-amx.html).
 
 ## Footer
 
