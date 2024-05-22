@@ -6,6 +6,9 @@ MSBuild takes place on 21 May through 23 May, 2024.
 
 ## Table of Contents
 
+- [Demystify Cloud-Native Development with .NET Aspire](#demystify-cloud-native-development-with-net-aspire)
+- [Build and Deploy to Azure with GitHub](#build-and-deploy-to-azure-with-github)
+- [Building Custom Copilots with Copilot Studio](#building-custom-copilots-with-copilot-studio)
 - [Keynote - Wednesday](#keynote---wednesday)
 - [Extend Microsoft Copilot Using Copilot Studio](#extend-microsoft-copilot-using-copilot-studio)
 - [Maximize Joy Minimize Toil With Greater Dev Experiences](#maximize-joy-minimize-toil-with-greater-dev-experiences)
@@ -14,6 +17,220 @@ MSBuild takes place on 21 May through 23 May, 2024.
 - [Keynote - Tuesday](#keynote---tuesday)
 - [Resources](#resources)
 - [Footer](#footer)
+
+## Demystify Cloud-Native Development with .NET Aspire
+
+Presenters:
+
+- Damian Edwards, Principal Architect, Microsoft
+- David Fowler, Distinguished Engineer, Microsoft
+
+.NET Aspire is now GA as of a couple days ago! Was previewed in November.
+
+Scenario:
+
+- New team member, trying to get ramped up, just cloned a repo.
+- Starting the project directly from VS/VSCode usually won't work because Startup Config is stored in VS User configuration.
+- There are usually secrets, especially when DB connections are required, etc. Multiple projects in a solution might need their own secrets!
+- Is the DB that is necessary actually installed and running?
+- There might be other issues with configuration, secrets, authentication, etc that might make project onboarding very difficult.
+
+.NET Aspire Aspires to Solve This Problem:
+
+- Create a new Project based on .NET Aspire template, adding it to the existing Solution.
+- `DistributedApplication.Createbuilder(args)` in Program.cs is the entry point.
+- Add Project References to the other Projects in the Solutions.
+- Add Extensions and other dependencies for things like Databases etc.
+- Add resources within the Application model e.g. `builder.Add*` commands in Program.cs.
+- `.WithReference(target)` tells the DistributedApplication builder to tie-in the dependent projects.
+- `<Projects.ProjectName>` is a special Type that .NET Aspire uses to generate classes representing the referenced Projects.
+
+Aspire Dashboard:
+
+- Aspire is Developer First.
+- The Dashboard is automatic and displays the layout and information about the Solution: Endpoints, Logfiles
+- Traces and Structured Logs.
+- Metrics tab: (explained later).
+- Defines the types of containers and the endpoints and environment variables.
+- Is Open Source!
+- Is available as a stand-alone Container!
+- Data in the Dashboard is stored in memory, not long-lived production-data ready.
+- This is a great way to verify that logging and telemetry are working within 1 minute of build + run an app, without having to build your own queries and report pages or using a 3rd party thing.
+
+Aspire "just codifies the patterns that your probably already using". - Damian
+
+Add a Service Defaults Project
+
+- This is a .NET Aspire project type.
+- Contains a single file, `Extensions.cs`.
+- This is used to enable basic defaults that are assumed to be the correct things to enable for the existing app.
+- Configure Telementry, add Health Checks, enable restarts (ResiliencyHandler).
+- The goal is to get the developer started on a well designed, robust app architecture.
+- Back in the .NET Aspire Program.cs, add the defaults that were defined in this `Service Defaults` project.
+
+After the Service Defaults Project references are added, then the Structured Logs, and Distrubuted Tracing data will appear in the Dashboard.
+
+_Note_: .NET Aspire performs these actions automatically, and the demo is just walking through what .NET Aspire does for demonstration purposes.
+
+_Note_: Drag-and-drop Project files on other Project files in Visual Studio _adds a Reference to the dragged Project to the dropped Project_!!!
+
+Aspire Components:
+
+- Get more data from things that are talking to cache and database services.
+- Add health checks so that if cache goes down, certain actions can be triggered.
+- Add `.NET Aspire Package` using NuGet.
+- There are a bunch of 'glue packages' and add Health Checks, Telemetry, Metrics, and Configuration.
+- Packages are meant to 'glue' the things together into a single package, but does _not_ bind your project to Aspire in any way. Essentially, Aspire just exposes the APIs so that the 'glue packages' can provide the information and configuration.
+- `Enrich` prefix syntax is used to simplify DB configuration in the DI Container, too!
+
+David Fowler Demos Stuff:
+
+- Extend the application model by "just writing more code".
+- Containers, executables, and packages are just treated as resources by Aspire as part of an overall runtime state.
+- ONce the code is written (or NuGet package is added) then add it to the `builder` in the base project's `Program.cs`.
+- Open Telemetry makes it possible to easily see into your apps, including endpoints, for direct access to the endpoints _and_ to see what is normally reserved for seeing is a Production environment (this is _shifting left_).
+- Aspire will help deploy an Azure resource (example was Azure Service Bus, which cannot be deployed locally) so you don't have to.
+
+These notes cannot possibly describe _just how good the presentation and demoes were_. Find the recorded version in the future and _watch it_.
+
+## Build and Deploy to Azure with GitHub
+
+Speakers:
+
+- Jessica Deen, Staff Developer Advocate, GitHub
+- Mandy Whaley, Partner Director, Azure Dev Tools, MSFT
+
+They will build a RAG (Retreival Augmented Generation) app live with demos.
+
+- Stay in the developer inner loop by working with Visual Studio/VSCode and have access to Azure Dev features.
+- Supports Windows, Linux, and macOS...by running CodeSpaces instead of VSCode locally.
+
+Start in a Github Repo:
+
+1. Navigate to Code button.
+2. Click on the CodeSpaces tab.
+3. Create a CodeSpace with the '+' sign or the '...' to configure a DevContainer.
+4. Choose to open VSCode in the browser, or allow opening in local VS Code.
+
+Copilot Chat is available:
+
+- In CodeSpaces, or by adding as an Extension to VSCode, Visual Studio.
+- Asking Copilot a question, prefixed with `@codespaces`, will produce results targeted to the entire solution in this CodeSpace.
+- Copilot has the usual features such as `/doc`, `/fix`, `/explain`, etc.
+
+Building a Project - how to take working code in CodeSpaces, up and running in Azure?
+
+- Azure Developer CLI - AZD
+- `azd up`: Provision and deploy in one step (well, respond to some questions to configure the deployment).
+- GitHub Copilot for Azure: Help with using Azure and managing Azure services configuration (currently in Preview).
+
+AZD Pipeline Config:
+
+- Helps with configuring Github Action Workflow including secrets and variables management.
+- Edits `azure-dev.yml` file, which templates the project for use with Azure services.
+- Ask Copilot questions like how to deoloy. Prefix the question with `@azure` to get the proper context.
+
+Deploy Using Github Actions:
+
+- "We are now in the Managed Identity age".
+- GH Actions is the number 1 tool for deploying and publishing projects.
+- Customized Actions are available (of course), as well as pre-built Actions from a GH Action Marketplace.
+- GH Actions for Azure: Owned by Azure Service Teams (therefore are guaranteed to work and supportable).
+
+Automating Workflows:
+
+- Build, Test, and Deploy.
+- Also: Evaluate, meaning "Prompt Flow Evaluation". A build artifact has the result from the workflow action, which can be published because _they are just markdown files_!
+
+Operate: Once build and publish is completed with established pipelines, consider "day 100":
+
+- Code Scanning: Uses CodeQL. Address problems early in the workflow. Added generative AI to provide "editable suggestions" to fix issues via Pull Requests.
+- Secrets Scanning: AI-powered scanning helps find 1000's of types of keys and secrets. Will help to prevent pushing secrets to the repo to begin with! Just "click and enable", then update config from there. GitHub will _reject_ the push and include the path, codeline, and the commit that was rejected.
+- Dependabot Alerts: (They didn't discuss this during the demo).
+
+### Additional Information Based on Hands-On Experience
+
+1. Open Codespaces in the repo to be deployed (same as above).
+2. Install Azure CLI using a new Codespaces Terminal: `curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash`
+3. Login using `az login --use-device-code`. Skipping the device code argument failed for me on multiple attampts.
+4. ...Ran into Azure issues that I have to resolve before continuing.
+
+## Building Custom Copilots with Copilot Studio
+
+[Copilot Studio](https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio) has solutions for every industry.
+
+- Internal, external.
+- Security ops, customer service, sales, development, knowledge workers, data, and IT Pros.
+- Varying use cases, reducing time to solve issues and complete tasks, and increasing development speed.
+
+Building a Custom Copilot is easy:
+
+- Build and test together with Copilot. Users at all levels can build Copilots.
+- Design personalized, responsive interactions.
+- Boost conversations through dynamic and real-time Copilot responses.
+- Complex queries are handled using LLMs.
+- Continuous self-learning and improvement: OOB analytics and optimizations. Copilots can be _taught_ how to handle specific situations.
+
+Process to Build a Copilot:
+
+- Stand up Copilot Studio SaaS.
+- Connect knowledge base for generative answers. Create rule-based topics. Integrate plugins and data connectors. Exptend with Azure AI Studio.
+- Publish Copilot to Teams, websites, apps, solcial media channels, etc.
+- Monitor and manage the application and custom Copilot through its lifecycle.
+
+Copilot Investment Themes:
+
+- Rapid time to value.
+- Maker advancements.
+- Security and analytics.
+
+"Build & Publish, Analyze & Improve", rinse and repeat.
+
+Using the "Creation Experience":
+
+1. Describe your custom Copilot in Copilot Studio using the Copilot Chat interface.
+2. Describe what to include, using plain english, the focus of your custom Copilot.
+3. Provide any Tips and respond to other prompts from Copilot Studio Copilot chat.
+4. Describe the topics and tasks the copilot should NOT address.
+5. Click Create!
+6. Test and tweak your custom Copilot.
+7. Publish your customer Copilot.
+
+_Note_: It is possible to fill out a Form and configure your custom Copilot that way, instead of using the Copilot Chat interface.
+
+After configuration, your custom Copilot appears as a Copilot Chat interface that has the configuration, description, and other items like knowledge sources, etc. The Chat interface should be used to test the custom Copilot at this point. Adjustments can be made from this view, as needed.
+
+Extending Your Custom Copilot with Additional Knowledge and Actions:
+
+- Instruct Copilot how to format information such as Dates and Currency.
+- Public Websites can be added or adjusted (Knowledge Sources). DataVerse is already available, and Azure will have a Knowledge Source soon).
+- Knowledge Sources are used to identify data properties that the custom Copilot will have access to. This enables search over structured data via the Copilot Chat interface.
+- Knowledge Source utilization is _case insensitive_.
+- Extend Actions in Copilot Studio to add a fluid experience to provide effecient results for users.
+- Think of an Action as an API wrapped in metadata.
+- Multiple Intents can be included in a prompt and Generative AI will figure out what Action(s) are needed to find a useful response and display it _without asking follow-on questions_.
+- Authentication pass-through is allowed (from Teams or other auth mechanisms like passwords).
+
+Fully Generated to Fully Authored processing and respponses are possible using a custom Copilot:
+
+- Enables Copilot developer to fully control the inputs and outputs.
+- A combination of full control as well as AI-backed responses is possible through Topic Details configuration.
+- This will enable Copilot to identify missing _required_ information and prompt the user for it.
+- Natural language terms like "actually, it was the day before yesterday", interrupting the Copilot response _and_ providing a human-like input that Copilot understand and can transform into a calendar date.
+
+Note: There are additional settings that can be applied to Topic Details at anytime during development and testing of the custom Copilot. These settings help to define how many times to reprompt, and other aspects.
+
+Adding Files As Knowledge Sources:
+
+- Files can include text or visual information such as charts and graphs.
+- Various file formats are supported (PDF was demonstrated).
+
+Other features overview:
+
+- Copilot Analytics: Enabled drilling into data and generate charts and statistics on the input data.
+- Security Granular Controls: Enable turning on-and-off various aspects of security, topics, and authentication.
+- Authentication: Can be set to User Auth, or Copilot Author Auth.
+- Sharepoint Grounded Responses: Only provides responses that are within the user's existing permissions.
 
 ## Keynote - Wednesday
 
@@ -404,6 +621,8 @@ Kevin Scott
 
 [DotNET Aspire GA Announcement](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/).
 
+[DotNET Apire Collections](https://learn.microosft.com/en-us/collections) on MSFT Leran.
+
 [Windows Developer Center](https://developer.microsoft.com/en-us/windows/).
 
 [AI Toolkit for Visual Studio Code](https://learn.microsoft.com/en-us/windows/ai/toolkit/) Overview (previously named "Windows AI Studio").
@@ -421,6 +640,8 @@ Direct Machine Learning [DirectML Overview](https://learn.microsoft.com/en-us/wi
 [Microsoft 365 Blog article](https://www.microsoft.com/en-us/microsoft-365/blog/2024/05/21/new-agent-capabilities-in-microsoft-copilot-unlock-business-value/) about Microsoft Copilot's new capabilities.
 
 [Intel Accelerator Engines and Intel AMX](https://www.intel.com/content/www/us/en/products/docs/accelerator-engines/what-is-intel-amx.html).
+
+Take the [MSFT Learn Challenge](https://www.microsoft.com/en-us/cloudskillschallenge/build/registration/2024).
 
 ## Footer
 
