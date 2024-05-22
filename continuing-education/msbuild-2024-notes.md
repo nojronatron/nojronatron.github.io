@@ -18,6 +18,69 @@ MSBuild takes place on 21 May through 23 May, 2024.
 - [Resources](#resources)
 - [Footer](#footer)
 
+## Scott and Mark Learn AI
+
+Presenters:
+
+- Scott Hanselman VP Developer Community "Programmer"
+- Mark Russinovich CTO and Technical Fellow for Microsoft Azure
+
+## .NET Aspire Dev On Any OS with VS Family
+
+Presenters:
+
+- Wendy Breiding, Sr. Manager, Product Management, MSFT
+- Brady Gaster, Principal Product Manager, MSFT
+
+What does .NET Aspire mean for .NET cloud native? Simplify deployment and onboarding!
+
+Requirements to get started with .NET Aspire:
+
+- .NET SDK
+- .NET Aspire workload
+- Docket desktop
+- VS Code/VS
+- C# Dev Kit
+- Azure Developer Clie (azd) Extension
+- Azure Resources Extensions
+
+_Note_: New .gitignore using `dotnet new gitignore`
+
+New: .NET Scaffold!
+
+- Can select a category e.g. 'Aspire'
+- Sub categories include things like 'Redis'
+- Select the App Host project (points to a CSProj file).
+- Dials-in components and updates the target project(s).
+- Will scaffold-in the selected sub-category.
+- This is PRE-RELEASE and is in evaluation - MSFT wants feedback on this.
+
+C# Dev Kit:
+
+- Open the Command Palette and select create new project for .NET Aspire.
+- New to C# DevKit: Add NuGet Packages!
+- Right-click a Project and use the Command Palette to Search for the package to add.
+- CSProj file is updated, etc.
+- Add the commands to the `builder` functions in `Program.cs` to add the NuGet package (e.g. Redis).
+- HotReload (coming? now available?)!
+- Add some tests by adding a New Project :arrow_right: .NET Aspire Test Project.
+- References from test Project to the AppHost Project(s) will be necessary.
+- Sample Tests are included, they just need to be commented out! :tada:
+- Fast and easy setup :arrow_right: run!
+- `azd` commands are available in the Command Palette!
+
+Aspire, Visual Studio, and Azure can work together to spin-up, develop, test, publish, and monitor apps!
+
+Dashboard Notes:
+
+- The Trace view is live, so while the app is running, the Trace entries will be loading and listing very rapidly.
+- Drilling-in to a node displays inter-process communications with just a click.
+
+Publishing in Visual Studio:
+
+- There is a SINGLE Publish Button presented on the Aspire project.
+- Executing the Publish will actually Publish all of the publishable assets via `azd` to push them into Azure!
+
 ## Demystify Cloud-Native Development with .NET Aspire
 
 Presenters:
