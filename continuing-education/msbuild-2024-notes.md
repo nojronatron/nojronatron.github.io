@@ -17,7 +17,143 @@ MSBuild takes place on 21 May through 23 May, 2024.
 
 ## Keynote - Wednesday
 
-Speakers: (tbd)
+"Next Generation AI For Developers With The Microsoft Cloud"
+
+Speakers: Scott Guthrie, 
+
+- Yesterday: What's new with the Copilot Stack.
+- Today: Delve into the Copilot Stack and how it works.
+- Popular trio of dev tools: VS, GitHub, and Copilot Studio (released in 2023).
+- GitHub uses an LLM on the back end, and is used by millions of developers, globally, daily.
+- Demo: Copilot Workspace: Advancements to Copilot Chat, including suggested fixes, documenting code, and creating pull requests for you.
+- Over 50k licenses of Copilot for Business, currently.
+- .NET Aspire is now [GA](aka.ms/AspireGA)
+- Copilot for Azure enables Natural Language input within VS and VSCode. User is always required to actually take the actions that GitHub Copilot for Azure suggests. Right-click manu enables shortcuts to Azure Portal for specific views and actions!
+
+Charles Lammanna:
+
+- Copilot Studio can operate asynchronously.
+- Copilot Studio can orchestrate operations, end-to-end.
+- Copilot Studio can be used to design a Copilot to digest a PDF, analyze it, and return results based on a prompt. This saves the user from having to enter specific information one at a time. In the Demo Charles ran, he showed the Copilot asking for and using a Phone Bill to compare to the Fabrikam Carrier service to see what savings his ficticious customer might see by becoming a new customer. That 2 chat exchanges, 2 clicks to upload a file, and a result on-screen!
+- Various Connectors to on-prem and Cloud based functions.
+- Topics: Design triggers that a user might input to determine response(s) through specific workflows. The problem this attempts to solve is the 20% part of the 80/20 development problem.
+- "You want your Copilot to run asynchronously and execute flows in the background": Triggers. These start execution of the Copilot, triggered by the data that is input _by the Trigger itself_ for grounding the Copilot responses. Various Trigger Steps define the available responses given specific scenarios.
+- Over 30k orgs are already using Copilot Studio.
+
+Scott Guthrie on Azure AI:
+
+- Customer adoption is accellerating.
+
+Eric Boyd:
+
+- Azure AI Studio: Build generative AI solutions for Azure.
+- "Foundation Models": Azure AI, Azure ML, Responsible AI Tooling, and Azure AI Studio.
+- [Azure AI](https://AI.Azure.com)
+- Azure OpenAI Service: Enterprise grade AI service.
+- See [GPT-4o](aka.ms/GPT-4o) which backs Azure AI services.
+- Azure OpenAI Batch Service: Reduced price announced.
+- Frontier and Open-source models are available via Azure AI services. Phi, Meta, Mistral, Cohere, Hugging Face, etc. See the [Model Catalog](aka.ms/ModelCatalog), [Phi-3](aka.ms/Phi3) and [Phi-3-v for Vision](https://news.microsoft.com/source/features/ai/the-phi-3-small-language-models-with-big-potential/).
+- Azure AI Search supports all of OpenAI's GPT instances.
+- Azure AI Studio is now GA.
+
+Seth Juarez:
+
+- Demo using Copilot Studio to configure "Trade-in purchased product" on the demo Fabrikam website.
+- Using internal data without exposing it: Goal is to do it safely, reliably, and in an observable way.
+- To implement using internal data safely follow this paradigm: Discover, Delivery safely and reliably.
+- Promptly: A way to move a custom prompt to the development IDE. It uses placeholders for where the values will be placed within the prompt response. This moves the Copilot Studio "Playground" into the development IDE.
+- Customer, Policy, Response: The 3-liner code that runs behind Copilot that is part of the codebase, without divulging customer data.
+- Use Github Actions to _Deliver_ safely and in a reliable, observable way (see next bullet).
+- Groundedness test: How well does the data fetch stay without leaving the bounds of the prompting.
+- Trace: Adds Observability to the developed model. This is available _in production_!
+
+Sarah Bird (Chief Prod Officer at Responsible AI):
+
+- AI Principles are the start of the story of [Responsible AI](https://www.microsoft.com/en-us/ai/principles-and-approach).
+- Safety and Security are baked into the stack.
+- Safety system sits between User Input, AI Models, Monitoring, and the response mechanism.
+- Filters can help block direct and indirect jailbreak attacks.
+- Create a Check, add a Flow, select data-set to evaluate, adjust sampling, and harmful content and jailbreak.
+- Microsoft Defender for Cloud is integrated into Azure AI, and has been built-up to understand jailbreak and content policy violations.
+- Custom Categories: Create custom filters for unique needs of your Org and/or Application/Service.
+- HiddenLayer Announcement: Company created "Model Scanner" and MSFT is using that to help secure AI systems. This enables automated alerts about data leaks and other policy violations.
+
+Eric Boyd:
+
+- Epic is featured.
+- AI generated draft messages in email. Review and accept/edit before sending is default behavior.
+- Reduces time spent on messages by 30 seconds and has been reported to reduce physician burnout by simplifying the message/response process.
+- Slicer-Dicer: Helps phsyicians understand conditions, remedies, care, etc. In effect, enables natural language evaluation of real patient data so the Physician to gain insight quickly, and remain productive.
+
+Scott Guthrie:
+
+- MSFT Intelligent Data Platform.
+
+Arun Ulag: Corp VP Azure Data, MSFT
+
+- Portfolio of products across AI stack, in Azure.
+- DB's, Analytics, AI, Governance.
+- Note: Chat GPT is powered by Cosmos DB (that's on Azure).
+- Copilot Self Help for Azure SQL DB
+- " natural laguage to T-SQL
+- Vector Search for Cosmos DB, NoSQL Search using AI. This targets building RAG Models.
+- PostGresQL: Azure AI Extension now GA. In-DB Embeddings in Azure DB for PG now in Preview.
+- Microsoft Fabric was previewed in 2023, and in November 2023 became GA.
+- Fabric is a SaaS platform for AI. Unified storage, comput, experience, governance, and business model.
+- 11k Orgs using MSFT Fabric since GA in November.
+- Real-Time Intelligence on streaming data now available in MSFT Fabric.
+- At least 20 Orgs are developing on top of Azure Fabric, including Neo4J, LSEG, and others.
+- MSFT Fabric Workload Development Kit: Monetize, grow business on top of MSFT Fabric.
+- OneLake: A Data Lake service by MSFT.
+- OneLake uses Apache and Open Data Lake under the hood.
+- Azure Databricks and Microsoft Fabric have the same data format using OneLake.
+- GA of Vector Search in Azure Databricks. Databricks Catalog Tables coming soon.
+- Data stays in sync as services sit on top of OneLake.
+- Announcement: Snowflake now a part of the MSFT ecosystem, due out by end of 2024.
+- Announcement: Apache Iceberg support in OneLake.
+- MSFT is contributing to the Apache X-Lake project now.
+
+Christian Klienerman, EVP of Product, Snowflake
+
+- Chat about how MSFT and Snowflake get along and things are going well.
+
+Back to Scott Guthrie:
+
+- Azure "the world's AI supercomputer". More than 60 Azure Regions around the world.
+- Committed to, and on-track to reach 100% of energy from zero-carbon sources by 2025.
+- MS Azure end-to-end systems optimization.
+- AI Accelerators in Azure: NVidia, AMD, and MSFT.
+- MS Cloud for Industry: Providing Copilot and AI solutions, specific for many industries.
+- Azure Marketplace: Billions in revenue per year now.
+- Safety and Security: Devs need to integrate these into _every part of the dev lifecycle_.
+
+Julie Liuson President, Developer Division, MSFT and John Lambert corp VP and Security Fellow on MSFT Intelligence:
+
+- Secure by design, Secure by default, and Secure operations.
+- Protect ID's and secrets and engineering systems.
+- [SFI](aka.ms/securefutureinitiative): Secure Future Initiative.
+- Security is a team sport, requiring a culture change.
+- Orgs face threat actors. MSFT tracks more than 300 of these entities.
+- Logging in is easier than hacking in, so there is incentive to focus on passwords and user accounts.
+- Midnight Blizzard: Russian threat actor group. Target government agencies and services, as well as IT globally.
+- Traversing the graph of possible security weaknesses is through seeking credentials.
+- Github Advanced Security has "Secret Scanning" to find secrets in code.
+- Problem is, secrets are just text/strings. Rotating passwords helps mitigate vulnerabilities.
+- Rotating Tokens (secrets) is another way to avoid the risks briefly, and must be automated else people just will not do it themselves.
+- Better solution is to _not use passwords and tokens_ by default. If the tool uses managed identities, that can eliminate the use of secrets that could get exposed.
+- Managed Identities is more complex, so will be slow to import and start using.
+- Supply Chain Attacks: Provides an "in" to targeted orgs through their products. The SolarWinds hack was the key example.
+- Removing old systems and applications reduces exposure to threat actors, who do not care whether something is up to date, only that it provides a path to gain entry into your systems.
+- Lifecycle management is necessary to protect dev and deploy pipelines.
+- "XZ Utils" backdoor: Linux data compression library, used by SSH etc. Performance testing prior to publication caught the backdoor. See something? Say something! This will help protect the codebase, and therefore the systems.
+- Dependabot: Generates PR and raises alerts. Can be helpful to find and mitigate some security risks.
+- Embrace security training. Embrace curiosity, to help find security threats.
+- Raise the security posture through customers, partners, and MSFT collaborations and awareness.
+
+Scott Guthrie:
+
+- Recapped keynote key points.
+- "It's never been a better time to be a developer."
 
 ## Extend Microsoft Copilot Using Copilot Studio
 
