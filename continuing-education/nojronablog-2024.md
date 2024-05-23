@@ -4,7 +4,20 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## Week 21
 
-MS Build 2024 is happening this week and will consume a large chunk of time. I have a schedule set, and am looking forward to learning all that MSFT will share during the event!
+MS Build 2024 is happening this week and will consume a large chunk of time. I have a schedule set, and am looking forward to learning all that MSFT and their partners have to share!
+
+### Build 2024 Highlights
+
+- Copilot Studio enables building custom Copilots in a simple, workflow-oriented workspace. There are requirements (local and possibly cloud-based) that must be met, however Copilot instantiation and customization is very simple, and requires very little code.
+- Local, small language models can be used to create simple Copilots for small projects that don't require cloud-based LLMs. An example was Scott Hanselman and Mark Russinovich with their Desktop Cleanup Copilot demonstration.
+- Microsoft has a team dedicated to AI safety and security. A presentation by one of the team members reviewed the areas where possible vulnerabilities can be preemptively limited or eliminated during design, build, test, deploy, and ongoing support.
+- Windows has had many "silent" features added over the years - tools and key combinations that have been there but few people know about. I won't list them here, other than a useful starter is `Start` + `x` to open a context menu of tools like Settings, Device Manager, and Disk Management. One other is `Ctrl` + `Shift` + `Esc` which opens the Task Manager.
+- Microsoft has developed and deployed many VS Code Extensions recently, including the C# Dev Kit and Polyglot Notebooks. The C# Dev Kit is a group of tools that help with C# project startup, development, and testing. The Polyglot Notebooks tool is like Jypitr Notebooks, but for Python _and_ C Sharp, as well as several other languages.
+- F5 NGINX has released a free-tier NGINX service to the Azure Marketplace, for front-ent, proxy, and other HTTP inspection and management use cases in the cloud.
+- Github Copilot in the CLI: This is a natrual-language interactive copilot for Git and GH.
+- .NET Aspire isn't a replacement for any particular project type, rather it is an addition that will help developers setup new solutions, and better manage and monitor existing complex solutions, both locally and in the Cloud. Adding .NET Aspire to a Solution does not restrict or break the project in any way!
+- C Sharp 13 is coming along and is scheduled for release with .NET 9. It sounds like there is at least one possible breaking change (but there's a simple work-around), and the "Build Extensions" train is picking up steam.
+- Windows subsystem for Linux (WSL) has updates to networking, memory usage, and VHD management and usage, and there are more features coming. Another interesting feature is a Plug-in Architecture that is now built-in to WSL. This will allow building custom Plug-ins to WSL for OSS and Enterprise developers to leverage.
 
 ### Semantic Structural Elements
 

@@ -23,9 +23,105 @@ MSBuild takes place on 21 May through 23 May, 2024.
 - [Resources](#resources)
 - [Footer](#footer)
 
+## Zero To Hero - Develop Your First App With Local LLMs On Windows
+
+Presenters:
+
+- 
+
+## Windows Subsystem for Linux, Your Enterprise Ready Multitool
+
+Presenters:
+
+- Pierre Boulay, Sr Software Engineer, MSFT
+- Craig Loewen, Sr Product Manager, MSFT
+
+Overview:
+
+- Everything in WSL is integrated into the Windows system that it is installed on.
+- VSCode runs in Windows, but can target Linux Apps with WSL under the covers.
+- Real Linux GUI Apps will run within WLS!
+
+"Get your work done on Linux, even while working in Windows." - Craig Loewen
+
+Latest Improvements:
+
+- AutoMemoryReclaim: Full Linux kernel is running within WSL, so the VM will take Windows memory, over time. When AutoMemoryReclaim is enabled, it will trim the Linux cache, making the memory available to Windows again. All of the Cache can be dropped if necessary.
+- Storage: Dynamic (growable) VHD files are used to store the Linx instance, which means VHD file size will grow, and deletion is not reclaimed back to Windows. SparseVhd enables reclaiming that space. `wsl --manage --set-sparse` will force instance reclaimation. Otherwise, VHD compaction operations are necessary.
+- Networking: DnsTunneling, MirroedNetworking, and Hyper-V Firewall support.
+- MS Edge is available from within WSL. Edge _is a Linux app_! This supports EntraID authentication too!
+
+Details on DNS in WSL and Latest Improvements:
+
+- How it used to work: `/etc/resolv.conf` is standard resolver. An internal resolver exists between Windows and WSL, therefore DNS record resolution can be hindered between WSL and the internal resolver, or the resolver and the Windows firewall or network interface. WSL traffic is seen as a network packet within Windows.
+- DNS via NAT is WSL: This is usually more reliable, with the drawback of losing the Windows DNS configuration.
+- DNS Tunneling in WSL: Set a loopback ip e.g. `127.0.0.42` and bind it to the `Guest Network Service` for handling DNS requests via a Socket to `wslservice.exe` (on the Windows side) where all the DNS rules and configuration is applied, and external DNS is readily available. The Socket has the benefit of not being inspected by Firewall rules. This is enabled by default in WSL (latest) on Windows 11.
+
+Details of NAT Networking in WSL and Latest Improvments:
+
+- All processes must use the `ethn` interface, which talks with `Host Networking` via the ineternal network, then the Windows Networking decides which of its interfaces the packet will traverse.
+- Port binding within WSL is _not reflected in the Windows port_ unless the port is manually mapped.
+- Mirrored Networking: Creates mirrored Windows network interfaces for WSL to talk to directly. Port bindings _are translated to the Windows interface(s)_.
+
+Security in WSL:
+
+- Hyper-V Firewall: Best solution to control network traffic traversals to and from WSL.
+- Loopback: Between WSL process and Windows process.
+- Outbound: WSL to elsewhere.
+- Inbound: Elsewhere to WSL.
+- `.wslconfig` is used to configure Hyper-V Firewall to apply Windows rules to WSL.
+- Use `Set-NetFirewallHyperVVMSetting` psh to create or change rules.
+- Latest WSL on Windows 11 enables utilization of Hyper-V Firewall, secure by default, out of the box!
+
+Zero Trust:
+
+- MSFT Defender Endpoint plugin for WSL: Get alerts _inside WSL_!
+- MSFT Entra ID: Preview for this allows connecting to application seemlessly, if already authenticated!
+- MSFT Intune: Custom deployment scripting is available.
+
+Plugin Support for WSL:
+
+- Windows > WSL Virtual Machine > One or more Linux distro installations.
+- `wslservice.exe` talks wto `Plugin`, which is a proxy for the WSL Virtual Machine, and any distos within it.
+- `WslPluging` interface requires local Administator access to make changes, and runs in Windows (not WSL).
+- There is an option to create custom Plug-ins for WSL!
+
+Coming Soon:
+
+- WSL Settings App: Graphical settings!
+- Dev Home: Manage WSL Distros (coming soon, currently in 'canary' mode)!
+- VS Code AI Toolkit: Built-on and uses WSL. Fine-tune SMLs directly on your device.
+- Windows Package Manager: aka `winget` now supports installing WSL locally, or in the Enterprise.
+
+## Whats New In C Sharp 13
+
+Presenters:
+
+Mads Torgersen, Principal Architect, MSFT
+Dustin Campbell, Principal Software Engineer, MSFT
+
+Starter Info:
+
+- Comes out with .NET 9.
+- Focusing on 3 specific features: 
+- Preview implementations are available in the compiler bits, just by using In-Preview bits.
+- New documentation articles are released as new features become available [link placeholder](csharp whats-new csharp-13) #####
+- [dotnet/csharplang](https://github.com/dotnet/csharplang): This is the design-level repo.
+
+General Notes:
+
+- Collection Expression: `[]` converts to any type without specifying, other than hints like `m` for decimal, etc.
+- Params array: Now supports `params IEnumerable<T>`. Remember, IEnumerable has its own costs.
+- ReadOnlySpan(params ...) overload: This is based on non-allocation `Span`.
+- AutoProps was added in C Sharp 3: There is a cost (the cliff) when moving from autoprops to full props when custom code is necessary. A new keyword 'field' will be added to enable using a lambda to do a simple task like `.Trim()` on a string prop. _Note_: This is not fully baked yet! _Note_: This is a breaking change, since assigning `field` to a keyword could impact existing code! _However_ the `@` identifier can be used to _disambiguate_ your custom `field`
+- "Extension Types": Use `implicit extension name for type` in place of `class` declaration to transform the type definition into an Extension Method. There is also a Static Extension Method.
+- "Explicit Extension Member": A lightweight type. Used within an Extension Type that will (in the future) be available to enforce the type explicitly. Basically, it scopes _down_ the type assumption to the specified _instances_. The current C Sharp 12 work-around is to enforce the type with `EnumerateArray<T>`.
+
+Question of the day: "What other types of Types can be extended by Extensions?" -Fred, on the C Sharp team.
+
 ## Level Up With DevBox
 
-Presenter: Scott Hanselman
+Presenter: Scott Hanselman, VP Developer Community, MSFT, "Programmer"
 
 General Notes:
 
@@ -163,7 +259,7 @@ General Notes:
 
 Presenters:
 
-- Scott Hanselman, VP Developer Community "Programmer"
+- Scott Hanselman, VP Developer Community, MSFT, "Programmer"
 - Mark Russinovich, CTO and Technical Fellow for Microsoft Azure
 
 Live build an AI ChatBot using C#, .NET MAUI, Semantic Kernel, Github Chat (custom box), to clean Scott's desktop:
@@ -777,7 +873,7 @@ There were 3 finalists, 2 of them were particularly interesting to me:
 - [RoadMap](https://www.planroadmap.com/)
 - [FromYourEyes](https://fromyoureyes.app/) - who won the Imagine Cup, a cash prize, and a mentoring session with Satya Nadella!
 
-The other finalist was a team that developed hardware to detect emissions in metal fabrication plants, integrated with AI. Great idea for sure, and I wish that team well.
+The other finalist was a team that developed hardware to detect emissions in steel fabrication plants, integrated with AI. Great idea for sure, and I wish that team well.
 
 Such a cool and inspiring event overall!
 
@@ -840,7 +936,15 @@ Kevin Scott
 
 ## Resources
 
+[.NET Announcements and Updates from Microsfot Build 2024 from the .NET Team](https://devblogs.microsoft.com/dotnet/dotnet-build-2024-announcements/).
+
+Windows Subsystem for Linux [(WSL) Documentation](https://learn.microsoft.com/en-us/windows/wsl/).
+
+[DotNET 9 Previews (and eventually, releases)](https://dotnet.microsoft.com/en-us/download/dotnet/9.0).
+
 [DotNET Aspire GA Announcement](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/).
+
+[Github Copilot for the CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cli/about-github-copilot-in-the-cli).
 
 [DotNET Apire Collections](https://learn.microosft.com/en-us/collections) on MSFT Leran.
 
