@@ -18,6 +18,8 @@ MS Build 2024 is happening this week and will consume a large chunk of time. I h
 - .NET Aspire isn't a replacement for any particular project type, rather it is an addition that will help developers setup new solutions, and better manage and monitor existing complex solutions, both locally and in the Cloud. Adding .NET Aspire to a Solution does not restrict or break the project in any way!
 - C Sharp 13 is coming along and is scheduled for release with .NET 9. It sounds like there is at least one possible breaking change (but there's a simple work-around), and the "Build Extensions" train is picking up steam.
 - Windows subsystem for Linux (WSL) has updates to networking, memory usage, and VHD management and usage, and there are more features coming. Another interesting feature is a Plug-in Architecture that is now built-in to WSL. This will allow building custom Plug-ins to WSL for OSS and Enterprise developers to leverage.
+- PowerToys _advanced paste_ is amazing.
+- WinGet is the way to go for install, removal, and configuration of applications and dependencies on your machine/environment!
 
 ### Semantic Structural Elements
 

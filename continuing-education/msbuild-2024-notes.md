@@ -23,11 +23,119 @@ MSBuild takes place on 21 May through 23 May, 2024.
 - [Resources](#resources)
 - [Footer](#footer)
 
+## Unleash The Potential Of APIs With Azure API Management
+
+Speakers:
+
+- Nima Kamoosi, Sr Director, Azure Team, MSFT
+- Pierce Boggan, Product Lead, API Center & Copilot Dev Experience, MSFT
+- Julia Kasper, Product Manager, Azure API Center, MSFT
+
+Overview Notes:
+
+- Newest service for the API Platform system.
+- Azure API Center is now GA.
+- API Discovery, Consumption, and Governanace are all managed within the Azure API Center.
+- VS Code Extension: Azure API Center. Now GA and enables viewing and registering APIs with Azure API Center. Will auto enable CI-CD automation of Registration.
+- Azure API Center can register any type of API: HTTP, gRPC, GraphQL, etc.
+- Azure API Admin experience includes a list of registered APIs, drill-down into lifecycle, API type, and Summary descriptions.
+- LogiApp Workflows can be set up to alert users via Email when changes happen to registered APIs.
+- Metadata can be added to registered APIs via API Center. These metadata can apply to compliance rules, ownership, or other properties as needed for the specific API.
+- API Analysis in API Center is focused on API design governance. Various specifications and standards can be checked and alerted. This looks inside the API defiition and flags warning and errors where the JSON does not follow governance rules. Non-compliant APIs will have a Compliance URL made available that can be imported into VS Code so the developer can easily find the compliance errors/warnings and fix them.
+
+## Highly Technical Talk - Hanselman and Toub
+
+Presenters:
+
+- Scott Hanselman, VP Developer Community, MSFT
+- Stephen Toub, Partner Software Engineer, .NET Team, MSFT
+
+Humanizer:
+
+- Varied functionality creates outputs that are more human readable.
+- Various Profilers are available in Visual Studio.
+- Object allocation consumes resources in .NET.
+- `+` used as a contactenator is syntactic sugar for te `string.Concat(args [, args])` method.
+- `Span` didn't exist multiple years ago, but now that it does, it is time to apply it in newer .NET SDK implementations.
+- Humanizer `To.SentanceCase()` means to ensure the 1st character in a sentance is upper-cased.
+- Adding a method overload is one way to add or fix issues in OSS contributions.
+- "The thing with scale is, if you can do it without allocating anything, you can do it infinitely." - Scott Hanselman
+- Ideally, when profiling and optimizing for performance, the developer would have a set of contexts and use cases where the optimizations are impactful. One example is "hot path" evaluations.
+- DO: Benchmark your application and evaluate it based on actual usage. While it is possible to deep-dive into the core functionality, it might be better to focus on the business value, and to work with the .NET team(s) to get help addressing the core, low-level optimizations (which might help the ecosystem).
+- `RomanNumeralExtensions.FromRoman(string)` is a parsing operation and it should be "pretty close to free".
+- RegEx Capture Groups have an additional cost. If all that is needed is a boolean match _do not run capture_.
+- Enumerating Arrays is _much faster_ than enumerating a `Dictionary<K, V>`.
+- Keyboard tip: `Alt` + `Mouse Drag` across a column of text to edit all items within the drag simultaneously.
+- `UTF-8` vs `ASCCI` case-handling: Use character code `` to `AND` with the input to convert between lower- and upper-casing.
+
+
 ## Zero To Hero - Develop Your First App With Local LLMs On Windows
 
 Presenters:
 
-- 
+- Craig Loewen, Product Manager on WSL and AI, MSFT
+- Alexandre Zollinger Chohfi, Software Developer Engineer, Windows Partners Team, MSFT
+
+Goal: Walk away knowing how to make 2 apps using GitHub, PyTorch, SML, PDFs, ONNX, and RAG...all running locally!
+
+ML Models:
+
+- Programs that use data to make predictions, based on new data.
+- More parameters leads to larger models.
+- Types of models are better at certain things like "sentiment analysis".
+- SLM and LLMs: Language models of varying sizes. GPT-4 is large; Phi-3-mini is small (500x fewer parameters).
+- Training vs Fine Tuning: Many models are already trained, and it is up to the Developer to fine-tune the model(s) for a specific implementation.
+
+AI GitHub Issue Labeler:
+
+0. PowerToys repo and VS Code on WSL: Issue Labels are manually created and applied to Issues in GitHub. Labels are not necessarly intuitive.
+1. Pick an AI Model and Framework.
+2. Install Dependencies and runtimes.
+3. Train (fine tune) the Model on custom data.
+4. Run the Model.
+
+AI GitHub Issue Build Notes:
+
+- `winget search arg` to list all Packages that are available, filtered by `arg`.
+- `winget show arg` displays `arg` Package information including dependencies. In an elevated shell, `winget` will handle Windows Feature installations too!
+- Install AI Toolkit Extension for VSCode.
+- Click the Fine Tune option and select a Model. Phi-3-mini-4k-instruct was selected for this demo.
+- The Data Settings page will appear for tweaking parameters.
+- `olive-config.json` is used to configure and fine-tune the SLM.
+- Data is grabbed from `dataset-classification.json` (in this case it was downloaded from GitHub). This is static data, which can be used to fine-tune your local model, and is not portable for an LLM cloud deployment.
+- Use Python and Flask to quickly generate a website.
+- Models must be "loaded" within the RunTime code. This is actual Python code that sets up the model fo ruse.
+- Inferencing means adding data to the model locally. Calculating a result processes the Inference input and the SLM will provide a result.
+
+What is ONNX?
+
+- Common format for ML Models.
+- Can be exported from PyTorch and Tensor Flow (and others).
+- Cross platform (desktop, iot, mobile, cloud).
+- Fast and supports DirectML (like Direct3D but for maching learning).
+- Supports GPUs, with NPU and CPU support coming soon.
+
+Personal PDF Query Tool:
+
+0. 100% local!
+1. Can't send entire PDF to Phi3 (too much data), so utilize RAG and find just enough PDF pages to set the context via RAG instead.
+2. SLM will take grounting from RAG. Fine-tuning is used for static data. RAG is used for dynamic data.
+3. Vector Empbeddings Model is resulted, and is used for searching, grouping, classification, and recommendations.
+4. SLM receives the data, and uses prediction to complete input generation.
+
+> Essentially, all this work creates a "semantic index" that is used to respond to queries by a user.
+
+PDF RAG Query Tool Build Notes:
+
+- Use WinGet to install requirements and their dependencies. Configurations can also be set in WinGet, by supplying a YAML file. This is "machine setup" all with one command!
+- Download Models via [HuggingFace](https://huggingface.co), which is a catalog of available models of various sizes and uses. Most HuggingFace index models use ONNX.
+- Develop the code to read through your specific input types. Note: HuggingFace has help and starter code for the SLM/LLM you are tuning.
+
+> Leverage models locally without having to understand every detail about how fine tuning and RAG!
+
+Get started by using "AI Toolkit".
+
+Use [OLlama](https://github.com/ollama/ollama) for local testing!
 
 ## Windows Subsystem for Linux, Your Enterprise Ready Multitool
 
@@ -244,7 +352,7 @@ Advice:
 
 ## Enterprise Class NGINX Plus Without Operational Toil
 
-Leslie interviewed Brian Ehlert, Director, Product Management, F5 NGINX.
+Dona interviewed Brian Ehlert, Director, Product Management, F5 NGINX.
 
 General Notes:
 
