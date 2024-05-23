@@ -6,6 +6,7 @@ MSBuild takes place on 21 May through 23 May, 2024.
 
 ## Table of Contents
 
+- [Level Up With DevBox](#level-up-with-devbox)
 - [AI Safety and Security Fundamentals](#ai-safety-and-security-fundamentals)
 - [Enterprise Class NGINX Plus Without Operational Toil](#enterprise-class-nginx-plus-without-operational-toil)
 - [Scott and Mark Learn AI](#scott-and-mark-learn-ai)
@@ -21,6 +22,48 @@ MSBuild takes place on 21 May through 23 May, 2024.
 - [Keynote - Tuesday](#keynote---tuesday)
 - [Resources](#resources)
 - [Footer](#footer)
+
+## Level Up With DevBox
+
+Presenter: Scott Hanselman
+
+General Notes:
+
+- Github Copilot at CLI: Prefix query with `??`.
+- [GIthub Copilot for CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cli/about-github-copilot-in-the-cli)
+
+Kayla Cinnamon - Windows Team MSFT
+
+- Single-click arrange windows.
+- Applies to multiple screens or projects layouts. DevProject!
+- DevHome: Dashboard of projects, Machine Configuration, Environments, Windows Customization, and Utilities.
+- DevHome Machine Configuration can export a configuration file (YAML) to replicate to other developer machines/images, using `OneGet` (uses DSC - Desired State Configuration).
+- DevHome can detect configuration files for importing, editing, and running. Dependencies are listed and included.
+
+Maddie Montaquila Sr Prgram Manager, .NET Team
+
+- PhoneLink demo: Mirroring screen, app casting.
+- Visor: Screen Mirror from phone to remote screen.
+- ScreenSnip tool: `Win` + `Shift` + `S`. Now has AI to OCR.
+- Edit `hosts.` file to create aliases (I'd forgotten about this).
+- Color Picker: `Win` + `Shift` + `C` to launch it. Displays HEX, RGB, and HSL codes.
+
+Vickie Harp, Principal Group Product Manager
+
+- PowerToys can be used to browse Control Panel, the Registry, and more, directly from the PowerToys `Run` tool.
+- Polyglot Notebooks: Like Jypiter Notebooks, but allows `C#`, PowerShell, Python, etc.
+- `sudo` has been added to Windows.
+- FileLockSmith: SHows what process is holding a file handle.
+- PowerToys Advanced Paste: AI-assisted paste. Will paste-as to types like JSON, Markdown, and other types including `paste audio as text`. _These features are running LOCALLY_ not in the cloud.
+
+Mike Grie, Sr. Engineer, Windows Terminal/Command Line Experience
+
+- Global Hotkey configuration via JSON to bring Terminal to the front/focused application.
+- Shell Integration: Terminal Copilot is aware of the Terminal History.
+- Scroll To Mark: Navigate between prompts within the Terminal, through the command history.
+- Terminal can provide a list of previous actions to quickly find items in history.
+- Snippets: Available within a command menu, directly at the command line -- Snippets for Terminal!
+- Ctrl + Shift + N: Highlights hyperlinks in Terminal output.
 
 ## AI Safety and Security Fundamentals
 
