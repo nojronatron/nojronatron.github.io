@@ -457,7 +457,7 @@ Other features overview:
 
 "Next Generation AI For Developers With The Microsoft Cloud"
 
-Speakers: Scott Guthrie, 
+Primary Speaker: Scott Guthrie
 
 - Yesterday: What's new with the Copilot Stack.
 - Today: Delve into the Copilot Stack and how it works.
