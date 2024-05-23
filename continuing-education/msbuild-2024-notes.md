@@ -6,6 +6,10 @@ MSBuild takes place on 21 May through 23 May, 2024.
 
 ## Table of Contents
 
+- [AI Safety and Security Fundamentals](#ai-safety-and-security-fundamentals)
+- [Enterprise Class NGINX Plus Without Operational Toil](#enterprise-class-nginx-plus-without-operational-toil)
+- [Scott and Mark Learn AI](#scott-and-mark-learn-ai)
+- [.NET Aspire Dev On Any OS with VS Family](#net-aspire-dev-on-any-os-with-vs-family)
 - [Demystify Cloud-Native Development with .NET Aspire](#demystify-cloud-native-development-with-net-aspire)
 - [Build and Deploy to Azure with GitHub](#build-and-deploy-to-azure-with-github)
 - [Building Custom Copilots with Copilot Studio](#building-custom-copilots-with-copilot-studio)
@@ -18,12 +22,123 @@ MSBuild takes place on 21 May through 23 May, 2024.
 - [Resources](#resources)
 - [Footer](#footer)
 
+## AI Safety and Security Fundamentals
+
+Presenter: Neil Coles, AI Safety and Security Empowerment Lead, MSFT
+
+General Notes:
+
+- Look for security risks earlier in the development lifecycle - prevent the security risk from the start.
+- AI Red Teaming is used to test security of AI-enabled apps and services.
+- Developer's goals should include making Red Teams' job difficult!
+- AI is, after all, software. Many of the common/traditional weaknesses are possible. The infrastructure can bring the AI software/service down.
+- AI can be attacked through the language they are consuming. AI is non-deterministic, so slight changes in input can have a dramatically different outcome.
+- Apply multiple mitigations and hope that the weaknesses don't "line up" between them, and get through to the system. Guiding inputs through the mitigation layers will subvert the mitigations and allow the attack anyway.
+- Intrinsic System Risks: System compromise (Worms), overreliance aka inappropriate reliance (don't believe the AI unless you "should" believe it), widening (get outside the designed use cases).
+- Input/Output Risks: Exclusory Interpretation (system fails to interpret an aspect of the normal human experience e.g. US English vs UK English vs AUS English), Content Production & Dissemination (content that has a harmful effect when shared e.g. propaganda, etc), Content exposure (generated content causes harm to the user), knowledge recovery (borrowed expertice, e.g. instructions on how to make bombs).
+- Human impersonation (deep fakes of all sorts), Ability amplification (spearfishing email generation as a service, hyperscale cyber incidents driven by an LLM).
+
+- --
+
+Proactice to Reactive actions:
+
+Prevention:
+
+- Security education
+- Security requrieents
+- Secure design
+- IDE Static analysis
+
+- --
+
+Detect and Mitigate- Secure pipelines
+
+- Static Analysis
+- Secure pipelines
+
+- --
+
+Test/QA
+
+- Dynamic Analysis/Fuzzing
+- Offensive Operations
+
+- --
+
+Test/QA
+
+- Bug Bounty
+- Security Incidents
+
+- --
+
+As you get farther down the above list, the potential costs go up rapidly.
+
+Safety and Security are not distinct.
+
+Use Threat Model designs to better understand areas where threat risks exist.
+
+- Identify trusted and untrusted inputs and data, such as user inputs, or some extreme content from the LLM.
+- Other untrusted inputs could be 3rd party websites with images, audio, text, or files. The AI could interpret various encodings and code as instructions.
+
+Jailbreaking:
+
+- Get the system to do something regardless of the rules set for it.
+- A fancy way to 'code' social engineering.
+- Dealing with humans: Vetting, training, monitoring, checks & balances, and build trust over time.
+- Dealing with AI/Copilot: Test through adversarial methods, adjust meta-prompts to tune behavior, monitor, include multiple AI systems and/or humans managing them (metacognition).
+
+XPIA: Cross-Prompt Injection Attacks
+
+- Embedding malicious prompts into a web page.
+- AI uses the "tainted web page".
+- AI performs a transaction as instructed.
+- LLMs confuse actual inputs with tainted inputs that _look like instructions_.
+- Mitigate by delimiting data, marking data, and encoding data.
+
+Advice:
+
+- Do security fundametals/training.
+- Look fo rai risks early on.
+- Use safety mitigation builtin in to oplaform you are using.
+- Plan enough time to test ai enabled applications.
+
+## Enterprise Class NGINX Plus Without Operational Toil
+
+Leslie interviewed Brian Ehlert, Director, Product Management, F5 NGINX.
+
+General Notes:
+
+- NGINX is _more_ than just a web server: Cache, reverse proxy, streaming server, etc.
+- Clustering and state sharing: Client connection state is shared within the cluster with features like rate limiting.
+- NGINX as a Service, 1st class service on Azure.
+- NGINX+ unlock developer capabilities as a managed service, in L4 and L7 (which other services do not provide).
+- Header and Body manipulation are possible, as well as authentication and session handling.
+- More about [NGINX as a service on Azure](aka.ms/Build24FP/F5).
+
 ## Scott and Mark Learn AI
 
 Presenters:
 
-- Scott Hanselman VP Developer Community "Programmer"
-- Mark Russinovich CTO and Technical Fellow for Microsoft Azure
+- Scott Hanselman, VP Developer Community "Programmer"
+- Mark Russinovich, CTO and Technical Fellow for Microsoft Azure
+
+Live build an AI ChatBot using C#, .NET MAUI, Semantic Kernel, Github Chat (custom box), to clean Scott's desktop:
+
+- An initial AI Copilot doesn't have any guardrails - "poor alignment" and the model starts out as a blank slate.
+- MetaPrompts should not be considered secrets - they don't have 'secret' instructions, and shouldn't have anything that might be leaked.
+- Red Teaming out own Chat Bots: Evaluate the risk first. Safeguards should be put in place to minimize the risk.
+- Fine-tuming might be required to get the Bot to do things like _count files in a directory_.
+- Semantic Kernel is the platform that will provide deterministic-like actions.
+- The Chat Bot will need the capability to do things like read files. Do this by adding Kernel Functions with `[KernelFunction]` attribute. This declares "arms and legs", meaning give it the ability to do things like count files in a directory. These `[KernelFunctions]` attributes add to the list of "things I can do".
+- The Cloud-based AI does not know what the functions in the Application contain, it only knows (through Semantic Kernel) the calls it can make.
+- .NET Aspire Traces can drill-in to the inter-process communications to see the prompts, responses, etc.
+- Endpoints are set up in the App configure container. Mark and Scott set this up to use 2 specific AI Chat Completions, to run on the MPUs on the local machine.
+- "Summarizing text files is something that SMLs can do really well".
+- AI Models are non-deterministric, matching tokens that it saw while it was in training. Probabilistically, the result is more likely to be closer to its training, rather than veering from the deterministic path.
+- Deterministric Functionality, through Semantic Kernel, allows the AI Model to handle the actual data that the App has information about, or direct access to.
+- Models will ask for concent before doing destructive actions.
+- UX, ethical, and philosophic questions must be considered and dealt with, because the AI Model _will not have these capabilities_.
 
 ## .NET Aspire Dev On Any OS with VS Family
 
