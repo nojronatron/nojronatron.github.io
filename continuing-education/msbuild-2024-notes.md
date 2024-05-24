@@ -6,6 +6,14 @@ MSBuild takes place on 21 May through 23 May, 2024.
 
 ## Table of Contents
 
+- [Sessions I Could Not Attend And Want To View](#sessions-i-could-not-attend-and-want-to-view)
+- [Running .NET on the NES](#running-net-on-the-nes)
+- [Create Superior Experiences with WinUI and WPF](#create-superior-experiences-with-winui-and-wpf)
+- [Unleash The Potential Of APIs With Azure API Management](#unleash-the-potential-of-apis-with-azure-api-management)
+- [Highly Technical Talk - Hanselman and Toub](#highly-technical-talk---hanselman-and-toub)
+- [Zero To Hero - Develop Your First App With Local LLMs On Windows](#zero-to-hero---develop-your-first-app-with-local-llms-on-windows)
+- [Windows Subsystem for Linux, Your Enterprise Ready Multitool](#windows-subsystem-for-linux-your-enterprise-ready-multitool)
+- [Whats New In C Sharp 13](#whats-new-in-c-sharp-13)
 - [Level Up With DevBox](#level-up-with-devbox)
 - [AI Safety and Security Fundamentals](#ai-safety-and-security-fundamentals)
 - [Enterprise Class NGINX Plus Without Operational Toil](#enterprise-class-nginx-plus-without-operational-toil)
@@ -22,6 +30,131 @@ MSBuild takes place on 21 May through 23 May, 2024.
 - [Keynote - Tuesday](#keynote---tuesday)
 - [Resources](#resources)
 - [Footer](#footer)
+
+## Sessions I Could Not Attend And Want To View
+
+- [ ] Build APps From The Cloud With Microsoft Dev Box, Visual Studio, and More.
+- [ ] Developer Experience Improvements in Windows.
+- [ ] Accessibility In The Era Of Generative AI.
+- [ ] Building Copilots - Key Lessons And Best Practices.
+- [ ] Deploy, Test, And Run Apps With Azure Deployment Environments.
+- [ ] Inside Microsoft AI Innovation With Mark Russinovich.
+- [ ] Start Building Your Next App Now With MongoDB Provider For EF Core.
+- [ ] Infusing Your .NET Apps With AI: Practical Tools And Techniques.
+- [ ] .NET API Development End-To-End.
+- [ ] Enhancing .NET MAUI: Quality, Performance, And INteroperability In .NET 9.
+- [ ] How To Quickly Build A .NET Dashboard.
+- [ ] Modern Full-Stack Web Development With ASP.NET Core And Blazor.
+
+## Running .NET on the NES
+
+Speaker: Jonathan Peppers, Principal Software Engineer, .NET, .NET MAUI, MSFT
+
+General Notes:
+
+- The NES was _not_ powerful by today's standards: 512kb per cartridge!
+- Assembly code is a core, historical language.
+- Learning about MSIL and AOT compilers.
+- `dotnet new nes` :astonished: Regular net8.0 package, using `dotnes` NuGet Package.
+- Emulator Jon used: ANESE
+- Requires a set of 'image data', made up of `bytes`.
+- `dll`: Class library output.
+- `nes` file: ROM output that the emulator consumes.
+- Jonathan started by reducing the scope to get 'Hello World' working. No debugger, no GC, no base-class libraries, no classes nor methods! No compatibility requirements, either.
+- How does this work? C Sharp compiler produces MSIL (like usual), and then the 6502 Assembly is produced using an MSBuild Task.
+- JIT: Just in time compiler, since .NET 1.0. Loads MSIL and transpiles into machine code on-the-fly.
+- AOT Compiler: Mono does this, compiling MSIL at build-time.
+- iOS and Mac Catalyst _do not run a JIT_. Provides faster startup.
+- Native AOT: Introduced .NET 7 for Console Apps. .NET 8 enables ASP.NET, and iOS. More coming in .NET 9.
+- 8-bit Workshop tool: Browser-based IDE that includes assembly and execution preview.
+- Remember: Games require a run loop, so a `while(arg)` must be included at the end of the code, otherwise the system abends.
+- Had to understand the `*.nes` file format.
+- Trainer: A special area of ROM where developers could change starting properties like game level, player invincibility, etc.
+- Header must be written using a binary writer such as `System.Writer(char)`.
+- CHR_ROM: Memory areas where characters were drawn, and tinting and rotating were used to set images.
+- 6502 Instruction Set was shared with Apple II, Commedore, and others. _Note_: MSIL instruction set is _much larger_!
+- String Tables: An address that identifies a cell in a table with strings that can be referenced.
+- Tool: ILSpy allows viewing the Metadata, References, and Resources.
+- Jon leveraged ENUMs of the NES Instructions so he could easily call them.
+- Endian: The NES is Little Endian, so smaller letters have lower value encodings.
+- MSBuild has Targets (XML) and Tasks (C#, generally).
+- MSBuild Target: Defines what is run _after the build_. MSBuild properties are marked with `$(variable)`. Inputs and Outputs are set. Item Groups like `@(item)` work like collections of references.
+- MSBuild Tasks: PropertyGroup encapsulates `<RunCommand>`, `<RunArguments>` and `<RunWorkingDirectory>`. Tasks are often used for builds that require script executions for customizations or specific CI-CD tasks.
+- `neslib`: There are about 44 methods that had to be transpiled.
+
+Jonathan's Thought Process:
+
+| Developer Experience                                | Hard Part                                               |
+|-----------------------------------------------------|---------------------------------------------------------|
+| Write a C Sharp reference assembly for neslib API   | Learn NES binary format, write header in C Sharp        |
+| dotnet new nes project template                     | Just understand enough to write 'Hello World'           |
+| MSBuild tasks and targets for dll to nes            | Use System.Reflection.Metadata to convert Main() to 6502 assembly |
+| Write unit tests and verify expected output         | Write Super Mario is C Sharp                            |
+
+Advice for doing this yourself:
+
+- use 8-bit workshop.
+- learn a little bit of C.
+
+Project GitHub:
+
+- [DotNES GitHub](https://github.com/jonathanpeppers/dotnes).
+- To get going use `dotnet new install dotnes.templates`.
+
+## Create Superior Experiences with WinUI and WPF
+
+Speakers:
+
+- Ranjesh Jaganathan, Engineering Manager, WinUI Team, MSFT
+- Niels Laute, Sr Software Engineer, Windows Team, WinUI, Community Toolkit, PowerToys, MSFT
+- Pankaj Chaurasia, Engineering Manager, Client Platform, WPF
+
+MSFT Client Dev Investments: Windwos Native, Cross Platform Native, Hybrid, and Web!
+
+What is a superior app experience?
+
+- Many things, according to MSFT, partners, and other WinUI and WPF developers.
+- App reviews/ratings also help define what is good/superior.
+- Design: Modern, Windows-app designs.
+- Performance: 
+- OS Integration: 
+
+Demos: Contoso Camera Manager and Contoso Studio.
+
+Contoso Camera Manager (WPF):
+
+- Device settings on the left, and pictures gallery on the right. There are also a Device and About menu items under the Title Bar.
+- Modernization means: Look and feel, 
+- Import the Fluent Design resource 'Fluent.xaml'.
+- WPF imports Accent Colors as set in the Control Panel! Removing specific styles enables 'Fluent Design' to do the styling for you! Just add the Fluent properties using the style property `DynamicResource` value on the appropriate element.
+- WinUI 3 Gallery tools _can also be applied to WPF projects_.
+- WPF will no longer have some (legacy) WinForm dependencies in .NET 9+
+- `Packaging` puts your App in your Start Menu, and Hot Reload is still enabled for dev and debug!
+- `AppNotificationBuilder` enables creating a simple Windows Notification with about 6-7 lines of code!
+- ShareSheet: Enables sharing items to/from your WPF App (similar to mobile). Package.appxmanifest must be edited to enable ShareSheet as a ShareTarget. `ShareDestination` must be added to share _out_ from your app.
+
+> Add fluency to a WPF App simply and easy, using .NET 9 and the WinUI 3 Gallery Tools and the new APIs.
+
+Contoso Studio (WinUI 3 and WinAppSDK):
+
+- Pages navigation on the left.
+- Light/dark mode.
+- Settings control in the BLC.
+- Upper and lower main window area with statistics in the upper area, and content w/ actions (delete) in the lower area.
+- Missing features too!
+- Windows Store uses _all custom controls_ and the "fluid design system".
+- [WinUI 3 Gallery](https://apps.microsoft.com/detail/9p3jfpwwdzrc?amp%3Bgl=US&hl=en-us&gl=US): Contains many tools and guidance including iconography, typography, accessibility and more! Color fill, stroke, background, etc tools are in there too!
+- WinUI 3 Gallery Spacing Page: New! Advice on various spacing concepts and practices.
+- `<Window.SystemBackdrop>`
+- Cards are just Theme Resources from the WinUI 3 Gallery.
+- Creating a custom Icon and TitleBar requires a lot of builerplate code. New Control `TitleBar` control will be available in 1.6-Experimental.
+- Activating/Deactivation the window: Changing the background color (slightly) makes it apparent that the app is selected, just like in Windows.
+- `<ItemsView>` is being rebuit from the ground up. Attached Property `Layout` can be set with defining Resources. It is built out of many other things including ITemsRepeater, ItemsSource, Layout (virtualizing and non-virtualizing), and verious collection change animations. ItemTemplate manages recycling. Stack, UniformGrid, and LinedFlow are also related to the collection of things here. ScrollView, ItemContainer, Various interactions, keyboarding, and accessibility, are also included.
+- `<SelectorBar>`: New, drop-in replacement for `<ItemsView>`, that enables native aspect-ratio for images, and provides changing views of the child items.
+- Virtualizing and non-virtualizing Layout: Everything is already loaded regardless of where the view is, unless it is virtualized, in which case items are loaded just-in-time for the actual Viewport (Realization Rectangle). Items that fall out of the Realization Rectangle get recycled automatically.
+- Helpful tools: WinUI Performance Toolkit and XAML Frame Analysis Plugin for WPA.
+
+> Fluent Design system and WinUI Gallery were used to help design the demo app.
 
 ## Unleash The Potential Of APIs With Azure API Management
 
@@ -205,13 +338,13 @@ Coming Soon:
 
 Presenters:
 
-Mads Torgersen, Principal Architect, MSFT
-Dustin Campbell, Principal Software Engineer, MSFT
+- Mads Torgersen, Principal Architect, MSFT
+- Dustin Campbell, Principal Software Engineer, MSFT
 
 Starter Info:
 
 - Comes out with .NET 9.
-- Focusing on 3 specific features: 
+- Focusing on 3 specific features: Extension Types, Auto Props customization, and Collection Expressions with auto-typing.
 - Preview implementations are available in the compiler bits, just by using In-Preview bits.
 - New documentation articles are released as new features become available [link placeholder](csharp whats-new csharp-13) #####
 - [dotnet/csharplang](https://github.com/dotnet/csharplang): This is the design-level repo.
@@ -1045,6 +1178,10 @@ Kevin Scott
 ## Resources
 
 [.NET Announcements and Updates from Microsfot Build 2024 from the .NET Team](https://devblogs.microsoft.com/dotnet/dotnet-build-2024-announcements/).
+
+[WinUI 3 Gallery](https://github.com/microsoft/WinUI-Gallery) simplifies style and performance enhancements for your WinUI 3 and WPF apps.
+
+[Get Started with WinUI](https://learn.microsoft.com/en-us/windows/apps/get-started/start-here?tabs=vs-2022-17-10).
 
 Windows Subsystem for Linux [(WSL) Documentation](https://learn.microsoft.com/en-us/windows/wsl/).
 
