@@ -266,7 +266,96 @@ App.razor:
 - Declares how pages are routed.
 - Defines which default Layout is to be used.
 
-### Common Things To Know and Understand
+## Blazor Forms and Validation
+
+Overview:
+
+- Use Blazor event handlers to improve interactivity.
+- Use Forms in Blazor for data entry.
+- Server- and Client-side validation of Forms in Blazor.
+
+Events:
+
+- Triggered in the DOM: Clicks, Focus/Lost Focus, Content change, or Lifecycle such as Loading.
+- Options are to ignore (usually the default), or run custom event handlers in JS or Blazor C#.
+- Most Blazor Events correspond to DOM Events.
+- Custom Blazor Events can be written in C# by using Event Binding.
+- EventArgs carry information about the Event.
+- Blazor Directive `@` is used to identify Blazor-handled Events and custom event handlers in Blazor.
+- In JS with JQuery, events run in the client browser.
+
+Event Args:
+
+- Blazor automatically makes these available for Event Handler methods to take as parameters.
+- `MouseEventArgs`, ..., all inherit from base `EventArgs` .NET Class.
+
+Blazor Events, Handling:
+
+- In Blazor, Events are handled on the _server_ which only updates the UI when _it needs to be_.
+- Events can change state in the UI, which will cause a refresh, or they can change data behind the scenes, which does _not_ require a page refresh. Blazor Server handles that _for you_.
+- Blazor Server allows Event Handlers to access _static data_ between sessions (JS does not).
+- For events like `mousemove` or other common events that don't change UI state, it might be better to handle the event client-side using JavaScript.
+- Supressing default behavior is possible in Blazor by adding `:preventDefault` to the `<input>` element attributes list. See example below.
+
+```c#
+// code reference: MSLearn "Blazor Improve How Forms Work
+<input value=@data @onkeypress="ProcessKeyPress" @onkeypress:preventDefault />`
+```
+
+Asynchronous Event Handling:
+
+- Blazor event handlers are _not async_ by default and _will block_.
+- Designate event handlers as `async` with an appropriate return like `Task` or `Task<T>` to free the UI thread when the `await` operator is used.
+
+`FocusAsync` method:
+
+- Force the user to focus on a specific page element, regardless of Tab Order.
+- Create an `ElementReference` field to store the InputField reference.
+- Use `@ref` attribute in-line with the HTML to tie-in the event to the handler.
+- Write the async Task event handlers for `ChangeFocus()` and `HandleFocus()` to perform actions.
+
+```c#
+// code reference: MSLearn "Blazor Improve How Forms Work"
+<button @onclick="ChangeFocus">Click to change focus</button>
+<input @ref=InputField @onfocus="HandleFocus" value="@data" />
+@code {
+  private ElementReference InputField;
+  private string data;
+  private async Task ChangeFocus()
+  {
+    await InputField.FocusAsync();
+  }
+  private async Task HandleFocus()
+  {
+    data = "Received focus";
+  }
+}
+```
+
+_Note_: This example is not best practice. Forcing focus to a specific element is best utilize when there is an error on an input, especially within a Form, and the user needs to change the incorrect input before continuing. Avoid using this code to force users' navigation through a page.
+
+Inline Event Handlers:
+
+- Lambda expressions are supported, and will create an anonymous function.
+- Use Lambdas for _simple_ event handlers that don't need to be reused anywhere else.
+- Write the Lamgda _inline with the HTML_.
+
+Event Default Behaviors and Propagation:
+
+- See above code regarding `preventDefault` property on the input element event attribute. This is useful when _only the event handler code_ should be run, but screen-update(s) should _not happen_.
+- Recall that events propagate _up the DOM tree_ and if the Parent pages shouldn't operate on an event, leveraging `stopPropagation` attribute will keep parent event handlers from handling the same event type triggered by a descendant.
+
+Event Callbacks:
+
+- Use these to handle events across components.
+- A descendant can call a Parent or Grand-parent component's event handler with an event callback.
+- Event Callbacks take a single parameter `EventCallback<T>` that carries the data.
+- Use `[Parameter]` attribute on a `public` property of type `EventCallback<T>` where 'T' is the type of Event that is being captured.
+- The Event Callback is propagated similarly to [Cascading Parameters](#cascading-parameters).
+- Use appropriate typed `EventArgs` parameters to directly wire-up the event callback.
+- The grand/parent component must have an appropriatly types handler method for the event callback.
+
+### Common Blazory Things To Know and Understand
 
 - To _register_ a data access service to the Blazor Server application, implement a Data Model and a Service that can call an ORM or obtain the data from a file or REST call (etc), then register the data access Service in `Program.cs` like `builder.Services.AddSingleton<DataGetterService>();`.
 - OnInitializedAsync(): Event fires when component's initialization is complete and it has received initial parameters but the page has not rendered yet. Override this method to fetch data asynchronously.
@@ -275,6 +364,9 @@ App.razor:
 - Adding EntityFrameworkCore and registering a `DbSet<T>` allows adding an ASP.NET Controller that can access the database data.
 - If an _error page_ is returned after creating a new `Controller`, be sure to use `cURL` or similar to query the path and see what is actually returned. _A common scenario_ is routing is not correct and the returned page is _not_ the MVC Controller content, but an _error page_.
 - When passing Parameters around, use `Microsoft.AspNetCore.Components.EventCallback`. This is an event handler delegate type (struct) that can be used to cast an event handler (i.e. onclick() or lambda) to a parameter on the Fragment/Child Razor Component. Similar to passing a function using React `props`.
+- Blazor Server _maintains a copy of the client-side DOM_. Avoid corrupting this but _not_ updating the DOM server-side.
+- JavaScript code can be injected using `@inject IJSRuntime JS` in the top portion of a Razor Page. Utilize the `JS` Runtime code like you would anywhere else, such as in an event handler: `await JS.InvokeVoidAsync("alert", msg);`. This is called _JavaScript Interop_, and it enables doing things in JS, that Blazor cannot do natively.
+
 
 ## Minimal APIs
 
