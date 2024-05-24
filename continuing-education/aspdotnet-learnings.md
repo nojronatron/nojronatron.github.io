@@ -5,6 +5,7 @@ Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET
 ## Table of Contents
 
 - [Blazor](#blazor)
+- [Blazor Forms and Validation](#blazor-forms-and-validation)
 - [Minimal APIs](#minimal-apis)
 - [Entity Framework Core](#entity-framework-core)
 - [Full Stack ASP Dot Net Development](#full-stack-asp-dot-net-development)
@@ -124,7 +125,7 @@ Define the properties to store in a new Class and register it as a scoped servic
 2. Register the Class in `Program.cs` as a scoped service: `builder.Services.AddScoped<StateObject>();`.
 3. Inject the registered class into any Component that needs to use it using Razor Syntax: `@inject StateObject stateObj`.
 
-### Data Binding
+### Data Binding in Blazor
 
 When an HTML element value is changed, the web page must be refreshed to show it.
 
@@ -355,6 +356,153 @@ Event Callbacks:
 - Use appropriate typed `EventArgs` parameters to directly wire-up the event callback.
 - The grand/parent component must have an appropriatly types handler method for the event callback.
 
+### Blazor EditForm
+
+Input and Form are common web elements to capture user inputs. Blazor adds-on to these with capabilities to validate and manipulate form inputs.
+
+The EditForm:
+
+- Takes the place of a standard HTML `<form>` element.
+- Includes data binding to assciate an Object with the form.
+- Validation through use of attributes and validation rules.
+- Submission: Follows the Blazor Event Model using C# event handlers to capture the `OnSubmit` event.
+- Input elements: Blazor adds to the standard HTML `<input>` element to implement binding and validation features.
+- Implementes _two-way binding_ by default!
+
+To create an EditForm with Data Binding:
+
+1. Create a public class that defines the form input elements as public properties.
+2. Bind the EditForm to the model using a standard private property in the Razor page that implements the Type of the Form. For example, if a new user Form is asking for username and email address, a new Class can be created to represent the Form data such as `public class NewFormUser { public string UserName { get; set; } ...}` etc.
+3. `@inject` any service that provides a factory for the class, or other functionality that supports the Form-generated class.
+4. Implement event handlers to do things like pre-load an EditForm with existing data using a `OnInitializedAsync()`, or to handle changes in specific Input elements such as a button click or item selection.
+
+### Blazor Control Input Components
+
+Each Blazor Input Component is rendered as a specific HTML element as explained in this table from [MS Learn](https://learn.microosft.com/en-us/training/modules/blazor-improve-how-forms-work):
+
+| Input component      | Rendered as (HTML) |
+|----------------------|--------------------|
+| `InputCheckbox`        | `<input type="checkbox">` |
+| `InputDate<TValue>`    | `<input type="date">` |
+| `InputFile`            | `<input type="file">` |
+| `InputNumber<TValue>`  | `<input type="number">` |
+| `InputRadio<TValue>`   | `<input type="radio">` |
+| `InputRadioGroup<TValue>` | Group of child radio buttons |
+| `InputSelect<TValue>`  | `<select>` |
+| `InputText`            | `<input>` |
+| `InputTextArea `       | `<textarea>` |
+
+About Blazor Control Input Components:
+
+- Elements have attributes including `@ref` for referencing C# variables.
+- Unrecognized elements are not changed by Blazor and are passed to the HTML renderer.
+- Mixing Blazor Controls with standard HTML controls is supported.
+
+### Form Submission
+
+Declarative client-side validations are performed prior to sending to server-side.
+
+- Basic input errors such as too long, or missing character classes.
+- Other errors including skipped required fields or incorrect data types.
+
+Server-side enables handling complex validations:
+
+- Compare data against existing database data such a duplicate or bad lookup value.
+- Processing errors such as invalid classifications based on several form input datum.
+- Unauthorized or unauthenticated submissions.
+- Stict type checking.
+
+EditForm Events:
+
+- `OnValidSubmit`: Input fields all pass validation rules (attributes). Use for basic validation.
+- `OnInvalidSubmit`: One or more input fields fail validation rules. Use for basic validation.
+- `OnSubmit`: Regardless of valid/invalid state, this event is fired. Use when data should be processed by more complex validation functions.
+- Pick either the top 2, or the bottom one, but _not all three_. This is _not checked at build time_ and could result in a Run Time error if `OnSubmit` is used when either/both of the other 2 are used as well.
+
+EditContext object:
+
+- Data from the EditForm are instantiated in a new EditContext instance.
+- This is the parameter for `submit` events.
+- Event handlers can use the `Model` field to retrieve the inputted values.
+
+Validation Failure Notification:
+
+- Create an element to capture the value of a parameter that is set with a value when there is a validation error.
+- This way, every time validation occurs, a message appears when validation fails, or the message is removed if validation succeeds.
+
+### Annotate Models For Validation
+
+Validate user input as soon as possible in Blazor Forms:
+
+- Missing information can make an order impossible to complete.
+- Null or corrupt values can cause the code to misbehave or the website to crash.
+- Nefariously injected code can be a security or denial-of-service threat.
+
+Use the following to help users understand what is necessary:
+
+- Use a label to idenfity the field as required.
+- Use colorization, highlighting, or changes in an input border to identify areas where the user needs to focus.
+- Green outlines usually portray "valid" or "good", and red outlines usually portray a problem that the user needs to resolve.
+- Use messages somewhere near the form that explain what (if any) problems there are with the input.
+- Failed validation messages should tell the user what must be done to fix them e.g. Phone numbers must be at least 10 digits including an area code.
+
+Many annotations are available including:
+
+- ValidationNever
+- CreditCard
+- Compare
+- Phone
+- RegularExpression
+- StringLength
+- Url
+
+### Control Blazor Form Validation
+
+Field Validation: User tabs _out_ of a field.
+
+Model Validation: User _submits_ the form and validation is handled server-side.
+
+- `<DataAnnotationsValidator />`: Checks the model annotations against the entered values.
+- `<ValidationSummary />`: Displays a summary of validation errors.
+
+To implement Field Validations (client-side):
+
+1. Add annotations to the model: `[Required]`, `[EmailAddress]`, [Range(int start, int stop)]`, etc.
+2. Include messages in the annotations such as `[Required(ErrorMessage = "Phone number is required")]`
+3. Add `<DataAnnotationsValidator />` and `<ValidationSummary />` Blazor Elements to the `<EditForm>` so that the validation attributes are utilized.
+
+To implement Model Validations (server-side) using `OnSubmit`:
+
+1. Annotations are still necessary.
+2. Use `EditContext` parameter for checking input data: `editContext.Validate()`.
+3. Write handlers with validation logic.
+4. Add `<ValidationMessage For="@(() => model.Property)" />` to execute a lambda indicating validation errors.
+
+To implement Model Validations (server-side) using `OnValidSubmit` and `OnInvalidSubmit`:
+
+1. Annotations are still necessary.
+2. Add `OnValidSubmit=@OnValidHandler` and `OnInvalidSubmit=@OnInvalidHandler` to the `<EditForm>` attributes.
+3. Implement the `OnValidSubmit()` and `OnInvalidSubmit()` handlers that take `EditContext editContext` as a parameter.
+4. For `OnValidSubmit()` implement storing the valid data in the handler.
+5. For `OnInvalidSubmit()` impelment activating an error message explaining what the user needs to do.
+
+#### Custom Validation Attributes
+
+Create one only if the existing Validation Attributes are not sophisticated enough to validate a particular case:
+
+- Create a class that inherits from `ValidationAttribute`.
+- Override the `IsValid` method.
+- Impelment the validation function in the `IsValid` method.
+- Add the custom validation attribute to the model class.
+
+### Server-Side Form Validation
+
+When using `OnValidSubmit()` and `OnInvalidSubmit()`, server-side validation is triggered:
+
+- Validate form inputs against an annotated class via the `<DataAnnotationsValidator />` element.
+- Provide rich validation messaging to the user within the Form via `<ValidationSummary />`.
+- Perform deeper validation such as RegEx or validation against other data sources prior to storing user-inputted data.
+
 ### Common Blazory Things To Know and Understand
 
 - To _register_ a data access service to the Blazor Server application, implement a Data Model and a Service that can call an ORM or obtain the data from a file or REST call (etc), then register the data access Service in `Program.cs` like `builder.Services.AddSingleton<DataGetterService>();`.
@@ -366,7 +514,6 @@ Event Callbacks:
 - When passing Parameters around, use `Microsoft.AspNetCore.Components.EventCallback`. This is an event handler delegate type (struct) that can be used to cast an event handler (i.e. onclick() or lambda) to a parameter on the Fragment/Child Razor Component. Similar to passing a function using React `props`.
 - Blazor Server _maintains a copy of the client-side DOM_. Avoid corrupting this but _not_ updating the DOM server-side.
 - JavaScript code can be injected using `@inject IJSRuntime JS` in the top portion of a Razor Page. Utilize the `JS` Runtime code like you would anywhere else, such as in an event handler: `await JS.InvokeVoidAsync("alert", msg);`. This is called _JavaScript Interop_, and it enables doing things in JS, that Blazor cannot do natively.
-
 
 ## Minimal APIs
 
@@ -822,7 +969,7 @@ Configurable settings:
 - Port: The TCP port the server listens on.
 - Proxy: Whether one is used as a bridge between the browser and the back-end API.
 
-### Data Binding
+### Data Binding in ASP.NET
 
 One-way:
 

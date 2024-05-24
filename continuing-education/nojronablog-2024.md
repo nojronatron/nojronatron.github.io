@@ -60,6 +60,52 @@ The above is the list of _content sectioning_ elements. I like to think of these
 
 There are also a ton of deprecated elements that _should not be used_.
 
+### VSCode Run and Debug Blazor with Alternate Browser
+
+While working through Blazor training, I kept finding myself opening Firefox or Edge and typing-in the localhost and port of the running Blazor Server, because I didn't want to be forced to use Chrome or switch the OS default browser to test a site on other browsers.
+
+This took just a little investigating, but here is what I did:
+
+1. The `launch.json` file contains a collection of launch configurations that fills the list of options in the Run And Debug tool's F5 button.
+2. According to [starting a web browser](https://code.visualstudio.com/docs/csharp/debugger-settings#_starting-a-web-browser) article on code.visualstudio.com, the key to launching browsers lies in `serverReadyAction` and `launchBrowser`, the former being a new feature, the latter being an older (but still supported) feature.
+3. By default, when executing "NET: Generate Assets for Build and Debug" in the Command Palette, `serverReadyAction` is added and configured, which calls the OS-default web browser, or the VS Code-configured default browser, if edited. That's fine, but if I want to have a selection of browsers to launch, I need to have multiple configurations to choose from.
+4. Configuring a new 'configurations' collection item was not difficult. I pretty much copied the entries from the ".NET Core Launch (web)" entry, and edited it for launching Firefox.
+5. The last bit was to add the path to Firefox.exe to the "windows.command" properties in the new configuration.
+6. There are 2 additional commands, "osx.command" and "linux.command" that should probably be added for those instances where iOS or Linux-based development is necessary. In this case they are not necessary since I'll be sticking with Windows, so I removed them.
+
+Here's a sample showing _only_ the configuration item that launches Firefox (other configuration items were omitted):
+
+```json
+{
+  "version": "0.3.0",
+  "configurations": [
+    {
+      "name": "Launch In Firefox (web)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/bin/Debug/net6.0/BlazingPizza.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "launchBrowser": {
+        "enabled": true,
+        "args": "${auto-detect-url}",
+        "windows": {
+          "command": "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
+        }
+      }
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
+}
+
+```
+
 ## Week 20
 
 ### OSS and TS
