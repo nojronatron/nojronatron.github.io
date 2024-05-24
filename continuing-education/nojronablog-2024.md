@@ -20,6 +20,9 @@ MS Build 2024 is happening this week and will consume a large chunk of time. I h
 - Windows subsystem for Linux (WSL) has updates to networking, memory usage, and VHD management and usage, and there are more features coming. Another interesting feature is a Plug-in Architecture that is now built-in to WSL. This will allow building custom Plug-ins to WSL for OSS and Enterprise developers to leverage.
 - PowerToys _advanced paste_ is amazing.
 - WinGet is the way to go for install, removal, and configuration of applications and dependencies on your machine/environment!
+- WPF and WinUI 3 are getting some love through some .NET 9 improvements and a developer tools from a new `WinUI 3 Gallery Tools` project!
+
+There were many other interesting takeaways, many more details I want to explore, and several MSFT Learn Modules I want to work through now. That is a sign of a successful event!
 
 ### Semantic Structural Elements
 

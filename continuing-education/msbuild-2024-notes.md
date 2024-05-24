@@ -388,7 +388,7 @@ Maddie Montaquila Sr Prgram Manager, .NET Team
 Vickie Harp, Principal Group Product Manager
 
 - PowerToys can be used to browse Control Panel, the Registry, and more, directly from the PowerToys `Run` tool.
-- Polyglot Notebooks: Like Jypiter Notebooks, but allows `C#`, PowerShell, Python, etc.
+- Polyglot Notebooks: Like Jupyter Notebooks, but allows `C#`, PowerShell, Python, etc.
 - `sudo` has been added to Windows.
 - FileLockSmith: SHows what process is holding a file handle.
 - PowerToys Advanced Paste: AI-assisted paste. Will paste-as to types like JSON, Markdown, and other types including `paste audio as text`. _These features are running LOCALLY_ not in the cloud.
