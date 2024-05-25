@@ -41,7 +41,7 @@ Some limitation on performance due to WRRC round-trip time requirements.
 
 Define UI layout and functionality, similar to React and Vue, and integrates with .NET MAUI for managing multi-platform support such as Android, iOS, and Linux. Designed for native apps, desktop, and mobile.
 
-### Blazor vs Razor
+## Blazor vs Razor
 
 Blazor utilizes Razor Components, which are specially crafed Razor pages, using Razor syntax to integrate C# with HTML.
 
@@ -56,7 +56,7 @@ Razor Components are Pascal-case files with an extension of `.razor`:
 
 Deploy a new Razor Component using 'dotnet' like so `dotnet new razorcomponent -n ComponentName -o Pages`. This will create a new Razor Component named `ComponentName.razor` in the folder `Pages` of an existing Blazor Server Project.
 
-### Build and Run Blazor
+## Build and Run Blazor
 
 To build Blazor Server use the same methods as with other projects (`dotnet build` or 'F6' using Visual Studio).
 
@@ -69,7 +69,7 @@ To build and run Blazor Server and force it up restart when code is changed (ala
 - CTOR-Inject any required services just like any other class.
 - Use `[HttpGet]`, `[HttpPost]`, `[HttpPatch]`, `[HttpDelete]` (etc) REST call definitions to identify each Controller Method as an HTTP/API endpoint.
 
-### Share Data Between Components
+## Blazor Share Data Between Components
 
 There are 3 ways to do this:
 
@@ -77,7 +77,7 @@ There are 3 ways to do this:
 - Use Cascading Parameters: Parent component provides parameter values via child component(s) to grand-children component(s).
 - Share Data using AppState.
 
-#### Component Parameters
+### Component Parameters
 
 - Useful for passing data from Parent Components to Child Component Fragments.
 - Component Fragments are designed to only render a single Control or small subset for the Parent Component.
@@ -109,7 +109,7 @@ There are 3 ways to do this:
 
 See [Razor Lifecycle Events](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/lifecycle?view=aspnetcore-8.0#when-parameters-are-set-setparametersasync) for details about when parameters are set and how to manage that event.
 
-#### Cascading Parameters
+### Cascading Parameters
 
 - Used for passing data farther down the Component hierarchy requires using `CascadingParameters`.
 - Use `[CascadingParameter(Key=string)]` to define the Cascading Parameter in the Component Fragment.
@@ -117,7 +117,7 @@ See [Razor Lifecycle Events](https://learn.microsoft.com/en-us/aspnet/core/blazo
 
 _Note_: Objects can be passed using Cascading Parameters - it is not limited to value-type variables.
 
-#### AppState
+### AppState
 
 Define the properties to store in a new Class and register it as a scoped service:
 
@@ -125,7 +125,7 @@ Define the properties to store in a new Class and register it as a scoped servic
 2. Register the Class in `Program.cs` as a scoped service: `builder.Services.AddScoped<StateObject>();`.
 3. Inject the registered class into any Component that needs to use it using Razor Syntax: `@inject StateObject stateObj`.
 
-### Data Binding in Blazor
+## Blazor Data Binding in Blazor
 
 When an HTML element value is changed, the web page must be refreshed to show it.
 
@@ -140,7 +140,7 @@ Bindings work on events, too:
 - `oninput` fires whenever any character is entered into a TextBox, for example.
 - Bind to events using `@bind-value` and `@bind-value:event` directives.
 
-#### Bound Value Formatting
+### Bound Value Formatting
 
 Use the `@bind:format` directive to update formatting.
 
@@ -151,13 +151,13 @@ _Note_: It is still possible to use pure C# string formatting techniques to appl
 - Specialized formatting rules.
 - Culture-based formatting styles.
 
-### Pages, Routing, Layouts, and Navigation
+## Blazor Pages, Routing, Layouts, and Navigation
 
 - Router Component: Improves Blazor App navigation using the NavLink component.
 - Route Parameters: Increase Routing functionality.
 - Layouts: Reduce duplicate code.
 
-#### Blazor Routing
+### Blazor Routing
 
 Use `@page` directive and `<NavLink>` component both impact routing.
 
@@ -200,7 +200,7 @@ The `<NavLink>` Component:
 - `NavLinkMatch.Prefix`: Only highlighted when href matches _first part of the current URL_. Use this to help the user understand _which section of the website_ they are viewing.
 - Is basically a drop-in replacement for `<a href...>` elements.
 
-#### Route Parameters
+### Route Parameters
 
 Capture a specifid parameter by using `@page "/BaseRelativePath/{parameter}`. This makes the parameter available to the component, like [Component Parameters](#component-parameters).
 
@@ -209,7 +209,7 @@ Capture a specifid parameter by using `@page "/BaseRelativePath/{parameter}`. Th
 - Route parameters will automatically get bound to a component parameter with the same name, by Blazor Router.
 - Use a `?` question mark to make a route parameter optional. Set a default value within an appropriate Blazor Lifecycle Event such as `OnInitialized()` or `OnParametersSet()` (depending on what behavior is required).
 
-#### Route Constraints
+### Route Constraints
 
 `@page "/BaseRelativePath/{parameter:int}`
 
@@ -231,7 +231,7 @@ Use `*` prefix to capture multiple parameters: `@page"/BaseRelativePath/{*parame
 
 A match of 3 parameters could be stored in a string `[parameter]` on the page and displayed to the user, or processed as input.
 
-#### Blazor Layouts
+### Blazor Layouts
 
 Use Layout Componets to set reusable page fragments for:
 
@@ -390,7 +390,7 @@ Each Blazor Input Component is rendered as a specific HTML element as explained 
 | `InputRadioGroup<TValue>` | Group of child radio buttons |
 | `InputSelect<TValue>`  | `<select>` |
 | `InputText`            | `<input>` |
-| `InputTextArea `       | `<textarea>` |
+| `InputTextArea`       | `<textarea>` |
 
 About Blazor Control Input Components:
 
@@ -486,7 +486,7 @@ To implement Model Validations (server-side) using `OnValidSubmit` and `OnInvali
 4. For `OnValidSubmit()` implement storing the valid data in the handler.
 5. For `OnInvalidSubmit()` impelment activating an error message explaining what the user needs to do.
 
-#### Custom Validation Attributes
+### Custom Validation Attributes
 
 Create one only if the existing Validation Attributes are not sophisticated enough to validate a particular case:
 
@@ -503,6 +503,115 @@ When using `OnValidSubmit()` and `OnInvalidSubmit()`, server-side validation is 
 - Provide rich validation messaging to the user within the Form via `<ValidationSummary />`.
 - Perform deeper validation such as RegEx or validation against other data sources prior to storing user-inputted data.
 
+## Leverage JavaScript and Template Components in Blazor
+
+Use JS Interop to execute JavaScript Libraries and functions from Blazor apps.
+
+### JS Blazor Interop
+
+- For the most part, JavaScript is not necessary in Blazor.
+- Existing JavaScript Libraries can be helpful in many situations.
+- Custom JS Code can also be reused.
+- JS Interop allows callsing JavaScript, and allows calling .NET _from_ JavaScript.
+- Use `<script>` tag to load JavaScript code in Blazor. Can be a `.js` file ref or in-line JS code.
+- Add custom JS script tag just after the `<script src="_framework/blazor.*.js"></script>` block in `Pages/_Host.cshtml`.
+- Avoid adding script blocks to the `<head>` element of a page because Blazor only controls content within the `<body>` element.
+- Use `IJSRuntime` to call a JavaScript function from .NET code by `@inject`ing into the Component.
+- `InvokeAsync` and `InvokeVoidAsync` become available to run JavaScript code. Use `await` as per usual.
+
+### Blazor JS Interop Failure Modes
+
+If SignalR has not made a connection between the server and the web page, JS Interop will fail.
+
+- Once rendering lifecycle event fires, the SignalR channel is open.
+- Use `OnAfterRender` or `OnAfterRenderAsync` to detect when rendering has completed.
+- Updating the DOM with custom JavaScript can cause the DOM copy at the server to become out of sync with the web page. Avoid doing this!
+
+### Use ElementReference To Update The DOM
+
+- Create a placeholder element in the Blazor component like `div @ref="placeHolder"></div>` so that Blazor does _not_ attempt to track its contents. Add JavaScript elements here to avoid corrupting server-side DOM copy.
+- `ElementReference` holds the reference to the empty element as a field.
+- Passed-in JavaScript functions use this reference to add content to the empty div element, safely.
+
+### Call .NET From JS
+
+Use `invokeMethod` and `invokeMethodAsync` helper functions. The async version returns a JavaScript `promise`.
+
+- Devine the callback .NET Method as async.
+- Return type must be void or _better yet_ `Task` or `Task<T>` where T is JsonSerializable.
+- Provide the name of the assembly that has the static method so the function can call it back.
+- `JSInvokable` attribute allows specifying an alias for the method reference name.
+- `DotNetObjectReference` is provided by JS Interop to create an object ref in .NET code so it can be safely passed to JavaScript code.
+- Be sure to dispose the object ref when done to avoid memory leaks.
+
+## Blazor Component Lifecycle
+
+Tracks a Component from creation through destruction:
+
+1. Initialization
+2. SetParametersAsync
+3. OnInitialized and OnInitializedAsync _Note_: These will cause a call to StateHasChanged
+4. OnParametersSet and OnParametersSetAsync _Note_: These will cause a call to StateHasChanged
+5. Render UI :arrow_left: BuildRenderTree :arrow_left: ShouldRender :arrow_left: StateHasChanged :arrow_left: Possible UI or External events, or awaited calls from step 3 and 4.
+6. OnAfterRender and OnAfterRenderAsync
+7. Dispose and DisposeAsync
+
+Handle an Event by overriding the corresponding method.
+
+Multiple Render cycles might happen before a page finishes rendering.
+
+A `ParameterView` object is used to pass parameters between Components.
+
+The `SetParametersAsync` method accepts `ParameterView` in its argument list. Therefore, calling `base.SetParametersAsyc` with your own parameters will inject new "state" into the initializing Component. Also, any processing the parameters need prior to this Component rendering them should be done here.
+
+Overriding Lifecycle Parameters is a common practice to handle specific needs at various places during the Component lifecycle.
+
+Use `SetParametersAsync` to _reinitialize_ a Component when the paremeters change.
+
+### Blazor Render Mode And Component Lifecycle
+
+Set `render-mode` in `Pages/_Host.cshtml` controls which Component Lifecycle Methods are available:
+
+- Set to `Server`: `OnInitialized` and `OnInitializedAsync` methods run only _once per instance_.
+- Set to `ServerPrerendered`: `OnInitialized` and `OnInitializedAsync` methods run _twice_: Once during _prerender_ phase (generates static page output), and _again_ when SignalR connects with the browser. Therefore when retreiving or processing data in this method overrides, _cache_ the operation output the first time and _avoid running it again_ to reduce UI load latency.
+
+Objects that are injected by Component dependencies can be used within `OnInitialized` and `OnInitializedAsync` methods _but not before_.
+
+_Note_: Calls to JavaScript code _will not work_ during prerender phase. Instead, add JS Interop processing to `OnAfterRender` and `OnAfterRenderAsync` method overrides.
+
+Use `OnParametersSet` and `OnParamtersSetAsync` to complete initialization tasks taht depend on compontn parameter values i.e. Calculating values for display or instance properties. Keep the processing short to avoid UI load latency.
+
+About `OnAfterRender` and `OnAfterRenderAsync`:
+
+- Run _every time_ the Blazor Runtime needs to update the view.
+- Runs when `OnInitialized` or `OnInitializedAsync`, or `OnParametersSet` or `OnParametersSetAsync` methods run.
+- Anytime a UI Event is triggered.
+- App code calls `StateHasChanged()` Component method.
+
+Order of invokation following call to `StateHasChanged()`:
+
+1. `StateHasChanged`: Component is marked for rerendering.
+2. `ShouldRender`: Getter returns boolean 'should render'. This method _can be overridden_ but must return boolean.
+3. `BuildRenderTree`: Renders the component. Can be overriden to build the render tree in a custom way.
+
+About `bool firstRender`:
+
+- `OnAfterRender` and `OnAfterRenderAsync` parameters list accepts `bool firstRender`.
+- `firstRender` is `true` th first time the method is run, and `false` after that.
+- Evaluate this parameter to do one-time operations like retreiving (and caching) data, so the operation is only initialized once.
+
+### Dispose and DisposeAsync
+
+Release any unmanaged resources by implementing one or both of these methods.
+
+### Lifecycle Exceptions and SignalR
+
+The SignalR connection will be closed if an Exception is thrown!
+
+Blazor _stops functioning_ at this point.
+
+Be sure to _handle exceptions_ as part of the logic of Lifecycle Methods to ensure the SignalR connection remains open!
+
 ### Common Blazory Things To Know and Understand
 
 - To _register_ a data access service to the Blazor Server application, implement a Data Model and a Service that can call an ORM or obtain the data from a file or REST call (etc), then register the data access Service in `Program.cs` like `builder.Services.AddSingleton<DataGetterService>();`.
@@ -514,6 +623,13 @@ When using `OnValidSubmit()` and `OnInvalidSubmit()`, server-side validation is 
 - When passing Parameters around, use `Microsoft.AspNetCore.Components.EventCallback`. This is an event handler delegate type (struct) that can be used to cast an event handler (i.e. onclick() or lambda) to a parameter on the Fragment/Child Razor Component. Similar to passing a function using React `props`.
 - Blazor Server _maintains a copy of the client-side DOM_. Avoid corrupting this but _not_ updating the DOM server-side.
 - JavaScript code can be injected using `@inject IJSRuntime JS` in the top portion of a Razor Page. Utilize the `JS` Runtime code like you would anywhere else, such as in an event handler: `await JS.InvokeVoidAsync("alert", msg);`. This is called _JavaScript Interop_, and it enables doing things in JS, that Blazor cannot do natively.
+- When using JavaScript Interop and calling `InvokeAsync<T>()` to run JavaScript code, it might be necessary to include _triple quotes_, which enforces a literal string to be passed, for times when embedded quote marks are necessary in the encapsulated JavaScript code.
+- There are 3 ways to include JavaScript code into HTML: Write the code in-line within a `<script>` element, reference a JavaScript library on the file system within a `<script>` element, or reference a _remote JavaScript package_ by referencing a web url i.e. `<script src="https://cdn.jsdelivr.net/npm/package@latest/dist/thePackage.min.js"></script>`.
+- Implement an Interface in a Razor Component using `@implements`, such as `@implements IDisposable`, then implement the required method(s).
+- Force a Component to _rerender_ by calling `StateHasChanged()`, a Component built-in method!
+- Remember: The entire point of a component is to display a page with a state, therefore the Component Lifecycle _must be adhered to_, ensuring the page rendering is correct for the state of the data it carries or updates.
+- CTOR Injection is _not supported_ in Blazor Components. Use `@inject` syntax instead.
+
 
 ## Minimal APIs
 
@@ -1033,6 +1149,10 @@ Go to the [CodeSpaces Dashboard](https://github.com/codespaces) and find the Cod
 At the very least, 'Stop' the CodeSpace until you need it next.
 
 ## Resources
+
+[ASP.NET Core Blazor Event Handling](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/event-handling?view=aspnetcore-8.0).
+
+[ASP.NET Core Blazor Forms Overview](https://learn.microsoft.com/en-us/aspnet/core/blazor/forms/?view=aspnetcore-8.0).
 
 ## Footer
 
