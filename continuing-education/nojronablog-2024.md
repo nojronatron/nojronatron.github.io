@@ -92,7 +92,7 @@ Here's a sample showing _only_ the configuration item that launches Firefox (oth
         "enabled": true,
         "args": "${auto-detect-url}",
         "windows": {
-          "command": "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
+          "command": "${env:ProgramFiles}\\Mozilla Firefox\\firefox.exe"
         }
       }
     },
@@ -105,6 +105,14 @@ Here's a sample showing _only_ the configuration item that launches Firefox (oth
 }
 
 ```
+
+### Blazor In The Past
+
+When I was building my .NET MAUI application "Mob-WX", I built a Blazor Server that could accept APK files and serve them up for rapid deployment to my physical Android phone. The server uses an MS-SQL back-end to map files on the file system to user-friendly names and dates, and allow adding and removing entries and files locally.
+
+Every now and then, the SignalR connectino would break between the Browser and the Blazor Server, and I didn't understand why. After completing some Blazer Server training modules, I've learned that a Blazor Lifecycle Method code block is probably throwing an unhandled Exception, and breaking the SignalR connection is the default behavior after such an event.
+
+I'll have to go back to that project and add appropriate Exception Handling. Hooray for continual learning and self improvement!
 
 ## Week 20
 
