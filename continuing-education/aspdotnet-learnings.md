@@ -1,11 +1,21 @@
 # ASP.NET Learnings
 
-Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET Core, and .NET 6.
+Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET Core, and Blazor in .NET 6 and 8.
 
 ## Table of Contents
 
 - [Blazor](#blazor)
+- [Blazor vs Razor](#blazor-vs-razor)
+- [Build and Run Blazor](#build-and-run-blazor)
+- [Blazor Share Data Between Components](#blazor-share-data-between-components)
+- [Blazor Data Binding in Blazor](#blazor-data-binding-in-blazor)
+- [Blazor Pages, Routing, Layouts, and Navigation](#blazor-pages-routing-layouts-and-navigation)
 - [Blazor Forms and Validation](#blazor-forms-and-validation)
+- [Leverage JavaScript and Template Components in Blazor](#leverage-javascript-and-template-components-in-blazor)
+- [Blazor Component Lifecycle](#blazor-component-lifecycle)
+- [Understand Blazor Template Components](#understand-blazor-template-components)
+- [Razor Class Libraries](#razor-class-libraries)
+- [Common Blazory Things To Know and Understand](#common-blazory-things-to-know-and-understand)
 - [Minimal APIs](#minimal-apis)
 - [Entity Framework Core](#entity-framework-core)
 - [Full Stack ASP Dot Net Development](#full-stack-asp-dot-net-development)
@@ -55,6 +65,17 @@ Razor Components are Pascal-case files with an extension of `.razor`:
 - Razor Markup allows Expressions within HTML code through use of the `@` as well, i.e. `<h3>My @webSiteName</h3>`.
 
 Deploy a new Razor Component using 'dotnet' like so `dotnet new razorcomponent -n ComponentName -o Pages`. This will create a new Razor Component named `ComponentName.razor` in the folder `Pages` of an existing Blazor Server Project.
+
+> A Razor Page can be thought of as a C# class that includes HTML rendering logic.
+
+### Blazor Components
+
+Blazor Components:
+
+- Are Razor Pages with Blazor syntax, and usually include C# and HTML.
+- Utilze CSS Isolation: Style rules that are applied to a Blazor Component are _only_ applied to that that Blazor Component.
+- Allow assigning elements specific to the Blazor Component as defined within a `<HeadContent>` element.
+- Allow use of `<style>` elements within the components HTML (CSS Isolation).
 
 ## Build and Run Blazor
 
@@ -164,6 +185,7 @@ Use `@page` directive and `<NavLink>` component both impact routing.
 - `@page` helps configure Routes.
 - The query string in the URL contains information for the Router to process.
 - Goal is to direct the user request (query) to the correct page component with all information the component needs to render what the user wants.
+- Blazor takes the `@page` directive string argument to use as a match argument when determining if a page should be rendered at navigation.
 
 Router is configured in `App.razor`:
 
@@ -612,7 +634,99 @@ Blazor _stops functioning_ at this point.
 
 Be sure to _handle exceptions_ as part of the logic of Lifecycle Methods to ensure the SignalR connection remains open!
 
-### Common Blazory Things To Know and Understand
+## Understand Blazor Template Components
+
+Overview:
+
+- Templates are reusable Components that are used to apply standardized design across web app pages.
+- Templates are just standard Razor Components.
+- Apply Templates with commonly used elements to Components that need them.
+- Manage the Template Components in a common location.
+- Changes to Templates will impact all pages that rely on them.
+
+Render Fragment type:
+
+- `RenderFragment`: A placeholder object where teamplate markup is applied at Run Time.
+- `ChildContent`: The default name for a Render Fragment parameter. Custom naming is allowed.
+
+Generic `RenderFragment<T>` Parameters:
+
+- Renders _other types of content_ by using the Type Parameter.
+- Provide logic to handle the specified type in teh template component.
+- If the Type Parameter can be an enumerable collection!
+
+To implement:
+
+1. Update the parent Component with a `using` statement pointing to the namespace where the Component Fragment is stored.
+2. Specify the type parameter in the template component.
+3. Specify the type parameter in the consuming component.
+4. Use the `@typeparam` directive to introduce the type parameter. Multiple per template are allowed.
+
+## Razor Class Libraries
+
+Share and reuse UI Components using Razor Class Libraries.
+
+Supports generation of rendered and static content across Blazor applications.
+
+Razor Class Libraries are composed of:
+
+- HTML
+- CSS
+- JavaScript
+- Images
+- Static Web Content
+
+Libraries can be bundled as NeGet Packages for distribution.
+
+A new blank Razor Component Library component:
+
+- Create a new blank library project using `dotnet new razorclasslib -o {ProjectName}`.
+- Contains a default CSS file.
+- A `wwwroot` folder where images, JavaScript, and other static content should be stored and acts as the base relative path for references such as scripts.
+- Absolute folder reference to `wwwroot` is `/_content/{PACKAGE_ID}/{PATH_AND_FILENAME_INSIDE_WWWROOT}`
+- Similar to a Class Library project but SDK points to Razor specifically and supported platform is "browser".
+- Includes a package reference to `Microsoft.AspNetCore.Components.Web`.
+
+Referencing A Razor Class Library:
+
+- Update the Blazor App to reference the Razor Class Library.
+- Drag-and-drop the Project file onto the Blazor App Project file.
+- By CLI: `dotnet add reference{ClassLibraryNameAndPath}`.
+- By NuGet: `dotnet add package {ClassLibraryName}`.
+- Add an `@using` to point to the namespace of the Razor Library component.
+- Optionally, add the namespace to the Razor Library component to `_Imports.razor`.
+
+Control Rendering Mode:
+
+- When calling a RazorComponent, select a Render Mode.
+- Syntax: `<MyChildComponent @rendermode="InteractiveServer" />`
+- This tells Blazor to handle UI Events from Components on the server-side (using SignalR).
+
+## Create a NuGet Package
+
+### Packaging a Razor Class Library
+
+Define properties in the CSPROJ file of the Razor Class Library:
+
+- PackageId: Unique across the NuGet Repository. Default is the Library AssemblyName.
+- Version: `Major.Minor.Patch-PrereleaseNameRevision`. Default is '1.0.0'.
+- Authors: List of package authors. Defaults to AssemblyName.
+- Company: Company name responsible for creating and publishing the package. Defaults to AssemblyName.
+- ProjectUrl: Where the project home/source can be found.
+
+There are other properties but this is a good starting list.
+
+Use `dotnet pack` to pack the package, or set `<GeneratePackageOnBuild>` element to `True` to tell the Pack service to create a NuGet Package during `build`. It will be output to `bin\Debug` as a `.nupkg` file.
+
+_Note_: Use these same steps in CI-CD pipleline to generate and package a NuGet package _to_ NuGet.org, another GitHub repo, or another location.
+
+_Note_: Publishing a version that includes additional version information beyond `Patch` will be read by the NuGet Package Import Process. An importing project might return "error: There are no stable versions available {version} is the best available. Consider adding the --prerelease option". If this is not desireable, don't publish versions with a prerelease marker.
+
+### Certification
+
+An X.509 Certificate for `code signing` and `time stamping` will be necessary for publishing the package and enabling successful `release` package importations.
+
+## Common Blazory Things To Know and Understand
 
 - To _register_ a data access service to the Blazor Server application, implement a Data Model and a Service that can call an ORM or obtain the data from a file or REST call (etc), then register the data access Service in `Program.cs` like `builder.Services.AddSingleton<DataGetterService>();`.
 - OnInitializedAsync(): Event fires when component's initialization is complete and it has received initial parameters but the page has not rendered yet. Override this method to fetch data asynchronously.
@@ -629,7 +743,7 @@ Be sure to _handle exceptions_ as part of the logic of Lifecycle Methods to ensu
 - Force a Component to _rerender_ by calling `StateHasChanged()`, a Component built-in method!
 - Remember: The entire point of a component is to display a page with a state, therefore the Component Lifecycle _must be adhered to_, ensuring the page rendering is correct for the state of the data it carries or updates.
 - CTOR Injection is _not supported_ in Blazor Components. Use `@inject` syntax instead.
-
+- Use HotReload during dev and test! It will automate rendering pages while underlying code is changed and saved.
 
 ## Minimal APIs
 
@@ -1153,6 +1267,12 @@ At the very least, 'Stop' the CodeSpace until you need it next.
 [ASP.NET Core Blazor Event Handling](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/event-handling?view=aspnetcore-8.0).
 
 [ASP.NET Core Blazor Forms Overview](https://learn.microsoft.com/en-us/aspnet/core/blazor/forms/?view=aspnetcore-8.0).
+
+ASP.NET Core [IComponent Interface](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.components.icomponent?view=aspnetcore-8.0).
+
+ASP.NET Core [ComponentBase class](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.components.componentbase?view=aspnetcore-8.0).
+
+Take a peek at the .NET Team's GitHub project [dotnet-presentations blazor-workshop](https://github.com/dotnet-presentations/blazor-workshop) repo.
 
 ## Footer
 
