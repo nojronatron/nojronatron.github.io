@@ -23,6 +23,7 @@ Additional notes were taken while reading [Task-based Asynchronous Programming P
 - [TAP - Building Task-based Combinators](#tap---building-task-based-combinators)
 - [Building Task-Based Data Structures](#building-task-based-data-structures)
 - [Valid Consumption Patterns for ValueTasks](#valid-consumption-patterns-for-valuetasks)
+- [Hanselman and Toub on Async Await](#hanselman-and-toub-on-async-await)
 - [Things To Review](#things-to-review)
 - [Resources](#resources)
 - [Footer](#footer)
@@ -838,6 +839,8 @@ The Producer-Consumer Collection pattern!
 NuGet Package [System.Threading.Tasks.Dataflow](https://www.nuget.org/packages/System.Threading.Tasks.Dataflow).
 
 ## Resources
+
+[Asynchronout Programming Scenarios](https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/async-scenarios).
 
 [Async/Await - Best Practices in Asynchronous Programming](https://learn.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming)
 

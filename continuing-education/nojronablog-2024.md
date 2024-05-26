@@ -2,6 +2,126 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 21
+
+MS Build 2024 is happening this week and will consume a large chunk of time. I have a schedule set, and am looking forward to learning all that MSFT and their partners have to share!
+
+### Build 2024 Highlights
+
+- Copilot Studio enables building custom Copilots in a simple, workflow-oriented workspace. There are requirements (local and possibly cloud-based) that must be met, however Copilot instantiation and customization is very simple, and requires very little code.
+- Local, small language models can be used to create simple Copilots for small projects that don't require cloud-based LLMs. An example was Scott Hanselman and Mark Russinovich with their Desktop Cleanup Copilot demonstration.
+- Microsoft has a team dedicated to AI safety and security. A presentation by one of the team members reviewed the areas where possible vulnerabilities can be preemptively limited or eliminated during design, build, test, deploy, and ongoing support.
+- Windows has had many "silent" features added over the years - tools and key combinations that have been there but few people know about. I won't list them here, other than a useful starter is `Start` + `x` to open a context menu of tools like Settings, Device Manager, and Disk Management. One other is `Ctrl` + `Shift` + `Esc` which opens the Task Manager.
+- Microsoft has developed and deployed many VS Code Extensions recently, including the C# Dev Kit and Polyglot Notebooks. The C# Dev Kit is a group of tools that help with C# project startup, development, and testing. The Polyglot Notebooks tool is like Jypitr Notebooks, but for Python _and_ C Sharp, as well as several other languages.
+- F5 NGINX has released a free-tier NGINX service to the Azure Marketplace, for front-ent, proxy, and other HTTP inspection and management use cases in the cloud.
+- Github Copilot in the CLI: This is a natrual-language interactive copilot for Git and GH.
+- .NET Aspire isn't a replacement for any particular project type, rather it is an addition that will help developers setup new solutions, and better manage and monitor existing complex solutions, both locally and in the Cloud. Adding .NET Aspire to a Solution does not restrict or break the project in any way!
+- C Sharp 13 is coming along and is scheduled for release with .NET 9. It sounds like there is at least one possible breaking change (but there's a simple work-around), and the "Build Extensions" train is picking up steam.
+- Windows subsystem for Linux (WSL) has updates to networking, memory usage, and VHD management and usage, and there are more features coming. Another interesting feature is a Plug-in Architecture that is now built-in to WSL. This will allow building custom Plug-ins to WSL for OSS and Enterprise developers to leverage.
+- PowerToys _advanced paste_ is amazing.
+- WinGet is the way to go for install, removal, and configuration of applications and dependencies on your machine/environment!
+- WPF and WinUI 3 are getting some love through some .NET 9 improvements and a developer tools from a new `WinUI 3 Gallery Tools` project!
+
+There were many other interesting takeaways, many more details I want to explore, and several MSFT Learn Modules I want to work through now. That is a sign of a successful event!
+
+### Semantic Structural Elements
+
+I've learned that Semantic Elements are helpful when developing accessible, screen-reader-ready websites. While going through Microsoft Learn Blazor Modules, I've been trying to reinforce what I've learned by using. Here is a list of common Semantic Elements, sourced from [Mozilla Developer Network (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element):
+
+- `<body>`: The HTML content of the document. There can be only one! This is the root of all sectioning.
+- `<address>`: Enclosed HTML has contact information for 1 or more people or an organization.
+- `<article>`: Self-contained composition within a document page, application, or site. Intended to be reusable content e.g. a Forum Post, Newspaper article, etc.
+- `<aside>`: Enclosed content is only indirectly related to document's main content.
+- `<footer>`: The bottom of its nearest ancenstor sectioning content, or the root (`<body>`). Usually includes content author(s), copyright data, and/or links to related documents.
+- `<header>`: Introductory content or an area where Navigational aids are contained. May also contain a logo, search form, author, or other elements.
+- `<h1-6>`: Six levels of `<section>` headings. Will be auto-formatted by default CSS. Note: I try to stick with only 3 heading levels. _Note_: For the sake of screen readers, it is better to re-style these elements and use 1 as the top-level, than it is to use a highest level of 3, for example.
+- `<hgroup>`: Heading grouped with any secondary content e.g. Subheadings, Alt Titles, Taglines, etc.
+- `<main>`: The dominant content of the body of a document, or central functionality of an application.
+- `<nav>`: Section of the page that contains navigation links relative to the current document, and/or other documents. Can be used to define Table of Contents, menus, indexes, etc.
+- `<section>`: Generic standalone portion of a document. The least-specific semantic element. _Note_: Be certain to include a heading!
+- `<search>`: Form or controls used for searching or filtering operations.
+
+The above is the list of _content sectioning_ elements. I like to think of these as structurally significant elements that are critical to developing an accessible webpage _from the start_. There are many other element types that can (and should) be used as designed, here are the groups:
+
+- Main root `<html>`.
+- Document Metadata: Things that go inside of `<head>`.
+- Sectioning Root: This was listed above simply because it is directly related to content, but there is only one element in this category, `<body>`.
+- Text Content: Organize blocks or sections of content between the opening and closing `<body>` tags. These are useful for Accessibility and SEO, and related _directly_ to the content they wrap.
+- Inline Text Semantics: Further define content structure, and also include _meaning_ or _style_ to a word, line, or an arbitrary piece of text. _Note_: Use `<strong>` or CSS `font-weight` instead of `<b>`.
+- Image and Multimedia: Wrap map areas, sound content, image content, time-based data, or video content.
+- Embeded Content: Indicate where in the document an external application will provide content for, such as browser plugins, other HTML pages, or other content sources.
+- SVG and MathML: Another embedding category, specific to SVG images and MathML instances.
+- Scripting: Enable or disable scripts or the Canvas Scripting API.
+- Demarcating Edits: The `<ins>` and `<del>` elements used for added or removed content (presumedly in a versioned document representation).
+- Table Content: Defines tables, header cells, header row, columns, rows, and data cells.
+- Forms: It's more than just the `<form>` element! Check out [MDN HTML Element #Forms](https://developer.mozilla.org/en-US/docs/Web/HTML/Element#forms) for details.
+- Interactive Elements: Create interactive user interface objects for widgets and alerts. `<details>` wraps information that is visible only when toggled "open". `<dialog>` wraps an alert or subwindow. `<summary>` provides a legend and also acts as the _toggling function_ for the `<details>` element, to open or close it when clicked.
+- Web Components: `<slot>` is used to provide a markup window for a separate DOM Tree within the document, and `<template>` sets a placeholder for where content _will eventually be added_, usually via a script or other DOM-editing function.
+
+There are also a ton of deprecated elements that _should not be used_.
+
+### VSCode Run and Debug Blazor with Alternate Browser
+
+While working through Blazor training, I kept finding myself opening Firefox or Edge and typing-in the localhost and port of the running Blazor Server, because I didn't want to be forced to use Chrome or switch the OS default browser to test a site on other browsers.
+
+This took just a little investigating, but here is what I did:
+
+1. The `launch.json` file contains a collection of launch configurations that fills the list of options in the Run And Debug tool's F5 button.
+2. According to [starting a web browser](https://code.visualstudio.com/docs/csharp/debugger-settings#_starting-a-web-browser) article on code.visualstudio.com, the key to launching browsers lies in `serverReadyAction` and `launchBrowser`, the former being a new feature, the latter being an older (but still supported) feature.
+3. By default, when executing "NET: Generate Assets for Build and Debug" in the Command Palette, `serverReadyAction` is added and configured, which calls the OS-default web browser, or the VS Code-configured default browser, if edited. That's fine, but if I want to have a selection of browsers to launch, I need to have multiple configurations to choose from.
+4. Configuring a new 'configurations' collection item was not difficult. I pretty much copied the entries from the ".NET Core Launch (web)" entry, and edited it for launching Firefox.
+5. The last bit was to add the path to Firefox.exe to the "windows.command" properties in the new configuration.
+6. There are 2 additional commands, "osx.command" and "linux.command" that should probably be added for those instances where iOS or Linux-based development is necessary. In this case they are not necessary since I'll be sticking with Windows, so I removed them.
+
+Here's a sample showing _only_ the configuration item that launches Firefox (other configuration items were omitted):
+
+```json
+{
+  "version": "0.3.0",
+  "configurations": [
+    {
+      "name": "Launch In Firefox (web)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/bin/Debug/net6.0/BlazingPizza.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "launchBrowser": {
+        "enabled": true,
+        "args": "${auto-detect-url}",
+        "windows": {
+          "command": "${env:ProgramFiles}\\Mozilla Firefox\\firefox.exe"
+        }
+      }
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    }
+  ]
+}
+
+```
+
+Be certain to verify the `bin/Debug` dotnet version in the path and the `dll` filename are correct.
+
+### Blazor In The Past
+
+When I was building my .NET MAUI application "Mob-WX", I built a Blazor Server that could accept APK files and serve them up for rapid deployment to my physical Android phone. The server uses an MS-SQL back-end to map files on the file system to user-friendly names and dates, and allow adding and removing entries and files locally.
+
+Every now and then, the SignalR connectino would break between the Browser and the Blazor Server, and I didn't understand why. After completing some Blazer Server training modules, I've learned that a Blazor Lifecycle Method code block is probably throwing an unhandled Exception, and breaking the SignalR connection is the default behavior after such an event.
+
+I'll have to go back to that project and add appropriate Exception Handling. Hooray for continual learning and self improvement!
+
+Update: I've completed the planned Blazor learning modules! :tada: On to the next thing!
+
+### Challenges Ahead With Continued Learning
+
+I've registered for the MS Learn Challenge - Build 2024 Edition and have a plan to get this Plan's Modules knocked out by Tuesday end of day.
+
 ## Week 20
 
 ### OSS and TS
