@@ -166,6 +166,117 @@ Add a Local Repo To GitHub using Git:
 
 Other Migration tools exist including: `git-svn`, `svn2git`, `hg-fast-export`, `git-tfs`, and arguably, the GitHub Repository Import UI.
 
+## Secure OSS Repository Using GitHub Best Practices
+
+Build, host, and maintain a secure OSS repository.
+
+### Secure OSS Repo Learning Objectives
+
+- ID tools and GitHub features to establish a secure dev strategy.
+- Enable vulnerable dependency detection for private repos.
+- Detect and fix outdated dependencies with security vulnerabilities.
+- Automate detection of vulnerable dependencies with Dependabot.
+- Add a security policy file.
+- Remove a commit exposing sensitive data in a PR.
+- Keep sensitive files out of repository.
+- Remove historical commits exposing sensitive data deep in your repo.
+
+### Secure Development Tools and Strategy
+
+Strategy:
+
+- Protect against disclosures of private info.
+- Information should only be altered or destroyed when appropriate and authorized.
+- Authentication is necessary to ensure correct permissions to manipulate repository features, commits, and code.
+- Cybersecurity is a constantly evolving discipline requiring ongoing training.
+- Create correct, secure code, with only the required features.
+- Applications must comply with rules and regulations.
+- Add security concepts to every stage of software development, following shift-left, and dev-ops processes.
+
+### GitHub Repository Security Tab
+
+- Security Policies: Deploy a SECURITY.md file to the repository.
+- Dependabot Alerts: Send notifcations when there are vulnerabilities or malware in code or dependencies.
+- Security Advisories: Privately discuss, fix, and publish information about vulnerabilities within your repo.
+- Code Scanning: Find, triage, and fix vulnerabilities and code errors.
+
+[GitHub Security Features](https://docs.github.com/code-security/getting-started/github-security-features).
+
+SECURIY.md File:
+
+- Devs can responsibly disclosing concerns using this file without creating a public incident.
+- [Adding A Security Policy To Your GitHub Repo](https://docs.github.com/code-security/getting-started/adding-a-security-policy-to-your-repository).
+
+Security Advisories:
+
+- Publicly disclose a vulnerability once a fix is available.
+- Simplifies updating package dependencies and the advisory fix.
+- Published Advisories are stored in the Common Vulnerabilities and Exposures (CVE) list, that automates notifying affected repositories.
+- [About Repo Security Advisories](https://docs.github.com/code-security/security-advisories/working-with-repository-security-advisories/about-repository-security-advisories).
+
+Create a smart, effective .GITIGNORE file:
+
+- Disables committing potentially (or certainly) sensitive data to the repo.
+- Blocks API Keys, Environment Variable values, and other unsecured assets.
+- Is _not_ fool-proof: It relies on the repository owner to create an effective, wholistic list and to _keep it up to date_ as the repo ages and technology changes.
+- The repository root `.gitignore` should have many (or all) of the required entries.
+- Child directories in the repo can have their own, overriding `.gitignore` files to alter what gets ignored.
+- [GitHub: Ignoring Files](https://docs.github.com/get-started/getting-started-with-git/ignoring-files).
+- [gitignore Repository](https://github.com/github/gitignore).
+
+Remove Sensitive Data From Repo:
+
+- `.gitignore` files can be worked around, or are not carefully crafted to catch all potential asset files.
+- Always assume that any new commit to the repository is potentially loaded with compromised code.
+- An alternate place to put `.gitignore` is in the `docs` directory.
+
+[GitHub: Removing Sensitive Data From A Repo](https://docs.github.com/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository).
+
+Branch Protection Rules:
+
+- Enforces certain workflows complete with success in order for code to push to the branch.
+- Denies committing code to the branch without sign-off from others.
+- Forces other tasks like code-formatting or tests to run and pass before Commit is allowed.
+- [GitHub Branch Protection Rules](https://docs.github.com/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule).
+
+CODEOWNERS File:
+
+- Individuals or an entire team can be marked as the code owner(s).
+- Code Owners are required for PR Reviews for any changes to code within their responsible "paths".
+- Defines owners using this syntax: `*.js    @js-owner` and `/build/    @octocat`.
+- [GitHub Codeowners file](https://docs.github.com/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/about-code-owners#codeowners-syntax).
+
+### Detect And Fix Outdated Dependencies
+
+Repository Dependency Graphs:
+
+- GitHub scans command package manifests (package.json, [and other dependency manifests](https://docs.github.com/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph)).
+- A Dependency Graph is generated by GitHub.
+
+Dependabot Alerts:
+
+- Watch dependency graph for you.
+- Cross-references target versions with known-vulerable versions.
+- Alerts are raised through Dependabot Alerts on the repository.
+- Input analysis source: [GitHub Security Advisories](https://docs.github.com/code-security/security-advisories/working-with-repository-security-advisories/about-repository-security-advisories#dependabot-alerts-for-published-security-advisories).
+
+Dependabot Dependency Updates:
+
+- Alerts can cause a project dependency to be 'bumped'.
+- Bumped dependencies will generate a PR.
+- Dependabot will attempt to resolve merge conflicts (current).
+- Not all Dependency Update Alerts will result in a PR that can resolve the issue.
+
+Secret Scanning:
+
+- Look for known secrets or credentials committed within the repo.
+- Prevents fraudulent behavior.
+- Secures integrity of sensitive data.
+- Is _on by default_ on public repositories.
+- Private repos can be configured by the repo Admin to enable Secret Scanning.
+- Notification(s) are sent to the provider of the secret, when detected.
+- [Secret Scanning FOr Public And Private Repositories](https://docs.github.com/code-security/secret-scanning/about-secret-scanning).
+
 ## Footer
 
 Return to [ContEd Index](./conted-index.html).
