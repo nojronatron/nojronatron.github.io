@@ -21,15 +21,17 @@ A collection of notes from research and continuing education, with references fo
 
 Here is a snippet of items I look forward to learning more about:
 
+- [ ] Copilots: [How to create a copilot](./msft-copilot-learnings.html).
 - [ ] Meshtastic [Web](https://github.com/meshtastic/web) is an open source project looking for help. Given my recent interest in LoRa text-message communications, this might be a good [OSS contribution](continuing-education\oss-contrib-meshtastic.md) option for me.
 - [ ] Gain familiarity with [Playwright](https://playwright.dev/), an end-to-end testing framework for .NET.
 - [ ] [Bogus for .NET](https://github.com/bchavez/Bogus) a Faker.js port for .NET.
-- [ ] MSFT [Build 2024 Conference](./msbuild-2024-notes.html) will be held on 21-23 May, 2024.
+- [x] MSFT [Build 2024 Conference](./msbuild-2024-notes.html) will be held on 21-23 May, 2024.
 - [ ] Consider obtaining a GitHub Foundations Certification.
 - [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] Complete MSLearn's currently available (up to May 2024) [Blazor](./aspdotnet-learnings.html) training materials.
 - [x] Learn how to effectively (and properly) leverage [Async Await](./dotnet-async-await-notes.html) and [Task Parallel Library](./dotnet-taskparallellibrary-notes.html).
 - [x] Complete MS Learn Web Accessibility Basics and [take notes](./web-accessibility-basics.html).
 - [x] Attended [Azure Developers .NET Day 2024](./azure-developer-day-2024.html) and took a bunch of notes.
