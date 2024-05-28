@@ -12,6 +12,7 @@ A collection of notes from research and continuing education, with references fo
 
 ## Currently Active Learning and Activities
 
+- [ ] Complete at least one [Microsoft Learn Challenge - Build 2024 Edition](https://www.microsoft.com/en-us/cloudskillschallenge/build/registration/2024?ocid=build24_csc_event_wwl).
 - [ ] Read "Inclusive 101 Guidebook" from Microsoft Design.
 - [ ] Build and deploy a functional version of [BF-BMX](https://github.com/nojronatron/BF-BMX) - the message synchronization tool for an upcoming volunteer event.
 - [x] [MVVM and MSFT MVVM Toolkit](./dotnet-wpf-mvvm-learnings.html). Collection of captured WPF and MVVM project layout implementations and frameworks. Targets .NET Framework 4.6+, and .NET 6+.
