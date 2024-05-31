@@ -4,6 +4,9 @@
 
 - [Index of Plans and Open Source Contributions](#index-of-plans-and-open-source-contributions)
 - [Building An Open Source Program Using GitHub Best Practices](#building-an-open-source-program-using-github-best-practices)
+- [Uploading OSS Projects Using GitHub Best Practices](#uploading-oss-projects-using-github-best-practices)
+- [Secure OSS Repository Using GitHub Best Practices](#secure-oss-repository-using-github-best-practices)
+- [About Contributing To Open Source Projects On GitHub](#about-contributing-to-open-source-projects-on-github)
 - [Footer](#footer)
 
 ## Index of Plans and Open Source Contributions
@@ -104,7 +107,7 @@ Setup for Success:
 - Code in the cloud can save on costs vs. storing on-prem.
 - Enables collaboration without deploying services from on-prem.
 
-### How To Do This?
+### How To Do This
 
 Initial Questions to Get Started:
 
@@ -112,7 +115,7 @@ Initial Questions to Get Started:
 - Are there binary files/artifacts that will need to be stored in an [Git LFS](https://git-lfs.github.com/) or other non-Git storage medium, like spreadsheets, build outputs, or presentations?
 - What items need to be in the `.gitignore` file to help enforce version-control policies?
 - Are the communications and instructional files ready e.g. README, LICENSE, CONTRIBUTING, and perahps a SECURITY markdown?
-- Are there other `.gitattributes` that need to be configured to ensure proper git configuration of LF/CRLF handling? *[Nojronatron]*
+- Are there other `.gitattributes` that need to be configured to ensure proper git configuration of LF/CRLF handling? _[Nojronatron]_
 - What will be the branching scheme? Remember to name the primary branch `main`.
 
 ### GitHub Importer
@@ -276,6 +279,129 @@ Secret Scanning:
 - Private repos can be configured by the repo Admin to enable Secret Scanning.
 - Notification(s) are sent to the provider of the secret, when detected.
 - [Secret Scanning FOr Public And Private Repositories](https://docs.github.com/code-security/secret-scanning/about-secret-scanning).
+
+## About Contributing To Open Source Projects On GitHub
+
+GitHub can help locate open source projects and tasks to contibute to, and there are good practices to follow when contributing.
+
+### Objectives
+
+- Find open source projects on GitHub.
+- Create PRs to open-sourced projects.
+- Implement best practices communicating with open-source maintainers.
+- Find and engage with open source communities.
+
+### ID Where To Help
+
+- Contributing might be easier on projects that you already use.
+- GitHub has a search function.
+- Search for Issues that have a label "Jump In", "Good First Issue", or "Needs Help".
+- Other resources are out there to find OSS projects that need help!
+
+### Get Familiar with the OSS Project
+
+Read the Docs:
+
+- LICENSE file: Get familiar with it and how it might impact your ability to contribute, or what might happen to code you commit.
+- README: Read it.
+- Read the CONTRIBUTING file for specific instructions from the maintainers.
+- CODE_OF_CONDUCT: Contains information on the expected behavior of contributors (and the maintainers).
+
+Review the Issues:
+
+- Many GitHub repos use the built-in Issue tracker. Add `/issues` to the end of the repo URL.
+- Some repos will use a 3rd party tool - see the Docs to learn where, if this is the case.
+- Check out open PRs. Add `/pulls` to the end of a repo URL to find them.
+- Join in Discussions, or other chat channels and forums related to the project.
+
+Sponsor a Project!
+
+- Financial support helps promote continued work and improvements.
+- Sponsorship "Tiers" are available directly from the GitHub UI.
+
+Things to Watch For:
+
+- Does it have a license?
+- Are issues and PR discussions active, and are the maintainers involved?
+- Are labels attached to work items, especially ones to attract newcomers?
+- Is there a code of conduct?
+- Are there guidelines to contributing?
+
+Lacking any (or all) of the above might be the sign of an abandoned project.
+
+### Communicate Intent
+
+Existing work items:
+
+- Start with the Issue Tracker.
+- Look at the Assignees section. Nobody assigned? Possibly available to work on!
+- Look for linked Pull Requests, which means the Issue is already being worked on.
+- Post a comment on the Issue to indicate interest in contributing. This opens the door to conversation, collaboration, and makes the Issue active (instead of potentially dormant).
+
+New work items:
+
+- Open a new Issue before working on something that is _not already in the Issue list_.
+- If it is a new feature, get in touch with the Maintainers directly before starting work. If they are not going to accept the new feature, there is no need to work on it.
+
+Creating A Pull Request:
+
+- Fork the project first.
+- The PR will be diff'ed against the origin Repo's working or main branch (see Contributing.md) but the details of the PR etc will be available in your GitHub profile.
+- Add a Title and Description for the changes.
+- Address the Issue that triggered the need for this PR by prefixing `#` to the Issue number.
+- Add any additional helpful commentary.
+- If there are changes to tests, point that out as well.
+- Be sure to `synchronize` the Fork prior to completing a PR.
+
+After Submitting a PR:
+
+- Check that the PR passes Status Checks.
+- If status checks fail, review the Status Check log and find out if your code needs to be updated or if there is a contributor's agreement or something else that need to happen before the PR Checks will pass.
+- Check the PR for Comments by project maintainers. There might be necessary changes before the PR can be approved.
+- Be sure to respond to comments on your PR!
+
+### PR Good Practices
+
+Git Commit message should complete this sentence: "If applied, this commit will ..."
+
+PR Description should be succinct description of change in the present tense.
+
+Subject line should be limited to 50 characters or less.
+
+Start with a capital letter and end with a period.
+
+Emojis are and `@mentions` are usually okay (I tend to avoid emojis in other people's repos).
+
+Message body:
+
+- Use present tense.
+- Include motivation for the code change.
+- Explain the `what` and `why`. The `how` is buring in your code. :smiley:
+- Avoid `ablist language` in the PR. See [Describing Interactios With UI](https://learn.microsoft.com/en-us/style-guide/procedures-instructions/describing-interactions-with-ui).
+
+Commits:
+
+- Limit the amount of change in your PR.
+- Lots of changed files is difficult to review, and opens up more opportunity for introducing bugs.
+- Only include commits that are directly related to the PR subject and purpose.
+
+Consider adding Reviewrs or Assignees if appropriate.
+
+Add labels when CONTRIBUTING has guidance on using them.
+
+Consider `linking` Issues in the sidebar.
+
+Customize your subscription to `notifications` on the thread: Subscribed (once participated), Not Subscribed (only `@mentioned`), or Custom (specified events).
+
+### Your Project Takes Off Now What?
+
+Others might come to depend on portions of your code. This would be a good time to find others to take some of the load and ensure your project stays up to date, secure, and active.
+
+## Resources
+
+The [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/procedures-instructions/).
+
+[Describing Interactios With UI](https://learn.microsoft.com/en-us/style-guide/procedures-instructions/describing-interactions-with-ui).
 
 ## Footer
 
