@@ -2,6 +2,249 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 22
+
+After 3 days of focusing on learning modules and new concepts, I took a break and worked on some field operations planning and setup involving a Raspberry Pi Zero2 W. Working with Linux is getting easier, and the biggest issue has been finding consistent documentation. Not all docs are created for the version of RaspberryPi OS that I'm working on, so some packages either aren't available, or don't work (properly or the same). Also, some documents leave a lot to be desired, for example a `manpages` on debian.org had a lot of "should-be" and "probably" remarks in it, which doesn't sound all that promising.
+
+Going forward, for certain projects I'm going to stick with Bullseye 32-bit for any legacy or micro RPi projects for now, including the RPi 4. If I get my hands on an RPi 5 and/or Bullseye approaches EOL for those legacy RPis, I'll start moving over to Bookworm.
+
+### Tree Review
+
+It's been quite a while since I've reviewed Tree data structures.
+
+Terminology:
+
+- Nodes: Components of a tree that hold value, and potential references to other Nodes. Has exactly 1 or 0 Parent Nodes.
+- Branches: Connections between Nodes. Usually do not contain any data, and are _directed_, meaning there is only one way to traverse the reference directly.
+- Parent Node: A Node that has reference to a Child Node.
+- Child Node: A Node that is referenced by its single Parent Node.
+- Parent-Child: The relationship between Nodes, connected by a Branch.
+- Siblings: Nodes that share the same parent.
+- Root Node: The Parent Node tha has no Parent Nodes aka the 'top of the tree'. Every Parent Node in the tree will have exactly 1 Parent Node, except the Root which has 0 Parent Nodes.
+- Descendants: A Node's Child Nodes.
+- Ancestors: A Node's Parent, Grandparent (etc) Nodes.
+- Level or Depth: Distance from the Node to the Root. Root is generally referred to as 0.
+- Height: The cound of nodes down the longest path of Branches. A Tree's Height is the same as  the Height of the Root Node.
+- Leaf: A Node with no Child Nodes. Also called an `External Node`.
+- Internal Node: A Node with at least 1 Child Node.
+- Ordered Tree: The order of the Child Nodes is important. Child Nodes stored in an collection imposes an ordering on the Nodes usually based on their Value.
+- Unordered Tree: The order of the Child Nodes does not matter.
+- First Common Ancestor/Least Common Ancestor: The Node that is both an Ancestor of 2 other Nodes _and_ is the closest to those 2 Nodes. The path between the 2 Nodes tranverses each Branch between them exactly once, and is therefore a _unique path_. The FCA can be thought of as the Root of a sub-tree. The FCA _could be_ one of the 2 Nodes in question.
+- Full Tree: Every node has either 0 Children or as many Children as the Tree's _Degree_. A Tree with a Node that has a Single Child defines the Tree as "Not Full".
+- Complete Tree: A Tree in which every level is full, or only the _left side of the tree_ has all bottom-level Nodes pushed all the way left.
+- Perfect Tree: A Full Tree, with all Leaves at the same level. Every possible Node position, for the Height of the Tree, has a Node in it.
+
+Types of Nodes (and therefore, trees):
+
+- Degree: The maximum number of Children a Parent Node can have.
+- Binary Tree: A Tree of 1 or more Nodes that can only have maximum 2 Child Nodes.
+- K-ary: Nodes can have more than 2 Children.
+- Single Root Node Tree: The single-root of an entire Tree Structure.
+- A Root Node can also be identified as connected by branches to one or more smaller trees.
+
+Some Basical Calculations:
+
+- The number of Branches is 1 less than the Count of Nodes.
+- The number of Nodes in a Perfect Binary Tree is `2^(Height - 1) - 1`.
+- The Height of a Perfect Binary Tree is `log2(N + 1) - 1`.
+- The number of Leaf Nodes in a Perfect Binary Tree is `2 ^ Height`.
+- The number of Internal Nodes in a Perfect Binary Tree is 1 less than the count of Leaf Nodes.
+- The number of "Missing Branches" in a Binary Tree with N Nodes is `N + 1`.
+- The number of Leaves in a Binary Tree with N2 Nodes of Degree 2 is `N2 + 1`.
+- The number of Nodes on the bottom Level of a Tree will be at most `N / 2` Nodes.
+
+BigO Analyses (N = Nodes):
+
+- Perfect Tree: Search from Root to Leaf Node takes `O(log(N))` steps.
+- Complete Trees and Perfect Trees with varying Degrees have different BigO outcomes that become significant as the Trees get larger. As a baseine, `O(log(N))` is a good starting point (it can only get worse from that worst-case starting point). :smiley:
+
+Coding Trees:
+
+- Complete Trees can be stored in an Array (will not tackle this here).
+- Use Classes to represent Tree Nodes with properties to store Data, and reference it's Child Nodes.
+- Start with a Node class, then add Child Nodes to the class instance.
+
+```c#
+public class BinaryNode
+{
+  public int Data;
+  public BinaryNode? LeftChild;
+  public BinaryNode? RightChild;
+  public BinaryNode(string data)
+  {
+    Data = data;
+  }
+}
+```
+
+```c#
+// instantiate Nodes
+BinaryNode root = new(4);
+BinaryNode node1 = new(1);
+BinaryNode node2 = new (10);
+// etc
+
+// build a Binary Tree
+root.LeftChild = nod1;
+root.RightChild = node2;
+// etc
+```
+
+And for an N-Degree Tree:
+
+```c#
+public class TreeNode
+{
+  public int Data;
+  public TreeNode[] children;
+  public TreeNode(string data)
+  {
+    Data = data;
+  }
+}
+```
+
+_Note_: It is possible to add a `Parent` reference to BinaryNode or TreeNode so that it is easier to traverse 'up' the Tree.
+
+Information about Branches _can be stored if necessary_, but this topic is more relevant for Graphs and Networks.
+
+Traversing A Tree:
+
+- Goal is to visit all the Nodes in the Tree in some order.
+- Optionally, perform 1 or more operations on 1 or more Nodes it visits.
+- The most basic thing to do is traverse every Node in the Tree and return a list of the captured values.
+- There are 4 kinds of traversals (discussed below).
+
+Preorder Traversal:
+
+- Processes a Node, then its left Child, then its right Child, recursively.
+- Just invoke the Root Node's `TraversePreorder()` method with a Node instance and it will do the rest.
+
+```c#
+public class TreeNode
+{
+  // Fields and CTOR
+  public void TraversePreorder(BinaryNode currentNode)
+  {
+    // process node here e.g. push Data into an array, output to console, etc.
+
+    if (currentNode.LeftChild is not null)
+    {
+      TraversePreorder(currentNode.LeftChild);
+    }
+    if (currentNode.RightChild is not null)
+    {
+      TraversePreorder(currentNode.RightChild);
+    }
+  }
+}
+```
+
+_Note_: It is possible to add a helper Class that will do this for a Node. This allows a single object to store results from the method, such as an Array of traverse Node values, rather than storing the structure within each Node.
+
+_Note_: This traversal _can_ be used to traverse N-degree Tree Nodes with N greater than 2.
+
+Inorder Traversal:
+
+- AKA `Symmetric Traversal`.
+- Process this Node's Left Child, then process this Node, then process this Node's Right Child.
+- In a Binary Tree when order matters, this algorithm can be used to find a sorted list of all Tree values.
+- Pass the Method the Root Node to start and it will process the Left Child and it's descendants, then process itself, then process the Right Child and it's descendants, before ending.
+
+```c#
+public class TreeNode
+{
+  // Fields and CTOR
+  public void TraverseInorder(BinaryNode currentNode)
+  {
+    if (currentNode.LeftChild is not null)
+    {
+      TraverseInorder(currentNode.LeftChild);
+    }
+    // process this node here
+    
+    if (currentNode.RightChild is not null)
+    {
+      TraverseInorder(currentNode.LeftChild);
+    }
+  }
+}
+```
+
+_Note_: This is effective for Binary Tree Nodes, but is ambiguous for Tree Nodes with more than 2 Child Nodes.
+
+Postorder Traversal:
+
+- Process this Node's Left Child, then process this Node's Right Child, then process this Node's data.
+- Pass the Root Node to this Method and it will process the all the Root's descendants and then the Root Node, and then end.
+
+```c#
+public class TreeNode
+{
+  // Fields and CTOR
+  public void TraversePostorder(TreeNode currentNode)
+  {
+    if (currentNode.LeftChild is not null)
+    {
+      TraversePostorder(currentNode.LeftChild);
+    }
+    if (currentNode.RightChild is not null)
+    {
+      TraversePostorder(currentNode.RightChild);
+    }
+
+    // process this Node here
+  }
+}
+```
+
+_Note_: This traversal _can_ be used to traverse N-degree Tree Nodes with N greater than 2.
+
+Breadth First Traversal
+
+- Algorithm processes all nodes, Level-by-Level, left-to-right, then moves _down_ to the next Level.
+- Start at the Root Node Level and output Root Node Data. Then, Output Data from Root Node's Children. Then move to the current Level + 1 and repeat until the last Leaf Node is traversed before existing.
+- Use a Queue structure to store each Level's Nodes and only process that Node's direct Children before moving to the next Node in the Queue.
+
+```c#
+public static class BinaryTree
+{
+  // Fields
+  public Queue<BinaryNode> LevelNodes = new();
+  public void TraverseBreadth(BinaryNode currentNode)
+  {
+    LevelNodes.Enqueue(rootNode);
+    while (LevelNodes.IsEmpty == false)
+    {
+      BinaryNode currentNode = LevelNodes.Dequeue();
+      // process the current node e.g. output its Data or store Data in a string or array, etc.
+
+      // add children (the next Level) to the Queue
+      if (currentNode.LeftChild is not null)
+      {
+        LevelNodes.Enqueue(currentNode.LeftChild);
+      }
+      if (currentNode.RightChild is not null)
+      {
+        LevelNodes.Enqueue(currentNode.RightChild);
+      }
+    }
+  }
+}
+```
+
+Leveraging FIFO ordering guarantees all Nodes at a particular Level are processed before moving to the next Level.
+
+BigO Analyses:
+
+- Each algorithm must traverse (at worst) every Node in the Tree (or sub-Tree).
+- Processing steps could add to the total runtime but only in more complex cases, so assume O(1) for each Processing step.
+- Therefore RunTime will be O(N) for every traversal type.
+- BreadthFirst processes Nodes through a Queue structure, therefore it takes up space, at a maximum of the width of the bottom Level, `N / 2`, therefore O(N).
+- Preorder, Inorder, and Postorder do not take additional space (O(1)) _however_ there is a possible call-depth problem with very large trees that could overrun available memory and cause the program to crash.
+
+That's enough for now. It's always good to review these concepts. One day, it will be much easier for me to grasp and use them.
+
 ## Week 21
 
 MS Build 2024 is happening this week and will consume a large chunk of time. I have a schedule set, and am looking forward to learning all that MSFT and their partners have to share!
