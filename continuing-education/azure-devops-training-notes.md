@@ -6,6 +6,7 @@
 - [Choosing DevOps Tools: Azure and GitHub](#choosing-devops-tools-azure-and-github)
 - [Assess Your Development Process](#assess-your-development-process)
 - [What is Azure DevOps](#what-is-azure-devops)
+- [Azure Pipelines](#azure-pipelines)
 - [Resources](#resources)
 - [Footer](#footer)
 
@@ -458,12 +459,15 @@ Triggers activate Pipelines containing Stages that activate Agents that fire Job
 Agents:
 
 - Installable software.
-- Runs on a Build or Deployment job.
+- Runs one Build or Deployment job at a time.
+- Can be hosted by MSFT or self-hosted.
+- Platforms include Windows, Ubuntu, and others.
 
 Artifacts:
 
 - Files or packages published by a Build.
 - Available for Tasks like distribution or deployment.
+- Examples include: Java packaged into a .jar, .NET App packages into a Zip or MSI, C++ or JavaScript Libraries, or an _image_ for a VM, Docker, or the Cloud.
 
 Builds:
 
@@ -524,12 +528,75 @@ Trigger:
 - Tells the Pipeline when to run.
 - Configurable to fire from operations like `push` to a repo, or completion of another build.
 
+### Azure Pipelines Key Concepts
+
+Azure Pipeline Options:
+
+- Build and develop with a local IDE and use a Microsoft-hosted Agent. This requires requesting and paying for Pipeline Hours.
+- Build and develop in GitHub Codespaces and use a Self-hosted Agent. Free-tier usage hours are included and charges may accrue after an initial period. Self-hosted agents must be maintained by the users/team and must be registered with Azure DevOps in order to be used by Pipelines.
+
+Map manual build steps to automated Pipeline Tasks:
+
+- Create an Access Token in the Azure DevOps Organization and enable: Agent Pools Read & Manage. This will be used when Codespaces registers its agent with the DevOps Organization.
+- Set up GitHub Secrets with `ADO_ORG` and `ADO_PAT` to allow using the Azure DevOps Org Token (in the exercise, these were set up as Codespaces Secrets, which using Codespaces for a real production-targeted Pipeline carries some risks it will work for an exercise). Also, Pools can be identified other than the default.
+- Consider how current build, test, and deploy scripts operate. Plan for how to duplicate these in a Codespaces or other environment leveraging Azure Pipelines (build machine OS, required tools, SDKs, and Packages).
+- Create Pipelines using YAML files, directly in the repo.
+- Tasks under `steps:` in the `azure-pipelines.yml` file should map each existing step to a Pipeline `task` to do the same work as is done in-house manually, or through other automation or scripts.
+- Build-in EnvVars are used to define Pipeline parameters (see the list below).
+
+Built-in Pipeline Variables:
+
+- `$(Build.Definitionname)`: Name of the build Pipeline.
+- `$(Build.BuildId)`: Numeric ID for a completed build.
+- `$(Build.BuildNumber)`: The Name of the completed build. Default format is YYYYMMDD.n where n is a numeral like 1 that can be incremented. Format can be configured.
+
+Publish Builds for others to use:
+
+- When a Build Pipeline completes, artifacts are stored on a temporary build server (by default).
+- It is possible to simply output Artifacts for QA or other groups to consume, rather than push to a deployment environment direcly from a Pipeline.
+- Use `$(Build.ArtifactStagingDirectory)` and a folder name to direct build output files to a location that can be used by other Jobs within the Pipeline.
+- The Pipeline Tasks output (when a Pipeline is selected and all Tasks complete) displays "Repository and version", "Time started and elapsed", "Related", and "Tests and coverage" headers. Under Related will be links to Published items (if any). Drill-down into the published artifacts directory structure to find teh output file(s).
+- Use EnvVars to make Pipeline Tasks more readable and simpler to maintain and update.
+- Variable placeholders are replaced with Values as the Pipeline runs.
+- Store repeated information in EnvVars such as: Version numbers, file paths, etc.
+- Limit the use of variables to just what makes the most sense and has the most positive impact. Adding lots of variables can make the YAML file more difficult to read.
+- Adding users to the Project causes emails to be sent to those users when Pipeline Jobs complete.
+
+Implement Templates for multiple configurations:
+
+- Rather than maintaining multiple versions of YAML files, each containing very similar scripts (such as a Release version and a Debug-build version), use Templates.
+- Define common build tasks once and reuse them multiple times.
+- A build step will be added to call the template from the pipeline.
+- Parameters can be passed-in to the template by the pipeline.
+- Create a templates directory at the project root (or another location based on team's needs or best practices), and create a new YAML file.
+- Parameters are passed-in to the YAML file's `parameters:` section.
+- Variables are passed-in to the YAML file by using `${{ parameters.paramName }}` syntax.
+- When running the Pipeline, the Jobs summary will include additional information for the templated Job definitions from the YAML file.
+
+### How Pipelines Process YAML file commands
+
+The example provided in the learning module was as follows:
+
+```yml
+task: DotNetCoreCLI@2
+  displayName: 'Build the project'
+  inputs:
+    command: 'build'
+    arguments: '--no-restore --configuration Release'
+    projects: '**/*.csproj'
+```
+
+```cli
+dotnet build MyProject.csproj --no-restore --configuration Release
+```
 
 ## Resources
 
-[Azure DevOps Services](https://azure.microsoft.com/en-us/products/devops/)
-
-[MSFT DevOps Resource Center](https://learn.microsoft.com/en-us/devops/)
+- [Azure DevOps Pipelines Reference Documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines/)
+- [Learn YAML in Y Minutes](https://learnxinyminutes.com/docs/yaml)
+- [Azure Pipelines Tasks Reference](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference)
+- [Azure DevOps Services](https://azure.microsoft.com/en-us/products/devops/)
+- [MSFT DevOps Resource Center](https://learn.microsoft.com/en-us/devops/)
 
 ## Footer
 
