@@ -326,6 +326,205 @@ Package Management
 
 - Azure Artifacts: Create, Host, and Share packages.
 
+## Azure Pipelines
+
+Decide on a pipeline strategy and responsibilities by understanding Azure Pipelines and their components.
+
+Objectives:
+
+- Describe Azure Pipelines.
+- Explain role of Azure Pipelines and its components.
+- Decide Azure Pipelines automation responsibility.
+- Undersatnd Azure Pipelines terminology.
+
+The following are notes taken while working through an AZ-400 level training module.
+
+### What Is Azure Pipelines
+
+- Fully featured service.
+- Create cross-platform CI and CD workflows.
+- Works with Git-based source controls.
+- Supports deployment to most major cloud services.
+
+Key Concepts:
+
+- Product delivery creates value.
+- Continuous delivery (CD) accelerates product deployment and refresh cycles.
+- Create repeatable, reliable processes for the software development and deployment cycle through to delivery.
+- Pipelines are created in stages.
+- Quality is checked at every stage from varying perspectives.
+- Feedback on pipeline stage processes are bubbled-up to the team.
+- Optimize delivery in advance, resulting in quantifiable value to business.
+- Enables continuous monitoring.
+- Pipelines becomes the focus of the 'continuous improvement loop'.
+- Build automation, CI, test automation, and deployment automation.
+- "Works with any language or platform".
+
+### Build Automation and CI
+
+- Build binaries, generating devlierables.
+- Pass deliverables to following stages.
+- Provide insight into dev lifecycle and product health in this stage.
+
+### Test Automation
+
+- Unit testing.
+- Security testing.
+- Performance testing.
+- Compliance testing.
+- Manual and automated testing functions are performed at this stage.
+
+### Deployment Automation
+
+- Agile development's Continuous Delivery means deployments must happen at every stage of SDLC.
+- Deployments can be staged before rolling out to Production.
+- Automation eases effort to deployment, maintains consistency in deployment steps, and speeds time-to-delivery.
+
+### Platform Provisioning and Configuration Management
+
+- Teams create, maintain, and tear down environments through automated or manual triggers.
+- Tests and other processes are always carried out with every environment.
+- Enables horizontal scalability.
+- Enables sandboxing at any time.
+
+### Pipeline Orchestration
+
+- Pipeline stages are managed and monitored by groups within the Org.
+- Orchestration provides top-level-view into Pipeline operations and SDLC process through deployment.
+
+### More Azure Pipelines Details
+
+- Cloud-based sevice.
+- Automates build and test processes.
+- Provides build and test result reports to users in the Org.
+- Multi-language, multi-project-type compatible.
+- Combines CI and CD through to prodcut shipment.
+
+Languages include:
+
+- Python
+- Java
+- Ruby
+- C#
+- Go
+
+Git-based Repo Compatibility:
+
+- GitHub
+- GitLab
+- Azure Repos
+- Bitbucket
+- Subversion
+
+Application Types:
+
+- Web Apps
+- Desktop apps
+- Full-stack systems
+- Cloud services
+
+Deployment Targets:
+
+- Container registries.
+- Virtual machines.
+- Cloud targets: Azure, Google Cloud, AWS.
+
+Package Formats:
+
+- NuGet
+- npm
+- Maven
+- "any other package managemetn repository of your choice"
+
+### About CI-CD
+
+Continuous Integration (CI):
+
+- Increase code coverage.
+- Build faster by splitting build and test runs.
+- Blocks shipping broken software through pre-publication staging and testing processes.
+- Continuous test running capabilities.
+
+Continuous Delivery (CD):
+
+- Deploy code to Production, automatically.
+- Maintain 'latest code' deployments to environments.
+- Code is tested via the CI process.
+
+### Azure Pipelines Key Terms
+
+Triggers activate Pipelines containing Stages that activate Agents that fire Jobs and dependent Jobs in Steps such as Scripts and Tasks like Publishing Artifacts, Deploying a WebApp to Azure, or invoking a REST API.
+
+Agents:
+
+- Installable software.
+- Runs on a Build or Deployment job.
+
+Artifacts:
+
+- Files or packages published by a Build.
+- Available for Tasks like distribution or deployment.
+
+Builds:
+
+- A single execution component of a Pipeline.
+- Collects logs associated with running Steps and Test Results.
+
+Continuous Delivery:
+
+- Code is built, tested, and deploy to one or more test and production stages.
+- CI-produced artifacts are consumed by CD as part of the deployment process.
+- Monitoring and Alerting are integrated to report on status of the CD processes.
+
+Continuous Integration:
+
+- Simplifies testing and building of code.
+- Catches bugs early in the development process, before deployment.
+- Automates test and build processes.
+- Can be scheduled, or fired whenever code is pushed, or both.
+- Produces Arifacts as its output.
+
+Deployment Target:
+
+- Virtual machine, Container, Web Apps, etc.
+- Services used to host an application.
+- Multiple targets can be selected from a Pipeline configuration.
+
+Job:
+
+- Is an execution boundary of a set of steps.
+- Contains 1 or more Jobs.
+- Most Jobs run on an Agent.
+- Job Steps are run on the same Agent.
+
+Pipeline:
+
+- Defines CI and CD processes.
+- Made up of Tasks.
+- Defines test, build, and deployment steps at a fine level of detail.
+
+Release:
+
+- Describes _one execution_ of a Release Pipeline.
+- An output of a Visual Designer tool.
+- Compiled of deployments to multiple stages.
+
+Stage:
+
+- The primary division of work in a Pipeline.
+
+Tasks:
+
+- Building blocks of Pipelines.
+- Can consist of Build and Test tasks.
+- Release Pipelines would consist of various deployment tasks, each running a specific tasks within the pipeline.
+
+Trigger:
+
+- Tells the Pipeline when to run.
+- Configurable to fire from operations like `push` to a repo, or completion of another build.
+
+
 ## Resources
 
 [Azure DevOps Services](https://azure.microsoft.com/en-us/products/devops/)
