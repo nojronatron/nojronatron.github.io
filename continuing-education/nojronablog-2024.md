@@ -8,6 +8,14 @@ After 3 days of focusing on learning modules and new concepts, I took a break an
 
 Going forward, for certain projects I'm going to stick with Bullseye 32-bit for any legacy or micro RPi projects for now, including the RPi 4. If I get my hands on an RPi 5 and/or Bullseye approaches EOL for those legacy RPis, I'll start moving over to Bookworm.
 
+### Completed A Build 2024 Challenge
+
+On Saturday I completed all 19 modules of "Accelerate Developer Productivity with GitHub and Azure for Developers"! This took a big effort, and I took (way too many) notes. Thanksfully some portions covered topics I already has experience with, and the other areas were great fill-in to help me build out my skill sets and build up experience.
+
+### Polyglot Notebook Learnings
+
+I took some time out to learn more about and make notes about [Polyglot Notebooks](./my-first-polyglot-notebook.ipynb). I have much more to learn but these seem like a good tool.
+
 ### Tree Review
 
 It's been quite a while since I've reviewed Tree data structures.
