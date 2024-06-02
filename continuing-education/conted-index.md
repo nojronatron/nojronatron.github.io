@@ -12,24 +12,29 @@ A collection of notes from research and continuing education, with references fo
 
 ## Currently Active Learning and Activities
 
-- [ ] Read "Inclusive 101 Guidebook" from Microsoft Design.
+- [ ] Add at least one feature to `Markdown ToC` project in the VS Code Extentions Marketplace.
 - [ ] Build and deploy a functional version of [BF-BMX](https://github.com/nojronatron/BF-BMX) - the message synchronization tool for an upcoming volunteer event.
-- [x] [MVVM and MSFT MVVM Toolkit](./dotnet-wpf-mvvm-learnings.html). Collection of captured WPF and MVVM project layout implementations and frameworks. Targets .NET Framework 4.6+, and .NET 6+.
 - [ ] Update the [BF Bib Report Form](https://github.com/nojronatron/Bigfoot-Bib-Report-WL-Form) and prepare for possible usage by August 2024.
+- [ ] Read "Inclusive 101 Guidebook" from Microsoft Design.
+- [ ] Fix-up bugs and incomplete features to my Mob-WX Android App.
 
 ## Things I Want To Learn More About
 
 Here is a snippet of items I look forward to learning more about:
 
+- [ ] Copilots: [How to create a copilot](./msft-copilot-learnings.html).
 - [ ] Meshtastic [Web](https://github.com/meshtastic/web) is an open source project looking for help. Given my recent interest in LoRa text-message communications, this might be a good [OSS contribution](continuing-education\oss-contrib-meshtastic.md) option for me.
 - [ ] Gain familiarity with [Playwright](https://playwright.dev/), an end-to-end testing framework for .NET.
 - [ ] [Bogus for .NET](https://github.com/bchavez/Bogus) a Faker.js port for .NET.
-- [ ] MSFT [Build 2024 Conference](./msbuild-2024-notes.html) will be held on 21-23 May, 2024.
+- [x] MSFT [Build 2024 Conference](./msbuild-2024-notes.html) will be held on 21-23 May, 2024.
 - [ ] Consider obtaining a GitHub Foundations Certification.
 - [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] Complete at least one [Microsoft Learn Challenge - Build 2024 Edition](https://www.microsoft.com/en-us/cloudskillschallenge/build/registration/2024?ocid=build24_csc_event_wwl).
+- [x] Complete MSLearn's currently available (up to May 2024) [Blazor](./aspdotnet-learnings.html) training materials.
+- [x] [MVVM and MSFT MVVM Toolkit](./dotnet-wpf-mvvm-learnings.html). Collection of captured WPF and MVVM project layout implementations and frameworks. Targets .NET Framework 4.6+, and .NET 6+.
 - [x] Learn how to effectively (and properly) leverage [Async Await](./dotnet-async-await-notes.html) and [Task Parallel Library](./dotnet-taskparallellibrary-notes.html).
 - [x] Complete MS Learn Web Accessibility Basics and [take notes](./web-accessibility-basics.html).
 - [x] Attended [Azure Developers .NET Day 2024](./azure-developer-day-2024.html) and took a bunch of notes.

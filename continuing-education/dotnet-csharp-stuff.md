@@ -6,9 +6,7 @@ Notes on various topics while developing software with, or learning more about, 
 
 - [Custom Extensions](#custom-extensions)
 - [About Aggregation and Composition](#about-aggregation-and-composition)
-- [Aggregation](#aggregation)
-- [Composition](#composition)
-- [Favor Composition Over Inheritance](#favor-composition-over-inheritance)
+- [For ForEach While DoWhile](#for-foreach-while-dowhile)
 - [Null Safety in CSharp Overview](#null-safety-in-csharp-overview)
 - [Setting Nullability In Your Code](#setting-nullability-in-your-code)
 - [Null Operators](#null-operators)
@@ -40,12 +38,12 @@ Both:
 
 - Specify a whole/part relationship.
 
-## Aggregation
+### Aggregation
 
 - Lifetime of the whole and its parts are not bound together.
 - Parts can exist without the whole.
 
-## Composition
+### Composition
 
 Enable a Class to utilize another class
 
@@ -67,11 +65,21 @@ Use Composition to help overcome issues with inheritance, especially as inherito
 - Utilize nullability to allow assigning a possibly not-enabled capability.
 - Add factory methods to return new instances based on the Composed-class Properties.
 
-## Favor Composition Over Inheritance
+### Favor Composition Over Inheritance
 
 Inheritance is fine, but as complexity increases, inheritance limitations become a barrier to further development.
 
 Composition enables continued added complexity with less repetitive code, guaranteeing valid object generation through factory methods.
+
+## For ForEach While DoWhile
+
+For: Use this to iterate over an indexed collection.
+
+ForEach: Syntactic-sugar for `GetEnumerator` and `Next` calls on an `IEnumerable` collection.
+
+While: Execute code within the attached code block so long as the condition returns true.
+
+Do-While: Execute code within the attached code block _and then check the conditional_, and only execute the codeblock if the condition returns true.
 
 ## Null Safety in CSharp Overview
 
@@ -94,10 +102,10 @@ Basically, that last point is the goal: Help to avoid throwing `NullReferenceExc
 
 To infer intent of code and enforce desired behavior, set "Nullable Context", using these contexts:
 
--	disable: C# 7.3 behavior is followed
--	enable: all null reference analysis and language features enabled
--	warnings: all null analysis is performed and warnings emitted  when code dereferences a possible null
--	annotations: NO null analysis is done, no warnings emitted where code might dereferences null, but annotations are allowed
+- disable: C# 7.3 behavior is followed
+- enable: all null reference analysis and language features enabled
+- warnings: all null analysis is performed and warnings emitted  when code dereferences a possible null
+- annotations: NO null analysis is done, no warnings emitted where code might dereferences null, but annotations are allowed
 
 Settings are available:
 
