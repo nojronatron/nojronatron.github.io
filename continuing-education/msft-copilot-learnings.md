@@ -2,6 +2,13 @@
 
 These are notes taken while training on Microsoft Copilot technologies following this Microsoft Build event in May, 2024.
 
+## Table of Contents
+
+- [Build An Auto Suggest Engine Using Copilot](#build-an-auto-suggest-engine-using-copilot)
+- [Intro to Copilot in MS Power Platform](#intro-to-copilot-in-ms-power-platform)
+- [References](#references)
+- [Footer](#footer)
+
 ## Build An Auto Suggest Engine Using Copilot
 
 These notes were taken while working through MSLearn's Cloud Skills Challenge, Module "Guided Project - Build Auto Suggest Engine With Copilot".
