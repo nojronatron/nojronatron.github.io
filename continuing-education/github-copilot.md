@@ -337,6 +337,26 @@ Use `#<filename>` to reference all related files when prompting Copilot. Lots of
 
 Highlight code, press `CTRL` + `I` and the Inline Prompt will automatically use the highlighted code as part of the question context.
 
+## Building Automation With GitHub
+
+Microsoft Reactor session notes from "Building Automation With GitHub"
+
+Presenters:
+
+- Alfredo Deza, Developer Advocate
+- Abril Urena, Developer Advocate
+
+This session is part of preparation for GitHub Cloud Certification.
+
+There will be more sessions June 12th, 19th, and 26th.
+
+Some notes:
+
+- Whenever working with a new repository, review the README, the folder structure, and take a peek at some of the code files to get familiar with the code language and style.
+- Use a Linter to check code. `Flake8` was mentioned as an effective Python linter.
+- python.defaultInterpreterPath: Points to the vscode venv that the Python project will run in.
+- Ask Copilot to assist creating a GitHub Action to do things like 'linting'.
+
 ## References
 
 [General Links](https://aka.ms/levelup-links) from 'Level Up Your App Development Using GitHub Copilot and Codespaces' MSFT Reactor Session.
