@@ -4,6 +4,58 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## Week 23
 
+### Battling JS and Browser Compatibility
+
+I've been working on updating a Form used in the HAM community to track event participants, such as a marathon runners. The form is designed as a single-page web form with HTML, CSS, and JavaScript for layout, style, and functionality. In the original form, there is _some_ focus on maintaining compatibility back to the Windows 7-era (about 2011).
+
+Using MDN and [CanIUse.com](https://caniuse.com) to determine what JavaScript built-ins would be safe to use because very difficult and tedious. I used a spreadsheet to help track what I'd already looked up and to record compatibility levels of built-in methods, statements, and expressions.
+
+I discovered a better way: Why not just stick with the methods that are already in use by the form, and avoid adding newer methods until there is a clear signal from users that upgrades to a newer era (Windows 8.0) can be implemented?
+
+1. Locate existing JavaScript functions, expressions, statements and make note of them as "good to use".
+2. When creating new functionality or customizing new or existing methods, refer to this to maintain compatibility levels.
+3. Whenever newer built-ins, statements or expressions are wanted, note them on the spreadsheet for future implementation.
+
+This allows for deferring research until later. Instead, existing compatible techniques can be implemented right away, keeping momentum moving forward.
+
+### MAUI Project GitHub Actions
+
+Managed to get .NET MAUI 8 building with artifact generation in GitHub Actions. Some key takeaways:
+
+- YAML file naming: kebab-case, `.github/workflows` dir, and `.yml` naming and locating are recommended.
+- Also: Use descriptive kebab-case-filenames.
+- YAML keywords are fairly well designed english words: name, on, jobs, steps, uses, run, with, name, and path. Obviously there are details about how these are used, but overall I should think about YAML in terms of these commands and how they apply to a CI workflow.
+- Creating YAML files to trigger `on: pull_request` and `on: push` might cause unnecessary, additional Action executions. Stick with a single `on` Action for a file, or use GitHub "Reusable Workflows".
+- GitHub Reusable Workflows: Define a YAML file with an trigger of `on: workflow_call:`. Create other workflows that reference the template by adding `jobs: template-name: uses: ./path-to-template.yml`.
+- .NET MAUI will require a `dotnet workload restore {projectFile.csproj}` in order to build properly, and the working directory _must be set to that Project's directory specifically_.
+- Generating artifacts is done by calling `dotnet publish --artifacts-path {path} {rest-of-commands} ./{publishDir}` in the `run:` statement, and then in a following Task, `uses: actions/upload-artifact@v2`, `with: path: ./{publishDir}`.
+- When targeting a specific directory in one Task, like a single Project directory in a multi-project Solution, the next Task _will not_ necessarily have the same path context. Set the path at each step to avoid failing Tasks due to path problems.
+
+### Building MAUI in .NET 8
+
+.NET MAUI 8 is a pretty challenging framework to work with. I love the results, having a Windows Desktop App that is (very basically) also an Android App - great stuff! In hindsight, I should have looked into Xamarin several years ago when I got going with .NET.
+
+Recent activity has been to start-up a second sprint to update and build-out my mobile weather app, and prepare it for deployment in the Google ecosystem. There are many hurdles to overcome, but I've knocked out a couple so far:
+
+- Previous Microsoft Learn modules have discussed working with GitHub Actions, so there is recent interaction with YAML and configuring GitHub repos for workflows.
+- Through experience I've gained a better comfort level using `dotnet` CLI for running build and test operations.
+- `dotnet build` and `dotnet publish` are very similar, and support overriding existing `csproj` file configurations by naming elements and setting their values, such as `-p:AppxPackageSigningEnabled=true`. I'm not certain I understand just what all can be overridden, but I plan to experiment with it.
+- Android Code Signing works differently than Windows Code Signing. Android uses a KeyStore. Windows uses Certificates. This will add to the complexity of automating build and publish in GitHub.
+
+### Single Page Web and Accessibility
+
+Spent a good amount of time debugging, adding-on to, and prepping the Bigfoot Bib Report WL Form project for the next big version. It's not clear whether it will be pressed into service - I'll have to get a few friend hams involved to take a look at the form, find issues, and provide feedback.
+
+Some things I learned along the way:
+
+- Be very careful when setting focus programmatically. This can be a jarring experience for the user, and not meet the goal if not implemented carefully.
+- In a previous version I had added a `<label>` that displays information related to three different buttons. In this case it isn't an error, but probably is a problem for accessibility, and I'll need to consider a work-around.
+- In the desktop browser tab order works as expected, but in some mobile browsers it appears to be broken, and one tab-index jumps over several other elements, even though they are ordered correctly in the DOM _and_ there are no hard-coded tab-stop attributes. I decided the best way to deal with this was to put a warning about it in the documentation, with the suggestion of using a pointing device instead of tab when on a mobile device.
+- Favicon: This single-page web implementation doesn't need one, but the browser console log would complain at launch. I discovered the complaint is about the `icon` reference missing, not the icon itself. I learned these need to be 30x30 pixels, and can be `.ico`, `.png`, or `.jpg`. So I just added `<link rel='icon' href='favicon.png'>` and the console log warning went away (for Chrome, not for Edge though). With this experience, I'll know how to implement this properly for the next website I build.
+- There are other label warnings in the devtools Issues tab, but they do not impact usability or accessibility.
+- Do not rely on Github Copilot to accurately report on spelling or grammatical errors within html, it is unlikely to provide a reliable answer (and it warns as much).
+- One last thing: Don't assume the previous author of code you are working on was 100 percent consistent in their development. This is only meant as a reminder that nobody is perfect, and therefore code is not always consistent. What brought my mind here was the discovery of a navigation button that opened a hidden element, which has an anchor element used to "navigate" back to the top of the original page. Why aren't both of these button elements? Regardless, I added an ID to the main Section element so the anchor element could act as a proper "skip link".
+
 ## Week 22
 
 After 3 days of focusing on learning modules and new concepts, I took a break and worked on some field operations planning and setup involving a Raspberry Pi Zero2 W. Working with Linux is getting easier, and the biggest issue has been finding consistent documentation. Not all docs are created for the version of RaspberryPi OS that I'm working on, so some packages either aren't available, or don't work (properly or the same). Also, some documents leave a lot to be desired, for example a `manpages` on debian.org had a lot of "should-be" and "probably" remarks in it, which doesn't sound all that promising.
