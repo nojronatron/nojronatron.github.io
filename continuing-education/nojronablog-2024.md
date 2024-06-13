@@ -2,6 +2,58 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 24
+
+I've been busy on several fronts. In software development I continued updating the Bigfoot Bib Report Form, and also started updating my Mobile Weather App. When I realized I'd not done any code challenges for a few days I did some deep diving into Trees. Rod Stephens' book _[Essential Algorithms]_ has been useful and this time I drove right-on through the entire Trees chapter, implementing pseudo-code into real code, and completing challenge questions along the way.
+
+Some key takeaways from the last 5 days:
+
+- Attended several online sessions regarding Python, Machine Learning, and Copilot.
+- I am prone to making complex code when I don't have to. Traversing a Tree only requires a few lines of code and is naturally a recursive function. Everything else such as processing a node state is a matter of either storing or editing state in a common structure that each recursive method has access to, or writing a helpful function that can "process" the node and then return control where it left off.
+- Quad Trees are useful when there is lots of stored information but searching must be more efficient than a Binary Tree's worst-case scenario of `H * H - 1` steps.
+- Threaded Trees are more complicated to write and build (adding, removing nodes), but Inorder Traversal is simplified both in code an efficiency, since fewer steps are necessary to move between nodes once the farthest-left Leaf node is found.
+
+### Basic Binary Tree Recursive Inorder Traversal
+
+While working through the Trees chapter I was using JavaScript, however the code was essentially the same as this C#:
+
+```c#
+public class MyTreeNode
+{
+  public int Data {get;set;}
+  public MyTreeNode? Left {get;set;}
+  public MyTreeNode? Right {get;set;}
+  private List<int> Visited {get;set;} = new();
+
+  public List<int> getNodesInorder() {
+    this.Visited = new List<int>();
+    traverseInorder(this);
+    return Visited; // let the caller deal with the result values
+  }
+
+  public void traverseInorder(MyTreeNode currentNode)
+  {
+    if (currentNode.Left != null) 
+    {
+      traverseInorder(currentNode.Left);
+    }
+    // process currentNode, here it is added to a Visited list
+    this.Visited.Add(currentNode.Data);
+
+    if (currentNode.Right != null)
+    {
+      traverseInorder(currentNode.Right);
+    }
+  }
+}
+```
+
+It's also possible to use a `while()` looping structure to do this, and there are pros and cons to each:
+
+- While loops require defining an exit condition. It is not always easy to know what exit condition makes the most sense to meet the requirements.
+- Recursive functions build Stack memory and for larger structures can cause a _stack overflow_, whereas a while structure won't inherently have that problem.
+- While loop structure will require more on-screen code. In terms of interview whiteboarding, this could mean losing precious time vs recursion.
+
 ## Week 23
 
 ### Battling JS and Browser Compatibility
