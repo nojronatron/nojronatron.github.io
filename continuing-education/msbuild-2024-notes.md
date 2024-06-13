@@ -201,7 +201,6 @@ Humanizer:
 - Keyboard tip: `Alt` + `Mouse Drag` across a column of text to edit all items within the drag simultaneously.
 - `UTF-8` vs `ASCCI` case-handling: Use character code `` to `AND` with the input to convert between lower- and upper-casing.
 
-
 ## Zero To Hero - Develop Your First App With Local LLMs On Windows
 
 Presenters:
