@@ -54,6 +54,28 @@ It's also possible to use a `while()` looping structure to do this, and there ar
 - Recursive functions build Stack memory and for larger structures can cause a _stack overflow_, whereas a while structure won't inherently have that problem.
 - While loop structure will require more on-screen code. In terms of interview whiteboarding, this could mean losing precious time vs recursion.
 
+### Sorting Challenge Question
+
+Of course I'm off-track, having been distracted by an interview question: "Which sorting datastructure uses no additional storage?"
+
+First of all, I need to continue training my mind to ask sorting-algorithm questions (to myself or otherwise) so that I can hone-in on a reasonable solution:
+
+- Can I name any sorting algorithms that require only O(1) additional storage?
+- Do I need to be concerned about "stable sort" or not? For example, if multiple sorting operations will be needed, a stable sort will be necssary to minimize processing steps.
+- Does computational complexity matter? In other words, in this scenario do I have infinite (or at least vast amounts) of CPU resources to work with?
+- Is there a requirement to sort a stream of data (online sorting)?
+
+Looking at [Big-O Algorithm Complexity Cheat Sheet](https://www.bigocheatsheet.com) here are some possible answers to the original challenge question:
+
+- Sorting algorithms that require O(1) storage in worst-case scenario will not use any additional storage.
+- Heapsort: A 2-step, non-stable sorting algorithm that constructs a "heap" of the input values, then extracts them _in order_. Sometimes used to augment Quicksort. Uses O(1) space.
+- Bubble Sort: Larger elements in each comparison "bubble up" to the top of the list using a moving window that compares sibling indices' values and only swaps them if idx+1 value is larger than idx. After each pass, decrement moving window index end since largest values collect there already sorted. Uses O(1) space.
+- Insertion Sort: Simple, efficient sort on small lists using in-place swapping. Is stable and can sort online (streamed) data. Start at idx 0 "left" and compare to the right. Swap-left until idx > 0 values are equal or less than current "right" comparison value. Once "left" idx reaches last IDX, the list is sorted. Uses O(1) space.
+- Selection Sort: Multi-pass, in-place swapping algorithm. Very inefficient in time (quadratic) vs. most other algorithms. In each pass, find the lowest value and swap it with the left-most _unsorted_ value (lowest IDX of this pass), until current item is last IDX. Uses O(1) space.
+- Shell Sort: Not familiar with this one at all so no additional reserach or comments will be made here at this time.
+
+In line with this thinking, I completed developing Heapsort in JavaScript following guidance in Rod Stephens' book _[Essential Algorithms]_, and updated my repo with [the code](https://github.com/nojronatron/heapsort-js). The README walks through the Heapsort algorithm.
+
 ## Week 23
 
 ### Battling JS and Browser Compatibility
