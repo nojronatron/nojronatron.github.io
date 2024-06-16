@@ -6,6 +6,16 @@ Hosted by MSFT MVP Magnus Timner, VP, DevOps Consultant, Solidify
 
 Guest Mathias Olausson, CTO of Solidify
 
+## Table of Contents
+
+- [Overview](#overview)
+- [SDLC and DevOps](#sdlc-and-devops)
+- [GitHub SDLC and DevOps](#github-sdlc-and-devops)
+- [CICD](#cicd)
+- [Footer](#footer)
+
+## Overview
+
 SDLC
 Planning and Agile
 CI and D

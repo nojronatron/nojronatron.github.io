@@ -33,16 +33,16 @@ MSBuild takes place on 21 May through 23 May, 2024.
 
 ## Sessions I Could Not Attend And Want To View
 
-- [ ] Build APps From The Cloud With Microsoft Dev Box, Visual Studio, and More.
+- [ ] Build Apps From The Cloud With Microsoft Dev Box, Visual Studio, and More.
 - [ ] Developer Experience Improvements in Windows.
 - [ ] Accessibility In The Era Of Generative AI.
 - [ ] Building Copilots - Key Lessons And Best Practices.
 - [ ] Deploy, Test, And Run Apps With Azure Deployment Environments.
-- [ ] Inside Microsoft AI Innovation With Mark Russinovich.
+- [x] Inside Microsoft AI Innovation With Mark Russinovich.
 - [ ] Start Building Your Next App Now With MongoDB Provider For EF Core.
 - [ ] Infusing Your .NET Apps With AI: Practical Tools And Techniques.
 - [ ] .NET API Development End-To-End.
-- [ ] Enhancing .NET MAUI: Quality, Performance, And INteroperability In .NET 9.
+- [ ] Enhancing .NET MAUI: Quality, Performance, And Interoperability In .NET 9.
 - [ ] How To Quickly Build A .NET Dashboard.
 - [ ] Modern Full-Stack Web Development With ASP.NET Core And Blazor.
 
@@ -200,7 +200,6 @@ Humanizer:
 - Enumerating Arrays is _much faster_ than enumerating a `Dictionary<K, V>`.
 - Keyboard tip: `Alt` + `Mouse Drag` across a column of text to edit all items within the drag simultaneously.
 - `UTF-8` vs `ASCCI` case-handling: Use character code `` to `AND` with the input to convert between lower- and upper-casing.
-
 
 ## Zero To Hero - Develop Your First App With Local LLMs On Windows
 
