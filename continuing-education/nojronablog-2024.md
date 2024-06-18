@@ -2,6 +2,25 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 25
+
+### MobWx BugFix Forecasts
+
+Worked on my Mobile Weather App, fixing bugs. There are some architectural issues (I'm now realizing) that will need to be addressed over time. For right now though, it should be fine. Some takeaways:
+
+- Microsoft's Community Toolkits have been very helpful. Documentation is a little lacking, but not bad overall (probably just me).
+- Related to the first bullet point: I was using two classes to manage downloaded API data. This probably came about due to interruptions and lack of tracking progress while working through API implementation. Live and learn!
+
+### Extension Methods - Oh My
+
+I also read about Extension Methods in C# (F# and Visual Basic too) and made some [notes about extension methods](./dotnet-csharp-stuff.html). Some key takeaways:
+
+- Create static methods with the first parameter of `this` and a type parameter that matches the origin Class that the extension will use.
+- Call the Extension Class into scope with a `using` directive and then call the Extension Method as if it were the target Type's instance method.
+- The goals of Extension Methods include: Simplify code and make it easier to read; simplify base classes by reducing functionality to absolute minimum required; enable building on existing classes without the use of inheritance.
+- If a developer is not careful, using Extension Methods can actually make their code _more messy_, and also relying on sealed classes means any updates to that 3rd party code might break your extensions.
+- There is already word on the street that Extension Methods are less-preferred (now that I'm looking into them?!?).
+
 ## Week 24
 
 I've been busy on several fronts. In software development I continued updating the Bigfoot Bib Report Form, and also started updating my Mobile Weather App. When I realized I'd not done any code challenges for a few days I did some deep diving into Trees. Rod Stephens' book _[Essential Algorithms]_ has been useful and this time I drove right-on through the entire Trees chapter, implementing pseudo-code into real code, and completing challenge questions along the way.
