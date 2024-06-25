@@ -9,7 +9,7 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 Worked on my Mobile Weather App, fixing bugs. There are some architectural issues (I'm now realizing) that will need to be addressed over time. For right now though, it should be fine. Some takeaways:
 
 - Microsoft's Community Toolkits have been very helpful. Documentation is a little lacking, but not bad overall (probably just me).
-- Related to the first bullet point: I was using two classes to manage downloaded API data. This probably came about due to interruptions and lack of tracking progress while working through API implementation. Live and learn!
+- I was using two classes to manage downloaded API data, but only one is necessary. This probably came about due to interruptions and lack of tracking progress while working through API implementation. Live and learn!
 
 ### Extension Methods - Oh My
 
@@ -20,6 +20,28 @@ I also read about Extension Methods in C# (F# and Visual Basic too) and made som
 - The goals of Extension Methods include: Simplify code and make it easier to read; simplify base classes by reducing functionality to absolute minimum required; enable building on existing classes without the use of inheritance.
 - If a developer is not careful, using Extension Methods can actually make their code _more messy_, and also relying on sealed classes means any updates to that 3rd party code might break your extensions.
 - There is already word on the street that Extension Methods are less-preferred (now that I'm looking into them?!?).
+
+### BF-BMX Full Setup Test
+
+Visited Rob and Phil to work through setup, deployment, and usage of BF-BMX Desktop and Server components across multiple computers, WiFi networked, with Winlink Express for sending/receiving messages with bib data.
+
+Some key takeaways:
+
+- Some PCs will have Security Suite software installed. If installation or execution of the Desktop app or Server service, they will need to be added to the Security Suite's _allow_ list(s).
+- There are instances where the state of a PC is such that a reboot will be required before the Desktop or Server will operate properly. It isn't clear to me what the state(s) might be, but it is clear to that a PC reboot resolves it.
+- Some of the Desktop App activity log entries were a little confusing. For example, if the Server service wasn't reachable, the log would state it sent data to the API (which it had), but there was no indication that updated information is forthcoming. By default, HttpClient has a very long timeout period set (like 90 seconds or more), so it would take a _long time_ for the activity log to update with a failure note (which in itself was difficult to read).
+
+To combat the last issues in the last bullet point, I make some changes:
+
+1. Updated the activity log entries to be more clear about what the software is doing, how long to wait for a server response, and whether there was a response, and if so whether it was success or failure.
+2. If the POST request failed the log would write a _Warning_ instead of an informational message.
+3. When the POST request succeeded, the log file text states a confirmation.
+4. Each log entry now includes the specific message ID that it is refering to.
+5. The Timeout has been configured down to 20 seconds (15 seconds for DNS timeout + 5 seconds for request/response events to complete.
+
+I decided that a _Failure_ activity log entry was not necessary for failed attempts to send data to the Server because a legitimate scenario is to run the system without a server in the mix at all. In the future I may revisit this and avoid logging these errors when it is known a server-side will not be included.
+
+A new RC will be posted to the BF-BMX project site which, to the best of my estimating, will probably be the final version before this year's event. :boom: :tada: :beers:
 
 ## Week 24
 
