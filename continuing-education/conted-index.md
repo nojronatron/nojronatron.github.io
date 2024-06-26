@@ -4,15 +4,14 @@ A collection of notes from research and continuing education, with references fo
 
 ## Table of Contents
 
-- [Currently Active Learning and Activities](#currently-active-learning-and-activities)
+- [Current Learnings and Activities](#current-learnings-and-activities)
 - [Things I Want To Learn More About](#things-i-want-to-learn-more-about)
 - [Notes And Takeaways from Research and Experience](#notes-and-takeaways-from-research-and-experience)
 - [Azure Learnings](#azure-learnings)
 - [Footer](#footer)
 
-## Currently Active Learning and Activities
+## Current Learnings and Activities
 
-- [ ] Fix-up bugs and incomplete features to my Mob-WX Android App (in process).
 - [ ] Add at least one feature to `Markdown ToC` project in the VS Code Extentions Marketplace.
 - [ ] Read "Inclusive 101 Guidebook" from Microsoft Design.
 
@@ -28,6 +27,7 @@ Here is a snippet of items I look forward to learning more about:
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] Fix-up bugs and incomplete features to my Mob-WX Android App (in process).
 - [x] Extensions in CSharp. When and how to use them.
 - [x] Learn about Heapsort algorithm, documented and implemented in my [Heapsort-js repository](https://github.com/nojronatron/heapsort-js).
 - [x] Meshtastic [Web](https://github.com/meshtastic/web) is an open source project looking for help. Given my recent interest in LoRa text-message communications, this might be a good [OSS contribution](continuing-education\oss-contrib-meshtastic.md) option for me.
