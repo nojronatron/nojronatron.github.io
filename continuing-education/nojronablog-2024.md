@@ -2,6 +2,32 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 26 and 27
+
+### Bigfoot Bib Report Form v2.0
+
+After a few days of juggling _more ideas_ on how to handle users' input of time in 24-hour format, I settled on a set of functions that carefully identify and process the hours and minutes bsaed on whether or not a colon is present.
+
+- If a colon is present and there are number character(s) to the left of it, take those two numbers.
+- If a colon is present and there are number character(s) to the right of it, take those two numbers.
+- For the two prior cases, ensure that the left characters (hours) are left-padded, and the right characters (minutes) are padded with zeroes. Both will max-out at 2 characters in length.
+- If there is no colon, a best-effort algorithm is used to determine what makes the most sense based on reading left-to-right, counting number characters, and capping max values to 59 minutes, and 23 hours, respectively.
+
+It is very difficult to anticipate and cover every possible input from a user, so I made some assumptions about common inputs and mistakes (based on my own experience) and will convey the expected behaviors to the end users.
+
+### Mobile Weather App and API Changes
+
+NOAA and the NWS updated the weather API, which broke my latest Mob-WX updates. That's okay, I knew this was coming but decided to not address it right away given there was not an obvious path for testing the changes before they were cut-over. I have a work item on my backlock to fix the issues. Thinking further out, it would be a good idea to develop and deploy an API Gateway so that the mobile app doesn't have to break and get revisioned and instead, silent updates can happen at the API Gateway that will support several minor version releases of the mobile app itself. Plenty of work will be necessary to make that happen and I anticipate it will be fun and interesting.
+
+### VSCode Extension Updates: Create-TOC
+
+It has bee 1 year since I released my first VSCode Extension and it is in need of several updates and promised feature delivery:
+
+- Multiple dependencies have been revised, some of them by a major release.
+- While the Extension _is_ useful to me, and perhaps 100 other people, it needs to support the alternate heading style.
+
+Last weekend I started working on addressing the above issues, as well as preparing to update Github Actions to enable build and publish capabilities.
+
 ## Week 25
 
 ### MobWx BugFix Forecasts
