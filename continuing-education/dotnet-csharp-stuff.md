@@ -4,16 +4,17 @@ Notes on various topics while developing software with, or learning more about, 
 
 ## Table of Contents
 
-- [Custom Extensions](#custom-extensions)
+- [Custom Extensions aka Extension Methods](#custom-extensions-aka-extension-methods)
 - [About Aggregation and Composition](#about-aggregation-and-composition)
 - [For ForEach While DoWhile](#for-foreach-while-dowhile)
 - [Null Safety in CSharp Overview](#null-safety-in-csharp-overview)
 - [Setting Nullability In Your Code](#setting-nullability-in-your-code)
 - [Null Operators](#null-operators)
 - [Best Practices Handling Nullability](#best-practices-handling-nullability)
+- [References](#references)
 - [Footer](#footer)
 
-## Custom Extensions
+## Custom Extensions aka Extension Methods
 
 Custom extension methods can be created for any class.
 
@@ -23,12 +24,129 @@ Custom extension methods can be created for any class.
 - Take input, calculate and return output, all without modifying objects received from the outside.
 - Live in their own class (ideally).
 - Generic enough to be applicable to many Types (ideally), not just one.
+- Available in C# (of course), as well as F# and Visual Basic.
 
 Using extension methods via:
 
 - Metaprogramming: Require specific classes and their properties for inputs and processing.
 - Functional: Usually requires defensive-coding techniques to avoid nullable or non-guaranteed-returned object instantiations.
 - Bridging OOP and procedural techniques: Create generic functions that can be applied to many Types that do not modify input objects, but guarantee a usable return i.e. not null.
+
+Extension Method Binding:
+
+- Happens at Compile Time.
+- Classes and Interfaces can be "extended" with Extension Methods _but not overriden_.
+- Name collision will result in the Extension Method never getting called (dead code).
+- Extension Methods are always lower-priority than the extended Type's own Instance Methods.
+
+The Compiler Ingestion and Processing Order:
+
+1. Extended Type's method signatures.
+2. Extended Interface method abstractions.
+3. Extension Method Type method signatures.
+
+Once the Compiler finds a signature match, it stops working its way down this list.
+
+### What Are Extension Methods
+
+Extension Methods Are:
+
+- Static Methods.
+- Called as if they were Instance Methods on "the extended type".
+- Compiler instructions: The compiler translates Extension Method codeinto appropriate calls that follow encapsulation rules.
+
+Examples of Existing Extension Methods:
+
+- LINQ Standard Query Operators. Extend `System.Collections.IEnumerable` and `System.Collection.Generic.IEnumerable<T>`.
+
+_Note_: Extension Methods _can_ help create cleaner code.
+
+### How To Build An Extension Method
+
+To build an extension method:
+
+- The extended Type is referenced with the `this` keyword.
+- `this` must be the first parameter.
+- Additional parameters must be the Type that is being extended.
+- Additional parameters beyond the first two are allowed.
+
+### How To Use An Extension Method
+
+1. Call the Extension Class into scope with a `using` directive.
+2. Call the Extension Method as if it were the target Type's instance method.
+
+### When to Use Extension Methods
+
+- Free up functionality from custom or existing `.NET` and `CLR` objects and make it reusable.
+- Extending `Struct` types requires using the `ref` keyword. Structs are Value types, not Reference types so changes made are only made to the _copy of the struct_, and are lost when the Extension Method exits.
+- Use Extension methods when private members do _not_ need to be accessed to get the job done.
+- The original Class or Object is not under your control. Use Extension Methods to build-out portable functionality.
+- When a `derived` object cannot be used. Try Extension Methods instead.
+- _Chain_ functions using Extension Method calls. LINQ Standard Query Methods are a good example.
+
+### Risks Using Extension Methods
+
+Code you don't control might change unexpectedly, causing functionality our input/output changes your Extension Method cannot support, or method signatures silently override your Extension Method(s).
+
+### Why To Use Extension methods Or Not
+
+Collection Pattern:
+
+1. Define a Collection Class that implements `IEnumerable<T>`.
+2. Build functionality around this custom class like Add, Remove, Find, etc.
+
+Collection Functionality using Extension Methods:
+
+1. Build Extension Methods that have the functionality necessary to operate on `IEnumerable<T>` interfaces.
+2. Bring-in the Extension Namespace to use when a type that `IEnumerable<T>` is in scope.
+
+Extension Collections Benefit:
+
+- Any Type that implements `IEnumerable<T>` is accessible to the Extension Method.
+- No need to define an entire Collection manually.
+
+Layered Application Design Pattern:
+
+1. Design Data Transfer Objects with little functionality.
+2. Implement object translation between application boundaries as needed.
+
+Layered Applications Leveraging Extension Methods:
+
+1. Design Domain Entities (same as above) with little-to-no functionality.
+2. Add Extension methods to add the functionality that is specific to each Application Layer.
+
+Layer Application Extension Methods benefits:
+
+- Minimize Domain Entitiy code block size.
+- Limit overall capability of each Domain Entity to just what it needs for its parent Application Layer.
+- Separates added Domain Entity functionality from the Domain Entity itself.
+- Added features in Extension methods do not rev the Domain Entities but still provide functional benefit.
+
+Chain Your Method Calls!
+
+- Extension Methods allow chaining Method calls using dot-notation.
+- Clear-up code intentions with more concise naming and parameter usage.
+- Reduce number of necessary parameters by calling the source Type/instance and filling-in required defaults (similar to what a Factory Method would do).
+
+Avoid Nested Method Calls!
+
+- Deeply nested calls are difficult to interpret in code.
+- Nested method calls are difficult to debug.
+
+Separate Dependencies from Classes that don't need them:
+
+- If a class needs to write to a database, an Extension Method can provide the capability to access the database. The calling method would still need to include the DbConnection String, but the extended Class would _not_.
+
+_Avoid_:
+
+- Building Extension Methods to built-in .NET Library Classes as it will quickly become confusing.
+- Deploying _many_ Namespaces to sort the Extension Methods will quickly become difficult to track and especially to debug and test.
+
+_Do_ use Extensions Methods to:
+
+- Add new functionality to your own classes that are already implemented and well tested.
+- Minimize adding bugs by adding functionality on top of existing.
+- Group your Namespaces. This helps avoid namespace collisions.
 
 ## About Aggregation and Composition
 
@@ -147,6 +265,10 @@ null conditional operators `.?` and `?[]`:
 
 - Assign an initial value to initialized objects and structs whenever possible.
 - Avoid relying on the Null Forgiving Operator and instead perform logic statements that ensure nullable references are handled properly.
+
+## References
+
+- MSLearn docs on [Extension Methods](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
 
 ## Footer
 
