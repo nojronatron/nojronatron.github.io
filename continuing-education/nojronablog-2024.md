@@ -2,6 +2,20 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 28
+
+### Releases via GitHub
+
+The interface is pretty simple:
+
+1. Pick a commit or Tag to use as the release source.
+2. Write-up the Release title and notes.
+3. Add any artifacts that the source code archives don't already contain.
+
+The challenge is with embedding version information into the application. For example, while developing new features, so long as they are compatible with previous releases, the Minor version should be incremented. Also, for bugfixes for the Minor version should increment the third number using the semantic versioning system. If the versioning is embedded into the code, then as dev branches are merged-in to the staging branch prior to release, the versioning information will get overwritten. If a particular Minor or Bugfix version increment does not make it to Staging, then the numbering system leading up to 'latest' will appear to skip numbers, and the correlated commits to Staging won't explain why the versioning is not orderly.
+
+If I relax my view of how semantic versioning works, this really isn't a problem. But I have to ask the question how to work through (or around) this so the numbering system will work during pre-release testing and demos, acceptance testing once changes are staged, and for final versioning before official release. I'm certain there are tools and techniques to get this to work more easily
+
 ## Week 26 and 27
 
 ### Bigfoot Bib Report Form v2.0
@@ -178,8 +192,9 @@ Managed to get .NET MAUI 8 building with artifact generation in GitHub Actions. 
 
 - YAML file naming: kebab-case, `.github/workflows` dir, and `.yml` naming and locating are recommended.
 - Also: Use descriptive kebab-case-filenames.
-- YAML keywords are fairly well designed english words: name, on, jobs, steps, uses, run, with, name, and path. 
-  - Obviously there are details about how these are used, but overall I should think about YAML in terms of these commands and how they apply to a CI workflow.
+- YAML keywords are fairly well designed english words: name, on, jobs, steps, uses, run, with, name, and path.
+  - Obviously there are details about how these are used.
+  - I should think about YAML in terms of these commands and how they apply to a CI workflow.
 - Creating YAML files to trigger `on: pull_request` and `on: push` might cause unnecessary, additional Action executions. Stick with a single `on` Action for a file, or use GitHub "Reusable Workflows".
 - GitHub Reusable Workflows: Define a YAML file with an trigger of `on: workflow_call:`. Create other workflows that reference the template by adding `jobs: template-name: uses: ./path-to-template.yml`.
 - .NET MAUI will require a `dotnet workload restore {projectFile.csproj}` in order to build properly, and the working directory _must be set to that Project's directory specifically_.
