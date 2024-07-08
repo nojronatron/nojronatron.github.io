@@ -2,6 +2,45 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 26 and 27
+
+### Bigfoot Bib Report Form v2.0
+
+After a few days of juggling _more ideas_ on how to handle users' input of time in 24-hour format, I settled on a set of functions that carefully identify and process the hours and minutes bsaed on whether or not a colon is present.
+
+- If a colon is present and there are number character(s) to the left of it, take those two numbers.
+- If a colon is present and there are number character(s) to the right of it, take those two numbers.
+- For the two prior cases, ensure that the left characters (hours) are left-padded, and the right characters (minutes) are padded with zeroes. Both will max-out at 2 characters in length.
+- If there is no colon, a best-effort algorithm is used to determine what makes the most sense based on reading left-to-right, counting number characters, and capping max values to 59 minutes, and 23 hours, respectively.
+
+It is very difficult to anticipate and cover every possible input from a user, so I made some assumptions about common inputs and mistakes (based on my own experience) and will convey the expected behaviors to the end users.
+
+After a couple more surprise bug fixes, I've decided to release v2.1.4. A demonstration will take place during a Monday night Zoom session with the team lead and other Bigfoot volunteers.
+
+### Mobile Weather App and API Changes
+
+NOAA and the NWS updated the weather API, which broke my latest Mob-WX updates. I have a work item on my backlog to fix the issues.
+
+Thinking further out, it would be a good idea to develop and deploy an API Gateway so that the mobile app doesn't have to break and get revisioned and instead, silent updates can happen at the API Gateway that will support several minor version releases of the mobile app itself.
+
+Plenty more work will be necessary to make that happen and I anticipate it will be fun and interesting.
+
+### VSCode Extension Updates: Create-TOC
+
+It has bee 1 year since I released my first VSCode Extension and it is in need of several updates and promised feature delivery:
+
+- Multiple dependencies have been revised, some of them by a major release.
+- While the Extension _is_ useful to me, and perhaps 100 other people, it needs to support the alternate heading style.
+
+Last weekend I started working on addressing the above issues, as well as preparing to update Github Actions to enable build and publish capabilities.
+
+- Several dependencies needed to be updated.
+- Github Actions YAML references were out-of-date and needed version bumps.
+- A bunch of learning was necessary to device a working YAML workflow that produced a v0.3.1 and published it to Marketplace.
+- Attempting to move to Node 22.x failed due to some dependency issues, which was confusing at first. Then I noticed that VSCode/Electron leverage Node 20.x, so it might be necessary to develop extensions depending on the same Major Node version as VSCode.
+
+Overall: Success! There is more work to do to ensure that pre-release publish only happens at a particular action. For now I've set it to a particular branch. A better change (later) would be to only publish on a particular tag. I'll figure that out.
+
 ## Week 25
 
 ### MobWx BugFix Forecasts
@@ -139,7 +178,8 @@ Managed to get .NET MAUI 8 building with artifact generation in GitHub Actions. 
 
 - YAML file naming: kebab-case, `.github/workflows` dir, and `.yml` naming and locating are recommended.
 - Also: Use descriptive kebab-case-filenames.
-- YAML keywords are fairly well designed english words: name, on, jobs, steps, uses, run, with, name, and path. Obviously there are details about how these are used, but overall I should think about YAML in terms of these commands and how they apply to a CI workflow.
+- YAML keywords are fairly well designed english words: name, on, jobs, steps, uses, run, with, name, and path. 
+  - Obviously there are details about how these are used, but overall I should think about YAML in terms of these commands and how they apply to a CI workflow.
 - Creating YAML files to trigger `on: pull_request` and `on: push` might cause unnecessary, additional Action executions. Stick with a single `on` Action for a file, or use GitHub "Reusable Workflows".
 - GitHub Reusable Workflows: Define a YAML file with an trigger of `on: workflow_call:`. Create other workflows that reference the template by adding `jobs: template-name: uses: ./path-to-template.yml`.
 - .NET MAUI will require a `dotnet workload restore {projectFile.csproj}` in order to build properly, and the working directory _must be set to that Project's directory specifically_.
