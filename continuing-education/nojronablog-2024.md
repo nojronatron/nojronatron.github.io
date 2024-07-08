@@ -15,9 +15,15 @@ After a few days of juggling _more ideas_ on how to handle users' input of time 
 
 It is very difficult to anticipate and cover every possible input from a user, so I made some assumptions about common inputs and mistakes (based on my own experience) and will convey the expected behaviors to the end users.
 
+After a couple more surprise bug fixes, I've decided to release v2.1.4. A demonstration will take place during a Monday night Zoom session with the team lead and other Bigfoot volunteers.
+
 ### Mobile Weather App and API Changes
 
-NOAA and the NWS updated the weather API, which broke my latest Mob-WX updates. That's okay, I knew this was coming but decided to not address it right away given there was not an obvious path for testing the changes before they were cut-over. I have a work item on my backlock to fix the issues. Thinking further out, it would be a good idea to develop and deploy an API Gateway so that the mobile app doesn't have to break and get revisioned and instead, silent updates can happen at the API Gateway that will support several minor version releases of the mobile app itself. Plenty of work will be necessary to make that happen and I anticipate it will be fun and interesting.
+NOAA and the NWS updated the weather API, which broke my latest Mob-WX updates. I have a work item on my backlog to fix the issues.
+
+Thinking further out, it would be a good idea to develop and deploy an API Gateway so that the mobile app doesn't have to break and get revisioned and instead, silent updates can happen at the API Gateway that will support several minor version releases of the mobile app itself.
+
+Plenty more work will be necessary to make that happen and I anticipate it will be fun and interesting.
 
 ### VSCode Extension Updates: Create-TOC
 
@@ -31,6 +37,7 @@ Last weekend I started working on addressing the above issues, as well as prepar
 - Several dependencies needed to be updated.
 - Github Actions YAML references were out-of-date and needed version bumps.
 - A bunch of learning was necessary to device a working YAML workflow that produced a v0.3.1 and published it to Marketplace.
+- Attempting to move to Node 22.x failed due to some dependency issues, which was confusing at first. Then I noticed that VSCode/Electron leverage Node 20.x, so it might be necessary to develop extensions depending on the same Major Node version as VSCode.
 
 Overall: Success! There is more work to do to ensure that pre-release publish only happens at a particular action. For now I've set it to a particular branch. A better change (later) would be to only publish on a particular tag. I'll figure that out.
 
