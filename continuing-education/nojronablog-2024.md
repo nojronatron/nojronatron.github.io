@@ -2,6 +2,39 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 29 and 30
+
+For much of week 29, I was out of pocket not feeling well so not many updates were made during this time.
+
+### Updating and Releasing BF Bib Report v2.n
+
+During the massive merging party, preparing for the latest 2.x release of the form, a few functions were not well tested enough to know they were incorrectly implemented. I'm pretty sure this was a result of interrupted development that was not followed-up and validated properly. This required pushing some quick-fix commits.
+
+Key takeaways here:
+
+- Lack of documenting each issue I was working on individually allowed me to veer off course and not completely close the loop on bug resolution.
+- Too few users participating in debugging and usage feedback limited debug and testing feedback.
+
+### BF-BMX Reporting Exploration
+
+Recently I started looking into getting the BF-BMX API Server to return information on what it has stored in its DB. At first this was exploratory, but during the last week or so I have turned a corner in my thinking and decided to develop a preview of a Reporting Server that will simply render information about the stored data.
+
+- For this year's event I will likely be assigned to an area where getting these reports and making them available to the race organizers (and myself) will be really helpful.
+- Was hoping to just make all pages static, but certain report types required user input, so there are at least two dynamically interactive report pages. ALl others remain static.
+- At the onset I wasn't too concerned about how the reporting information would be laid-out on screen, but after experiencing the joy of seeing the data from a statistical and current-state perspective, I've started building-out a more comprehensive layout and style, including "Cards" and a color scheme that closely matches the BF-BMX Desktop app and the Bigfoot Bib Report Form.
+
+The following items are a rought overview of the remaining work I'd like to get done before this year's event:
+
+- Complete adding Cards to the Aid Station report.
+- Refine the API Endpoints to minimize the amount of data processing they have to do.
+- Refine the Reporting route pages to ensure they only process what data they absolutely need to.
+- Implement any needed Report Route Page cleanup so they pages are ephemeral and do not display incidentally cached or out-of-date data.
+- Review all Report Routes and plan for adding any _obviously necessary_ reporting elements that are missing.
+- Validate operation on Windows 10 and Windows 11 machines, without internet access.
+- Validate operation as a fully-deploy BF-BMX system with at least two workstations, and the Desktop, API, and Reports systems deployed and interoperating with Winlink Express.
+
+This is _really exciting_ to me and I look forward to having this tool to keep on top of participant data at this and future events!
+
 ## Week 28
 
 ### Releases via GitHub
