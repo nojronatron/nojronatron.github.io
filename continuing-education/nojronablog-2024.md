@@ -2,6 +2,77 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Week 29 and 30
+
+For much of week 29, I was out of pocket not feeling well so not many updates were made during this time.
+
+### Updating and Releasing BF Bib Report v2.n
+
+During the massive merging party, preparing for the latest 2.x release of the form, a few functions were not well tested enough to know they were incorrectly implemented. I'm pretty sure this was a result of interrupted development that was not followed-up and validated properly. This required pushing some quick-fix commits.
+
+Key takeaways here:
+
+- Lack of documenting each issue I was working on individually allowed me to veer off course and not completely close the loop on bug resolution.
+- Too few users participating in debugging and usage feedback limited debug and testing feedback.
+
+### BF-BMX Reporting Exploration
+
+Recently I started looking into getting the BF-BMX API Server to return information on what it has stored in its DB. At first this was exploratory, but during the last week or so I have turned a corner in my thinking and decided to develop a preview of a Reporting Server that will simply render information about the stored data.
+
+- For this year's event I will likely be assigned to an area where getting these reports and making them available to the race organizers (and myself) will be really helpful.
+- Was hoping to just make all pages static, but certain report types required user input, so there are at least two dynamically interactive report pages. ALl others remain static.
+- At the onset I wasn't too concerned about how the reporting information would be laid-out on screen, but after experiencing the joy of seeing the data from a statistical and current-state perspective, I've started building-out a more comprehensive layout and style, including "Cards" and a color scheme that closely matches the BF-BMX Desktop app and the Bigfoot Bib Report Form.
+
+The following items are a rought overview of the remaining work I'd like to get done before this year's event:
+
+- Complete adding Cards to the Aid Station report.
+- Refine the API Endpoints to minimize the amount of data processing they have to do.
+- Refine the Reporting route pages to ensure they only process what data they absolutely need to.
+- Implement any needed Report Route Page cleanup so they pages are ephemeral and do not display incidentally cached or out-of-date data.
+- Review all Report Routes and plan for adding any _obviously necessary_ reporting elements that are missing.
+- Validate operation on Windows 10 and Windows 11 machines, without internet access.
+- Validate operation as a fully-deploy BF-BMX system with at least two workstations, and the Desktop, API, and Reports systems deployed and interoperating with Winlink Express.
+
+This is _really exciting_ to me and I look forward to having this tool to keep on top of participant data at this and future events!
+
+### Full Stack Querying With Blazor
+
+I've just completed several days of focused work on the BF-BMX Reporting Service, and it is looking and working fairly well. There are still some bugs and nits that need to get addressed, but for the most part the solution is ready for this year's event, and I'm starting to trust the data displays it is rendering.
+
+Some key takeaways, highlights, and lowlights of the last few days:
+
+- I tend to write too much code. This causes me to go back and delete _lots of code_ due to bugs or unnecessary code segments. I know this. I know the solution is to design and diagram, not pound the keyboard. When I started this project I felt like I was just challenging myself to do something complicated (yet useful) in Blazor. It feels like I've accomplished something, but getting to this point was done without the planning, scoping, and testing that it _should_ have been done with.
+- Despite writing too much code, most build, publish, and runtime operations worked without error (just some warnings), and when the runtime errors did happen, it didn't take me long to find the culprit.
+- Maintaining an internal Collection in the API Server, and building-out functionality to deliver results to new API Endpoints worked really well. The Collection methods are super fast (now that I've trimmed a bunch of the "code fat" from them) and are 20 or fewer lines of code (for simplified maintenance) and utilize LINQ whenever possible. But why use LINQ? The compiler knows about common iterative searching and matching combinations, and generates efficient code out of the box. If I were to try and write memory and time effecient code, I would probably still be refining and testing it. I have learned that LINQ provides lots of benefits with very few drawbacks (which _do exist_).
+- One aspect of this project is to return statistics related to one of many location names (or their abbreviations). Early on I decided to write-out the list of location names and abbreviations so the end user would have a reference of valid names/abbreviations to search for. The last major change I made was to enable an `@onclick` to fire a callback to handle clicking on one of the named items in the list. This can be helpful to a user that maybe doesn't have a keyboard, doesn't type quickly, or otherwise might make mistakes. By clicking on a list item instead, the user performs a single-click, and the code is guaranteed to get a valid input. It's a win-win!
+- As I have done with other projects, the API Server address is configured using Environment Variables. This way the server operator has a simple, accessible way to set the API Server address and port without having to use the Report Service UI, and avoiding having to code the capability to enter a custom server name and port.
+- While working through development of API Endpoints and processing data both on Server- and Client-side, I started to better understand the trade-offs between having an API Server do most of the processing, and having the client-side do most processing. For example, simply returning all results from a loaded database to the caller is probably more than is necessary, even thought it doesn't cost much for the API Server to do this from a processing perspective, there are situations where network bandwidht is so limited such that doing so could be a problem. Also, doing so guarantees the client-side must do any necessary processing, which will cause the page rendering to be slow or otherwise delayed, leading to a poor user experience.
+- Building-up a Blazor Server from a template is pretty simple when the UI layout and some styling and navigation has already been laid out. However, when it comes time to customize things, especially colors and the general look-and-feel, it is pretty challenging to determine what CSS Classes are already in use, what will be necessary for the future styling and layout, and what can be tossed. I decided to approach the problem by first creating page-specific CSS and developing patterns that can be applied to other pages. Once I had a few pages completed and I liked where the style was going, I started migrating the CSS classes that I liked to `app.css` in the `wwwroot` folder. This way, I could simply comment-out CSS classes in the custom file and in the root `app.css` file and discover what was still in use and what I could safely move to my new, custom classes. I'll have to file this away and use the approach in the future to help with future CSS migrations.
+
+### More RaspberryPi Fun
+
+A recent conversation with a ham friend resulted in a renewed interest in computer networks and automation, so I've been looking into Kismet Wireless and working with Linux cron and registering custom services. I'm already planning to use RPi's at a few upcoming ham events, so I'll integrate some of what I learn into building and configuring Pis.
+
+### Antenna Maintenance
+
+A couple weeks ago I replaced my VHF omni vertical with a VHD beam antenna. The omni antenna is better in windy or icy conditions so I tend to have it up during the darker months, but there is a local RF problem (reflections or some other RF emitter) and the omni receives those all too well. The yagi is able to avoid those noise issues with a more focused view, and the rotator allows changing direction remotely. However, I haven't _tuned_ the yagi since I last put it back together, so I'll need to run some diagnostics to find out if the tuning is out of band, and make requisite changes.
+
+Last week I did maintanance on my HF antenna and followed-up with some experimentation to try and improve its performance on many bands that I want to use. It turns out my previous installation using a 9:1 unun with a 80-ish foot hot wire and a 25 foot ground wire was not a great solution. I've been using it for years, but had to be careful about what bands and modes I used due to poor tuning in multiple areas. After experimenting and reading more about off-center-fed dipoles and end-fed long wire antennas, I decided my OCF implementation was faulty. So the antenna was refactored to follow advice from [Palomar Engineers](https://palomar-engineers.com/) by shrinking the main radiating element and removing the ground element completely. Now the antenna covers more bands than before, and performs better on sub-bands I wanted. `</otherstuff>`
+
+## Week 28
+
+### Releases via GitHub
+
+The interface is pretty simple:
+
+1. Pick a commit or Tag to use as the release source.
+2. Write-up the Release title and notes.
+3. Add any artifacts that the source code archives don't already contain.
+
+The challenge is with embedding version information into the application. For example, while developing new features, so long as they are compatible with previous releases, the Minor version should be incremented. Also, for bugfixes for the Minor version should increment the third number using the semantic versioning system. If the versioning is embedded into the code, then as dev branches are merged-in to the staging branch prior to release, the versioning information will get overwritten. If a particular Minor or Bugfix version increment does not make it to Staging, then the numbering system leading up to 'latest' will appear to skip numbers, and the correlated commits to Staging won't explain why the versioning is not orderly.
+
+If I relax my view of how semantic versioning works, this really isn't a problem. But I have to ask the question how to work through (or around) this so the numbering system will work during pre-release testing and demos, acceptance testing once changes are staged, and for final versioning before official release. I'm certain there are tools and techniques to get this to work more easily
+
 ## Week 26 and 27
 
 ### Bigfoot Bib Report Form v2.0
@@ -178,8 +249,9 @@ Managed to get .NET MAUI 8 building with artifact generation in GitHub Actions. 
 
 - YAML file naming: kebab-case, `.github/workflows` dir, and `.yml` naming and locating are recommended.
 - Also: Use descriptive kebab-case-filenames.
-- YAML keywords are fairly well designed english words: name, on, jobs, steps, uses, run, with, name, and path. 
-  - Obviously there are details about how these are used, but overall I should think about YAML in terms of these commands and how they apply to a CI workflow.
+- YAML keywords are fairly well designed english words: name, on, jobs, steps, uses, run, with, name, and path.
+  - Obviously there are details about how these are used.
+  - I should think about YAML in terms of these commands and how they apply to a CI workflow.
 - Creating YAML files to trigger `on: pull_request` and `on: push` might cause unnecessary, additional Action executions. Stick with a single `on` Action for a file, or use GitHub "Reusable Workflows".
 - GitHub Reusable Workflows: Define a YAML file with an trigger of `on: workflow_call:`. Create other workflows that reference the template by adding `jobs: template-name: uses: ./path-to-template.yml`.
 - .NET MAUI will require a `dotnet workload restore {projectFile.csproj}` in order to build properly, and the working directory _must be set to that Project's directory specifically_.

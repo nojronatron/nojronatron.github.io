@@ -4,13 +4,12 @@ A collection of notes taken while attending Code Fellows CODE curriculum classes
 
 ## Table of Contents
 
-Code 401 - [Advanced Software Development - Java](#advanced-software-development)  
-
-Code 301 - [Intermediate Software Development](#intermediate-software-development)  
-
-Code 201 - [Foundations of Software Development](#foundations-of-software-development)  
-
-Reference [links](#reference-links)  
+- [Things I Want To Learn More About](#things-i-want-to-learn-more-about)
+- [Retro  Blogs](#retro--blogs)
+- [Advanced Software Development](#advanced-software-development)
+- [Intermediate Software Development](#intermediate-software-development)
+- [Foundations of Software Development](#foundations-of-software-development)
+- [Reference Links](#reference-links)
 
 ## Things I Want To Learn More About
 
