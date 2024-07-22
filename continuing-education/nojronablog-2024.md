@@ -59,6 +59,12 @@ A couple weeks ago I replaced my VHF omni vertical with a VHD beam antenna. The 
 
 Last week I did maintanance on my HF antenna and followed-up with some experimentation to try and improve its performance on many bands that I want to use. It turns out my previous installation using a 9:1 unun with a 80-ish foot hot wire and a 25 foot ground wire was not a great solution. I've been using it for years, but had to be careful about what bands and modes I used due to poor tuning in multiple areas. After experimenting and reading more about off-center-fed dipoles and end-fed long wire antennas, I decided my OCF implementation was faulty. So the antenna was refactored to follow advice from [Palomar Engineers](https://palomar-engineers.com/) by shrinking the main radiating element and removing the ground element completely. Now the antenna covers more bands than before, and performs better on sub-bands I wanted. `</otherstuff>`
 
+### Build 2024 Catch-up Views in July
+
+I took some time out to review some missed Build 2024 sessions, and updated documentation accordingly.
+
+- [x] Modern Full-Stack Web Development with ASP.NET Core and Blazor ([notes](./msbuild-2024-notes.md#modern-full-stack-web-development-with-aspnet-core-and-blazor)).
+
 ## Week 28
 
 ### Releases via GitHub

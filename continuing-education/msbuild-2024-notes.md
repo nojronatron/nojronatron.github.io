@@ -2,24 +2,25 @@
 
 Microsoft Build is a yearly conference aimed at .NET developers and focuses on Visual Studio, languages like C#, F#, and Visual Basic, developing solutions using Azure or Microsoft 365, and updated information on .NET.
 
-MSBuild takes place on 21 May through 23 May, 2024.
+MSBuild took place on 21 May through 23 May, 2024.
 
 ## Table of Contents
 
 - [Sessions I Could Not Attend And Want To View](#sessions-i-could-not-attend-and-want-to-view)
-- [Running .NET on the NES](#running-net-on-the-nes)
+- [Modern Full Stack Web Development with ASPNET Core and Blazor](#modern-full-stack-web-development-with-aspnet-core-and-blazor)
+- [Running NET on the NES](#running-net-on-the-nes)
 - [Create Superior Experiences with WinUI and WPF](#create-superior-experiences-with-winui-and-wpf)
 - [Unleash The Potential Of APIs With Azure API Management](#unleash-the-potential-of-apis-with-azure-api-management)
 - [Highly Technical Talk - Hanselman and Toub](#highly-technical-talk---hanselman-and-toub)
 - [Zero To Hero - Develop Your First App With Local LLMs On Windows](#zero-to-hero---develop-your-first-app-with-local-llms-on-windows)
-- [Windows Subsystem for Linux, Your Enterprise Ready Multitool](#windows-subsystem-for-linux-your-enterprise-ready-multitool)
+- [Windows Subsystem for Linux Your Enterprise Ready Multitool](#windows-subsystem-for-linux-your-enterprise-ready-multitool)
 - [Whats New In C Sharp 13](#whats-new-in-c-sharp-13)
 - [Level Up With DevBox](#level-up-with-devbox)
 - [AI Safety and Security Fundamentals](#ai-safety-and-security-fundamentals)
 - [Enterprise Class NGINX Plus Without Operational Toil](#enterprise-class-nginx-plus-without-operational-toil)
 - [Scott and Mark Learn AI](#scott-and-mark-learn-ai)
-- [.NET Aspire Dev On Any OS with VS Family](#net-aspire-dev-on-any-os-with-vs-family)
-- [Demystify Cloud-Native Development with .NET Aspire](#demystify-cloud-native-development-with-net-aspire)
+- [NET Aspire Dev On Any OS with VS Family](#net-aspire-dev-on-any-os-with-vs-family)
+- [Demystify Cloud-Native Development with NET Aspire](#demystify-cloud-native-development-with-net-aspire)
 - [Build and Deploy to Azure with GitHub](#build-and-deploy-to-azure-with-github)
 - [Building Custom Copilots with Copilot Studio](#building-custom-copilots-with-copilot-studio)
 - [Keynote - Wednesday](#keynote---wednesday)
@@ -44,7 +45,85 @@ MSBuild takes place on 21 May through 23 May, 2024.
 - [ ] .NET API Development End-To-End.
 - [ ] Enhancing .NET MAUI: Quality, Performance, And Interoperability In .NET 9.
 - [ ] How To Quickly Build A .NET Dashboard.
-- [ ] Modern Full-Stack Web Development With ASP.NET Core And Blazor.
+- [x] Modern Full-Stack Web Development With ASP.NET Core And Blazor.
+
+## Modern Full Stack Web Development with ASP.NET Core and Blazor
+
+Presenter: Daniel Roth, Principal Product Manager, MSFT
+
+### ASP.NET Core and Blazor Overview
+
+- Full stack web UI.
+- Updated with .NET 8.0!
+- Server-side: Handle requests, access resource, and generate HTML.
+- Client-side: Handle user interactions, access client resources, update the UI.
+- Component-based rendering model.
+- Client-side interactions are possible via same Components.
+- C#, Blazor, and a unified build system!
+
+### New Blazor WebApp Demo
+
+- .NET 8 LTS Template enables quick new-project setup.
+- Hot-Reload to view changes client-side in real time.
+- C# Class annotations are supported.
+- VS Can scaffold Razor Components to generate pages and other supporting components and adding an ORM such as Entity Framework!
+- Entity Framework Migration support.
+- By default, pages are statically rendered at the server (SSR). Use `Interactive Server` render mode to allow UI-events to be sent between client and server (SignalR?).
+- Built-in `<Paginator />` component enables built-in pagination. Set the Paginator properties in the `@code{}` block e.g. ItemsPerPage.
+- `<ColumnOptions />` component enables binding events and data for filtering results.
+- `_imports.razor`: Add `@usings` and `@attribute [Authorize]` for _all pages_ within the app.
+- Advanced Render Modes, `<QuickGrid />` Component, Monitor circuit activity, Improved Authentication (over .NET 6), Client interactivity per Component or per Page, Streaming rendering, enhanced Form handling, and auto-select render mode _at runtime_.
+- WASM (Web Assembly): Jiterpreter, Hot-reload Components, SIMD and Exception handling enabled by default, CSP compatibility, Webcil packaging.
+
+### Authentication
+
+1. Scaffold a new item.
+2. Select Authentication.
+3. Add Blazor Identity and point to a new or existing SQL-based data store.
+4. Setup "core identity" for use. This generates Razor Files implemented in Blazor to support login, authorization, and logout.
+5. Add migrations for both the Identity Store and any existing DBs to the Service Dependency using the UI elipses menu on the Connected Services view.
+
+Remember: Registration will use an auto-authorize flow, that should be replaced with a real 2FA flow.
+
+### .NET Aspire With Blazor
+
+- Built with Blazor and Fluid Blazor Components.
+- Framework for building cloud-ready Blazor Apps.
+- Logs, Traces, Environment Configurations management and insights.
+
+### Bonus Blazor: AI for Apps
+
+Drop-in .NET "Smart Components"!
+
+- Dan demoed a Blazor App to help describe this feature using a "Smart Paste" button that took email plain-text and filled-in a form from that content.
+- Demo component: `<SmartPasteButton />`
+- Another demo revolved around HR tasks, where a Smart TextArea where appropriate email responses can be generated.
+- Demo component: `<SmartTextArea />`: Generates suggestions based on policies.
+- Semantic Search: User types data into a Form and Semantic Search provides suggestions from Cloud-based or Local SLMs.
+- .NET Smart Components are in _Experimental_ stage but MSFT wants feedback. Check out [dotnet smart components home](https://aka.ms/dotnet/smartcomponents).
+- Support for MVC and RazorPages.
+
+### ASP.NET and Blazor Key Takeaways
+
+Scaffolding: Create a model and use the Scoffolding tool in the Add Item submenu to generate front-end, back-end, and ORM code!
+
+Fast Development and Experimentation: Blazor can be used to rapidly trial-run new ideas. Once the project has been fleshed-out and is ready for more formal development, Blazor can again be used as an Enterprise-ready or Cloud-ready full-stack framework.
+
+User State: Remember that Blazor maintains User State while running on Server-Side. If the connection is broken (i.e. the server service restarts) that data will be lost, causing a jarring end-user experience.
+
+Focus for .NET 8:
+
+- Quality and Fundamentals.
+- Fills Blazor WebApp experience gaps.
+- Blazor Server improvements.
+- Optimize page load and startup time.
+- Improve developer experience.
+- SSR performance, Static Server rendering from interactive, detect current render mode, enhanced navigation in persistent component, declarative models for serialized or prerendered state, Templating for MSFT Entra authentication with tooling
+- WebSocket compression, distributed tracing, and improved reconnection logic.
+
+_Note_: Keep an eye on these for the .Net 9.0 release party coming in Fall 2024.
+
+_Note2_: Dan demoed an example of improved Reconnection Logic in .NET 9 preview vs. .NET 8.0.
 
 ## Running .NET on the NES
 
@@ -116,15 +195,15 @@ What is a superior app experience?
 - Many things, according to MSFT, partners, and other WinUI and WPF developers.
 - App reviews/ratings also help define what is good/superior.
 - Design: Modern, Windows-app designs.
-- Performance: 
-- OS Integration: 
+- Performance:
+- OS Integration:
 
 Demos: Contoso Camera Manager and Contoso Studio.
 
 Contoso Camera Manager (WPF):
 
 - Device settings on the left, and pictures gallery on the right. There are also a Device and About menu items under the Title Bar.
-- Modernization means: Look and feel, 
+- Modernization means: Look and feel,
 - Import the Fluent Design resource 'Fluent.xaml'.
 - WPF imports Accent Colors as set in the Control Panel! Removing specific styles enables 'Fluent Design' to do the styling for you! Just add the Fluent properties using the style property `DynamicResource` value on the appropriate element.
 - WinUI 3 Gallery tools _can also be applied to WPF projects_.
