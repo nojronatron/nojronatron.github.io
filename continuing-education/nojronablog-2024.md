@@ -66,6 +66,7 @@ I took some time out to review some missed Build 2024 sessions, and updated docu
 - [x] Notes: [Modern Full-Stack Web Development with ASP.NET Core and Blazor](./msbuild-2024-notes.md#modern-full-stack-web-development-with-aspnet-core-and-blazor).
 - [x] Notes: [Quickly build a .NET WPF Dashboard App](./msbuild-2024-notes.md#how-to-quickly-build-a-dotnet-wpf-dashboard-application).
 - [x] Notes: [DotNET API Development end-to-end](./msbuild-2024-notes.md#dotnet-api-development-end-to-end).
+- [x] Notes: [Developer Experience Improvements in Windows](./msbuild-2024-notes.md#developer-experience-improvements-in-windows).
 
 ## Week 28
 

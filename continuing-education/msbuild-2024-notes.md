@@ -7,6 +7,7 @@ MSBuild took place on 21 May through 23 May, 2024.
 ## Table of Contents
 
 - [Sessions I Could Not Attend And Want To View](#sessions-i-could-not-attend-and-want-to-view)
+- [Developer Experience Improvements in Windows](#developer-experience-improvements-in-windows)
 - [DotNET API Development End-to-End](#dotnet-api-development-end-to-end)
 - [How To Quickly Build a DotNET WPF Dashboard Application](#how-to-quickly-build-a-dotnet-wpf-dashboard-application)
 - [Modern Full Stack Web Development with ASPNET Core and Blazor](#modern-full-stack-web-development-with-aspnet-core-and-blazor)
@@ -37,7 +38,7 @@ MSBuild took place on 21 May through 23 May, 2024.
 ## Sessions I Could Not Attend And Want To View
 
 - [ ] Build Apps From The Cloud With Microsoft Dev Box, Visual Studio, and More.
-- [ ] Developer Experience Improvements in Windows.
+- [x] Developer Experience Improvements in Windows.
 - [ ] Accessibility In The Era Of Generative AI.
 - [ ] Building Copilots - Key Lessons And Best Practices.
 - [ ] Deploy, Test, And Run Apps With Azure Deployment Environments.
@@ -48,6 +49,90 @@ MSBuild took place on 21 May through 23 May, 2024.
 - [ ] Enhancing .NET MAUI: Quality, Performance, And Interoperability In .NET 9.
 - [x] How To Quickly Build A .NET Dashboard (focused on WPF, MVVM and related best practices and UI design).
 - [x] Modern Full-Stack Web Development With ASP.NET Core And Blazor.
+
+## Developer Experience Improvements in Windows
+
+Speakers:
+
+- Kayla Cinnamon, Sr. Product Manager, Dev Home and PowerToys
+- Sharla Soennichsen, Product Manager, Dev Home and Machine Configuration
+
+Team Products:
+
+- Windows Terminal
+- WSL
+- Dev Home
+- PowerToys
+- WinGet
+
+> "Tools focused on keeping developers within their flow"
+
+### PowerToys Updates
+
+PowerToys Projects:
+
+- Loads an existing Workflow.
+- Remembers a window layout to quickly get up and running as you left it.
+- Supports different screen resolutions and multi-monitor.
+- Customize _the way apps open_.
+
+### Dev Home New Features
+
+Your Development Control Center:
+
+- Extensible: GitHub, Azure DevOps.
+- Connect to GitHub and other Developer or Azure Accounts.
+- PowerToys integration! Hosts File Editor, Registry Preview, and Env Vars Editor (to start, more on the way). MSFT _wants OSS participation and input_.
+
+Dev Home Environments:
+
+- Multple Environment storage and selection screen.
+- Single-pane access from within Dev Home.
+- Launches DevBox preconfigured with needed tools.
+- Create new environments for Hyper-V, Dev Box, and perhaps more in the future including Ubuntu, Win10 MSIX Packaging images as a base.
+- Configure the Env Vars for an existing Environment to clone an existing public repo, select Apps to include, etc.
+- Generate Config File: Specify ideal state wanted for an environment/machine and store as a YAML file. Great for duplicating to other machines!
+- Integrated with PowerShell DSC Library, so will have some delay in loading summary view or code view as they are pulled from the marketplace.
+- Adding Source Control integration into File Explorer. Git details are added to Details View, and there is a Git-Like status display at the bottom of File Explorer window.
+- Windows Customization: File Explorer Settings, Dev Drive Insights, Windows Developer Settings, and Quiet Background Processes.
+- Dev Drives: File type based on REFS to provide IO-heavy performance improvements.
+- Export Application settings: Pass-in file, resourceID, yaml to `winget configure export` and outputs a DSC YAML.
+
+### WinGet Configuration
+
+- Winget configure YAML: Reads-in the YAML file and creates a Windows Sandbox, executing YAML instructions similar to GitHub Actions/Azure Pipelines, but local.
+- Winget Install: Updates current environment PATH when installing packages e.g. `winget install git.get` and then git commands will function without having to restart Terminal!
+- `sudo` enables executing commands that require Administrator privileges without elevating the current (or another) Terminal instance.
+
+### Command Line Improvements
+
+- Inner Panes: Spawn from an existing Tab.
+- Snippets: Commonly used commands can be pasted to the current shell/Posh/Terminal.
+- Dev Home: When Terminal Starts setting to customize Terminal launch look and behavior.
+- Terminal Buffer Content Restore: If closing
+
+### Sneak Peeks
+
+Visual Studio Extension Windows Sandbox:
+
+- Can be targeted by VS 2022 to run within the Windows Sandbox environment.
+- Supports redeploy after making code or dependency fixes.
+
+### Resources
+
+Root URL aka.ms:
+
+- devhomedocs
+- powertoys-docs
+- terminal-docs
+- winget-docs
+
+Root URL microsoft:
+
+- devhome
+- powertoys
+- terminal
+- winget-cli
 
 ## DotNET API Development End-to-End
 
