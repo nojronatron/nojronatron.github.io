@@ -7,6 +7,8 @@ MSBuild took place on 21 May through 23 May, 2024.
 ## Table of Contents
 
 - [Sessions I Could Not Attend And Want To View](#sessions-i-could-not-attend-and-want-to-view)
+- [DotNET API Development End-to-End](#dotnet-api-development-end-to-end)
+- [How To Quickly Build a DotNET WPF Dashboard Application](#how-to-quickly-build-a-dotnet-wpf-dashboard-application)
 - [Modern Full Stack Web Development with ASPNET Core and Blazor](#modern-full-stack-web-development-with-aspnet-core-and-blazor)
 - [Running NET on the NES](#running-net-on-the-nes)
 - [Create Superior Experiences with WinUI and WPF](#create-superior-experiences-with-winui-and-wpf)
@@ -42,10 +44,96 @@ MSBuild took place on 21 May through 23 May, 2024.
 - [x] Inside Microsoft AI Innovation With Mark Russinovich.
 - [ ] Start Building Your Next App Now With MongoDB Provider For EF Core.
 - [ ] Infusing Your .NET Apps With AI: Practical Tools And Techniques.
-- [ ] .NET API Development End-To-End.
+- [x] .NET API Development End-To-End.
 - [ ] Enhancing .NET MAUI: Quality, Performance, And Interoperability In .NET 9.
-- [ ] How To Quickly Build A .NET Dashboard.
+- [x] How To Quickly Build A .NET Dashboard (focused on WPF, MVVM and related best practices and UI design).
 - [x] Modern Full-Stack Web Development With ASP.NET Core And Blazor.
+
+## DotNET API Development End-to-End
+
+Presenter: Sayed Hashimi, MSFT
+
+Essentials of building Robust APIs:
+
+- Design
+- Create
+- Test
+- Deploy
+
+> Implement seamless API Development Lifecycle
+
+### DotNET API End-to-End Overall Notes
+
+Things Sayed did:
+
+- Chose ASP.NET Core WEb API Template.
+- Enabled OpenAPI Support.
+- When NOT selecting MVC Controllers, just use Minimal API Endpoints.
+- Use VS Scaffolding to pick API with R/W Endpoints using Entity Framework, to point to initial related class models. Select the Context class fo rhte Model Class. Select an existing or nrew Endpoints Class and DbContext Class. Select a DB Provider like SQLite to get basic CRUD operations.
+- Note: Scaffolding is a starting point, not final code! It is up to the developer to edit the code to make it purposed for the project/task at hand.
+- Use VS Scaffolding to pick API with R?W endpoints using Entity Framework, to point to additional, releated classes.
+- Endpoints Explorer: Display all existing endpoints. Used for all static endpoints only. Dynamic endpoints will _not_ be discovered until the project has been built and run.
+- Seeded data by customizing the DbContext Class with custom private method(s) to populate with data.
+- Connected Services UI: Add and configure EF Migrations.
+- Endpoints Explorer can generate requests for testing! It leverages the `http request` package for simplified request generation and usage.
+- Environments: JSON file that defines dev, staging, and other environments using JSON Key-Value pairs. Secrets can be accessed from here (plain text, encrypted, or Azure Keyvault) via the Secret API (accessible within Visual Studio, but not checked-in to repository). User-specific settings can be defined within an environments file ending with `.json.user`.
+- Switch Endpoint Explorer HTTP request context to different Environments using the drop-down in the top-right corner of the HTTP Request window. Request having Environments set up as in a previous bullet point.
+- `httpbin.org/anything`: Echos your HTTP Request, args, data, files, form, headers, json, method, origin, and URL in a response to the calling client.
+
+## How To Quickly Build a DotNET WPF Dashboard Application
+
+Speaker: Greg Lutz, .NET UI Control Product Manager, Mescius Inc.
+
+### Dashboard Considerations
+
+- Used to gain situtational awareness.
+- Provide time-based, insightful reports.
+- Data visualization, aggregation (totals by group), filtering, drill-down, and animations enhance dashboard comprehension and usability.
+- No data entry or processing, simply visualization.
+
+### Chosing a Platform
+
+WinForms:
+
+- Traditional Windows library.
+- Difficult to customize.
+- Not very MVVM friendly.
+
+WPF:
+
+- Traditional Windows library.
+- WinForms +++!
+- Scalable with XAML, for portability to WinUI and MAUI (also Xamarin and others).
+- Styling and data binding is better developed.
+- DirectX performance enhancement.
+- Scalability enhancements.
+- Made for use in MVVM paradigm.
+
+WinUI (Win 11+):
+
+- Latest WIndows Store style Apps.
+- Not as desktop friendly.
+- Very new.
+
+### Dashboard Structure
+
+- MVVM: Separate business and application logic from user presentation layer.
+- Notifications are sent _up_ from the Models to the ViewModel to the View.
+- Data Bindings and Commands are sent _down_ from the View to the ViewModel to the Models.
+- Avoids "code behind" (Jon ed: It is arguable that ViewModels are also tightly coupled to their Views).
+
+### Architectural Notes
+
+- Utilize INotifyPropertyChanged.
+- Implement basic functionality in Models to expose data like summing data or returning a product or ratio from the Model data itself.
+- Use scalable `<FlexGrid />` elements for simple, flexible viewport/screen sizing (responsive design).
+- Filter results from within ViewModel Properties to keep the ViewModel clean and to simplify Data Binding and Notification via `INotifyPropertyChanged`.
+- Charts and Gauges using "Component 1 WPF Libraries": FlexChart, FlexPie, BulletGraph?
+- Dynamically Bound Collections (e.g. `List<dynamic>`) are used to generate Pie Chart comprised of model data from different Types.
+
+### Mescius Reference
+
+Nuget: Component One aka "C1" from Mescius Inc.
 
 ## Modern Full Stack Web Development with ASP.NET Core and Blazor
 
