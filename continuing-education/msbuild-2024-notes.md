@@ -7,6 +7,7 @@ MSBuild took place on 21 May through 23 May, 2024.
 ## Table of Contents
 
 - [Sessions I Could Not Attend And Want To View](#sessions-i-could-not-attend-and-want-to-view)
+- [Infusing .NET Apps with AI](#infusing-net-apps-with-ai)
 - [Developer Experience Improvements in Windows](#developer-experience-improvements-in-windows)
 - [DotNET API Development End-to-End](#dotnet-api-development-end-to-end)
 - [How To Quickly Build a DotNET WPF Dashboard Application](#how-to-quickly-build-a-dotnet-wpf-dashboard-application)
@@ -44,11 +45,48 @@ MSBuild took place on 21 May through 23 May, 2024.
 - [ ] Deploy, Test, And Run Apps With Azure Deployment Environments.
 - [x] Inside Microsoft AI Innovation With Mark Russinovich.
 - [ ] Start Building Your Next App Now With MongoDB Provider For EF Core.
-- [ ] Infusing Your .NET Apps With AI: Practical Tools And Techniques.
+- [x] Infusing Your .NET Apps With AI: Practical Tools And Techniques.
 - [x] .NET API Development End-To-End.
 - [ ] Enhancing .NET MAUI: Quality, Performance, And Interoperability In .NET 9.
 - [x] How To Quickly Build A .NET Dashboard (focused on WPF, MVVM and related best practices and UI design).
 - [x] Modern Full-Stack Web Development With ASP.NET Core And Blazor.
+
+## Infusing .NET Apps with AI
+
+Speakers:
+
+- Luis Quintanilla, Sr. Product Manager
+- Stephen Toub, Partner Software Engineer, MSFT
+- Vin Kamat, Principal Architect
+
+### One Liner To Incorporating AI
+
+Semantic Kernel:
+
+- Provides services to do text completion and suggestions.
+- Provides plugability to various language models.
+- Includes Helpers to bring-in to .NET Apps as a 1st Class Citizen.
+
+Code:
+
+- `Kernel kernel = Kernel.CreateBuilder()`
+- Various dot completions: `.AddOpenAiChatCompletion()`, `.Build()`, etc.
+- `kernel.InvokePromptAsync()`: This is a primary actionable method for processing input.
+
+Language Models:
+
+- Start completely stateless.
+- ChatServices like `IChatCompletionService` classes will enable maintaining state using a Chat History.
+- Can add classes with methods marked as `[KernelFunction]` to invoke functionality. Use `KernelPlugin` to "import" the custom kernel function, then add to the Prompt Execution settings to allow that custom kernel function to be used by the Kernel.
+- The AI uses this configuration to "Ask for" execution of the custom method, then uses the output of the method execution (tokenized, of course) to generate a response.
+
+General Comments:
+
+- Libraries are integrated into the .NET Ecosystem.
+- Enable Logging (such as the Builder Services AddLogging() function) to enable watching the call/response of Semantic Kernel and custom imported methods.
+- Various services in configured within ConfigureHttpClientDefaults to redact private information, enable Polly retries, etc.
+- Use your project's existing DI container to enable Semantic Kernel functionality!
+- Integration with Aspire and Open Telemetry, and Semantic Conventions for AI (a Standard in preview mode).
 
 ## Developer Experience Improvements in Windows
 
