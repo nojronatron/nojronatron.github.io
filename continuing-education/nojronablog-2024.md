@@ -69,6 +69,10 @@ I took some time out to review some missed Build 2024 sessions, and updated docu
 - [x] Notes: [Developer Experience Improvements in Windows](./msbuild-2024-notes.md#developer-experience-improvements-in-windows).
 - [x] Notes: [Infusing .NET Apps with AI](./msbuild-2024-notes.md#infusing-net-apps-with-ai).
 
+### DotNET Aspire Day 2024
+
+Microsoft Reactor is hosting an online ".NET Aspire Developers Day" where multiple speakers will discuss and demonstrate .NET Aspire use cases and implementation details. See [DotNET Aspire](./dotnet-aspire-learnings.html) for notes.
+
 ## Week 28
 
 ### Releases via GitHub
