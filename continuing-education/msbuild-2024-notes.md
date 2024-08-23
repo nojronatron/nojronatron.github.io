@@ -2,24 +2,29 @@
 
 Microsoft Build is a yearly conference aimed at .NET developers and focuses on Visual Studio, languages like C#, F#, and Visual Basic, developing solutions using Azure or Microsoft 365, and updated information on .NET.
 
-MSBuild takes place on 21 May through 23 May, 2024.
+MSBuild took place on 21 May through 23 May, 2024.
 
 ## Table of Contents
 
 - [Sessions I Could Not Attend And Want To View](#sessions-i-could-not-attend-and-want-to-view)
-- [Running .NET on the NES](#running-net-on-the-nes)
+- [Infusing .NET Apps with AI](#infusing-net-apps-with-ai)
+- [Developer Experience Improvements in Windows](#developer-experience-improvements-in-windows)
+- [DotNET API Development End-to-End](#dotnet-api-development-end-to-end)
+- [How To Quickly Build a DotNET WPF Dashboard Application](#how-to-quickly-build-a-dotnet-wpf-dashboard-application)
+- [Modern Full Stack Web Development with ASPNET Core and Blazor](#modern-full-stack-web-development-with-aspnet-core-and-blazor)
+- [Running NET on the NES](#running-net-on-the-nes)
 - [Create Superior Experiences with WinUI and WPF](#create-superior-experiences-with-winui-and-wpf)
 - [Unleash The Potential Of APIs With Azure API Management](#unleash-the-potential-of-apis-with-azure-api-management)
 - [Highly Technical Talk - Hanselman and Toub](#highly-technical-talk---hanselman-and-toub)
 - [Zero To Hero - Develop Your First App With Local LLMs On Windows](#zero-to-hero---develop-your-first-app-with-local-llms-on-windows)
-- [Windows Subsystem for Linux, Your Enterprise Ready Multitool](#windows-subsystem-for-linux-your-enterprise-ready-multitool)
+- [Windows Subsystem for Linux Your Enterprise Ready Multitool](#windows-subsystem-for-linux-your-enterprise-ready-multitool)
 - [Whats New In C Sharp 13](#whats-new-in-c-sharp-13)
 - [Level Up With DevBox](#level-up-with-devbox)
 - [AI Safety and Security Fundamentals](#ai-safety-and-security-fundamentals)
 - [Enterprise Class NGINX Plus Without Operational Toil](#enterprise-class-nginx-plus-without-operational-toil)
 - [Scott and Mark Learn AI](#scott-and-mark-learn-ai)
-- [.NET Aspire Dev On Any OS with VS Family](#net-aspire-dev-on-any-os-with-vs-family)
-- [Demystify Cloud-Native Development with .NET Aspire](#demystify-cloud-native-development-with-net-aspire)
+- [NET Aspire Dev On Any OS with VS Family](#net-aspire-dev-on-any-os-with-vs-family)
+- [Demystify Cloud-Native Development with NET Aspire](#demystify-cloud-native-development-with-net-aspire)
 - [Build and Deploy to Azure with GitHub](#build-and-deploy-to-azure-with-github)
 - [Building Custom Copilots with Copilot Studio](#building-custom-copilots-with-copilot-studio)
 - [Keynote - Wednesday](#keynote---wednesday)
@@ -34,17 +39,302 @@ MSBuild takes place on 21 May through 23 May, 2024.
 ## Sessions I Could Not Attend And Want To View
 
 - [ ] Build Apps From The Cloud With Microsoft Dev Box, Visual Studio, and More.
-- [ ] Developer Experience Improvements in Windows.
+- [x] Developer Experience Improvements in Windows.
 - [ ] Accessibility In The Era Of Generative AI.
 - [ ] Building Copilots - Key Lessons And Best Practices.
 - [ ] Deploy, Test, And Run Apps With Azure Deployment Environments.
 - [x] Inside Microsoft AI Innovation With Mark Russinovich.
 - [ ] Start Building Your Next App Now With MongoDB Provider For EF Core.
-- [ ] Infusing Your .NET Apps With AI: Practical Tools And Techniques.
-- [ ] .NET API Development End-To-End.
+- [x] Infusing Your .NET Apps With AI: Practical Tools And Techniques.
+- [x] .NET API Development End-To-End.
 - [ ] Enhancing .NET MAUI: Quality, Performance, And Interoperability In .NET 9.
-- [ ] How To Quickly Build A .NET Dashboard.
-- [ ] Modern Full-Stack Web Development With ASP.NET Core And Blazor.
+- [x] How To Quickly Build A .NET Dashboard (focused on WPF, MVVM and related best practices and UI design).
+- [x] Modern Full-Stack Web Development With ASP.NET Core And Blazor.
+
+## Infusing .NET Apps with AI
+
+Speakers:
+
+- Luis Quintanilla, Sr. Product Manager
+- Stephen Toub, Partner Software Engineer, MSFT
+- Vin Kamat, Principal Architect
+
+### One Liner To Incorporating AI
+
+Semantic Kernel:
+
+- Provides services to do text completion and suggestions.
+- Provides plugability to various language models.
+- Includes Helpers to bring-in to .NET Apps as a 1st Class Citizen.
+
+Code:
+
+- `Kernel kernel = Kernel.CreateBuilder()`
+- Various dot completions: `.AddOpenAiChatCompletion()`, `.Build()`, etc.
+- `kernel.InvokePromptAsync()`: This is a primary actionable method for processing input.
+
+Language Models:
+
+- Start completely stateless.
+- ChatServices like `IChatCompletionService` classes will enable maintaining state using a Chat History.
+- Can add classes with methods marked as `[KernelFunction]` to invoke functionality. Use `KernelPlugin` to "import" the custom kernel function, then add to the Prompt Execution settings to allow that custom kernel function to be used by the Kernel.
+- The AI uses this configuration to "Ask for" execution of the custom method, then uses the output of the method execution (tokenized, of course) to generate a response.
+
+General Comments:
+
+- Libraries are integrated into the .NET Ecosystem.
+- Enable Logging (such as the Builder Services AddLogging() function) to enable watching the call/response of Semantic Kernel and custom imported methods.
+- Various services in configured within ConfigureHttpClientDefaults to redact private information, enable Polly retries, etc.
+- Use your project's existing DI container to enable Semantic Kernel functionality!
+- Integration with Aspire and Open Telemetry, and Semantic Conventions for AI (a Standard in preview mode).
+
+## Developer Experience Improvements in Windows
+
+Speakers:
+
+- Kayla Cinnamon, Sr. Product Manager, Dev Home and PowerToys
+- Sharla Soennichsen, Product Manager, Dev Home and Machine Configuration
+
+Team Products:
+
+- Windows Terminal
+- WSL
+- Dev Home
+- PowerToys
+- WinGet
+
+> "Tools focused on keeping developers within their flow"
+
+### PowerToys Updates
+
+PowerToys Projects:
+
+- Loads an existing Workflow.
+- Remembers a window layout to quickly get up and running as you left it.
+- Supports different screen resolutions and multi-monitor.
+- Customize _the way apps open_.
+
+### Dev Home New Features
+
+Your Development Control Center:
+
+- Extensible: GitHub, Azure DevOps.
+- Connect to GitHub and other Developer or Azure Accounts.
+- PowerToys integration! Hosts File Editor, Registry Preview, and Env Vars Editor (to start, more on the way). MSFT _wants OSS participation and input_.
+
+Dev Home Environments:
+
+- Multple Environment storage and selection screen.
+- Single-pane access from within Dev Home.
+- Launches DevBox preconfigured with needed tools.
+- Create new environments for Hyper-V, Dev Box, and perhaps more in the future including Ubuntu, Win10 MSIX Packaging images as a base.
+- Configure the Env Vars for an existing Environment to clone an existing public repo, select Apps to include, etc.
+- Generate Config File: Specify ideal state wanted for an environment/machine and store as a YAML file. Great for duplicating to other machines!
+- Integrated with PowerShell DSC Library, so will have some delay in loading summary view or code view as they are pulled from the marketplace.
+- Adding Source Control integration into File Explorer. Git details are added to Details View, and there is a Git-Like status display at the bottom of File Explorer window.
+- Windows Customization: File Explorer Settings, Dev Drive Insights, Windows Developer Settings, and Quiet Background Processes.
+- Dev Drives: File type based on REFS to provide IO-heavy performance improvements.
+- Export Application settings: Pass-in file, resourceID, yaml to `winget configure export` and outputs a DSC YAML.
+
+### WinGet Configuration
+
+- Winget configure YAML: Reads-in the YAML file and creates a Windows Sandbox, executing YAML instructions similar to GitHub Actions/Azure Pipelines, but local.
+- Winget Install: Updates current environment PATH when installing packages e.g. `winget install git.get` and then git commands will function without having to restart Terminal!
+- `sudo` enables executing commands that require Administrator privileges without elevating the current (or another) Terminal instance.
+
+### Command Line Improvements
+
+- Inner Panes: Spawn from an existing Tab.
+- Snippets: Commonly used commands can be pasted to the current shell/Posh/Terminal.
+- Dev Home: When Terminal Starts setting to customize Terminal launch look and behavior.
+- Terminal Buffer Content Restore: If closing
+
+### Sneak Peeks
+
+Visual Studio Extension Windows Sandbox:
+
+- Can be targeted by VS 2022 to run within the Windows Sandbox environment.
+- Supports redeploy after making code or dependency fixes.
+
+### Resources
+
+Root URL aka.ms:
+
+- devhomedocs
+- powertoys-docs
+- terminal-docs
+- winget-docs
+
+Root URL microsoft:
+
+- devhome
+- powertoys
+- terminal
+- winget-cli
+
+## DotNET API Development End-to-End
+
+Presenter: Sayed Hashimi, MSFT
+
+Essentials of building Robust APIs:
+
+- Design
+- Create
+- Test
+- Deploy
+
+> Implement seamless API Development Lifecycle
+
+### DotNET API End-to-End Overall Notes
+
+Things Sayed did:
+
+- Chose ASP.NET Core WEb API Template.
+- Enabled OpenAPI Support.
+- When NOT selecting MVC Controllers, just use Minimal API Endpoints.
+- Use VS Scaffolding to pick API with R/W Endpoints using Entity Framework, to point to initial related class models. Select the Context class fo rhte Model Class. Select an existing or nrew Endpoints Class and DbContext Class. Select a DB Provider like SQLite to get basic CRUD operations.
+- Note: Scaffolding is a starting point, not final code! It is up to the developer to edit the code to make it purposed for the project/task at hand.
+- Use VS Scaffolding to pick API with R?W endpoints using Entity Framework, to point to additional, releated classes.
+- Endpoints Explorer: Display all existing endpoints. Used for all static endpoints only. Dynamic endpoints will _not_ be discovered until the project has been built and run.
+- Seeded data by customizing the DbContext Class with custom private method(s) to populate with data.
+- Connected Services UI: Add and configure EF Migrations.
+- Endpoints Explorer can generate requests for testing! It leverages the `http request` package for simplified request generation and usage.
+- Environments: JSON file that defines dev, staging, and other environments using JSON Key-Value pairs. Secrets can be accessed from here (plain text, encrypted, or Azure Keyvault) via the Secret API (accessible within Visual Studio, but not checked-in to repository). User-specific settings can be defined within an environments file ending with `.json.user`.
+- Switch Endpoint Explorer HTTP request context to different Environments using the drop-down in the top-right corner of the HTTP Request window. Request having Environments set up as in a previous bullet point.
+- `httpbin.org/anything`: Echos your HTTP Request, args, data, files, form, headers, json, method, origin, and URL in a response to the calling client.
+
+## How To Quickly Build a DotNET WPF Dashboard Application
+
+Speaker: Greg Lutz, .NET UI Control Product Manager, Mescius Inc.
+
+### Dashboard Considerations
+
+- Used to gain situtational awareness.
+- Provide time-based, insightful reports.
+- Data visualization, aggregation (totals by group), filtering, drill-down, and animations enhance dashboard comprehension and usability.
+- No data entry or processing, simply visualization.
+
+### Chosing a Platform
+
+WinForms:
+
+- Traditional Windows library.
+- Difficult to customize.
+- Not very MVVM friendly.
+
+WPF:
+
+- Traditional Windows library.
+- WinForms +++!
+- Scalable with XAML, for portability to WinUI and MAUI (also Xamarin and others).
+- Styling and data binding is better developed.
+- DirectX performance enhancement.
+- Scalability enhancements.
+- Made for use in MVVM paradigm.
+
+WinUI (Win 11+):
+
+- Latest WIndows Store style Apps.
+- Not as desktop friendly.
+- Very new.
+
+### Dashboard Structure
+
+- MVVM: Separate business and application logic from user presentation layer.
+- Notifications are sent _up_ from the Models to the ViewModel to the View.
+- Data Bindings and Commands are sent _down_ from the View to the ViewModel to the Models.
+- Avoids "code behind" (Jon ed: It is arguable that ViewModels are also tightly coupled to their Views).
+
+### Architectural Notes
+
+- Utilize INotifyPropertyChanged.
+- Implement basic functionality in Models to expose data like summing data or returning a product or ratio from the Model data itself.
+- Use scalable `<FlexGrid />` elements for simple, flexible viewport/screen sizing (responsive design).
+- Filter results from within ViewModel Properties to keep the ViewModel clean and to simplify Data Binding and Notification via `INotifyPropertyChanged`.
+- Charts and Gauges using "Component 1 WPF Libraries": FlexChart, FlexPie, BulletGraph?
+- Dynamically Bound Collections (e.g. `List<dynamic>`) are used to generate Pie Chart comprised of model data from different Types.
+
+### Mescius Reference
+
+Nuget: Component One aka "C1" from Mescius Inc.
+
+## Modern Full Stack Web Development with ASP.NET Core and Blazor
+
+Presenter: Daniel Roth, Principal Product Manager, MSFT
+
+### ASP.NET Core and Blazor Overview
+
+- Full stack web UI.
+- Updated with .NET 8.0!
+- Server-side: Handle requests, access resource, and generate HTML.
+- Client-side: Handle user interactions, access client resources, update the UI.
+- Component-based rendering model.
+- Client-side interactions are possible via same Components.
+- C#, Blazor, and a unified build system!
+
+### New Blazor WebApp Demo
+
+- .NET 8 LTS Template enables quick new-project setup.
+- Hot-Reload to view changes client-side in real time.
+- C# Class annotations are supported.
+- VS Can scaffold Razor Components to generate pages and other supporting components and adding an ORM such as Entity Framework!
+- Entity Framework Migration support.
+- By default, pages are statically rendered at the server (SSR). Use `Interactive Server` render mode to allow UI-events to be sent between client and server (SignalR?).
+- Built-in `<Paginator />` component enables built-in pagination. Set the Paginator properties in the `@code{}` block e.g. ItemsPerPage.
+- `<ColumnOptions />` component enables binding events and data for filtering results.
+- `_imports.razor`: Add `@usings` and `@attribute [Authorize]` for _all pages_ within the app.
+- Advanced Render Modes, `<QuickGrid />` Component, Monitor circuit activity, Improved Authentication (over .NET 6), Client interactivity per Component or per Page, Streaming rendering, enhanced Form handling, and auto-select render mode _at runtime_.
+- WASM (Web Assembly): Jiterpreter, Hot-reload Components, SIMD and Exception handling enabled by default, CSP compatibility, Webcil packaging.
+
+### Authentication
+
+1. Scaffold a new item.
+2. Select Authentication.
+3. Add Blazor Identity and point to a new or existing SQL-based data store.
+4. Setup "core identity" for use. This generates Razor Files implemented in Blazor to support login, authorization, and logout.
+5. Add migrations for both the Identity Store and any existing DBs to the Service Dependency using the UI elipses menu on the Connected Services view.
+
+Remember: Registration will use an auto-authorize flow, that should be replaced with a real 2FA flow.
+
+### .NET Aspire With Blazor
+
+- Built with Blazor and Fluid Blazor Components.
+- Framework for building cloud-ready Blazor Apps.
+- Logs, Traces, Environment Configurations management and insights.
+
+### Bonus Blazor: AI for Apps
+
+Drop-in .NET "Smart Components"!
+
+- Dan demoed a Blazor App to help describe this feature using a "Smart Paste" button that took email plain-text and filled-in a form from that content.
+- Demo component: `<SmartPasteButton />`
+- Another demo revolved around HR tasks, where a Smart TextArea where appropriate email responses can be generated.
+- Demo component: `<SmartTextArea />`: Generates suggestions based on policies.
+- Semantic Search: User types data into a Form and Semantic Search provides suggestions from Cloud-based or Local SLMs.
+- .NET Smart Components are in _Experimental_ stage but MSFT wants feedback. Check out [dotnet smart components home](https://aka.ms/dotnet/smartcomponents).
+- Support for MVC and RazorPages.
+
+### ASP.NET and Blazor Key Takeaways
+
+Scaffolding: Create a model and use the Scoffolding tool in the Add Item submenu to generate front-end, back-end, and ORM code!
+
+Fast Development and Experimentation: Blazor can be used to rapidly trial-run new ideas. Once the project has been fleshed-out and is ready for more formal development, Blazor can again be used as an Enterprise-ready or Cloud-ready full-stack framework.
+
+User State: Remember that Blazor maintains User State while running on Server-Side. If the connection is broken (i.e. the server service restarts) that data will be lost, causing a jarring end-user experience.
+
+Focus for .NET 8:
+
+- Quality and Fundamentals.
+- Fills Blazor WebApp experience gaps.
+- Blazor Server improvements.
+- Optimize page load and startup time.
+- Improve developer experience.
+- SSR performance, Static Server rendering from interactive, detect current render mode, enhanced navigation in persistent component, declarative models for serialized or prerendered state, Templating for MSFT Entra authentication with tooling
+- WebSocket compression, distributed tracing, and improved reconnection logic.
+
+_Note_: Keep an eye on these for the .Net 9.0 release party coming in Fall 2024.
+
+_Note2_: Dan demoed an example of improved Reconnection Logic in .NET 9 preview vs. .NET 8.0.
 
 ## Running .NET on the NES
 
@@ -116,15 +406,15 @@ What is a superior app experience?
 - Many things, according to MSFT, partners, and other WinUI and WPF developers.
 - App reviews/ratings also help define what is good/superior.
 - Design: Modern, Windows-app designs.
-- Performance: 
-- OS Integration: 
+- Performance:
+- OS Integration:
 
 Demos: Contoso Camera Manager and Contoso Studio.
 
 Contoso Camera Manager (WPF):
 
 - Device settings on the left, and pictures gallery on the right. There are also a Device and About menu items under the Title Bar.
-- Modernization means: Look and feel, 
+- Modernization means: Look and feel,
 - Import the Fluent Design resource 'Fluent.xaml'.
 - WPF imports Accent Colors as set in the Control Panel! Removing specific styles enables 'Fluent Design' to do the styling for you! Just add the Fluent properties using the style property `DynamicResource` value on the appropriate element.
 - WinUI 3 Gallery tools _can also be applied to WPF projects_.

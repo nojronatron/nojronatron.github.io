@@ -19,6 +19,7 @@ A collection of notes from research and continuing education, with references fo
 
 Here is a snippet of items I look forward to learning more about:
 
+- [ ] [DotNET Aspire](./dotnet-aspire-learnings.html).
 - [ ] Copilots: [How to create a copilot](./msft-copilot-learnings.html).
 - [ ] Gain familiarity with [Playwright](https://playwright.dev/), an end-to-end testing framework for .NET.
 - [ ] [Bogus for .NET](https://github.com/bchavez/Bogus) a Faker.js port for .NET.

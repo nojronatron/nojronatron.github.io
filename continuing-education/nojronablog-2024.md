@@ -2,11 +2,11 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
-## Week 29 and 30
+## Week 29 through 34
 
 For much of week 29, I was out of pocket not feeling well so not many updates were made during this time.
 
-### Updating and Releasing BF Bib Report v2.n
+### Updating and Releasing BF Bib Report Form v2
 
 During the massive merging party, preparing for the latest 2.x release of the form, a few functions were not well tested enough to know they were incorrectly implemented. I'm pretty sure this was a result of interrupted development that was not followed-up and validated properly. This required pushing some quick-fix commits.
 
@@ -58,6 +58,36 @@ A recent conversation with a ham friend resulted in a renewed interest in comput
 A couple weeks ago I replaced my VHF omni vertical with a VHD beam antenna. The omni antenna is better in windy or icy conditions so I tend to have it up during the darker months, but there is a local RF problem (reflections or some other RF emitter) and the omni receives those all too well. The yagi is able to avoid those noise issues with a more focused view, and the rotator allows changing direction remotely. However, I haven't _tuned_ the yagi since I last put it back together, so I'll need to run some diagnostics to find out if the tuning is out of band, and make requisite changes.
 
 Last week I did maintanance on my HF antenna and followed-up with some experimentation to try and improve its performance on many bands that I want to use. It turns out my previous installation using a 9:1 unun with a 80-ish foot hot wire and a 25 foot ground wire was not a great solution. I've been using it for years, but had to be careful about what bands and modes I used due to poor tuning in multiple areas. After experimenting and reading more about off-center-fed dipoles and end-fed long wire antennas, I decided my OCF implementation was faulty. So the antenna was refactored to follow advice from [Palomar Engineers](https://palomar-engineers.com/) by shrinking the main radiating element and removing the ground element completely. Now the antenna covers more bands than before, and performs better on sub-bands I wanted. `</otherstuff>`
+
+### Build 2024 Catch-up Views in July
+
+I took some time out to review some missed Build 2024 sessions, and updated documentation accordingly.
+
+- [x] Notes: [Modern Full-Stack Web Development with ASP.NET Core and Blazor](./msbuild-2024-notes.md#modern-full-stack-web-development-with-aspnet-core-and-blazor).
+- [x] Notes: [Quickly build a .NET WPF Dashboard App](./msbuild-2024-notes.md#how-to-quickly-build-a-dotnet-wpf-dashboard-application).
+- [x] Notes: [DotNET API Development end-to-end](./msbuild-2024-notes.md#dotnet-api-development-end-to-end).
+- [x] Notes: [Developer Experience Improvements in Windows](./msbuild-2024-notes.md#developer-experience-improvements-in-windows).
+- [x] Notes: [Infusing .NET Apps with AI](./msbuild-2024-notes.md#infusing-net-apps-with-ai).
+
+### DotNET Aspire Day 2024
+
+Microsoft Reactor is hosting an online ".NET Aspire Developers Day" where multiple speakers will discuss and demonstrate .NET Aspire use cases and implementation details. See [DotNET Aspire](./dotnet-aspire-learnings.html) for notes.
+
+### Bigfoot 2024
+
+The event was fun an exciting, but multiple twists made for a very different experience this year. The BF-BMX tool came in handy at my location, especially with the BFBMX.Reports tool that I had started developing in July:
+
+- The Desktop and API service ran without a hitch for about 30 hours.
+- Desktop was not able to catch all BibRecord issues, specifically: Incorrect number of fields in an entry (unexpected), and only bib numbers as a flat columnar list (expected).
+- Several of the Reports pages were very helpful: Aid Station, All Bibs, Statistics (with a hitch). There is plenty of room for improvement, which will be considered and worked on during this coming Winter and Spring. For example, there are situations where runners "downgrade" from one race length to a shorter one, but the organizers do not re-bib the runner, so the Report Server counts their statistics for each race improperly. While this is a minor issue, it is confusing when it comes to reconciling Aid Station reports to allow/enable close-down.
+
+In the near future, a meeting will be scheduled to discuss BF-BMX performance, usability, and planning for v2. This will probably wait until October, given how busy September is shaping up to be.
+
+### VSCode Extension: Table of Contents
+
+In July I put some effort into implementing a bugfix and new feature, and completed a preview version publication. Unfortunately, it is not ready for full release yet. I have a work item in my backlog that will be promoted forward to fix and increment the pre-release version, and implement another new feature for a next minor version Preview and release.
+
+Internally I have a goal to get the extension into a capable, reliable state before the end of 2024. I use the tool almost every day that I code, so having a stable, helpful tool that I built myself is really rewarding!
 
 ## Week 28
 
