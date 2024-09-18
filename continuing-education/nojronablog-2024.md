@@ -6,6 +6,8 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 For much of week 29, I was out of pocket not feeling well so not many updates were made during this time.
 
+During weeks 30 through 34, I had several events and many meetings to attend to. There is not as much to report, but some summaries are included below.
+
 ### Updating and Releasing BF Bib Report Form v2
 
 During the massive merging party, preparing for the latest 2.x release of the form, a few functions were not well tested enough to know they were incorrectly implemented. I'm pretty sure this was a result of interrupted development that was not followed-up and validated properly. This required pushing some quick-fix commits.
