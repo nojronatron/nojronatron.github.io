@@ -6,6 +6,8 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 For much of week 29, I was out of pocket not feeling well so not many updates were made during this time.
 
+During weeks 30 through 34, I had several events and many meetings to attend to. There is not as much to report, but some summaries are included below.
+
 ### Updating and Releasing BF Bib Report Form v2
 
 During the massive merging party, preparing for the latest 2.x release of the form, a few functions were not well tested enough to know they were incorrectly implemented. I'm pretty sure this was a result of interrupted development that was not followed-up and validated properly. This required pushing some quick-fix commits.
@@ -88,6 +90,102 @@ In the near future, a meeting will be scheduled to discuss BF-BMX performance, u
 In July I put some effort into implementing a bugfix and new feature, and completed a preview version publication. Unfortunately, it is not ready for full release yet. I have a work item in my backlog that will be promoted forward to fix and increment the pre-release version, and implement another new feature for a next minor version Preview and release.
 
 Internally I have a goal to get the extension into a capable, reliable state before the end of 2024. I use the tool almost every day that I code, so having a stable, helpful tool that I built myself is really rewarding!
+
+### Mid August Leetcode Challenges
+
+I manage to complete a couple Leetcode challenges:
+
+1. Merge two sorted singly-linked lists.
+2. Remove duplicates from sorted array.
+
+It has been long enough since I last worked on a Linked-List DS&A challenge that I really had a hard time completing the first challenge. After throwing around some ideas, and attempting to implement them, I had to stop what I was doing, reconsider what I think I know about Singly Linked Lists, and start over before getting the solution.
+
+Removing duplicates from a sorted Integer array wasn't too difficult. Early on I recalled how to utilize a HashSet to maintain a unique collection, and managed to get a solution working within a single iteration over the input array. The final solution (and the best performing) was one that borrowed ideas from _sorting algorithms_ where only the indices were tracked, and when certain conditions are met either one or both indices are incremented, or the value from the right index would be used to overwrite the value at the left index. This made a big difference in performance and code simplicity and readability.
+
+Merge Two Sorted Singly-Linked Lists:
+
+```text
+Function: MergeTwoLists
+Input: ListNode LeftList, ListNode RightList
+Output: ListNode
+
+Instantiate: ListNode OutputNode <- new
+If: LeftList EQ Null
+  Reassign: OutputNode <- RightList
+  Return: OutputNode
+Else If: RightList EQ Null
+  Reassign: OutputNode <- LeftList
+  Return: OutputNode
+If: LeftList Value LE RightList Value
+  Reassign: OutputNode <- new ListNode <- LeftList Value
+  Reassign: LeftList <- LeftList Next
+Else:
+  Reassign: OutputNode <- new ListNode <- RightList Value
+  Reassign: RightList <- RightList Next
+Initialize: ListNode OutputTail <- OutputNode
+While: TRUE
+  If: LeftList NOT Null AND RightList NOT Null
+    Switch on Comparison: LeftList Value, RightList Value
+      Case: -1
+        Reassign: OutputTail Next <- new ListNode <- LeftList Value
+        Reassign: LeftList <- LeftList Next
+      Case: 1
+        Reassign: OutputTail Next <- new ListNode <- RightList Value
+        Reassign: RightList <- RightList Next
+      Case: 0
+        Reassign: OutputTail Next <- new ListNode <- LeftList Value
+        Reassign: OutputTail <- OutputTail Next
+        Reassign: LeftList <- LeftList Next
+        Reassign: OutputTail Next <- new ListNode <- RightList Value
+        Reassign: RightList <- RightList Next
+    Reassign: OutputTail <- OutputTail Next
+  Else If: LeftList NOT Null
+    Reassign: OutputTail Next <- new ListNode <- LeftList Value
+    Reassign: OutputTail <- OutputTail Next
+    Reassign: LeftList <- LeftList Next
+  Else If: RightList NOT Null
+    Reassign: OutputTail Next <- new ListNode <- RightList
+    Reassign: OutputTail <- OutputTail Next
+    Reassign: RightList <- RightList Next
+  If: RightList Null AND LeftList Null
+    Execute: Break
+Return: OutputNode
+```
+
+_Note_: The Switch-Case block ignores the C# rule that a `Default` statement should be last. Other languages might not require this, so for simplicity of writing pseudocode I skipped it.
+
+Remove Dupes From Sorted Array
+
+```text
+Function: RemoveDuplicates
+Input: NumsArray
+Output: NumsCount
+
+If: NumsArray Length GT 2
+  Return: NumsArray Length
+Initialize: LeftIdx <- 0
+Initialise: RightIdx <- 0
+While: LeftIdx LT NumsArray Length
+  If: LeftIdx EQ RightIdx
+    Reassign: RightIdx <- Increment 1
+    Continue: (next iteration)
+  If: NumsArray at Index LeftIdx EQ NumsArray at Index RightIdx
+    Reassign: RightIdx <- Increment 1
+  Else:
+    Reassign: LeftIdx <- Increment 1
+    Reassign: NumsArray at Index LeftIdx <- NumsArray at Index RightIdx
+Reassign: LeftIndex <- Increment 1
+Return: LeftIndex
+```
+
+Just for the record, I only write these solutions out as practice:
+
+- Writing pseudocode is a skill that requires practice, hence
+- Sharing solutions through pseudocode still requires the reader to translate and refactor to implement in their language of choice.
+- Solutions to challenges like this are not meant to short-cut any effort by anyone else to solve the challenge.
+- Any reader that uses this pseudocode to complete a challenge will ultimately be responsible for the code that they write, and I will not be held responsible for any errors, bugs, etc.
+
+It is up to readers of this rambling blog to do the right things.
 
 ## Week 28
 
