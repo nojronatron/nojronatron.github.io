@@ -2,6 +2,39 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Weeks 35 through 38
+
+So many events, so little time!
+
+As I have had time, I've attended some online informational sessions about AI and DotNET, worked on updates to my Create-ToC VS Code Extension, and make some connections with other developers and a couple of organizations that might utilize my technical skills. There is a lot going on right now between learning, volunteering, networking, coding, and life in general.
+
+### To Redesign Or Massively Refactor
+
+That is the question. While working through updating my Markdown ToC extension, it became clear that my design suffers from difficulty in testing and extending. The latest push has been to enable Create-ToC to recognize both Open ATX and Closed ATX headings styles, and follow-suite when generating the Table of Contents.
+
+Some refactoring of implementations into modules, and removing extraneous module functions results in a more testable, and simplified implementation. Unit tests were also refactored to test the updated JS Modules and their functions.
+
+But there's more work to do! Unit tests are still failing, so those issues need to be worked out, and once that's done the README documentation must be updated, and the version incremented for publication. This time, I want to publish the next version as a full release, rather than a pre-release (as I did earlier this year). I'm looking forward to having an updated functional utility in a public marketplace!
+
+### Markdown ToC VS Code Extension
+
+Next version is nearly ready to publish, after working through and implementing the logic to support Closed ATX and Alternate Style headings, performing some refactorings, updating unit tests, and validating readiness through manual tests!
+
+Some key takeaways and things I said to myself (and out loud) while working through this project:
+
+- After changing some code and re-running the unit tests: "Wow, I managed to change core code and _not_ break any tests?" This is an indicator that unit tests are not fully covering use cases.
+- When lots of unit tests exist, and they all pass, this can cause a false sense of comfort with code quality. The _appearance_ of bug-free code is a little too real. Manual testing is _still necessary_ to verify unit test coverage is sufficient, and to find corner cases that are not covered by unit tests.
+- Another argument for manual testing: Catching unexpected "Warning" messages on-screen. While it is true that testing frameworks like Playwright can handle these "toast" and other messages, it is not guaranteed that the will be ready to catch unexpected on-screen messages.
+- Refactoring JS Modules was required because I didn't take the time to fully design the solution nor its hierarchy to begin with. Usually I do take these steps but in this case when I started this project I followed a "get ramped up and running as quickly as possible" plan. Doing so built-in some technical debt.
+- Using a dry-erase board to suss-out implementation details while coding and debugging speeds things up and has improved my code readability, effectiveness, and made it easier to understand the logic behind a buggy scenario.
+
+I completed publishing a Release version of Create-ToC set at version 0.4.2. Pretty much right after publishing I discovered a few bugs. I need to update my development processes to be certain the following steps are completed:
+
+- For each existing bug (found previously), ensure there is a unittest and in some cases a manual test to ensure the case is covered.
+- Whenever a new bug is discovered, a new branch should be created from the most recent version, and a unit test created to validate the code against the buggy case.
+
+Doing these things will help keep my workflow organized, even when I have to step away from the project for some time between bugfixes and version releases.
+
 ## Week 29 through 34
 
 For much of week 29, I was out of pocket not feeling well so not many updates were made during this time.
@@ -235,10 +268,10 @@ Last weekend I started working on addressing the above issues, as well as prepar
 
 - Several dependencies needed to be updated.
 - Github Actions YAML references were out-of-date and needed version bumps.
-- A bunch of learning was necessary to device a working YAML workflow that produced a v0.3.1 and published it to Marketplace.
-- Attempting to move to Node 22.x failed due to some dependency issues, which was confusing at first. Then I noticed that VSCode/Electron leverage Node 20.x, so it might be necessary to develop extensions depending on the same Major Node version as VSCode.
+- A bunch of learning was necessary to devise a working YAML workflow that produced a v0.3.1 and publish it to Marketplace.
+- Attempting to move to Node 22.x failed due to some dependency issues, which was confusing at first. Then I noticed that VSCode/Electron leverage Node 20.x, making it necessary to develop extensions depending on the same Major Node version as VSCode.
 
-Overall: Success! There is more work to do to ensure that pre-release publish only happens at a particular action. For now I've set it to a particular branch. A better change (later) would be to only publish on a particular tag. I'll figure that out.
+Overall: Success! There is more work to do to ensure that pre-release publish only happens at a particular action. For now I've set it to a particular branch. A better change (later) would be to only publish on a particular tag, which I'll figure out some other time.
 
 ## Week 25
 
