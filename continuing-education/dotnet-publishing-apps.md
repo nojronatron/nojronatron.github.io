@@ -158,11 +158,64 @@ vsc-extension-quickstart.md
 **/tsconfig.json
 ```
 
+## Build Test Publish Workflow for Create TOC
+
+While building the Create Table of Contents VS Code Extension, a workflow developed based on:
+
+- Reading [Testing Extensions](https://code.visualstudio.com/api/working-with-extensions/testing-extension).
+- Reading [Publishing Extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension).
+- Exercising [GitHub Actions YAML](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions).
+- Leveraging Terminal commands to perfom actions locally such as with NPM and VSCE tools.
+
+Tools:
+
+- Mocha: Unittest framework supporting all add-on module testing.
+- NPM: Execute build, lint, test, and package operations locally.
+- GitHub Actions: See `.github/workflows` for the automated unittesting and packaging YAML scripts.
+- VSCE: Manual packaging and publishing tool.
+
+Branching:
+
+- Create a development branch for the task at hand (new feature, bug squashing, etc).
+- Staging branch: Merge new development here for preparation to publish.
+- Pub-Pre-Release branch: New PR's to this branch after updating version info to push a Pre-release Publish to the VS Extension Marketplace.
+- Main branch: This is the default branch and is what is viewable on the GitHub Repo page.
+
+Workflow:
+
+1. Develop new features, updates, or bug-fixes to a custom branch.
+2. Update unittests to cover module functionality and regressions.
+3. If a Module has multiple interrelated functions, ensure an integration test is developed to verify expected behavior.
+4. Create a PR to merge with `Staging` branch.
+5. Once the feature (milestone, bug fix, etc) are well tested the PR can be merged-in to `Staging`. Workflows run unittests and pass/fail PR approval.
+6. Documentation and versions are updated in `Staging` branch and a new PR is created to merge with `pub-pre-release` branch.
+7. A workflow runs that executes unittests and pushes a Pre-release version to the VS Extension Marketplace Publisher's portal.
+8. Once the Pre-release version has been tested in the field, update the version info to a private branch (for now) that has the latest `pub-pre-release` branch commits, and manually execute VSCE to produce a Release Publish package that can be manually uploaded to the VS Extension Marketplace Publisher Portal.
+9. The private (for now) publish branch gets merged-in to `main`.
+10. Optional: The GitHub `Releases` page could be updated to allow downloading the latest Release VSIX file for manual importation and use.
+
+_Note_: Step 8 should eventually get updated to a proper branch workflow with an automated Release operation.
+
+_Note2_: Step 10 could be automated to push the `VSIX` artifact to the GitHub `Releases` page.
+
+### Package and Publish VSIX by Hand
+
+1. Ensure the following are up to date: `package.json`, `CHANGELOG.md`, `.gitignore`, `.vscodeignore`, and `README.md`.
+2. In the Terminal, execute `npm i`. All installations should complete with out Security Issues or other errors.
+3. In the Terminal execute `npm test`. All Linting and Tests should pass before continuing.
+4. In the Terminal execute `vsce package --no-update-package-json {major.minor.patch}` and the output file will be named `{package_json_name}-{major.minor.patch}.vsix`.
+
+_Note_: To auto-increment the version number, just run `vsce package` and `package.json` will get updated with an incremented `version` property.
+
+_Note2_: VSCE includes options `login <publisher>` and `publish [options] [version]` to allow publishing _directly_ to the VS Extension Marketplace.
+
+_Note3_: `publish` and `package` commands are _very similar_ so it is possible to publish a version without adding a version control change.
+
 ## References
 
 DevOps, Testing, and deployment documentation on MSLearn: [Publish Self-Contained](https://learn.microsoft.com/en-us/dotnet/core/deploying/?WT.mc_id=dotnet-35129-website#publish-self-contained).
 
-Runtime Identifiers  on MSLearn: [.NET RID Catalog](https://learn.microsoft.com/en-us/dotnet/core/rid-catalog).
+Runtime Identifiers in the MS Learn [.NET RID Catalog](https://learn.microsoft.com/en-us/dotnet/core/rid-catalog).
 
 Overview of [.NET Native AOT](https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/?tabs=net8plus%2Cwindows).
 
