@@ -9,7 +9,8 @@ Various notes regarding application publishing in the .NET Ecosystem.
 - [Framework Dependent](#framework-dependent)
 - [Publish Self Contained Command Line](#publish-self-contained-command-line)
 - [ReadyToRun Images](#readytorun-images)
-- [Ahead Of Time AOT](#ahead-of-time-aot)
+- [Ahead Of Time (AOT)](#ahead-of-time-aot)
+- [Building Visual Studio Extensions](#building-visual-studio-extensions)
 - [References](#references)
 - [Footer](#footer)
 
