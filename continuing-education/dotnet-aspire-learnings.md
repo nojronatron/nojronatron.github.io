@@ -49,12 +49,12 @@ Aspire Stack Features:
 Aspire Use Pitch:
 
 - Easy to start: OSS, Templates, Components
-- Easy to build: Service discovere, developer dashboard, logs, metrics, distributed traces by adding an Aspire project.
+- Easy to build: Service discovery, developer dashboard, logs, metrics, distributed traces, all just by adding an Aspire project.
 - Easy to deploy: Single command run, App topology in C#, Cloud deployment support.
 
 Aspire supports other language projects too!
 
-Add Aspire To An App Overview
+Add Aspire To An App:
 
 1. Have an existing app.
 2. Add an Aspire AppHost project.
@@ -64,7 +64,7 @@ Obviously, there's a bit more to it, but the above is the general idea.
 
 _Announcement_: .NET Aspire 8.1 officially released 23-July-2024
 
-### Enhance Business Processes with .NET Aspirea nd Generative AI
+### Enhance Business Processes with .NET Aspire and Generative AI
 
 Presenter:
 
@@ -88,12 +88,12 @@ Presenter:
 
 - Chris Noring
 
-Problems Aspire Exists To Fix:
+Problems Aspire Attempts To Fix:
 
 - Not easy to build distributed apps: Many components and configurations, caching and DB connection issues, etc.
 - Resiliency and telemetry are complex but necessary for a production system.
 - Reinventing the wheel, or just writing the same code and using the same system over and over again?
-- Docker containers with many moving parts, or multiple containers to assemble a system.
+- Docker containers with many moving parts, or multiple containers used to assemble a system.
 
 Key Aspire Features and Components:
 
@@ -110,8 +110,8 @@ Aspire Use Cases:
 
 More About Orchestration:
 
-- App composition: Specify projects, containers, executables, and clous resources that make up the application.
-- Service discovery and connection strin gmanagement simplify service setup, configuration, and management.
+- App composition: Specify projects, containers, executables, and cloud resources that make up the application.
+- Service discovery and connection string management simplify service setup, configuration, and management.
 
 Core Concepts:
 
@@ -121,12 +121,12 @@ Core Concepts:
 
 Prerequisites:
 
-- .NET 8.0+
-- Aspire Workload
+- DotNet 8.0+
+- DotNet Aspire Workload (`dotnet workload install <workload_id> ...`)
 - OCI compliant container runtime (Docker Desktop or Podman)
 - IDE like VS or VS Cdoe with C# Dev Kit Extension
 
-Scaffold your Project:
+Scaffold The Project:
 
 - Command Palette
 - Terminal: `dotnet new aspire-starter`. Run the Application from `AppHost` project to get all Aspire features running alongside the sample App.
