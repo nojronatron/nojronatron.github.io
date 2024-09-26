@@ -25,6 +25,40 @@ I completed publishing a Release version of Create-ToC set at version 0.4.2. Pre
 
 Doing these things will help keep my workflow organized, even when I have to step away from the project for some time between bugfixes and version releases.
 
+### RegEx and the Multiline Setting
+
+- `^`: Start of string. In Multiline mode, this matches _immediately following_ a `\n` (newline) character.
+- `$`: End of string. In Multipline mode, this matches _immediately prior to_ a `\n` (newline) character.
+- When using `//m` regex matching, it might be important to include `^` and `$` anchors _but it is crucial_ to include the context of where `\n` characters are in the intended match!
+- In JavaScript, `string.match(/regex/opt)` built-in returns either `null` (no match) or an array of one or more match items. It is _not a boolean return_!
+- In some file encodings, newline characters could be `\n` or `\r\n`. JavaScript `string.match(/regex/opt)` can search for those characters and it is up to the implementor to decide how to leverage the RegExp. Examples below show two ways to execute the same query
+
+```javascript
+const regexpPattern1 = ...; // some pattern
+const regexpPattern2 = ...; // some other pattern
+
+// might be easier to read
+const pairedOrLogic = inputText.match(/^regexpPattern1$/gm) !== null 
+                   || inputText.match(/^regexpPattern2$/gm) !== null;
+
+// might be more succinct
+const groupedMatches = inputText.match(/^(?:regexpPattern1|regexpPattern2)$/gm) !== null;
+
+// 1) using `^` and `$` along with `/gm` could cause the regexp to consume more resources than desired
+// 2) optionally use a quick-exit technique with `/m` so string.match(regexp) returns after first match
+return inputText.match(/^(?:regexPattern1|regexPattern2)$/m) !== null;
+```
+
+But working with RegEx is very tricky and there are many ways to approach pattern matchine. Here are some questions to ask while figuring out RegEx patterns:
+
+- Is the goal to find items that cause an _exclusion_?
+- Is the goal to find specific substrings and capture them or replace them?
+- In replacement, should just the first instance be replaced, or _all instances_?
+- After replacement, is it safe to `string.trim()` away leading and trailining whitespaces?
+- Can a match be made more effeciently by throwing an entire document at the matcher, or should a smaller input be fed to the matcher _to save time and cpu cycles_?
+- If there are lots of characters that _are allowed_ in the match right now but aren't allowed later, does it make more sense to filter them out _now_, or capture more now and filter out the rest _later_? (see previous entry)
+- Consider using character classes to match the bulk of what you want, then identify specific individual (or pairs) of characters that are needed next. This should reduce the RegEx Matcher string size and complexity by quite a bit, although it might cause additional actual CPU cycles (so balance readability, testability, and performance requirements).
+
 ## Weeks 35 through 38
 
 So many events, so little time!
