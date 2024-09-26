@@ -25,6 +25,27 @@ I completed publishing a Release version of Create-ToC set at version 0.4.2. Pre
 
 Doing these things will help keep my workflow organized, even when I have to step away from the project for some time between bugfixes and version releases.
 
+After a bit more debugging, some code refinements, added documentation, unittest fixes, and adding manual-testing files, version 0.4.3 is now available as a Pre-Release version. In a few days, after some regular usage, I'll Publish a 0.4.4 Release version. :tada:
+
+### Markdown ToC Extension Internal Operation as of Sept 26th
+
+While publishing the pre-release at 0.4.3, I wanted to document some of the operation of the code for personal purposes.
+
+1. VS Code API registers `markdown-toc.createTOC` and loads an anonymous async function as the second parameter, setting both as `disposable` objects.
+2. A copy of the Editor object is acquired from the VSCode API and it is validated as a 'markdown' type document. If not an MD file a WarningMessage is displayed and execution returns null.
+3. The Editor object is scanned to get a count of text lines. If there are too few, a WarningMessage is displayed and execution returns null.
+4. Function `findTopHeading()` is executed, and the results are stored in an object to identify the Heading style (Open ATX, Closed ATX, or Next Line) as well as the Line Number the top (Level 1) heading is found.
+5. If the Top Heading is not found, a WarningMessage is displayed and execution returns null.
+6. A RegExp `match()` function is called to check for an existing Table of Contents. If there is at least one match, a Warning Message is displayed and execution returns.
+7. If there are too few lines of text remaining after the Top Heading line number, a WarningMessage is displayed and execution returns null.
+8. Function `getLevelHeading()` is called within a `for` code block and positive results are stored in a local array. Inner-functions `getTitleOnly()`, which replaces illegal Heading title characters, and either `getHash2LH()` or `getDash2LH()` are executed (depending on the style) to acquire the correct Level 2 Headings, ignoring any other text or headings levels.
+9. After the `For` loop exits, if there are no items in the array, a WarningMessage is displayed and execution returns null.
+10. Function `createTOC()` is called, which in turn calls `getTitleOnly()` which replaces illegal Heading title characters, and then `getLoweredKebabCase()` which (as its name states) forces lower-cased characters and replaces any whitespace characters with a dash `-` (except for newline and carriage return, which are ignored). Lastly, function `getLinkFragment()` is called which properly formats the Title and Lowered Kebab Case outputs into an appropriate (lint-able) Link Fragment.
+11. The result variable from `getTitleOnly()` is fed into a VS Code API `edit.insert()` function, which adds the formatted string data to the active document.
+12. The VS Code API `workspace.applyEdit()` function is called to 'write' the formatted string data (the new Table of Contents) to the working document so the user can see it and save it.
+13. A WarningMessage is displayed indicating the table of contents has been created, and the anonymous function exits, returning null.
+14. Function `push()` is called on API `ExtensionContext` to add the `disposable` veriable to the `ExtensionContexts.subscriptions` Array.
+
 ### RegEx and the Multiline Setting
 
 - `^`: Start of string. In Multiline mode, this matches _immediately following_ a `\n` (newline) character.
@@ -58,8 +79,6 @@ But working with RegEx is very tricky and there are many ways to approach patter
 - Can a match be made more effeciently by throwing an entire document at the matcher, or should a smaller input be fed to the matcher _to save time and cpu cycles_?
 - If there are lots of characters that _are allowed_ in the match right now but aren't allowed later, does it make more sense to filter them out _now_, or capture more now and filter out the rest _later_? (see previous entry)
 - Consider using character classes to match the bulk of what you want, then identify specific individual (or pairs) of characters that are needed next. This should reduce the RegEx Matcher string size and complexity by quite a bit, although it might cause additional actual CPU cycles (so balance readability, testability, and performance requirements).
-
-After a bit more debugging, some code refinements, added documentation, unittest fixes, and adding manual-testing files, version 0.4.3 is now available as a Pre-Release version. In a few days, after some regular usage, I'll Publish a 0.4.4 Release version. :tada:
 
 ## Weeks 35 through 38
 
