@@ -59,6 +59,8 @@ But working with RegEx is very tricky and there are many ways to approach patter
 - If there are lots of characters that _are allowed_ in the match right now but aren't allowed later, does it make more sense to filter them out _now_, or capture more now and filter out the rest _later_? (see previous entry)
 - Consider using character classes to match the bulk of what you want, then identify specific individual (or pairs) of characters that are needed next. This should reduce the RegEx Matcher string size and complexity by quite a bit, although it might cause additional actual CPU cycles (so balance readability, testability, and performance requirements).
 
+After a bit more debugging, some code refinements, added documentation, unittest fixes, and adding manual-testing files, version 0.4.3 is now available as a Pre-Release version. In a few days, after some regular usage, I'll Publish a 0.4.4 Release version. :tada:
+
 ## Weeks 35 through 38
 
 So many events, so little time!
