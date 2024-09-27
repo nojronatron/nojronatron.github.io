@@ -5,6 +5,7 @@ Notes from my learnings about this MSFT Framework for .NET 8 and newer.
 ## Table of Contents
 
 - [DotNET Aspire Developers Day](#dotnet-aspire-developers-day)
+- [Hands-on with MS Learn](#hands-on-with-ms-learn)
 - [Resources](#resources)
 - [Footer](#footer)
 
@@ -387,6 +388,127 @@ John-Daniel Demoed adding RayGun to a .NET App with .NET Aspire:
 - Not all RayGun features require an API Key.
 - Use local LM to help with a .NET Aspire-infused Application.
 - CHeck out the RayGun blog for information about how they integrated Ollama into .NET applications.
+
+## Hands-on with MS Learn
+
+Notes taken while following [MS Learn DotNet Aspire steps](https://learn.microsoft.com/en-us/dotnet/aspire/get-started/build-your-first-aspire-app?pivots=vscode) using VS Code as the IDE.
+
+### Docker Desktop
+
+There is a prerequisite of installing Docker (Docker Desktop) to manage images for local and cloud deployment.
+
+- Subscription service (although personal use, or business use up to a certain number of employees or income, is free of charge).
+- Docker Desktop must be running to view, create, manage, and remove images.
+- A registry system making locating pre-built Docker Images easier to find (and therefore a login account is required).
+
+### Create New DotNet Aspire Application with VS Code
+
+In the terminal, execute: `dotnet new aspire-starter -o target_directory`.
+
+Using VS Code: Open the Command Palette and select ".NET Aspire Starter Application".
+
+### Testing The Application Locally
+
+It might be necessary to configure dotnet to trust the developer certificates by using `dotnet dev-certs https --trust`.
+
+_Note_: I have not had to do this before, nor did I have to do it this time. It could be that since I've responded "Yes, trust this certificate" in the past within the browser view, this step is no longer required on my workstation profile.
+
+To launch from the terminal: `dotnet run --project .\project_path\project_file.csproj` and view the Terminal output to get the URL and port(s) to plug-in to the browser.
+
+The Aspire Resources page will have links to the Endpoints that can be clicked to launch a browser to view the endpoint WebApp.
+
+### DotNet Aspire Starter Template Project Hierarchy
+
+- ApiService: Asp.net Core Minimal API Project. Depends on AspireSample.ServiceDefaults project.
+- AppHost: Orchestration project. Connects and confgures related projects and services. Set this as the Startup Project. Depends on ApiService and Web projects.
+- ServiceDefaults: Shared configuration project, accessible by all solution projects. Enables Resilience, Service Discovery, and Telemetry.
+- Web: Asp.net Core Blazor App. Has a _default_ Aspire configuration. Depends on ServiceDefaults project.
+
+Project Definition - Aspire Host Project:
+
+- `<IsAspireHost>true</IsAspireHost>`
+- ItemGroup Project References identify to the supported sibling projects.
+- ItemGroup Package references point to included packages like `Aspire.Hosting.AppHost` and `Aspire.Hosting.Redis`.
+
+Project Definition - Service Defaults Project:
+
+- `<IsAspireSharedProject>true</IsAspireSharedProject>`
+- ItemGroup Framework Reference to `Microsoft.AspNetCore.App`.
+- ItemGroup PackageReferences include many packages including (but not limited to) `Microsoft.Extensions.Http.Resilience`, `Microosft.Extensions.ServiceDiscovery`, and more.
+
+File `Extensions.cs` exposes methods that enable additional behaviors and capabilities:
+
+- `AddServiceDefaults()`: Extends `EHostApplicationBuilder` type. Additional extension functionality can be added as necessary!
+
+### Add Aspire Orchestration to an Existing Project
+
+_Note_: The following instructions are using the Cli. Using Visual Studio is much simpler and information is included below.
+
+#### Using Cli Commands and DotNet
+
+Add an App Host Project using DotNET Cli:
+
+1. Add an Aspire AppHost project: `dotnet new aspire-apphost -o project_name`
+2. Add the AppHost Project reference to the Solution file: `dotnet sln solution_file add path_to_project_file`
+3. Add Project references to AppHost that point to other Projects it needs to know about: `dotnet add apphost_project_file reference other_project_file`
+
+Add a Service Defaults Project:
+
+1. `dotnet new aspire-servicedefaults -o eShopLite.ServiceDefaults`
+2. Add the Service Defaults Project reference to the solution file: `dotnet sln solution_file add path_to_project_file`
+3. Add Project reference to AppHost that points to the Service Defaults Project: `dotnet add apphost_project_file reference other_project_file`
+4. Add Project references in other Projects that reference the Service Defaults project (enabling _service discovery_) (use dotnet cli commands for this, too).
+5. Open `Program.cs` in each of the original Projects and add the line `builder.AddServiceDefaults()` immediately following `var builder = ...` line.
+
+Update App Host Project:
+
+Add the following lines to the AppHost project's `Program.cs` file after `var builder = ...`: `builder.AddProject<Projects.proj_name>("friendly-name");`, one for each Project to be added to the orchestrator.
+
+Enable Service Discovery To Existing Projects:
+
+1. Use _function chaining_ following `builder.AddProject<T>()` to add services to Service Discovery.
+2. To Add http endpoints for deployment to a Cloud or Hosted environment: `.WithExternalHttpEndpoints()` (skipping this step will render the app inaccessible to external http clients).
+3. To Add a reference to a dependency Project use `.WithReference(friendly_name)`
+4. Update `appsettings.json` of the primary Project (application) to change the URLs to use the _friendly-name_ of the endpoints host (instead of `localhost`). This ensures Aspire can find the endpoints and also ensures the endpoint IDs are discoverable.
+
+#### Using Visual Studio
+
+Using Visual Studio to add .NET Aspire components and reference to an existing Solution is much simpler than doing so by the CLI.
+
+Adding Orchestration Support:
+
+- Right-click a project to enroll in Aspire and select "Add .NET Aspire Orchestrator Support".
+- Aspire Configuration Defaults and Aspire AppHost Projects are added and configured _automatically_ via this right-click menu item.
+- Subsequent uses of the same r-click command will ensure additional Projects are added to the newly created Aspire projects AppHost and ServiceDefaults. :tada:
+- The Startup Project is reconfigured to be `AppHost` project added by Aspire. :smiley:
+
+Adding Service Discovery:
+
+- Open `Program.cs` in the AppHost project and add extension methods `.WithExternalHttpEndpoints()` and `.WithReference(friendly-name)`, referencing "store". This enables discovering the Store endpoint address to simplify deployment to local or cloud-based platforms.
+- Update `appsettings.json` in the Store project to use a more generic "ProductEndpoint" and "ProductEndpointHttp" e.g. `http://products` and `https://products`, matching `friendly-name` configured above.
+
+### About Dotnet Cli Versus Visual Studio
+
+- Quick and easy `dotnet` commands help get up and running rapidly.
+- Adding references using `dotnet` can be a bit challenging.
+- Creating new Solutions and Projects take a bit of time and know-how using `dotnet`.
+- Project and Solution creation are simplified using Visual Studio.
+- Right-click options on Project files in Visual Studio add context-aware menu items for rapid Project updates like 'Add .NET Aspire Orchestrator Support'.
+- Drag-and-drop can pay off by allowing Project File dragging to create a Project Reference quickly and easily.
+
+## DotNET Aspire Tooling
+
+Assist in creating and configuring cloud-native applications.
+
+- Starter project templates.
+- tbd...
+
+## Aspire Limitations and Gotchas
+
+As of 27-Sept-2024
+
+- Aspire is delivered through the NuGet system, and Aspire _Workloads_ components are required and must be updated over time.
+- DotNET 8 or newer is required, so any dotnet 7.x or older (LTS) framework projects will need to be updated first.
 
 ## Resources
 
