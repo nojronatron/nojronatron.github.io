@@ -2,6 +2,15 @@
 
 Notes with key takeaways from reading Inclusive 101 Guidebook by Microsoft Design.
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Exclusions](#exclusions)
+- [Inclusive Design Defined](#inclusive-design-defined)
+- [Mindset to Making Inclusive Designs](#mindset-to-making-inclusive-designs)
+- [Final Comments](#final-comments)
+- [Footer](#footer)
+
 ## Overview
 
 - Using our own abilities as a baseline upon which to design apps and web sites for the world to use actually results in exclusive designs.
@@ -43,7 +52,7 @@ _Disability is mismached human interactions_, not a personal health condition. _
 
 ### Learn From Diversity
 
-- Human adapt to diversity.
+- Humans adapt to diversity.
 - People become the central focus from the start of the design.
 - Designers cannot imagine a users emotional context (what gives them joy or frustrates them?).
 - Learn from adaptions and consider the context around the device, input, and usage.
@@ -51,7 +60,7 @@ _Disability is mismached human interactions_, not a personal health condition. _
 
 "Increased Mobility of Technology is Equal to Increased Moments of Disability" _[Inclusive 101 Guidebook, pg. 30]_
 
-### Solve For One Extend To Many
+### Solve For One, Extend To Many
 
 - Focus on what's universally important to all.
 - Everyone has varying motivations and abilities.
@@ -61,7 +70,7 @@ _Disability is mismached human interactions_, not a personal health condition. _
 
 The Persona Spectrum:
 
-- People missing a limb will encounter similar limitations as a person cradling their baby in one arm and operating with the other.
+- People missing a limb will encounter similar limitations as a person cradling their baby in one arm - limited motion and capability.
 - Situational impairments coincide with permantent points of exclusion.
 - Including both situational and permanent points of exclusion in design can increase audience by an estimated 20 million users.
 - Use Persona Spectrum to understand related mismatches.
@@ -83,7 +92,7 @@ Benfits of Inclusive Design:
 
 - Increased access.
 - Reduced friction.
-- More emotional context.
+- Increase emotional context.
 
 The Toolkit:
 
@@ -101,7 +110,7 @@ Inclusive Design Toolkit in Practice:
 
 - There is much more to learn.
 - Considering inclusive design from the ground-up will be a general practice for me, personally and professionally.
-- Why would I want to exclude users from my web sites and applications?
+- Why would I want to exclude users from my web sites and applications by _not_ using inclusive design techniques?
 - Developing solutions for myself and others should be easily extendable to people with permanent or situational points of exclusion.
 - When possible, gather real user feedback on my designs for iterative improvement at all stages.
 
