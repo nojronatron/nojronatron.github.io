@@ -12,7 +12,7 @@ A collection of notes from research and continuing education, with references fo
 
 ## Current Learnings and Activities
 
-- [ ] Investigate a client website for potential changes or revamp.
+- [ ] Investigate a client website for potential changes or a redesign/rewerite.
 
 ## Things I Want To Learn More About
 
