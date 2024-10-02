@@ -82,6 +82,32 @@ But working with RegEx is very tricky and there are many ways to approach patter
 - If there are lots of characters that _are allowed_ in the match right now but aren't allowed later, does it make more sense to filter them out _now_, or capture more now and filter out the rest _later_? (see previous entry)
 - Consider using character classes to match the bulk of what you want, then identify specific individual (or pairs) of characters that are needed next. This should reduce the RegEx Matcher string size and complexity by quite a bit, although it might cause additional actual CPU cycles (so balance readability, testability, and performance requirements).
 
+### Portfolio Website Updates
+
+I took time to update [My Portfolio Web Site](https://portfolio-jon-rumsey.netlify.app/):
+
+- Many dependencies were out of date and several had vulnerabilities or were otherwise a risk to the hosting platform or the Web Site itself.
+- Several projects have been completed or put into the development pipeline since July 2023 (the last time it was updated).
+
+The original project used bootstrap tooling CRA (Create React App) which is known to have some limitations and is also fairly stagnant, so I decided to challenge myself and move to Vite tooling instead.
+
+- `package.json` changes the scripts section (of course, to call Vite to drive dev, debug, and build operations).
+- It appears that Vite requires the `type` property be set properly. In this case the type should be 'module'.
+- Also, there is noneed for a 'homepage' property in `package.json` so that was removed.
+- I also chose to stick with using ESLint to help support code best practices and avoid some simple bugs. This required updating dev dependencies to support babel and other Linting related rule sets and packages.
+- The file system layout is slightly different: The entry-point to a React App is usually `index.html` and is in the `src` folder by convention. For Vite, the instructions requested it be moved to the root of the project. My belief is that Vite's _build_ function looks for this file in this location in order to create the deployable assets to launch a live web site.
+- All of the JS Modules had to be converted with a `jsx` filename extension.
+- For this particular project, both CSS and SCSS are compiled via `SASS` (actually "Dart SASS" according to the developers), so the SCSS files were compatible and needed only minor edits to ensure they used up-to-date syntax such as `@use` instead of `@import`.
+
+Getting the Web Site to deploy to [Netlify using Vite](https://docs.netlify.com/frameworks/vite/) was only slightly challenging:
+
+- Error message during deploy indicated build files were not found.
+- _But_ the build succeeded, so what was the problem?
+- In the Netlify Site Configuration, Build Settings the `Publish Directory` had to be changed to be the default `vite build` output directory :arrow-right: `{root_dir}/dist`.
+- Also in Netlify Site Config, the Node.js dependency was 16.x (which is out of support) so I changed it to 20.x (the most recent Netlify supports).
+
+_Note_: Ubuntu released 24.x (Desktop, Server, etc) as an LTS version, but Netlify's JamStack is pinned to `Ubuntu Focal 20.04` which appears to be an LTS release with general support until May 2025, and ESM (Extended Security Support) until 2030. _So_ there is a good chance Netlify will make (hopefully) `Ubuntu Noble 24.x`  LTS sometime in the coming months.
+
 ## Weeks 35 through 38
 
 So many events, so little time!
