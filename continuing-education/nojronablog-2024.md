@@ -46,6 +46,8 @@ While publishing the pre-release at 0.4.3, I wanted to document some of the oper
 13. A WarningMessage is displayed indicating the table of contents has been created, and the anonymous function exits, returning null.
 14. Function `push()` is called on API `ExtensionContext` to add the `disposable` veriable to the `ExtensionContexts.subscriptions` Array.
 
+The 0.4.4 release is now Published to the VS Code Extension Marketplace! :tada:
+
 ### RegEx and the Multiline Setting
 
 - `^`: Start of string. In Multiline mode, this matches _immediately following_ a `\n` (newline) character.

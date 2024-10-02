@@ -1,5 +1,13 @@
 # Data Binding in DotNET MAUI
 
+## Table of Contents
+
+- [Presenters](#presenters)
+- [MVVM Overview](#mvvm-overview)
+- [Dependency Injection](#dependency-injection)
+- [Resources](#resources)
+- [Footer](#footer)
+
 ## Presenters
 
 - Bruno Capuano @elbruno
@@ -106,6 +114,28 @@ Registered Member access is allowed in the constructor in any class:
 - Already available when needed!
 - Inject your ViewModel specifically in the CTOR.
 - `this.BindingContext = vmViewModel` (your ViewModel specifically).
+
+## MSLearn - Data Binding
+
+Declare relationship between data and UI Controls.
+
+- Keep the UI and data synchronized.
+- Bypasses code-behind, making code easier to read and separating concerns between UI and Data design and handling.
+- UI Control properties (enabled, etc) can be changed based on the state of the bound data.
+
+### Databindings in XAML
+
+Data can be bound in code-behind but is usually done in XAML:
+
+- More convenient to tie-in bindings at each Control that relies on them.
+- Separates the binding action from the code and object instances that are the state.
+
+Bindings can also be configured to source from another UI Control:
+
+- Target must inherit from `BindableObject`.
+- Source can be _any type_.
+- If no `Source` is set on a binding, automatic searches are performed, starting at the Object level, moving to the XAML Root level.
+- Multiple Controls that should bind to the same source object can use the parent Control `BindingContext` (for example: `Grid`) or the XAML Document Root `BindingContext` (although that might be too broad).
 
 ## Resources
 
