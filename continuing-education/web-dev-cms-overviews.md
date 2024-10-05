@@ -67,6 +67,9 @@ Navigation:
 
 > Are there other navigation linking options besides a header-based Nav Bar?
 
+- Use Anchor links to other areas internal (or external) to the site.
+- Use buttons with anchor links (although this is discouraged for accessibility reasons).
+
 Asset Library:
 
 - Photos and other assets can be stored here.

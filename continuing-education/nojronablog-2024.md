@@ -108,6 +108,8 @@ Getting the Web Site to deploy to [Netlify using Vite](https://docs.netlify.com/
 
 _Note_: Ubuntu released 24.x (Desktop, Server, etc) as an LTS version, but Netlify's JamStack is pinned to `Ubuntu Focal 20.04` which appears to be an LTS release with general support until May 2025, and ESM (Extended Security Support) until 2030. _So_ there is a good chance Netlify will make (hopefully) `Ubuntu Noble 24.x`  LTS sometime in the coming months.
 
+Many more updates are in the works, providing opportunity for me to learn and grow my website building skill sets.
+
 ## Weeks 35 through 38
 
 So many events, so little time!
