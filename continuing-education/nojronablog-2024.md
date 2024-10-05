@@ -2,19 +2,9 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
-## Weeks 35 through 38
+## Weeks 39 through 40
 
-So many events, so little time!
-
-As I have had time, I've attended some online informational sessions about AI and DotNET, worked on updates to my Create-ToC VS Code Extension, and make some connections with other developers and a couple of organizations that might utilize my technical skills. There is a lot going on right now between learning, volunteering, networking, coding, and life in general.
-
-### To Redesign Or Massively Refactor
-
-That is the question. While working through updating my Markdown ToC extension, it became clear that my design suffers from difficulty in testing and extending. The latest push has been to enable Create-ToC to recognize both Open ATX and Closed ATX headings styles, and follow-suite when generating the Table of Contents.
-
-Some refactoring of implementations into modules, and removing extraneous module functions results in a more testable, and simplified implementation. Unit tests were also refactored to test the updated JS Modules and their functions.
-
-But there's more work to do! Unit tests are still failing, so those issues need to be worked out, and once that's done the README documentation must be updated, and the version incremented for publication. This time, I want to publish the next version as a full release, rather than a pre-release (as I did earlier this year). I'm looking forward to having an updated functional utility in a public marketplace!
+Multiple events the last few weeks have caused some disruption in my development cycles, note taking, learning cycles, etc. Also, jury duty calls, which might suddenly interrupt and cause uneven productivity here.
 
 ### Markdown ToC VS Code Extension
 
@@ -34,6 +24,105 @@ I completed publishing a Release version of Create-ToC set at version 0.4.2. Pre
 - Whenever a new bug is discovered, a new branch should be created from the most recent version, and a unit test created to validate the code against the buggy case.
 
 Doing these things will help keep my workflow organized, even when I have to step away from the project for some time between bugfixes and version releases.
+
+After a bit more debugging, some code refinements, added documentation, unittest fixes, and adding manual-testing files, version 0.4.3 is now available as a Pre-Release version. In a few days, after some regular usage, I'll Publish a 0.4.4 Release version. :tada:
+
+### Markdown ToC Extension Internal Operation as of Sept 26th
+
+While publishing the pre-release at 0.4.3, I wanted to document some of the operation of the code for personal purposes.
+
+1. VS Code API registers `markdown-toc.createTOC` and loads an anonymous async function as the second parameter, setting both as `disposable` objects.
+2. A copy of the Editor object is acquired from the VSCode API and it is validated as a 'markdown' type document. If not an MD file a WarningMessage is displayed and execution returns null.
+3. The Editor object is scanned to get a count of text lines. If there are too few, a WarningMessage is displayed and execution returns null.
+4. Function `findTopHeading()` is executed, and the results are stored in an object to identify the Heading style (Open ATX, Closed ATX, or Next Line) as well as the Line Number the top (Level 1) heading is found.
+5. If the Top Heading is not found, a WarningMessage is displayed and execution returns null.
+6. A RegExp `match()` function is called to check for an existing Table of Contents. If there is at least one match, a Warning Message is displayed and execution returns.
+7. If there are too few lines of text remaining after the Top Heading line number, a WarningMessage is displayed and execution returns null.
+8. Function `getLevelHeading()` is called within a `for` code block and positive results are stored in a local array. Inner-functions `getTitleOnly()`, which replaces illegal Heading title characters, and either `getHash2LH()` or `getDash2LH()` are executed (depending on the style) to acquire the correct Level 2 Headings, ignoring any other text or headings levels.
+9. After the `For` loop exits, if there are no items in the array, a WarningMessage is displayed and execution returns null.
+10. Function `createTOC()` is called, which in turn calls `getTitleOnly()` which replaces illegal Heading title characters, and then `getLoweredKebabCase()` which (as its name states) forces lower-cased characters and replaces any whitespace characters with a dash `-` (except for newline and carriage return, which are ignored). Lastly, function `getLinkFragment()` is called which properly formats the Title and Lowered Kebab Case outputs into an appropriate (lint-able) Link Fragment.
+11. The result variable from `getTitleOnly()` is fed into a VS Code API `edit.insert()` function, which adds the formatted string data to the active document.
+12. The VS Code API `workspace.applyEdit()` function is called to 'write' the formatted string data (the new Table of Contents) to the working document so the user can see it and save it.
+13. A WarningMessage is displayed indicating the table of contents has been created, and the anonymous function exits, returning null.
+14. Function `push()` is called on API `ExtensionContext` to add the `disposable` veriable to the `ExtensionContexts.subscriptions` Array.
+
+The 0.4.4 release is now Published to the VS Code Extension Marketplace! :tada:
+
+### RegEx and the Multiline Setting
+
+- `^`: Start of string. In Multiline mode, this matches _immediately following_ a `\n` (newline) character.
+- `$`: End of string. In Multipline mode, this matches _immediately prior to_ a `\n` (newline) character.
+- When using `//m` regex matching, it might be important to include `^` and `$` anchors _but it is crucial_ to include the context of where `\n` characters are in the intended match!
+- In JavaScript, `string.match(/regex/opt)` built-in returns either `null` (no match) or an array of one or more match items. It is _not a boolean return_!
+- In some file encodings, newline characters could be `\n` or `\r\n`. JavaScript `string.match(/regex/opt)` can search for those characters and it is up to the implementor to decide how to leverage the RegExp. Examples below show two ways to execute the same query
+
+```javascript
+const regexpPattern1 = ...; // some pattern
+const regexpPattern2 = ...; // some other pattern
+
+// might be easier to read
+const pairedOrLogic = inputText.match(/^regexpPattern1$/gm) !== null 
+                   || inputText.match(/^regexpPattern2$/gm) !== null;
+
+// might be more succinct
+const groupedMatches = inputText.match(/^(?:regexpPattern1|regexpPattern2)$/gm) !== null;
+
+// 1) using `^` and `$` along with `/gm` could cause the regexp to consume more resources than desired
+// 2) optionally use a quick-exit technique with `/m` so string.match(regexp) returns after first match
+return inputText.match(/^(?:regexPattern1|regexPattern2)$/m) !== null;
+```
+
+But working with RegEx is very tricky and there are many ways to approach pattern matchine. Here are some questions to ask while figuring out RegEx patterns:
+
+- Is the goal to find items that cause an _exclusion_?
+- Is the goal to find specific substrings and capture them or replace them?
+- In replacement, should just the first instance be replaced, or _all instances_?
+- After replacement, is it safe to `string.trim()` away leading and trailining whitespaces?
+- Can a match be made more effeciently by throwing an entire document at the matcher, or should a smaller input be fed to the matcher _to save time and cpu cycles_?
+- If there are lots of characters that _are allowed_ in the match right now but aren't allowed later, does it make more sense to filter them out _now_, or capture more now and filter out the rest _later_? (see previous entry)
+- Consider using character classes to match the bulk of what you want, then identify specific individual (or pairs) of characters that are needed next. This should reduce the RegEx Matcher string size and complexity by quite a bit, although it might cause additional actual CPU cycles (so balance readability, testability, and performance requirements).
+
+### Portfolio Website Updates
+
+I took time to update [My Portfolio Web Site](https://portfolio-jon-rumsey.netlify.app/):
+
+- Many dependencies were out of date and several had vulnerabilities or were otherwise a risk to the hosting platform or the Web Site itself.
+- Several projects have been completed or put into the development pipeline since July 2023 (the last time it was updated).
+
+The original project used bootstrap tooling CRA (Create React App) which is known to have some limitations and is also fairly stagnant, so I decided to challenge myself and move to Vite tooling instead.
+
+- `package.json` changes the scripts section (of course, to call Vite to drive dev, debug, and build operations).
+- It appears that Vite requires the `type` property be set properly. In this case the type should be 'module'.
+- Also, there is noneed for a 'homepage' property in `package.json` so that was removed.
+- I also chose to stick with using ESLint to help support code best practices and avoid some simple bugs. This required updating dev dependencies to support babel and other Linting related rule sets and packages.
+- The file system layout is slightly different: The entry-point to a React App is usually `index.html` and is in the `src` folder by convention. For Vite, the instructions requested it be moved to the root of the project. My belief is that Vite's _build_ function looks for this file in this location in order to create the deployable assets to launch a live web site.
+- All of the JS Modules had to be converted with a `jsx` filename extension.
+- For this particular project, both CSS and SCSS are compiled via `SASS` (actually "Dart SASS" according to the developers), so the SCSS files were compatible and needed only minor edits to ensure they used up-to-date syntax such as `@use` instead of `@import`.
+
+Getting the Web Site to deploy to [Netlify using Vite](https://docs.netlify.com/frameworks/vite/) was only slightly challenging:
+
+- Error message during deploy indicated build files were not found.
+- _But_ the build succeeded, so what was the problem?
+- In the Netlify Site Configuration, Build Settings the `Publish Directory` had to be changed to be the default `vite build` output directory :arrow-right: `{root_dir}/dist`.
+- Also in Netlify Site Config, the Node.js dependency was 16.x (which is out of support) so I changed it to 20.x (the most recent Netlify supports).
+
+_Note_: Ubuntu released 24.x (Desktop, Server, etc) as an LTS version, but Netlify's JamStack is pinned to `Ubuntu Focal 20.04` which appears to be an LTS release with general support until May 2025, and ESM (Extended Security Support) until 2030. _So_ there is a good chance Netlify will make (hopefully) `Ubuntu Noble 24.x`  LTS sometime in the coming months.
+
+Many more updates are in the works, providing opportunity for me to learn and grow my website building skill sets.
+
+## Weeks 35 through 38
+
+So many events, so little time!
+
+As I have had time, I've attended some online informational sessions about AI and DotNET, worked on updates to my Create-ToC VS Code Extension, and make some connections with other developers and a couple of organizations that might utilize my technical skills. There is a lot going on right now between learning, volunteering, networking, coding, and life in general.
+
+### To Redesign Or Massively Refactor
+
+That is the question. While working through updating my Markdown ToC extension, it became clear that my design suffers from difficulty in testing and extending. The latest push has been to enable Create-ToC to recognize both Open ATX and Closed ATX headings styles, and follow-suite when generating the Table of Contents.
+
+Some refactoring of implementations into modules, and removing extraneous module functions results in a more testable, and simplified implementation. Unit tests were also refactored to test the updated JS Modules and their functions.
+
+But there's more work to do! Unit tests are still failing, so those issues need to be worked out, and once that's done the README documentation must be updated, and the version incremented for publication. This time, I want to publish the next version as a full release, rather than a pre-release (as I did earlier this year). I'm looking forward to having an updated functional utility in a public marketplace!
 
 ## Week 29 through 34
 

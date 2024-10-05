@@ -12,13 +12,14 @@ A collection of notes from research and continuing education, with references fo
 
 ## Current Learnings and Activities
 
-- [ ] Investigate a client website for potential changes or revamp.
-- [ ] Add at least one feature to `Markdown ToC` project in the VS Code Extentions Marketplace (in progress).
+- [ ] Investigate a client website for potential changes or a redesign/rewerite.
 
 ## Things I Want To Learn More About
 
 Here is a snippet of items I look forward to learning more about:
 
+- [ ] Monorepos.
+- [ ] Web Building and CMS Services [notes](./web-dev-cms-overviews.html).
 - [ ] Copilots: [How to create a copilot](./msft-copilot-learnings.html).
 - [ ] Gain familiarity with [Playwright](https://playwright.dev/), an end-to-end testing framework for .NET.
 - [ ] [Bogus for .NET](https://github.com/bchavez/Bogus) a Faker.js port for .NET.
@@ -27,6 +28,7 @@ Here is a snippet of items I look forward to learning more about:
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] Added features to `Markdown ToC` VS Code Extension: Support Closed ATX headings, TOC is same as user's, and various bug fixes. See [Visual Studio Code Extensions Marketplace](https://marketplace.visualstudio.com/manage/publishers/jon-rumsey-dev).
 - [x] [DotNET Aspire](./dotnet-aspire-learnings.html).
 - [x] Read "Inclusive 101 Guidebook" from Microsoft Design, and [take notes](./inclusive-design-notes.html).
 - [x] Fix-up bugs and incomplete features to my Mob-WX Android App (in process).

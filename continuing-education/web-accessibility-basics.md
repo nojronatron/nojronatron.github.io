@@ -199,6 +199,8 @@ Does the page accommodate these viewports and various Zoom settings?
 
 ## Resources
 
+[Inclusive Design Notes](continuing-education\inclusive-design-notes.md) taken while reading Inclusive Design 101 on Microsoft Learn.
+
 [Accessibility Insights for Web](https://accessibilityinsights.io/docs/web/overview/).
 
 Guidance and Tutorials from [W3C Web Accessibility Initiative website](https://www.w3.org/WAI/design-develop/).
