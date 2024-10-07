@@ -40,7 +40,7 @@ Use Content Targeting:
 - Use the `target` property of an element to get or update that elements' attributes.
 
 ```html
-<html encoding='utf8'>
+<html>
 <head>
 
 </head>
