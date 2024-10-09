@@ -88,6 +88,8 @@ The [Nesting Selector](https://developer.mozilla.org/en-US/docs/Web/CSS/Nesting_
 
 Normally, a nested CSS Selector rule would apply to the _child_ of the parent element in the nested CSS. Use of `&` causes the rule to apply to the parent _given the parent element and child attribute/rule setting_.
 
+_Warning_: In practice, this is probably an incomplete solution. For example, a browser first arriving at the website would need to navigate to the website at the `#home` ID e.g. `http://foo.bar/#home` (instead of `http://foo.bar/` or `http://foo.bar/index.html`) in order to display _any_ content at all.
+
 ## Accordians Using the Details Element
 
 ```html
