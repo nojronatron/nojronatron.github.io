@@ -4,25 +4,36 @@ Review React Hooks to learn what they are, and how and when to use them.
 
 Provide links to additional references as well as code snippets where possible.
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Migrating From Class to Function Components](#migrating-from-class-to-function-components)
+- [UseState](#usestate)
+- [Context](#context)
+- [UseEffect and Side Effects](#useeffect-and-side-effects)
+- [Custom Hooks](#custom-hooks)
+- [Moving to Hooks](#moving-to-hooks)
+- [useRef](#useref)
+- [Support](#support)
+- [Developing with Hooks Going Forward](#developing-with-hooks-going-forward)
+- [References](#references)
+- [Footer](#footer)
+
 ## Overview
 
-Hooks are new in v.16.8. Most recent project I am generally working with v.18+.
+Hooks are new in v.16.8 and provide Functional Components similar capabilities to what React Class Components are borne with.
 
-Hooks allow using React Features without writing a fully-blown class component.
-
-Sharing stateful logic is difficult and often requires wrapping Components with other Components in order to get desired results.
-
-Refactoring a working component to implement a wrapper causes code churn that React Hooks can help to avoid.
-
-Enable "reuse [of] stateful logic without changing your component hierarchy." *[Reactjs.org API Documentation]*
-
-Components can become complex especially when imported into React Lifecycle Methods, which makes code harder to understand, maintain, and is more likely to contain bugs.
-
-Classes don't minify well, are more difficult to write and understand. Hooks allow using features without new Class components. Sticking with functional components simplifies minification and keep React efficient. Hooks were built with functional components in mind, allowing use of React features without having to build a Class to do so.
-
-Hooks can be adopted into existing code with minimal rewriting.
-
-ReactJS intends to favor Hooks over class components going forward.
+- Hooks allow using React Features without writing a fully-blown class component.
+- Sharing stateful logic is difficult and often requires wrapping Components with other Components in order to get desired results.
+- Refactoring a working component to implement a wrapper causes code churn that React Hooks can help to avoid.
+- Enable "reuse [of] stateful logic without changing your component hierarchy." *[Reactjs.org API Documentation]*
+- Components can become complex especially when imported into React Lifecycle Methods, which makes code harder to understand, maintain, and is more likely to contain bugs.
+- Classes don't minify well, are more difficult to write and understand.
+- Hooks allow using features without new Class components.
+- Sticking with functional components simplifies minification and keep React efficient.
+- Hooks were built with functional components in mind, allowing use of React features without having to build a Class to do so.
+- Hooks can be adopted into existing code with minimal rewriting.
+- ReactJS intends to favor Hooks over class components going forward.
 
 Hooks features include:
 
@@ -31,21 +42,33 @@ Hooks features include:
 - Context
 - Refs
 
-Hooks can help reduce nesting in a React Tree.
+Other Hooks benefits:
 
-Hooks allow accessing State from within a Functional Component.
+- Hooks can help reduce nesting in a React Tree.
+- Hooks allow accessing State from within a Functional Component.
+- Hooks can be reused within a Component.
 
-Hooks can be reused within a Component.
+Components should just be Functions, and Hooks are simply function calls. Therefore, "custom Hooks" can be created for your specific needs.
 
-Do NOT call a Hook inside of a conditional. They must be called at the top of the Component.
-
-Components are just Functions. Hooks are just Function Calls. This enables creating custom Hoooks!
+*Important!*: Do NOT call a Hook inside of a conditional. They must be called at the top of the Component.
 
 Hooks as proposed by ReactJS: *[React Conf 2018 Presentation]*
 
 - Use all React features without a class.
 - Reuse stateful logic between components.
 - Opt-in and 100% backward compatible.
+
+## Migrating From Class to Function Components
+
+This is necessary in order to use React Hooks (or create your own). Follow these general steps to get going rapidly:
+
+1. Change the Component signature from `export default class MyFunction extends React.Component...` to `export default function MyFunction()`
+2. If the class received props from a parent Component update the signature to be `export default function MyFunction({prop, ...})` to include the actual parameters passed-in by the parent.
+3. Any `this.props` statements need to be renamed. Functional Components do *not* support `this` so these props need to be renamed and set in step 2.
+4. Remove the `render(){}` code blocks. All `render` code is now just code-block within the Function.
+5. If enforcing PropTypes, include the definition *just after the last Functional Component closing brace*: `MyFunction.propTypes = { propa: PropType.object, ... };`
+6. If the Component was updating `state`, then import `useState` and refactor the `setState()` function calls to use the appropriate `setN` array item instead.
+7. Remove the `{ Component }` import statement, it is no longer needed.
 
 ## UseState
 
