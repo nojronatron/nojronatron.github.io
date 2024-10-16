@@ -219,6 +219,8 @@ W3C resource on [How People With Disabilities Use The Web](https://www.w3.org/WA
 
 YouTube video [Introduction to Accessibility Insights for Web](https://www.youtube.com/watch?v=U6NY8Cxym5g).
 
+MDN Web Docs: [HTML: A good basis for accessibility](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML).
+
 ## Footer
 
 Return to [ContEd Index](./conted-index.html)

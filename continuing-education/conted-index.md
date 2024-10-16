@@ -28,6 +28,7 @@ Here is a snippet of items I look forward to learning more about:
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] While browsing other web-design topics I ran across an NDC Oslo presentation featuring Amy Kapernik, who discussed [how to build an SPA without JavaScript](./spa-no-javascript-ndcoslo.html).
 - [x] Added features to `Markdown ToC` VS Code Extension: Support Closed ATX headings, TOC is same as user's, and various bug fixes. See [Visual Studio Code Extensions Marketplace](https://marketplace.visualstudio.com/manage/publishers/jon-rumsey-dev).
 - [x] [DotNET Aspire](./dotnet-aspire-learnings.html).
 - [x] Read "Inclusive 101 Guidebook" from Microsoft Design, and [take notes](./inclusive-design-notes.html).
