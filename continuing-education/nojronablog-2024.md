@@ -110,6 +110,8 @@ _Note_: Ubuntu released 24.x (Desktop, Server, etc) as an LTS version, but Netli
 
 Many more updates are in the works, providing opportunity for me to learn and grow my website building skill sets.
 
+I completed the tasks for a Pull Request with major updates and deployed the site without issue. There is still plenty to do (especially in terms of accessibility) and my plan is to take on these issues over time and incrementally improve the site UX for site visitors, and to keep myself plugged-in and working with React and webapp building and maintenance.
+
 ## Weeks 35 through 38
 
 So many events, so little time!
