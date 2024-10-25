@@ -43,6 +43,41 @@ Here are some key takeaways from this experience (so far):
 - More Image Smartness: Today I learned about using CSS to simply use CSS to define the width of an appropriately dense pixel image, and using `@media` queries to set the correct `width:` value depending on the viewport size. I think this slows loading the page due to the scaling that happens during render _after_ css is loaded and applied.
 - The "Art Direction Problem": MDN covers this in the [Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) section so I won't rehash it here. Instead, the key element to learn is `<picture>`. Using `<picture>` as a parent element to multiple `<source>` element and a (default) `<img>` element, so the browser can select the correct image _during image preloading_ instead of right before rendering. Cool stuff!
 
+### Oh Yeah, Monorepos
+
+I took a look at what a Monorepo is, finally. Here are some key takeaways:
+
+- Many projects all combined into a single repository.
+- They can get _very large_.
+- Building projects from the monorepo might require some careful CI-CD scripting.
+- Dependency management is simplified because monorepo projects are already neighbors so additional dependency downloads and management is not necessary.
+- A monorepo opens up all project code to all contributors/participants.
+- Assuming the projects within the monorepo are inter-dependent, a monorepo storage design forces contributing teams to work together to ensure consistency and compatibility among dependants.
+- Multiple project can be updated simultaneously in a single _atomic commit_.
+- Build processes are shared among projects, reducing work getting build/test/deploy pipelines setup and functioning.
+- Well suited for inclusive participation in large multi-project application or service _suites_ of programs and services. Contributors are more likely to get a grasp of the bigger picture when addming and editing code.
+- Supports effective 'trunk-based development' where small commits are regularly made, providing instant insight into changes and enabling multi-project updates to ensure compatibility.
+
+However, there are some drawbacks:
+
+- How much space does your platform have to store the massive number of projects?
+- Does the version control system have the capacity to deal with the commit pace across all projects, diffing, merging, etc.
+- Tightly-coupled projects increase complexity and may slow down new contributors.
+- Managing permissions to the various projects is more challenging due to the access controls necessary on the file system, rather than the project code as a whole.
+- Notifications of merges, broken builds, failed tests, PR assignment and/or status changes (etc) can get very busy/noisy.
+
+Tools:
+
+- VCS and Subversion are monorepo management tools.
+- Git `shallow clone`: `--depth <depth>` limits clone history to the specified number of commits. See also `--single-branch`.
+- Git `filter-branch`: Essentially re-writes history in a non-performant way, with multiple hazardous side-effect.
+- Smart-build systems: Buck, Bezel, others.
+- CODEOWNERS: Restrict access to certain projects within the monorepo.
+
+It turns out I've been using (a very small version of) this concept. Whenever I work within a multi-project Solution in DotNET, it is effectively instantiating a monorepo for a "solution of projects". While implementing vertical changes that impact another project in the Solution, I update the impacted project code and that becomes part of the PR (and therefore the update/new version) without any need to open a new PR in a separate, dependant project.
+
+An interesting blog article about monorepos can be found on [Semaphore CI's blog](https://semaphoreci.com/blog/what-is-monorepo).
+
 ## Weeks 39 through 42
 
 Multiple events the last few weeks have caused some disruption in my development cycles, note taking, learning cycles, etc. Also, jury duty calls, which might suddenly interrupt and cause uneven productivity here.
