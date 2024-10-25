@@ -2,7 +2,48 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
-## Weeks 39 through 40
+## Weeks 43 through 44
+
+Last week I completed a bunch of work on my [portfolio website](https://portfolio-jon-rumsey.netlify.app/), proving to myself that I can work with someone else's code, make effective changes, update and replace existing imported components, and update data structures (albeit simple JSON ones here) and acquisition to augment the website as a whole. As mentioned before, there is much more to do in the coming weeks, but for now I have multiple other projects that need some attention to move them forward.
+
+### Volunteer Webmastering
+
+A few weeks ago I was recruited to help define an organization's web presence and basically replace their old website with a new one, on a new web hosting platform. Overall the detail on scope of work is a little spongy but I don't anticipate that to be a problem at this point. There are the beginnings of a plan, and my part is to help with sorting out technical issues during the planning process, and performing website content publishing, maintenance, and feature management for 2025. I'm looking forward to this experience and what it will bring in 2025!
+
+### My First Experiences with SquareSpace
+
+Even before becoming a web developer, I learned from others that CMS platforms can be pretty difficult to work with. The complex array of limitations, cost structures, and sometimes unexpected results can make for a frustrating experience. I'm also aware that _many_, _many_ developers are either gainfully employed as CMS Webmasters, or otherwise use a CMS as their creative-space outlet, often associated with income from product sales or membership fees to content consumers.
+
+This new volunteer webmastering role I've taken on has put me in front of a partially deployed SquareSpace (SQSP) website that needs to be updated for events coming in 2025. I've spent only a few hours fiddling with pages, but here are some key takeaways.
+
+Working with Links:
+
+SQSP makes creating links fairly simple (not that it's difficult in HTML) owever, there is no facility to bookmark areas within a page. In the past, the website I'm working on has had a long, single-page resource for a major event they do. It is difficult for me (and probably others) to track all of the information on this very long page. So, as an idea to improve on this long-form layout, I tried to implement navigation "bookmarks" within subsections of the page to help visitors navigate all the information. SQSP does not support doing this directly. A work-around I tried was to add a `code` block to the page and configure the anchor link to a specific ID, then add another `code` block with the same ID configured. While this _does work_ there are caveats (listed below) and I am working on a different way to approach solving this user experience problem.
+
+1. SQSP tends to add a large amount of margin between sections within a page.
+2. The Header object on the page might overlap and hide the target ID after the anchor fragment has been followed.
+
+Editing SQSP Pages:
+
+Adding content to pages is somewhat frustrating. For example, an added Text Block appears near the Toolbar, often overlapping existing content. Then, the Text Block must be clicked _in just the right spot_ in order to start adding text. Once the Text Block is on the page with the desired content, inevitably it will need to be moved and resized somehow. While moving the Text Block, SQSP editor tries to do some resizing and centering calculations, sometimes causing the Text Block width and/or height to expand for reasons I don't understand. Another side-effect of moving Text Blocks around and resizing editing areas, is the Text Block configuration is sometimes changed unexpectedly, i.e. H2 style is changed to H3. I'm used to having more control of these website elements, so this will take some getting used to.
+
+Adding Images to Sections:
+
+This is made fairly easy. The workflow is straight-forward and manipulating the image size and location isn't too difficult. Even changing an image shape is pretty simple. The complexity comes in when trying to make the image accessible. There is mention of adding _captions_ to images, but no where in the Edit UI have I found that capability yet. Which is weird, because there's even a "Lightbox" style that can be enabled (creates a modal with the image enclosed along with a styled caption, if there is one). For now, the best that can be done is to add `alt` text to the image, and a Text Block near the image to describe it.
+
+### Forced Learning Through Websites By Handlers
+
+I started working on yet another side project with the goal of re-learning core website design, development, and style concepts.
+
+Here are some key takeaways from this experience (so far):
+
+- Flex: This is a fairly simple, go-to property in CSS that can simplify placing multiple items within a flex container. Unfortunately, making everything `display: flex` can start to get complex when it comes to some display issues. For example, it pays to be stingy with flex, and to always consider what really needs to happen with the layout before writing a flex container. Once I got the hang of the flex direction and cross-axis confiruations, it has become easier to implement flex in those times when it is really necessary.
+- Grid: Using the grid system is easier than I remember. During CodeFellows 201 class, I recall being impressed with the simplicity of CSS Grid, but shocked by how rapidly it became very complex. Now that I have a bit more experience with CSS and website building, I've found Grid to be easier to work with, and less likely to spawn additional CSS on child elements like Flex can do.
+- Images: Placing images on a website using just HTML is fairly easy. One common rule-of-thumb is to be sure to assign either `height` or `width` (or better yet both) so that the browser can calculate proper scaling of the image for the container it might be rendered within. I recently heard about a newer way to tell the browser to select a right-sized image for the display port size in use. `srcset` and `sizes` are used together to clue-in the browser as to which image will be best to use for the display size. Of course, multiple images will need to be available so it can be sucked in and rendered.
+- More Image Smartness: Today I learned about using CSS to simply use CSS to define the width of an appropriately dense pixel image, and using `@media` queries to set the correct `width:` value depending on the viewport size. I think this slows loading the page due to the scaling that happens during render _after_ css is loaded and applied.
+- The "Art Direction Problem": MDN covers this in the [Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) section so I won't rehash it here. Instead, the key element to learn is `<picture>`. Using `<picture>` as a parent element to multiple `<source>` element and a (default) `<img>` element, so the browser can select the correct image _during image preloading_ instead of right before rendering. Cool stuff!
+
+## Weeks 39 through 42
 
 Multiple events the last few weeks have caused some disruption in my development cycles, note taking, learning cycles, etc. Also, jury duty calls, which might suddenly interrupt and cause uneven productivity here.
 
