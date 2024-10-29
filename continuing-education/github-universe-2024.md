@@ -69,8 +69,8 @@ Karan M V, Dir Int'l Developer Releations, GitHub
 
 ## AI Native Developer Experience
 
-- Integrate AI into the full software development lifecycle from design to deploy, including ideation, code-generation, test development, deployment pipelining including production, and ongoing maintenance and improvement via Issues and PRs.
--
+- Integrate AI into the full software development lifecycle from design to deploy, including ideation, code-generation, test development, deployment pipelining including production, and ongoing maintenance and improvement collaboration.
+- Immutable GitHub Actions Publishing was announced. See [publish immutable action repository](https://github.com/actions/publish-immutable-action) on GitHub.com.
 
 ## Resources
 
