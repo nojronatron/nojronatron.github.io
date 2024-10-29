@@ -27,6 +27,7 @@ Here is a snippet of items I look forward to learning more about:
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] Attend GitHub Universe and take [notes as a virtual attendee](./github-universe-2024.html).
 - [x] Monorepos: Basically multi-project solutions where inter-dependencies can be updated with a single (atomic) commit and dependencies are managed among all contributors, with visibility into the entire system as a whole.
 - [x] While browsing other web-design topics I ran across an NDC Oslo presentation featuring Amy Kapernik, who discussed [how to build an SPA without JavaScript](./spa-no-javascript-ndcoslo.html).
 - [x] Added features to `Markdown ToC` VS Code Extension: Support Closed ATX headings, TOC is same as user's, and various bug fixes. See [Visual Studio Code Extensions Marketplace](https://marketplace.visualstudio.com/manage/publishers/jon-rumsey-dev).
