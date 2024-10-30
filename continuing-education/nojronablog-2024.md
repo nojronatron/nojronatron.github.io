@@ -78,6 +78,27 @@ It turns out I've been using (a very small version of) this concept. Whenever I 
 
 An interesting blog article about monorepos can be found on [Semaphore CI's blog](https://semaphoreci.com/blog/what-is-monorepo).
 
+### The Nature of Code
+
+The book arrived! Several years ago I was introduced to [THe Coding Traing YouTube Channel](https://www.youtube.com/@TheCodingTrain/videos), which is the media output part of [The Coding Train](https://thecodingtrain.com/). Daniel Shiffman promotes learning and fun through JavaScript and P5js (primarily). He's written "The Nature of Code" as a means to help develop coders ability to mix their imagination with learning to code and implementing solutions. So, this week I worked through Chapter 0, which provided a basis upon which the rest of the book will focus: Random numbers and probabilities, coding physical behaviors, and working with trees, networks, and other datastructures and algorithms.
+
+After reading through and completing the exercises in Chapter 0, there is an end-of-chapter challenge: Create a project that uses concepts learned in the chapter. Following chapters will add new concepts, which can be added to this growing "what I learned" project. I generated a scene using an open-source stock image of a Falcon, flying randomly (but in a semi-natural looking way) over a picture I took of a campsite I stayed at several years ago. The project will eventually appear in my GitHub.
+
+While I don't have a _ton_ of time to be doing this, I've decided my goal will be to complete one chapter per week through the rest of this year. My overall goal is to complete all the exercises in the book by the end of January 2025.
+
+### Working With EM and REM in CSS
+
+While working through a very small exercise side-project (build a QSL Card form for online post-card generation), I discovered that my interchangeable use of EM and REM was causing some surprising results in font sizing, padding, and other EM- and REM-unit supporting CSS properties...so I looked up the difference:
+
+- EM: Relative unit _based on it's parent element font size_.
+- REM: Relative unit based on the _root element font size_, usually `<html>`.
+
+The compounding effects of EM usage in element trees caused problems for me. While debugging, I used the Developer Tools to determine how the font size (or padding, etc) were computed, and it turns out that editing a parent element EM property also impacted the child element.
+
+Once I identified this trickle-down effect, I discovered that using REM eleviated the problem in these nested scenarios _but_ in some cases where resizing the screen were invovled (such as moving from desktop-sized to phone-sized), it occasionally made sense to allow the compounding effect of EM work some magic for me.
+
+The key takeaway is to use `rem` to ensure the unit is based on the root `<html>` element unit, and to only use `em` when it is desirable to have the element sizing change based on the sizing change of a parent element.
+
 ## Weeks 39 through 42
 
 Multiple events the last few weeks have caused some disruption in my development cycles, note taking, learning cycles, etc. Also, jury duty calls, which might suddenly interrupt and cause uneven productivity here.
