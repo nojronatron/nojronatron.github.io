@@ -72,6 +72,12 @@ Karan M V, Dir Int'l Developer Releations, GitHub
 - Integrate AI into the full software development lifecycle from design to deploy, including ideation, code-generation, test development, deployment pipelining including production, and ongoing maintenance and improvement collaboration.
 - Immutable GitHub Actions Publishing was announced. See [publish immutable action repository](https://github.com/actions/publish-immutable-action) on GitHub.com.
 
+## Github Copilot Can Do That ?
+
+- Use inline chat in a Jupyter Notebook to help write code in a code block. Always check the proposed output and use the in-line input box to refine Copilot's next response.
+- Clean tabular data using inline Copilot prompts.
+- Create an AI Model using inline chat input. Usually, simple requests will result in valuable results. Sometimes a more specific configuration and code is necessary, so a larger, more specific request (and one or more follow-ups) are required.
+
 ## Resources
 
 ## Footer
