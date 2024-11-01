@@ -99,6 +99,10 @@ Once I identified this trickle-down effect, I discovered that using REM eleviate
 
 The key takeaway is to use `rem` to ensure the unit is based on the root `<html>` element unit, and to only use `em` when it is desirable to have the element sizing change based on the sizing change of a parent element.
 
+### Google Analytics Learnings
+
+I completed reading-up on GA4. My notes can be found in [my notes about google analytics](./about-google-analytics.html).
+
 ## Weeks 39 through 42
 
 Multiple events the last few weeks have caused some disruption in my development cycles, note taking, learning cycles, etc. Also, jury duty calls, which might suddenly interrupt and cause uneven productivity here.
