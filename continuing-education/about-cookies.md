@@ -4,12 +4,41 @@ Other areas of this repository have notes about cookies, and they are referenced
 
 ## Table of Contents
 
-- [Cookies Having Independent Partitioned State (CHIPS)](#cookies-having-independent-partitioned-state-chips)
+- [Partitioned Cookies](#partitioned-cookies)
 - [Third Party Cookies](#third-party-cookies)
 - [References](#references)
 - [Footer](#footer)
 
-## Cookies Having Independent Partitioned State (CHIPS)
+## Partitioned Cookies
+
+What are they?
+
+- Cookies (in general) are set in Headers as Key-Value pair data structures with optional additional configuration properties such as Domain (another KVP), Expires (also a KVP), and Secure (boolean flag).
+- Partitioned Coookies are stored in a partitioned namespace using the Cookie Key and Value, and the Domain attribute value.
+
+What problem do they solve?
+
+- Cookies are used to identify web browsers (users). The server sets a cookie, and the client returns the cookie during subsequent request sequence.
+- If the server cannot uniquely identify any client/user, it cannot provide enhanced web browsing experience such as logged-in state.
+- Providing access to content specific to a user enhances the browsing experience, such as member-only access or custom messaging such as when an order has been accepted after a shoppingn cart workflow succeeds.
+- By partitioning cookie storage, matching what cookies to set in the header is simplified and security is ensured, allowing matches only when the response hostname/domain name matches the bound '__host' prefix of the partitioned cookie.
+
+How do they work?
+
+- By default, a Cookie is set for the Host at the current document URL, without any domain or sub-domain.
+- When the _Domain=_ attribute is set, the cookie is available only to that _hostname_.
+
+What problems exist with partitioned cookies?
+
+- They are stored differently than other cookies, therefore _require_ having the `secure` boolean flag set. If this is not done, the partitioned cookie is ignored.
+
+How are these implemented in code/frameworks?
+
+- Leading dots `.` are ignored in domain names.
+- Multiple host/domain names are _not allowed_.
+- Once a domain is identified, sub-domains are automatically included in the matching algorithm.
+
+### Cookies Having Independent Partitioned State (CHIPS)
 
 AKA "Partitioned Cookies"
 
@@ -68,7 +97,7 @@ These are (slowly) being phased out but still very much in use.
 ## References
 
 - Using [Cookies With Expressjs](./express-cookies-review.html)
-- MDN [Cookies Having INdependent Partitioned State (CHIPS)](https://developer.mozilla.org/en-US/docs/Web/Privacy/Privacy_sandbox/Partitioned_cookies)
+- MDN documentation on [Cookies Having Independent Partitioned State (CHIPS)](https://developer.mozilla.org/en-US/docs/Web/Privacy/Privacy_sandbox/Partitioned_cookies)
 
 ## Footer
 
