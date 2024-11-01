@@ -77,6 +77,56 @@ Karan M V, Dir Int'l Developer Releations, GitHub
 - Use inline chat in a Jupyter Notebook to help write code in a code block. Always check the proposed output and use the in-line input box to refine Copilot's next response.
 - Clean tabular data using inline Copilot prompts.
 - Create an AI Model using inline chat input. Usually, simple requests will result in valuable results. Sometimes a more specific configuration and code is necessary, so a larger, more specific request (and one or more follow-ups) are required.
+- Copilot can read-aloud!
+- Copy an error message directly into copilot and use `\fix` to get advice on how to fix it.
+- Build-out unittests for a project. Copilot can suggest test framework and explain how to install and configure it. It can also generate tests based on the code file(s) you want tested. Open up files and use `@workspace` to ensure Copilot has the context of the files when generating its response.
+
+## Github, SDLC, and Security
+
+Presenter: Mike Hanley, Github CTO (product, engineering, support, and security):
+
+- Size and scale of GitHub makes security a unique and complex challenge. 518 Repositories today (up 25% from 2023). 1.5B merged PR's, a 32% increase over last 12 months. Average 7.1B API Requests every day.
+- "Good security starts with what works for the developer". Don't add security late in the process.
+- Software culture should include security as a team sport, not a hidden feature or secret sauce.
+- AI can help 'left-shift' security.
+
+Some Tools and Processes to Improve Security Posture (as Github sees and does it):
+
+- Repo Rules, Branch Protection, and Push Protection.
+- PR Security Tools: Secret Scanning, Code Scanning, and Dependabot...and now Copilot Autofix!
+- GH treats itself as "customer zero".
+
+Things to think about:
+
+1. Good security starts with the developer. Security should not be an after-dev thought.
+2. AI is helping to shift security left.
+3. Security culture eats security strategy for breakfast. Security is a team spot.
+
+Whitney Imura, Sr Dir Engineering, GitHub:
+
+- Use CodeSpaces.
+- Sanitize user code to meet security guidelines.
+- Branch Rules ensure critical branches are safeguarged.
+- Merge Queues:
+- RepoRules: Evolved from Branch Protection Rules. Rulesets are applied to the Organization and Repo level. Security and Compliance Teams can develop these rules for the team/organization. Enforcement Status allows an 'evaluation mode', as well as 'disabled' or 'active', allowing careful management and application of new rules.
+- Bypass Ruleset: Users in these rules do _not_ need to be a Repo Admin to override a push. It is possible to report (audit) when the rule is activated.
+- Ruleset Recipies: GitHub repository with publicly available RuleSets as recommendations for OSS or Enterprise.
+
+Xavier Rene-Corail, Sr Dir Security Research, Github Security Labs:
+
+- Not all Devs are security experts (of course).
+- PRs are the key focus area to detect (and remediate) security risks and vulnerabilities.
+- Technical Debt in existing code: Utilize CodeQL Analysis to find security issues right in the repo!
+- Copilot Autofix for OSS is now available for free!
+
+Michael Recachins, Staff Engineer, GitHub:
+
+- Fundamentals program: Governs secure, high quality code ships, encouraging collabortive code teams.
+- Service Catalog: Visibility into infrastructure health and security. For Engineers and management.
+- Use Security Alerts in your repository Settings to view Dependabot and other Alerts.
+- Security Campaigns is now in public preview (part of GitHub Security).
+- Copilot is integrated into GH such that it makes recommendations for how to fix alert issues directly in the repo, whether in a PR or in some branch.
+- Entitlements will be available soon. See [gh.io/entitlements](gh.io/entitlements).
 
 ## Resources
 
