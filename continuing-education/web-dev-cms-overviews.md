@@ -12,11 +12,13 @@ This page is a selection of notes taken while looking into various available CMS
 
 ## SquareSpace
 
-### SS Getting Started
+Accepted abbreviation: SQSP.
+
+### SQSP Getting Started
 
 Creating a new site:
 
-- Pick a specific template for yourself.
+- Pick a specific template for the first page.
 - SS will ask questions to select a template for you, however it might not be what you want.
 - Templates are just a starting place.
 - Template pre-define Style, Layout, Fonts, and Colors, but these can be customized.
@@ -24,6 +26,8 @@ Creating a new site:
 Questions:
 
 > Is it possible to build a site without a template?
+
+Yes, but more correctly put, build a _page_ for a site starting as a blank page, or using a template.
 
 ### SS Design Tools
 
