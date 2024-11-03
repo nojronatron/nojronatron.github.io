@@ -2,7 +2,108 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
-## Weeks 39 through 40
+## Weeks 43 through 44
+
+Last week I completed a bunch of work on my [portfolio website](https://portfolio-jon-rumsey.netlify.app/), proving to myself that I can work with someone else's code, make effective changes, update and replace existing imported components, and update data structures (albeit simple JSON ones here) and acquisition to augment the website as a whole. As mentioned before, there is much more to do in the coming weeks, but for now I have multiple other projects that need some attention to move them forward.
+
+### Volunteer Webmastering
+
+A few weeks ago I was recruited to help define an organization's web presence and basically replace their old website with a new one, on a new web hosting platform. Overall the detail on scope of work is a little spongy but I don't anticipate that to be a problem at this point. There are the beginnings of a plan, and my part is to help with sorting out technical issues during the planning process, and performing website content publishing, maintenance, and feature management for 2025. I'm looking forward to this experience and what it will bring in 2025!
+
+### My First Experiences with SquareSpace
+
+Even before becoming a web developer, I learned from others that CMS platforms can be pretty difficult to work with. The complex array of limitations, cost structures, and sometimes unexpected results can make for a frustrating experience. I'm also aware that _many_, _many_ developers are either gainfully employed as CMS Webmasters, or otherwise use a CMS as their creative-space outlet, often associated with income from product sales or membership fees to content consumers.
+
+This new volunteer webmastering role I've taken on has put me in front of a partially deployed SquareSpace (SQSP) website that needs to be updated for events coming in 2025. I've spent only a few hours fiddling with pages, but here are some key takeaways.
+
+Working with Links:
+
+SQSP makes creating links fairly simple (not that it's difficult in HTML) owever, there is no facility to bookmark areas within a page. In the past, the website I'm working on has had a long, single-page resource for a major event they do. It is difficult for me (and probably others) to track all of the information on this very long page. So, as an idea to improve on this long-form layout, I tried to implement navigation "bookmarks" within subsections of the page to help visitors navigate all the information. SQSP does not support doing this directly. A work-around I tried was to add a `code` block to the page and configure the anchor link to a specific ID, then add another `code` block with the same ID configured. While this _does work_ there are caveats (listed below) and I am working on a different way to approach solving this user experience problem.
+
+1. SQSP tends to add a large amount of margin between sections within a page.
+2. The Header object on the page might overlap and hide the target ID after the anchor fragment has been followed.
+
+Editing SQSP Pages:
+
+Adding content to pages is somewhat frustrating. For example, an added Text Block appears near the Toolbar, often overlapping existing content. Then, the Text Block must be clicked _in just the right spot_ in order to start adding text. Once the Text Block is on the page with the desired content, inevitably it will need to be moved and resized somehow. While moving the Text Block, SQSP editor tries to do some resizing and centering calculations, sometimes causing the Text Block width and/or height to expand for reasons I don't understand. Another side-effect of moving Text Blocks around and resizing editing areas, is the Text Block configuration is sometimes changed unexpectedly, i.e. H2 style is changed to H3. I'm used to having more control of these website elements, so this will take some getting used to.
+
+Adding Images to Sections:
+
+This is made fairly easy. The workflow is straight-forward and manipulating the image size and location isn't too difficult. Even changing an image shape is pretty simple. The complexity comes in when trying to make the image accessible. There is mention of adding _captions_ to images, but no where in the Edit UI have I found that capability yet. Which is weird, because there's even a "Lightbox" style that can be enabled (creates a modal with the image enclosed along with a styled caption, if there is one). For now, the best that can be done is to add `alt` text to the image, and a Text Block near the image to describe it.
+
+### Forced Learning Through Websites By Handlers
+
+I started working on yet another side project with the goal of re-learning core website design, development, and style concepts.
+
+Here are some key takeaways from this experience (so far):
+
+- Flex: This is a fairly simple, go-to property in CSS that can simplify placing multiple items within a flex container. Unfortunately, making everything `display: flex` can start to get complex when it comes to some display issues. For example, it pays to be stingy with flex, and to always consider what really needs to happen with the layout before writing a flex container. Once I got the hang of the flex direction and cross-axis confiruations, it has become easier to implement flex in those times when it is really necessary.
+- Grid: Using the grid system is easier than I remember. During CodeFellows 201 class, I recall being impressed with the simplicity of CSS Grid, but shocked by how rapidly it became very complex. Now that I have a bit more experience with CSS and website building, I've found Grid to be easier to work with, and less likely to spawn additional CSS on child elements like Flex can do.
+- Images: Placing images on a website using just HTML is fairly easy. One common rule-of-thumb is to be sure to assign either `height` or `width` (or better yet both) so that the browser can calculate proper scaling of the image for the container it might be rendered within. I recently heard about a newer way to tell the browser to select a right-sized image for the display port size in use. `srcset` and `sizes` are used together to clue-in the browser as to which image will be best to use for the display size. Of course, multiple images will need to be available so it can be sucked in and rendered.
+- More Image Smartness: Today I learned about using CSS to simply use CSS to define the width of an appropriately dense pixel image, and using `@media` queries to set the correct `width:` value depending on the viewport size. I think this slows loading the page due to the scaling that happens during render _after_ css is loaded and applied.
+- The "Art Direction Problem": MDN covers this in the [Responsive Images](https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images) section so I won't rehash it here. Instead, the key element to learn is `<picture>`. Using `<picture>` as a parent element to multiple `<source>` element and a (default) `<img>` element, so the browser can select the correct image _during image preloading_ instead of right before rendering. Cool stuff!
+
+### Oh Yeah, Monorepos
+
+I took a look at what a Monorepo is, finally. Here are some key takeaways:
+
+- Many projects all combined into a single repository.
+- They can get _very large_.
+- Building projects from the monorepo might require some careful CI-CD scripting.
+- Dependency management is simplified because monorepo projects are already neighbors so additional dependency downloads and management is not necessary.
+- A monorepo opens up all project code to all contributors/participants.
+- Assuming the projects within the monorepo are inter-dependent, a monorepo storage design forces contributing teams to work together to ensure consistency and compatibility among dependants.
+- Multiple project can be updated simultaneously in a single _atomic commit_.
+- Build processes are shared among projects, reducing work getting build/test/deploy pipelines setup and functioning.
+- Well suited for inclusive participation in large multi-project application or service _suites_ of programs and services. Contributors are more likely to get a grasp of the bigger picture when addming and editing code.
+- Supports effective 'trunk-based development' where small commits are regularly made, providing instant insight into changes and enabling multi-project updates to ensure compatibility.
+
+However, there are some drawbacks:
+
+- How much space does your platform have to store the massive number of projects?
+- Does the version control system have the capacity to deal with the commit pace across all projects, diffing, merging, etc.
+- Tightly-coupled projects increase complexity and may slow down new contributors.
+- Managing permissions to the various projects is more challenging due to the access controls necessary on the file system, rather than the project code as a whole.
+- Notifications of merges, broken builds, failed tests, PR assignment and/or status changes (etc) can get very busy/noisy.
+
+Tools:
+
+- VCS and Subversion are monorepo management tools.
+- Git `shallow clone`: `--depth <depth>` limits clone history to the specified number of commits. See also `--single-branch`.
+- Git `filter-branch`: Essentially re-writes history in a non-performant way, with multiple hazardous side-effect.
+- Smart-build systems: Buck, Bezel, others.
+- CODEOWNERS: Restrict access to certain projects within the monorepo.
+
+It turns out I've been using (a very small version of) this concept. Whenever I work within a multi-project Solution in DotNET, it is effectively instantiating a monorepo for a "solution of projects". While implementing vertical changes that impact another project in the Solution, I update the impacted project code and that becomes part of the PR (and therefore the update/new version) without any need to open a new PR in a separate, dependant project.
+
+An interesting blog article about monorepos can be found on [Semaphore CI's blog](https://semaphoreci.com/blog/what-is-monorepo).
+
+### The Nature of Code
+
+The book arrived! Several years ago I was introduced to [THe Coding Traing YouTube Channel](https://www.youtube.com/@TheCodingTrain/videos), which is the media output part of [The Coding Train](https://thecodingtrain.com/). Daniel Shiffman promotes learning and fun through JavaScript and P5js (primarily). He's written "The Nature of Code" as a means to help develop coders ability to mix their imagination with learning to code and implementing solutions. So, this week I worked through Chapter 0, which provided a basis upon which the rest of the book will focus: Random numbers and probabilities, coding physical behaviors, and working with trees, networks, and other datastructures and algorithms.
+
+After reading through and completing the exercises in Chapter 0, there is an end-of-chapter challenge: Create a project that uses concepts learned in the chapter. Following chapters will add new concepts, which can be added to this growing "what I learned" project. I generated a scene using an open-source stock image of a Falcon, flying randomly (but in a semi-natural looking way) over a picture I took of a campsite I stayed at several years ago. The project will eventually appear in my GitHub.
+
+While I don't have a _ton_ of time to be doing this, I've decided my goal will be to complete one chapter per week through the rest of this year. My overall goal is to complete all the exercises in the book by the end of January 2025.
+
+### Working With EM and REM in CSS
+
+While working through a very small exercise side-project (build a QSL Card form for online post-card generation), I discovered that my interchangeable use of EM and REM was causing some surprising results in font sizing, padding, and other EM- and REM-unit supporting CSS properties...so I looked up the difference:
+
+- EM: Relative unit _based on it's parent element font size_.
+- REM: Relative unit based on the _root element font size_, usually `<html>`.
+
+The compounding effects of EM usage in element trees caused problems for me. While debugging, I used the Developer Tools to determine how the font size (or padding, etc) were computed, and it turns out that editing a parent element EM property also impacted the child element.
+
+Once I identified this trickle-down effect, I discovered that using REM eleviated the problem in these nested scenarios _but_ in some cases where resizing the screen were invovled (such as moving from desktop-sized to phone-sized), it occasionally made sense to allow the compounding effect of EM work some magic for me.
+
+The key takeaway is to use `rem` to ensure the unit is based on the root `<html>` element unit, and to only use `em` when it is desirable to have the element sizing change based on the sizing change of a parent element.
+
+### Google Analytics Learnings
+
+I completed reading-up on GA4. My notes can be found in [my notes about google analytics](./about-google-analytics.html).
+
+## Weeks 39 through 42
 
 Multiple events the last few weeks have caused some disruption in my development cycles, note taking, learning cycles, etc. Also, jury duty calls, which might suddenly interrupt and cause uneven productivity here.
 

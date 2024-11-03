@@ -12,13 +12,12 @@ A collection of notes from research and continuing education, with references fo
 
 ## Current Learnings and Activities
 
-- [ ] Investigate a client website for potential changes or a redesign/rewerite.
+- [ ] Investigate a client website for potential changes or a redesign/rewrite: Moving forward with redesign and migration on a new webserver, namespace.
 
 ## Things I Want To Learn More About
 
 Here is a snippet of items I look forward to learning more about:
 
-- [ ] Monorepos.
 - [ ] Web Building and CMS Services [notes](./web-dev-cms-overviews.html).
 - [ ] Copilots: [How to create a copilot](./msft-copilot-learnings.html).
 - [ ] Gain familiarity with [Playwright](https://playwright.dev/), an end-to-end testing framework for .NET.
@@ -28,6 +27,8 @@ Here is a snippet of items I look forward to learning more about:
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] Attend GitHub Universe and take [notes as a virtual attendee](./github-universe-2024.html).
+- [x] Monorepos: Basically multi-project solutions where inter-dependencies can be updated with a single (atomic) commit and dependencies are managed among all contributors, with visibility into the entire system as a whole.
 - [x] While browsing other web-design topics I ran across an NDC Oslo presentation featuring Amy Kapernik, who discussed [how to build an SPA without JavaScript](./spa-no-javascript-ndcoslo.html).
 - [x] Added features to `Markdown ToC` VS Code Extension: Support Closed ATX headings, TOC is same as user's, and various bug fixes. See [Visual Studio Code Extensions Marketplace](https://marketplace.visualstudio.com/manage/publishers/jon-rumsey-dev).
 - [x] [DotNET Aspire](./dotnet-aspire-learnings.html).

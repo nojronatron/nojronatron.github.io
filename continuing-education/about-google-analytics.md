@@ -91,6 +91,14 @@ Collecting and Reporting
 
 ## Differences Between GA4 and Universal Analytics
 
+- Data Model: GA4 is event-based, UA is event-based. In GA4, every click and other interaction with a page results in reportable data points.
+- Device-type and platform statistics are properties of reported data in GA4. In UA, device-type and platform properties are reported separately. Google calls GA4 measurements 'enhanced' and 'more comprehensive' than UA.
+- GA4 includes engagement and monetization reports, including traffic and acquisition reports.
+- IP address privacy and data deletion are available in GA4, as well as the ability to turn-off location-specific data.
+- Website and App performance characteristics are reportable in GA4.
+- Engagement per session in GA4 biases toward engagement instead of 'bounce' like UA does.
+- UA and GA4 count conversions differently, and multi-click events in same-session are accumulated in GA4, but not in UA.
+
 ## Some GA4 Features And Reports Overview
 
 - Accounts and Properties depend on what you have access to, and how many website GA4 is configured for.
@@ -124,11 +132,14 @@ When creating a Property, it is good to stick with a 1:1 relationship with a sin
 
 ## GA4 Data Streams
 
-- Types: Web, Android, or iOS.
+Types: Web, Android, or iOS.
+
 - Needs an endpoint/url and a name.
 - Enhanced meaasurement: Enabled by default but can be disabled wholly, or some of the actions it tracks.
 
 ## GA4 Google Tags
+
+Overview:
 
 - If existing Tags are found, the Data Stream can use it.
 - Otherwise, use the Google Tag script code provided to install manually, or CMS/website builder.
@@ -145,7 +156,7 @@ Wordpress:
 
 Configure a Tag:
 
-1. New Tag
+1. New Tag.
 2. Name according to the type of report data you want to capture.
 3. Select a Tag Configuration, such as "Google Tag". These might require a "Measurement ID".
 4. Configure a Variable so that the Measurement ID can be used in multiple Tag configurations.
@@ -157,9 +168,34 @@ _Note_: There are several variable 'types', and an appropriate one should be sel
 
 _Also Note_: If your site has multiple Tags, there might be additional configuration necessary before publishing a newly created Tag.
 
+## Setting up GA4
+
+Since UA stopped collecting data in July 2023, GA4 is the currently supported (and active) analytics model service.
+
+Overview of steps:
+
+1. Setup a Google Analytics and Tag Manager accounts.
+2. Create a Property in the account and copy the Measurement ID.
+3. Login to Tag Manager and create a new Configuration.
+4. Select GA4 Configuration and enture the Measurement ID acquired previously.
+5. Select 'Send a Page View Event' option.
+6. Click 'Triggering' and select 'All Pages'.
+7. Submit and Publish.
+
+Detailed [Set up analytics for a website and/or app](https://support.google.com/analytics/answer/9304153?hl=en) instructions.
+
+Reminders:
+
+- Enhanced Measurements are enabled by default. These can be disabled.
+- Cross-domain tracking must be configured when two domains should be tracked with the same Property.
+- Individual IP addresses must be added to define 'inernal traffic'.
+- Google Ads can be configured separately.
+- Conversions must be configured for the Events you want to track conversions with.
+
 ## References
 
-- [Google Analytics 4 Tutorial 2024 - How To Get Started With GA4, by Loves Data](https://www.youtube.com/watch?v=OIVhhgNQjak).
+- [Google Analytics 4 Tutorial 2024 - How To Get Started With GA4, by Loves Data](https://www.youtube.com/watch?v=OIVhhgNQjak)
+- [Set up analytics for a website and/or app](https://support.google.com/analytics/answer/9304153?hl=en)
 
 ## Footer
 

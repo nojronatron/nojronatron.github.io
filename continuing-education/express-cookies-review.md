@@ -255,6 +255,8 @@ You will not see a SecureCookie, this is on purpose. Be sure to use a valid secr
 
 ## Footer
 
+More [about cookies](./about-cookies.html) notes I've written while researching.
+
 Return to [Conted Index](./conted-index.html).
 
 Return to [Root README](../README.html).
