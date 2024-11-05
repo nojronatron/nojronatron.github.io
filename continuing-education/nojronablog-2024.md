@@ -2,6 +2,21 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Weeks 45 through 46
+
+Lots going on right now!
+
+- Webmaster volunteering: More meetings to come but information is starting to flow so I can get web pages updated and (soon to be) online.
+- LeetCode Challenges: I've completed a pair of Binary Search Tree challenges. These are slowly getting easier to solve and I'm more often finding the correct, efficient solutions, and more regularly using recursion instead of relying on Stack data structures.
+- Learning about SquareSpace: Additional research has been paying off to enable me to implement Forms and manage the back-end data that they submit, managing drop-downs, and adding SEO properties.
+- Copilot: I took some time out to experiment some more with GitHub Copilot's '/explain' feature. It is getting better all the time and lately has included great descriptions of what code blocks need work, and helps to reinforce coding best practices such as try-catch error handling, proper returns in lambda functions, and using strongly type data structures wherever possible (i.e. avoiding _primative obsession_, which I know I have).
+- Read through Chapters 0 and 1 of 'The Nature of Code' (by Daniel Shiffman), and completed the exercises along the way. This is a fun and exciting way to practice JavaScript while learning a (new to me) framework: p5.js. P5 supports other languages like Java, so it could be interesting beyond simple website implementations.
+- Additional research on cookies and Google Analytics was done. These are not very exciting topics but I added some notes to my continuing education section anyway because I can see how they are important in many sites and services.
+- I took some time away from coding to look at OpenWebRX, an SDR received-only software with a web-based display. I've installed it to a Raspberry OS image and have it listening to the radio world using an SDRPlay device.
+- I've signed up for GitHub Copilot certification training (online). Over the course of the next couple months I will be preparing for taking an exam.
+- There is a new project I will be taking on, probably in early 2025: Build a digital LCD clock software package for Linux. There are several challenges I have to overcome but the solution is set for deployment and use in September 2025.
+- On the side I've been practicing HTML and CSS website design and development. There's not much to report specifically. My hope is this continuous learning will pay-off in the long run when it comes to finding my place in the software world.
+
 ## Weeks 43 through 44
 
 Last week I completed a bunch of work on my [portfolio website](https://portfolio-jon-rumsey.netlify.app/), proving to myself that I can work with someone else's code, make effective changes, update and replace existing imported components, and update data structures (albeit simple JSON ones here) and acquisition to augment the website as a whole. As mentioned before, there is much more to do in the coming weeks, but for now I have multiple other projects that need some attention to move them forward.
