@@ -1,9 +1,11 @@
 {
+  "editor.fontFamily": "Consolas, 'Courier New', sans-serif",
+  "editor.fontSize": 18,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[markdown]": {
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint" 
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
   "[c#]": {
     "editor.defaultFormatter": "ms-dotnettools.csharp"
-  },
+  }
 }
