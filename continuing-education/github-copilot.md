@@ -4,6 +4,7 @@ This will be a collection of information collected while attending presentations
 
 ## Table of Contents
 
+- [Copilot Study Guide Series 1](#copilot-study-guide-series-1)
 - [GitHub Copilot Basics - MSFT Reactor](#github-copilot-basics---msft-reactor)
 - [Codespaces](#codespaces)
 - [Copilot](#copilot)
@@ -11,8 +12,116 @@ This will be a collection of information collected while attending presentations
 - [Pragmatic Techniques To Get The Most Out Of GitHub Copilot](#pragmatic-techniques-to-get-the-most-out-of-github-copilot)
 - [MS Dev Labs Adventures with GitHub Copilot in VSCode](#ms-dev-labs-adventures-with-github-copilot-in-vscode)
 - [GitHub Copilot and Infrastructure As Code](#github-copilot-and-infrastructure-as-code)
+- [Building Automation With GitHub](#building-automation-with-github)
 - [References](#references)
 - [Footer](#footer)
+
+## Copilot Study Guide Series 1
+
+Presenter: Ari LiVigni, Sr. Cloud Solutions Architect, GitHub
+
+GitHub Copilot Plans and Features
+
+Online Refs: <https://aka.ms/S-1370>
+
+### Subscription Plans
+
+- Individual, Business, and Enterprise.
+- There are many copilots, and all of them are available at the Individual level.
+- Business and Enterprise enable excluding files, managing policies, audit logs, increased model rate limits.
+- Enterprise also inludes: Copilot knowledge bases and fine tuning a custom LLM.
+
+### Features
+
+- Code Completion
+- Chat
+- CLI
+- PR Summaries
+- Text completion (preview)
+- Copilot extenions
+- Models
+- Knowledge bases (Enterprise only)
+
+### IDE Features
+
+- VSCode, JetBrains, and XCode have Copilot integrations/extensions.
+- Chat: Copilot icon on bottom of VSCode or near the Command Palette at the top.
+- Regular updates.
+- Separate Chat Window or In-line Chat within code window.
+- Multi-edit and File Editing options: New as of GH Universe 2024. Icons near Command Palette in VSCode.
+
+### Copilot Capabilities Within the IDE
+
+- `Tab` can accept suggestions, `esc` would cancel a suggestion.
+- Add a file as context.
+- Select a specific model by using the drop-down inside the 'Ask Copilot' window.
+  - Chat Inline uses GPT 3.5 Turbo as default, but that could change _and_ other models can be selected (e.g. Claude).
+- Generate unit tests using Copilot Chat.
+- Insert Into: Terminal, code window, (etc) depending on context such as Commands could be pushed to Terminal, but code blocks would be inserted into the code window.
+
+### Chat Participants
+
+AI Domain experts that can answer questions:
+
+- Prefixed with `@` symbol.
+- Domain Experts can accept Slash Commands and Chat Variables!
+- `@workspace`: Context without the code within your workspace.
+- `@vscode`: VS Code API and the VS Code IDE itself.
+- `@terminal`: Knowledge of the terminal content or capabilities.
+- `@azure`: Azure-specific knowledge and responses.
+- `@github`: Anything GitHub including Issues, PRs,
+
+Slash Commands:
+
+- Prefixed with `/` slash character.
+- `/clear`: Start a new chat session, removing prior context (prompts and results).
+- `/help`:
+- `/explain`:
+- `/fix`:
+- ...more
+
+Chat Variables:
+
+- Prefixed with `#` hashmark symbol.
+- `#selection`:
+- `#codebase`:
+- `#editor`:
+- `#terminalLastCommand`:
+- `#terminalSelection`:
+- `#file`:
+
+### Copilot CLI
+
+- Must be installed on local VSCode (Codespaces might already have it installed).
+- Provides suggestions to prompts within the Terminal.
+- Will carry-on a Q&A style interaction within the Terminal.
+
+### Copilot Features in GitHub.com
+
+- Summarize Pull Request Comments w/ "Pull Request Summary".
+- Reviewers now contains "Copilot" as of November 2024.
+- Index Repositories (uses "Blackbird Search" on the back-end).
+- Indexing configuration includes adding repositories and applying filters (using glob-patterns) to the Index feature.
+- If there are multiple repos across a group, they can be made "related" by using Github Copilot Knowledge Base.
+
+### Marketplace Features
+
+- Copilot Extensions: Third-party extensions. Extensions can be installed "to a GitHub Organization".
+- Models: OpenAI, Phi, etc. There is a playground available to try before adding (or swapping-out) a model.
+
+### GitHub Knowledge Bases
+
+- Organziations can create these.
+- Brings together MD documentation across one or more repositories.
+- Select one or a number of repositories to include in the "knowledge base".
+- Becomes the context for Copilot Chat in GitHub, Visual Studio, or VS Code.
+- Select the Knowledge Base within Copilot Chat to set it as the context.
+- Can be updated or deleted.
+- Can be indexed, to improve Copilot Responses to prompts made against a Knowledge Base (included repositories).
+- Indexing is limited per your plan except Enterprise, which is unlimited (Individual: 5; Business: 50).
+- Requires an _Enterprise Subscription_.
+
+- [x] Learn more about [GitHub Knowledgebases](https://docs.github.com/en/enterprise-cloud@latest/copilot/customizing-copilot/managing-copilot-knowledge-bases)
 
 ## GitHub Copilot Basics - MSFT Reactor
 
