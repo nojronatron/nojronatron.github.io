@@ -1,21 +1,25 @@
 # How to Build a Responsive Website without JavaScript
 
-An NDC Oslo presentation titled "Your website does not need JavaScript", NDC Oslo, 2024.
-
-Presenter: Amy Kapernick, Web Developer, Perth, AUS, [amykapers](amykapers.dev)
+Collection of notes from various sources (but started by watching an NDC Oslo presentation) regarding web design pattern _sans javascript_.
 
 ## Table of Contents
 
-- [Non-Building Blocks](#non-building-blocks)
-- [Building-Blocks](#building-blocks)
+- [Amy's No-JS Website Demo](#amys-no-js-website-demo)
 - [Anchor Links As Responsive Design](#anchor-links-as-responsive-design)
 - [Accordians Using the Details Element](#accordians-using-the-details-element)
 - [Form Validations](#form-validations)
 - [CSS Tricks](#css-tricks)
+- [Toggle Switch](#toggle-switch)
+- [Image Carousel](#image-carousel)
+- [Final Comments](#final-comments)
+- [Syntax.FM Discussion Points](#syntaxfm-discussion-points)
+- [Items (for me) to Review](#items-for-me-to-review)
 - [References](#references)
 - [Footer](#footer)
 
-## Non-Building Blocks
+## Amy's No-JS Website Demo
+
+### Non-Building Blocks
 
 What will _not_ be used:
 
@@ -23,12 +27,14 @@ What will _not_ be used:
 - Build Tools
 - NPM Packages
 
-## Building-Blocks
+### Building-Blocks
 
 What will be used:
 
 - HTML
 - CSS
+
+Some of the following sub-sections are notes related to the topics discussed and demoed by Amy.
 
 ## Anchor Links As Responsive Design
 
@@ -256,7 +262,7 @@ Warnings:
 - Avoid using Form Inputs for purposes that they were not intended.
 - Add Aria Labels to help screen readers understand (and state) the context of the elements.
 
-### Toggle Switch
+## Toggle Switch
 
 This segment was very involved, and included a large amount of CSS (much like the previous topic).
 
@@ -267,7 +273,7 @@ In summary, it was not a great solution because:
 - Not Accessible ready.
 - Also designs Form Inputs to be used in a way they were not designed.
 
-### Image Carousel
+## Image Carousel
 
 An Image Carousel layout can be broken down into 4 elements:
 
@@ -341,16 +347,7 @@ Support and Best Pracrtices:
 
 _Instead_: Use Gallery or something other than an Image Carousel.
 
-### Items to Review
-
-- [MDN: Pointer-Events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events): Sets the circumstances under which a graphic element can become the `target` of pointer events :arrow-right: Auto, None, Stroke, or Fill.
-- [MDN: Block Quotation Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote): Indicates enclosed text is a quotation by rendering with indentation (which can be changed). Related [MDN: Cite Attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote#cite), used to link to quotation source, and the [Cite Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite), used to display citation text.
-- [MDN: Grid Display](https://developer.mozilla.org/en-US/docs/Web/CSS/grid), shorthand property that sets all explicit and implicit Grid control elements in a one-liner. Constinuent properties (set and assumed by `grid`) are `grid-auto-columns`, `grid-auto-flow`, `grid-auto-rows`, `grid-template-areas`, `grid-template-columns`, and `grid-template-rows`.
-- [MDN: Functional `:Has()` CSS pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) represents an element where any of the relative selectors passed-in match at least one element when anchored against _this_ element.
-- [MDN: `:Not()` CSS pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:not) represents elements that _do not_ match a list of selectors. Aka 'negation pseudo-class'.
-- [MDN: Position CSS Property](https://developer.mozilla.org/en-US/docs/Web/CSS/position) sets how an element is positioned in a document. `Top`, `Right`, `Bottom`, and `Left` properties deterine final location of the element.
-
-### Final Comments
+## Final Comments
 
 JS is useful, but is it really necessary?
 
@@ -360,11 +357,43 @@ JS is useful, but is it really necessary?
 - If the website is tracked for SEO, etc, JS is most likely necessary.
 - Is JS being written for _good_ or for _evil_? _[Amy Kapers]_
 
+## Syntax.FM Discussion Points
+
+- Your website should load without JavaScript.
+  - Your website should be mostly (if not completely) readable without JavaScript.
+  - Your website should be mostly (if not completely) styled without JavaScript.
+- Implement Web Standards first.
+  - What will the website look like if CSS is not loaded?
+  - Form handling should not require JavaScript (Svelt Kit helps with this).
+  - Stick to Form Data and Query Params to manage state.
+  - Server-render if possible. If SSR serves up a complete page, JavaScript probably isn't necessary.
+- Progressive Enhancement
+  - Content should be built to work for everyone (connections, assistive technologies, low-powered devices) as a baseline.
+  - Sprinkle enhancements _on top of that_ to bring more sparkle.
+- For baseline links that do advanced things like play a media file within a player, add JavaScript to listen for the Anchor element Click event and instead of following the link, provide a download to the media file.
+  - No JavaScript? Media downloads to users device and they can play it however they want.
+  - Yes JavaScript? The embedded media player plays the file (as expected).
+
+"The escalator is temporarily stairs." _[Mitch Hedberg]_
+
+"If you are presenting a UI element to a user and it's non-functional, it is a broken experience." Instead, present the basic UI Elements and only add additional elements and functionality _if_ JavaScript is present. _[Wes Boss and Scott Tolinski]_
+
+## Items (for me) to Review
+
+- [MDN: Pointer-Events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events): Sets the circumstances under which a graphic element can become the `target` of pointer events :arrow-right: Auto, None, Stroke, or Fill.
+- [MDN: Block Quotation Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote): Indicates enclosed text is a quotation by rendering with indentation (which can be changed). Related [MDN: Cite Attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote#cite), used to link to quotation source, and the [Cite Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite), used to display citation text.
+- [MDN: Grid Display](https://developer.mozilla.org/en-US/docs/Web/CSS/grid), shorthand property that sets all explicit and implicit Grid control elements in a one-liner. Constinuent properties (set and assumed by `grid`) are `grid-auto-columns`, `grid-auto-flow`, `grid-auto-rows`, `grid-template-areas`, `grid-template-columns`, and `grid-template-rows`.
+- [MDN: Functional `:Has()` CSS pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:has) represents an element where any of the relative selectors passed-in match at least one element when anchored against _this_ element.
+- [MDN: `:Not()` CSS pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:not) represents elements that _do not_ match a list of selectors. Aka 'negation pseudo-class'.
+- [MDN: Position CSS Property](https://developer.mozilla.org/en-US/docs/Web/CSS/position) sets how an element is positioned in a document. `Top`, `Right`, `Bottom`, and `Left` properties deterine final location of the element.
+
 ## References
 
-Check out Amy's live site at [nojs.amyskapers.dev](https://nojs.amyskapers.dev).
-
-To learn more about Amy and her talks, see [Kapers.dev](https://kapers.dev).
+- Check out Amy's live site at [nojs.amyskapers.dev](https://nojs.amyskapers.dev)
+- To learn more about Amy and her talks, see [Kapers.dev](https://kapers.dev)
+- Syntax.FM [discussion about JavaScript-free web development](https://www.youtube.com/watch?v=NDK66t7SrSY)
+- Notes taken while watching an NDC Oslo presentation titled "Your website does not need JavaScript", NDC Oslo, 2024.
+- Presenter: Amy Kapernick, Web Developer, Perth, AUS, [amykapers](amykapers.dev)
 
 ## Footer
 
