@@ -1,11 +1,12 @@
 # Web Accessibility Basics
 
-MSFT Learn training notes in the ASP NET Core training Learning Path.
+MSFT Learn training and other notes regarding Web Accessibility.
 
 ## Table of Contents
 
 - [Learn about Accessibility](#learn-about-accessibility)
 - [ASP.NET Core Accessibility (MSFT)](#aspnet-core-accessibility-msft)
+- [Special Elements and Attributes](#special-elements-and-attributes)
 - [Resources](#resources)
 - [Footer](#footer)
 
@@ -39,6 +40,7 @@ Screen Reader Tools:
 - JAWS: Windows app.
 - NVDA: Windows app.
 - VoiceOver: macOS and iOS. Installed by default.
+- Talkback: Android screen reader (appears to be built-in).
 
 Responsive Design:
 
@@ -144,7 +146,8 @@ Again, using built-in HTML elements and their included attributes will provide a
 - Input elements can be marked with the `required` attribute, and styled accordingly such as `input:required { border-color: red; }` if wanted or necessary.
 - Use `<form>` and its attributes to create a single, encapsulated form without having to write additional event handlers. Form `action` attribute saves the developer from having to write a specific event handler to send form data.
 - Use `input type="submit"` with `onclick=()` handler attribute to handle form submission.
-- Tab order is important, so designing the page with appropriate elements in a sensible order will provide a good experience for navigation by tabbing.
+- Tab order is important, so designing the page with appropriate elements in a sensible order will provide a good experience for navigation by tabbing. Use `tabindex` attribute to set (or disallow) an element's tab order in the page tab sequence.
+- Use `<details>` and `<summary>` elements as widgets that simplify showing or hiding additional content interactively.
 
 ### Accessibility Insights For Web
 
@@ -196,6 +199,13 @@ Does the page accommodate these viewports and various Zoom settings?
 - Primary heading `h1`: There can be _only one_. When read with a Screen Reader, a single `h1` ensures a simple, navigable web page hierarchy.
 - Tab Order: Be default, web pages will usually have a reasonable tab order (L to R, Top to Borrom) but there are exceptions. Test your page to verify the Tab Order makes sense.
 - Images: Use the `alt` element and provide succinct, descriptive text for what the image is when it is the subject matter of the content. If it is purely decorative, still include the `alt` attribute but leave it blank.
+
+## Special Elements and Attributes
+
+- `inert`: An attribute that causes an element and its descendants to become inactive and hidden from assistive technology.
+- `focusgroup`: An attribute that enables using arrow keys to set focus to an element, among a group of elements.
+- `<search>`: Semantic element to wrap a Search tool.
+- `fieldset` and `legend`: Group related elements together, enhancing accessibility.
 
 ## Resources
 
