@@ -7,6 +7,10 @@ This page is a selection of notes taken while looking into various available CMS
 ## Table of Contents
 
 - [SquareSpace](#squarespace)
+- [SQSP Forms](#sqsp-forms)
+- [SQSP Member Sites](#sqsp-member-sites)
+- [SQSP Customer Accounts](#sqsp-customer-accounts)
+- [SQSP Paywall Areas Website](#sqsp-paywall-areas-website)
 - [Resources](#resources)
 - [Footer](#footer)
 
@@ -141,6 +145,45 @@ Known as 'clients', these represent website users that may receive an 'Invoice',
 4. Click 'Invoicing' and search the list to select the Client to Invoice.
 5. This opens a New Invoice (or lists existing ones). New Invoices can have line items added to them, a due date can be set, and a Memo can be added (such as 'Thanks for your order!').
 6. Once created, the Invoice can be sent to the Client using the 'Send' button (confusingly, located in the upper right-hand corner of the 'Invoice Draft' screen).
+
+## SQSP Member Sites
+
+Automatically Paywalled.
+
+1. Update pages of Member Site with the page types/layouts/styles you want.
+1. Select single, or multiple prices.
+1. Select Free, Subscription, or single-purchase order with cost.
+1. Add a "Digital Product Block" to a public page to allow visitors to sign-up for membership, and create an account to access the content.
+
+About:
+
+- A Digital Product Block should be used to create a _public accessible LOGIN PAGE_.
+- The first page in Member Site is the site's homepage.
+- Drag-n-drop other page to the top position to change the Member Site homepage.
+- Pages that are already part of a pricing plan _cannot be drag-n-dropped into a Member Site_, instead _duplicate the page_ and then move the duplicate.
+
+Advice: Keep Member Site page count low so the list of pages does not cause a poor UX for the user.
+
+SEO: This is _disabled_ in Member Sites by default (so is password protection).
+
+## SQSP Customer Accounts
+
+- Web visitors can store payment methods, shipping addresses, and past orders.
+- Customers can create account during the checkout process.
+- Customers can use Login link to sign-up.
+
+To Enable:
+
+1. Go to Administration page.
+1. Open Commerce area.
+1. Look for 'Customer Accounts' and set to: ON
+
+You Can:
+
+- Customers with accounts are indicated in the Customers list.
+- Order history and contact information is available.
+
+## SQSP Paywall Areas Website
 
 ## Resources
 
