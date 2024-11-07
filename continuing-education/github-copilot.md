@@ -7,12 +7,15 @@ This will be a collection of information collected while attending presentations
 - [Copilot Study Guide Series 1](#copilot-study-guide-series-1)
 - [GitHub Copilot Basics - MSFT Reactor](#github-copilot-basics---msft-reactor)
 - [Codespaces](#codespaces)
-- [Copilot](#copilot)
+- [What Can Copilot Do](#what-can-copilot-do)
 - [The GitHub Next Team and Project](#the-github-next-team-and-project)
 - [Pragmatic Techniques To Get The Most Out Of GitHub Copilot](#pragmatic-techniques-to-get-the-most-out-of-github-copilot)
 - [MS Dev Labs Adventures with GitHub Copilot in VSCode](#ms-dev-labs-adventures-with-github-copilot-in-vscode)
 - [GitHub Copilot and Infrastructure As Code](#github-copilot-and-infrastructure-as-code)
 - [Building Automation With GitHub](#building-automation-with-github)
+- [Responsible AI with GitHub Copilot](#responsible-ai-with-github-copilot)
+- [Advanced GitHub Copilot Features](#advanced-github-copilot-features)
+- [IDE, Chat, and Command Line Techniques](#ide-chat-and-command-line-techniques)
 - [References](#references)
 - [Footer](#footer)
 
@@ -65,9 +68,9 @@ AI Domain experts that can answer questions:
 
 - Prefixed with `@` symbol.
 - Domain Experts can accept Slash Commands and Chat Variables!
-- `@workspace`: Context without the code within your workspace.
-- `@vscode`: VS Code API and the VS Code IDE itself.
-- `@terminal`: Knowledge of the terminal content or capabilities.
+- `@workspace`: Context without the code within your workspace. Can also generate an entirely new project.
+- `@vscode`: VS Code API and the VS Code IDE itself. For example, how to change settings in VS Code.
+- `@terminal`: Knowledge of the terminal content or capabilities. Can do things like GCI the local file system.
 - `@azure`: Azure-specific knowledge and responses.
 - `@github`: Anything GitHub including Issues, PRs,
 
@@ -76,9 +79,12 @@ Slash Commands:
 - Prefixed with `/` slash character.
 - `/clear`: Start a new chat session, removing prior context (prompts and results).
 - `/help`:
-- `/explain`:
 - `/fix`:
-- ...more
+- `/explain`: Describe the selected code line, block, or file.
+- `/fix`: Proposes solutions to problems in selected code.
+- `/generate`: Given a set of requirements, will generate code, creating functions or other code blocks.
+- `/optimize`: Analyzes selected code and suggests improvements to runtime efficiency.
+- `/tests`: Create unit tests for teh selected code. Tell Copilot which unittest framework to use and it will generate code for you.
 
 Chat Variables:
 
@@ -528,6 +534,171 @@ List of Advanced Features:
 _Note_: `\fix` et al are known as _implicit prompts_.
 
 _Note_: `@workspace` uses _open files_ in the editor as additional context.
+
+## IDE, Chat, and Command Line Techniques
+
+- [x] Use auto-suggestions.
+- [x] Use multiple suggestions pane.
+- [x] Provide content to Copilot via inline commands, block comments, and doc strings.
+- [x] Interact with Copilot through natural language conversations.
+- [x] Generate complex code, and debug issues through natural language.
+- [x] Obtain code explanations in real-time.
+- [x] Improve relevance of Copilot Chat suggestions through scope referencing, slash commands, and agents.
+- [x] Set up and use GitHub CLI for: Command explanations, suggestions, and to execute commands.
+
+### Completion Supported languages
+
+Currently fully supported:
+
+- python
+- JavaScript
+- TypeScript
+- ruby
+- go
+- C#
+- C++
+
+Copilot will understand and could help with most other languages and frameworks - the above are the supported ones.
+
+### Suggestions
+
+- Auto Suggestions: Ghost code is displayed in-line, suggesting possible code additions.
+- Multiple Suggestions Pane: Hover over Ghost Code to see additional commands like Accept, Accept Word, or to see additional suggestions.
+- Method recognition: Start typing a function or method and Copilot will ghost-write a suggestion for an entire implementation, following your code style.
+- Convention Mimicing: Copilot will mimic existing code style, variable and method naming conventions, formatting, and design patterns.
+- Comments Trigger Suggestions: Natural Language Processing and Contextual Analysis are used to convert code comments into suggestions. Leverages in-line, block, docstring, TODO, and API documentation styles.
+
+### Copilot Chat
+
+- Interactive, conversational AI assistant, available directly in the IDE.
+- Support natural language processing.
+- Understand context of a selection, file or files, or an entire project.
+- Better-suited for generating complex code or boilerplate code for specific design patterns.
+- Good for generating complex regular expressions or developing advanced data structures.
+- Analyzes errors in code and suggests potential fixes with step-by-step explanations.
+- Explain code within complex code snippets, and offer insights into best practices and potential optimizations.
+- Also has a `Feedback` feature so the user can rate suggestions.
+
+### Copilot Chat for Command Line
+
+Offers intelligent suggestions and simplifying tasks:
+
+- Streamline command-line workflows.
+- Provide explanations for unfamiliar commands.
+- Suggest commands based on needs/current activities.
+- Execute commands on your behalf.
+
+Common Commands include:
+
+- 'ghcs explain': Follow the command with a quoted string of the command that Copilot should explain.
+- 'ghcs suggest': Follow with quoted string containing a question or prompt for Copilot to generate a response to.
+- 'ghcs revise command': Ask Copilot to generate a new suggestion based on the last prompt.
+- `ghcopilot config`: Enable configuring Copilot CLI.
+
+Alias Configuratin:
+
+- Allows executing commands on your behalf.
+- Can be configured in PowerShell, Bash/*sh, and mac Terminal.
+
+Organizational Settings:
+
+- Policy may disable or enable other features and capabilities of the CLI.
+
+Data Handling:
+
+- Prompts are _not retained_ by Copilot.
+- Analytics metadata _is retained_.
+- Use `gh copilot config` and select from the on-screen list of options.
+
+### Improving Copilot Chat Responses
+
+- Scope Referencing: Use File References, environment references (e.g. `@workspace`), Slash Commands (e.g. `\describe`)
+
+## Management and Customization with Copilot
+
+- [x] Understand plans, management, and customization features.
+- [x] Understand contractual protections and siabling matching public code.
+- [x] Manage content exclusions.
+- [x] Common issues with Copilots and their solutions.
+
+### Copilot Policy and Customization Features
+
+Individual, Business, and Enterprise license Copilot has varying Managemetn and Customization features.
+
+Management Policies:
+
+- Individual: Enable public code filter.
+- Business: Public code filter, User management, data exclusion from training, enterprise grade security, IP indemnity, SMAL SSO Auth, and Usage metrics.
+- Enterprise: All Individual and Business policies plus Require GitHub Enterprise Cloud.
+
+Customization Features:
+
+- Individual: Unlimited integration with Copilot Extensions (currently in beta), Build private extension for internal tooling (currently in beta).
+- Business: Same as Individual.
+- Enterprise: All individual and Bueisness features plus Tailed chat conversations to private codebases, attach organization's knowledge bases to chat, and fine-tuned models for code completion (coming soon as an add-on).
+
+Consider these factors when deciding on a plan for your organization:
+
+- Data privacy and security.
+- Policy management at the organizational level.
+- Data collection and retention.
+- IP Indemnity and Data Privacy (legal).
+
+Safeguarding Code and Data:
+
+- IP Indemnity: Set 'matching public code: blocked' to enable indemnity and GitHub assumes legal responsibility for IP claims.
+- Data protection Agreements: Offered by GitHub, provides secure, responsible data handling with transparency.
+- GitHub Copilot Trust Center: Detailed information about how Copilot works, security measures, IP safeguards, etc.
+
+### Matching Public Code Feature
+
+1. Go to the Organization's GitHub page.
+1. Open the profile.
+1. Click Enterprise Settings (or Organizational Settings).
+1. Click Copilot.
+1. Select 'Suggestions' drop-down.
+1. Select 'Matching Public Code'
+1. Click 'block'.
+1. Click Save.
+
+### Content Exclusions
+
+Can be set at the Repository level (go to Repository Settings), or the Organizational level (load the Organization page and open Settings).
+
+Impacts of exclusing public code:
+
+- Limits the codebase upon which Copilot acquires fodder for its suggestions.
+- Could reduce overall context available to Copilot.
+- Could limit accuracy and usefulness of suggestions.
+
+Balance security and functionality when excluding content:
+
+- Code Completions are disabled on excluded files.
+- Suggestions will no longer draw from excluded files, limiting context scope.
+
+### Troublshoot Common Copilot Issues
+
+Missing Code Suggestions:
+
+- Check internet connection.
+- Update Copilot Extension.
+- Verify IDE compatibility.
+- Review Content Exclusions to see if files are excluded.
+
+Content Exclusion Issues:
+
+- Application of exclusions is delayed by up to 30 minutes.
+- Reload the exclusions in the IDE to confirm application is set.
+- Verify affected user is a member of the Organziation with the Content Exclusion settings applied.
+- Content Exclusion application can be seen when an affected file is loaded and a slash `/` appears over the Copilot icon, indicating the file is excluded.
+- Some IDEs do not support Content Exclusions in Copilot Chat - check the IDE and Copilot documentation to confirm expected behavior.
+
+Triggering Copilot Suggestions:
+
+- Provide clear context to Copilot.
+- Use meaningful variable and method/function names.
+- Use a specific Copilot command to generate a better response, such as use Chat instead of In-line, or using a Domain Expert `@`, Slash Command `/`, or Chat Variable `#`.
+- Adjust prompt length. Too short or too long of a prompt might not provide enough context to generate a valuable response.
 
 ## References
 
