@@ -702,9 +702,9 @@ Triggering Copilot Suggestions:
 
 ## Streamline Dev Productivity With Copilot
 
-- [ ] ID specific ways to integrate Copilot into dev workflows.
-- [ ] Understand where Copilot can positively impact the SDLC, as well as its limitations.
-- [ ] Measure Copilot impact on development performance.
+- [x] ID specific ways to integrate Copilot into dev workflows.
+- [x] Understand where Copilot can positively impact the SDLC, as well as its limitations.
+- [x] Measure Copilot impact on development performance.
 
 ### Boost Dev Productivity
 
@@ -857,6 +857,57 @@ Github Copilot Developer Survey advice:
 - Consider privacy concerns of users taking the survey.
 - Use BI tools to perform data tracking and reporting, statistical analysis.
 - Use the insights to develop training and go-forward plans for continual improvement across teams and the organization.
+
+## Developing Unit Tests Using Copilot
+
+- [x] Create tests using Copilot extensions.
+- [x] Target edge cases in unit tests using Copilot.
+- [x] Exercise using Copilot to test a project to verify unit tests run successfully.
+
+### Copilot Tools is VS Code
+
+Five different ways to interact with Copilot:
+
+- Code line completions (aka ghost code).
+- Inline chat. Chat within the editor, in-line with the code.
+- Chat view. The Copilot Chat window.
+- Quick chat. Ask a question, get a generated response, get back to work.
+- Smart action. Copilot will perform actions without you having to write a prompt.
+
+Support for Unit Tests using C#:
+
+- .NET 8.0 SDK.
+- C# Dev Kit Extensions (contains other extensions as a single installation).
+- A test framework package added to the project like xUnit, NUnit, or MSTest.
+
+### Enable a Test Framework in VS Code
+
+1. Create a project (or solution or projects) that has a UnitTest project (use `dotnet new xunit ...` for example).
+1. Open Command Palette.
+1. Select `DotNet: Generate Assets for Build and Debug`.
+
+### Develop Tests Using Copilot
+
+Open the code file that contains code that will be tested and Copilot will help with these tasks:
+
+- Write unit tests in the installed framework for code under test open in a tab.
+- ID and write test cases for edge cases and boundary conditions (e.g. error handling, null values, and unexpected inputs).
+- Suggest assertions to ensure correct function operation validation.
+
+Try the following tactics to have Copilot write tests:
+
+- Open a code file and display just a single method in the code editor, then open Copilot Chat and request `Write unit tests for the method in the #editor`.
+- Open a code file and select the method that should be tested, open Copilot Chat and request `#selection write unit tests for this code`.
+
+### Run and Manage Test in VS Code
+
+Run, debug test cases, view test results, and manage test cases using Test Explorer:
+
+- Within the code: C# Dev Kit will generate a green arrow indicating a unit test can be executed right there in the code.
+- Test Explorer lists all discovered cases, their last-run result (pass, fail, not run), and has start, stop, and other tools.
+- View Test Results via editor decorations or from within Test Explorer.
+- Use the Command Palette to call commands like `run all tests`, like you would using `dotnet` command in the terminal.
+- VS Code Test Settings are available within the VS Code Settings editor.
 
 ## References
 
