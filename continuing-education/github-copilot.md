@@ -257,9 +257,9 @@ As of March 2024: Prepare for [GitHub Certification Exams](https://aka.ms/github
 
 [Self-guided Codespaces walkthroughs](https://github.com/skills/code-with-codespaces).
 
-## Copilot
+## What Can Copilot Do
 
-- Write, Test, Explain code, and get answers.
+- Write, Test, Explain code, and get answers to questions.
 - There is a free-trial link to get started.
 - Supported in Visual Studio, Neovim, VS Code, and JetBrains IDEs.
 
@@ -294,7 +294,7 @@ Note: VS Code Extensions might be built in TypeScript.
 
 Check out [Your First Extension](https://code.visualstudio.com/api/get-started/your-first-extension).
 
-#### Summary Notes
+### Summary Notes
 
 CoPilot: AI pair-programmer.
 
@@ -316,7 +316,7 @@ GitHub Next is working on LLM-based solutions like:
 - Copilot Voice: Voice-operated coding is possible, for improved accessibility!
 - Code Brushes: Make coding more tactile, similar to Photoshop brushes that _paint_ or modify your code.
 
-##### VSCode Primitives
+### VSCode Primitives
 
 Contextual Toolbar: CodeLens as an example. Tools that appear in-line or above a code block or segment.
 
@@ -380,10 +380,11 @@ _Remember_: Prompts are limited, so as not to overwhelm the network, or the clou
 
 ## MS Dev Labs Adventures with GitHub Copilot in VSCode
 
-These are notes from a livestream hosted by
-Olivia Guzzardo
-Marc Baiza Tech Progm MSFT AI + ML
-Abril DevTools at MSFT
+These are notes from a livestream hosted by:
+
+- Olivia Guzzardo
+- Marc Baiza Tech Progm MSFT AI + ML
+- Abril, DevTools at MSFT
 
 ### Copilot Adventures
 
@@ -465,6 +466,68 @@ Some notes:
 - Use a Linter to check code. `Flake8` was mentioned as an effective Python linter.
 - python.defaultInterpreterPath: Points to the vscode venv that the Python project will run in.
 - Ask Copilot to assist creating a GitHub Action to do things like 'linting'.
+
+## Responsible AI with GitHub Copilot
+
+Goals:
+
+- [x] What are the principles of responsible AI usage?
+- [x] What limitations are associated with AI, and how to mitigate risks.
+- [x] What are best practices to ensure generated code meets ethical and project standards.
+- [x] How transparency and accountability in AI systems is necessary.
+
+### Responsible AI And Governance
+
+Risks of AI:
+
+- Sometimes makes difficult to interpret decisions.
+- Lack of transparency, accountability.
+- Unintended (and harmful) outcomes.
+- Biased decisions, privacy violations.
+
+Governance Over AI:
+
+- Develop, asses, and deploy safely, in trusted and ethical way.
+- Ensure decisions are equitable and beneficial.
+- People and their goals should be focus of design.
+- Fairness, reliability, and transparency are key tenents.
+
+MSFT and GitHub's Six Principles of Responsible AI:
+
+- Fairness: Treat people fairly through trained-data review, model testing using demographic samples, use of adversarial biasing, model performance monitoring, controls to override unfair model scores.
+- Reliability and safety: Consistent, trustworthy operation, with safe responses to unexpected inputs, and resist harmful manipulation. Minimize unintended harm. Robust, accurate, predictable behavior under normal conditions.
+- Privacy and security: Protect user privacy and data security through obtaining user permissions before collecting data, use only the data necessary to complete the job and check data points to ensure only necessary data is included, and anonymizing personal data. Encryption, secure vaults, HSMs (hardware security modules), and key management are used and managed.
+- Inclusiveness: Empower _everyone_ equally, and disadvantage no one. Include accessible controls for all abilities. Worldwide availability, without excluding any geographies. Input into the system by anyone is allowed.
+- Transparency: Use validation framework to describe operation, justify _design choices_ behind the AI system, be honest about capabilities and limitations of AI system, and enable auditing with logging and reporting capabilities.
+- Accountability: AI Creators should be responsible for how their AI systems operate. Use constant monitoring, and enable detecting, managing, and mitigating risk. "AI systems must be accountable to people, and companies deploying AI systems must take responsibility for [their AI systems] operation." _[Microsoft Learn documentation]_
+
+### Key Takeaways
+
+1. Ensure AI systems are safe, trustworthy, and ethical.
+1. Create AI systems that are easy to understand.
+1. Ensure AI systems perform equally well across all demographic groups.
+1. Address potential biases by reviewing training data, test with balanced samples, and use _adversarial debiasing_ techniques.
+1. Ensure AI systems are transparent, with easy to understand AI processing and decisions.
+1. Ensure generated code aligns with project-specific conventions and requirements.
+1. Fairness, Inclusiveness, Accountability.
+
+## Advanced GitHub Copilot Features
+
+- [x] Use slash commands to make code changes using `[ctrl] + i` and a prompt such as 'describe this code block'.
+- [x] Use GitHub Chat feature to interact, prompting Copilot to write unit tests, for example.
+- [x] Ask questions about a project using an agent such as `@workspace`.
+
+List of Advanced Features:
+
+- Ghost Text: Suggestions provided by Copilot while typing in an IDE with Copilot enabled. Use `[tab]` key to accept it, or just ignore it to decline. Open-files are automatically used as context.
+- Copilot Chat: Interactive discussion feature. Click the chat icon in the IDE, then start asking questions about code being worked on, or other software-related questions.
+- Inline Chat: Interact with Copilot without opening a new window. `[ctrl/Command]` + `[i]`. Reduces developer context-switching to interact with Copilot.
+- Slash Commands: Specify an _intent_ to prefix a prompt. `/` prefix a command like `tests` or `docs` or `fix` or `describe`. Minimizes prompt writing and maximizes generated output relatability.
+- Agents: Ask questions using a specific context such as `@terminal` or `@workspace`. Prefix an Agent target with `@` symbol, then type the question/prompt for a context-aware response.
+
+_Note_: `\fix` et al are known as _implicit prompts_.
+
+_Note_: `@workspace` uses _open files_ in the editor as additional context.
 
 ## References
 
