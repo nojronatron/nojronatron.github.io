@@ -17,6 +17,12 @@ Lots going on right now!
 - There is a new project I will be taking on, probably in early 2025: Build a digital LCD clock software package for Linux. There are several challenges I have to overcome but the solution is set for deployment and use in September 2025.
 - On the side I've been practicing HTML and CSS website design and development. There's not much to report specifically. My hope is this continuous learning will pay-off in the long run when it comes to finding my place in the software world.
 
+### SquareSpace Link Fragment Anomaly
+
+While defining a link fragment to enable a user to click an Anchor element and jump farther down-page to get to related content, I found that the Edit tool sometimes does not allow the anchor link to function. Also, when in publish preview mode, the link might not work, either. Attempting to fix the problem by adding a code block and inserting actual HTML code ('#location-to-jump-to') and ('_self' etc) would not work at all. Soon after adding the HTML code, the Editor page would hang. Frustrating. I guess I'll need to read up on this (seemingly obvious but somehow non-functional) topic.
+
+-[ ] Review how to add link fragments to a page in SQSP.
+
 ## Weeks 43 through 44
 
 Last week I completed a bunch of work on my [portfolio website](https://portfolio-jon-rumsey.netlify.app/), proving to myself that I can work with someone else's code, make effective changes, update and replace existing imported components, and update data structures (albeit simple JSON ones here) and acquisition to augment the website as a whole. As mentioned before, there is much more to do in the coming weeks, but for now I have multiple other projects that need some attention to move them forward.
