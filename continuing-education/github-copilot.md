@@ -129,6 +129,54 @@ Chat Variables:
 
 - [x] Learn more about [GitHub Knowledgebases](https://docs.github.com/en/enterprise-cloud@latest/copilot/customizing-copilot/managing-copilot-knowledge-bases)
 
+## Copilot Study Guide Series 2
+
+Developer use cases for AI with GitHub Copilot
+
+Presenters:
+
+- Ari LiVigni
+- Ochuko "Chukes" Ebenezar Onojakpor
+
+Key Topics:
+
+- Langagues and Frameworks
+- Documentation
+- Context Aware Responses
+- Write Tests
+- Modernizing Legacy Apps
+- Debugging and code refactoring
+- Data science applications
+- SDLC managment and productivity management
+
+### Stream of Takeaways
+
+This presentation was a combination of summary slides and lots of live coding.
+
+Takeaways and interesting points:
+
+- Learn by asking Copilot.
+- Use inline Chat, or Copilot Chat to have Copilot write the code for you.
+- Use `/explain` to help you understand what the generated code does.
+- Use Copilot Chat to generate an entire project from scratch, with help from `@workspace` and `/new`.
+- Prompt Copilot to generate quality responses by using references such as `@workspace`, `/files`, and writing clear instructions.
+- Break-down large tasks into smaller sub-tasks to get better quality results.
+- Systematically test changes added by Copilot.
+- Leverage Context, Intent, Clarity, and Specificity.
+- Provide a _role_ as added context e.g. 'as a front end developer...'.
+- Provide an _example of what you want generated_ to help provide additional context to Copilot.
+- Write tests, generate sample data sets, address missing edge-case tests, and write tests in a unittest framework you might not be familiar with.
+- Copilot Suggestions can fill-in markdown documentation, or to produce unfamiliar documentation items like a Mermaid diagram that describes the data flow or WRRC or a new or unfamiliar application.
+- In Ari's example, he took an existing COBOL application, and used Copilot to help recode the application into a Node.js app.
+- Copilot suggests fixes for common code errors, and assists with refactoring.
+- Alternate implementations might be generated.
+- Provide guidance of error messages to help understand them, find the cause, and solve them.
+- While using Copilot Chat, simply open related files and select a specific file before submitting the prompt, and the generation will use those files as part of the context, and can target the open file for generated code as needed.
+- Command in Chat `/newNotebook` can launch a new Jupyter Notebook.
+  - Inline Chat can be used within Jupyter Notebooks!
+- SDLC: Copilot Metrics API at Github.com: Queryable to get information about your Copilot Users at Organization Level or by Teams at Enterprise licensing level. Results are JSON document by default.
+  - Copilots Metrics Viewer: Online graphing interface that can be set up on-prem, using Copilot Metrics API data.
+
 ## GitHub Copilot Basics - MSFT Reactor
 
 Presenter: Liam Champton @liamchampton
