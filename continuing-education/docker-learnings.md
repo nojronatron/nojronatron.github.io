@@ -7,13 +7,23 @@ These space will contain scribblings from my studies, and use of, Docker.
 ## Table of Contents
 
 - [Introductory Concepts](#introductory-concepts)
+- [Basic Docker Process/Workflow](#basic-docker-processworkflow)
+- [Some Basic Docker Commands](#some-basic-docker-commands)
+- [Docker File Contents](#docker-file-contents)
 - [How To Think About Docker](#how-to-think-about-docker)
 - [Docker Compose](#docker-compose)
+- [Docker Compose Logs](#docker-compose-logs)
 - [Questions](#questions)
 - [References](#references)
 - [Footer](#footer)
 
 ## Introductory Concepts
+
+Docker is a linux-y thing:
+
+- Files might not have a name.
+- Paths are not Windows-y.
+- Commands are linux-like.
 
 Features:
 
@@ -21,7 +31,13 @@ Features:
 - Host resources are leveraged without full bi-directional sharing.
 - A lightweight environment that is bound in isolation from the host but allowed to leverage the hosts resources.
 
-Docker File: New project that describes the base image, run commands, copy files and folders into the image, run a script/file within the image to setup or configure and run the service that the Container will house. Change _docker file_ in order to alter an image _build_.
+Docker File:
+
+- New project that describes the base image, run commands, copy files and folders into the image.
+- Also describes how to run a script/file within the image to setup or configure and run a service that the Container will house.
+- Default name 'Docker.' (no extension).
+- Change docker file contents to alter an image _build_.
+- Docker build command can point to a Dockerfile in a separate directory by setting the unnamed 'Path' argument (usually `.` for `Docker.`).
 
 Image: The thing our Container runs from. Usually a `tag` is needed to define which image _version_ to use. Images are immutable and cannot be changed. Build a new version of the Image using a Dockerfile, instead.
 
@@ -31,29 +47,104 @@ Docker Hub: Docker's Image Repository.
 
 Container: A running Docker Image.
 
-Basic Docker Process/Workflow:
+## Basic Docker Process/Workflow
 
-1. Write a Dockerfile which defines which image (and tag) to use and the commands to run and/or files to copy into the image instance.
-2. `docker build ...` an Image using the Dockerfile.
-3. `docker run ...` uses the Dockerfile and Image to deploy a Container to the host.
+1. (Optional) Pull a base image to use: `docker pull {name}:{tag}` where name is a Docker Registry image name, and tag is the ID (usually 'latest').
+1. Write a Dockerfile which defines which image (and tag) to use and the commands to run and/or files to copy into the image instance. The `FROM` command will cause `docker pull ...` to run if the `FROM` image is not already local.
+1. `docker build -t {name}:{tag} {dir_to_Dockerfile|.}` builds an Image using the Dockerfile, naming it 'name' and 'tag'. The Dockerfile defines _which base image to target_.
+1. `docker run ...` uses the Dockerfile and Image to deploy a Container to the host.
 
-Installation:
+## Some Basic Docker Commands
 
-`apt install docker`
+Install Docker:
 
-Build:
+- `apt install docker`
+
+Build A Docker Image With a Dcokerfile:
 
 `docker build -t "myImage:latest" .`:
 
 - `-t myImage`: Name the Image 'myImage' with a tag of 'latest' (the default).
 - `.`: Build in this current directory.
 - Update the Dockerfile and use Build to create new Images.
+- Use a Dockerfile in some other directory and store output here: `docker build -t "myImage:latest" -f "..\docker\files\Dockerfile" .`
 
-Run:
+Run A Docker Image In A Container:
 
-`docker run name:tag`:
+- `docker run name:tag`:
+- ID a name/tag by option flag: `-t name:tag` identifies the specific Image name and Tag.
 
-- `name:tag` identifies the specific Image name and Tag.
+Attach to a Running Docker Container:
+
+- `docker run [OPTIONS] IMAGE [COMMAND] [ARG...]`
+- `docker run --interactive --tty {container_name}:{container_tag}`
+
+## Docker File Contents
+
+Must start with `FROM` statement:
+
+- Identifies the source image that this Dockerfile targets.
+- e.g. `debian:latest`
+
+The order of command entry is important:
+
+- Caching speeds up subsequent build operations.
+- The higher-up in the Dockerfile that a change is made, the fewer cached items can be re-used.
+- Maintain the most critical, and least-likely to change commands near the TOP of the Dockerfile.
+
+WORKDIR command:
+
+- Set the working directory for any interactive operations.
+- e.g. `/app`
+
+RUN command:
+
+- The command line for Docker to execute _inside the Container Image_.
+- e.g. `RUN apt update && apt install iputils-ping -y`.
+- RUN commands are executed when the image is being BUILT.
+- RUN can also be formatted like `RUN ["command", "param1", ...]`.
+
+CMD command:
+
+- An array of string-based command-line commands to run within the container.
+- e.g. `CMD["ping", "-c 4", "192.168.0.1"]`
+- CMD commands are executed when the Container is RUN.
+- Each item in the array represents strings in the chain to send serially to the interpreter.
+- There is a 1:1 relationship between a group of a command and argument(s) and the set (square brackets),  meaning a 'ping ...' command that is followed by a 'tail /var/log' represent TWO commands and would be added to the Dockerfile like `CMD["ping", "-c 4", "192.168.0.1"]\nCMD["tail", "/var/log"]`
+- It is possible to use CMD to start an application when the Container starts.
+- Single command line can be run with just `CMD param1`
+
+ENTRYPOINT command:
+
+- `ENTRYPOINT ["command", "param1, ...]`
+- Alternatively: `ENTRYPOINT command param1 ...`
+
+ENV Command:
+
+- Set Environment Variables.
+- `ENV key=value`
+
+ARG Command:
+
+- Set arguments, similar to ENV but ...
+- `ARG name` or `ARG name=defaultvalue`
+
+USER Command:
+
+- Define a userID that starts the container e.g. non-root
+- `USER user`
+- `USER user:group`
+
+EXPOSE Command:
+
+- Expose a specified port with or without a protocol.
+- `EXPOSE port`
+- `EXPOSE port/protocol`
+
+COPY Command:
+
+- `COPY {source} {destination}`
+- Copies source from local filesystem to destination in the Docker image currently being built.
 
 ## How To Think About Docker
 
@@ -64,6 +155,25 @@ The Dockerfile identifies the Image, and instructs Docker to `COPY` files, `RUN`
 It is possible to point Docker Build to a `path` where a project lives (e.g. Web front-end, etc) instead of a Docker Image. This is done by declaring the path rather than the Docker Image name.
 
 > Doing this ensures that the latest dev build is used every time a service is deployed. This is particularly helpful in multi-project environments (see Docker Compose, later in this document).
+
+### Docker Networks
+
+Three Network types:
+
+- Bridge: Separate, isolated network from the host. Containers can talk to each other but not the host.
+- Host: Containers share host machine's network stack directly.
+- Default: Used when no network is specified.
+
+Docker Networks and Managing Containers:
+
+- Managing a Docker instance does not require network access.
+- Docker command line accesses the Docker instance using Docker APIs instead.
+
+Docker Commands:
+
+- `docker network inspect -f json|template -v {networkID}`.
+- `-f`: Format style (or skip for uncompressed JSON).
+- `-v`: Verbose.
 
 ### How To Think About Docker Deploy
 
@@ -153,8 +263,10 @@ Is a running Docker Image `Screen` redirectable to the host?
 
 ## References
 
-- Typecraft [The intro to Docker I wish I had when I started](https://www.youtube.com/watch?v=Ud7Npgi6x8E).
-- [Docker Online Documentation](https://docs.docker.com/).
+- Docker [Dockerfile Reference](https://docs.docker.com/reference/dockerfile/)
+- Typecraft [The intro to Docker I wish I had when I started](https://www.youtube.com/watch?v=Ud7Npgi6x8E)
+- [Docker Online Documentation](https://docs.docker.com/)
+- [Christian Lempa: Learning Docker // Build Container Images](https://www.youtube.com/watch?v=JDw3ZdQcv2g)
 
 ## Footer
 
