@@ -2,9 +2,19 @@
 
 Microsoft provides a yearly conference that highlights new technologies and capabilities with the DotNET.vNext.
 
+## Table of Contents
+
+- [Key Note](#key-note)
+- [ASP.NET Core and Blazor](#aspnet-core-and-blazor)
+- [Hybrid Cache](#hybrid-cache)
+- [A Selection Of Recent C# Language Features](#a-selection-of-recent-c-language-features)
+- [OpenAI DotNET The Official OpenAI Library for .NET](#openai-dotnet-the-official-openai-library-for-net)
+- [References](#references)
+- [Footer](#footer)
+
 ## Key Note
 
-Speakers and Presenters:
+Speakers and Presenters (throughout the event):
 
 - James Montemagno
 - Maddy
@@ -18,6 +28,15 @@ Speakers and Presenters:
 - Daniel R
 - Filisha S
 - Rachel K
+- David Fowler
+- Mark Gravell
+- Bill Wagner
+- Scott Addie
+- Luis Quintanilla
+- Tanner Gooding
+- Tarek Sayed
+- Jordan Matthiesen
+- Brain Randell (GitHub) (octobrian)
 
 Dot NET Release Notes:
 
@@ -232,6 +251,226 @@ Other:
   - Immediate Window works!
   - Currently in Preview for early .NET 9 release.
 - Dictionary View of HTTP Headers in debugger.
+
+## Hybrid Cache
+
+- Works in ASP.NET
+- _Also works in your other .NET Apps_!
+- Helps to reduce Stampedes: A busy site where cache expires and suddenly all clients receiving a cache-miss, followed by the expensive operation, with massing cache updating.
+- Releasing _alongside .NET 9_, therefore _available for both 8 and 9_.
+- Helps avoid cache breaking under certain pressure scenarios.
+- Is observable, with events and counters.
+- Tag support: bulk invalidation by category.
+- Has a default implementation and is an abstraction (for custom implementation?).
+- Expiration can be set globally or per-call.
+- Mutable and Immutable types are supported.
+
+Demo:
+
+- An app without cache: Whenever an 'expensive resource' is used, consider adding cache between the front-end and back-end.
+  - GUIDs change with every page reload (Blazor).
+- `IMemoryCache`: Uses a unique, parameterized key, then use the Get-Set of the MemoryCache API to decide whether to do 'expensive' operation or return existing Value(s).
+  - GUIDs no longer change unless the cache has expired.
+  - Running in-process memory, won't withstand cold-start.
+  - No serialization of the cached object.
+  - Mutable objects could be changed unexpectedly, and is therefore a security and performance threat.
+- `IDistributedCache`: Similar to IMemoryCache but includes active-process stores.
+  - File system, SQLite, Redis, etc...any storage outside of the process.
+  - More code required to leverage.
+  - Serialization is required (JSON, XML, etc) to update the cache.
+  - Deserialization happens every time a cache hit happens.
+  - Relying on Redis, etc, implies latency of that service and/or failover or unavailable instance risks.
+- `HybridCache`: Attempts to bridge the features of the above
+  - Requires a new package refernece to the Project configuration.
+  - Register as a DI Container Service (via App.builder()).
+    - Configure expiration, etc here.
+  - Less code necessary to implement at the controller (or minimal API endpoint).
+  - Get or Create is an Async call: `GetOrCreateAsync()`
+  - The same data is stored on a per-page-basis, instead of per session.
+  - In-process and out-of-process memories are utilized under the hood by Hybrid Cache.
+  - Stampeding: Requests wanting the same expired data, only one process updates the cache on a cache miss, then subsequent queued requests get the cached result.
+  - Leverages JSON Serialization by default, other serializers and configurations are available.
+  - The key is in the `GetOrCreateAsync()` method.
+  - State can be passed-in using additional API calls.
+
+## A Selection Of Recent C# Language Features
+
+Pattern Matching:
+
+- Declaritively write what historically has been done using If-then-else and select-case statements.
+- Historically, it can be frustrating to ensure all possible code paths result in outputs.
+  - Pattern Matching ensures the compiler flags these situations so they get fixed before build or run.
+- Use a discard pattern (using the Discard operator) to handle 'all other cases' in a switch-case block.
+- Statements like `num is not 4 or 9` is a non-obvious bug if the intent is for _neither_ 4 _nor_ 9 to be matched.
+  - Rewrite it to `num is not (4 or 9)` as a compound pattern.
+  - Future compiler release will detect this and warn accordingly.
+
+File Scoped Namespaces:
+
+- Instead of `namespace NamespaceName { ... }` use `namespace NamespaceName;`
+  - Saves space.
+  - Will add "whitespace diff" in git, but that can be configured to reduce whitespace diff to a change in braces to a single semicolon.
+
+Class Properties with init and required:
+
+- Public nullable properties if not set with a CTOR or with an assignment.
+- `required` keyword: If a new object is instantiated but not assigned, the calling code will show the 'required' warning.
+  - Blocks caller initialization of required property outside of a CTOR.
+- `init`: Use in space of `set` to allow setting the property _once_, similar to read-only.
+  - This is a way to show _intent_ of the property data.
+
+Strings!
+
+- As JSON (in particular) and string are used more commonly for passing data back and forth:
+  - There are code security risks.
+  - Quoted literals: `"my string value"`
+- Raw String Literal: Use three or more double-quotation marks to enclose a string, to maintain formatting during initialization, but ignoring whitespace during processing.
+- Interpolated strings:
+  - `$"Hello {value}"`
+  - `@"Hello """{name}""""`
+  - JSON interpolation adds additional braces `{{}}` to set up the interpolated expression.
+    - Since JSON uses curly braces to start with, doubling-up is interpreted as a JSON Interpolation String.
+- THere were other examples (but I messed them).
+
+Records:
+
+- Added keyword to a `Class` declaration.
+- `record` generates lots of code for you.
+- Says: Primary purpose is to hold data (state).
+- Also indicates: NOT a functional entity or object!
+- Enables use of `with` keyword.
+  - A `struct` also enables use of `with`.
+  - Example: `x.Name = "Anony"; x.Age = 10; var y = x with { Name="Anony" };`
+- Primary Constructors are allowed with Classes using `record` keyword.
+
+Collection Expressions:
+
+- Use while initializing a collection.
+- No 'new' keyword.
+- No curly braces `{}`.
+- Just use open-close brackets `[]`.
+- Example: `int[] x = []` or `WriteByteArray([byte)1, (byte)2, (byte)3]);`
+- Another: `Span<int> nums = [1, 2];`
+- Compiler does the hard work for you.
+
+## OpenAI DotNET: The Official OpenAI Library for .NET
+
+Scott Addie, MSFT Azure SDK Team
+
+Developer Pain Points:
+
+- Ecosystems might be unfamiliar e.g. Python or Node.js are not "build anywhere with .NET".
+- REST APIs: Custom wrappers must be developed to call them, and .NET didn't exactly make this simle.
+- No SLAs: Some OSS libraries using openAI but not backed by MSFT, blocking adoption by risk-averse orgs.
+
+Solution:
+
+- OpenAI DotNET
+- OpenAI library by Microsoft, on behalf of OpenAI, for .NET
+- Official NuGet Repo was opened and is now maintained by MSFT
+- Azure SDK Team Members are engaged in the development of OpenAI.NET
+
+More Notes:
+
+- All OpenAI's REST APIs will be fully supported.
+- Support for latest models.
+- Build intelligent apps using C# and .NET best practices.
+- Features built-in that devs don't have to write for themselves.
+- Designed to make Azure-specific concepts and scenarios very simple.
+
+Features:
+
+- Realtime API (demoed Realtime API for audio).
+  - Whisper: Convert audio to text.
+- Authentication (with API Key) is required with some systems (e.g. OpenAPI).
+  - Azure OpenAI offers keyless auth (Token-based) using EntraID, then RBAC filters for authorization.
+- WebSocket instead of REST:
+  - Enables duplex communication without REST verb complexities.
+- Replacing voice, style, and language are simplified - just replace a few lines of code.
+
+## AI Fundamentals in .NET
+
+Is available in the ML.NET SDK.
+
+Tokenizers:
+
+- Manage context and cause.
+- Also a pre-processing step for local models.
+- Many are available.
+
+Tensors:
+
+- An abstraction over shaped data.
+- Scalers are individual values.
+- Vectors are 1-dimentional values such as arrays or spans.
+- Matrices are 2-dimentional Vectors.
+- Tensor can be Scaler, Vector, Matrix, or multi-dimensional data.
+- Simple data sets can be managed simply and directly ("loop unrolling").
+- SIM-D recompresses loop unrolling with processing effeciency, but there are still edge cases where code increases due to handling data.
+- Tensors handle data processing much more effeciently.
+- TensorPrimitives: Introduced in .NET 8.
+  - Provides vector-accelerated processing features built-in.
+  - Over 200 solutions are built-in to a single line of code.
+  - `return TensorPrimitives.Sum(values);`
+  - Only operates on raw spans of data.
+- `Tensor<T>`: Currently in preview with .NET 9.
+  - Define Spans over Tensors for slices of data.
+  - Works similar to System.Array but with data specification.
+  - ReadOnly* flavors included: `new ReadOnlyTensorSpan<float>(values, [x, y], [a, b]);`
+  - _Many_ built-in function members to perform calculations on the shaped data input(s).
+
+Note: Includes support for both .NET and DotNET Framework applications.
+
+## Build a GitHub Copilot Extension
+
+Copilot Extensions:
+
+- Integrations.
+- Expand functionality of Copilot Chat.
+
+Can be built three ways:
+
+- Server only: Web service. This has limitations.
+- Client only: VS Code Extension for rich interaction.
+- Hybrid: Provide a web service and a VS Code Extension that work together. This is much more complicated.
+
+Demo Notes:
+
+- VS 2022 17.12 was used.
+- Build GitHub App Copilot Extension, which translates to a ASP.NET Core Web API project.
+- .NET 8+ needed.
+- HTTPS is recommended.
+- Minimal API.
+- Dev Tunnels: Requires a MSFT/Github account, can be temporary, but must be public for debugging with Github Copilot.
+  - Copy the DevTunner URL that is generated for use later.
+  - Allows WRRC between your project and Copilot (in the GitHub cloud).
+- Add NuGet Packages: Octokit (latest)
+- Authorization:
+  - Setup a callback endpoint that Copilot can call to verify user authorization.
+- Add two types to support this project:
+  - Message with role and content properties.
+  - Payload with stream and messages (collection) properties.
+- Add a default '/' Post path that accepts X-GitHub-Token with T type Payload payload (using [FromBody]).
+- Instant a new `GitHubClient` with new `Octokit.ProductHeaderValue(appname)` in the constructor.
+  - Be sure to set an env var that sets an `appname` value e.g. "My-Copilot-Chat-Demo".
+  - Instantiate a new Cretentials type and give it a `gitHubToken` as its constructor argument (for instantiation).
+  - Add Roles and Content (KVPs) to set up "core messages".
+  - Use `HttpClient()` with an `AuthenticationHeaderValue("Bearer", githubToken)` and post the payload as a stream to the "chat completions endpoint".
+  - At the end of the endpoing Map, read-in the response (async) and do `return Results...` to push the results to the API caller.
+- Github User or Organization Settings must be edited to allow Authorized Github Apps to point to your custom app
+  - Might have to create a new one.
+  - Name needs to match the local var `appname` (and should not collide with any other Extension name on the Github Copilot planet).
+  - Configure the Callback endpoint.
+  - Uncheck Webhooks.
+  - Permissions: MUST provide Read Only access to Copilot Chat in order for this to work.
+  - Permissions: Sharing with the world is possible at the end of the Permissions screen.
+  - Enable the Copilot Agent, add the root endpoint of your app, and fill-in other required fields.
+  - Run your project so the Callback endpoing exists.
+  - Install App (via GitHub account settings).
+- Your Extension is selectable using the `@` symbol in the Github Copilot Chat window!
+- Open Github Chat in Visual Studio (restart might be necessary), use the `@` to point to your Copilot Extension `appname`, and your Extension will be responding!
+
+_Note_: DevTunnels, when set to temporary, breaks when Visual Studio is restarted. In this case, a new DevTunnels configuration will be required, including the URL settings as configured in Github's Copilot settings.
 
 ## References
 
