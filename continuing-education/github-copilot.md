@@ -5,6 +5,8 @@ This will be a collection of information collected while attending presentations
 ## Table of Contents
 
 - [Copilot Study Guide Series 1](#copilot-study-guide-series-1)
+- [Copilot Study Guide Series 2](#copilot-study-guide-series-2)
+- [About Github Copilot Enterprise](#about-github-copilot-enterprise)
 - [GitHub Copilot Basics - MSFT Reactor](#github-copilot-basics---msft-reactor)
 - [Codespaces](#codespaces)
 - [What Can Copilot Do](#what-can-copilot-do)
@@ -16,6 +18,9 @@ This will be a collection of information collected while attending presentations
 - [Responsible AI with GitHub Copilot](#responsible-ai-with-github-copilot)
 - [Advanced GitHub Copilot Features](#advanced-github-copilot-features)
 - [IDE, Chat, and Command Line Techniques](#ide-chat-and-command-line-techniques)
+- [Management and Customization with Copilot](#management-and-customization-with-copilot)
+- [Streamline Dev Productivity With Copilot](#streamline-dev-productivity-with-copilot)
+- [Developing Unit Tests Using Copilot](#developing-unit-tests-using-copilot)
 - [References](#references)
 - [Footer](#footer)
 
@@ -176,6 +181,86 @@ Takeaways and interesting points:
   - Inline Chat can be used within Jupyter Notebooks!
 - SDLC: Copilot Metrics API at Github.com: Queryable to get information about your Copilot Users at Organization Level or by Teams at Enterprise licensing level. Results are JSON document by default.
   - Copilots Metrics Viewer: Online graphing interface that can be set up on-prem, using Copilot Metrics API data.
+
+## About Github Copilot Enterprise
+
+- [ ] Understand features of Github Copilot Enterprise.
+- [ ] Differentiate between the three Copilot SKUs.
+- [ ] State use-cases for Copilot Enterprise.
+- [ ] Know how to enable Copilot Enterprise.
+
+### Enterprise Primary Features
+
+Knowledge Bases:
+
+- Link markdown documentation across repositories.
+- Appears to be limited to Markdown files, but whatever they contain is game for indexing.
+- Only available in Enterprise.
+- Copilot suggestions tailored to configured Knowledge Bases content.
+
+Custom Models:
+
+- Fine-tune a custom model.
+- Enterprise customer benefit from additional features of improved accuracy and contextual alignment than other SKUs.
+- Chat can be customized to a CodeBase.
+- Generate  summaries of PRs based on code changes.
+
+Docset:
+
+- Private, custom collections of internal code and documentation.
+- Documentation search and summarization.
+- Copilot will response specifically to questions about internal code such as frameworks and dependencies.
+- Copilot will use context of internal code workflow in generative responses.
+
+Code Review:
+
+- Provide insight specific to the Enterprise code base.
+- Explain code snippets, providing clarity.
+
+### Enterprise Feature Set
+
+- All Copilot for Individuals features.
+- All Copilot for Business features.
+- Adds complete integration with security tools (limited in CP for Business).
+- Adds complete audit logging and reporting (limited in CP for Business).
+- Adds collaborative Chat _within PRs_.
+- Adds PR Summaries.
+- Adds Copilot DocSet management.
+- Adds Copilot code review.
+
+_Note_: Copilot Code Review is more than just using `/explain` or free-form chatting with Copilot using an Individual or Business license.
+
+### Enabling and Configuring Enterprise Features
+
+Requires:
+
+- GitHub Copilot for Business subscription.
+- GitHub Copilot Enterprise Cloud account.
+
+Steps:
+
+1. Setup Business account.
+1. Setup Enterprise account (free trial available).
+1. Enable Copilot Enterprise "at the enterprise level".
+1. Configure Copilot Enterprise settings for each GitHub Organization in the enterprise.
+
+Enforcing Policies:
+
+- Requres policy enablement under 'Manage organization access to GitHub Copilot' and adding the Enterprise Subscription.
+
+User Access:
+
+- Organizations must be set up to enforce policies.
+- Enable access within 'Code Planning and Automation' section.
+- Assign user permissions under 'Confirm Seat Assignment'.
+
+Enable/Disable Specific User Access:
+
+- This is a Permissions setting, under 'Confirm Seat Assignment' setting.
+
+Pull Request Summaries:
+
+- Within the Description field of a PR, select the Copilot icon (alongside the text editor toolbar) and select 'Summary' from the drop-down.
 
 ## GitHub Copilot Basics - MSFT Reactor
 
