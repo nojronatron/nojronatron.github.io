@@ -23,6 +23,10 @@ While defining a link fragment to enable a user to click an Anchor element and j
 
 -[ ] Review how to add link fragments to a page in SQSP.
 
+### Continuing Education - GitHub Copilot
+
+Completed "GitHub Copilot Fundamentals - Understand the AI pair programmer" Learning Path on MSFT Learn! :tada:
+
 ## Weeks 43 through 44
 
 Last week I completed a bunch of work on my [portfolio website](https://portfolio-jon-rumsey.netlify.app/), proving to myself that I can work with someone else's code, make effective changes, update and replace existing imported components, and update data structures (albeit simple JSON ones here) and acquisition to augment the website as a whole. As mentioned before, there is much more to do in the coming weeks, but for now I have multiple other projects that need some attention to move them forward.
