@@ -51,8 +51,14 @@ Container: A running Docker Image.
 
 1. (Optional) Pull a base image to use: `docker pull {name}:{tag}` where name is a Docker Registry image name, and tag is the ID (usually 'latest').
 1. Write a Dockerfile which defines which image (and tag) to use and the commands to run and/or files to copy into the image instance. The `FROM` command will cause `docker pull ...` to run if the `FROM` image is not already local.
-1. `docker build -t {name}:{tag} {dir_to_Dockerfile|.}` builds an Image using the Dockerfile, naming it 'name' and 'tag'. The Dockerfile defines _which base image to target_.
-1. `docker run ...` uses the Dockerfile and Image to deploy a Container to the host.
+1. `docker build -t {name}:{tag} -f {dir_to_Dockerfile|.}` builds an Image using the Dockerfile, naming it 'name' and 'tag'. The Dockerfile defines _which base image to target_.
+1. `docker run --rm -it -p nnnn:nnnn {image_name:image_tag}` uses the Dockerfile and Image to deploy a Container to the host.
+
+Breakdowns:
+
+- `--rm`: Remove Container and its volume when it exits.
+- `-it`: Stands for `-i` and `-t` which means "Interactive" keeping STDIN open, along with attaching a pseudo-TTY to the container for cmdline i/o streams and piping.
+- `-p`: Publish or expose port (case-sensitive). `--expose {host-port-protocol}:{container-port-protocol}` example to bind container port 5127 to host port 8080: `--expose 8080:5127`.
 
 ## Some Basic Docker Commands
 
@@ -264,6 +270,7 @@ Is a running Docker Image `Screen` redirectable to the host?
 ## References
 
 - Docker [Dockerfile Reference](https://docs.docker.com/reference/dockerfile/)
+- Docker Container [Run Interactive reference](https://docs.docker.com/reference/cli/docker/container/run/#interactive)
 - Typecraft [The intro to Docker I wish I had when I started](https://www.youtube.com/watch?v=Ud7Npgi6x8E)
 - [Docker Online Documentation](https://docs.docker.com/)
 - [Christian Lempa: Learning Docker // Build Container Images](https://www.youtube.com/watch?v=JDw3ZdQcv2g)
