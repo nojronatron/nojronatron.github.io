@@ -18,15 +18,12 @@ A collection of notes from research and continuing education, with references fo
 
 Here is a snippet of items I look forward to learning more about:
 
-- [ ] DotNET Conf 2024 topics: dotnet 9 SDK, MAUI, Blazor, Aspire, AI, etc.
 - [ ] Web Building and CMS Services [notes](./web-dev-cms-overviews.html).
-- [ ] Copilots: [How to create a copilot](./msft-copilot-learnings.html).
-- [ ] Gain familiarity with [Playwright](https://playwright.dev/), an end-to-end testing framework for .NET.
-- [ ] Consider obtaining a GitHub Foundations Certification.
-- [ ] Check out [inquirer](https://www.npmjs.com/package/inquirer) for use with Node and Express.
+- [ ] GitHub Copilot: [Copilot notes](./msft-copilot-learnings.html) and [GitHub Foundations notes](./github-foundations-cert-notes.html).
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] DotNET Conf 2024 topics: dotnet 9 SDK, MAUI, Blazor, Aspire, AI, [noted in dotnet-conf-2024](./dotnet-conf-2024.html).
 - [x] Attend GitHub Universe and take [notes as a virtual attendee](./github-universe-2024.html).
 - [x] Monorepos: Basically multi-project solutions where inter-dependencies can be updated with a single (atomic) commit and dependencies are managed among all contributors, with visibility into the entire system as a whole.
 - [x] While browsing other web-design topics I ran across an NDC Oslo presentation featuring Amy Kapernik, who discussed [how to build an SPA without JavaScript](./spa-no-javascript-ndcoslo.html).
