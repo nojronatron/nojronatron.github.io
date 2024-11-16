@@ -2,6 +2,204 @@
 
 These will be limited reference notes related to the GitHub Foundations Certification learning topics, leading to an exam by the same name.
 
+## Table of Contents
+
+- [Configure Code Scanning on GitHub](#configure-code-scanning-on-github)
+- [GitHub Administration](#github-administration)
+- [Intro to GitHub Products](#intro-to-github-products)
+- [Intro to Git](#intro-to-git)
+
+## Configure Code Scanning on GitHub
+
+- [ ] Describe Code Scanning.
+- [ ] Enable Code Scanning in a Repo.
+- [ ] Enable 3rd Party Analysis settings.
+- [ ] Contrast CodeQL in GH Actions vs. 3rd Party CI tools.
+- [ ] Explain Triggering Events in Repo Code Scanning.
+- [ ] Contrast scheduled vs event-triggered Code Scanning.
+
+### Code Scanning Purpose
+
+Find security vulnerabilities and coding errors.
+
+Available for all public repos and private repos owned by Orgs where GitHub Advanced Security is enabled.
+
+Code Scanning triggers Alert in Repo's Security tab when vulnerability is found.
+
+Code fix that removes the vulnerability or error automatically closes the Repo Alert.
+
+### Code QL
+
+This engine behind Code Scanning.
+
+Setup CodeQL Analysis:
+
+- Use default setup to get going quickly. Chooses languages to scan, queries to run, events to trigger, and creates a GH Action to handling it all for you.
+- Use Advanced setup to add CodeQL directly to Repo. Customizable Workflow is generated: `github/codeql-action` CodeQL CLI is run as GitHub Action.
+- Use CodeQL CLI directly: Upload the results to GitHub yourself.
+
+Supported Languages:
+
+- C/C++
+- C#
+- Go
+- Java/Kotlin
+- JavaScript/TypeScript
+- Python
+- Ruby
+- Swift
+
+CodeQL Default Setup:
+
+- Code Scanning is found in Repo's Security tab.
+- Select Default for quick-start with basic options and GH Action workflow auto-generation with alerts.
+- Select "Enable CodeQL" to enable scanning.
+
+GitHub Actions Billing:
+
+- Code Scanning uses GH Actions minutes.
+- GH Actions minutes are free for public and self-hosted runners.
+- Private repos have included limits on time and storage, and billing is applied at each GH Account.
+- Monthly Spending Limit: If set, will block GH Action from running once USD threshold is met.
+- Invoiced Accounts will have an _unliminted spending_ charge.
+- Minutes reset each month.
+- Storage does not reset, it is tracked on an on-going basis.
+
+### Enable CodeQL with 3rd Party Tools
+
+Perform analysis elsewhere, then upload the results separately.
+
+- Use Static Analysis Results Interchange Format (SARIF) files.
+- Non-SARIF files will _not_ trigger GH Actions Alerts.
+- SARIF v.2.1.0 or newer is _required_.
+
+### Code Scanning API
+
+- Accessible over HTTPS at `api.github.com`
+- GH API Data Type is JSON.
+- GH REST API Custom Media type: `application/sarif+json`
+  - Other media types might be in use by 3rd Party apps and APIs.
+- Analysis Endpoing: `/analyses/{analysis_id}`
+  - Subset of actual data in an analysis is returned.
+  - Response includes `github/alertNumber` and `github/alertUrl` properties.
+- Data is formatted in SARIF v.2.1.0
+
+### CodeQL CLI
+
+Standalone code analysis product:
+
+- Generate DB representing codebase.
+- Query DB interactively to get SARIF-compliant result sets (for upload to GitHub.com).
+- Free to use on public repositories at GitHub.com.
+- Available for private repos of GH Customers with Advanced Security license.
+- There is a bundle of tools available for download from GitHub.
+
+CodeQL Tools Bundle:
+
+- CodeQL CLI.
+- Queries and Libraries tools.
+- Precompiled queries.
+- Bundle is more effecient than using separate downloads and repo cloning.
+
+### Code Scanning with GH Actions
+
+1. Create a GitHub Actions workflow.
+1. Set a trigger to automate execution on either `push` or `scheduled` event occurs.
+1. Store in `.github/workflows` directory.
+1. Use the `upload-sarif` action from the `github/condeql-action` repo.
+1. Configure upload-sarif action with input parameters as necessary, such as `sarif-file`: A file or directory where SARIF file(s) will be uploaded (relative to root).
+
+### SARIF Upload Limitations
+
+- Max 10 MB for gzip-compressed. Any more and gzip is _rejected_.
+- Up to 5000 results per upload will be processed, rest are ignored.
+- Focus SARIF upload contents to the most critical queries (not everything).
+
+### 3rd Party SARIF Generation And Usage
+
+SARIF File generation can be done via other tools besides GH Actions or the CodeQL CLI:
+
+- External Repo workflow output artifacts.
+- Set a GH-Action `sarif_file` input parameter with value `sarif-output` to grab the data.
+
+### Upload SARIF File As Part of CI Workflow
+
+- Set GH Action property `upload-sarif` as a step _after_ running CI tests.
+- [GH Starter workflows](https://github.com/actions/start-workflows) are available.
+
+Example: Running an ESLINT static analysis tool can be output to a SARIF file which can then be uploaded via the `upload-sarif` action!
+
+### Configure Code Scanning
+
+Configure Default or Advanced Code Scanning:
+
+- Configure setups by entering the Code Security and Analysis settings.
+- CodeQL Workflows are stored in `.github/workflows` by default.
+- Default file is named `codeql-analysis.yml`
+
+_Remember_: Editing a Workflow requires a Git Commit to set the changes in the repo.
+
+Scanning Frequency:
+
+- On a schedule.
+- On the triggering of named events (e.g. push).
+- Specify within an existing GH Action YML file.
+- Scan On Push: Default. Yaml: `on:push` event. Workflow _must be in the specified branch_.
+  - Alerts are automatic.
+  - Results appear in Security Tab for the repository.
+- Scan on PR: Yaml: `on:pull_request`.
+  - Targets default branch.
+  - Can target private fork if "Run workflows from fork pull requests" is set in repo settings.
+  - Results show in PR Check results.
+  - For effeciency: Set these for _merge_ commits and _not_ head commits.
+- Use a CRON (see example below).
+
+```yaml
+on:
+  push:
+    branches: [main, protected]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '20 14 * * 1'
+  ...
+```
+
+Define Severities:
+
+- Necessary to identify cause of PR Check Failures.
+- Default: On `Error`, `Critical`, or `High`
+  - CodeScanning continues.
+  - Merging PR is _blocked_ on these codes.
+- Repository Settings Tab, Code Security And Analysis: Code Scanning Alerts displays PR failures and alert severities here.
+  - Also set Protection Rules to define "Check Runs Failure Threshold".
+
+Avoid Unnecessary PR Scanning:
+
+- Update Code Scanning workflow to ignore or select paths.
+- Use `on:pull_request:paths-ignore`
+- Or `on:pull_request:paths`
+- Use blob-pattern to match dir and filename patters.
+- Use an array to define sets of matches (see example below).
+
+```yaml
+on:
+  push:
+    branches: [main, protected]
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.txt'
+      ...  
+```
+
+### Lab Notes
+
+- CWE: Common Weakness Enumeration. A categorization system of hardware and software weaknesses and vulnerabilities.
+- The Security Tab on the Repo page will have a Number in it when there are alerts to review.
+- "Indentify": To add indentation as a means to _highlight code_.
+
 ## GitHub Administration
 
 - [x] Summarize org structures.
@@ -325,3 +523,13 @@ Create repo:
 - Snapshot changes: `git commit {options}`
 - View commit changes and comments: `git log`
 - Get help: `git help`
+
+## References
+
+- [GitHub REST API Endpoints for Code Scanning](https://docs.github.com/en/rest/code-scanning/code-scanning?apiVersion=2022-11-28)
+
+## Footer
+
+Return to [ContEd Index](./conted-index.html)
+
+Return to [Root README](../README.html)
