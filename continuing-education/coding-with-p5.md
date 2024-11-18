@@ -74,6 +74,28 @@ A light-weight section of notes I felt were important to write-out while learnin
 - `resizeCanvas(widnowWidth, windowHeight, noRedraw)`: Define a new width and height for the canvas. `noRedraw` is boolean, defaults to false, indicates whether to delay calling `reDraw()` function.
 - `preLoad()`: This is a lifecycle event handler. Guarantees these function calls complete before rendering begins: `loadImage()`, `loadFont()`, `loadJSON()`, `loadModel()`.
 
+## Making Things Move
+
+Essential Concepts:
+
+- Vector: An arrow pointing in space. Has both _magnitude_ (length) and _direction_ (heading).
+- A _position vector_ extends from the _origin_ to the center of the object.
+- A _velocity vector_ is an arrow pointing in the direction of an object's velocity.
+- Adding a _velocity vector_ to a _position vector_ moves the object on-screen.
+- Use `p5.Vector` class to perform math on Vector instances.
+- Multiple built-in math functions exist including `add()`, `sub()` to subtract, `mult()` to multiply, and `div()` to divide.
+- The `p5.Vector` class also has _static functions_ that return a new `vector` instance rather than apply changes to the current instance.
+
+_Note_: Use `createVector()` to generate a new instance of the Vector Class.
+
+To make things 'move' on screen:
+
+- Set a Position Vector on the object for a starting position.
+- Set a Velocity Vector to `(0,0)` to have the object sit still.
+- Set an Acceleration Vector based on external or internal inputs (an internal option such as `p5.Vector.random2D()` will work).
+- Acceleration: The rate at which the Velocity Vector will change. Add to Velocity Vector to set the magnitude of movement.
+- Position: Where on-screen the object will be drawn. Add the Velocity Vector to update the object's position on-screen.
+
 ## Other Reminders
 
 - `floor(number)`: Concatenates a Number to it nearest _lower_ whole number. Any Number type or function that returns a number type can be set as the parameter.

@@ -7,6 +7,10 @@ This page is a selection of notes taken while looking into various available CMS
 ## Table of Contents
 
 - [SquareSpace](#squarespace)
+- [SQSP Forms](#sqsp-forms)
+- [SQSP Member Sites](#sqsp-member-sites)
+- [SQSP Customer Accounts](#sqsp-customer-accounts)
+- [SQSP Paywall Areas Website](#sqsp-paywall-areas-website)
 - [Resources](#resources)
 - [Footer](#footer)
 
@@ -91,6 +95,7 @@ Sections:
 - Sections can be added using a Template or a blank section element.
 - Modification of Section location is possible to widen or shrink Section sizing.
 - Section sizing will affect content placement and size restrictions.
+- Click the :heart: icon to 'Save Section' and it will appear in the Website Edit Nav Bar under 'Add a Section' :arrow_right: 'Saved Sections'. Just be sure to update the Form Name and its connection (storage, email, etc).
 
 Higher Level Features:
 
@@ -104,6 +109,81 @@ Higher Level Features:
 _Note_: Newsletters and downloads can be configured in the Marketing Tool. Fees may apply depending on volume.
 
 _Note_: SquareSpace plug-in config and usage might be easier than other CMS vendors (anecdotal comment).
+
+## SQSP Forms
+
+- Can be styled with up to 4 built-in styles, or any of those styles can be customized within the Forms properties modal.
+- Field Options: Shape, Fill, Thickness, Size, Spacing, Color, and Layout.
+
+Custom Form Styles are made available across the entire _site_.
+
+Form Email Field(s):
+
+- There is a Sign-up field that can be enabled on the form.
+- Can be made to be _required_.
+- Email sign-up can send a _confirmation email_.
+
+Form Data Storage:
+
+- Submissions: Provides a view into 'Form Submitters' and other lists of interactions and the web visitors such as 'Subscribers', 'Customers', 'Leads', 'Donors', etc.
+- Email Notification: Configure _one_ email address to notify when Form Data has been captured.
+- Set 'Additional Storage': Choose from Google Drive, Zapier, or MailChimp.
+- Enable Google 'reCAPTCHA':
+
+Look at 'Smart List' called 'Form Submitters' to view a list of website users that have submitted a Form.
+
+- Click-in to the user entry to see the information they submitted via the Form.
+- Create a 'Project' (there's a link within the Form Submitters user properties) to manage Invoices, client information, and other details.
+
+Data Storage and Selling (tm):
+
+Known as 'clients', these represent website users that may receive an 'Invoice', so their data is captured and maintained.
+
+1. Open the 'Selling' config nav item.
+2. Open 'Invoicing'.
+3. Create 'New Client' or view existing 'Clients'.
+4. Click 'Invoicing' and search the list to select the Client to Invoice.
+5. This opens a New Invoice (or lists existing ones). New Invoices can have line items added to them, a due date can be set, and a Memo can be added (such as 'Thanks for your order!').
+6. Once created, the Invoice can be sent to the Client using the 'Send' button (confusingly, located in the upper right-hand corner of the 'Invoice Draft' screen).
+
+## SQSP Member Sites
+
+Automatically Paywalled.
+
+1. Update pages of Member Site with the page types/layouts/styles you want.
+1. Select single, or multiple prices.
+1. Select Free, Subscription, or single-purchase order with cost.
+1. Add a "Digital Product Block" to a public page to allow visitors to sign-up for membership, and create an account to access the content.
+
+About:
+
+- A Digital Product Block should be used to create a _public accessible LOGIN PAGE_.
+- The first page in Member Site is the site's homepage.
+- Drag-n-drop other page to the top position to change the Member Site homepage.
+- Pages that are already part of a pricing plan _cannot be drag-n-dropped into a Member Site_, instead _duplicate the page_ and then move the duplicate.
+
+Advice: Keep Member Site page count low so the list of pages does not cause a poor UX for the user.
+
+SEO: This is _disabled_ in Member Sites by default (so is password protection).
+
+## SQSP Customer Accounts
+
+- Web visitors can store payment methods, shipping addresses, and past orders.
+- Customers can create account during the checkout process.
+- Customers can use Login link to sign-up.
+
+To Enable:
+
+1. Go to Administration page.
+1. Open Commerce area.
+1. Look for 'Customer Accounts' and set to: ON
+
+You Can:
+
+- Customers with accounts are indicated in the Customers list.
+- Order history and contact information is available.
+
+## SQSP Paywall Areas Website
 
 ## Resources
 

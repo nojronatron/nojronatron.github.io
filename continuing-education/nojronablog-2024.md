@@ -2,6 +2,47 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## Weeks 45 through 46
+
+Lots going on right now!
+
+- Webmaster volunteering: More meetings to come but information is starting to flow so I can get web pages updated and (soon to be) online.
+- LeetCode Challenges: I've completed a pair of Binary Search Tree challenges. These are slowly getting easier to solve and I'm more often finding the correct, efficient solutions, and more regularly using recursion instead of relying on Stack data structures.
+- Learning about SquareSpace: Additional research has been paying off to enable me to implement Forms and manage the back-end data that they submit, managing drop-downs, and adding SEO properties.
+- Copilot: I took some time out to experiment some more with GitHub Copilot's '/explain' feature. It is getting better all the time and lately has included great descriptions of what code blocks need work, and helps to reinforce coding best practices such as try-catch error handling, proper returns in lambda functions, and using strongly type data structures wherever possible (i.e. avoiding _primative obsession_, which I know I have).
+- Read through Chapters 0 and 1 of 'The Nature of Code' (by Daniel Shiffman), and completed the exercises along the way. This is a fun and exciting way to practice JavaScript while learning a (new to me) framework: p5.js. P5 supports other languages like Java, so it could be interesting beyond simple website implementations.
+- Additional research on cookies and Google Analytics was done. These are not very exciting topics but I added some notes to my continuing education section anyway because I can see how they are important in many sites and services.
+- I took some time away from coding to look at OpenWebRX, an SDR received-only software with a web-based display. I've installed it to a Raspberry OS image and have it listening to the radio world using an SDRPlay device.
+- I've signed up for GitHub Copilot certification training (online). Over the course of the next couple months I will be preparing for taking an exam.
+- There is a new project I will be taking on, probably in early 2025: Build a digital LCD clock software package for Linux. There are several challenges I have to overcome but the solution is set for deployment and use in September 2025.
+- On the side I've been practicing HTML and CSS website design and development. There's not much to report specifically. My hope is this continuous learning will pay-off in the long run when it comes to finding my place in the software world.
+
+### SquareSpace Link Fragment Anomaly
+
+While defining a link fragment to enable a user to click an Anchor element and jump farther down-page to get to related content, I found that the Edit tool sometimes does not allow the anchor link to function. Also, when in publish preview mode, the link might not work, either. Attempting to fix the problem by adding a code block and inserting actual HTML code ('#location-to-jump-to') and ('_self' etc) would not work at all. Soon after adding the HTML code, the Editor page would hang. Frustrating. I guess I'll need to read up on this (seemingly obvious but somehow non-functional) topic.
+
+-[x] Review how to add link fragments to a page in SQSP.
+
+It turns out the challenge is related to how SQSP handles routing Hidden, Unpublished pages vs. Published. When a link points to a page that isn't published, the SQSP Routing processor doesn't allow viewing a Hidden, Non-published page, even for Administrators. So, _testing bookmark links (link fragments) cannot be completed until the target page is published (even if it is the same page)_.
+
+### Printing From A Web Page
+
+A recent challenge I made for myself was to create a printable-output webpage using basic web-page design concepts as well as React. The goals were to exercise skills using HTML, CSS, JavaScript, Bun, Vite, React-JS, and React-TS. Here are some takeaways:
+
+- With the right VSCode Extension installed, moving from JS to TS (at a basic level) is not too difficult other than learning how to create Interfaces, and to literally add Type information to all parameters and member definitions.
+- Bun made deploying a React-TS site fairly simple, and integrates well with Vite.
+- Trying to print content to a printer was very confusing at first, but once I got my head around the context of the printer driver, things finally came together.
+- I was reminded by Copilot that using JS Document Queries in React is a bad idea. Whoops! :sweat_smile: I mean, that's the purpose of React -- to do that work for me.
+- Use a separate `print.css` file to define a specific `@media print` statement with any additional rules to define the print media size, such as 4 inch by 6 inch, etc.
+- Leverage Turnary statement and a boolean type React State to manage which elements are visible rather than relying solely on CSS.
+- _All elements are involved in print media_ starting from 'index.html' to 'app.tsx' to the actual component that should be printed.
+- Every element has some impact on eventual printing size including all `border` and `padding` statements that set a value greater than zero. In other words, on the root elements, set those CSS properties to 0px to ensure they don't end up causing more pages than expected to be printed.
+- Event on-screen buttons that don't get printed have an impact on the final rendered size of the content to print, which could cause additional pages to be printed.
+
+### Continuing Education - GitHub Copilot
+
+Completed "GitHub Copilot Fundamentals - Understand the AI pair programmer" Learning Path on MSFT Learn! :tada:
+
 ## Weeks 43 through 44
 
 Last week I completed a bunch of work on my [portfolio website](https://portfolio-jon-rumsey.netlify.app/), proving to myself that I can work with someone else's code, make effective changes, update and replace existing imported components, and update data structures (albeit simple JSON ones here) and acquisition to augment the website as a whole. As mentioned before, there is much more to do in the coming weeks, but for now I have multiple other projects that need some attention to move them forward.
