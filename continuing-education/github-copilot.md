@@ -24,6 +24,67 @@ This will be a collection of information collected while attending presentations
 - [References](#references)
 - [Footer](#footer)
 
+## Testing With GitHub Copilot
+
+A Microsoft Reactor session.
+
+Presenter: Ochuko Ebenezar Onojakpor, Sr. Technical Writer
+
+Testing is all about checking to ensure something works as defined and expected.
+
+Copilot can help:
+
+- ID Bugs.
+- Secuirty, reliability, quality contexts.
+- Find and address regressions.
+- Encourage development velocity.
+- Improve automated tests.
+- Explain existing code.
+- Generate tests sets - new tests, edge cases, or code-coverage improvements.
+- Leverage test frameworks (Jest, xUnit, etc).
+
+Testing Challenges:
+
+- Create, maintain, manage test data.
+- Ensuring test coverage.
+- Working with complex software architectures.
+- Rapid development cycles.
+
+Types of Testing:
+
+- Unit: Test functions and classes.
+- Integration: Interactions between different components.
+- End-to-end: From start-to-finish of a workflow such as user-account creation, shopping cart and checkout, posting to a forum, etc.
+
+### Write Unit Tests with Copilot
+
+- Select code in the code window, right-click, open Copilot and use `#selection` and `/test` command.
+- Add information to your prompt using terms like 'edge cases' and 'code coverage'.
+- When a test fails, select the failure output from the test, use `#selection` in Copilot prompt, and ask it to fix the problem.
+- While writing code, allow _ghost text_ to help automatically complete writing individual unit test(s).
+- Copilot can write additional tests, or find section(s) of code where there might be bugs using Inline Chat or Copilot Chat windows.
+
+### Copilot Spark and Copilot Workspace
+
+[GitHub Next](https://githubnext.com/) is a team that looks at long-bets on technology. Created Spark and Workspace.
+
+Spark:
+
+- Good for use in testing for specific use cases.
+- More controlled environment.
+- Build web apps through Copilot code generation using natural language.
+- Provides accessibility over other keyboard-only Copilot input methods.
+- Enhanced assistance to new developers and those needing to type without using a keyboard.
+
+Workspace:
+
+- Uses natural language.
+- Integrates cloud compute.
+- Build an entire project from specification, to code implementation.
+- Revisions are done before code is written at each stage of the process.
+- Focused on specification before implementation.
+- "Generate Plan" shows Copilot's plan to generate an implementation.
+
 ## Copilot Study Guide Series 1
 
 Presenter: Ari LiVigni, Sr. Cloud Solutions Architect, GitHub
