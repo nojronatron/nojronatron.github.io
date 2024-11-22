@@ -4,6 +4,7 @@ These will be limited reference notes related to the GitHub Foundations Certific
 
 ## Table of Contents
 
+- [Manage Repo Changes With Pull Requests](#manage-repo-changes-with-pull-requests)
 - [AuthN and AuthZ User IDs on GitHub](#authn-and-authz-user-ids-on-github)
 - [User ID and Access Management](#user-id-and-access-management)
 - [Communication Using Markdown](#communication-using-markdown)
@@ -16,6 +17,62 @@ These will be limited reference notes related to the GitHub Foundations Certific
 - [Intro to Git](#intro-to-git)
 - [References](#references)
 - [Footer](#footer)
+
+## Manage Repo Changes With Pull Requests
+
+- [ ] Review use of Branches.
+- [ ] Define and Create a Pull Request.
+- [ ] Pull Request states.
+- [ ] Mange Pull Requests to a Base Branch
+
+## Branches and Pull Requests
+
+Branch:
+
+- Isolated workspaces.
+- Develop work without impacting other repo workers.
+- Experiment with new ideas in a sandbox environment.
+- Record a history of Commits.
+
+Merging Branches:
+
+- Work needs to eventually be merged together.
+- Usually into a common branch like Main.
+- Many Commits and Merges are tracked into Main or another common branch.
+- Tracking multple Merges is done through Pull Requests.
+
+Pull Requests (PRs):
+
+Can be done:
+
+- In the GitHub Web UI.
+- Within an IDE that supports Git natively or through an extension or plug-in.
+- Git or GitHub command line.
+
+What they do:
+
+- Document branch changes between developer's branch ("compare branch") and the branch the changes are set to get merged into ("base branch").
+- Branches that have the same Commit History cannot be used to create a Pull Request.
+- Enable commenting, code reviewing, additional Commits, and merging-in to the base branch.
+- Can be cancelled with or without any other actions being taken. No changes to base branch are made.
+
+PR States:
+
+- Draft: Cannot be merged and code owners are not automatically notified of the PR existence.
+- Open: Notifies code owners that a request to merge-in from a compare branch is wanted. Collaboration between code owners and contributors happens at this stage.
+- Closed: Can be done without merging changes, for example if the changes are no longer needed, or if another solution is proposed in another branch.
+- Merged: The commit history from the compare branch has been merged into the base branch history.
+
+Type Of Merges:
+
+- Merge Commit: All commits from compare branch are merged-in one by one to base branch history.
+- Squash: Treat all commits within the PR as a single Commit that is then treated as a Merge Commit (see above).
+- Rebase: Avoids Merge Commit operation and maintains a linear history.
+
+Notes:
+
+- After merging, the PR will be closed and the branch can be safely deleted.
+- Add a CODEOWNERS file and enable Required Review on the base branch.
 
 ## AuthN and AuthZ User IDs on GitHub
 
