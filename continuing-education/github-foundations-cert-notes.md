@@ -4,22 +4,158 @@ These will be limited reference notes related to the GitHub Foundations Certific
 
 ## Table of Contents
 
+- [GitHub Projects](#github-projects)
+- [Github Codespaces](#github-codespaces)
 - [Configure Code Scanning on GitHub](#configure-code-scanning-on-github)
 - [GitHub Administration](#github-administration)
 - [Intro to GitHub Products](#intro-to-github-products)
 - [Intro to Git](#intro-to-git)
+- [References](#references)
+- [Footer](#footer)
 
 ## GitHub Projects
 
 Overview: Create Issues to drive Task creation and completion, relate work items and PRs, customize Fields, and enable Conversations.
 
-- [ ] Differentiate Projects and "Projects (Classic)"
-- [ ] Build an Org-level Project
-- [ ] Organize the Project
-- [ ] Edit visibility, access, and management of the Project
-- [ ] Develop project-level automation and insights
+- [x] Differentiate Projects and "Projects (Classic)"
+- [x] Build an Org-level Project
+- [x] Organize the Project
+- [x] Edit visibility, access, and management of the Project
+- [x] Develop project-level automation and insights
 
-##
+_Note_: Projects can be Closed and Deleted.
+
+- Close: Removes from list of Projects but content in retained. _Can_ be opened later.
+- Delete: Permanent removal from the platform including Views, custom Fields and values, Insights, and Drafts.
+
+### Projects vs. Classic
+
+| Category/Feature | Projects | Classic |
+|----------|----------|----------|
+| Boards | Yes   | Yes   |
+| Lists | Yes   | No   |
+| Timeline Layout | Yes   | No   |
+| Sort, Rank, Group tabular data | Yes | Columns and Cards   |
+| Create visuals and charts | Yes   | No, just a progress bar   |
+| GraphQL API | Yes | No |
+| GitHub Actions | Yes | No |
+| Column Presets | Yes | Yes |
+
+### Tables and Boards
+
+- Plan and track work.
+- Rank, sort, group by any custom field.
+- Draft issues with descriptions, metadata.
+- Tokenized filtering, saved views.
+- Customizable cards and groupings.
+- Indicators of project state, progress.
+
+### Data
+
+- Custom fields with Types (e.g. Number, Date, etc).
+- Iterations: Flexible date ranges, breaks, springs, cycles, and roadmap.
+- Linked PRs, reviewers in table and board views.
+
+### Insight
+
+- Create, config custom bar, column, line, and stacked charts.
+- Aggregate data: Sum, Count (etc).
+- Persist Charts: Static URL for sharing.
+
+### Automation
+
+Common Automation Tasks:
+
+- GraphQL ProjectsV2 API
+- GitHub app Project scopes
+- Webhooks events for metadata updates
+- GH Action to automate adding Issues
+
+Ways to automate:
+
+- Built-in automated workflows: Simplest option. New Issues and PRs are put into TODO status.
+- GraphQL API: Trigger on Push or Scheduled, or setup 3rd Party or GraphQL CLI operations.
+- GitHub Actions with workflows: Example: On Issue Creation add Label, add Comment, Move to a specific Board.
+
+### Create a Project
+
+Org-level Creation:
+
+1. Your Organizations
+1. Overview
+1. Projects :arrow_right: New Project
+1. Select template (or not)
+1. Select Table
+1. Click Create Project
+
+### Project Properties
+
+Common Props:
+
+- Project Name
+- Short Description
+- README: This is displayed as the _Project Readme_ similar to how README works for a single Repository
+
+### Common Tasks
+
+Overall: Use the "+" sign to add new things within the Table including Fields:
+
+- Copy Issues and PRs: Copy existing URL and paste into new item in Project table.
+- Search: Existing Issues and PRs. Search tool updates while typing search term(s).
+- Bulk Add (Issues and PRs): "+" sign allows selecting a Repository to choose from.
+- Create Field to track and group priority.
+- Add iteration Field. Remember to add start date and duration.
+- Create a Board View. Built-in Layouts are available. Rename the View when done creating.
+
+### Organize Your Project
+
+Field Types: Text, Number, Date, "Single select", and Iteration
+
+Project Visibility and Access:
+
+- Visibility can be Private or Public.
+- Organization-Level Project: _No access_, Read, Write, or Admin.
+- Personal/User Project: Read, Write, or Admin.
+
+Invite Collaborators: Invite individuals via Search then update their Role to supply the correct access permissions.
+
+### Add Project To A Team
+
+Teams are granted REad Permissions on any Project they are added to.
+
+1. Open Your Organizations and select the target Org.
+1. Open Teams tab and select the Team to grant access to.
+1. Select Projects and choose "Link a project" to search for and select the target Project.
+
+### Add Project To A Repository
+
+Can only list Projects if same User or Organization owns _both_ the Projects _and_ the Repository.
+
+How to (Visibility is required):
+
+1. Main repository page select Projects tab.
+1. Click "Link a project" to search for Projects owned by the same User or Organization as the Repo Owner.
+1. Select the Project.
+
+### Project Insights
+
+View, create, and customize charts based on Project Items:
+
+- Filters: Limit results to particular assignees or labels.
+- Chart Types
+- Information Display
+- Current Data: Show items by assignment and iteration or individual.
+- Historical Data: Available to GitHub Teams and GitHub Enterprise Cloud for Organizations. Time-based focused on trends and progress. Includes "Burn Up" chart.
+
+Create: Within the Project "Insights" label, select new Chart and pick a chart type using the filter.
+
+Customize:
+
+1. Select the chart to edit.
+1. Select Configure.
+1. Select Layout to pick a new Chart Type.
+1. Select X-axis to select appropriate Field.
+1. Select Group-by for the select Field, or None.
 
 ## Github Codespaces
 
