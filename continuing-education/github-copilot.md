@@ -480,6 +480,12 @@ Demo Notes:
 - CodeSpaces allows launching a web browser (NextJS, React, etc) directly from the Dev Environment UI.
 - CoPilot might suggest variable names like 'min' that might not always be obvious identifiers.
 
+About Prompts, Tokens, and Context:
+
+- Context Window limitations: The amount of surrounding code that text that the model can process.
+- Copilot's Context Window depends on implementation and Copilot version. Generally between 200-500 lines of code or a few thousand Tokens.
+- Copilot Chat: 4k Tokens (generally) thereby providing better context and generated responses to increasingly complex prompts. Also allows user to prompt with additional code inputs for context, further improving prompt response.
+
 ## The GitHub Next Team and Project
 
 [VSCodeDay](https://learn.microsoft.com/en-us/events/vs-code-day-2023) was an event in April 2023, focused on VS Code and some of the Microsoft and GitHub improvements and integrations. The following notes result from watching some of the VS Code Day 2023 presentations.
@@ -719,15 +725,18 @@ MSFT and GitHub's Six Principles of Responsible AI:
 
 List of Advanced Features:
 
-- Ghost Text: Suggestions provided by Copilot while typing in an IDE with Copilot enabled. Use `[tab]` key to accept it, or just ignore it to decline. Open-files are automatically used as context.
+- Inline Suggestions aka "Ghost Text": Suggestions provided by Copilot while typing in an IDE with Copilot enabled. Use `[tab]` key to accept it, or just ignore it to decline (or `[esc]` key). Open-files are automatically used as context.
 - Copilot Chat: Interactive discussion feature. Click the chat icon in the IDE, then start asking questions about code being worked on, or other software-related questions.
-- Inline Chat: Interact with Copilot without opening a new window. `[ctrl/Command]` + `[i]`. Reduces developer context-switching to interact with Copilot.
+- Inline Chat: Interact with Copilot using Natural Language, without opening a new window. `[ctrl/Command]` + `[i]`. Reduces developer context-switching. Good for rapid code drafting for simple tasks.
+- Multiple Suggestions :light_bulb: (Light Bulb Icon): Select or `[Alt/Option]` + `[]]` to cycle through suggestions. Rapidly select an appropriate suggestion.
 - Slash Commands: Specify an _intent_ to prefix a prompt. `/` prefix a command like `tests` or `docs` or `fix` or `describe`. Minimizes prompt writing and maximizes generated output relatability.
 - Agents: Ask questions using a specific context such as `@terminal` or `@workspace`. Prefix an Agent target with `@` symbol, then type the question/prompt for a context-aware response.
 
 _Note_: `\fix` et al are known as _implicit prompts_.
 
 _Note_: `@workspace` uses _open files_ in the editor as additional context.
+
+_Note_: Github Copilot can also be launched using the Command Palette, providing access to many Copilot functions.
 
 ## IDE, Chat, and Command Line Techniques
 
@@ -798,9 +807,11 @@ Organizational Settings:
 
 - Policy may disable or enable other features and capabilities of the CLI.
 
-Data Handling:
+### Copilot Data Handling
 
 - Prompts are _not retained_ by Copilot.
+- Code or other context are _not retained_.
+- In the IDE: Once the suggestion is generated and returned, the prompt, any code, and the context are deleted.
 - Analytics metadata _is retained_.
 - Use `gh copilot config` and select from the on-screen list of options.
 

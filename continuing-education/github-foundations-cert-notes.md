@@ -13,6 +13,51 @@ These will be limited reference notes related to the GitHub Foundations Certific
 - [References](#references)
 - [Footer](#footer)
 
+## Communication Using Markdown
+
+- [x] Add lists, images, and links to a Comment or text file.
+- [x] Know where and when to use MD in a GH Repo.
+- [x] Syntax Extensions in GitHub-flavored Markdown.
+
+## Overview
+
+Provides convenient way to style text without the overhead of full HTML.
+
+- Emphasize text with Bold and/or Italics
+- Declare Headings 1 through 6
+- Link to Images and Sites
+- Ordered and Unordered Lists
+- Tables
+- Quote Text
+- Breaks (gap-filling)
+- Code fencing with ` and ```
+- Cross-link Issues and PRs
+- Link Specific Commits
+- `@`Mentions Users and Teams
+- Track Task Lists
+- Slash Commands (see below)
+
+### Allows Inline HTML Anyway
+
+Want to use HTML anyway? Do it! `<b>Hello</b> <em>World</em>!`: <b>Hello</b> <em>World</em>!
+
+### Details
+
+- Emphasize text: `*`*italic*`*` (preferred) or `_`*italic*`_`
+- Bold: `**`**bold**`**` (preferred) or `__`**bold**`__`
+- `_`*`**`**Italic and Bold**`**`*`_`
+- `\` allows delimiting markdown characters so they are displayed.
+- See [markdownlint Rules](https://github.com/DavidAnson/markdownlint/blob/v0.36.1/doc/Rules.md) for some tips using well-formed markdown (but not GitHub Markdown specific).
+
+### Slash Commands
+
+- `/code`: Markdown codeblock.
+- `/details`: Collapsible detail area with Title and Content (accordian-like).
+- `/saved-replies`: Inserts a Saved Reply or use `%cursor%` to put a cursor in that location.
+- `/table`: Insert a table using MD.
+- `/tasklist`: Insert a tasklist *only within an Issue Description*.
+- `/template`: Show all Issue and PR Templates in current Repository and choose the one to insert.
+
 ## GitHub Projects
 
 Overview: Create Issues to drive Task creation and completion, relate work items and PRs, customize Fields, and enable Conversations.
@@ -23,9 +68,9 @@ Overview: Create Issues to drive Task creation and completion, relate work items
 - [x] Edit visibility, access, and management of the Project
 - [x] Develop project-level automation and insights
 
-_Note_: Projects can be Closed and Deleted.
+*Note*: Projects can be Closed and Deleted.
 
-- Close: Removes from list of Projects but content in retained. _Can_ be opened later.
+- Close: Removes from list of Projects but content in retained. *Can* be opened later.
 - Delete: Permanent removal from the platform including Views, custom Fields and values, Insights, and Drafts.
 
 ### Projects vs. Classic
@@ -94,7 +139,7 @@ Common Props:
 
 - Project Name
 - Short Description
-- README: This is displayed as the _Project Readme_ similar to how README works for a single Repository
+- README: This is displayed as the *Project Readme* similar to how README works for a single Repository
 
 ### Common Tasks
 
@@ -114,7 +159,7 @@ Field Types: Text, Number, Date, "Single select", and Iteration
 Project Visibility and Access:
 
 - Visibility can be Private or Public.
-- Organization-Level Project: _No access_, Read, Write, or Admin.
+- Organization-Level Project: *No access*, Read, Write, or Admin.
 - Personal/User Project: Read, Write, or Admin.
 
 Invite Collaborators: Invite individuals via Search then update their Role to supply the correct access permissions.
@@ -129,7 +174,7 @@ Teams are granted REad Permissions on any Project they are added to.
 
 ### Add Project To A Repository
 
-Can only list Projects if same User or Organization owns _both_ the Projects _and_ the Repository.
+Can only list Projects if same User or Organization owns *both* the Projects *and* the Repository.
 
 How to (Visibility is required):
 
@@ -202,7 +247,7 @@ Codespace Creation Process:
 Saving Changes:
 
 - Web: Autosave is enabled.
-- VSCode: Autosave is _avaiable_ but must be enabled, if wanted.
+- VSCode: Autosave is *avaiable* but must be enabled, if wanted.
 
 Supported Apps:
 
@@ -216,7 +261,7 @@ Inactivity Timeouts:
 - Saved and shutdown after 30 minutes.
 - Personal Timeout setting can be configured.
 - Organizational Timeout settings may override Personal Timeout setting.
-- _Stopped_ Codespaces are _deleted after 30 days_ automatically.
+- *Stopped* Codespaces are *deleted after 30 days* automatically.
 
 Internet Connectivity Required:
 
@@ -224,7 +269,7 @@ Internet Connectivity Required:
 
 ### Close or Stop a Codespace
 
-- Exit Codespace without running Stop Command allows Codespace to _run in the background_.
+- Exit Codespace without running Stop Command allows Codespace to *run in the background*.
 - Timeout timers start when disconnected while Running.
 - Disconnect leaves Codespace running but saves changes including uncommitted (but does not commit for you).
 - Restart has same behavior.
@@ -328,7 +373,7 @@ GitHub Actions Billing:
 - GH Actions minutes are free for public and self-hosted runners.
 - Private repos have included limits on time and storage, and billing is applied at each GH Account.
 - Monthly Spending Limit: If set, will block GH Action from running once USD threshold is met.
-- Invoiced Accounts will have an _unlimited spending_ charge.
+- Invoiced Accounts will have an *unlimited spending* charge.
 - Minutes reset each month.
 - Storage does not reset, it is tracked on an on-going basis.
 
@@ -337,8 +382,8 @@ GitHub Actions Billing:
 Perform analysis elsewhere, then upload the results separately:
 
 - Use Static Analysis Results Interchange Format (SARIF) files.
-- SARIF v.2.1.0 or newer is _required_.
-- Non-SARIF files will _not_ trigger GH Actions Alerts.
+- SARIF v.2.1.0 or newer is *required*.
+- Non-SARIF files will *not* trigger GH Actions Alerts.
 
 ### Code Scanning API
 
@@ -379,7 +424,7 @@ The Bundle is more effecient than using separate downloads and repo cloning.
 
 ### SARIF Upload Limitations
 
-- Max 10 MB for gzip-compressed. Any more and gzip is _rejected_.
+- Max 10 MB for gzip-compressed. Any more and gzip is *rejected*.
 - Up to 5000 results per upload will be processed, rest are ignored.
 - Focus SARIF upload contents to the most critical queries (not everything).
 
@@ -392,7 +437,7 @@ SARIF File generation can be done via other tools besides GH Actions or the Code
 
 ### Upload SARIF File As Part of CI Workflow
 
-- Set GH Action property `upload-sarif` as a step _after_ running CI tests.
+- Set GH Action property `upload-sarif` as a step *after* running CI tests.
 - [GH Starter workflows](https://github.com/actions/start-workflows) are available.
 
 Example: Running an ESLINT static analysis tool can be output to a SARIF file which can then be uploaded via the `upload-sarif` action!
@@ -405,21 +450,21 @@ Configure Default or Advanced Code Scanning:
 - CodeQL Workflows are stored in `.github/workflows` by default.
 - Default file is named `codeql-analysis.yml`
 
-_Remember_: Editing a Workflow requires a Git Commit to set the changes in the repo.
+*Remember*: Editing a Workflow requires a Git Commit to set the changes in the repo.
 
 Scanning Frequency:
 
 - On a schedule.
 - On the triggering of named events (e.g. push).
 - Specify within an existing GH Action YML file.
-- Scan On Push: Default. Yaml: `on:push` event. Workflow _must be in the specified branch_.
+- Scan On Push: Default. Yaml: `on:push` event. Workflow *must be in the specified branch*.
   - Alerts are automatic.
   - Results appear in Security Tab for the repository.
 - Scan on PR: Yaml: `on:pull_request`.
   - Targets default branch.
   - Can target private fork if "Run workflows from fork pull requests" is set in repo settings.
   - Results show in PR Check results.
-  - For effeciency: Set these for _merge_ commits and _not_ head commits.
+  - For effeciency: Set these for *merge* commits and *not* head commits.
 - Use a CRON (see example below).
 
 ```yaml
@@ -438,7 +483,7 @@ Define Severities:
 - Necessary to identify cause of PR Check Failures.
 - Default: On `Error`, `Critical`, or `High`
   - CodeScanning continues.
-  - Merging PR is _blocked_ on these codes.
+  - Merging PR is *blocked* on these codes.
 - Repository Settings Tab, Code Security And Analysis: Code Scanning Alerts displays PR failures and alert severities here.
   - Also set Protection Rules to define "Check Runs Failure Threshold".
 
@@ -466,7 +511,7 @@ on:
 
 - CWE: Common Weakness Enumeration. A categorization system of hardware and software weaknesses and vulnerabilities.
 - The Security Tab on the Repo page will have a Number in it when there are alerts to review.
-- "Indentify": To add indentation as a means to _highlight code_.
+- "Indentify": To add indentation as a means to *highlight code*.
 
 ## GitHub Administration
 
@@ -550,9 +595,9 @@ The Most Common Administrative Task: Setup and Control User Authentication to Gi
 
 - Encourage users to move away from "Basic"(http) auth methods.
 - Enable, use Personal Access Tokens (PATs).
-- Enable, use SSH Keys. Note: SSH Keys _can_ be used to authenticate against an Org's SAML SSO, or if the Org provides SSH Certificates.
+- Enable, use SSH Keys. Note: SSH Keys *can* be used to authenticate against an Org's SAML SSO, or if the Org provides SSH Certificates.
 - Enable, use Deploy Keys: Applies to a single repository, rather than a GitHub User Profile or Organization. Default permission is "Read-Only" but can be configured with "Write" permissions.
-- 2FA: Can be set as _required_ for an entire Org. Leverages SMS or GitHub Mobile for the second factor.
+- 2FA: Can be set as *required* for an entire Org. Leverages SMS or GitHub Mobile for the second factor.
 - Enforce certain security policies for all Orgs owned by an Enterprise account, such as making 2FA required.
 - SAML SSO: As part of central ID management, allows securing access via the Organization's IdP. User gets redirected after authentication to the requested resource. Can use Active Directory/ADFS, Microsoft Entra ID, Okta, OneLogin, or PingOne.
 - LDAP: Allows authenticating GH Enterprise Server against existing accounts to centrally manage repo access. Very common. Services include: Active Directory, Oracle Directory Server Enterprise Edition, OpenLDAP, and Open Directory.
@@ -625,8 +670,8 @@ Personal:
 
 Free vs. Pro:
 
-- Both allow _unlimited public and private repositories_.
-- Both allow _unlimited collaborators on those repositories_.
+- Both allow *unlimited public and private repositories*.
+- Both allow *unlimited collaborators on those repositories*.
 - Free: Private repos owned by personal account have limited features.
 
 Organizations:
@@ -634,7 +679,7 @@ Organizations:
 - Shared accounts.
 - Collaborate hubs for many people across one or more projects, simultaneously.
 - Tiered approach to permissions.
-- Does _not_ support sign-in (users do not sign-in to Organizations).
+- Does *not* support sign-in (users do not sign-in to Organizations).
 - Personal accounts can be members of multiple Organizations.
 
 Enterprise:
@@ -661,7 +706,7 @@ Free Personal:
 - 120 Hrs Codespaces per month
 - 15 GB Codespaces per month
 - 2k Github Actions per month
-- Deployment protection rules for _public repos_
+- Deployment protection rules for *public repos*
 
 Free for Orgs:
 
@@ -701,7 +746,7 @@ Mobile:
 - Read, review, collab on Issues and PRs
 - Edit files in PRs
 - Search, browse, interact with Users, Repos, and Orgs
-- Get PR notifications through _mentions_
+- Get PR notifications through *mentions*
 - Schedule Push Notifications (do not disturb hours etc)
 - Enable and use 2FA with GitHub.com
 - Verify sign-in attempts
@@ -738,15 +783,15 @@ Version Control is:
 - Branching: Experimental changes won't affect the main branch line or other editors.
 - Tagging: Add descriptive flags such as a version number or release info.
 
-_Note_: Git was created by Linus Torvals (creator of Linux).
+*Note*: Git was created by Linus Torvals (creator of Linux).
 
 Distributed Version Control Systems:
 
 - Centralized VCS systems like CVS, SVN, and Perforce used a single-server system.
-- Git uses history stored both on client and server systems and so is _distributed_.
+- Git uses history stored both on client and server systems and so is *distributed*.
 - Working Tree: Set of directories and files containing a Project.
 - Repository: Directory at the top-level of a Working Tree.
-- Bare Repository: _Not_ part of a working tree. Often used for file-sharing outside of a Git Repo.
+- Bare Repository: *Not* part of a working tree. Often used for file-sharing outside of a Git Repo.
 - Hash: Number that represents the contents of a file or other object. Used as reference points in Git.
 - Object: Blobs (files), Trees (directories), Commits (specific version of a tree), Tags (a name attached to a Commit).
 - Commit: Two meanings:
