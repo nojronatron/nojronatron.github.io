@@ -4,6 +4,7 @@ These will be limited reference notes related to the GitHub Foundations Certific
 
 ## Table of Contents
 
+- [Search and Organize Repo History using GitHub](#search-and-organize-repo-history-using-github)
 - [Manage Repo Changes With Pull Requests](#manage-repo-changes-with-pull-requests)
 - [AuthN and AuthZ User IDs on GitHub](#authn-and-authz-user-ids-on-github)
 - [User ID and Access Management](#user-id-and-access-management)
@@ -18,14 +19,67 @@ These will be limited reference notes related to the GitHub Foundations Certific
 - [References](#references)
 - [Footer](#footer)
 
+## Search and Organize Repo History using GitHub
+
+- [x] Find relevant issues and PRs.
+- [x] Search history to find context.
+- [x] Make connections to help others find info.
+
+### Searching GitHub
+
+Use GitHub "Sidebar" (the search box next to the Octocat icon) for results:
+
+- Repositories
+- Commits
+- Issues
+- Discussions
+- Packages
+- Marketplace
+- Topics
+- Wikis
+- Users
+
+Use Filter Clauses:
+
+- Used by some providers, ignored by others.
+- Without any clauses, GitHub Sidebar Search is global.
+- There are too many to list (common ones follow).
+- `is:open`
+- `is:issue`
+- `assignee@...`: Specific GitHub user assigned to a WOrk Item.
+- `author:...`: Specific GitHub user.
+- `in:...`: Area such as comments.
+- Specific area of GitHub such as `sidebar` can be used by name.
+- `-linked:...`: Linked to a pr, issues, etc.
+
+Context Search:
+
+- Open a GitHub Tabs and use its Search Bar instead.
+- Focuses on the context of the Tab e.g. Issues, Pull Requests, etc.
+
+Git Blame:
+
+- Displays Commit History for a file.
+- Identify user that Committed and when it was done.
+- Commit changes are displayed with the username/id.
+- Can be _aliased_ to "git praise" or another command to sound less judgemental.
+- Display within GitHub web UI.
+- IDE Extensions can also display Git Blame data right in the IDE UI.
+
+Cross Linking:
+
+- Issues, Commits, etc.
+- Syntax is: precede with `#` then select from the dropdown a list of Issues, PRs and other GitHub items.
+- Use `@mention` to notify the GitHub user they can participate in the discussion, or other work item type.
+
 ## Manage Repo Changes With Pull Requests
 
-- [ ] Review use of Branches.
-- [ ] Define and Create a Pull Request.
-- [ ] Pull Request states.
-- [ ] Mange Pull Requests to a Base Branch
+- [x] Review use of Branches.
+- [x] Define and Create a Pull Request.
+- [x] Pull Request states.
+- [x] Mange Pull Requests to a Base Branch
 
-## Branches and Pull Requests
+### Branches and Pull Requests
 
 Branch:
 
@@ -41,7 +95,7 @@ Merging Branches:
 - Many Commits and Merges are tracked into Main or another common branch.
 - Tracking multple Merges is done through Pull Requests.
 
-Pull Requests (PRs):
+### Pull Requests (PRs)
 
 Can be done:
 
@@ -972,6 +1026,7 @@ Create repo:
 
 ## References
 
+- [Advanced Search configuration](https://github.com/search/advanced)
 - [GitHub Codespaces Overview](https://docs.github.com/en/codespaces/overview)
 - [Managing Billing For Github Codespaces](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-codespaces/about-billing-for-github-codespaces)
 - [GitHub REST API Endpoints for Code Scanning](https://docs.github.com/en/rest/code-scanning/code-scanning?apiVersion=2022-11-28)
