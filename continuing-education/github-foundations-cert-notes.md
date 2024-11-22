@@ -9,14 +9,146 @@ These will be limited reference notes related to the GitHub Foundations Certific
 - [Intro to GitHub Products](#intro-to-github-products)
 - [Intro to Git](#intro-to-git)
 
+## GitHub Projects
+
+Overview: Create Issues to drive Task creation and completion, relate work items and PRs, customize Fields, and enable Conversations.
+
+- [ ] Differentiate Projects and "Projects (Classic)"
+- [ ] Build an Org-level Project
+- [ ] Organize the Project
+- [ ] Edit visibility, access, and management of the Project
+- [ ] Develop project-level automation and insights
+
+##
+
+## Github Codespaces
+
+- [x] Codespaces lifecycle and processes.
+- [x] Customize Codespaces at startup.
+- [x] Codespaces vs. GitHub.dev
+
+### Overview
+
+Codespaces in a cloud-based IDE with all the tools and functionality of VS Code and the ability to interop with GitHub Repositories and JetBrains IDEs. A GitHub account is required and a billing account is necessary to enable Codespace usage.
+
+Monthly Included Storage and Core Hours for Personal Accounts:
+
+- GitHub Free: 15 GB/month and 120 Hrs.
+- GitHub Pro: 20 GB/month and 180 Hrs.
+- Paid usage break-down is complex but for a 2-core configuration used for 1 hour will incurr $0.18 charge.
+
+### Codespaces Lifecycle
+
+Designed to create a repeatable develpment enviornment configured for a project.
+
+- Lifecycle begins at startup, ends at deletion.
+- Disconnect and reconnect does not affect running processes.
+- Stopping does not lose changes to files and configuration.
+
+### Create a Codespace
+
+Create via GitHub.com, VS Code, or GitHub CLI.
+
+Launch Codespace from:
+
+- GitHub Template or templated repository.
+- Branch in your repository.
+- An Open PR.
+- Specific Commin in a repository's history.
+
+Codespace Creation Process:
+
+1. VM and storage are spun-up.
+1. Container is created.
+1. Connection to Codespace is initialized.
+1. Post-creation steps are executed.
+
+Saving Changes:
+
+- Web: Autosave is enabled.
+- VSCode: Autosave is _avaiable_ but must be enabled, if wanted.
+
+Supported Apps:
+
+- VSCode.
+- JetBrains IDE.
+- GitHub CLI.
+- Web browsers.
+
+Inactivity Timeouts:
+
+- Saved and shutdown after 30 minutes.
+- Personal Timeout setting can be configured.
+- Organizational Timeout settings may override Personal Timeout setting.
+- _Stopped_ Codespaces are _deleted after 30 days_ automatically.
+
+Internet Connectivity Required:
+
+- Spotty connections or poor bandwidth o.k. but save often to safegaurd from lost data.
+
+### Close or Stop a Codespace
+
+- Exit Codespace without running Stop Command allows Codespace to _run in the background_.
+- Timeout timers start when disconnected while Running.
+- Disconnect leaves Codespace running but saves changes including uncommitted (but does not commit for you).
+- Restart has same behavior.
+
+### Rebuild Codespace
+
+- Allows changing the underlying configuration.
+- User-data is saved and restored after restarting the Codespace.
+- Full Rebuild: Clears all cached info. Slower restart process but ensures clean startup.
+- Rebuild causes all data outside of `\workspaces` directory to be cleared.
+
+### Delete a Codespace
+
+After pushing changes (or you are ready to abandon them), delete the Codespace.
+
+- Non-recoverable operation.
+- Unpushed commits will cause a warning, verification prompt before deletion.
+- Uncommitted changes are lost.
+
+### Codespace Personalization
+
+A dedicated environment that is configurable:
+
+- Settings Sync: With VS Code!
+- Dotfiles.
+- Rename Codespace: Overwrite auto-generated name.
+- Change Shell: Can be configured manually or through dotfiles.
+- Change Machine Type: Use correct resources to get the job done.
+- Default Editor: VS Code Desktop, VS Code Web Client, JetBrains Gateway, JupyterLab web.
+- Region: Stores data according to your configured region.
+- Timeouts: Personal settings and Organizational settings.
+- Automatic Deletion: Default 30 days, can be adjusted (max 30d).
+
+Extensions and Plugins:
+
+- Visual Studio Marketplace Extensions are supported.
+- Settings Sync: Automatically sync your settings to this Codespaces instance.
+- JetBrains Marketplace support.
+
+### What About GitHub.Dev Editor?
+
+Both Codespaces and GitHub.Dev do basic branch viewing and code editing.
+
+Codespaces has these additional features:
+
+- Build and run code.
+- Terminal access.
+- Costs after free monthly quota.
+- Container spin-up delays but with VM Container compute available during use.
+- Full Extension support (GitHub.Dev is limited).
+- A project being worked on in GitHub.Dev can be "continued with..." Codespaces.
+
 ## Configure Code Scanning on GitHub
 
-- [ ] Describe Code Scanning.
-- [ ] Enable Code Scanning in a Repo.
-- [ ] Enable 3rd Party Analysis settings.
-- [ ] Contrast CodeQL in GH Actions vs. 3rd Party CI tools.
-- [ ] Explain Triggering Events in Repo Code Scanning.
-- [ ] Contrast scheduled vs event-triggered Code Scanning.
+- [x] Describe Code Scanning.
+- [x] Enable Code Scanning in a Repo.
+- [x] Enable 3rd Party Analysis settings.
+- [x] Contrast CodeQL in GH Actions vs. 3rd Party CI tools.
+- [x] Explain Triggering Events in Repo Code Scanning.
+- [x] Contrast scheduled vs event-triggered Code Scanning.
 
 ### Code Scanning Purpose
 
@@ -526,6 +658,8 @@ Create repo:
 
 ## References
 
+- [GitHub Codespaces Overview](https://docs.github.com/en/codespaces/overview)
+- [Managing Billing For Github Codespaces](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-codespaces/about-billing-for-github-codespaces)
 - [GitHub REST API Endpoints for Code Scanning](https://docs.github.com/en/rest/code-scanning/code-scanning?apiVersion=2022-11-28)
 
 ## Footer
