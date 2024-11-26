@@ -2,7 +2,7 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
-## Weeks 45 through 46
+## Weeks 45 through 48
 
 Lots going on right now!
 
@@ -42,6 +42,37 @@ A recent challenge I made for myself was to create a printable-output webpage us
 ### Continuing Education - GitHub Copilot
 
 Completed "GitHub Copilot Fundamentals - Understand the AI pair programmer" Learning Path on MSFT Learn! :tada:
+
+### Learning TypeScript With Copilot
+
+GitHub Copilot provides numerous ways to interact with it within VS Code. Depending on the approach, a slightly different context and specificity will be generated. Also, creating good prompts and providing enough context to begin with helps.
+
+- Allow Inline Suggestions (ghost text) to do the work for you: Open up tabs containing related code pages to improve suggestions.
+- Inline Chat: Smaller version of the full Copilot Chat window, and thus slightly reduced overall context. Great for fixing or adding code on the same line, using context from the code just above and below the cursor position. Allows selecting Chat Models (GPT-4o, Claude (preview), etc).
+- Copilot Chat: Use natural language to "discuss" code design at a larger scale, get feedback on selected code or an entire code page (using `#file`), and generate test cases.
+
+As for learning TypeScript:
+
+- I found it easy to skip required code when creating new functions or React Components. An example is below.
+- In many ways, TypeScript is so similar to JavaScript, that I was able to simply continue coding with a JavaScript mindset. Maybe this contributes to the previous bullet point.
+- React TS requires identifying React Components return type as `JSX.Element`.
+- Interfaces in TS are similar enough to Interfaces in C#: Basically a blueprint for what a Type will look like. The TS syntax is simpler than C#.
+- Accepting a prop requires identifying the Prop Type. For a React Component the type definition and params list looks like `React.FC<{ propName: React.ReactNode }> = ({ propName }) => { ... }`.
+
+```typescript
+/* Exporting a React TS Functional Component */
+export const TextFieldPart: React.FC<{
+  cardKey: string;
+  cardValue: string;
+}> = ({ cardKey, cardValue }) => {
+  ...
+}
+```
+
+Copilot provided plenty of inline suggestions along the way. The most helpful generated responses related to:
+
+- Resolving issues with declaring the Type of a React TS component.
+- Generating boilerplate code based on already existing code with a few suggested enhancements.
 
 ## Weeks 43 through 44
 
