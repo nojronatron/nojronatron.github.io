@@ -226,7 +226,9 @@ Provides convenient way to style text without the overhead of full HTML.
 
 ### Allows Inline HTML Anyway
 
-Want to use HTML anyway? Do it! `<b>Hello</b> <em>World</em>!`: <b>Hello</b> <em>World</em>!
+Want to use HTML anyway? Do it! `<b>Hello</b> <em>World</em>!` renders as: <b>Hello</b> <em>World</em>!
+
+_Note_: Your linter might not like this.
 
 ### Details
 
@@ -395,7 +397,7 @@ Customize:
 - [x] Customize Codespaces at startup.
 - [x] Codespaces vs. GitHub.dev
 
-### Overview
+### Codespaces Overview
 
 Codespaces in a cloud-based IDE with all the tools and functionality of VS Code and the ability to interop with GitHub Repositories and JetBrains IDEs. A GitHub account is required and a billing account is necessary to enable Codespace usage.
 
