@@ -2,7 +2,7 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
-## Weeks 45 through 46
+## Weeks 45 through 48
 
 Lots going on right now!
 
@@ -42,6 +42,73 @@ A recent challenge I made for myself was to create a printable-output webpage us
 ### Continuing Education - GitHub Copilot
 
 Completed "GitHub Copilot Fundamentals - Understand the AI pair programmer" Learning Path on MSFT Learn! :tada:
+
+### Learning TypeScript With Copilot
+
+GitHub Copilot provides numerous ways to interact with it within VS Code. Depending on the approach, a slightly different context and specificity will be generated. Also, creating good prompts and providing enough context to begin with helps.
+
+- Allow Inline Suggestions (ghost text) to do the work for you: Open up tabs containing related code pages to improve suggestions.
+- Inline Chat: Smaller version of the full Copilot Chat window, and thus slightly reduced overall context. Great for fixing or adding code on the same line, using context from the code just above and below the cursor position. Allows selecting Chat Models (GPT-4o, Claude (preview), etc).
+- Copilot Chat: Use natural language to "discuss" code design at a larger scale, get feedback on selected code or an entire code page (using `#file`), and generate test cases.
+
+As for learning TypeScript:
+
+- I found it easy to skip required code when creating new functions or React Components. An example is below.
+- In many ways, TypeScript is so similar to JavaScript, that I was able to simply continue coding with a JavaScript mindset. Maybe this contributes to the previous bullet point.
+- React TS requires identifying React Components return type as `JSX.Element`.
+- Interfaces in TS are similar enough to Interfaces in C#: Basically a blueprint for what a Type will look like. The TS syntax is simpler than C#.
+- Accepting a prop requires identifying the Prop Type. For a React Component the type definition and params list looks like `React.FC<{ propName: React.ReactNode }> = ({ propName }) => { ... }`.
+
+```typescript
+/* Exporting a React TS Functional Component */
+export const TextFieldPart: React.FC<{
+  cardKey: string;
+  cardValue: string;
+}> = ({ cardKey, cardValue }) => {
+  ...
+}
+```
+
+Copilot provided plenty of inline suggestions along the way. The most helpful generated responses related to:
+
+- Resolving issues with declaring the Type of a React TS component.
+- Generating boilerplate code based on already existing code with a few suggested enhancements.
+
+### Portfolio Dependabot Alerts
+
+On occasion, GitHub CodeQL alerts are raised indicating moderate to severe issues with dependencies in my Portfolio project website. Turns out `eslint` had some dependencies with recently discovered vulnerabilities. Thankfully, NPM's website has links to dependants and dependencies for published modules, and it didn't take long to find `eslint` was the common parent, so a quick update fixed the issue.
+
+### Puget Mesh
+
+This is a relatively new, local group of Mesh Networking enthusiasts in the greater Seattle area, covering topics of Meshtastic, AREDN, and HamWAN, primarily. I've been involved in Meshtastic and AREDN, so seeing this grassroots group grow is exciting.
+
+### The Final Parts of 2024
+
+Every year for the last few years in December, [Advent Of Code](https://adventofcode.com/) releases a holiday-themed group of code challenges for developers to hack at, pretty much any way they want to. While somewhat gamified, it isn't as gamey as LeetCode and other code challenge sites, but provides some leaderboards and other statistics. I've challenged myself to try and work through as many of the Advent challenges as possible, using C#, through Christmas Day.
+
+As of right now, the goals for December include:
+
+- Continue reading The Nature of Code and complete exercises through Chapter 6.
+- Review recent GitHub lessons and prepare for GitHub Foundations exam.
+- Complete the QSL Card side project.
+- Develop guidance for the RAMROD website to use going forward.
+- Considering revamping this blargh to reduce chatter and increase technical content, which might require a platform change.
+- Complete SquareSpace training items (tracked elsewhere).
+
+In 2025 I hope to get started on:
+
+- Revamping the Android Weather App.
+- Developing the digital clock app for Linux.
+- Planning for BigFoot 2025 including work on BF-BMX and the Bigfoot Form.
+
+...and make progress with:
+
+- RAMROD website.
+- GitHub Certification.
+- Implementing knowledge gleaned from The Nature of Code.
+- Resume updates and job hunting.
+- Make sensible updates to my Portfolio website including reducing dependencies and separating data storage from the UI.
+- Completing The Nature of Code book (if not done already).
 
 ## Weeks 43 through 44
 

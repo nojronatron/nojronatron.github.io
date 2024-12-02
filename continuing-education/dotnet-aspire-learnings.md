@@ -510,6 +510,56 @@ As of 27-Sept-2024
 - Aspire is delivered through the NuGet system, and Aspire _Workloads_ components are required and must be updated over time.
 - DotNET 8 or newer is required, so any dotnet 7.x or older (LTS) framework projects will need to be updated first.
 
+## Microservices and Aspire
+
+.NET Foundation Presentation "Increase Observability, Resiliency, and Dev Usability with .NET Aspire".
+
+Presenter: Lee Richardson
+
+Aspire targets microservice-based projects, but can be used for non-microservice solutions, too.
+
+Aspire brings together all of the resiliency features already in .NET 8+.
+
+Aspire adds observability to the mix, allowing the ability to see bugs in apps, even if they are not noticable due to resiliency mechanisms auto-recovering.
+
+- Azure Application Insights adds observability. Arguably too difficult and clumsy to use.
+- Aspire Dashboard Resources page is in the box and allows drilling-down into the application interfaces and services.
+- Structured Logs allows viewing transaction and session logging information including stack trace information.
+- Traces shows events and timing for API calls such as REST and other WRRC.
+- Metrics displays real-time graph and tabular data to view connection timings and spikes, memory usage, etc.
+
+Problem Injectors for Scalability and Resiliency Testing:
+
+- .NET Core 2+: Polly
+- ChaosMonkey
+- Resiliency Policies in .NET 8+: `AddStandardResilienceHandler()` applies basic policies that are customizable.
+
+Strategies:
+
+- Rate Limiting
+- Total Timeout
+- Retries
+- Circuit Breakers
+- Attempt Timeout
+
+Open Telemetry:
+
+- Brings consistent view and setup to get telemetry from applications and services.
+- No longer have to rely on multiple SDKs and cobble together one or more solutions to gain Observability.
+- Supports Logs, Metrics, and Traces (the 3 pillars of observability).
+- Standardized protocol to provide observability.
+- Aspire supports Open Telemetry out of the box.
+
+Developer Usability of Aspire:
+
+- Add service to the service DI container using AppBuilder and simply point to the named service.
+  - Rather than having to configure 'http' and 'https' ports directly via configuration.
+- Additional Services env-vars such as 'services__products__http__0' and 'services__products__https__0':
+  - Supports Service Discovery is then just configured via JSON.
+- Adding a new services (Aspire Integrations) simplify adding services like Redis.
+- Integration with Docker enables automating download of Docker Images and running them by replacing 'docker-compose.yaml' files!
+  - Requires additional Aspire Integration(s).
+
 ## Resources
 
 - [.NET Aspire and KeyCloak](https://aka.ms/aspire-keyvault)

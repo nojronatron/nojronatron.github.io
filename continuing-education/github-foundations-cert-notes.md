@@ -4,39 +4,540 @@ These will be limited reference notes related to the GitHub Foundations Certific
 
 ## Table of Contents
 
+- [Search and Organize Repo History using GitHub](#search-and-organize-repo-history-using-github)
+- [Manage Repo Changes With Pull Requests](#manage-repo-changes-with-pull-requests)
+- [AuthN and AuthZ User IDs on GitHub](#authn-and-authz-user-ids-on-github)
+- [User ID and Access Management](#user-id-and-access-management)
+- [Communication Using Markdown](#communication-using-markdown)
+- [Overview](#overview)
+- [GitHub Projects](#github-projects)
+- [Github Codespaces](#github-codespaces)
 - [Configure Code Scanning on GitHub](#configure-code-scanning-on-github)
 - [GitHub Administration](#github-administration)
 - [Intro to GitHub Products](#intro-to-github-products)
 - [Intro to Git](#intro-to-git)
+- [References](#references)
+- [Footer](#footer)
+
+## Search and Organize Repo History using GitHub
+
+- [x] Find relevant issues and PRs.
+- [x] Search history to find context.
+- [x] Make connections to help others find info.
+
+### Searching GitHub
+
+Use GitHub "Sidebar" (the search box next to the Octocat icon) for results:
+
+- Repositories
+- Commits
+- Issues
+- Discussions
+- Packages
+- Marketplace
+- Topics
+- Wikis
+- Users
+
+Use Filter Clauses:
+
+- Used by some providers, ignored by others.
+- Without any clauses, GitHub Sidebar Search is global.
+- There are too many to list (common ones follow).
+- `is:open`
+- `is:issue`
+- `assignee@...`: Specific GitHub user assigned to a WOrk Item.
+- `author:...`: Specific GitHub user.
+- `in:...`: Area such as comments.
+- Specific area of GitHub such as `sidebar` can be used by name.
+- `-linked:...`: Linked to a pr, issues, etc.
+
+Context Search:
+
+- Open a GitHub Tabs and use its Search Bar instead.
+- Focuses on the context of the Tab e.g. Issues, Pull Requests, etc.
+
+Git Blame:
+
+- Displays Commit History for a file.
+- Identify user that Committed and when it was done.
+- Commit changes are displayed with the username/id.
+- Can be _aliased_ to "git praise" or another command to sound less judgemental.
+- Display within GitHub web UI.
+- IDE Extensions can also display Git Blame data right in the IDE UI.
+
+Cross Linking:
+
+- Issues, Commits, etc.
+- Syntax is: precede with `#` then select from the dropdown a list of Issues, PRs and other GitHub items.
+- Use `@mention` to notify the GitHub user they can participate in the discussion, or other work item type.
+
+## Manage Repo Changes With Pull Requests
+
+- [x] Review use of Branches.
+- [x] Define and Create a Pull Request.
+- [x] Pull Request states.
+- [x] Mange Pull Requests to a Base Branch
+
+### Branches and Pull Requests
+
+Branch:
+
+- Isolated workspaces.
+- Develop work without impacting other repo workers.
+- Experiment with new ideas in a sandbox environment.
+- Record a history of Commits.
+
+Merging Branches:
+
+- Work needs to eventually be merged together.
+- Usually into a common branch like Main.
+- Many Commits and Merges are tracked into Main or another common branch.
+- Tracking multple Merges is done through Pull Requests.
+
+### Pull Requests (PRs)
+
+Can be done:
+
+- In the GitHub Web UI.
+- Within an IDE that supports Git natively or through an extension or plug-in.
+- Git or GitHub command line.
+
+What they do:
+
+- Document branch changes between developer's branch ("compare branch") and the branch the changes are set to get merged into ("base branch").
+- Branches that have the same Commit History cannot be used to create a Pull Request.
+- Enable commenting, code reviewing, additional Commits, and merging-in to the base branch.
+- Can be cancelled with or without any other actions being taken. No changes to base branch are made.
+
+PR States:
+
+- Draft: Cannot be merged and code owners are not automatically notified of the PR existence.
+- Open: Notifies code owners that a request to merge-in from a compare branch is wanted. Collaboration between code owners and contributors happens at this stage.
+- Closed: Can be done without merging changes, for example if the changes are no longer needed, or if another solution is proposed in another branch.
+- Merged: The commit history from the compare branch has been merged into the base branch history.
+
+Type Of Merges:
+
+- Merge Commit: All commits from compare branch are merged-in one by one to base branch history.
+- Squash: Treat all commits within the PR as a single Commit that is then treated as a Merge Commit (see above).
+- Rebase: Avoids Merge Commit operation and maintains a linear history.
+
+Notes:
+
+- After merging, the PR will be closed and the branch can be safely deleted.
+- Add a CODEOWNERS file and enable Required Review on the base branch.
+
+## AuthN and AuthZ User IDs on GitHub
+
+- [ ] AuthN and AuthZ Models.
+- [ ] Manage user access to GH Org.
+- [ ] ID providers used to secure repo access.
+- [ ] Enabling SAML SSO.
+- [ ] ID AuthN, AuthZ options and Enterprise enforcement.
+- [ ] Describe access to private info in a GitHub organization.
+- [ ] Benefits of Team Membership and Team Sync.
+
+## User ID and Access Management
+
+User Authentication:
+
+- Username & Password: Vulnerable but still supported.
+- 2FA: Two Factor Authentication _preferred_, and supported by GitHub. Security Keys, TOTP, and SMS are all supported.
+- SAML SSO: Also _preferred_. LInks IdP authorization and access to Service Providers by signing-in to another service, like GitHub.
+- Accessing repository data might require an Enterprise ID to authorization.
+
+Supported IdPs:
+
+- Active Directory Federation Services (AD FS).
+- Microsoft Entra ID.
+- Okta.
+- OneLogin.
+- PingONe.
+- Shibboleth.
+
+GitHub has limited support for SAML 2.0 IdPs. Not all SAML ID Providers are supported by GitHub for SCIM.
+
+Repository Administrator Capabilities:
+
+- Produce a CSV of every user and their access rights within a repository.
+- Change access levels between Public, Private, or (for Enterprise accounts) Internal.
+
+Common Administrator Tasks:
+
+- 2FA Audit for User Compliance. This setting must be made by each user in their account.
+- When 2FA "Require" is set, any non-compliant user will not removed from the GitHub Organization. Admins must communicate the criticality of using 2FA to onboard users ahead of implementation.
+- Audit which users have enabled 2FA within your Organization's People, 2FA option.
+- Link the existing SAML-SSO to GitHub Enterprise for user sign-in management. GitHub Org needs to be liked with Enterprise IdP to get started.
+- Enforce SAML SSO settings for the organization using GitHub Organization Settings tab, Organization Security, and select "Require SAML SSO authentication for all members of the organization". Note: This will kick-out members that have not set their accounts to sign in using SSO yet.
+- Invite others to join the Organization, once SAML SSO is enabled.
+- Acquire Administrative Access or a Liaison to enable Team Synchronization between GitHub and the IdP used in your organization.
+
+PATs, SSH keys, and OAuth Apps:
+
+- SCIM: System for Cross-domain Identity Management. Add, manage, and remove Org member access within GitHub. Also synchronizes information with IdP and multiple applications.
+- Automatic Deprovisioning: Enabled only when SCIM is implemented. Synch-able changes include Users, Group Membership, Teams, and "Dynamic Config".
+- PATs: Personal Access Tokens. Must be authorized with use in SAML SSO configuration.
+- SSH Keys must also be authorized for use in SAML SSO configuration.
+
+GitHub Support Out-of-scope Topics:
+
+- Third-party integrations.
+- Hardware setup.
+- CI/CD e.g. Jenkins et al.
+- Writing scripts.
+- Config of external Authentication systems e.g. SAML ID Providers.
+- Open-source projects.
+
+Usage Limits:
+
+- GitHub Teams: 5k members
+- GitHub Organization: 10k members and 1,500 Teams
+
+Terminology:
+
+- IdP stands for "Identity Provider".
+- TOTP App: Time-based One Time Password software.
+- Dynamic Config: Setting figures out mappings between Active Directory metadata and GitHub settings.
+
+## Communication Using Markdown
+
+- [x] Add lists, images, and links to a Comment or text file.
+- [x] Know where and when to use MD in a GH Repo.
+- [x] Syntax Extensions in GitHub-flavored Markdown.
+
+## Overview
+
+Provides convenient way to style text without the overhead of full HTML.
+
+- Emphasize text with Bold and/or Italics
+- Declare Headings 1 through 6
+- Link to Images and Sites
+- Ordered and Unordered Lists
+- Tables
+- Quote Text
+- Breaks (gap-filling)
+- Code fencing with ` and ```
+- Cross-link Issues and PRs
+- Link Specific Commits
+- `@`Mentions Users and Teams
+- Track Task Lists
+- Slash Commands (see below)
+
+### Allows Inline HTML Anyway
+
+Want to use HTML anyway? Do it! `<b>Hello</b> <em>World</em>!` renders as: <b>Hello</b> <em>World</em>!
+
+_Note_: Your linter might not like this.
+
+### Details
+
+- Emphasize text: `*`_italic_`*` (preferred) or `_`_italic_`_`
+- Bold: `**`**bold**`**` (preferred) or `__`**bold**`__`
+- `_`_`**`**Italic and Bold**`**`_`_`
+- `\` allows delimiting markdown characters so they are displayed.
+- See [markdownlint Rules](https://github.com/DavidAnson/markdownlint/blob/v0.36.1/doc/Rules.md) for some tips using well-formed markdown (but not GitHub Markdown specific).
+
+### Slash Commands
+
+- `/code`: Markdown codeblock.
+- `/details`: Collapsible detail area with Title and Content (accordian-like).
+- `/saved-replies`: Inserts a Saved Reply or use `%cursor%` to put a cursor in that location.
+- `/table`: Insert a table using MD.
+- `/tasklist`: Insert a tasklist _only within an Issue Description_.
+- `/template`: Show all Issue and PR Templates in current Repository and choose the one to insert.
+
+## GitHub Projects
+
+Overview: Create Issues to drive Task creation and completion, relate work items and PRs, customize Fields, and enable Conversations.
+
+- [x] Differentiate Projects and "Projects (Classic)"
+- [x] Build an Org-level Project
+- [x] Organize the Project
+- [x] Edit visibility, access, and management of the Project
+- [x] Develop project-level automation and insights
+
+_Note_: Projects can be Closed and Deleted.
+
+- Close: Removes from list of Projects but content in retained. _Can_ be opened later.
+- Delete: Permanent removal from the platform including Views, custom Fields and values, Insights, and Drafts.
+
+### Projects vs. Classic
+
+| Category/Feature | Projects | Classic |
+|----------|----------|----------|
+| Boards | Yes   | Yes   |
+| Lists | Yes   | No   |
+| Timeline Layout | Yes   | No   |
+| Sort, Rank, Group tabular data | Yes | Columns and Cards   |
+| Create visuals and charts | Yes   | No, just a progress bar   |
+| GraphQL API | Yes | No |
+| GitHub Actions | Yes | No |
+| Column Presets | Yes | Yes |
+
+### Tables and Boards
+
+- Plan and track work.
+- Rank, sort, group by any custom field.
+- Draft issues with descriptions, metadata.
+- Tokenized filtering, saved views.
+- Customizable cards and groupings.
+- Indicators of project state, progress.
+
+### Data
+
+- Custom fields with Types (e.g. Number, Date, etc).
+- Iterations: Flexible date ranges, breaks, springs, cycles, and roadmap.
+- Linked PRs, reviewers in table and board views.
+
+### Insight
+
+- Create, config custom bar, column, line, and stacked charts.
+- Aggregate data: Sum, Count (etc).
+- Persist Charts: Static URL for sharing.
+
+### Automation
+
+Common Automation Tasks:
+
+- GraphQL ProjectsV2 API
+- GitHub app Project scopes
+- Webhooks events for metadata updates
+- GH Action to automate adding Issues
+
+Ways to automate:
+
+- Built-in automated workflows: Simplest option. New Issues and PRs are put into TODO status.
+- GraphQL API: Trigger on Push or Scheduled, or setup 3rd Party or GraphQL CLI operations.
+- GitHub Actions with workflows: Example: On Issue Creation add Label, add Comment, Move to a specific Board.
+
+### Create a Project
+
+Org-level Creation:
+
+1. Your Organizations
+1. Overview
+1. Projects :arrow_right: New Project
+1. Select template (or not)
+1. Select Table
+1. Click Create Project
+
+### Project Properties
+
+Common Props:
+
+- Project Name
+- Short Description
+- README: This is displayed as the _Project Readme_ similar to how README works for a single Repository
+
+### Common Tasks
+
+Overall: Use the "+" sign to add new things within the Table including Fields:
+
+- Copy Issues and PRs: Copy existing URL and paste into new item in Project table.
+- Search: Existing Issues and PRs. Search tool updates while typing search term(s).
+- Bulk Add (Issues and PRs): "+" sign allows selecting a Repository to choose from.
+- Create Field to track and group priority.
+- Add iteration Field. Remember to add start date and duration.
+- Create a Board View. Built-in Layouts are available. Rename the View when done creating.
+
+### Organize Your Project
+
+Field Types: Text, Number, Date, "Single select", and Iteration
+
+Project Visibility and Access:
+
+- Visibility can be Private or Public.
+- Organization-Level Project: _No access_, Read, Write, or Admin.
+- Personal/User Project: Read, Write, or Admin.
+
+Invite Collaborators: Invite individuals via Search then update their Role to supply the correct access permissions.
+
+### Add Project To A Team
+
+Teams are granted REad Permissions on any Project they are added to.
+
+1. Open Your Organizations and select the target Org.
+1. Open Teams tab and select the Team to grant access to.
+1. Select Projects and choose "Link a project" to search for and select the target Project.
+
+### Add Project To A Repository
+
+Can only list Projects if same User or Organization owns _both_ the Projects _and_ the Repository.
+
+How to (Visibility is required):
+
+1. Main repository page select Projects tab.
+1. Click "Link a project" to search for Projects owned by the same User or Organization as the Repo Owner.
+1. Select the Project.
+
+### Project Insights
+
+View, create, and customize charts based on Project Items:
+
+- Filters: Limit results to particular assignees or labels.
+- Chart Types
+- Information Display
+- Current Data: Show items by assignment and iteration or individual.
+- Historical Data: Available to GitHub Teams and GitHub Enterprise Cloud for Organizations. Time-based focused on trends and progress. Includes "Burn Up" chart.
+
+Create: Within the Project "Insights" label, select new Chart and pick a chart type using the filter.
+
+Customize:
+
+1. Select the chart to edit.
+1. Select Configure.
+1. Select Layout to pick a new Chart Type.
+1. Select X-axis to select appropriate Field.
+1. Select Group-by for the select Field, or None.
+
+## Github Codespaces
+
+- [x] Codespaces lifecycle and processes.
+- [x] Customize Codespaces at startup.
+- [x] Codespaces vs. GitHub.dev
+
+### Codespaces Overview
+
+Codespaces in a cloud-based IDE with all the tools and functionality of VS Code and the ability to interop with GitHub Repositories and JetBrains IDEs. A GitHub account is required and a billing account is necessary to enable Codespace usage.
+
+Monthly Included Storage and Core Hours for Personal Accounts:
+
+- GitHub Free: 15 GB/month and 120 Hrs.
+- GitHub Pro: 20 GB/month and 180 Hrs.
+- Paid usage break-down is complex but for a 2-core configuration used for 1 hour will incurr $0.18 charge.
+
+### Codespaces Lifecycle
+
+Designed to create a repeatable develpment enviornment configured for a project.
+
+- Lifecycle begins at startup, ends at deletion.
+- Disconnect and reconnect does not affect running processes.
+- Stopping does not lose changes to files and configuration.
+
+### Create a Codespace
+
+Create via GitHub.com, VS Code, or GitHub CLI.
+
+Launch Codespace from:
+
+- GitHub Template or templated repository.
+- Branch in your repository.
+- An Open PR.
+- Specific Commin in a repository's history.
+
+Codespace Creation Process:
+
+1. VM and storage are spun-up.
+1. Container is created.
+1. Connection to Codespace is initialized.
+1. Post-creation steps are executed.
+
+Saving Changes:
+
+- Web: Autosave is enabled.
+- VSCode: Autosave is _avaiable_ but must be enabled, if wanted.
+
+Supported Apps:
+
+- VSCode.
+- JetBrains IDE.
+- GitHub CLI.
+- Web browsers.
+
+Inactivity Timeouts:
+
+- Saved and shutdown after 30 minutes.
+- Personal Timeout setting can be configured.
+- Organizational Timeout settings may override Personal Timeout setting.
+- _Stopped_ Codespaces are _deleted after 30 days_ automatically.
+
+Internet Connectivity Required:
+
+- Spotty connections or poor bandwidth o.k. but save often to safegaurd from lost data.
+
+### Close or Stop a Codespace
+
+- Exit Codespace without running Stop Command allows Codespace to _run in the background_.
+- Timeout timers start when disconnected while Running.
+- Disconnect leaves Codespace running but saves changes including uncommitted (but does not commit for you).
+- Restart has same behavior.
+
+### Rebuild Codespace
+
+- Allows changing the underlying configuration.
+- User-data is saved and restored after restarting the Codespace.
+- Full Rebuild: Clears all cached info. Slower restart process but ensures clean startup.
+- Rebuild causes all data outside of `\workspaces` directory to be cleared.
+
+### Delete a Codespace
+
+After pushing changes (or you are ready to abandon them), delete the Codespace.
+
+- Non-recoverable operation.
+- Unpushed commits will cause a warning, verification prompt before deletion.
+- Uncommitted changes are lost.
+
+### Codespace Personalization
+
+A dedicated environment that is configurable:
+
+- Settings Sync: With VS Code!
+- Dotfiles.
+- Rename Codespace: Overwrite auto-generated name.
+- Change Shell: Can be configured manually or through dotfiles.
+- Change Machine Type: Use correct resources to get the job done.
+- Default Editor: VS Code Desktop, VS Code Web Client, JetBrains Gateway, JupyterLab web.
+- Region: Stores data according to your configured region.
+- Timeouts: Personal settings and Organizational settings.
+- Automatic Deletion: Default 30 days, can be adjusted (max 30d).
+
+Extensions and Plugins:
+
+- Visual Studio Marketplace Extensions are supported.
+- Settings Sync: Automatically sync your settings to this Codespaces instance.
+- JetBrains Marketplace support.
+
+### What About GitHub.Dev Editor?
+
+Both Codespaces and GitHub.Dev do basic branch viewing and code editing.
+
+Codespaces has these additional features:
+
+- Build and run code.
+- Terminal access.
+- Costs after free monthly quota.
+- Container spin-up delays but with VM Container compute available during use.
+- Full Extension support (GitHub.Dev is limited).
+- A project being worked on in GitHub.Dev can be "continued with..." Codespaces.
 
 ## Configure Code Scanning on GitHub
 
-- [ ] Describe Code Scanning.
-- [ ] Enable Code Scanning in a Repo.
-- [ ] Enable 3rd Party Analysis settings.
-- [ ] Contrast CodeQL in GH Actions vs. 3rd Party CI tools.
-- [ ] Explain Triggering Events in Repo Code Scanning.
-- [ ] Contrast scheduled vs event-triggered Code Scanning.
+- [x] Describe Code Scanning.
+- [x] Enable Code Scanning in a Repo.
+- [x] Enable 3rd Party Analysis settings.
+- [x] Contrast CodeQL in GH Actions vs. 3rd Party CI tools.
+- [x] Explain Triggering Events in Repo Code Scanning.
+- [x] Contrast scheduled vs event-triggered Code Scanning.
 
 ### Code Scanning Purpose
 
 Find security vulnerabilities and coding errors.
 
-Available for all public repos and private repos owned by Orgs where GitHub Advanced Security is enabled.
-
-Code Scanning triggers Alert in Repo's Security tab when vulnerability is found.
-
-Code fix that removes the vulnerability or error automatically closes the Repo Alert.
+- Available for all public repos and private repos owned by Orgs where GitHub Advanced Security is enabled.
+- Code Scanning triggers Alert in Repo's Security tab when vulnerability is found.
+- Code fix that removes the vulnerability or error automatically closes the Repo Alert.
 
 ### Code QL
 
-This engine behind Code Scanning.
+The engine behind Code Scanning.
 
 Setup CodeQL Analysis:
 
 - Use default setup to get going quickly. Chooses languages to scan, queries to run, events to trigger, and creates a GH Action to handling it all for you.
-- Use Advanced setup to add CodeQL directly to Repo. Customizable Workflow is generated: `github/codeql-action` CodeQL CLI is run as GitHub Action.
-- Use CodeQL CLI directly: Upload the results to GitHub yourself.
+- Use Advanced setup to add CodeQL directly to Repo.
+- Customizable Workflow is generated by using `github/codeql-action`, then is run as GitHub Action.
+- Use CodeQL CLI directly: Generate results then upload them to GitHub yourself.
 
 Supported Languages:
 
@@ -61,17 +562,17 @@ GitHub Actions Billing:
 - GH Actions minutes are free for public and self-hosted runners.
 - Private repos have included limits on time and storage, and billing is applied at each GH Account.
 - Monthly Spending Limit: If set, will block GH Action from running once USD threshold is met.
-- Invoiced Accounts will have an _unliminted spending_ charge.
+- Invoiced Accounts will have an _unlimited spending_ charge.
 - Minutes reset each month.
 - Storage does not reset, it is tracked on an on-going basis.
 
 ### Enable CodeQL with 3rd Party Tools
 
-Perform analysis elsewhere, then upload the results separately.
+Perform analysis elsewhere, then upload the results separately:
 
 - Use Static Analysis Results Interchange Format (SARIF) files.
-- Non-SARIF files will _not_ trigger GH Actions Alerts.
 - SARIF v.2.1.0 or newer is _required_.
+- Non-SARIF files will _not_ trigger GH Actions Alerts.
 
 ### Code Scanning API
 
@@ -79,7 +580,7 @@ Perform analysis elsewhere, then upload the results separately.
 - GH API Data Type is JSON.
 - GH REST API Custom Media type: `application/sarif+json`
   - Other media types might be in use by 3rd Party apps and APIs.
-- Analysis Endpoing: `/analyses/{analysis_id}`
+- Analysis Endpoint: `/analyses/{analysis_id}`
   - Subset of actual data in an analysis is returned.
   - Response includes `github/alertNumber` and `github/alertUrl` properties.
 - Data is formatted in SARIF v.2.1.0
@@ -99,14 +600,15 @@ CodeQL Tools Bundle:
 - CodeQL CLI.
 - Queries and Libraries tools.
 - Precompiled queries.
-- Bundle is more effecient than using separate downloads and repo cloning.
+
+The Bundle is more effecient than using separate downloads and repo cloning.
 
 ### Code Scanning with GH Actions
 
 1. Create a GitHub Actions workflow.
-1. Set a trigger to automate execution on either `push` or `scheduled` event occurs.
+1. Set a trigger to automate execution on either `push` or `scheduled` events.
 1. Store in `.github/workflows` directory.
-1. Use the `upload-sarif` action from the `github/condeql-action` repo.
+1. Use the `upload-sarif` action from the `github/codeql-action` repo.
 1. Configure upload-sarif action with input parameters as necessary, such as `sarif-file`: A file or directory where SARIF file(s) will be uploaded (relative to root).
 
 ### SARIF Upload Limitations
@@ -526,6 +1028,9 @@ Create repo:
 
 ## References
 
+- [Advanced Search configuration](https://github.com/search/advanced)
+- [GitHub Codespaces Overview](https://docs.github.com/en/codespaces/overview)
+- [Managing Billing For Github Codespaces](https://docs.github.com/en/billing/managing-billing-for-your-products/managing-billing-for-github-codespaces/about-billing-for-github-codespaces)
 - [GitHub REST API Endpoints for Code Scanning](https://docs.github.com/en/rest/code-scanning/code-scanning?apiVersion=2022-11-28)
 
 ## Footer
