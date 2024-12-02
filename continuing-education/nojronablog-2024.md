@@ -74,6 +74,42 @@ Copilot provided plenty of inline suggestions along the way. The most helpful ge
 - Resolving issues with declaring the Type of a React TS component.
 - Generating boilerplate code based on already existing code with a few suggested enhancements.
 
+### Portfolio Dependabot Alerts
+
+On occasion, GitHub CodeQL alerts are raised indicating moderate to severe issues with dependencies in my Portfolio project website. Turns out `eslint` had some dependencies with recently discovered vulnerabilities. Thankfully, NPM's website has links to dependants and dependencies for published modules, and it didn't take long to find `eslint` was the common parent, so a quick update fixed the issue.
+
+### Puget Mesh
+
+This is a relatively new, local group of Mesh Networking enthusiasts in the greater Seattle area, covering topics of Meshtastic, AREDN, and HamWAN, primarily. I've been involved in Meshtastic and AREDN, so seeing this grassroots group grow is exciting.
+
+### The Final Parts of 2024
+
+Every year for the last few years in December, [Advent Of Code](https://adventofcode.com/) releases a holiday-themed group of code challenges for developers to hack at, pretty much any way they want to. While somewhat gamified, it isn't as gamey as LeetCode and other code challenge sites, but provides some leaderboards and other statistics. I've challenged myself to try and work through as many of the Advent challenges as possible, using C#, through Christmas Day.
+
+As of right now, the goals for December include:
+
+- Continue reading The Nature of Code and complete exercises through Chapter 6.
+- Review recent GitHub lessons and prepare for GitHub Foundations exam.
+- Complete the QSL Card side project.
+- Develop guidance for the RAMROD website to use going forward.
+- Considering revamping this blargh to reduce chatter and increase technical content, which might require a platform change.
+- Complete SquareSpace training items (tracked elsewhere).
+
+In 2025 I hope to get started on:
+
+- Revamping the Android Weather App.
+- Developing the digital clock app for Linux.
+- Planning for BigFoot 2025 including work on BF-BMX and the Bigfoot Form.
+
+...and make progress with:
+
+- RAMROD website.
+- GitHub Certification.
+- Implementing knowledge gleaned from The Nature of Code.
+- Resume updates and job hunting.
+- Make sensible updates to my Portfolio website including reducing dependencies and separating data storage from the UI.
+- Completing The Nature of Code book (if not done already).
+
 ## Weeks 43 through 44
 
 Last week I completed a bunch of work on my [portfolio website](https://portfolio-jon-rumsey.netlify.app/), proving to myself that I can work with someone else's code, make effective changes, update and replace existing imported components, and update data structures (albeit simple JSON ones here) and acquisition to augment the website as a whole. As mentioned before, there is much more to do in the coming weeks, but for now I have multiple other projects that need some attention to move them forward.
