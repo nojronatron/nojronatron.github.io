@@ -127,6 +127,42 @@ switch(item):
   case 'item3':
 ```
 
+### Gatsby?
+
+The [Syntax Podcast](https://syntax.fm) has (on several occasions) mentioned [Gatsby](https://gatsbyjs.com) as an effective and enjoyable website development framework that is focused on React components. In an episode in _2019_ they mentioned a few features that caught my ear:
+
+- WebP Image type.
+- Data layers with GraphQL.
+- Static Site generation using Markdown sources.
+
+Recent fiddlings with static site generator MKDocs got me thinking more about the utility of static site generators. One of the benefits of MKDocs is the ability to write Markdown files and have the generation tool create a responsive, fast website with good browser compatibility.
+
+Gatsby promises the ability to use Markdown as web page source files. It sounds like the content can be queried from Markdown using GraphQL language to generate fast web pages:
+
+- GraphQL is a simplified query language that uses a simple JSON-like data definition and formatting.
+- Gatsby uses GraphQL to help pre-render page content based on its own "GraphQL Datalayer", so that simple queries can be used to get necessary data for a page without having to write Fetch or complex queries for SQL or No-SQL databases.
+- While a backend database is not required, a GraphQL backend _can be leveraged_ by Gatsby, using native GraphQL language support.
+
+Wes and Scott also mentioned [WebP](https://developers.google.com/speed/webp) image type. It promises effective, lossy or lossless compression to support delivering large or complex images to web pages, reducing load time for mobile and desktop users. WebP is a Google Developer project that has been around since _2011_!! There are WebP converters available for Linux, Windows, and macOS, and (perhaps best of all) my favorite image editing tool _Paint.NET_ _supports WebP_!
+
+Back to Gatsby: It supports WebP and actually generates several versions of images so that image-heavy pages can still be loaded rapidly and without render "flash" events. Some of the techniques used to minimize load flashes include:
+
+- Using WebP image format. Gatsby has a built-in tool that will enable WebP browser support event if the browser in use doesn't support WebP natively.
+- Providing placeholder images: Gatsby generates grayscale or blurred image versions that load rapidly and are pre-sized to the full image size necessary, so that once the full image finishes loading the pre-load image is swapped-out and not page elements are resized or moved and the full-fidelity image is displayed. Developers don't need to generate these placeholder versions, Gatsby does it automatically.
+- Providing automatic thumbnails. Gatsby developers don't need to provide thumbnails or add code to put them in place.
+- Providing multiple image sizes for varying screen sizes and platforms: Phone-size versus Desktop-size, or macOS double-density DPI (versus everybody else), etc. Gatsby generates multiple versions of images so they are ready to load given the browser device detection metadata.
+
+Another nice benefit of Gatsby is good support from hosting services like Netlify and DigitalOcean. These services do most of the build and deployment work for you, and have options for providing custom domains, webhooks, and serverless functions to build-out a fast, capable website.
+
+Some caveats:
+
+- Build-time is where most of the Gatsby magic happens. This means updates to a Gatsby site might require few minutes (or dozens of minutes) of down time for build to finish before the site is back online ready to serve visitors.
+- Those that aren't already comfortable with React will have to learn enough React basics to get started with Gatsby.
+- There is a bit of a learning curve with the formatting and syntax of Component creation. It doesn't seem like there much syntax to get to know, but getting used to the GraphQL querying alongside React Component (JS, JSX, TSX) code might take a minute.
+- Less of a caveat and more of a _just be aware_: File system layout is critical. Gatsby configuration appears to be minimal and the file system layout is used to determine how the files are used. Placing files in the wrong directory can cause build errors or unexpected page content (or lack thereof).
+
+Perhaps sometime in the future I'll take a closer look at Gatsby, maybe for my next website project.
+
 ## Weeks 45 through 48
 
 Lots going on right now!
