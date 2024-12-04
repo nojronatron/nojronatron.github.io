@@ -2,6 +2,131 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## December 2024
+
+### TypeScript Lessons
+
+While working on a TypeScript side project, I discovered that TS _is indeed_ a whole lot like JS, requires more ceremonial, declarative code, and in many ways is similar to C# and Java.
+
+Here are a few key takeaways:
+
+- It can be helpful to use `Interfaces` to define functions like callbacks, such as `interface myCallback { myCallbackHandler: (name: string, value: string) => void; }`. This defines a function that accepts a Function with 2 strings parameter list that returns void.
+- Keyword `children` allows passing React Components as props between Functional Components and must be declared as `ReactNode` type parameters. Example: `const AddressCard: React.FC<{ children: React.ReactNode; }> = ({ children }) => { ...code... }`
+- Functional components that do not output TSX can be defined in a JavaScript way, but parameter list items must be typed, such as: `function convertItem(key: string) { ... return ...; }`
+- A React Component that returns TSX must declare that is is a `React.FC<{ param: type; ... }>` type.
+- A function that accepts a callback as an input parameter that is defined in an Interface must define that callback using curly braces like: `function MyFunction({ myCallback }: MyCallbackInterface) { ... }`.
+- A function with an empty parameters list does not need to define any params as null or empty objects. :roll_eyes:
+- Use a Linting tool. Uncovering issues before pushing code will help to minimize backtracking to fix unexpected issues. It also helped me validate my abilities to troubleshoot code problems. See examples below.
+
+Code Linting Errors example:
+
+```text
+project [main ≡]> bun run lint
+$ eslint .
+
+F:\Projects\project\src\App.tsx
+   78:9   error  Unexpected lexical declaration in case block               no-case-declarations
+   78:13  error  'parsedInput' is never reassigned. Use 'const' instead     prefer-const
+   88:15  error  'tempGrid' is never reassigned. Use 'const' instead        prefer-const
+   89:15  error  'firstTwoChars' is never reassigned. Use 'const' instead   prefer-const
+   90:15  error  'remainingChars' is never reassigned. Use 'const' instead  prefer-const
+   91:15  error  'newValue' is never reassigned. Use 'const' instead        prefer-const
+  117:9   error  Unexpected lexical declaration in case block               no-case-declarations
+  117:13  error  'tempTime' is never reassigned. Use 'const' instead        prefer-const
+  144:9   error  Unexpected lexical declaration in case block               no-case-declarations
+  144:13  error  'parsedSignal' is never reassigned. Use 'const' instead    prefer-const
+
+F:\Projects\project\src\components\Left.tsx
+  24:19  error  'itemId' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  64:19  error  'itemId' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+F:\Projects\project\src\components\Element.tsx
+  1:33  error  Unexpected empty object pattern  no-empty-pattern
+
+✖ 13 problems (13 errors, 0 warnings)
+  7 errors and 0 warnings potentially fixable with the `--fix` option.
+
+error: script "lint" exited with code 1
+```
+
+Instead of taking the easy way out and exectuing `eslint . --fix`, I looked through the code and attempted to fix the problems:
+
+"Unexpected lexical declaration in case block":
+
+```tsx
+...
+switch(item):
+  case ...:
+    ...
+    break;
+  case 'item2':
+    // unblocked, multi-line code is not allowed in case statement
+    const parsedSignal = parseInt(itemValue);
+    if (Number.isNaN(parsedSignal)) {
+      setSignalValue(-1);
+    } else if (parsedSignal !== defaultSignal) {
+      setSignalValue(parseInt(itemValue));
+    }
+    break;
+  case 'item3':
+...
+```
+
+Add curley braces around multi-line code blocks within a case block:
+
+```tsx
+// use curley braces to block multi-line code, except for the break statement
+...
+switch(item):
+  case ...:
+    ...
+    break;
+  case 'item2':
+    {
+      const parsedSignal = parseInt(itemValue);
+      if (Number.isNaN(parsedSignal)) {
+        setSignalValue(-1);
+      } else if (parsedSignal !== defaultSignal) {
+        setSignalValue(parsedSignal);
+      }
+    }
+    break;
+  case 'item3':
+...
+```
+
+"'parsedInput' is never reassigned. Use 'const' instead":
+
+```tsx
+switch(item):
+  case ...:
+  {
+    ...
+    // let is fine but variable does not need to have its value changed
+    let parsedInput = parseInt(itemValue);
+    if (Number.isNaN(parsedInput)) setMyCqZone(-1);
+    if (parsedInput !== myCqZone) setMyCqZone(parsedInput);
+  }
+    break;
+  case 'item3':
+```
+
+If a variable is never reassigned (or should not ever be), use the `const` keyword:
+
+```tsx
+switch(item):
+  case ...:
+  {
+    ...
+    // use const when variable should not have its value changed
+    const parsedInput = parseInt(itemValue);
+    if (Number.isNaN(parsedInput)) setMyCqZone(-1);
+    if (parsedInput !== myCqZone) setMyCqZone(parsedInput);
+  }
+    break;
+  case 'item3':
+```
+
 ## Weeks 45 through 48
 
 Lots going on right now!
