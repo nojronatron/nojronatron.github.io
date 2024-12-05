@@ -4,6 +4,19 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## December 2024
 
+### Python VENV
+
+Several years ago I was using Python a lot for web-dev testing and other small side projects. I was hoping to make it my profession at one point. Then I found C# and was introduced formally to JavaScript and CSS. Since then, for the most part, I've spent more time with the classic web stack and also .NET especially WPF and C#. Every now and then something Pythonic comes up and I have to work with it (which is fine really).
+
+Setting up and using VENV for Linux:
+
+1. Prerequisites: python3 (3.09 or newer), python3-pip, and python3-venv.
+1. Create a new VENV target dir: `python3 -m venv {dirName}`. Use the full path if possible.
+1. Activate the VENV: `source {dirName}/bin/activate`
+1. If this succeeds your environment prompt will be prefixed with the name of the VENV folder e.g. `(myVenv) root@linuxBox:~ $`
+1. Do all the pythonic things within the virtual environment!
+1. When done use `deactivate` command to exit out of VENV (Note: use `source deactivate` on older system).
+
 ### TypeScript Lessons
 
 While working on a TypeScript side project, I discovered that TS _is indeed_ a whole lot like JS, requires more ceremonial, declarative code, and in many ways is similar to C# and Java.
