@@ -7,7 +7,8 @@ This document was created to store learnings about Azure Functions.
 - [Azure Functions Basics](#azure-functions-basics)
 - [What About Logic Apps?](#what-about-logic-apps)
 - [What About WebJobs?](#what-about-webjobs)
-- [Ways To Configure Azure Functions](#ways-to-configure-azure-functions)
+- [Develop Azure Functions](#develop-azure-functions)
+- [Azure Function Development Requirements](#azure-function-development-requirements)
 - [DotNET Conf 2024 Azure Functions in DotNET 9](#dotnet-conf-2024-azure-functions-in-dotnet-9)
 - [Azure Friday Develop Azure Functions Using V2 For Python](#azure-friday-develop-azure-functions-using-v2-for-python)
 - [References](#references)
@@ -135,6 +136,8 @@ Azure Application Insights:
 - Built-in to Azure Functions
 - Traces
 
+_Note_: Azure Application Insights is not enabled by default, but if the Function project was creating using the Azure Functions Extention, the code to enable is simply commented-out in Program.cs.
+
 ### Function Components
 
 - Function Triggers: Cause Function to execute. Defines invokation. Limited to a single trigger.
@@ -202,7 +205,7 @@ Azure Functions:
 - Code-first (imperative).
 - Few built-in connection/bindings types.
 - One Function per "Activity".
-- Monitored using Application Insights.
+- Monitored using Application Insights (not enabled by default).
 - Manage using REST API and Visual Studio.
 - Execute in Azure or locally.
 
