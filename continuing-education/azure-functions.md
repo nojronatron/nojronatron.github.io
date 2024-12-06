@@ -2,6 +2,17 @@
 
 This document was created to store learnings about Azure Functions.
 
+## Table of Contents
+
+- [Azure Functions Basics](#azure-functions-basics)
+- [What About Logic Apps?](#what-about-logic-apps)
+- [What About WebJobs?](#what-about-webjobs)
+- [Ways To Configure Azure Functions](#ways-to-configure-azure-functions)
+- [DotNET Conf 2024 Azure Functions in DotNET 9](#dotnet-conf-2024-azure-functions-in-dotnet-9)
+- [Azure Friday Develop Azure Functions Using V2 For Python](#azure-friday-develop-azure-functions-using-v2-for-python)
+- [References](#references)
+- [Footer](#footer)
+
 ## Azure Functions Basics
 
 - [x] Explain what are Azure Functions and the base features.
@@ -139,12 +150,16 @@ Event-based applications:
 
 - Reminders and notifications.
 - Scheduled Tasks.
-- Experimental APIs.
+- Experimental APIs and Scalable Web APIs.
 - Irregular Workflows.
 - Queuing processable work.
 - IoT Stream Analysis.
 - Process File Uploads (screen inbound Blob-store data).
+- Process data _in real time_.
 - Serverless Workflows: Chain Azure Functions and introduce State to create Durable Functions to monitor external events, perform branching logic, and invoke other Functions.
+- Integrate with AI to "infer on data models" for analysis and classification.
+- Respond to database changes such as document creation or change in Azure Cosmos DB.
+- Develop reliable messaging systems e.g. Process message queues using Queue Storage, Service Bus, or Event Hub.
 
 ### Hosting Options
 
@@ -223,12 +238,156 @@ Overall, Azure Functions provides more for developers including:
 
 MSFT says Functions are usually a better choice than WebJobs.
 
-## Azure Functions Configuration
+## Develop Azure Functions
 
-host.json project file:
+Concepts:
 
-- functionTimeout: Timeout duration for functions within a Function App.
--
+- [x] Describe key components of Functions: Bindings and Triggers.
+- [x] Create triggers and bindings: Use VSCode and Command Palette to get started.
+- [x] Describe how to control when a Function runs and where its output is directed: A Trigger defines when a function runs, and output is directed according to its Binding.
+- [x] Summarize how to connect Functions to Azure Services: Decorate strongly-typed language Properties and Methods with Attriubutes, and use `function.json` schema to define bindings for script-y languages including TS.
+- [x] List steps to create Functions in VS Code and Azure Functions Core Tools: See [Development Steps](#development-steps).
+
+### Developing Functions Overview
+
+Function App definition: Composition of one or more FUnctions, managed and deployed and scaled together.
+
+- Same pricing plan.
+- Same deployment method.
+- Same Runtime version :arrow_right: _same language_ required in v2.0.
+- Organizes a collection of manageable Functions.
+
+Create and Test Functions Locally:
+
+- Local dev environment has a Functions project directory.
+- `host.json`: Configuration options applied to _all_ Functions in a Function App instance.
+- `local.settings.json`: App settings and local deployment tool settings for the _local_ dev-test-run environment only. Be sure to _gitignore_ this file as it may contain secrets.
+- Application Settings: Same as local.settings but applies to Azure Deployment settings.
+- Other files depending on language and Function context and usage.
+
+Azure-deployed Function App settings can be downloaded for sync to the local Function App instance.
+
+### Triggers and Bindings
+
+Triggers:
+
+- Define _how_ Functions are invoked.
+- May contain associated data, often provided as the payload of the Function.
+- Each Function must have exactly one trigger.
+
+Bindings:
+
+- Optional.
+- Declaratively connect with another _resource_ or _Function_.
+- Input Bindings: Zero, one, or multiple.
+- Output Bindings: Zero, one, or multiple.
+- Input and Output Bindings.
+- Bindings become Function _parameters_.
+- Mix and match different bindings is allowed.
+
+Benefits:
+
+- Avoid hard-coding service connections.
+
+### Defining Triggers and Bindings
+
+Depends on language in use:
+
+- C# ClassLib: Decorate methods and parameters with Attributes.
+- Java: Decorate methods and paraemters with Annotations.
+- JS/PoSH/Python/TS: Defined in `function.json` schema file.
+
+Function.Json Schema:
+
+- Use the Portal UI to add bindings from the Integration tab.
+- Edit the file directly in the Portal UI from the Code + Test tab.
+
+_Note_: Portal-defined Triggers and Bindings in C# actually use `C#Script` which necessetates using `function.json` schema file.
+
+DataTypes:
+
+- For strongly-typed languages.
+- Set using `dataType` parameter in JSON.
+- `binary`, `stream`, or `string`.
+
+Binding Direction:
+
+- Triggers: Always IN.
+- Input, Output: In, and OUT, respectively.
+- Special: `inout` is reserved for certain binding scenarios.
+- For typed languages: Provide this in an attribute constructor.
+
+Example C# Attributes:
+
+- `[FunctionName(<string>)]`
+- `[return: <type>(string name, Connection = string secret)]`
+
+Function Definition in C# Method:
+
+- Define a class that represents the Function return type.
+- Define a static Class.
+- Define a static Method to represent the Function.
+- Identify the Function return type in the static method.
+- Apply the Attributes to define the Function Name and Function Return type.
+
+### Connecting to Azure Services
+
+- Use Application Settings functionality of Azure App Service for secure configuration.
+- Name-Value pairs are used to identify configuration items so secrets can be stored securely.
+- Set the Application Setting _Name_ to configure the secret for the Trigger and Binding that require a connection Property.
+- Similar to how DB Connection Strings are implemented in conjunction with Secrets and EnvVars in modern dev.
+
+Optional: Azure Function may require an _Identity_ instead of a secret.
+
+### Identity Based Connections
+
+File services usually require authorization before reading and especially writing to them.
+
+- For Consumption or Elastic Premium plan: Use `WEBSITE_AZUREFILESCONNECTIONSTRING` and `WEBSITE_CONTENTSHARE` parameters for accessing Azure Files.
+- Azure Files does _not_ support Managed Identities to grant access.
+- System-assigned ID or user-assign ID can be used as a Managed ID for other services.
+- System and User IDs map to `credential` and `clientID` properties.
+- UserID-to-ResourceID mapping _is not supported_.
+- In local development, customization of the User-assigned ID is allowed.
+
+Permission must be granted to the Identity:
+
+- Assign a role in Azure RBAC.
+- Specifiy the ID in an Azure Access Policy on the service that will be accessed.
+
+### Development Steps
+
+1. Meet [Azure Function Development Requirements](#azure-function-development-requirements)
+1. Create New AzureFunctions project. An option is to use the Command Palette.
+1. Select Language.
+1. Select Runtime.
+1. Select template: HTTP Trigger (other options).
+1. Provide a Function Name.
+1. Provide a Namespace for the function e.g. `My.Function`.
+1. Select Authorization Level (anonymous, others...).
+1. Develop and Debug the app locally.
+1. Deploy the Function to Azure using Command Palette: "Azure Functions: Deploy to Function App..." and follow the steps.
+1. Run the Function in Azure by opening the Azure Extension in VS Code then expand Resources, Function App, (Function ID), Functions, and the command e.g. "HttpExample".
+1. R-Click the Function Command and select "Execute Function Now...", enter the Request Body, and view the output to confirm the Function App is working as expected.
+
+### Interacting With Local Dev
+
+While running in Debug Mode:
+
+1. Activate the Function by opening the Azure Extensions icon.
+1. Expand Workspace and select Local Development to see the Function.
+1. R-Click and select "Execute Function Now..." to get a prompt for input in the Command Palette.
+1. Enter a Name-Value pair in the Command Palette.
+
+The Function executes, displaying output via Azure Functions Core Tools to the Terminal window.
+
+## Azure Function Development Requirements
+
+- Azure Account with an active subscription.
+- Azure Functions Core Tools v.4.x or newer.
+- VS Code on a supported platform.
+- DotNET 8.x or newer.
+- Azure Functions Extension for VS Code.
 
 ## DotNET Conf 2024 Azure Functions in DotNET 9
 
@@ -274,8 +433,6 @@ Build and Deploy to Azure:
   - Configure other infrastructure role(s) in DI using Builder.
 - Once configured, use `azd up` to publish to Azure.
 - Azure Aspire Dashboard gets deployed into Azure too!
-
-aka.ms/aspire-functions-
 
 ## Azure Friday: Develop Azure Functions Using V2 For Python
 
@@ -324,7 +481,7 @@ How to create a function using V2 Programming Model?
 1. Code is _generated_ as a sample that the developer can edit and take forward.
 1. Open a Terminal and run `func host start`
 
-Functions can also be created "on the fly" instead of with the Command Palette.
+Functions can also be created "on the fly" instead of with the Command Palette:
 
 - Follow Intellisense advice to drive development.
 
@@ -338,6 +495,9 @@ Azure Functions are just plain Python functions, but the _Decorators_ in Python 
 
 ## References
 
+- [Azure Function Core Tools](https://github.com/Azure/azure-functions-core-tools)
+- [Code and Test Azure Functions Locally](https://learn.microsoft.com/en-us/azure/azure-functions/functions-develop-local)
+- [Azure Functions Overview](https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview?pivots=programming-language-csharp)
 - [App Service Plan Limits](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits#app-service-limits)
 - Azure Functions [V2 Python Programming Model](https://techcommunity.microsoft.com/t5/azure-compute-blog/azure-functions-v2-python-programming-model)
 - Azure Functions [Python Developer Guide](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-python)
