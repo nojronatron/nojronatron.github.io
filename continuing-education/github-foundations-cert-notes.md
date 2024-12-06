@@ -401,11 +401,19 @@ Customize:
 
 Codespaces in a cloud-based IDE with all the tools and functionality of VS Code and the ability to interop with GitHub Repositories and JetBrains IDEs. A GitHub account is required and a billing account is necessary to enable Codespace usage.
 
+### Codespaces Costs
+
 Monthly Included Storage and Core Hours for Personal Accounts:
 
 - GitHub Free: 15 GB/month and 120 Hrs.
 - GitHub Pro: 20 GB/month and 180 Hrs.
 - Paid usage break-down is complex but for a 2-core configuration used for 1 hour will incurr $0.18 charge.
+
+Some open-ended questions:
+
+- [x] How to monitor usage? Open your provile settings and navigate to Billing :arrow_right: Summary to see limits and monthly usage report.
+- [x] Cost after surpassing 60 hours? Since asking this question the Free Hours has been double to 120/month. See bullet points above for more costs info.
+- [x] What features are included in CodeSpaces? Fast spin-up, customizable using codespaces file and `.vscode` settings file. Also template-able for consistent new Codespace configuration spin-up.
 
 ### Codespaces Lifecycle
 
@@ -462,6 +470,8 @@ Internet Connectivity Required:
 - Timeout timers start when disconnected while Running.
 - Disconnect leaves Codespace running but saves changes including uncommitted (but does not commit for you).
 - Restart has same behavior.
+- Go to the [CodeSpaces Dashboard](https://github.com/codespaces) and find the CodeSpace to clean up and click the Delete button.
+- At the very least, 'Stop' the CodeSpace until you need it next.
 
 ### Rebuild Codespace
 
