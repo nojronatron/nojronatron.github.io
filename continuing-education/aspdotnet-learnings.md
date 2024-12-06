@@ -10,7 +10,7 @@ Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET
 - [Blazor SSR and Interactive Server](#blazor-ssr-and-interactive-server)
 - [Syntax](#syntax)
 - [Blazor Share Data Between Components](#blazor-share-data-between-components)
-- [Blazor Data Binding in Blazor](#blazor-data-binding-in-blazor)
+- [Blazor Data Binding](#blazor-data-binding)
 - [Blazor Pages, Routing, Layouts, and Navigation](#blazor-pages-routing-layouts-and-navigation)
 - [Blazor Forms and Validation](#blazor-forms-and-validation)
 - [How To Submit A Form Using Blazor Dynamic SSR](#how-to-submit-a-form-using-blazor-dynamic-ssr)
@@ -28,7 +28,7 @@ Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET
 - [Leverage Secure Browser LocalStorage](#leverage-secure-browser-localstorage)
 - [Asynchronously Call A Method](#asynchronously-call-a-method)
 - [Full Stack ASP Dot Net Development](#full-stack-asp-dot-net-development)
-- [GitHub CodeSpaces](#github-codespaces)
+- [Blazor WASM](#blazor-wasm)
 - [Resources](#resources)
 - [Footer](#footer)
 
@@ -177,7 +177,7 @@ Define the properties to store in a new Class and register it as a scoped servic
 2. Register the Class in `Program.cs` as a scoped service: `builder.Services.AddScoped<StateObject>();`.
 3. Inject the registered class into any Component that needs to use it using Razor Syntax: `@inject StateObject stateObj`.
 
-## Blazor Data Binding in Blazor
+## Blazor Data Binding
 
 When an HTML element value is changed, the web page must be refreshed to show it.
 
@@ -1149,7 +1149,7 @@ ASP.NET Core and .NET 6 support local DB storage ORMs like Entity Framework Core
 - Supports SQLite, MySQL, PostgreSQL, Oracle, and MS SQL.
 - Decouples application from database providers (there is still work to do to switch, but coupling is loose).
 
-### MoEntities and Context
+### Entities and Context
 
 EF uses entity classes and a context object to represent a session with a database.
 
@@ -1547,29 +1547,20 @@ Using Vite:
 5. Update `vite.config.js` to set a static server port. 3000 is suggested.
 6. Run the package using `npm run dev` and open the URI in a browser to see the rendered site.
 
-## GitHub CodeSpaces
+## Blazor WASM
 
-The Full-stack learning module used a GitHub CodeSpace as a development container. This section will contain notes about CodeSpaces and my experience using them.
+Web Assembly is a mechanism that loads an assembly into the user's browser platform, providing rapid, custom functionality by minimizing WRRC between client and server.
 
-### Challenges
+Blazor adds SignalR to WASM, so that the server can add server-based functionality and only add WRRC latency for those server-side functions, minimizing WRRC round-trip calls compared to SSR solution.
 
-- I hadn't used CodeSpaces before (but the value seems high).
-- When launching the template CodeSpace, there are six projects within the solution so learning the layout of the files and projects slowed progress.
-- A Dev Certificate had expired in the Template and there was no information within the MSFT Learn Module about working with Dev certificates (this is partially on me, I should learn how to manage Dev Certificates if I want to regularly work in DotNET development).
+_More to come_!
 
-### Cost
+## Manage Globalization and Localization in Blazor
 
-CodeSpaces are not free, at least after 60 hours per month:
+- [ ] Review and take notes of [Blazor Glabalization and Localization](https://learn.microsoft.com/en-us/aspnet/core/blazor/globalization-localization?view=aspnetcore-8.0) documentation on MSFT Learn.
+- [ ] Review and take notes of [Blazor Train Episode 90: Localization in Blazor](https://www.youtube.com/watch?v=e8IkSFQmonE) and the related [GitHub Repo](https://github.com/carlfranklin/localizationinblazor).
 
-- [ ] How to monitor usage?
-- [ ] Cost after surpassing 60 hours?
-- [ ] What features are included in CodeSpaces?
-
-### Cleaning Up Codespace
-
-Go to the [CodeSpaces Dashboard](https://github.com/codespaces) and find the CodeSpace to clean up and click the Delete button.
-
-At the very least, 'Stop' the CodeSpace until you need it next.
+_Note_: Some Globalization and Localization configuration are intended for WASM (client), and others are meant for Blazor Server.
 
 ## Resources
 
