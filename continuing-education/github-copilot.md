@@ -540,13 +540,15 @@ Allison Weins: Senior Product Manager, GitHub
 
 Burke Holland: Principal Cloud Advocate, Microsoft
 
-### Limitations
+### Copilot Limitations
 
 - Training data: More data is better but it is not always available (COBOL vs JavaScript). Also, not all code is _good_ code, such as abandond repositories.
 - Copilot is not a compiler: There is no guarantee that the code will compile or run. Use your experience and existing in-IDE tools to ensure the code is buildable and runnable.
 - AI cannot read your mind (just like a pair programming human).
 
 ### Single, Specific, Short
+
+The "Three S's Rules":
 
 - Single: Focus on performing one thing at a time.
 - Specific: Be specific with your input. Use very specific plain language.
@@ -566,7 +568,7 @@ Burke Holland: Principal Cloud Advocate, Microsoft
 
 - Craft effective prompts within code comments.
 - Iterate your prompts to get better results.
-- Sometimes it is better to remove existing (previously generated) code and allow the iterated prmopt processing.
+- Sometimes it is better to remove existing (previously generated) code and allow the iterated prompt to reprocess.
 
 ### Relevent Inputs and Context
 
