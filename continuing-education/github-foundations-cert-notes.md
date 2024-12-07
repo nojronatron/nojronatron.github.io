@@ -9,11 +9,11 @@ These will be limited reference notes related to the GitHub Foundations Certific
 - [AuthN and AuthZ User IDs on GitHub](#authn-and-authz-user-ids-on-github)
 - [User ID and Access Management](#user-id-and-access-management)
 - [Communication Using Markdown](#communication-using-markdown)
-- [Overview](#overview)
 - [GitHub Projects](#github-projects)
 - [Github Codespaces](#github-codespaces)
 - [Configure Code Scanning on GitHub](#configure-code-scanning-on-github)
 - [GitHub Administration](#github-administration)
+- [InnerSource Programs](#innersource-programs)
 - [Intro to GitHub Products](#intro-to-github-products)
 - [Intro to Git](#intro-to-git)
 - [References](#references)
@@ -24,6 +24,13 @@ These will be limited reference notes related to the GitHub Foundations Certific
 - [x] Find relevant issues and PRs.
 - [x] Search history to find context.
 - [x] Make connections to help others find info.
+
+### GitHub Overview
+
+- Website with integrated Git SCM tooling.
+- Additional tools for submitting Issues (bugs), having discussions (collaboration), documenting projects (Wikis and Markdown), and managing Users and Repositories.
+- Reporting a Bug to a project owner should be done by searching the Issues tab for an existing bug report, and filing a new one if the bug hasn't already been reported.
+- To contribute to a GitHub Repository, push your changes to a development branch and then create a Pull Request so code owners can review before mergin into the upstream branch.
 
 ### Searching GitHub
 
@@ -206,7 +213,7 @@ Terminology:
 - [x] Know where and when to use MD in a GH Repo.
 - [x] Syntax Extensions in GitHub-flavored Markdown.
 
-## Overview
+### Overview
 
 Provides convenient way to style text without the overhead of full HTML.
 
@@ -230,12 +237,14 @@ Want to use HTML anyway? Do it! `<b>Hello</b> <em>World</em>!` renders as: <b>He
 
 _Note_: Your linter might not like this.
 
+Key takeaway: Just inline any desired HTML.
+
 ### Details
 
 - Emphasize text: `*`_italic_`*` (preferred) or `_`_italic_`_`
 - Bold: `**`**bold**`**` (preferred) or `__`**bold**`__`
-- `_`_`**`**Italic and Bold**`**`_`_`
-- `\` allows delimiting markdown characters so they are displayed.
+- Bold Italics: `_`_`**`**Italic and Bold**`**`_`_`
+- Delimit markdown characters so they are displayed instead of rendered: `\`. For example, display an underline bookended with asterisks: \*\_\*
 - See [markdownlint Rules](https://github.com/DavidAnson/markdownlint/blob/v0.36.1/doc/Rules.md) for some tips using well-formed markdown (but not GitHub Markdown specific).
 
 ### Slash Commands
@@ -249,7 +258,7 @@ _Note_: Your linter might not like this.
 
 ## GitHub Projects
 
-Overview: Create Issues to drive Task creation and completion, relate work items and PRs, customize Fields, and enable Conversations.
+Overview: Create Issues to drive Task creation and completion, relate work items and PRs, customize Fields, and enable Conversations (collaboration).
 
 - [x] Differentiate Projects and "Projects (Classic)"
 - [x] Build an Org-level Project
@@ -326,7 +335,7 @@ Org-level Creation:
 
 Common Props:
 
-- Project Name
+- Project Name (auto-saves?)
 - Short Description
 - README: This is displayed as the _Project Readme_ similar to how README works for a single Repository
 
@@ -338,12 +347,18 @@ Overall: Use the "+" sign to add new things within the Table including Fields:
 - Search: Existing Issues and PRs. Search tool updates while typing search term(s).
 - Bulk Add (Issues and PRs): "+" sign allows selecting a Repository to choose from.
 - Create Field to track and group priority.
-- Add iteration Field. Remember to add start date and duration.
+- Add iteration Field(s). Remember to add start date and duration.
 - Create a Board View. Built-in Layouts are available. Rename the View when done creating.
 
 ### Organize Your Project
 
-Field Types: Text, Number, Date, "Single select", and Iteration
+Field Types: Text, Number, Date, "Single select", and Iteration:
+
+- Text
+- Number
+- Date
+- Single Select: Allows multiple options, each with description and color, for a drop-down menu UX.
+- Iteration: These help plan upcoming work and help to group items by setting start dates and durations.
 
 Project Visibility and Access:
 
@@ -399,7 +414,11 @@ Customize:
 
 ### Codespaces Overview
 
-Codespaces in a cloud-based IDE with all the tools and functionality of VS Code and the ability to interop with GitHub Repositories and JetBrains IDEs. A GitHub account is required and a billing account is necessary to enable Codespace usage.
+Codespaces in a cloud-based IDE with all the tools and functionality of VS Code and the ability to interop with GitHub Repositories and JetBrains IDEs.
+
+- A GitHub account is required and a billing account is necessary to enable Codespace usage.
+- Codespaces puts a clone of the source Repository into its `/workspaces` directory.
+- Usage of a `devcontainer.json` file will enable pre-configuration of a CodeSpace as defined in the JSON.
 
 ### Codespaces Costs
 
@@ -408,10 +427,11 @@ Monthly Included Storage and Core Hours for Personal Accounts:
 - GitHub Free: 15 GB/month and 120 Hrs.
 - GitHub Pro: 20 GB/month and 180 Hrs.
 - Paid usage break-down is complex but for a 2-core configuration used for 1 hour will incurr $0.18 charge.
+- Billing and limits to creating additional Codespaces is strictly by Storage and CoreHours usage limitations, not number of Codespaces per Repo, etc.
 
 Some open-ended questions:
 
-- [x] How to monitor usage? Open your provile settings and navigate to Billing :arrow_right: Summary to see limits and monthly usage report.
+- [x] How to monitor usage? Open your profile settings and navigate to Billing :arrow_right: Summary to see limits and monthly usage report.
 - [x] Cost after surpassing 60 hours? Since asking this question the Free Hours has been double to 120/month. See bullet points above for more costs info.
 - [x] What features are included in CodeSpaces? Fast spin-up, customizable using codespaces file and `.vscode` settings file. Also template-able for consistent new Codespace configuration spin-up.
 
@@ -448,10 +468,10 @@ Saving Changes:
 
 Supported Apps:
 
-- VSCode.
-- JetBrains IDE.
-- GitHub CLI.
-- Web browsers.
+- VSCode
+- JetBrains IDE
+- GitHub CLI
+- Web browsers
 
 Inactivity Timeouts:
 
@@ -520,6 +540,11 @@ Codespaces has these additional features:
 - Container spin-up delays but with VM Container compute available during use.
 - Full Extension support (GitHub.Dev is limited).
 - A project being worked on in GitHub.Dev can be "continued with..." Codespaces.
+
+### Codespaces Limitations
+
+- Internet connectivity is required. Although, disconnection from the Internet will not change the CodeSpace state. After a timeout, the CodeSpace will be shut down but all changes will be store _within the Codespace itself_ (not committed to any branch).
+- Billing is required. A paid GitHub user will gain access to CodeSpaces and a spending limit can be set and enforced.
 
 ## Configure Code Scanning on GitHub
 
@@ -855,9 +880,24 @@ Insights:
 - Statistics on Pulse, Contributors, Traffic, Commits, Code Frequency, Dependency Graph, Network, and Forks.
 - Traffic statistics for Clones and Views are also available.
 
+## InnerSource Programs
+
+### Inner Source Key Points
+
+- InnerSource are like Open Source programs except access is limited to people within the Organization.
+- Use Issue Templates that are designed to encourage descriptive Issues with reproduction steps, attached images or logs, and system details such as OS or platform, configuration, and other helpful details.
+- A successful InnerSource program metric is an increase in contributions including PRs and feedback on teh program.
+
+### InnerSource Read More
+
+[InnerSource0-easuring Success](https://github.com/resources/articles/software-development/innersource#measuring-success)
+
 ## Intro to GitHub Products
 
-Remember: Git is used locally to track and store changes and GitHub can act as a remote repository in a DVCS. GitHub provides additional features around Git and project management, useful to individuals and groups.
+Remember:
+
+- Git is used locally to track and store changes and GitHub can act as a remote repository in a DVCS.
+- GitHub provides additional features around Git and project management, useful to individuals and to groups and organizations.
 
 ### Personal, Organizational, and Enterprise Accounts
 
@@ -875,8 +915,8 @@ Free vs. Pro:
 
 Organizations:
 
-- Shared accounts.
-- Collaborate hubs for many people across one or more projects, simultaneously.
+- Are shared accounts (_not_ individual).
+- Act as collaboration hubs for many people across one or more projects, simultaneously.
 - Tiered approach to permissions.
 - Does _not_ support sign-in (users do not sign-in to Organizations).
 - Personal accounts can be members of multiple Organizations.
@@ -888,6 +928,7 @@ Enterprise:
 - An Enterprise Account has a handle, just like a user account does.
 - Manage and enforce policies for all owned Orgnaizations.
 - Policies are applied at a per-Organization level.
+- Centrally manage users and repos across multiple organizations.
 
 ### GitHub Plans
 
@@ -926,6 +967,9 @@ GitHub Team:
 - Adds more Actions minutes
 - Adds more Packages storage
 - Other features: Draft PRs, Team PR reviewers, scheduled reminders
+- Manage access permissions to repositories among members of a GitHub Organization, by assigning roles to different Groups.
+
+_Think of this as_ a subset of a GitHub Organization, created to assign permissions based on team membership _within the Organization_ and perhaps modeling an actual business team structure.
 
 GitHub Enterprise:
 
@@ -1005,6 +1049,8 @@ Differences between Git and GitHub:
 
 - GitHub is a website with many related tools to support DVCS operations and lifecycle.
 - Primary GitHub Features: Issues, Discussions, Pull Requests, Notifications, Labels, Actions, Forks, and Projects.
+- Git is a distributed version control system (DVCS) that tracks changes to files.
+- Git enables many users to contribute to a project through tools like `branch` and `commit`, and to view other user's code though tools like `checkout`.
 
 The roles Git and GitHub play in SDLC:
 
