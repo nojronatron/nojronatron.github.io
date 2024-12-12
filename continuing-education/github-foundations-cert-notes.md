@@ -137,7 +137,7 @@ Notes:
 
 ## AuthN and AuthZ User IDs on GitHub
 
-- [ ] AuthN and AuthZ Models.
+- [x] AuthN and AuthZ Models: SAML SSO, 2FA, and TOTP.
 - [ ] Manage user access to GH Org.
 - [ ] ID providers used to secure repo access.
 - [ ] Enabling SAML SSO.
@@ -145,7 +145,14 @@ Notes:
 - [ ] Describe access to private info in a GitHub organization.
 - [ ] Benefits of Team Membership and Team Sync.
 
-## User ID and Access Management
+### Key Information
+
+- GitHub SAML SSO authenticates users using the member's IdP.
+- SAML SSO is used to verify UserID via a known ID Provider (IdP).
+- To configure TEam Sync for your Org for MS EntraID, the Admin needs "Read all users full profiles" permission.
+- TOTP (Time-based One-time Password), a 2FA method, supports secure authentication code backup to the cloud.
+
+### User ID and Access Management
 
 User Authentication:
 
@@ -227,7 +234,7 @@ Provides convenient way to style text without the overhead of full HTML.
 - Code fencing with ` and ```
 - Cross-link Issues and PRs
 - Link Specific Commits
-- `@`Mentions Users and Teams
+- Prefix user or team name with `@` to "Mentions" Users and Teams
 - Track Task Lists
 - Slash Commands (see below)
 
@@ -370,7 +377,7 @@ Invite Collaborators: Invite individuals via Search then update their Role to su
 
 ### Add Project To A Team
 
-Teams are granted REad Permissions on any Project they are added to.
+Teams are granted Read Permissions on any Project they are added to.
 
 1. Open Your Organizations and select the target Org.
 1. Open Teams tab and select the Team to grant access to.
