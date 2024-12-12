@@ -4,8 +4,10 @@ This will be a collection of information collected while attending presentations
 
 ## Table of Contents
 
+- [Testing With GitHub Copilot](#testing-with-github-copilot)
 - [Copilot Study Guide Series 1](#copilot-study-guide-series-1)
 - [Copilot Study Guide Series 2](#copilot-study-guide-series-2)
+- [Copilot Study Guide Series 4](#copilot-study-guide-series-4)
 - [About Github Copilot Enterprise](#about-github-copilot-enterprise)
 - [GitHub Copilot Basics - MSFT Reactor](#github-copilot-basics---msft-reactor)
 - [Codespaces](#codespaces)
@@ -215,7 +217,7 @@ Key Topics:
 - Data science applications
 - SDLC managment and productivity management
 
-### Stream of Takeaways
+### Series 2 Stream of Takeaways
 
 This presentation was a combination of summary slides and lots of live coding.
 
@@ -242,6 +244,70 @@ Takeaways and interesting points:
   - Inline Chat can be used within Jupyter Notebooks!
 - SDLC: Copilot Metrics API at Github.com: Queryable to get information about your Copilot Users at Organization Level or by Teams at Enterprise licensing level. Results are JSON document by default.
   - Copilots Metrics Viewer: Online graphing interface that can be set up on-prem, using Copilot Metrics API data.
+
+## Copilot Study Guide Series 4
+
+"Prompt Engineering 300"
+
+Host: Damian Brady, Sr. Dev Advocate, GitHub
+
+### Series 4 Stream of Takeaways
+
+LLMs are _non deterministic_.
+
+Generally:
+
+- [Copilot Prompting Tips from GitHub](https://gh.io/prompt-engineering)
+- Copilot uses some of the same Models as AI, within GitHub's tenant on Azure via Azure AI.
+- Data not shared with OpenAI, or Microsoft.
+- LLM responses are stripped of security and privacy data before it is returned to the caller.
+- MSFT OpenAI offerings are platforms that GitHub builds on top of.
+- GitHub Copilot only wants to answer questions about programming, however GhostText or Chat will help "fill in" files with additional non-programming topics. Damian's example was to build a JSON file and start filling it out with the goal of describing a City. GhostText filled-in some additional information, in the context of completing a progrmaming JSON file.
+- LLMs are multi-lingual, especially the newer models.
+- Ghost Text and Chat both use newer models, therefore support many languages in addition to English.
+- GitHub Copilot API is _not_ publically accessible, however the Copilot Features leverage them.
+- Copilot exists at GitHub.com: Summarize an issue, PRs, Projects, etc. This feature is currently in Preview.
+
+Get the best out of Ghost Text:
+
+- Be specific.
+- Provide examples in the prompt. Use quotations to better specify the example for Copilot to use.
+- Meaningful, consistent function and filenames goes a long way to get better results from Copilot.
+- Break down the problem into smaller bits in the inline/comment prompts.
+- Skip-through the suggestions in the hover-menu.
+- Open a Completions Panel using [CTRL] + [Enter] to see the suggestions in an larger side panel.
+
+Writing Tests with Copilot:
+
+- Highlight the code, open Copilot Chat, enter `/tests`. This uses the highlighted content as context.
+
+Extensions and Participants:
+
+- `@` Agents: Specifically tuned for certain contexts such as `@workspace`.
+- When `@workspace` returns filenames, they can be clicked to open them in a new tab in the main window.
+- `/new`: Used alongside the `@workspace` agent. Start-up a directory structure based on your prompt. After creating the app structure, it will open the Project (workspace) directory in the IDE.
+- `@github`: Expert context as a better way to add internet lookup as an additional source. Without it, the context is strictly your code and the LLM training (which can sometimes be old).
+- Other `@` Agents have extension commands that can help. Commands are listed when certain Agents are selected, such as `@Azure`, and others.
+
+Chat Has A Few More Capabilities Over Ghost Text:
+
+Copilot Edits:
+
+- New Feature.
+- Define set of files to work with, including added contextual information provided by the user.
+- Icon looks like a Document with a "refresh arrows" in it.
+- Depending on the size of the request, the solution can take quite some time to generate.
+
+Model Picker:
+
+- Default LLM is GPT-4o
+- Select other LLMs including Claude, o1-mini and o1-preview.
+
+Copilot Instructions:
+
+- Add file `copilot-instructions.md`
+- Add custom instructions to the project.
+- See [Adding custom instructions for GitHub Copilot](https://docs.github.com/en/copilot/customizing-copilot/adding-custom-instructions-for-github-copilot)
 
 ## About Github Copilot Enterprise
 
