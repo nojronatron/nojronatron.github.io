@@ -69,7 +69,7 @@ Defaults and Maximums:
 - Windows: 200 instances.
 - Linux: 100 instances.
 
-#### Flex Consumption
+#### Flex Consumption Plan
 
 Offers:
 
@@ -79,6 +79,7 @@ Offers:
 
 Defaults and Maximums:
 
+- _Code only_ Linux hosted, Windows Deployment _not_ supported.
 - 30 minutes to unlimited.
 - Instances limited by collective memory usage across a Region.
 

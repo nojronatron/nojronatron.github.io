@@ -4,6 +4,16 @@ A space for collecting thoughts and technical walk-thrus and takeaways during my
 
 ## December 2024
 
+### P5js and The Nature of Code
+
+Multiple concepts covered in Chapter 3:
+
+- From cartesian coordinates to polar coordinate conversions and back again.
+- Use of Vectors to apply changes to acceleration, when affect velocity, which is then applied to a change in location.
+- Determining the angle and distance to a point in the canvas.
+- Applying attraction forces and friction forces to spinning or swinging objects.
+- Leveraging `beginShape()`, `vertex(x,y)`, and `endShape()`. Vertex is used to generate very complex shapes within a `beginShape()` and `endShape()` region. In the examples it was used as a way to 'fill-in' empty space between multiple other objects. A constant named `CLOSE` enables completing incomplete shapes such as circles and complex polygons.
+
 ### Python VENV
 
 Several years ago I was using Python a lot for web-dev testing and other small side projects. I was hoping to make it my profession at one point. Then I found C# and was introduced formally to JavaScript and CSS. Since then, for the most part, I've spent more time with the classic web stack and also .NET especially WPF and C#. Every now and then something Pythonic comes up and I have to work with it (which is fine really).
