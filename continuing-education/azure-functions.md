@@ -249,7 +249,7 @@ Concepts:
 - [x] Describe key components of Functions: Bindings and Triggers.
 - [x] Create triggers and bindings: Use VSCode and Command Palette to get started.
 - [x] Describe how to control when a Function runs and where its output is directed: A Trigger defines when a function runs, and output is directed according to its Binding.
-- [x] Summarize how to connect Functions to Azure Services: Decorate strongly-typed language Properties and Methods with Attriubutes, and use `function.json` schema to define bindings for script-y languages including TS.
+- [x] Summarize how to connect Functions to Azure Services: Decorate strongly-typed language Properties and Methods with Attriubutes, and use `function.json` schema to define bindings for script-y languages including JS and TS.
 - [x] List steps to create Functions in VS Code and Azure Functions Core Tools: See [Development Steps](#development-steps).
 
 ### Developing Functions Overview
@@ -328,9 +328,8 @@ Example C# Attributes:
 
 Function Definition in C# Method:
 
-- Define a class that represents the Function return type.
-- Define a static Class.
-- Define a static Method to represent the Function.
+- Define a class that represents the Function return type. Static or instance-classes are acceptable.
+- Define a Method to represent the Function. Can be `static` or an instance method.
 - Identify the Function return type in the static method.
 - Apply the Attributes to define the Function Name and Function Return type.
 
@@ -342,6 +341,8 @@ Function Definition in C# Method:
 - Similar to how DB Connection Strings are implemented in conjunction with Secrets and EnvVars in modern dev.
 
 Optional: Azure Function may require an _Identity_ instead of a secret.
+
+_Note_: Azure Static WebApps can **automatically** attach the Azure Functions. See [Azure Static Webapps, API Options](./azure-static-webapps-api-options.html) for details.
 
 ### Identity Based Connections
 
