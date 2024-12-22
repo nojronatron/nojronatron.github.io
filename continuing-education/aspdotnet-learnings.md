@@ -14,6 +14,7 @@ Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET
 - [Blazor Pages, Routing, Layouts, and Navigation](#blazor-pages-routing-layouts-and-navigation)
 - [Blazor Forms and Validation](#blazor-forms-and-validation)
 - [How To Submit A Form Using Blazor Dynamic SSR](#how-to-submit-a-form-using-blazor-dynamic-ssr)
+- [HTTP Client Usage Reminders](#http-client-usage-reminders)
 - [Leverage JavaScript and Template Components in Blazor](#leverage-javascript-and-template-components-in-blazor)
 - [Blazor Component Lifecycle](#blazor-component-lifecycle)
 - [Understand Blazor Template Components](#understand-blazor-template-components)
@@ -29,6 +30,7 @@ Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET
 - [Asynchronously Call A Method](#asynchronously-call-a-method)
 - [Full Stack ASP Dot Net Development](#full-stack-asp-dot-net-development)
 - [Blazor WASM](#blazor-wasm)
+- [Manage Globalization and Localization in Blazor](#manage-globalization-and-localization-in-blazor)
 - [Resources](#resources)
 - [Footer](#footer)
 
@@ -40,8 +42,6 @@ There are 3 "flavors" (my words) of Blazor:
 - Blazor Server
 - Blazor Hybrid
 
-Deploy a new Blazor Server using dotnet: `dotnet new blazorserver -o MyBlazorServerProject -f net6.0`. This creates a new Blazor Server Project named "MyBlazorServerProject" using the DotNET 6 SDK.
-
 ### Blazor Web
 
 Provides a WebAssembly capabilities where components are executed in the client browser, rather than on the server. Provides cross-platform compatibility and enhanced performance by eliminating round-trip WRRCs.
@@ -50,15 +50,30 @@ The number of available .NET APIs is limited, however speed and responsiveness a
 
 ### Blazor Server
 
-Serves-up static or dynamic pages to clients, based on ASP.NET Core technologies, and utilizes SignalR for back-end communications with each Web Client connection (WebSockets). Back-end data interop is built-in, and web page interactions are handled locally and by the server depending on the type of action.
+- Serves-up static or dynamic pages to clients.
+- Is based on ASP.NET Core technologies.
+- Utilizes SignalR for back-end communications with each Web Client connection (aka WebSockets).
+- Back-end data interop is built-in, and web page interactions are handled locally and by the server depending on the type of action.
 
-Useful for for embedded applications and apps running on the local network.
+Purpose:
 
-Some limitation on performance due to WRRC round-trip time requirements.
+- Useful for for embedded applications and apps running on the local network.
+
+Limitations:
+
+- Some lack of performance due to WRRC round-trip time between client and server.
+
+Deploy a new Blazor Server using dotnet:
+
+- `dotnet new blazorserver -o MyBlazorServerProject -f net6.0`
+- This creates a new Blazor Server Project named "MyBlazorServerProject" using the DotNET 6+ SDK.
 
 ### Blazor Hybrid
 
-Define UI layout and functionality, similar to React and Vue, and integrates with .NET MAUI for managing multi-platform support such as Android, iOS, and Linux. Designed for native apps, desktop, and mobile.
+- Define UI layout and functionality.
+- Similar to React and Vue.
+- Integrates with .NET MAUI for managing multi-platform support for Android, iOS, and Linux.
+- Designed for native apps, desktop, and mobile.
 
 ## Blazor vs Razor
 
@@ -82,7 +97,7 @@ Deploy a new Razor Component using 'dotnet' like so `dotnet new razorcomponent -
 Blazor Components:
 
 - Are Razor Pages with Blazor syntax, and usually include C# and HTML.
-- Utilze CSS Isolation: Style rules that are applied to a Blazor Component are _only_ applied to that that Blazor Component.
+- Utilze CSS Isolation: Style rules that are applied to a Blazor Component are _only_ applied to that Blazor Component.
 - Allow assigning elements specific to the Blazor Component as defined within a `<HeadContent>` element.
 - Allow use of `<style>` elements within the components HTML (CSS Isolation).
 
