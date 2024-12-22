@@ -589,6 +589,25 @@ Standard HTML elements can be used in Blazor.
 
 _That's it_!
 
+## HTTP Client Usage Reminders
+
+For long-lifetime HttpClient usage, do the following:
+
+- Implement and inject a singleton HttpClient to the DI container _or_ use a _static_ HttpClient instance.
+- In both cases, use `PooledConnectionLifetime`: Works around DNS caching risk (actual record expires, HttpClient cache not) _and_ Port Exhaustion risk.
+- For testing, register a separate _mocked_ handler.
+- Alternative: Use `IHttpClientFactory` for short-lived, multi-endpoint and configuration scenarios. This automates pooling HttpClient instances and can reduce rick of socket exhaustion. _Note_: This will consume additional resources and should not be used to long-lived connections.
+- Another Alternative: Use [Typed HttpClient clients](https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory#typed-clients). _Note_: Tim Corey recommends this method for many API consumption scenarios.
+
+For short-term or _DotNet Framework_ versions:
+
+- Use `IHttpClientFactory` to manage HttpClients.
+- _Warning_: Managing HttpClient manually in .NET Framework risks exhausting available TCP Ports.
+
+See [HttpClient Recommended Usage](https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines#recommended-use) on MSFT Learn.
+
+Check out [Resilience With Static Clients](https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines#resilience-with-static-clients) for code examples of using the Static Singleton pattern that includes Pooled Connection Lifetime, and Retry Handling.
+
 ## Leverage JavaScript and Template Components in Blazor
 
 Use JS Interop to execute JavaScript Libraries and functions from Blazor apps.
