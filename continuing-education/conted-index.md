@@ -6,6 +6,7 @@ A collection of notes from research and continuing education, with references fo
 
 - [Current Learnings and Activities](#current-learnings-and-activities)
 - [Things I Want To Learn More About](#things-i-want-to-learn-more-about)
+- [Cheatsheets](#cheatsheets)
 - [Notes And Takeaways from Research and Experience](#notes-and-takeaways-from-research-and-experience)
 - [Azure Learnings](#azure-learnings)
 - [Footer](#footer)
@@ -18,11 +19,19 @@ A collection of notes from research and continuing education, with references fo
 
 Here is a snippet of items I look forward to learning more about:
 
-- [ ] Web Building and CMS Services [notes](./web-dev-cms-overviews.html).
-- [ ] GitHub Copilot: [Copilot notes](./msft-copilot-learnings.html) and [GitHub Foundations notes](./github-foundations-cert-notes.html).
+- [ ] ASP.NET Blazor and ASP.NET Core.
+- [ ] GitHub: Teams, Actions, Projects, and Wikis.
+- [ ] DotNET Aspire 9.0 for develpment, and how it can help using Containers and deploying to Azure.
+- [ ] Rendering API data from remote server to: A CMS; SSR Web Server.
+
+## Cheatsheets
+
+- [Git](cheatsheets/git.md)
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] Web Building and CMS Services [notes](./web-dev-cms-overviews.html).
+- [x] GitHub Copilot: [Copilot notes](./msft-copilot-learnings.html) and [GitHub Foundations notes](./github-foundations-cert-notes.html).
 - [x] DotNET Conf 2024 topics: dotnet 9 SDK, MAUI, Blazor, Aspire, AI, [noted in dotnet-conf-2024](./dotnet-conf-2024.html).
 - [x] Attend GitHub Universe and take [notes as a virtual attendee](./github-universe-2024.html).
 - [x] Monorepos: Basically multi-project solutions where inter-dependencies can be updated with a single (atomic) commit and dependencies are managed among all contributors, with visibility into the entire system as a whole.
