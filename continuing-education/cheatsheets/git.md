@@ -16,6 +16,18 @@ Key Takeaways:
 - Name a Tag at any commit using the command line.
 - Pushing a Tag to remote does not require opening a new branch or PR.
 
+## Git Reset
+
+Usage example `git reset --{option} {commit_hash}`:
+
+Options:
+
+- Soft: Removes the last commit from current branch, retaining file changes `git reset --soft HEAD~1`
+- Mixed: Same as soft _except_ retains changes in working tree but _not in the index_ (unstaged) `git reset --mixed HEAD~1`
+- Hard: Loose all uncommitted changes, including untracked files. This effectively rolls-back the commit _and all file changes_ to the previous commit `git reset --hard HEAD~1`
+- Merge: Undo a _merge_ wile preserving uncommitted changes in current working directory.
+- Keep: Similar to Hard but uses a _diff_ against all files so uncommitted changes are _not reset_.
+
 ## Footer
 
 Return to [ContEd Index](../conted-index.md)
