@@ -7,7 +7,18 @@ Keep a record of learned GIT tricks and traps.
 [CSharp Fritz](https://twitch.tv/csharpfritz) used this flow on his Twitch stream one day:
 
 1. Checkout a new branch: `git checkout -b {branch-name}`
-1. Set upstream to remote: `git push -n origin {branch-name}`
+1. Set upstream to remote: `git push -u origin {branch-name}`
+1. Stage changed files: `git add {...filename | .}`
+1. Commit staged changes and add a comment: `git commit -m '{50-char-un-truncated-comment}`
+1. Push changes to remote:  `git push`
+
+Key Takeaways:
+
+- Use remote tracking by using the `-u` flag to simplify future push commits by using just `git push`
+- If remote tracking is not enabled, use `git push {remote-name} {branch-name}` but make sure you get the branch-name correct.
+
+## Tagging
+
 1. Set a tag at the current commit: `git tag {new-tag-name}`
 1. Push tag(s) to remote: `git push upstream main`
 
