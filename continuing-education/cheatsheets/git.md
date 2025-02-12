@@ -17,6 +17,33 @@ Key Takeaways:
 - Use remote tracking by using the `-u` flag to simplify future push commits by using just `git push`
 - If remote tracking is not enabled, use `git push {remote-name} {branch-name}` but make sure you get the branch-name correct.
 
+## Set Upstream
+
+Two common ways:
+
+1. When setting up a new branch.
+2. When adding a remote branch to your local.
+
+### Set Upstream To New Branch
+
+1. `git checkout -b {branch-name}`
+1. `git push -u origin {branch-name}`
+1. Start deving and git flowing.
+
+### Add Remote Branch To Local
+
+1. `git checkout -b {remote-branch-name}`
+2. `git branch --set-upstream-to={remote}/{remote-branch-name} {remote-branch-name}`
+
+For example:
+
+- A common trunk branch named "staging" exists remotely.
+- Your remote repository is named "origin".
+- You need a local copy of staging branch to weed out merge conflicts before creating a PR.
+
+1. `git checkout -b staging`
+1. `git branch --set-upstream-to=origin/staging staging`
+
 ## Tagging
 
 1. Set a tag at the current commit: `git tag {new-tag-name}`
