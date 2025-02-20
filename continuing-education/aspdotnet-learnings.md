@@ -90,6 +90,26 @@ To build and run Blazor Server and force it up restart when code is changed (ala
 - CTOR-Inject any required services just like any other class.
 - Use `[HttpGet]`, `[HttpPost]`, `[HttpPatch]`, `[HttpDelete]` (etc) REST call definitions to identify each Controller Method as an HTTP/API endpoint.
 
+## Blazor SSR and Interactive Server
+
+Server Side Rendering:
+
+- Can be static rendered HTML.
+- Can be dynamic rendered HTML.
+- Limits the ability to utilize eventing, and relies on Routing and Querying the server to get to a new page or update a view in a Component.
+
+Interactive Server:
+
+- Enables creating, handling, and managing client-side eventing.
+- Respond to button clicks, input element content changes, etc.
+- Enables creating custom events in addition to using existing, expected events such as `OnClick()`.
+
+## Syntax
+
+Standard HTML elements and Blazor Components can be used in the same Component.
+
+There are side-effects to using Blazor syntax instead of HTML elements, that are designed to enhance Form handling and submission, and Interactive Server capability.
+
 ## Blazor Share Data Between Components
 
 There are 3 ways to do this:
@@ -293,7 +313,7 @@ App.razor:
 
 Overview:
 
-- Use Blazor event handlers to improve interactivity.
+- Use Blazor event handlers to improve interactivity (requires Interactive Server at the Component or global level).
 - Use Forms in Blazor for data entry.
 - Server- and Client-side validation of Forms in Blazor.
 
@@ -380,7 +400,9 @@ Event Callbacks:
 
 ### Blazor EditForm
 
-Input and Form are common web elements to capture user inputs. Blazor adds-on to these with capabilities to validate and manipulate form inputs.
+Input and Form are common web elements to capture user inputs.
+
+Blazor builds on those elements, adding capabilities to validate and manipulate form inputs.
 
 The EditForm:
 
@@ -524,6 +546,21 @@ When using `OnValidSubmit()` and `OnInvalidSubmit()`, server-side validation is 
 - Validate form inputs against an annotated class via the `<DataAnnotationsValidator />` element.
 - Provide rich validation messaging to the user within the Form via `<ValidationSummary />`.
 - Perform deeper validation such as RegEx or validation against other data sources prior to storing user-inputted data.
+
+## How To Submit A Form Using Blazor Dynamic SSR
+
+1. Server Interactive mode should be disabled in this case.
+1. Configure DI services to include `UseAntiforgery()`.
+1. Create a Component that implements an `EditForm` with a Model, and FormName attributes. Note: `<AntiForgeryToken />` is automatic only when `EditForm` is used.
+1. Add Blazor InputText component and add `@bind-Value="ModelName"` to bind the input to a local Property holding the Model type.
+1. Add a Submit button.
+1. Do _not_ include a form "action".
+1. Ensure the Model type Property has the attribute `[SupplyParameterFromForm]`.
+1. Implement a submit handler method that calls an injected instance of `NavigationManager` `NavigateTo(path)`.
+1. Create a component with `@page="/pagename/{searchTerm}"` to accept the form-entered value(s).
+1. Inject any needed helpers or DTO services to query for data.
+1. Add `[Paramater]` to a Property that will capture the value from the Route path i.e. `[Parameter] public string SearchTerm {get;set;}`
+1. Implement code to display the results of processing the route parameter.
 
 ## Leverage JavaScript and Template Components in Blazor
 
@@ -728,6 +765,8 @@ An X.509 Certificate for `code signing` and `time stamping` will be necessary fo
 
 ## Common Blazory Things To Know and Understand
 
+- Blazor SSR can be static or dynamic, meaning the server can render static or dynamic pages based on queries and routing. This is _not the same_ as Interactive Server configuration though.
+- Blazor Interactive Server means client-side Events can be created and handled before, during, or after page rendering. There are render and re-render side-effects that must be considered. Also, interactivity can be set for Server SSR, and for Web Assembly projects.
 - To _register_ a data access service to the Blazor Server application, implement a Data Model and a Service that can call an ORM or obtain the data from a file or REST call (etc), then register the data access Service in `Program.cs` like `builder.Services.AddSingleton<DataGetterService>();`.
 - OnInitializedAsync(): Event fires when component's initialization is complete and it has received initial parameters but the page has not rendered yet. Override this method to fetch data asynchronously.
 - Work with data access services by using the Blazor Directive `@inject`.
