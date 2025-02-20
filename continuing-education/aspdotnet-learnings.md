@@ -549,6 +549,8 @@ When using `OnValidSubmit()` and `OnInvalidSubmit()`, server-side validation is 
 
 ## How To Submit A Form Using Blazor Dynamic SSR
 
+Using an EditForm and Route Args:
+
 1. Server Interactive mode should be disabled in this case.
 1. Configure DI services to include `UseAntiforgery()`.
 1. Create a Component that implements an `EditForm` with a Model, and FormName attributes. Note: `<AntiForgeryToken />` is automatic only when `EditForm` is used.
@@ -558,9 +560,23 @@ When using `OnValidSubmit()` and `OnInvalidSubmit()`, server-side validation is 
 1. Ensure the Model type Property has the attribute `[SupplyParameterFromForm]`.
 1. Implement a submit handler method that calls an injected instance of `NavigationManager` `NavigateTo(path)`.
 1. Create a component with `@page="/pagename/{searchTerm}"` to accept the form-entered value(s).
-1. Inject any needed helpers or DTO services to query for data.
+1. Inject any needed helpers or data access services to query for data.
 1. Add `[Paramater]` to a Property that will capture the value from the Route path i.e. `[Parameter] public string SearchTerm {get;set;}`
 1. Implement code to display the results of processing the route parameter.
+
+Using Query Args:
+
+Standard HTML elements can be used in Blazor.
+
+1. Server Interactive mode should be disabled.
+1. Configure DI services to include `UseAntiForgery()`.
+1. Create a Blazor Component that adds an HTML `form` with an action of `/search` and a method of `GET`.
+1. Add an input type "text" that includes the `name=` attribute. The name attribute will be mapped as a Query Parameter in the next two steps.
+1. Create a Blazor Component with a `@page="/search"` directive, and injects any needed services for data access, etc.
+1. Include a Property for `SearchTerm` and annotate it with attributes `[Paramaeter]` and `[SupplyParameterFromQuery(Name = "paramName")]`
+1. Override `OnParametersSetAsync()` to do the processing of the `SearchTerm` value, and set the result(s) to a Property that is bound to one or more elements in the HTML protion of the Component (for display).
+
+_That's it_!
 
 ## Leverage JavaScript and Template Components in Blazor
 
