@@ -19,9 +19,14 @@ Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET
 - [Understand Blazor Template Components](#understand-blazor-template-components)
 - [Razor Component Libraries (RCLs)](#razor-component-libraries-rcls)
 - [Create a NuGet Package](#create-a-nuget-package)
+- [Blazor Application State Best Practices](#blazor-application-state-best-practices)
+- [Render Fragments](#render-fragments)
+- [Blazor Components Definition](#blazor-components-definition)
 - [Common Blazory Things To Know and Understand](#common-blazory-things-to-know-and-understand)
 - [Minimal APIs](#minimal-apis)
 - [Entity Framework Core](#entity-framework-core)
+- [Leverage Secure Browser LocalStorage](#leverage-secure-browser-localstorage)
+- [Asynchronously Call A Method](#asynchronously-call-a-method)
 - [Full Stack ASP Dot Net Development](#full-stack-asp-dot-net-development)
 - [GitHub CodeSpaces](#github-codespaces)
 - [Resources](#resources)
@@ -121,6 +126,8 @@ There are 3 ways to do this:
 - Use Component Parameters: Parent component provides parameter values to the child component.
 - Use Cascading Parameters: Parent component provides parameter values via child component(s) to grand-children component(s).
 - Share Data using AppState.
+
+See [RenderFragments](#render-fragments) later in this document.
 
 ### Component Parameters
 
@@ -833,8 +840,158 @@ _Note_: Publishing a version that includes additional version information beyond
 
 An X.509 Certificate for `code signing` and `time stamping` will be necessary for publishing the package and enabling successful `release` package importations.
 
+## Blazor Application State Best Practices
+
+Move App State to a Component that is not a Page:
+
+- Application State is all variables kept alive while the App is in use.
+- Page-level state is reinitialized with every page navigation or refresh.
+
+Update the UI automatically, control the state separately:
+
+- Use bindings when state changes.
+- Control state mutations.
+- Adhere to Single Responsibility Principle and only update state (in Properties), and not take action elsewhere within the Application.
+
+Notes:
+
+- For an example of state reinitialization, see the Counter page in the Blazor Server template.
+  - Is a Component-level variable.
+- Generally, scoped-services can be used to store App State. Create a Cascading App State Component instead.
+
+Cascading App State Component:
+
+- Define `<CascadingValue Value="this">@ChildContent</CascadingValue>` in the html portion of the Component.
+- Add a parameter `[Parameter] public RenderFragment ChildComponent { get; set; }` in the code block.
+- Implement Properties to store state information inside custom getters and setters.
+- Call `StateHasChanged()` whenever a setter is called, to ensure the Component is updated with the newly set value.
+
+Child Content:
+
+- Data that it wrapped by another Component.
+- Related to Render Fragments.
+
+Implementing the App State as a Cascading Parameter:
+
+1. Create a Component to store App State (named 'CascadingAppState' here).
+1. Create a Component to utilize App State and implement any HTML necessary to meet the goals of this App State managing component.
+1. Apply any necessary event Handler method(s) to the App-State dependent Component. For example, allow a button press to display a different message.
+1. Add public field `CascadingAppState AppState { get; set; }` with the `[CascadingParameter]` attribute. This is analogous to adding a scoped service, belonging to a single user.
+1. Wrap the Routes Component with a CascadingValue (the app state manager) component.
+
+## Render Fragments
+
+Represents Razor Markup that can be rendered by the Component.
+
+- Is a Blazor Type, created for passing cascading values between components.
+- In the Routes Component, the entire application can be wrapped with a CascadingValue Component, rendering the entire application as basically a RenderFragment.
+- Utilizes `@childcontent` to capture the enclosed Components for use by the Component.
+
+## Blazor Components Definition
+
+- Blazor Components have the capacity to store C# code and HTML, as well as other Blazor Components.
+- CSS can be referenced through in-lining with HTML, applying CSS through a stylesheet reference in `<Head>`, or by scoping CSS to a Blazor Component through name matching i.e. CSS classes in `MyComponent.razor.css` are scoped only to `MyComponent.razor`.
+- JavaScript can by writted directly within `<Script>` elements in HTML, or the code can be stored in `.js` file(s) and referenced using `IJSInterop`.
+- C# Code can be written within the `@code{}` block, or after any `@` symbol within the HTML section, i.e. `@foreach(var item in items) {}` works in-lined with HTML.
+- C# Code can also be stored within a code-behind file, named after the parent component, inheriting from `ComponentBase`, and implementing any necessary interfaces that the parent `.razor` file has defined in `@using` statements.
+
+### Blazor Component Code Behind implementation
+
+1. Create a new file named after the parent Blazor Component: `MyComponent.razor` -> `MyComponent.razor.cs`
+1. Name the Class after the Blazor Component and mark it as `partial`.
+1. Inherit from `ComponentBase`.
+1. Implement any required interfaces.
+1. Move the `@code{}` block code from the Blazor Component to the new partial class.
+
+Original Component MyPage.razor:
+
+```c#
+@page="/mypage"
+@inject ISomeInterface SomeInterface
+
+<MyCustomComponent Value="this">
+  @ChildContent
+</MyCustomComponent>
+
+@code {
+  [Parameter]
+  public RenderFragment ChildContent { get; set; }
+  
+  private string message = string.Empty;
+  public string message
+  {
+    get => message;
+    set
+    {
+      message = value;
+      StateHasChanged();
+    }
+  }
+
+  public async Task SomeInterfaceMethod()
+  {
+    ...
+  }
+  
+  protected override void OnIntialized()
+  {
+    Message = "Hello World!";
+  }
+}
+```
+
+Code-behind only file MyPage.razor.cs:
+
+```c#
+public partial class MyPage : ComponentBase, ISomeInterface
+{
+  [Parameter]
+  public RenderFragment ChildContent { get; set; }
+  
+  private string message = string.Empty;
+  public string message
+  {
+    get => message;
+    set
+    {
+      message = value;
+      StateHasChanged();
+    }
+  }
+
+  public async Task SomeInterfaceMethod()
+  {
+    ...
+  }
+  
+  protected override void OnIntialized()
+  {
+    Message = "Hello World!";
+  }
+}
+```
+
+Remaining Component MyPage.razor:
+
+```html
+@page="/mypage"
+@inject ISomeInterface SomeInterface
+
+<MyCustomComponent Value="this">
+  @ChildContent
+</MyCustomComponent>
+```
+
+Benefits of using code-behind file:
+
+- Developers can simultaneously work on UI and Functionality of the same Component.
+- Simplifies declarative code, making it more readable.
+- Simplifies functional implementation code, making it more readable and testable.
+- Enables access to lifecycle methods from code-behind via inheritance from _ComponentBase_
+
 ## Common Blazory Things To Know and Understand
 
+- `ComponentBase` is the core class to inherit from in order to leverage Blazor Lifecycle Methods. Any code that inherits from ComponentBase literally becomes a `Blazor Component` with the same capabilities, lifecycle roles, etc, __even without any declarative (UI) code__.
 - Blazor SSR can be static or dynamic, meaning the server can render static or dynamic pages based on queries and routing. This is _not the same_ as Interactive Server configuration though.
 - Blazor Interactive Server means client-side Events can be created and handled before, during, or after page rendering. There are render and re-render side-effects that must be considered. Also, interactivity can be set for Server SSR, and for Web Assembly projects.
 - To _register_ a data access service to the Blazor Server application, implement a Data Model and a Service that can call an ORM or obtain the data from a file or REST call (etc), then register the data access Service in `Program.cs` like `builder.Services.AddSingleton<DataGetterService>();`.
@@ -1157,6 +1314,49 @@ app.MapDelete("/thing/{id}", async (ThingDb db, int id) =>
   return Results.Ok();
 });
 ```
+
+## Leverage Secure Browser LocalStorage
+
+Blazor includes the ability to use encrypted Browser Storage:
+
+- Use this in conjunction with an AppState component to help users fill-out forms through page refresh.
+- Can be "timed-out" using an AppState component to ensure stored data doesn't live longer than it needs to in the browser.
+- Implement `AddDataProtection()` in the DI :arrow_right: `builder.Services.AddDataProtection()`
+
+To leverage in a Blazor Component (inheriting from ComponentBase):
+
+- `[Inject] ProtectedLocalStorage LocalStorage { get; set; }`
+- If a timeout is required, add a Storage Timeout field and a Last Saved Time field to the Component so action can be taken when a timeout has been reached.
+- ALways use a `try-catch` to wrap `secureStorage.GetValue(item)` call to SecureStorage.
+- Always deserialize data retreived from SecureStorage using `JsonSerializer.Deserialize<T>(item.Value)`.
+- Always check for `null` when retreiving LocalStorage (after deserializing).
+- If using a timeout, check the time-window before loading by comparing `DateTime.Now` with the timeout field defined in the Component.
+- If timeout has expired, avoid writing-back the values to LocalStorage.
+- When storing to SecureStorage, always serialize (`JsonSerializer.Serialize(item)`) before calling `localStorage.SetAsync(key, json)`
+- It might be a good idea to remove items from LocalStorage when it is detected they have timed out.
+
+## Asynchronously Call A Method
+
+Thanks for [Carl Franklin](https://www.github.com/carlfranklin) for this code sample, where data that is stored in a Component Message property is also stored to the browser Secure Storage, asynchronously:
+
+```c#
+private string message;
+public string Message
+{
+  get => message;
+  set
+  {
+    message = value;
+    StateHasChanged(); // reference: AppState storage in a Component
+    new Task(async () =>
+    {
+      await Save(); // local method thath performs Browser SecureStorage save operation
+    }).Start();
+  }
+}
+```
+
+_Note_: This is probably only safe to do when calling async methods that don't have side-effects that would change the Property value in any way.
 
 ## Full Stack ASP Dot Net Development
 
