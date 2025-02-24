@@ -7,14 +7,18 @@ Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET
 - [Blazor](#blazor)
 - [Blazor vs Razor](#blazor-vs-razor)
 - [Build and Run Blazor](#build-and-run-blazor)
+- [Blazor SSR and Interactive Server](#blazor-ssr-and-interactive-server)
+- [Syntax](#syntax)
 - [Blazor Share Data Between Components](#blazor-share-data-between-components)
 - [Blazor Data Binding in Blazor](#blazor-data-binding-in-blazor)
 - [Blazor Pages, Routing, Layouts, and Navigation](#blazor-pages-routing-layouts-and-navigation)
 - [Blazor Forms and Validation](#blazor-forms-and-validation)
+- [How To Submit A Form Using Blazor Dynamic SSR](#how-to-submit-a-form-using-blazor-dynamic-ssr)
 - [Leverage JavaScript and Template Components in Blazor](#leverage-javascript-and-template-components-in-blazor)
 - [Blazor Component Lifecycle](#blazor-component-lifecycle)
 - [Understand Blazor Template Components](#understand-blazor-template-components)
-- [Razor Class Libraries](#razor-class-libraries)
+- [Razor Component Libraries (RCLs)](#razor-component-libraries-rcls)
+- [Create a NuGet Package](#create-a-nuget-package)
 - [Common Blazory Things To Know and Understand](#common-blazory-things-to-know-and-understand)
 - [Minimal APIs](#minimal-apis)
 - [Entity Framework Core](#entity-framework-core)
@@ -715,13 +719,13 @@ To implement:
 3. Specify the type parameter in the consuming component.
 4. Use the `@typeparam` directive to introduce the type parameter. Multiple per template are allowed.
 
-## Razor Class Libraries
+## Razor Component Libraries (RCLs)
 
-Share and reuse UI Components using Razor Class Libraries.
+Share and reuse UI Components using Razor Component Libraries.
 
 Supports generation of rendered and static content across Blazor applications.
 
-Razor Class Libraries are composed of:
+Razor Component Libraries are composed of:
 
 - HTML
 - CSS
@@ -733,21 +737,22 @@ Libraries can be bundled as NeGet Packages for distribution.
 
 A new blank Razor Component Library component:
 
-- Create a new blank library project using `dotnet new razorclasslib -o {ProjectName}`.
+- Create a new blank __library__ project using `dotnet new razorclasslib -o {ProjectName}`.
 - Contains a default CSS file.
 - A `wwwroot` folder where images, JavaScript, and other static content should be stored and acts as the base relative path for references such as scripts.
 - Absolute folder reference to `wwwroot` is `/_content/{PACKAGE_ID}/{PATH_AND_FILENAME_INSIDE_WWWROOT}`
-- Similar to a Class Library project but SDK points to Razor specifically and supported platform is "browser".
+- Similar to a Component Library project but SDK points to Razor specifically and supported platform is "browser".
 - Includes a package reference to `Microsoft.AspNetCore.Components.Web`.
 
-Referencing A Razor Class Library:
+Referencing A Razor Component Library:
 
-- Update the Blazor App to reference the Razor Class Library.
-- Drag-and-drop the Project file onto the Blazor App Project file.
-- By CLI: `dotnet add reference{ClassLibraryNameAndPath}`.
-- By NuGet: `dotnet add package {ClassLibraryName}`.
-- Add an `@using` to point to the namespace of the Razor Library component.
-- Optionally, add the namespace to the Razor Library component to `_Imports.razor`.
+- Update the Blazor App to reference the Razor Component Library project.
+  - Drag-and-drop the Project file onto the Blazor App Project file.
+  - By CLI: `dotnet add reference{ClassLibraryNameAndPath}`.
+  - By NuGet: `dotnet add package {ClassLibraryName}`.
+- Add a reference to the RCL Namespace using one of these methods:
+  - Add `@using` to point to the namespace of the Razor Library component.
+  - Add the namespace to the Razor Library component to `_Imports.razor`.
 
 Control Rendering Mode:
 
@@ -755,11 +760,60 @@ Control Rendering Mode:
 - Syntax: `<MyChildComponent @rendermode="InteractiveServer" />`
 - This tells Blazor to handle UI Events from Components on the server-side (using SignalR).
 
+_Note_: [Carl Franklin](https://github.com/carlfranklin) favors prerender disabled: `<Routes @rendermode="new InteractiveServerRenderMode(false)" />` (global setting).
+
+### RCL Features
+
+- Set of Razor components that exist in their own project.
+- Exist as a set of DLLs in a Library.
+- Can contain _any_ Blazor Components, including Pages (routable components), event handlers and callbacks, etc.
+- Separate portions of Blazor App into logical pieces.
+- Can have security boundaries applied to them.
+- Can instantiate Components from an RCL, dynamically (use the DynamicComponent component).
+- Can be udpated at runtime.
+- Compile-able into NuGet Packages for distribution.
+
+### Route To An RCL
+
+1. Define an RCL Component that has an `@page ""` declaration at the top.
+1. Create a link or NavLink to the page as you normally would.
+1. Update `Routes.razor` `<Router>` component to include the property `AdditionalAssempblies=""`.
+1. Configure the additional assembly to initialize `new [] {typeof(Rcl_Name.Component_name).Assembly}"`, where Rcl_Name is your referenced RCL project, and the targeted Component razor file.
+
+### Why Use Dynamic Components?
+
+- Generate purely data-drive Component creation at Runtime.
+
+#### Instantiate RCL Using DynamicComponent
+
+1. Declare DynamicType as a record (or a class): `record DynamicType(Type Type, IDictionary<string, object> Parameters);`
+1. Add (or update existing) `OnInitialized()` override.
+1. Use `DynamicTypes.Add()` to add a new DynamicType as `typeof(Component_name)`, with a new Dictionary KVP item defined as a code-block `{ { string:key, string:value }, { string:key, string:value }, etc }`
+1. These key-value pairs define component parameters and their values, as defined by the target Component (Component_name).
+1. Instantiate the DynamicComponents in the HTML using Razor syntax (see below).
+
+Instantiate an array of DynamicTypes:
+
+```c#
+@foreach (var dynType in DynamicTypes)
+{
+  <DynamicComponent Type=@dynType.Type Parameters=@dynType.Parameters />
+}
+```
+
+### Blazor Dynamic Component Loading
+
+What it is and what it does:
+
+- This is not normally possible because DLLs are locked at Runtime.
+- There is a NuGet package that supports replacing RCLs in-place at Runtime.
+- See [Carl Franklin's GitHub Repo DynamicBlazorComponentLoader](github.com/carlfranklin/DynamicBlazorComponentLoader)
+
 ## Create a NuGet Package
 
-### Packaging a Razor Class Library
+### Packaging a Razor Component Library
 
-Define properties in the CSPROJ file of the Razor Class Library:
+Define properties in the CSPROJ file of the Razor Component Library:
 
 - PackageId: Unique across the NuGet Repository. Default is the Library AssemblyName.
 - Version: `Major.Minor.Patch-PrereleaseNameRevision`. Default is '1.0.0'.
