@@ -1,9 +1,10 @@
 # DotNET CSharp Stuff
 
-Notes on various topics while developing software with, or learning more about, C# and .NET.
+Notes on C# usage and capabilities, with additional related .NET details.
 
 ## Table of Contents
 
+- [Records, Structs, and Classes](#records-structs-and-classes)
 - [Custom Extensions aka Extension Methods](#custom-extensions-aka-extension-methods)
 - [About Aggregation and Composition](#about-aggregation-and-composition)
 - [For ForEach While DoWhile](#for-foreach-while-dowhile)
@@ -13,6 +14,82 @@ Notes on various topics while developing software with, or learning more about, 
 - [Best Practices Handling Nullability](#best-practices-handling-nullability)
 - [References](#references)
 - [Footer](#footer)
+
+## Records, Structs, and Classes
+
+Check out dotnetshow-13 at github.com/carlfranklin
+
+Classes:
+
+- Can have initializers.
+- Creates a reference type.
+- Created on the Heap. An area of memory belonging to an Application, accessible by all threads, where all Reference Types and all values contained within a Reference Type.
+- Use when a reference is needed to a single source of truth.
+- Instantiation yields a reference type.
+- More commonly used than Structs.
+- Hash Codes uniquely ID an object in the Head. `Equals()` uses this fact to compare objects.
+- ReferenceQuals leverages the __memory location__ in the heap to identify same-ness.
+- `Equals()` can be overridden to determine how an instance is considered equal, using the instance _value types_ after confirming instances are not null. This overrides equality check to look at the values, instead of looking at the referenced memory location.
+
+Structs:
+
+- Creates a value type.
+- Created on the Stack (a stack of values and pointers). An execution thread only operates on the "top" item in the stack.
+- Common structs: Point, Rectangle, Color. Small-bits of information containing value-types that will make-up a thing.
+- Created on the Stack.
+- Use to express sets of value types that represent something.
+- `Equals()` determines structs are the same if the values are the same.
+
+> When comparing Value Types, it is the _value_ that is being compared.
+
+Records:
+
+- Can be a Class (ref type) or a Struct (value type), in C# 10 and later.
+- By default _is a Class_ (prior to and through C# 10).
+- Similar to classes, with the benefit of built-in `Equals()` override that checks values instead.
+- Positional Syntax is supported.
+- Creating and setting values is done similarly to using a Class instance Getters and Setters.
+- Are Mutable by default.
+- Define as a struct: `public record struct RecordName {}`
+- When defined as a struct, is _immutable_.
+- Pretty output using built-in formatting that is JSON-like.
+- Can inherit from other Records.
+- Classes are not inheritable, nor can they inherit from a Record.
+- Records can be used in place of a Class.
+- Record Structs can be used in place of a Struct.
+
+Constraints:
+
+- No generic constraints that require a Record specifically, so cannot be applied to meet the definition exactly.
+- Records statify either the Class or Struct constaint.
+- Therefore, you can use a Record in place of a Class, and a Record Struct in place of a Struct.
+
+The `with` expression:
+
+- Operates on Records.
+- Creates a new Record using an existing record.
+- "Non-destructive mutation"
+- Records remain immutable.
+
+A Record Struct is the same as a Struct with the following benefits:
+
+- Can be defined with positional syntax.
+- Can use `with` expression for non-destructive copying.
+- Much better performance than a Class or a Struct.
+
+Immutability is not always appropriate, but is more and more believed to be a good thing.
+
+- Make a Class immutable by eliminating setters from the Properties.
+
+The Init Keyword is used in place of a setter, and relinquishes the requirement to have a CTOR.
+
+### When to Use Record Structs or Classes?
+
+- Need a reference type: Use a Class or Record Class.
+- Use a Record to get the Equality feature of a Struct without overriding `Equals()`
+- Use a Record to enforce immutability with less code.
+- Use a Record Struct to leverage positional syntax or the `with` expression for non-destructive duplication.
+- Use a Record Struct if performance is a primary requirement.
 
 ## Custom Extensions aka Extension Methods
 
