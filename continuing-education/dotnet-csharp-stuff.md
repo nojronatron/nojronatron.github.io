@@ -17,7 +17,7 @@ Notes on C# usage and capabilities, with additional related .NET details.
 
 ## Records, Structs, and Classes
 
-Check out dotnetshow-13 at github.com/carlfranklin
+Reference: [Carl Franklins DotNet Show 13 on GitHub](https://github.com/carlfranklin/dotnetshow-13)
 
 Classes:
 
@@ -83,7 +83,7 @@ Immutability is not always appropriate, but is more and more believed to be a go
 
 The Init Keyword is used in place of a setter, and relinquishes the requirement to have a CTOR.
 
-### When to Use Record Structs or Classes?
+### When to Use Records, Structs, and Classes?
 
 - Need a reference type: Use a Class or Record Class.
 - Use a Record to get the Equality feature of a Struct without overriding `Equals()`
