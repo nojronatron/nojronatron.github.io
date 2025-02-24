@@ -7,17 +7,26 @@ Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET
 - [Blazor](#blazor)
 - [Blazor vs Razor](#blazor-vs-razor)
 - [Build and Run Blazor](#build-and-run-blazor)
+- [Blazor SSR and Interactive Server](#blazor-ssr-and-interactive-server)
+- [Syntax](#syntax)
 - [Blazor Share Data Between Components](#blazor-share-data-between-components)
 - [Blazor Data Binding in Blazor](#blazor-data-binding-in-blazor)
 - [Blazor Pages, Routing, Layouts, and Navigation](#blazor-pages-routing-layouts-and-navigation)
 - [Blazor Forms and Validation](#blazor-forms-and-validation)
+- [How To Submit A Form Using Blazor Dynamic SSR](#how-to-submit-a-form-using-blazor-dynamic-ssr)
 - [Leverage JavaScript and Template Components in Blazor](#leverage-javascript-and-template-components-in-blazor)
 - [Blazor Component Lifecycle](#blazor-component-lifecycle)
 - [Understand Blazor Template Components](#understand-blazor-template-components)
-- [Razor Class Libraries](#razor-class-libraries)
+- [Razor Component Libraries (RCLs)](#razor-component-libraries-rcls)
+- [Create a NuGet Package](#create-a-nuget-package)
+- [Blazor Application State Best Practices](#blazor-application-state-best-practices)
+- [Render Fragments](#render-fragments)
+- [Blazor Components Definition](#blazor-components-definition)
 - [Common Blazory Things To Know and Understand](#common-blazory-things-to-know-and-understand)
 - [Minimal APIs](#minimal-apis)
 - [Entity Framework Core](#entity-framework-core)
+- [Leverage Secure Browser LocalStorage](#leverage-secure-browser-localstorage)
+- [Asynchronously Call A Method](#asynchronously-call-a-method)
 - [Full Stack ASP Dot Net Development](#full-stack-asp-dot-net-development)
 - [GitHub CodeSpaces](#github-codespaces)
 - [Resources](#resources)
@@ -90,6 +99,26 @@ To build and run Blazor Server and force it up restart when code is changed (ala
 - CTOR-Inject any required services just like any other class.
 - Use `[HttpGet]`, `[HttpPost]`, `[HttpPatch]`, `[HttpDelete]` (etc) REST call definitions to identify each Controller Method as an HTTP/API endpoint.
 
+## Blazor SSR and Interactive Server
+
+Server Side Rendering:
+
+- Can be static rendered HTML.
+- Can be dynamic rendered HTML.
+- Limits the ability to utilize eventing, and relies on Routing and Querying the server to get to a new page or update a view in a Component.
+
+Interactive Server:
+
+- Enables creating, handling, and managing client-side eventing.
+- Respond to button clicks, input element content changes, etc.
+- Enables creating custom events in addition to using existing, expected events such as `OnClick()`.
+
+## Syntax
+
+Standard HTML elements and Blazor Components can be used in the same Component.
+
+There are side-effects to using Blazor syntax instead of HTML elements, that are designed to enhance Form handling and submission, and Interactive Server capability.
+
 ## Blazor Share Data Between Components
 
 There are 3 ways to do this:
@@ -97,6 +126,8 @@ There are 3 ways to do this:
 - Use Component Parameters: Parent component provides parameter values to the child component.
 - Use Cascading Parameters: Parent component provides parameter values via child component(s) to grand-children component(s).
 - Share Data using AppState.
+
+See [RenderFragments](#render-fragments) later in this document.
 
 ### Component Parameters
 
@@ -293,7 +324,7 @@ App.razor:
 
 Overview:
 
-- Use Blazor event handlers to improve interactivity.
+- Use Blazor event handlers to improve interactivity (requires Interactive Server at the Component or global level).
 - Use Forms in Blazor for data entry.
 - Server- and Client-side validation of Forms in Blazor.
 
@@ -380,7 +411,9 @@ Event Callbacks:
 
 ### Blazor EditForm
 
-Input and Form are common web elements to capture user inputs. Blazor adds-on to these with capabilities to validate and manipulate form inputs.
+Input and Form are common web elements to capture user inputs.
+
+Blazor builds on those elements, adding capabilities to validate and manipulate form inputs.
 
 The EditForm:
 
@@ -525,6 +558,37 @@ When using `OnValidSubmit()` and `OnInvalidSubmit()`, server-side validation is 
 - Provide rich validation messaging to the user within the Form via `<ValidationSummary />`.
 - Perform deeper validation such as RegEx or validation against other data sources prior to storing user-inputted data.
 
+## How To Submit A Form Using Blazor Dynamic SSR
+
+Using an EditForm and Route Args:
+
+1. Server Interactive mode should be disabled in this case.
+1. Configure DI services to include `UseAntiforgery()`.
+1. Create a Component that implements an `EditForm` with a Model, and FormName attributes. Note: `<AntiForgeryToken />` is automatic only when `EditForm` is used.
+1. Add Blazor InputText component and add `@bind-Value="ModelName"` to bind the input to a local Property holding the Model type.
+1. Add a Submit button.
+1. Do _not_ include a form "action".
+1. Ensure the Model type Property has the attribute `[SupplyParameterFromForm]`.
+1. Implement a submit handler method that calls an injected instance of `NavigationManager` `NavigateTo(path)`.
+1. Create a component with `@page="/pagename/{searchTerm}"` to accept the form-entered value(s).
+1. Inject any needed helpers or data access services to query for data.
+1. Add `[Paramater]` to a Property that will capture the value from the Route path i.e. `[Parameter] public string SearchTerm {get;set;}`
+1. Implement code to display the results of processing the route parameter.
+
+Using Query Args:
+
+Standard HTML elements can be used in Blazor.
+
+1. Server Interactive mode should be disabled.
+1. Configure DI services to include `UseAntiForgery()`.
+1. Create a Blazor Component that adds an HTML `form` with an action of `/search` and a method of `GET`.
+1. Add an input type "text" that includes the `name=` attribute. The name attribute will be mapped as a Query Parameter in the next two steps.
+1. Create a Blazor Component with a `@page="/search"` directive, and injects any needed services for data access, etc.
+1. Include a Property for `SearchTerm` and annotate it with attributes `[Paramaeter]` and `[SupplyParameterFromQuery(Name = "paramName")]`
+1. Override `OnParametersSetAsync()` to do the processing of the `SearchTerm` value, and set the result(s) to a Property that is bound to one or more elements in the HTML protion of the Component (for display).
+
+_That's it_!
+
 ## Leverage JavaScript and Template Components in Blazor
 
 Use JS Interop to execute JavaScript Libraries and functions from Blazor apps.
@@ -662,13 +726,13 @@ To implement:
 3. Specify the type parameter in the consuming component.
 4. Use the `@typeparam` directive to introduce the type parameter. Multiple per template are allowed.
 
-## Razor Class Libraries
+## Razor Component Libraries (RCLs)
 
-Share and reuse UI Components using Razor Class Libraries.
+Share and reuse UI Components using Razor Component Libraries.
 
 Supports generation of rendered and static content across Blazor applications.
 
-Razor Class Libraries are composed of:
+Razor Component Libraries are composed of:
 
 - HTML
 - CSS
@@ -680,21 +744,22 @@ Libraries can be bundled as NeGet Packages for distribution.
 
 A new blank Razor Component Library component:
 
-- Create a new blank library project using `dotnet new razorclasslib -o {ProjectName}`.
+- Create a new blank __library__ project using `dotnet new razorclasslib -o {ProjectName}`.
 - Contains a default CSS file.
 - A `wwwroot` folder where images, JavaScript, and other static content should be stored and acts as the base relative path for references such as scripts.
 - Absolute folder reference to `wwwroot` is `/_content/{PACKAGE_ID}/{PATH_AND_FILENAME_INSIDE_WWWROOT}`
-- Similar to a Class Library project but SDK points to Razor specifically and supported platform is "browser".
+- Similar to a Component Library project but SDK points to Razor specifically and supported platform is "browser".
 - Includes a package reference to `Microsoft.AspNetCore.Components.Web`.
 
-Referencing A Razor Class Library:
+Referencing A Razor Component Library:
 
-- Update the Blazor App to reference the Razor Class Library.
-- Drag-and-drop the Project file onto the Blazor App Project file.
-- By CLI: `dotnet add reference{ClassLibraryNameAndPath}`.
-- By NuGet: `dotnet add package {ClassLibraryName}`.
-- Add an `@using` to point to the namespace of the Razor Library component.
-- Optionally, add the namespace to the Razor Library component to `_Imports.razor`.
+- Update the Blazor App to reference the Razor Component Library project.
+  - Drag-and-drop the Project file onto the Blazor App Project file.
+  - By CLI: `dotnet add reference{ClassLibraryNameAndPath}`.
+  - By NuGet: `dotnet add package {ClassLibraryName}`.
+- Add a reference to the RCL Namespace using one of these methods:
+  - Add `@using` to point to the namespace of the Razor Library component.
+  - Add the namespace to the Razor Library component to `_Imports.razor`.
 
 Control Rendering Mode:
 
@@ -702,11 +767,60 @@ Control Rendering Mode:
 - Syntax: `<MyChildComponent @rendermode="InteractiveServer" />`
 - This tells Blazor to handle UI Events from Components on the server-side (using SignalR).
 
+_Note_: [Carl Franklin](https://github.com/carlfranklin) favors prerender disabled: `<Routes @rendermode="new InteractiveServerRenderMode(false)" />` (global setting).
+
+### RCL Features
+
+- Set of Razor components that exist in their own project.
+- Exist as a set of DLLs in a Library.
+- Can contain _any_ Blazor Components, including Pages (routable components), event handlers and callbacks, etc.
+- Separate portions of Blazor App into logical pieces.
+- Can have security boundaries applied to them.
+- Can instantiate Components from an RCL, dynamically (use the DynamicComponent component).
+- Can be udpated at runtime.
+- Compile-able into NuGet Packages for distribution.
+
+### Route To An RCL
+
+1. Define an RCL Component that has an `@page ""` declaration at the top.
+1. Create a link or NavLink to the page as you normally would.
+1. Update `Routes.razor` `<Router>` component to include the property `AdditionalAssempblies=""`.
+1. Configure the additional assembly to initialize `new [] {typeof(Rcl_Name.Component_name).Assembly}"`, where Rcl_Name is your referenced RCL project, and the targeted Component razor file.
+
+### Why Use Dynamic Components?
+
+- Generate purely data-drive Component creation at Runtime.
+
+#### Instantiate RCL Using DynamicComponent
+
+1. Declare DynamicType as a record (or a class): `record DynamicType(Type Type, IDictionary<string, object> Parameters);`
+1. Add (or update existing) `OnInitialized()` override.
+1. Use `DynamicTypes.Add()` to add a new DynamicType as `typeof(Component_name)`, with a new Dictionary KVP item defined as a code-block `{ { string:key, string:value }, { string:key, string:value }, etc }`
+1. These key-value pairs define component parameters and their values, as defined by the target Component (Component_name).
+1. Instantiate the DynamicComponents in the HTML using Razor syntax (see below).
+
+Instantiate an array of DynamicTypes:
+
+```c#
+@foreach (var dynType in DynamicTypes)
+{
+  <DynamicComponent Type=@dynType.Type Parameters=@dynType.Parameters />
+}
+```
+
+### Blazor Dynamic Component Loading
+
+What it is and what it does:
+
+- This is not normally possible because DLLs are locked at Runtime.
+- There is a NuGet package that supports replacing RCLs in-place at Runtime.
+- See [Carl Franklin's GitHub Repo DynamicBlazorComponentLoader](github.com/carlfranklin/DynamicBlazorComponentLoader)
+
 ## Create a NuGet Package
 
-### Packaging a Razor Class Library
+### Packaging a Razor Component Library
 
-Define properties in the CSPROJ file of the Razor Class Library:
+Define properties in the CSPROJ file of the Razor Component Library:
 
 - PackageId: Unique across the NuGet Repository. Default is the Library AssemblyName.
 - Version: `Major.Minor.Patch-PrereleaseNameRevision`. Default is '1.0.0'.
@@ -726,8 +840,160 @@ _Note_: Publishing a version that includes additional version information beyond
 
 An X.509 Certificate for `code signing` and `time stamping` will be necessary for publishing the package and enabling successful `release` package importations.
 
+## Blazor Application State Best Practices
+
+Move App State to a Component that is not a Page:
+
+- Application State is all variables kept alive while the App is in use.
+- Page-level state is reinitialized with every page navigation or refresh.
+
+Update the UI automatically, control the state separately:
+
+- Use bindings when state changes.
+- Control state mutations.
+- Adhere to Single Responsibility Principle and only update state (in Properties), and not take action elsewhere within the Application.
+
+Notes:
+
+- For an example of state reinitialization, see the Counter page in the Blazor Server template.
+  - Is a Component-level variable.
+- Generally, scoped-services can be used to store App State. Create a Cascading App State Component instead.
+
+Cascading App State Component:
+
+- Define `<CascadingValue Value="this">@ChildContent</CascadingValue>` in the html portion of the Component.
+- Add a parameter `[Parameter] public RenderFragment ChildComponent { get; set; }` in the code block.
+- Implement Properties to store state information inside custom getters and setters.
+- Call `StateHasChanged()` whenever a setter is called, to ensure the Component is updated with the newly set value.
+
+Child Content:
+
+- Data that it wrapped by another Component.
+- Related to Render Fragments.
+
+Implementing the App State as a Cascading Parameter:
+
+1. Create a Component to store App State (named 'CascadingAppState' here).
+1. Create a Component to utilize App State and implement any HTML necessary to meet the goals of this App State managing component.
+1. Apply any necessary event Handler method(s) to the App-State dependent Component. For example, allow a button press to display a different message.
+1. Add public field `CascadingAppState AppState { get; set; }` with the `[CascadingParameter]` attribute. This is analogous to adding a scoped service, belonging to a single user.
+1. Wrap the Routes Component with a CascadingValue (the app state manager) component.
+
+## Render Fragments
+
+Represents Razor Markup that can be rendered by the Component.
+
+- Is a Blazor Type, created for passing cascading values between components.
+- In the Routes Component, the entire application can be wrapped with a CascadingValue Component, rendering the entire application as basically a RenderFragment.
+- Utilizes `@childcontent` to capture the enclosed Components for use by the Component.
+
+## Blazor Components Definition
+
+- Blazor Components have the capacity to store C# code and HTML, as well as other Blazor Components.
+- CSS can be referenced through in-lining with HTML, applying CSS through a stylesheet reference in `<Head>`, or by scoping CSS to a Blazor Component through name matching i.e. CSS classes in `MyComponent.razor.css` are scoped only to `MyComponent.razor`.
+- JavaScript can by writted directly within `<Script>` elements in HTML, or the code can be stored in `.js` file(s) and referenced using `IJSInterop`.
+- C# Code can be written within the `@code{}` block, or after any `@` symbol within the HTML section, i.e. `@foreach(var item in items) {}` works in-lined with HTML.
+- C# Code can also be stored within a code-behind file, named after the parent component, inheriting from `ComponentBase`, and implementing any necessary interfaces that the parent `.razor` file has defined in `@using` statements.
+
+### Blazor Component Code Behind implementation
+
+1. Create a new file named after the parent Blazor Component: `MyComponent.razor` -> `MyComponent.razor.cs`
+1. Name the Class after the Blazor Component and mark it as `partial`.
+1. Inherit from `ComponentBase`.
+1. Implement any required interfaces.
+1. Move the `@code{}` block code from the Blazor Component to the new partial class.
+
+Original Component MyPage.razor:
+
+```c#
+@page="/mypage"
+@inject ISomeInterface SomeInterface
+
+<MyCustomComponent Value="this">
+  @ChildContent
+</MyCustomComponent>
+
+@code {
+  [Parameter]
+  public RenderFragment ChildContent { get; set; }
+  
+  private string message = string.Empty;
+  public string message
+  {
+    get => message;
+    set
+    {
+      message = value;
+      StateHasChanged();
+    }
+  }
+
+  public async Task SomeInterfaceMethod()
+  {
+    ...
+  }
+  
+  protected override void OnIntialized()
+  {
+    Message = "Hello World!";
+  }
+}
+```
+
+Code-behind only file MyPage.razor.cs:
+
+```c#
+public partial class MyPage : ComponentBase, ISomeInterface
+{
+  [Parameter]
+  public RenderFragment ChildContent { get; set; }
+  
+  private string message = string.Empty;
+  public string message
+  {
+    get => message;
+    set
+    {
+      message = value;
+      StateHasChanged();
+    }
+  }
+
+  public async Task SomeInterfaceMethod()
+  {
+    ...
+  }
+  
+  protected override void OnIntialized()
+  {
+    Message = "Hello World!";
+  }
+}
+```
+
+Remaining Component MyPage.razor:
+
+```html
+@page="/mypage"
+@inject ISomeInterface SomeInterface
+
+<MyCustomComponent Value="this">
+  @ChildContent
+</MyCustomComponent>
+```
+
+Benefits of using code-behind file:
+
+- Developers can simultaneously work on UI and Functionality of the same Component.
+- Simplifies declarative code, making it more readable.
+- Simplifies functional implementation code, making it more readable and testable.
+- Enables access to lifecycle methods from code-behind via inheritance from _ComponentBase_
+
 ## Common Blazory Things To Know and Understand
 
+- `ComponentBase` is the core class to inherit from in order to leverage Blazor Lifecycle Methods. Any code that inherits from ComponentBase literally becomes a `Blazor Component` with the same capabilities, lifecycle roles, etc, __even without any declarative (UI) code__.
+- Blazor SSR can be static or dynamic, meaning the server can render static or dynamic pages based on queries and routing. This is _not the same_ as Interactive Server configuration though.
+- Blazor Interactive Server means client-side Events can be created and handled before, during, or after page rendering. There are render and re-render side-effects that must be considered. Also, interactivity can be set for Server SSR, and for Web Assembly projects.
 - To _register_ a data access service to the Blazor Server application, implement a Data Model and a Service that can call an ORM or obtain the data from a file or REST call (etc), then register the data access Service in `Program.cs` like `builder.Services.AddSingleton<DataGetterService>();`.
 - OnInitializedAsync(): Event fires when component's initialization is complete and it has received initial parameters but the page has not rendered yet. Override this method to fetch data asynchronously.
 - Work with data access services by using the Blazor Directive `@inject`.
@@ -1048,6 +1314,49 @@ app.MapDelete("/thing/{id}", async (ThingDb db, int id) =>
   return Results.Ok();
 });
 ```
+
+## Leverage Secure Browser LocalStorage
+
+Blazor includes the ability to use encrypted Browser Storage:
+
+- Use this in conjunction with an AppState component to help users fill-out forms through page refresh.
+- Can be "timed-out" using an AppState component to ensure stored data doesn't live longer than it needs to in the browser.
+- Implement `AddDataProtection()` in the DI :arrow_right: `builder.Services.AddDataProtection()`
+
+To leverage in a Blazor Component (inheriting from ComponentBase):
+
+- `[Inject] ProtectedLocalStorage LocalStorage { get; set; }`
+- If a timeout is required, add a Storage Timeout field and a Last Saved Time field to the Component so action can be taken when a timeout has been reached.
+- ALways use a `try-catch` to wrap `secureStorage.GetValue(item)` call to SecureStorage.
+- Always deserialize data retreived from SecureStorage using `JsonSerializer.Deserialize<T>(item.Value)`.
+- Always check for `null` when retreiving LocalStorage (after deserializing).
+- If using a timeout, check the time-window before loading by comparing `DateTime.Now` with the timeout field defined in the Component.
+- If timeout has expired, avoid writing-back the values to LocalStorage.
+- When storing to SecureStorage, always serialize (`JsonSerializer.Serialize(item)`) before calling `localStorage.SetAsync(key, json)`
+- It might be a good idea to remove items from LocalStorage when it is detected they have timed out.
+
+## Asynchronously Call A Method
+
+Thanks for [Carl Franklin](https://www.github.com/carlfranklin) for this code sample, where data that is stored in a Component Message property is also stored to the browser Secure Storage, asynchronously:
+
+```c#
+private string message;
+public string Message
+{
+  get => message;
+  set
+  {
+    message = value;
+    StateHasChanged(); // reference: AppState storage in a Component
+    new Task(async () =>
+    {
+      await Save(); // local method thath performs Browser SecureStorage save operation
+    }).Start();
+  }
+}
+```
+
+_Note_: This is probably only safe to do when calling async methods that don't have side-effects that would change the Property value in any way.
 
 ## Full Stack ASP Dot Net Development
 
