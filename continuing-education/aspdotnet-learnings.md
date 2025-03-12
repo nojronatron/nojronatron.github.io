@@ -728,7 +728,7 @@ To implement:
 
 ## Razor Component Libraries (RCLs)
 
-Share and reuse UI Components using Razor Component Libraries.
+Share and reuse Components using Razor Component Libraries.
 
 Supports generation of rendered and static content across Blazor applications.
 
@@ -759,11 +759,10 @@ Referencing A Razor Component Library:
   - By NuGet: `dotnet add package {ClassLibraryName}`.
 - Add a reference to the RCL Namespace using one of these methods:
   - Add `@using` to point to the namespace of the Razor Library component.
-  - Add the namespace to the Razor Library component to `_Imports.razor`.
+  - Add the namespace to the Razor Component Library project to `_Imports.razor`.
 
-Control Rendering Mode:
+When calling a RazorComponent, select a Render Mode:
 
-- When calling a RazorComponent, select a Render Mode.
 - Syntax: `<MyChildComponent @rendermode="InteractiveServer" />`
 - This tells Blazor to handle UI Events from Components on the server-side (using SignalR).
 
@@ -776,9 +775,9 @@ _Note_: [Carl Franklin](https://github.com/carlfranklin) favors prerender disabl
 - Can contain _any_ Blazor Components, including Pages (routable components), event handlers and callbacks, etc.
 - Separate portions of Blazor App into logical pieces.
 - Can have security boundaries applied to them.
-- Can instantiate Components from an RCL, dynamically (use the DynamicComponent component).
-- Can be udpated at runtime.
-- Compile-able into NuGet Packages for distribution.
+- Can instantiate Components from another RCL, dynamically (use the DynamicComponent component).
+- Can be updated at runtime.
+- Compile-able into NuGet Package for distribution.
 
 ### Route To An RCL
 
@@ -857,7 +856,8 @@ Notes:
 
 - For an example of state reinitialization, see the Counter page in the Blazor Server template.
   - Is a Component-level variable.
-- Generally, scoped-services can be used to store App State. Create a Cascading App State Component instead.
+- Generally, scoped-services can be used to store App State.
+  - Using a Cascading App State Component is an option that has some flexibility in that it inherits "the Blazor way" to do things including Blazor Lifecycle awareness.
 
 Cascading App State Component:
 
