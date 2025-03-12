@@ -1,9 +1,11 @@
 # DotNET CSharp Stuff
 
-Notes on various topics while developing software with, or learning more about, C# and .NET.
+Notes on C# usage and capabilities, with additional related .NET details.
 
 ## Table of Contents
 
+- [Building and Compiling C# Basics](#building-and-compiling-c-basics)
+- [Records, Structs, and Classes](#records-structs-and-classes)
 - [Custom Extensions aka Extension Methods](#custom-extensions-aka-extension-methods)
 - [About Aggregation and Composition](#about-aggregation-and-composition)
 - [For ForEach While DoWhile](#for-foreach-while-dowhile)
@@ -13,6 +15,179 @@ Notes on various topics while developing software with, or learning more about, 
 - [Best Practices Handling Nullability](#best-practices-handling-nullability)
 - [References](#references)
 - [Footer](#footer)
+
+## Building and Compiling C# Basics
+
+C# fed into `CSC.exe` produces IL which is then fed into JIT compiler to produce native assembly code.
+
+Native Assemblies are stored as `dll` files.
+
+- Need Runtime version(s) available on the computer
+- Base-class Libraries for each Runtime version
+- Code and Metadata are separated into two sections of DLL files.
+
+### C# Is High Level Code
+
+### The Compiler
+
+`csc.exe`
+
+### Intermediate Language
+
+"The IL"
+
+See ECMA 335, 6th Edition, June 2012.
+
+### JIT Compiler
+
+Just-in-time Compiler, aka "Jit"
+
+Referenced as `clrjit`.
+
+JIT Tiered Compilation:
+
+- 0: Rapid startup, compile only absolutely necessary. DBG may flag as "QuickJitted" for this level.
+- 1: Basic run time optimization.
+- Dynamic PGO: Profile-Guided Optimization. Tracks actual code-usage and applies optimizations to the code based on execution behavior during run time.
+
+### Native Assembly
+
+The end-result of JIT compilation:
+
+- AOT: Ahead-of-time Compilation. Eliminates JIT.
+- Ready-to-Run: Includes native IL, but includes Tier 1 and D-PGO optimiations in JIT.
+
+#### Implicit 'this'
+
+When looking at Assembly Code:
+
+- All methods have at least 1 parameter: `this`
+- Therefore, IL (and therefore Assembly) will reference `arg` at index `0` meaning "this context".
+
+### Framework Dependent Apps
+
+Framework-dependent apps required a configuration file:
+
+- `Program.runtimeconfig.json`
+- Defines the appropriate framework necessary to execute the Library
+
+```json
+// Program.runtimeconfig.json referencing .net 9.0
+{
+  "runtimeOptions": {
+    "framework": {
+      "name": "Microsoft.NETCore.App",
+      "version": "9.0.0"
+    }
+  }
+}
+```
+
+### PE Files
+
+Defines:
+
+- Headers
+- Sections (children contain IL code)
+- CLI Headers (defines entry-point "EntryPointToken:0x{table,row}")
+- MethodDef: Table of all methods in the code
+- Root Namespace: Program type definitions (can be Compiler-generated code)
+
+> Any program needs an Entry Point. If the developer does not code in a Main method, the Compiler will generate one, but it might not be the best `Main` for the program.
+
+### Self-Contained Apps
+
+- Default assumption when loading a Runtime dll.
+- The Runtime will look for `hostpolicy.dll`.
+- If missing the Runtime will assume the app is "Framework Dependent" (see above).
+
+### Debugging
+
+- Visual Studio: Good.
+- WinDBG: Way better, especially for low-level debugging. Launches and "breaks" right after initial execution thread creation.
+- PDB Files: Links IL to actual C# source, which helps the developer understand where in the code the execution is happening, and related code page(s).
+
+### DotNet.exe
+
+- Wrapper executable used to create, build, debug, and test DotNET code.
+- Known as the "Muxer".
+
+> All of these can be run without using the dotnet muxer. A developer can call SDK commands, CSC.exe, or load an assembly directly.
+
+## Records, Structs, and Classes
+
+Reference: [Carl Franklins DotNet Show 13 on GitHub](https://github.com/carlfranklin/dotnetshow-13)
+
+Classes:
+
+- Can have initializers.
+- Creates a reference type.
+- Created on the Heap. An area of memory belonging to an Application, accessible by all threads, where all Reference Types and all values contained within a Reference Type.
+- Use when a reference is needed to a single source of truth.
+- Instantiation yields a reference type.
+- More commonly used than Structs.
+- Hash Codes uniquely ID an object in the Head. `Equals()` uses this fact to compare objects.
+- ReferenceQuals leverages the __memory location__ in the heap to identify same-ness.
+- `Equals()` can be overridden to determine how an instance is considered equal, using the instance _value types_ after confirming instances are not null. This overrides equality check to look at the values, instead of looking at the referenced memory location.
+
+Structs:
+
+- Creates a value type.
+- Created on the Stack (a stack of values and pointers). An execution thread only operates on the "top" item in the stack.
+- Common structs: Point, Rectangle, Color. Small-bits of information containing value-types that will make-up a thing.
+- Use to express sets of value types that represent something.
+- `Equals()` determines structs are the same if the values are the same.
+
+> When comparing Value Types, it is the _value_ that is being compared.
+
+Records:
+
+- Can be a Class (ref type) or a Struct (value type), in C# 10 and later.
+- By default _is a Class_ (prior to and through C# 10).
+- Similar to classes, with the benefit of built-in `Equals()` override that checks values instead.
+- Positional Syntax is supported.
+- Creating and setting values is done similarly to using a Class instance Getters and Setters.
+- Are Mutable by default.
+- Define as a struct: `public record struct RecordName {}`
+- When defined as a struct, is _immutable_.
+- Pretty output using built-in formatting that is JSON-like.
+- Can inherit from other Records.
+- Classes are not inheritable, nor can they inherit from a Record.
+- Records can be used in place of a Class.
+- Record Structs can be used in place of a Struct.
+
+Constraints:
+
+- No generic constraints that require a Record specifically, so cannot be applied to meet the definition exactly.
+- Records statify either the Class or Struct constaint.
+- Therefore, you can use a Record in place of a Class, and a Record Struct in place of a Struct.
+
+The `with` expression:
+
+- Operates on Records.
+- Creates a new Record using an existing record.
+- "Non-destructive mutation"
+- Records remain immutable.
+
+A Record Struct is the same as a Struct with the following benefits:
+
+- Can be defined with positional syntax.
+- Can use `with` expression for non-destructive copying.
+- Much better performance than a Class or a Struct.
+
+Immutability is not always appropriate, and current trends indicate increasing usage.
+
+- Make a Class immutable by eliminating setters from the Properties.
+
+The Init Keyword is used in place of a setter, and relinquishes the requirement to have a CTOR.
+
+### When to Use Records, Structs, and Classes?
+
+- Need a reference type: Use a Class or Record Class.
+- Use a Record to get the Equality feature of a Struct without overriding `Equals()`
+- Use a Record to enforce immutability with less code.
+- Use a Record Struct to leverage positional syntax or the `with` expression for non-destructive duplication.
+- Use a Record Struct if performance is a primary requirement.
 
 ## Custom Extensions aka Extension Methods
 
@@ -268,6 +443,7 @@ null conditional operators `.?` and `?[]`:
 
 ## References
 
+- NDC London 2025 Conference Recording [Unveiling .NET Secrets With The World's Smallest C# Program (Steve Gordon)](https://www.youtube.com/watch?v=FB8YbAh2el8)
 - MSLearn docs on [Extension Methods](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
 
 ## Footer
