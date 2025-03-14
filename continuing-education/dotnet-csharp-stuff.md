@@ -148,9 +148,10 @@ Records:
 - Positional Syntax is supported.
 - Creating and setting values is done similarly to using a Class instance Getters and Setters.
 - Are Mutable by default.
-- Define as a struct: `public record struct RecordName {}`
-- When defined as a struct, is _immutable_.
-- Pretty output using built-in formatting that is JSON-like.
+- Are somewhat Value-like and _don't have to be immutable_.
+- Define a Record as a struct: `public record struct RecordName {}`
+- When defined as a struct, is _immutable_ by definition.
+- Pretty output using built-in formatting that is JSON-like (essentially a free "ToString()").
 - Can inherit from other Records.
 - Classes are not inheritable, nor can they inherit from a Record.
 - Records can be used in place of a Class.
@@ -166,14 +167,19 @@ The `with` expression:
 
 - Operates on Records.
 - Creates a new Record using an existing record.
-- "Non-destructive mutation"
 - Records remain immutable.
+- AKA Non-destructive Mutation.
 
 A Record Struct is the same as a Struct with the following benefits:
 
 - Can be defined with positional syntax.
 - Can use `with` expression for non-destructive copying.
 - Much better performance than a Class or a Struct.
+
+Record Class Benefits:
+
+- To-String from properties.
+- Value-type Equality comparison without having to write the code (code generation takes care of this for you).
 
 Immutability is not always appropriate, and current trends indicate increasing usage.
 
@@ -443,8 +449,9 @@ null conditional operators `.?` and `?[]`:
 
 ## References
 
+- NDC London 2025 Conference Recording [C#'s Functional Journey (Mads Torgersen)](https://www.youtube.com/watch?v=abPa5AagcwY)
 - NDC London 2025 Conference Recording [Unveiling .NET Secrets With The World's Smallest C# Program (Steve Gordon)](https://www.youtube.com/watch?v=FB8YbAh2el8)
-- MSLearn docs on [Extension Methods](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
+- MSLearn docs on [Extension Methods](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods)
 
 ## Footer
 
