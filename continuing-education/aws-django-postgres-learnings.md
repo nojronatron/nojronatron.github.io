@@ -9,6 +9,35 @@ Rapidly ramp-up understanding of a Django project with Postgres DB that can be d
 - Details are less important.
 - Add references as appropriate.
 
+## Table of Contents
+
+- [Benefits](#benefits)
+- [AWS Production Deployment RDS for PostgreSQL](#aws-production-deployment-rds-for-postgresql)
+- [AWS RDS for Postgres](#aws-rds-for-postgres)
+- [DJango Settings](#django-settings)
+- [About DJango](#about-django)
+- [Djange Databases](#djange-databases)
+- [DJango Administration](#django-administration)
+- [DateTime, Python, and Django](#datetime-python-and-django)
+- [URLs and Routing](#urls-and-routing)
+- [Views](#views)
+- [Templates](#templates)
+- [Use A View To Render A Template](#use-a-view-to-render-a-template)
+- [Custom 404 Response](#custom-404-response)
+- [Forms](#forms)
+- [Generic Views System](#generic-views-system)
+- [App Look And Feel](#app-look-and-feel)
+- [References](#references)
+- [Footer](#footer)
+
+## Benefits
+
+- Host multi-site WebApps in a single project.
+- Enable templating static and dymanically rendered pages.
+- Native SQL-like querying capability, and exteneral libraries can be imported used, too.
+- Support for HTML-standard forms and behaviors for use in template.
+- Auto-generates Admin Forms for registered Models.
+
 ## AWS Production Deployment: RDS for PostgreSQL
 
 RDS: AWS-Managed Relational DB Services in the cloud.
@@ -90,7 +119,7 @@ Note: There are __performance insights__ and __kms key id__ configuration items 
 
 Additional Configuration:
 
-- DB Name: __Set one of the DB will not work__. Avoid possible reserved names/keywords like `first`, and special characters like dash `-` or underscore `_` (probably more).
+- DB Name: __Set one__ else the DB __will not work__. Avoid possible reserved names/keywords like `first`, and special characters like dash `-` or underscore `_` (probably more).
 - Parameter Group.
 - Backup: Automated, retention period, windows, snapshots, encryption.
 - Maintenance: Minor version upgrades allowed by default. Window can be chosen or not.
@@ -102,7 +131,7 @@ Add-Ons:
 
 ## DJango Settings
 
-Connect to RDS:
+Connect Database to RDS:
 
 - See [DJango Database Settings](https://docs.djangoproject.com/en/dev/ref/settings/#databases)
 - JSON configuration file `settings.py`
@@ -159,7 +188,7 @@ _Note_: Only "installed apps" are affected by the `migrate` command. Change the 
 Config Settings:
 
 - See `manage.py` for what settings it will rely on.
-- Declare the app and settings.py file using `os.environ.setdefault("DJANGO_SETTINGS_MODULE", {sitename.settings})` to point to a a specific settings file. The default is "mysite.settings".
+- Declare the app and settings.py file using `os.environ.setdefault("DJANGO_SETTINGS_MODULE", {sitename.settings})` to point to a specific settings file. The default is "mysite.settings".
 
 Create Models:
 
@@ -214,9 +243,161 @@ Register Models with Admin API:
 - Add `from .models import {modelName}`
 - Add `admin.site.register({modelName})`
 
+Configure IP and Port on Launch:
+
+- Default run provides localhost service only on port 8000: `python3 manage.py runserver`
+- From the DJango root path run this to enable service port for any inbound requests to port 8123: `python3 manage.py runserver 0.0.0.0:8123`
+- When running in AWS, allow INBOUND request access by creating (or updating) a Security Group: `Allow: any; IP: 0.0.0.0; Port: 8000` (make it match the `runserver` IP and port arguments). Link the security groups by opening the Security Tab within the Instance you want it applied.
+
 ## DateTime, Python, and Django
 
 Python and Django each have their own DateTime handling modules:
 
 - `datetime`: Python. Enables creating and manipulating datetime instances.
 - `django.utils.timezone`: Django. Time-zone utilities.
+
+## URLs and Routing
+
+URLConfs: Maps URL patterns to Views.
+
+Define in `urls.py` as a collection of `path({type:arg}/{path}, {views.view_name}, name={name})` methods.
+
+In a multi-website project, namespaces should be added to URL.conf and url template updated in template files:
+
+1. Add an `app_name` parameter named after the target web site.
+1. Update the `url` value to insert the value of `app_name` and a colon before the page name.
+
+More about [URL Dispatcher](https://docs.djangoproject.com/en/5.1/topics/http/urls/)
+
+## Views
+
+Responsible to return one of the following:
+
+- An HttpResponse object with page content.
+- An Exception like `Http404`.
+
+Note: Django _requires_ either one of these return types.
+
+View Features:
+
+- Read from a DB.
+- Utilize a templating system.
+- Generate various types of content (PDF, XML, ZIP, etc).
+
+Import Python libraries to implement functionality as needed.
+
+## Templates
+
+Create a `templates` directory in the directory structure of the website that will use them (not root).
+
+Lookup is based on items in the `INSTALLED_APPS` collection in `settings.py`.
+
+Dir Names are used for the lookup and matches are made from top to bottom, so ensure the base dir matches the website name for an exact match only to that one site.
+
+Setting variable `TEMPLATES` determines how templates are loaded and rendered.
+
+Templates are `html` files with some added syntax:
+
+- Braces (`{}`) contain python code.
+- Double braces (`{{}}`) encapsulate an object?
+- Percent Signs (`%`) delineate python code and template tags from pure html.
+
+## Use A View To Render A Template
+
+Common Pattern:
+
+```python
+...
+template = loader.get_template("{template_path/template_file}.html")
+context = {
+  "{parameter_name}": {parameter_object_from_templated_code}
+}
+...
+return HttpResponse(template.render(context, request))
+```
+
+Shortcut Pattern avoides loading `loader` and slims-down the code:
+
+```python
+# in the view.py file defining the endpoint
+def index(request):
+  items = {Class}.objects.order_by("-{property}")[:5]
+  context = { "{parameter_name}": {paremeter_object_from_templated_code} }
+  return render(request, "{path}/{template_file}.html", context)
+```
+
+The Render() function:
+
+- Parameters (in order): request object, template name, dictionary (optional).
+- Returns `HttpResponse` object with the rendered template + context.
+- Context could be a parameter (kvp) that the template will consume using the parameter name.
+
+Follow these complete instructions at [Complete HTML Documents](https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Getting_started#anatomy_of_an_html_document) help page for more details.
+
+## Custom 404 Response
+
+Set up the view to enable returning an HTTP404 reponse:
+
+1. Import `django.http` from `Http404`
+1. Import `django.shortcuts` from `render`
+1. Import the model class reprenting the data to display
+1. Utilize `try-except` block to execute throwable code and implement `raise Http404(string)` in an `expect` clause. The string will be the primary text displayed on the rendered 404 page.
+
+Using DJango Shortcuts there's no need to use `try-except` pattern:
+
+1. Import: `from django.shortcuts import get_object_or_404, render`
+1. Copy the template code from [Get Object or 404()](https://docs.djangoproject.com/en/5.1/topics/http/shortcuts/#django.shortcuts.get_object_or_404)
+
+The benefit of using DJango Shortcuts here is to de-couple the view from the model.
+
+Note: Use `get_object_or_404()` for a single item, or `get_list_or_404()` to filter a list and throw only if the list is empty.
+
+## Forms
+
+Supports usual HTML elements and properties:
+
+- Form: action, method
+- Fieldset (groups controls and labels)
+- Legend
+- Input: type, name, id
+- Label: for, name, id
+
+Special Template syntax:
+
+- CSRF Token: `{% csrf_token %}`
+
+Form-submission Handling Best Practices:
+
+- `POST` is a dictionary-like object. Use indexing/selector syntax `request.POST[string]` to acquire data.
+- Handle `KeyError` if selecting data in POST that might not exist.
+- Return an HttpResponseRedirect after handling POST data to prevent double-POST and Back Button navigation from causing an error.
+
+Note: The `F()` Query Wrapper function can be used to perform CRUD operations against the database directly in the Form handling code.
+
+## Generic Views System
+
+Abstract common patterns like:
+
+- DB CRUD operations.
+- Certain view components like displaying a details page for a specific object.
+
+Define custom Classes in `views.py` to configure paths:
+
+- Include a `model` property and assign the value of a Class from `models.py` in the same web site.
+- DJango creates the URL based on the {classname}View class name e.g. `class ResultsView(generic.DetailView):`
+
+## App Look And Feel
+
+## References
+
+DJango [Shortcut Functions](https://docs.djangoproject.com/en/5.1/topics/http/shortcuts/)
+
+DJango DB Model Expressions [F query wrapper](https://docs.djangoproject.com/en/5.1/ref/models/expressions/#f-expressions)
+
+DJango [Generic Views documentation](https://docs.djangoproject.com/en/5.1/topics/class-based-views/)
+
+## Footer
+
+Return to [ContEd Index](./conted-index.html)
+
+Return to [Root README](../README.html)
