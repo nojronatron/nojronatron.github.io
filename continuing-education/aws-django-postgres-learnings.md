@@ -308,7 +308,7 @@ Common Pattern:
 
 ```python
 ...
-template = loader.get_template("{template_path/template_file}.html")
+template = loader.get_template("{template_path/template_file}.html}")
 context = {
   "{parameter_name}": {parameter_object_from_templated_code}
 }
@@ -364,7 +364,7 @@ Supports usual HTML elements and properties:
 
 Special Template syntax:
 
-- CSRF Token: `{% csrf_token %}`
+- CSRF Token: Prefix `csrf_token` keywork with `{%` and follow with a closing `%}`
 
 Form-submission Handling Best Practices:
 
