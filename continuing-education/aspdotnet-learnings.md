@@ -10,10 +10,11 @@ Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET
 - [Blazor SSR and Interactive Server](#blazor-ssr-and-interactive-server)
 - [Syntax](#syntax)
 - [Blazor Share Data Between Components](#blazor-share-data-between-components)
-- [Blazor Data Binding in Blazor](#blazor-data-binding-in-blazor)
+- [Blazor Data Binding](#blazor-data-binding)
 - [Blazor Pages, Routing, Layouts, and Navigation](#blazor-pages-routing-layouts-and-navigation)
 - [Blazor Forms and Validation](#blazor-forms-and-validation)
 - [How To Submit A Form Using Blazor Dynamic SSR](#how-to-submit-a-form-using-blazor-dynamic-ssr)
+- [HTTP Client Usage Reminders](#http-client-usage-reminders)
 - [Leverage JavaScript and Template Components in Blazor](#leverage-javascript-and-template-components-in-blazor)
 - [Blazor Component Lifecycle](#blazor-component-lifecycle)
 - [Understand Blazor Template Components](#understand-blazor-template-components)
@@ -28,7 +29,8 @@ Collection of takeaways and key infos while learning more about ASP.NET, ASP.NET
 - [Leverage Secure Browser LocalStorage](#leverage-secure-browser-localstorage)
 - [Asynchronously Call A Method](#asynchronously-call-a-method)
 - [Full Stack ASP Dot Net Development](#full-stack-asp-dot-net-development)
-- [GitHub CodeSpaces](#github-codespaces)
+- [Blazor WASM](#blazor-wasm)
+- [Manage Globalization and Localization in Blazor](#manage-globalization-and-localization-in-blazor)
 - [Resources](#resources)
 - [Footer](#footer)
 
@@ -40,8 +42,6 @@ There are 3 "flavors" (my words) of Blazor:
 - Blazor Server
 - Blazor Hybrid
 
-Deploy a new Blazor Server using dotnet: `dotnet new blazorserver -o MyBlazorServerProject -f net6.0`. This creates a new Blazor Server Project named "MyBlazorServerProject" using the DotNET 6 SDK.
-
 ### Blazor Web
 
 Provides a WebAssembly capabilities where components are executed in the client browser, rather than on the server. Provides cross-platform compatibility and enhanced performance by eliminating round-trip WRRCs.
@@ -50,15 +50,30 @@ The number of available .NET APIs is limited, however speed and responsiveness a
 
 ### Blazor Server
 
-Serves-up static or dynamic pages to clients, based on ASP.NET Core technologies, and utilizes SignalR for back-end communications with each Web Client connection (WebSockets). Back-end data interop is built-in, and web page interactions are handled locally and by the server depending on the type of action.
+- Serves-up static or dynamic pages to clients.
+- Is based on ASP.NET Core technologies.
+- Utilizes SignalR for back-end communications with each Web Client connection (aka WebSockets).
+- Back-end data interop is built-in, and web page interactions are handled locally and by the server depending on the type of action.
 
-Useful for for embedded applications and apps running on the local network.
+Purpose:
 
-Some limitation on performance due to WRRC round-trip time requirements.
+- Useful for for embedded applications and apps running on the local network.
+
+Limitations:
+
+- Some lack of performance due to WRRC round-trip time between client and server.
+
+Deploy a new Blazor Server using dotnet:
+
+- `dotnet new blazorserver -o MyBlazorServerProject -f net6.0`
+- This creates a new Blazor Server Project named "MyBlazorServerProject" using the DotNET 6+ SDK.
 
 ### Blazor Hybrid
 
-Define UI layout and functionality, similar to React and Vue, and integrates with .NET MAUI for managing multi-platform support such as Android, iOS, and Linux. Designed for native apps, desktop, and mobile.
+- Define UI layout and functionality.
+- Similar to React and Vue.
+- Integrates with .NET MAUI for managing multi-platform support for Android, iOS, and Linux.
+- Designed for native apps, desktop, and mobile.
 
 ## Blazor vs Razor
 
@@ -82,7 +97,7 @@ Deploy a new Razor Component using 'dotnet' like so `dotnet new razorcomponent -
 Blazor Components:
 
 - Are Razor Pages with Blazor syntax, and usually include C# and HTML.
-- Utilze CSS Isolation: Style rules that are applied to a Blazor Component are _only_ applied to that that Blazor Component.
+- Utilze CSS Isolation: Style rules that are applied to a Blazor Component are _only_ applied to that Blazor Component.
 - Allow assigning elements specific to the Blazor Component as defined within a `<HeadContent>` element.
 - Allow use of `<style>` elements within the components HTML (CSS Isolation).
 
@@ -177,7 +192,7 @@ Define the properties to store in a new Class and register it as a scoped servic
 2. Register the Class in `Program.cs` as a scoped service: `builder.Services.AddScoped<StateObject>();`.
 3. Inject the registered class into any Component that needs to use it using Razor Syntax: `@inject StateObject stateObj`.
 
-## Blazor Data Binding in Blazor
+## Blazor Data Binding
 
 When an HTML element value is changed, the web page must be refreshed to show it.
 
@@ -588,6 +603,25 @@ Standard HTML elements can be used in Blazor.
 1. Override `OnParametersSetAsync()` to do the processing of the `SearchTerm` value, and set the result(s) to a Property that is bound to one or more elements in the HTML protion of the Component (for display).
 
 _That's it_!
+
+## HTTP Client Usage Reminders
+
+For long-lifetime HttpClient usage, do the following:
+
+- Implement and inject a singleton HttpClient to the DI container _or_ use a _static_ HttpClient instance.
+- In both cases, use `PooledConnectionLifetime`: Works around DNS caching risk (actual record expires, HttpClient cache not) _and_ Port Exhaustion risk.
+- For testing, register a separate _mocked_ handler.
+- Alternative: Use `IHttpClientFactory` for short-lived, multi-endpoint and configuration scenarios. This automates pooling HttpClient instances and can reduce rick of socket exhaustion. _Note_: This will consume additional resources and should not be used to long-lived connections.
+- Another Alternative: Use [Typed HttpClient clients](https://learn.microsoft.com/en-us/dotnet/core/extensions/httpclient-factory#typed-clients). _Note_: Tim Corey recommends this method for many API consumption scenarios.
+
+For short-term or _DotNet Framework_ versions:
+
+- Use `IHttpClientFactory` to manage HttpClients.
+- _Warning_: Managing HttpClient manually in .NET Framework risks exhausting available TCP Ports.
+
+See [HttpClient Recommended Usage](https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines#recommended-use) on MSFT Learn.
+
+Check out [Resilience With Static Clients](https://learn.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines#resilience-with-static-clients) for code examples of using the Static Singleton pattern that includes Pooled Connection Lifetime, and Retry Handling.
 
 ## Leverage JavaScript and Template Components in Blazor
 
@@ -1149,7 +1183,7 @@ ASP.NET Core and .NET 6 support local DB storage ORMs like Entity Framework Core
 - Supports SQLite, MySQL, PostgreSQL, Oracle, and MS SQL.
 - Decouples application from database providers (there is still work to do to switch, but coupling is loose).
 
-### MoEntities and Context
+### Entities and Context
 
 EF uses entity classes and a context object to represent a session with a database.
 
@@ -1547,29 +1581,20 @@ Using Vite:
 5. Update `vite.config.js` to set a static server port. 3000 is suggested.
 6. Run the package using `npm run dev` and open the URI in a browser to see the rendered site.
 
-## GitHub CodeSpaces
+## Blazor WASM
 
-The Full-stack learning module used a GitHub CodeSpace as a development container. This section will contain notes about CodeSpaces and my experience using them.
+Web Assembly is a mechanism that loads an assembly into the user's browser platform, providing rapid, custom functionality by minimizing WRRC between client and server.
 
-### Challenges
+Blazor adds SignalR to WASM, so that the server can add server-based functionality and only add WRRC latency for those server-side functions, minimizing WRRC round-trip calls compared to SSR solution.
 
-- I hadn't used CodeSpaces before (but the value seems high).
-- When launching the template CodeSpace, there are six projects within the solution so learning the layout of the files and projects slowed progress.
-- A Dev Certificate had expired in the Template and there was no information within the MSFT Learn Module about working with Dev certificates (this is partially on me, I should learn how to manage Dev Certificates if I want to regularly work in DotNET development).
+_More to come_!
 
-### Cost
+## Manage Globalization and Localization in Blazor
 
-CodeSpaces are not free, at least after 60 hours per month:
+- [ ] Review and take notes of [Blazor Glabalization and Localization](https://learn.microsoft.com/en-us/aspnet/core/blazor/globalization-localization?view=aspnetcore-8.0) documentation on MSFT Learn.
+- [ ] Review and take notes of [Blazor Train Episode 90: Localization in Blazor](https://www.youtube.com/watch?v=e8IkSFQmonE) and the related [GitHub Repo](https://github.com/carlfranklin/localizationinblazor).
 
-- [ ] How to monitor usage?
-- [ ] Cost after surpassing 60 hours?
-- [ ] What features are included in CodeSpaces?
-
-### Cleaning Up Codespace
-
-Go to the [CodeSpaces Dashboard](https://github.com/codespaces) and find the CodeSpace to clean up and click the Delete button.
-
-At the very least, 'Stop' the CodeSpace until you need it next.
+_Note_: Some Globalization and Localization configuration are intended for WASM (client), and others are meant for Blazor Server.
 
 ## Resources
 

@@ -2,6 +2,190 @@
 
 A space for collecting thoughts and technical walk-thrus and takeaways during my coding journey through CY 2024.
 
+## December 2024
+
+### P5js and The Nature of Code
+
+Multiple concepts covered in Chapter 3:
+
+- From cartesian coordinates to polar coordinate conversions and back again.
+- Use of Vectors to apply changes to acceleration, when affect velocity, which is then applied to a change in location.
+- Determining the angle and distance to a point in the canvas.
+- Applying attraction forces and friction forces to spinning or swinging objects.
+- Leveraging `beginShape()`, `vertex(x,y)`, and `endShape()`. Vertex is used to generate very complex shapes within a `beginShape()` and `endShape()` region. In the examples it was used as a way to 'fill-in' empty space between multiple other objects. A constant named `CLOSE` enables completing incomplete shapes such as circles and complex polygons.
+
+### Python VENV
+
+Several years ago I was using Python a lot for web-dev testing and other small side projects. I was hoping to make it my profession at one point. Then I found C# and was introduced formally to JavaScript and CSS. Since then, for the most part, I've spent more time with the classic web stack and also .NET especially WPF and C#. Every now and then something Pythonic comes up and I have to work with it (which is fine really).
+
+Setting up and using VENV for Linux:
+
+1. Prerequisites: python3 (3.09 or newer), python3-pip, and python3-venv.
+1. Create a new VENV target dir: `python3 -m venv {dirName}`. Use the full path if possible.
+1. Activate the VENV: `source {dirName}/bin/activate`
+1. If this succeeds your environment prompt will be prefixed with the name of the VENV folder e.g. `(myVenv) root@linuxBox:~ $`
+1. Do all the pythonic things within the virtual environment!
+1. When done use `deactivate` command to exit out of VENV (Note: use `source deactivate` on older system).
+
+### TypeScript Lessons
+
+While working on a TypeScript side project, I discovered that TS _is indeed_ a whole lot like JS, requires more ceremonial, declarative code, and in many ways is similar to C# and Java.
+
+Here are a few key takeaways:
+
+- It can be helpful to use `Interfaces` to define functions like callbacks, such as `interface myCallback { myCallbackHandler: (name: string, value: string) => void; }`. This defines a function that accepts a Function with 2 strings parameter list that returns void.
+- Keyword `children` allows passing React Components as props between Functional Components and must be declared as `ReactNode` type parameters. Example: `const AddressCard: React.FC<{ children: React.ReactNode; }> = ({ children }) => { ...code... }`
+- Functional components that do not output TSX can be defined in a JavaScript way, but parameter list items must be typed, such as: `function convertItem(key: string) { ... return ...; }`
+- A React Component that returns TSX must declare that is is a `React.FC<{ param: type; ... }>` type.
+- A function that accepts a callback as an input parameter that is defined in an Interface must define that callback using curly braces like: `function MyFunction({ myCallback }: MyCallbackInterface) { ... }`.
+- A function with an empty parameters list does not need to define any params as null or empty objects. :roll_eyes:
+- Use a Linting tool. Uncovering issues before pushing code will help to minimize backtracking to fix unexpected issues. It also helped me validate my abilities to troubleshoot code problems. See examples below.
+
+Code Linting Errors example:
+
+```text
+project [main ≡]> bun run lint
+$ eslint .
+
+F:\Projects\project\src\App.tsx
+   78:9   error  Unexpected lexical declaration in case block               no-case-declarations
+   78:13  error  'parsedInput' is never reassigned. Use 'const' instead     prefer-const
+   88:15  error  'tempGrid' is never reassigned. Use 'const' instead        prefer-const
+   89:15  error  'firstTwoChars' is never reassigned. Use 'const' instead   prefer-const
+   90:15  error  'remainingChars' is never reassigned. Use 'const' instead  prefer-const
+   91:15  error  'newValue' is never reassigned. Use 'const' instead        prefer-const
+  117:9   error  Unexpected lexical declaration in case block               no-case-declarations
+  117:13  error  'tempTime' is never reassigned. Use 'const' instead        prefer-const
+  144:9   error  Unexpected lexical declaration in case block               no-case-declarations
+  144:13  error  'parsedSignal' is never reassigned. Use 'const' instead    prefer-const
+
+F:\Projects\project\src\components\Left.tsx
+  24:19  error  'itemId' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  64:19  error  'itemId' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+F:\Projects\project\src\components\Element.tsx
+  1:33  error  Unexpected empty object pattern  no-empty-pattern
+
+✖ 13 problems (13 errors, 0 warnings)
+  7 errors and 0 warnings potentially fixable with the `--fix` option.
+
+error: script "lint" exited with code 1
+```
+
+Instead of taking the easy way out and exectuing `eslint . --fix`, I looked through the code and attempted to fix the problems:
+
+"Unexpected lexical declaration in case block":
+
+```tsx
+...
+switch(item):
+  case ...:
+    ...
+    break;
+  case 'item2':
+    // unblocked, multi-line code is not allowed in case statement
+    const parsedSignal = parseInt(itemValue);
+    if (Number.isNaN(parsedSignal)) {
+      setSignalValue(-1);
+    } else if (parsedSignal !== defaultSignal) {
+      setSignalValue(parseInt(itemValue));
+    }
+    break;
+  case 'item3':
+...
+```
+
+Add curley braces around multi-line code blocks within a case block:
+
+```tsx
+// use curley braces to block multi-line code, except for the break statement
+...
+switch(item):
+  case ...:
+    ...
+    break;
+  case 'item2':
+    {
+      const parsedSignal = parseInt(itemValue);
+      if (Number.isNaN(parsedSignal)) {
+        setSignalValue(-1);
+      } else if (parsedSignal !== defaultSignal) {
+        setSignalValue(parsedSignal);
+      }
+    }
+    break;
+  case 'item3':
+...
+```
+
+"'parsedInput' is never reassigned. Use 'const' instead":
+
+```tsx
+switch(item):
+  case ...:
+  {
+    ...
+    // let is fine but variable does not need to have its value changed
+    let parsedInput = parseInt(itemValue);
+    if (Number.isNaN(parsedInput)) setMyCqZone(-1);
+    if (parsedInput !== myCqZone) setMyCqZone(parsedInput);
+  }
+    break;
+  case 'item3':
+```
+
+If a variable is never reassigned (or should not ever be), use the `const` keyword:
+
+```tsx
+switch(item):
+  case ...:
+  {
+    ...
+    // use const when variable should not have its value changed
+    const parsedInput = parseInt(itemValue);
+    if (Number.isNaN(parsedInput)) setMyCqZone(-1);
+    if (parsedInput !== myCqZone) setMyCqZone(parsedInput);
+  }
+    break;
+  case 'item3':
+```
+
+### Gatsby?
+
+The [Syntax Podcast](https://syntax.fm) has (on several occasions) mentioned [Gatsby](https://gatsbyjs.com) as an effective and enjoyable website development framework that is focused on React components. In an episode in _2019_ they mentioned a few features that caught my ear:
+
+- WebP Image type.
+- Data layers with GraphQL.
+- Static Site generation using Markdown sources.
+
+Recent fiddlings with static site generator MKDocs got me thinking more about the utility of static site generators. One of the benefits of MKDocs is the ability to write Markdown files and have the generation tool create a responsive, fast website with good browser compatibility.
+
+Gatsby promises the ability to use Markdown as web page source files. It sounds like the content can be queried from Markdown using GraphQL language to generate fast web pages:
+
+- GraphQL is a simplified query language that uses a simple JSON-like data definition and formatting.
+- Gatsby uses GraphQL to help pre-render page content based on its own "GraphQL Datalayer", so that simple queries can be used to get necessary data for a page without having to write Fetch or complex queries for SQL or No-SQL databases.
+- While a backend database is not required, a GraphQL backend _can be leveraged_ by Gatsby, using native GraphQL language support.
+
+Wes and Scott also mentioned [WebP](https://developers.google.com/speed/webp) image type. It promises effective, lossy or lossless compression to support delivering large or complex images to web pages, reducing load time for mobile and desktop users. WebP is a Google Developer project that has been around since _2011_!! There are WebP converters available for Linux, Windows, and macOS, and (perhaps best of all) my favorite image editing tool _Paint.NET_ _supports WebP_!
+
+Back to Gatsby: It supports WebP and actually generates several versions of images so that image-heavy pages can still be loaded rapidly and without render "flash" events. Some of the techniques used to minimize load flashes include:
+
+- Using WebP image format. Gatsby has a built-in tool that will enable WebP browser support event if the browser in use doesn't support WebP natively.
+- Providing placeholder images: Gatsby generates grayscale or blurred image versions that load rapidly and are pre-sized to the full image size necessary, so that once the full image finishes loading the pre-load image is swapped-out and not page elements are resized or moved and the full-fidelity image is displayed. Developers don't need to generate these placeholder versions, Gatsby does it automatically.
+- Providing automatic thumbnails. Gatsby developers don't need to provide thumbnails or add code to put them in place.
+- Providing multiple image sizes for varying screen sizes and platforms: Phone-size versus Desktop-size, or macOS double-density DPI (versus everybody else), etc. Gatsby generates multiple versions of images so they are ready to load given the browser device detection metadata.
+
+Another nice benefit of Gatsby is good support from hosting services like Netlify and DigitalOcean. These services do most of the build and deployment work for you, and have options for providing custom domains, webhooks, and serverless functions to build-out a fast, capable website.
+
+Some caveats:
+
+- Build-time is where most of the Gatsby magic happens. This means updates to a Gatsby site might require few minutes (or dozens of minutes) of down time for build to finish before the site is back online ready to serve visitors.
+- Those that aren't already comfortable with React will have to learn enough React basics to get started with Gatsby.
+- There is a bit of a learning curve with the formatting and syntax of Component creation. It doesn't seem like there much syntax to get to know, but getting used to the GraphQL querying alongside React Component (JS, JSX, TSX) code might take a minute.
+- Less of a caveat and more of a _just be aware_: File system layout is critical. Gatsby configuration appears to be minimal and the file system layout is used to determine how the files are used. Placing files in the wrong directory can cause build errors or unexpected page content (or lack thereof).
+
+Perhaps sometime in the future I'll take a closer look at Gatsby, maybe for my next website project.
+
 ## Weeks 45 through 48
 
 Lots going on right now!
