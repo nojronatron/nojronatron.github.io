@@ -13,19 +13,15 @@ A collection of notes from research and continuing education, with references fo
 
 ## Current Learnings and Activities
 
-- [ ] Investigate a client website for potential changes or a redesign/rewrite: Moving forward with redesign and migration on a new webserver, namespace.
-
-## Things I Want To Learn More About
-
-Here is a snippet of items I look forward to learning more about:
-
-- [ ] ASP.NET Blazor and ASP.NET Core.
-- [ ] GitHub: Teams, Actions, Projects, and Wikis.
-- [ ] DotNET Aspire 9.0 for develpment, and how it can help using Containers and deploying to Azure.
-- [ ] Rendering API data from remote server to: A CMS; SSR Web Server.
+- [x] Update an older Django app for use on Amazon EC2 (not currently public). Repo of me [learning Django](https://github.com/nojronatron/MyFirstDjangoProject).
+- [ ] Practice raw HTML, CSS, and JS skills by developing a custom "local info" website (not in a public repo).
+- [ ] Explore ASP.NET Blazor through develpment of a custom [RSS Feed Viewer](https://github.com/nojronatron/ExploreRssFeed) app.
+- [ ] Update my custom [Weather App](https://github.com/nojronatron/MobWxCloud) to be cloud-native, supporting Web, WinUI 3, and Android.
 
 ## Cheatsheets
 
+- [Flask](cheatsheets/python-flask.md)
+- [Python](cheatsheets/python.md)
 - [Git](cheatsheets/git.md)
 
 ## Notes And Takeaways from Research and Experience
