@@ -1596,7 +1596,155 @@ _More to come_!
 
 _Note_: Some Globalization and Localization configuration are intended for WASM (client), and others are meant for Blazor Server.
 
+## Tim Corey - Understanding Blazor
+
+Hosted by the Tulsa .NET User Group on 24-Apr-2025
+
+### Some Blazor History
+
+- Steve Sanderson demo at NDC Oslo (2017): Essentially WebAssembly
+- Blazor Server came about in .NET Core 3.0 with SignalR pushes rendered C# code to client(s)
+- WebAssembly became official in .NET Core 3.1 (2020)
+- Blazor Hybrid came with .NET 7 (MAUI integration runs Blazor code natively in a Web control)
+- Blazor WebApp came with .NET 8 (Server plus Web Assembly in a single project type)
+
+Note: Blazor WebApp is the place to start as of .NET 8 and 9 and other template project types are still available.
+
+### Blazor Terminology
+
+- ASP.NET Core: Associated with DotNET background that powers Web Application type
+- SignalR: This is basically WebSockets, a wrapper to connect Server to the web clients, for real-time data streaming, and supports "long-polling" for backward compatibility
+- Blazor Server: Fully server-side rendered plus SignalR client-connection running protected code
+- PWA: Progressive Web App. Allows installation of Web App to phone, desktop, tablet, and will run "as if it were a native app" and can run "offline" as a headless browser
+- Blazor WebAssembly: Used to "run a PWA"
+- Static Web App: Can run completely client-side, without server-side interactivity. Blazor Web Assembly can run as a Static Web App
+- Server-Side Rendered: Blazor blends client and server-side ideas together. Server-side is by default operating mode of Blazor.
+- Stream Rendering: SSR but allows asynchronous updates or delayed data send to client
+- Enhanced Navigation: Only refreshes the portion of the page that needs to be, rather than the entire page. Makes SSR feel client-side rendered
+- Components: Building-blocks of Blazor. __Everything__ you do in Blazor can be boiled down to Components
+- SSE: Server-Sent Events (Daniel Roth)
+
+### Web App Overview
+
+Blazor Web App: Combination server-side and client-side capabilities:
+
+- .NET 9? Yes, it is production-ready. Supported until May of 2026, and upgrade is simple
+- Authentication is available
+- Interactive Render Modes: Tim encourages setting "Auto" so the template is set up for anything that you might do
+- Interactivity Location: Global or per page or per component. Tim recommends setting "Per page or Component" to maintain control
+
+Two projects? Selecting Auto generates this result:
+
+- Web Assembly project that is sent to the client
+- Server-side project that never leaves the server
+- InteractiveAuto rendermode provides ability to do SignalR and then send Web Assembly to the client
+- Two versions of a page will be necessary to enable SSR :arrow_right: WASM mode
+
+When To Use What?
+
+- Static and/or non-interactive pages: SSR. Home page and many other pages on a site
+- Pages that require user interactivity like forms etc? ServerInteractive
+- Pages that must be calculated should be Stream rendered
+- Check out `@RendererInfo.Name`: Uses SignalR to determine what mode a page is rendering in (Server vs WebAssembly)
+
+Stream Rendering Stuff:
+
+- Use `if-else-if` code to render a waiting text or image while stream rendering is loading
+- Auto-mode allows changing rendering mode in the background (from Server to WebAssembly)
+- Always-on connection is lightweight allowing 10's of thousands of concurrent connections
+- Always-on connection will have an issue if there's a network break, so using Stream Rendering, the rest of operations are client-side
+- See LocalStorage to find the WebAssembly component assembly
+- Dan Roth: "Next page navigation" triggers stream rendering change-over to WebAssembly
+- Ensure client-side Components have an appropriate `@page=''` directive so that WebAssembly routes are registered
+
+Code-behind:
+
+- It is possible to manually split code from razor files
+- Add a new file, name it the same as the razor file and include the CS extension
+- Example: `home.razor` :arrow_right: code behind: `home.razor.cs`
+
+App.Razor `@Assets`:
+
+- CSS storage
+- Implemented through auto fingerprinting to auto-invalidate browser cache
+- Tim Corey: You can put anything in the Assets collection to get this feature
+
+Routes:
+
+- Blazor.web.js: Handles all of the Blazor magic
+- RouteView Data: Includes the default Layout file to use
+- Multiple Layouts can be specified
+- Create a custom Layout that inherits from `LayoutComponentBase`
+- `@body` __must__ be somewhere for the page content to get injected
+
+Additional Assemblies:
+
+- In routes.razor
+- Loads project assemblies
+- Used to load Client project for streaming
+
+Bootstrap Darkmode:
+
+- In MainPage blazor add `data-bs-theme` to the html tag, for example `="dark"`
+
+CSS Isolation:
+
+- "Create Isolated CSS" using Blazm extension
+- Create a new item named after an existing component for example `Home.razor` :right_arrow: `Home.razor.css`
+- Isolated means it is specifically tagged for use by a named Component (see `@assets` for similar behavior)
+- Want global CSS? Put it in App.css
+- Tim Corey: "Don't go overboard with CSS Isolation"
+
+### WebAssembly Overview
+
+WASM: Web Assembly Stand Alone Progressive Web Application
+
+- Downloads entire project to the Client __before executing it__
+- Fully client-side
+- Very heavy mode, especially in build-time and debug-time mode
+- Filesize will be very large compared to Release Mode and Publish it before benchmarking
+- App.razor __becomes the router__ in this mode
+- `index.html` is the initial page and layout identification
+- Components are injected at the `app` ID on `index.html`
+- Do __not__ directly access or edit a DB using Web Assembly: Because the code is all running client-side (use an API instead)
+- SignalR connection __is severed__ in this mode, so develop accordingly
+
+Progressive Web Application:
+
+- Can be installed following a toast in the Web Browser after running
+- Complicated in iOS, but easier in Android, and easier still in desktop
+- `pwabuilder.com`: Provide instructions on how to install PWAs
+- Tricky: `service-worker.js` :arrow_right: Requires an app reload, delayed by download and __not available for offline**
+- `service-worker.published.js`: Allows changing how the __published version** of the service worker
+
+### Future of Blazor
+
+- .NET 9 fixes some .NET 8 authentication issues
+- Tim Corey: MVC and RazorPages project should be considered legacy at this point. New projects should consider Blazore instead
+
+### Q and A
+
+- Legacy apps are probably not a great fit for Blazor
+- Blazor Web App handles most scenarios, especially .NET 9 and newer
+- Daniel Roth: Blazor for .net web UI development is the current focus, and no innovation happening in MVC and RazorPages
+- Ultra-performant requirements might still require custom JS or other solutions than Blazor
+- Code optimization is still a consideration: Write good code first, then decide if a language or framework is correct to meet requirements
+- Blazor components can be rendered within React (with some complexity caveats)
+- Beware: WASM dll's can be disassembled, and large dependency graphs will impact download times negatively
+- Tim Corey: Put as much as possible behind an API to secure code and make sure the same code is used for client AND server
+- DotNET build in Release Mode performs a "partial trim", which will tree shake known-trimmable assemblies. .NET and Blazor and your code __will get trimmed__
+
 ## Resources
+
+John Baluka's [Moving To Blazor Presentation](https://jonbaluka.com/MovingToBlazor/#/slide1)
+
+[Blazm Extension](https://marketplace.visualstudio.com/items?itemName=EngstromJimmy.BlazmExtension) by Jimmy Engstrom from Visual Studio Marketplace
+
+[DevForge - developer training](https://devforge.com)
+
+[Tulsa DotNET Users Group on YouTube](www.youtube.com/@TulsaDNUG)
+
+[Dotnet Foundation Virtual User Group](meetup.com/dotnet-virtual-user-group)
 
 [ASP.NET Core Blazor Event Handling](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/event-handling?view=aspnetcore-8.0).
 
