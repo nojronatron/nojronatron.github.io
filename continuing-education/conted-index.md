@@ -5,7 +5,6 @@ A collection of notes from research and continuing education, with references fo
 ## Table of Contents
 
 - [Current Learnings and Activities](#current-learnings-and-activities)
-- [Things I Want To Learn More About](#things-i-want-to-learn-more-about)
 - [Cheatsheets](#cheatsheets)
 - [Notes And Takeaways from Research and Experience](#notes-and-takeaways-from-research-and-experience)
 - [Azure Learnings](#azure-learnings)
@@ -13,10 +12,8 @@ A collection of notes from research and continuing education, with references fo
 
 ## Current Learnings and Activities
 
-- [x] Update an older Django app for use on Amazon EC2 (not currently public). Repo of me [learning Django](https://github.com/nojronatron/MyFirstDjangoProject).
-- [ ] Practice raw HTML, CSS, and JS skills by developing a custom "local info" website (not in a public repo).
-- [ ] Explore ASP.NET Blazor through develpment of a custom [RSS Feed Viewer](https://github.com/nojronatron/ExploreRssFeed) app.
 - [ ] Update my custom [Weather App](https://github.com/nojronatron/MobWxCloud) to be cloud-native, supporting Web, WinUI 3, and Android.
+- [ ] Attend Microsoft Build 2025 and [take notes](./msbuild-2025-notes.md).
 
 ## Cheatsheets
 
@@ -26,6 +23,9 @@ A collection of notes from research and continuing education, with references fo
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] Explore ASP.NET Blazor through develpment of a custom [RSS Feed Viewer](https://github.com/nojronatron/ExploreRssFeed).
+- [x] Practice raw HTML, CSS, and JS skills by developing a custom "local info" website (not in a public repo).
+- [x] Update an older Django app for use on Amazon EC2 (not currently public). Repo of me [learning Django](https://github.com/nojronatron/MyFirstDjangoProject).
 - [x] Web Building and CMS Services [notes](./web-dev-cms-overviews.html).
 - [x] GitHub Copilot: [Copilot notes](./msft-copilot-learnings.html) and [GitHub Foundations notes](./github-foundations-cert-notes.html).
 - [x] DotNET Conf 2024 topics: dotnet 9 SDK, MAUI, Blazor, Aspire, AI, [noted in dotnet-conf-2024](./dotnet-conf-2024.html).
