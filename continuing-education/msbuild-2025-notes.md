@@ -633,6 +633,75 @@ In AI, there are still security concerns:
   - "AI Security Posture Management"
 - aka.ms/MicrosoftLearn/ThreatModeling
 
+## How MSFT Devs Use AI in Real-World Coding
+
+Prsenters:
+
+- Steven Toub
+- David Fowler
+
+It's not important to have AI solve the problem for you
+
+- Instead, use AI to help converge on the correct solution
+- Iterating over an issue with Copilot can help:
+  - **Ideation**
+  - Gain a better understanding the problem
+  - Additional ideas on approaches to solve a problem (lifting blind-spots)
+
+Simple code-and-throw-away tools:
+
+- Allow Copilot to build the solution as much as you want
+- It helps to have some knowledge/expertice in the area
+- Short-lived project or tool that is needed for:
+  - Proof of concept projects
+  - Implementing a very specific, or one-off task
+  - Exploring new or not well understood concepts in preparation for further development
+
+Handling difficult issues in a repo:
+
+- Very complex issues in a codebase can be pushed back over and over again (technical debt builds)
+- Addressing the problem might require brain-trust from multiple players
+- Utilizing Github Copilot to gain insight into the problem, and identify areas where expertice in needed will help get the ball rolling toward a solution
+  - Security SMEs
+  - Multi-threaded programming SMEs
+  - Framework SMEs
+  - Architects
+  - etc
+
+Documentation
+
+- Sometimes documenting code can have benefits for the writer, such as self-reviewing code while writing doc strings
+- However, documenting a large number of public members can take a very long time and be tedious work
+- Use Copilot to write the documentation for you:
+  - One or a few docstrings: Start the comment in-line and let Auto-complete do the rest
+  - Many docstrings: Ask Copilot to document the public methods on an entire codepage
+  - Analyzing existing (but very poor, not well understood) documentation to improve it
+
+Creation
+
+- Feed well-specified features into AI to get a sense for approaches to solve
+- Iterate with the AI to converge on working, testable code
+- Use performance analysis tools to A:B test against the spec
+- **Review the code** and **make adjustments** as necessary to meet:
+  - Code standards
+  - Add comments
+  - Refine areas where specifications aren't met e.g. max value, min length, etc
+
+Testing
+
+- Introduce the SUT to the AI
+- Request unittest code from the AI
+- Review the test code
+- Use Github Copilot to review test failures and get candidate code fixes (to the tests or the SUT)
+- Write a couple tests, then ask the AI to write the (dozens?) of others that are needed
+
+Taub on Ghost Text: "Write 2 of 40 methods, then tab your way to glory"
+
+Bugfixing:
+
+- Assign GH Issues to Copilot and have it generate a possible solution
+- Human engineers can review Copilot proposed fix, and complete the PR workflow
+
 ## Definitions
 
 ### Model Context Protocol (MCP)
@@ -643,6 +712,8 @@ Open-source framework defines how AI models share data with other tools. Conside
 
 The CSharp SDK supports MCP, exposing interfaces to easily implement MCP and interact with other MCP-compliant clients and servers.
 
+Check out James Montemagno's YouTube video [Beginner's Guide to Building a MCP Server with C# and .NET](https://www.youtube.com/watch?v=MKD-sCZWpZQ)
+
 ## Thinking Forward
 
 A list of things that interested me and could become future tasks to complete:
@@ -651,6 +722,8 @@ A list of things that interested me and could become future tasks to complete:
 
 ## References
 
+- [Beginner's Guide to Building a MCP Server with C# and .NET](https://www.youtube.com/watch?v=MKD-sCZWpZQ)
+- YouTube video [Taub and Fowler: How MSFT Devs Use AI](https://www.youtube.com/watch?v=gieL0bxyTUU)
 - [Global AI Community](https://globalai.community/) AgentCon 2025 was on 1-Apr-2025
 - [Developing next-gen cancer care management with multi-agent orchestration](https://www.microsoft.com/en-us/industry/blog/healthcare/2025/05/19/developing-next-generation-cancer-care-management-with-multi-agent-orchestration/)
 
