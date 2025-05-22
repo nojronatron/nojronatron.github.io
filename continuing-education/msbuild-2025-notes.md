@@ -702,6 +702,514 @@ Bugfixing:
 - Assign GH Issues to Copilot and have it generate a possible solution
 - Human engineers can review Copilot proposed fix, and complete the PR workflow
 
+## Under The Hood And Into The Magic Of GitHub Copilot
+
+Presenters:
+
+- Christina Entcheva, Sr. Dir of SW Engineering, GitHub
+- Christopher Harrison, Sr. Dev Advocate, GitHub
+
+How Requests are Processed:
+
+- LLMs can: Generate text, translate languages, recall info, break-down problems into steps, and recognize and predict patterns
+- LLMs are limited by: Specialized domain expertise, perfrect acuracy, untrained knowledge. real-time data access
+- Copilot is:
+  - Trained on lots of public code
+  - Patterns, practices, and patterns
+  - General knowledge
+  - Code quality and safety training
+  - Trained to avoid legal and ethical risks
+- Copilot cannot:
+  - Understand the full context of your code repo
+  - Generate new solutions (limited to what it's seen before)
+  - Access live APIs to complete it's charged tasks
+- Flow: Input, context analysis, user-intent, response generation, rank and filter suggestions, response generation return, user feedback received, refinement returned to context analysis
+- Tokens are broken-down segments of words
+- Sliding/Rolling Context Window processes relationships between tokens
+- Context Chunking: Headings and content are chunked to arrange for generated responses
+- Prompting:
+  - gh.io/custom-instructions
+- Planning: Copilot generates requests into steps necessary to complete a request
+- Include the right context:
+  - More context is **not always better**
+  - Arrange your input context accordingly
+
+Working in the IDE:
+
+- Code Completion:
+  - "Ghost text"
+  - Good when you know what you're doing but need just a little help
+- Next Edit Suggestion:
+  - Newer than Code Completion
+  - Support across entire file-based on changes being made
+  - Good for refactoring and performing updates
+- Context while coding:
+  - No UI for selecting content
+  - Balance context and speed
+  - Match common coding patterns
+- Set context for code completion and NES
+  - Open files are part of the context (naturally)
+  - Open an example of a library as an example for Copilot to use
+  - Close all open tabs and restart to switch the Context effectively
+- Reset context when moving between parts of a project
+  - Start over the context to avoid pollution from no-longer-relevant context
+- Chatting:
+  - Ask: Simple, single file, single task
+  - Edit: Dev-led multi-file edits
+  - Agent: Copilot-led, multi-file editing and creation
+- Context:
+  - Add files
+  - Use experts
+  - Utilize `@workspace`
+- Instruction Files
+  - Repo wide, every Copilot request, becomes part of the Project: `copilot-instruction.md`
+  - Task specific with `{name}.instructions.md`: "Instructions files" defining frameworks in use such as ASP.NET Core, Node.js, or code style instructions
+  - Think about how chat queries are used, and apply definitions to these files so Copilot reads them **as part of your prompting**
+- Selecting a Model
+  - "Play and explore" -Christopher H.
+  - Thinking or Reasoning: Best used when going through Ideation cycles
+
+Working on GitHub.com:
+
+- Good for:
+  - Understanding and Navigating code
+  - Repository context
+- Issues and PRs
+- Can generate a project based on uploaded wireframes and high-level design instructions
+
+Demo: Generating Code from Images
+
+- Mobile ToDo App
+- Ask to generate code based on an attached wireframe, defined framework, app architecture overview, and code language
+- Copilot drafts a PR
+
+Agent Mode:
+
+- Asynchronous!
+- Follows steps as a developer would
+- Like Edit Mode, but adds autonomy
+  - Edit Mode: Developer leads the conversation and development
+  - Agent Mode: Developer tips-off Copilot's work, which it then does **on it's own** but **with developer control**
+- It is still necessary for the developer to control the process from start-to-finish
+  - Team responsibilities are still in effect
+- Can interact with MCP Servers!
+- LLM's on their own cannot find information on the fly
+  - MCP Servers enable this capability
+- `mcp.json` defines inputs, servers, and credentials in order to perform actions and use tools
+  - Use environment variables, secrets, tokens, etc
+
+Demo: Agent-Mode Project Creation
+
+1. Add an instructions file to tell Copilot what you want done and **how** it should be done
+1. Supply additional file(s) as necessary to bolster context with examples
+1. Continue working in Chat or Chat Edits and Copilot will use prompts and instructions to complete the task
+
+Copilot Coding Agent:
+
+- Uses semantic and lexical search
+- Full repo contenxt enabled
+- GitHub MCP Access
+- More about [code search](github.io/features/code-search)
+- Agent includes safeguards:
+  - Uses own branch
+  - Read-only access to your repo
+  - Action Workflow won't run without review
+  - Won't review own Code in PRs
+- Provide clear, scoped issues
+- Provide custom instructions file
+- Customize the dev environment for Copilot
+- Configure MCP access to solve problems requiring current, internet-accessible data
+
+Question about File Exclusion:
+
+- Tells Copilot to not consider a file **at all**
+- When prompting Copilot, tell it to **not** edit the file(s) that shouldn't be changed
+
+## Use VSCode To Build AI Apps and Agents
+
+Speakers:
+
+- Lori Fraleigh, Principal Group PM Manager, Azure SDKs, MSFT
+- Rong Lu, Principal PM Manager, MSFT
+
+Brief overview of how AI Agents work, then Demos!
+
+- User -> Prompt -> AI Agent -> Response
+- AI Agents process prompts using Models
+- Model Tools include: APIs, DB, Web, etc
+  - MCP protocol enables these!
+- TypeSpec: OSS language/tooling
+  - [TypeSpec](https://typespec.io)
+  - Similar to Open API definitions
+  - TypeSpec Definition files `TSP` define the TypeSpec specification: `main.tsp` etc
+  - Server configuration is `mcp.json` in `./.vscode` directory
+- MCP Servers can run locally or in the cloud
+  - Sent-Events are used to communicate back and forth
+
+Note: Demos were done using TypeScript.
+
+Demo: Build a Local Agent that calls three MCP Servers
+
+1. Build a TypeSpec MCP Server using VSCode, GitHub Copilot (Agent Mode)
+1. Add new tool definitions to the MCP Server
+1. Add new tools to the code by adding Tool Methods
+
+- [TypeSpec MCP Server generation](aka.ms/mcp/tsp)
+
+Demo: Add AI Agent to MCP
+
+- Use VS Code AI Toolkit Extension
+- Multiple Models can be selected
+- Use Playground to view token usage, test prompt results, and responsiveness of the model(s)
+  - Determine which Model is best suited for your project
+- Use Agent (Prompt) Builder:
+  - Select local and remote Models
+  - Create a prompt template with detailed steps that teach the Model how to work
+  - Defining MCP Server descriptions will help the Model do the right thing
+  - Define Tools: Allows developing or use existing MCP Server(s) into the Agent
+- `{name}agentSchema.json` provides metadata about how Responses should be structured
+- Variables can be defined
+  - Single variable using `{{variable}}` where data can be typed in manual
+  - Use of an Evaluation Data Set file and
+
+Demo: Move local Agent processes to the cloud
+
+- Leverage Azure Container Apps (ACA)
+  - Note: Costs/sec, scaling, etc
+- AI Foundry Service will be used for configuration and management
+- Use `azd up` to initialize Containers in ACA
+- Utilize VS Code Azure Foundry Extension
+  - Creates an in-IDE Azure Foundry Portal UI for management
+- Create a new Agent
+  - Is a YAML file
+  - Extension includes a designer view as an option to config YAML elements (or view results of YAML configuration entries)
+  - Intellisense should help build the YAML file using your project context
+  - Sliders to edit Agent Settings like Temperature and Top P
+- There are built-in Tools for things like
+  - Custom MCP Servers
+  - Other connections already configured in your subscription
+- Use Agent Playground to test the defined Agent configuration
+- Threads (in Azure AI Foundry) displays logs of actions taken by an Agent
+
+Reminder: `mcp.json` defines MCP Server endpoints, both local and remote.
+
+Relevant Links:
+
+- [AI Developer Tools](AIDevTools/Build2025)
+- [Install: AI Tools Pack](AIToolsPack)
+- [Try: TypeSpec MCP Server](mcp/tsp)
+- [Deploy: MCP Server Container App](https://aka.ms/mcp/aca)
+- [Develop OpenAI MCP Agents](https://aka.ms/mcp/openai)
+- [code and resources](https://aka.ms/BRK117)
+
+## Top GiHub Copilot Features You Missed in Visual Studio 2022
+
+Speakers:
+
+- Simona Liao, Product Mgr, VS GitHub Copilot, MSFT
+- Rhea Patel, Product Mgr, VS GitHub Copilot, MSFT
+- Filisha Shah, Sr. Product Lead, VS GitHub Copilot, MSFT
+
+The Copilot AI Journey
+
+- Prompt experiences are improving:
+  - Ghost-text in IDE
+  - Chat in IDE
+  - Autonomous and Agentic flows in IDE and on GitHub
+- Prompt-first focus
+- Editor-centric experience focus
+
+Agent Mode Is Now Live in Visual Studio!
+
+- Gives a little bit of brain and a pair of hands to Visual Studio
+- Think of Agent Mode as an AI Teammate instead of an assistance
+
+Tool Calling:
+
+- How Copilot knows how to access tools
+- Can view or add to an existing code page
+- Enables some self-healing-like behaviors
+  - The demoed situation was a weird error state during debug-time that Copilot solved
+
+Iterating Editing:
+
+- Enabled through Tool Calling
+- Loops through code making changes until the end goal is met
+
+Image Recognition:
+
+- Copy-paste an image into the Chat Window
+- Provide prompt text to describe the task to accomplish
+- Copilot will analyze the image and use as part of the generated response
+
+Custom Instructions:
+
+- Define preferences around code styling
+- Describe the project to outline its basic design at a high level (front-end, back-end, SPA, etc)
+- Assert specific tools be used for specific tasks such as an image processor
+
+MCP Servers:
+
+- Plug in things you are working on to Copilot
+- Reads and acts on information using MCP Servers and their tools
+- `mcp.json` defines services with IO type, custom commands (and a collection of args), and necessary environment variable references, and the type of command such as "promptString"
+- Can be turned-on and off at the GitHub Organization level
+- Control MCP Server access, restricting to specific server(s), or using none, etc
+  - Detected changes in MCP settings will cause a prompt asking for approval
+
+Coding Agent:
+
+- Now available (in preview?) in Visual Studio
+- Runs autonomously and asynchronously
+- Ask `@github` to create a PR based on the prompt request
+  - Can be associate with Issues in GitHub
+  - Creates a draft PR
+- Generally different than the GitHub Copilot Agent
+
+How does Copilot support my wanting to maintain control as the developer?
+
+- Copilot Completions: The O.G. code suggestion maker
+  - Occasionally gives new results when not wanted
+- Next Edit Suggestions (NES)
+  - Prediction of next edit
+  - Assist anywhere in the file
+  - Availbale in v17.14 Preview 3
+- Tab Completions still in-effect
+  - Up/Down arrows in Tab Completion icon show where more predicted changes are being displayed
+  - Pressing Tab again moves the cursor to that next suggestion
+  - Pressing Tab yet again implements the change
+
+Adaptive Paste (preview):
+
+- Tools -> Options -> Copilot -> Editor -> Enable Adaptive Paste
+- Copy C++ code, past as C# in the editor!
+
+"Good developers not only write good code, they copy-paste **great** code!" -Simona Liao
+
+Quick Actions (lamp or screwdriver):
+
+- Good for code generation and modification
+- Navigation to next changes/matches/suggestions
+
+Other Features:
+
+- Implement with Copilot, prompted with `NotImplementedMethod` text
+- GitHub writes commit messages
+- Set up GitHub PR within VS IDE
+- Copilot-generated code-comments, prompted with `///`
+
+## Elevating Development With .NET Aspire
+
+AI, Cloud, and Beyond!
+
+Speakers:
+
+- Damian Edwards, Principal Architect, MSFT
+- David Fowler, Distinguished Engineer, MSFT
+- Maddy Montaquila, Sr. Prod Manager, .NET Aspire, MSFT
+
+Aspire wants to be the cornerstone to the developer experience:
+
+- Agentic Apps
+- Agentic DevOps
+- Cloud, Web, Desktop, Mobile, Data, and Services
+- Local dev is **fragile**
+- Scripts, hacks, and tribal knowledge is commonly used in critical workflows
+- Improve dev onboarding, enabling instrumentation, setting resiliency, encourage pluggability
+
+Demo: Aspire in the wild:
+
+- Guest: Devis Lucato, Office of the CTO, dev.ai
+  - Aspire power user and fan!
+- Focus: Kernel Memory AI Service codebase
+  - "A web service as a Docker container with plugins for ChatGPT/Copilot/Semantic Kernel and other LLMs"
+  - Many tools and scripts necessary to build and maintain the pipeline for this multi-platform capable project
+- From now on: Start new projects with Aspire and go from there
+  - Starts all dependent services and tools automatically
+  - Writing docker-compose takes longer than updating AppHost (Aspire)
+
+Aspire Benefits:
+
+- Code-first control
+- Modular and extensible
+- Observability from the start
+- Flexible deployments
+- Heavily used in MSFT and by MSFT Partners
+
+Aspire releases:
+
+- Aspire 9.3 is out this week
+  - Includes Copilot!
+- Roughly 6-week release cycle
+- Step-away from Aspire Workloads (over 1 year old, no longer maintained)
+- Install Aspire templates if not installed already
+- Update Aspire Templates: `dotnet new update`
+- Update Nuget Packages in the `csproj` or use Package Manager, etc
+  - Option: `dotnet outdated -inc Aspire -u`
+- Package-based Sdks are not updated by command-line tools nor Nuget Manager
+  - Instead, update the "Aspire.AppHost.Sdk" entry with "version=9.3.0"
+  - AspireApp Service Defaults csproj will also need to be updated (`dotnet outdated -inc Aspire`)
+
+New Features:
+
+- GitHub Copilot
+- Resource Graphs and Tables
+- Additional Resource Actions in context drop-downs
+
+Comming Soon:
+
+- Cmd-line experience: `aspire ...`
+- `dotnet` command equivalents are run all in one shot
+  - For example: Includes Dev Certificate installation on `new` command
+- `aspire new` -> Like `dotnet new` but Aspire-focused
+- `aspire run` -> Same as VS Code/Visual Studio run button
+- `aspire add` -> Curates dependencies for other ecosystems including node, AI model packages, etc
+  - Basically shows Aspire-filtered tools
+- `builder.Add{nnn}App()` and point to the configuration file
+  - Node-based would need `package.json`
+  - `.WithHttpEndpoint(targetPort: nnnnn)` to point to a port that Aspire doesn't manage directly
+  - Use `Node Extensions` to work-around issues like forgetting to `npm install`
+- `aspire` commands: `new`, `run`, `add`, `publish`
+
+Aspire helps with the SDLC:
+
+- Onboard -> Develop -> Test -> Deploy
+- Deploy: Uses `azd up` to make deployment magic
+- Deployment is very complex: Tools, custom scripts, workflows, architectures, etc
+- Story: Deploy to ACA
+  - Evolution from single environment to an expressed intent for complex deployments
+
+AppHost:
+
+- Good high-level view of the entire application
+- Review configuration, dependencies and needed parameters
+- Describes Application **to Aspire**
+
+Getting Your App Into The Cloud:
+
+- The idea is AppHost models a production deployment
+  - Based on actuals in the dev environment
+  - Can (will) target various environment types/platforms, project-by-project
+  - Longer-term goal: Glue the projects together including networking, etc
+- Once AppHost is completed, point a toolchain to it
+  - Some additional tweaks might still be necessary
+- Aspire 9.2.x has package `Aspire Hosting App Containers`
+  - `AddAzureContainerAppEnvironemnt("env")` adds items via IComputeResource interface
+  - "Treat AppHost as the configuration descriptor" - David F
+- `azd infra synth` -> An alpha product produces compute resources targets
+  - Produces an `infra` directory
+  - Adds Bicep files that represent AppHost configurations
+- Split-deployments: Front-end in one service, back-end in another
+  - Use `.WithComputeEnvironment(string)` for each project definition
+  - Will generate directories for each defined environment
+  - Actual app expressions (Bicep files etc) will represent the target environment type
+
+.NET Aspire References:
+
+- [.NET Aspire GitHub repo](github.com/dotnet/aspire)
+- [.NET Discord](aka.ms/dotnet-discord)
+- [.NET Aspire Home](aka.ms/dotnet/aspire)
+
+## Yet Another Highly Technical Talk
+
+Speakers:
+
+- Scott Hanselman, VP Dev Community, MSFT
+- Stephen Toub, Partner Software Engineer, MSFT
+
+Deep Dive Into The Threading Channels Library:
+
+- Channels is actually really small, and not that hard
+  - But it seems really complex
+  - Locking, Queuing, and Notification
+  - Is just a data structure like List or Queue
+  - Channels **are the synchronization primitive** in Go
+- Channels: [System.Threading.Channels](https://learn.microsoft.com/en-us/dotnet/core/extensions/channels)
+  - Part of .NET Core
+  - NuGet package for .NET Framework
+  - Allows implementing Consumer-Producer solutions
+- Unbounded: No artificial bound on the capacity
+- Asynchronous, Task-based
+- Useful for:
+  - Passing data by "throwing data over the fence" from Source to Consumer
+- DotNET Index website [source.dot.net](https://source.dot.net)
+- Three primary members:
+  - `ValueTask WriteAsync(T item)`
+  - `void Complete()`
+  - `ValueTask<T> ReadAsync()`
+- Actual datastore can be a `Queue<T>`
+- Synchronization control necessary:
+  - `object SyncObj...` can be used for locking
+  - Implement it like `lock (SyncObj) { ... }`
+  - The code-block code will trigger the lock and release it when it exits
+- Use `TaskCompletionSource<T>`
+  - Used as a means to start a Task
+  - Later on it can be 'poked' to get the Task Result
+- Upon completion, tell consumers there are no items left
+  - Using an Exception? Probably not the most effecient way to do this
+  - Calling throw? Instead, return a ValueTask that contains an exception instead
+  - Follow async-await contract obligations
+- Generics and Nullable Reference Types:
+  - Interesting relationship
+  - Consumers might not know T could be null
+  - Use an annotation like `[MaybeNullWhen(false)]` identifies **when** the result is actually null, otherwise it is **not nullable**
+  - Contrast to T? which says it might **always** be null
+- Waiters need to be notified!
+  - Waiting readers need to be set the result of `false`, then nullified
+  - This is the "putting a result in an envelope without you knowing"
+- Use Visual Studio Parallel Stacks window to help debug
+- Calling Continuations is the core implementation for "waiting" code finding out if it should pick up and run from where it left off
+
+Note: Do not expect this stream of comments to be useful other than a fond memory of the session as it was, learning new stuff along the way.
+
+## Debug Like A Pro: Improve Effeciency With Visual Studio and Copilot
+
+Speakers:
+
+- Charlie Aslan, Principal Software Engineer Manager, VS Debbugger Team, MSFT
+- Harshada Hole, Sr. Product Manager, VS Debugger and Profiler Team, MSFT
+
+Essential Copilot Features for Debugging:
+
+- Locating problematic code in Run Time:
+  - Small codebases this can be straightfoward
+  - Ask Copilot to describe symbols from the popup window
+- Context Elements
+  - Start with '#' hash symbol
+  - Solution: All projects in the current Solution
+  - Ask Copilot to find code that does {something}
+  - Declare your intent, and Copilot will figure it out and show you the code
+  - `#Debugger`: Use to request info on the current RunTime Thread at a breakpoint
+- Ask Copilot "fix bugs" in the Active Document (default)
+  - Potential problems will be listed
+  - Will provide Fix statements for areas with code smells
+- Utilize different Model and ask the same question
+  - Occasionally, different issues could be found
+- Context is important
+  - Go for fine-targeting context, not more context
+  - Screenshot the running app UI when the problem is happening, tell the model the intent, and it should come up with possible causes
+- Apply suggested changes
+  - Copilot suggestions can be applied with a button
+  - Also, copy-paste code segments can also be performed
+- Steer Copilot with follow-on intent statements
+- Breakpoint debugging
+  - Breakpoints can be disabled
+  - Breakpoint rule can be set on each Breakpoint to conditionaly enable it
+  - Setting Breakpoint(s) at specific locations
+- While in break mode:
+  - Review the data in the current state (Members with values)
+  - Use the View Visualizer to get a better formatting of data in lists or objects
+  - Copilot Sparkle in Visualizer allows prompting to perform filtering based on existing data view
+- On a Exception thrown:
+  - Click "Analyze with Copilot" to get analysis, get a view of the data (in this case the REST Response payload), and accept code changes
+- Execution Point edits:
+  - Drag the pointer back in time to re-run code
+  - Even edited code that is backed-up and re-ran will be re-evaluated!
+
+Use Debugging with Copilot to work with a code language you **aren't familiar with**.
+
+Use Parallel Stacks window to get details on all Threads and Stack Calls in a visual graph-and-table format.
+
 ## Definitions
 
 ### Model Context Protocol (MCP)
@@ -713,6 +1221,33 @@ Open-source framework defines how AI models share data with other tools. Conside
 The CSharp SDK supports MCP, exposing interfaces to easily implement MCP and interact with other MCP-compliant clients and servers.
 
 Check out James Montemagno's YouTube video [Beginner's Guide to Building a MCP Server with C# and .NET](https://www.youtube.com/watch?v=MKD-sCZWpZQ)
+
+### Setup MCP Server Notes
+
+- There is a CSharp SDK for MCP Server creation
+- Utilize ApplicationBuilder to build-up and configure the MCP Server in DI
+- Attribute "[McpServerTool]" marks methods as MCP-related tool definitions
+  - Finds tools in the MCP Toolkit
+  - Exposes custom Tools (dev-defined Methods) that MCP will use
+- `mcp.json`: Configure the server with commands with arguments, similar to Node `Package.json` or VSCode `launch.json` and `tasks.json` files
+- Use Copilot AgentMode to get MCP interaction
+
+Build new tools:
+
+- Generate class file(s) to define the tool state and functionality
+- Inject the tools into the MCP DI
+- Use attribute `[McpServerToolType]` to define the Tools Class that will contain the tool methods
+- Add attribute `[McpServerTool, Description(string)]` to expose the Method as a Tool capability to the MCP Server
+
+CSProj Integration With Docker:
+
+- Enable SDK Container Support
+- Point to a Container Repo
+- Define a base image for the container
+- Assign a RunTime ID to define what architectures to bundle-up in the container
+- These enable calling `dotnet publish /t:{container}` to push to a Docker Container
+  - Also enables dotnet to publish Containers to Docker (James demonstrated publishing to his personal Docker Repo)
+- With the Docker Publish, the `mcp.json` can be set to point to a Docker Container rather than a local dev machine instance!
 
 ## Thinking Forward
 
