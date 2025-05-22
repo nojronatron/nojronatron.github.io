@@ -1210,6 +1210,268 @@ Use Debugging with Copilot to work with a code language you **aren't familiar wi
 
 Use Parallel Stacks window to get details on all Threads and Stack Calls in a visual graph-and-table format.
 
+## Build The Next Gen Of AI Apps With DotNET
+
+Models, Data, Agents, and More
+
+Speakers:
+
+- Jon Galloway, MSFT
+- Brady Gaster, MSFT
+- Jeremy Likness, Principal Product Manager, .NET and AI, MSFT
+
+Fast-paced Technology Movement:
+
+- ChatGPT released in 2022
+- Specialized libraries for using AI used to be the norm, now are all available through .NET
+
+Jeremy: AI on .NET
+
+- Generative AI apps are being built on .NET
+- Growing .NET AI ecosystem
+- Microsoft.Extensions.AI, VectorData, MCP Server, AI Templates, Semantic Kernel, and Model Evaluations
+- Ollama Sharp: DotNET Library with Microsoft AI Extensions, for local development (requires GPU and/or larger compute power)
+
+Jon Galloway:
+
+- New startup experience: `dotnet new install Microsoft.Extensions.AI`
+- After dotnet new, start a new Project and select an AI Template
+- AI Service Providers can be selected within the template
+- GitHub Models is **free** but is token-capped
+- OpenAI and Azure AI are other options
+- Vector Store can be local (json files on disk, for prototyping), Azure AI Search, or Qdrant
+- Relies on Aspire Orchestration
+- Template README has instructions on how to get started
+- Use `Manage User Secrets` at the project level for setting tokens, etc
+- DataIngestors can process input files such as PDFs that are used by the Model
+- Adding an AI in DI using AppBuilder allows swapping-in a different AI Model without having to change any business logic, UI, etc
+- Inject (`@inject`) `IChatClient` to tie together the AI Model injection, and the UI and business data
+
+Jeremy: Agents
+
+- Agents are LLMs that are enhanced by various service and tools
+  - Tools like MCP
+  - Memory like state management
+  - Data from RAG
+  - Orechstration for routing and scaling
+  - Workflows for agent automation
+- Think of an AI Agent as an interface
+  - Generate, Retreive, then take Action
+- Use Kernel.CreateBuilder to make AI Extensions "agent ready"
+  - Interfaces agents
+- Many Agentic Apps at many levels via .NET
+
+Brady: MCP SDK For DotNET
+
+- [Model Context Protocol GitHub Repo](https://github.com/modelcontextprotocol)
+  - THe csharp-sdk is found here
+- McpServerToolType: Identifies a tool that an LLM can use to access external resources
+- McpServerTool: Identifies methods that are available to the enclosing McpServerToolType
+- Description() attribute: Plain-text explanation that the LLM can process to help it manage execution of registered tools
+- Chat will prompt the user to allow accessing custom code and external resources when calling custom McpServerTool resources
+
+Jeremy: How do we get from prompt to results?
+
+- Uses Semantic Kernel Process Endpoints
+- Route requests to correct Agent based on User Intent
+- Get the user intent, pass the intent to the Agent(s), then process the results
+- Use Aspire to define non C# apps such as Python, Node, etc
+- Eval Framework:
+  - Ensure content is safe
+  - Integrate with test harnesses to validate prompt, processing, and response
+  - Provides an Evaluation Report of retreival accuracy
+- Link to [project code](https://aka.ms/dotnet/agents/build25)
+- DotNET 10 release date: 10-Nov-2025
+- Link to [DotNET AI App Template Info](https://aka.ms/create-dotnet-ai-apps)
+
+## AI Infused Mobile and Desktop App Development with .NET MAUI
+
+Speakers:
+
+- Beth Massi, Principal Product Manager, .NET MAUI, MSFT
+- David Ortinau, Principal Product Manager, .NET MAUI, MSFT
+- Gerald Versluis, Senior Software Engineer, .NET MAUI, MSFT
+- Uma Maheswari Chandrabose, Sr Prod Mgr, Essential Studio, Syncfusion
+
+MAUI Notes:
+
+- MAUI use is still growing, YoY
+- Increased OSS participation
+- Look at using ONNX framework to integrate AI
+- Plugin.Maui.Audio: Cross-platform plugin
+- MediaPicker: Updated and fixed
+- Syncfusion Toolkit: OSS Controls for .NET MAUI
+
+How is MAUI Team Thinking About AI?
+
+- Infusing AI into MAUI Apps
+- Work smarter, not harder
+- Agentic Apps: App building for cloud, web, desktop, mobile, games, and IoT
+- Agentic DevOps: CI-CD, GitHub Actions, etc
+
+Disruption:
+
+- AI adds a "3rd user interface" paradigm *[Jakob Nielsel]*
+- Focusing on what you want the app to do, rather than **how** to do it
+- AI changes applications:
+  - How the work
+  - How we develop them
+- Adds Personalization, context-awareness, multimodal interaction
+
+Demo an AI-infused App:
+
+- Create a new MAUI project with the Samples to get starter components and functionality
+- Granting access to phone features allows it to know a **lot** about you
+  - Where you are
+  - Ambient light conditions
+  - Network connectivity
+  - Connected apps
+  - etc
+- Agentic apps can filter-out garbage words and focus on key words that will produce valuable results
+
+Video:
+
+- Using the phone camera
+- Look at a recipe and make a shopping list with just a prompt
+- MAUI provides a platform for delivering a simplified, capable UI
+- Enable optin-in to get more features
+
+Design:
+
+- Take a peek at "Design principles for Generative AI Application" Weisz, He, Muller, Hoefer, Miles, et al, Werner Geyer International Converence on Human Factors in Computing Systems 2024
+- Design Responsibly
+  - Solve **real** user problems
+  - Minimze user harm
+  - **Test**
+- Design for Mental Models
+  - Teach AI about the user to align with their mental models
+  - Ensure user is introduced to "generative variability"
+- Design for Appropriate Tust and Reliance
+  - Be clear on how well AI performs for given tasks
+  - Use friction to prevent overreliance
+  - Encourage critical thinking
+- Design for Generative Variability
+- Design for Co-Creation
+  - Help user craft effective outcome specs
+  - Provide generic input params
+- Design for Imperfection
+  - Make uncertainty visible
+  - Evaluate outputs for quality
+  - Provide feedback mechanisms
+- There are many more points, see the reference at the top
+- Microsoft has AI Principles too:
+  - Fairness, Reliability, Safety, Privacy, Security, Inclusiveness, Transparency, Accountability
+- Mitigation Layers
+  - HAX Toolkit, System Message Framework, AI Content Safety, AI Foundry Model Catelog
+
+Syncfusion:
+
+- Guest Speaker: Uma
+- Comprehensive suite of over 1900 UI Controls across various frameworks
+- Targets mobile, web, and desktop
+
+DotNET MAUI Hybrid Apps:
+
+- Blend Native and WebUI technologies
+  - HTML, JS, CSS wrapped in a Native App Container
+- Mobile and/or Desktop apps!
+- Access to native features
+- Reuse WebUI and redistribute within a Native App e.g. via an App Store
+- WebUI + NativeUI:
+  - Look and feel
+  - UX is seamless
+  - Code Reuse
+  - Skillsets: Web + XAML
+- Types of Apps Controls:
+  - Blazor Web View: Solution templates, hot reload, auth, validation, etc
+  - Hybrid Web View: Include other web frameworks like Vue, React, and any JavaScript interop
+- New Hooks for intercepting web requests coming in .NET 10
+- Syncfusion Controls are now available for Blazor
+  - These are responsive (by default?)
+- Inject the needed dependencies to enable hybrid
+- Just use `<BlazorWebView.RootComponents>` component in the Native portion
+
+Agentic DevOps:
+
+- DevOps is evolving:
+  - DevOps -> DevSecOps -> Agentic DevOps
+  - All enable continuous delivery, value, automation, acceleration, and optimization
+- GitHub Copilot is built for developer experience
+  - Automate the mundane
+  - Pay more attention to what matters
+- Copilot Vision can import images to help develop the UI for you
+  - Supports XAML!
+  - "Implement the XAML for the attached image of ..." :tada:
+  - "Implement the UI according to this Figma design at url ..." :tada:
+- Coding Agent
+  - Issues, PRs, code edits, commit and comments, and code review comments
+- DotNET Aspire:
+  - VS Future Feature: Enlist Aspire to my app in a right-click menu
+  - Handles multi-project startup configuration including MAUI, including Hybrid
+  - Add MAUI project then `.WithReference('webapi')` to tie-it to the Blazor portion
+  - Will launch the Android Emulator!
+  - Copilot integration allows help with resolving issues based on Structured Logs, etc
+
+MAUI Resources:
+
+- Contact David O. to get closer to the .NET MAUI team
+- [Resources for this session](https://aka.ms/RAI)
+- [Syncfusion.com](https://syncfusion.com)
+
+## Scott and Mark Learn To... Live
+
+Speakers:
+
+- Scott Hanselman, VP Dev Community, MSFT
+- Mark Russinovich, CTO, CISO, Tech Fellow, Azure and Cloud, MSFT
+
+Hello Robot:
+
+- Demo integrating Agentic AI with robotics
+- Guest: Muhammed from HelloRobot
+- OS Robots platform
+- Target users: Students and undergrads
+- Robot is:
+  - HelloRobot Stretch :tm:
+  - Intel NUC i5
+  - Segway-like robot base
+  - Telescopic arm
+  - Cameras to view grip, movement, etc
+- Scott added an ARM-based laptop to control the ARM
+
+Design:
+
+- Semantic Kernel used for orchestration
+- Realtime Agent to provide a human voice using OpenAI 4o mini
+  - Go for local, smallest models, that are able to talk to the cloud if necessary
+  - WSL with Robot-Agent to get tasks to fire
+  - C# and Python code
+- Image captioning and Semantic Sensor
+- Utilize NPU, CPU, and GPUs appropriately
+- TCP Sockets used to send functions and assign tasks
+- Planning: Create a Workflow
+- Execution: Acts on the Workflow
+- Human Control: Visualize the plan and enable approval
+  - Human-in-loop is a critical component in utilizing AI
+
+Usage:
+
+- Aruco code symbols allow Eye-on-hand to evaluate size, tilt, distance (etc) of an object in view
+
+Tools:
+
+- AI Dev Gallery
+
+New Info:
+
+- Project Roma
+- Defense XPIA by controlling the flow of information
+- Adds a Baseline Orchestrator to track information as it moves through an Agentic System
+  - Prevents LLM from seeing data that doesn't match a policy
+- XPIA is **still and unsolved problem**
+
+About AI: "They don't know what facts are" -Mark Russinivich
+
 ## Definitions
 
 ### Model Context Protocol (MCP)
