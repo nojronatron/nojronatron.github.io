@@ -2,6 +2,14 @@
 
 Keep a record of learned GIT tricks and traps.
 
+## Table of Contents
+
+- [Checkout Workflow](#checkout-workflow)
+- [Set Upstream](#set-upstream)
+- [Tagging](#tagging)
+- [Git Reset](#git-reset)
+- [Footer](#footer)
+
 ## Checkout Workflow
 
 [CSharp Fritz](https://twitch.tv/csharpfritz) used this flow on his Twitch stream one day:
@@ -56,15 +64,19 @@ Key Takeaways:
 
 ## Git Reset
 
-Usage example `git reset --{option} {commit_hash}`:
+Terminal usage example: `git reset --{option} {commit_hash}`
 
 Options:
 
 - Soft: Removes the last commit from current branch, retaining file changes `git reset --soft HEAD~1`
 - Mixed: Same as soft _except_ retains changes in working tree but _not in the index_ (unstaged) `git reset --mixed HEAD~1`
-- Hard: Loose all uncommitted changes, including untracked files. This effectively rolls-back the commit _and all file changes_ to the previous commit `git reset --hard HEAD~1`
-- Merge: Undo a _merge_ wile preserving uncommitted changes in current working directory.
+- Hard: Lose all uncommitted changes, including untracked files. This effectively rolls-back the commit _and all file changes_ to the previous commit `git reset --hard HEAD~1`
+- Merge: Undo a _merge_ while preserving uncommitted changes in current working directory.
 - Keep: Similar to Hard but uses a _diff_ against all files so uncommitted changes are _not reset_.
+
+Visual Studio:
+
+- Mixed: Pick the commit **just prior** to the one you want to reset and it will store changes to tracked **unstaged** files
 
 ## Footer
 
