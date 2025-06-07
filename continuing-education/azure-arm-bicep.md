@@ -15,7 +15,7 @@ ARM Templates are fairly complex, and Bicep helps to define templates for you (a
 - [Conditionals, Ternary Operator](#conditionals-ternary-operator)
 - [Generate an ARM Template](#generate-an-arm-template)
 - [Compose Bicep Modules](#compose-bicep-modules)
-- [Deployment Using Bicep](#deployment-using-bicep)
+- [Deployment Using Bicep File](#deployment-using-bicep-file)
 - [Set Scope to Bicep Script](#set-scope-to-bicep-script)
 - [Things To Be Aware Of](#things-to-be-aware-of)
 - [Bicep Commands (Not Comprehensive)](#bicep-commands-not-comprehensive)
@@ -482,7 +482,18 @@ Scoping is by file, avoiding variable name collisions.
 
 **Note**: JSON-like means it looks like JSON but doesn't use commas to separate object properties.
 
-## Deployment Using Bicep
+## Deployment Using Bicep File
+
+### Using a known Resource Group
+
+1. CD to the directory with the `main.bicep` and `main.parameters.json`
+1. Login to Azure (note MFA requirements)
+1. Discover the available Resource Group(s). For example: `az group list --query "[?location=='westus']"`
+1. Lint the bicep: `az bicep lint --file main.bicep`
+1. Deploy to the discovered RG: `az deployment group create -g $resourceGroup -f main.bicep -p main.parameters.json`
+1. Check your handiwork:
+
+### Basic
 
 1. Add a Deploy folder to your project
 1. Add bicep files that describe the deployment
