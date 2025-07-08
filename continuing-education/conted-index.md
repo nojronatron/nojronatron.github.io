@@ -17,6 +17,7 @@ A collection of notes from research and continuing education, with references fo
 
 ## Cheatsheets
 
+- [PowerShell](cheatsheets/powershell.md)
 - [Flask](cheatsheets/python-flask.md)
 - [Python](cheatsheets/python.md)
 - [Git](cheatsheets/git.md)
