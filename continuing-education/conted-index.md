@@ -24,6 +24,7 @@ A collection of notes from research and continuing education, with references fo
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] Notes about [MCP (Model Context Protocol)](./model-context-protocol.md)
 - [x] Learn [about Bicep](./azure-arm-bicep.md)
 - [x] Explore ASP.NET Blazor through develpment of a custom [RSS Feed Viewer](https://github.com/nojronatron/ExploreRssFeed).
 - [x] Practice raw HTML, CSS, and JS skills by developing a custom "local info" website (not in a public repo).
