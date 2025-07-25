@@ -2,10 +2,22 @@
 
 Notes from my learnings about this MSFT Framework for .NET 8 and newer.
 
+Releases (for reference):
+
+- v9.3: May 2025
+- v9.2: April 2024
+
+**Note**: Not all content captured below spans all releases listed above.
+
 ## Table of Contents
 
 - [DotNET Aspire Developers Day](#dotnet-aspire-developers-day)
 - [Hands-on with MS Learn](#hands-on-with-ms-learn)
+- [DotNET Aspire Tooling](#dotnet-aspire-tooling)
+- [Aspire Limitations and Gotchas](#aspire-limitations-and-gotchas)
+- [Microservices and Aspire](#microservices-and-aspire)
+- [Service Discovery](#service-discovery)
+- [Caveats Of Note](#caveats-of-note)
 - [Resources](#resources)
 - [Footer](#footer)
 
@@ -560,12 +572,52 @@ Developer Usability of Aspire:
 - Integration with Docker enables automating download of Docker Images and running them by replacing 'docker-compose.yaml' files!
   - Requires additional Aspire Integration(s).
 
+## Service Discovery
+
+Setting `.WithReplicas(int)` in AppHost service discovery automates multi-instance deployment:
+
+- WebApp: Requests are multiplexed to multiple HTTP instances at a single hostname.
+- YARP is used behind the scenes to manage replica routing.
+
+Setting `.WithReference(string)`:
+
+- Use to ID a specific instance by its IConfiguration identification e.g. `https://localhost:7032`
+- Use to ID a named instance using magic strings e.g. `web`
+- Add/Update AppHost `AspireProjectResource` project setting to `false` and create a class that sets constant variables to name the instances.
+- Add a service (e.g. Redis within a Container) for cache: `.WithReference("cache")` (will also need to set up redis with `services.AddOutputCache(options => {})`)
+- Add an executable: `service.AddExecutable(string args)`
+
+Add Consumers and Publishers using `builder.Services.Addnnnnn(string connName, params...)`:
+
+- RabbitMQ
+- Databases
+- Cache (not just Redis)
+- Etc
+
+Setting `.WithManagementPlugin()` on a builder service add (see above) includes known plugins:
+
+- Management
+- Logging
+- Tracing
+- Heartbeat/health monitoring and response
+- Example: Add RabbitMQ to AppHost and get it plugged-in to Aspire management and insights!
+
+## Caveats Of Note
+
+It is really easy to import a Docker/Podman container for services like Redis, however there are important implications and cloud-deployment considerations:
+
+- Deploy to Kubernetes (or similar cloud container service) as a multi-container system.
+- Deploy to Cloud services plus containers for only those services that need it (i.e. Blazor can be an AppService, SQL can be AzureSQL, and other services as containers).
+- Deploy to Cloud services as native cloud services.
+- Azure-Aspire package for Redis is a toolchain available for one or more of the above scenarios.
+
 ## Resources
 
+- [.NET Aspire Workshop Repo on GitHub](https://github.com/dotnet-presentations/dotnet-aspire-workshop)
 - [.NET Aspire and KeyCloak](https://aka.ms/aspire-keyvault)
 - [jerrys demo project](https://github.com/jerrynixon/aspire-sqlserver)
 - [MSFT resources for DAB](https://aka.ms/dab)
-- [.NET Aspire Dev Day resources](https://aka.ms/dotnetAspireDevDay/Collection).
+- [.NET Aspire Dev Day resources](https://aka.ms/dotnetAspireDevDay/Collection)
 
 ## Footer
 
