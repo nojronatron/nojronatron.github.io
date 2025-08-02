@@ -26,6 +26,46 @@ This will be a collection of information collected while attending presentations
 - [References](#references)
 - [Footer](#footer)
 
+## GitHub Copilot Chat Best Practices
+
+Notes from a Visual Studio Code Live session on July 8th, 2025.
+
+### Overview Notes
+
+Use Copilot to write the business-end of features:
+
+- Follow-up with manual and automated testing
+- Do code reviews to verify
+- Code refactoring can be done by hand or with help from Copilot
+
+Write Tests using Copilot:
+
+- Very rapidly build-out tests to start
+- Review and run tests
+- Add tests to cover edge cases as necessary (with Copilot or by hand)
+
+Copilot can run existing (or edited) tests after making code changes.
+
+- Asks for permission to execute tests
+- Will read test output (errors) and will try to fix them on its own
+
+Always review Copilot generated code:
+
+- Understand the code it has written
+- Review tests to ensure they are testing the correct business contexts
+- Review generated business code to confirm it targets the required feature(s)
+
+Long-running Copilot activities:
+
+- Can configure prompts where Copilot asks whether/how to continue
+- Review the feedback from Copilot before clicking Continue, to understand what code it has been adding, editing
+
+Copilot Instruction Files:
+
+- Add domain knowledge to help Copilot generate code closer to specified standards
+- Style, state management, component design, performance, testing, and implementation details
+- Additional Guidelines can also be listed to ensure framework-specific best-practices (or preferences) are followed
+
 ## Testing With GitHub Copilot
 
 A Microsoft Reactor session.
