@@ -2,6 +2,11 @@
 
 Tidbits on how to handle nullables and null safety, and null-handling code patterns.
 
+## Table of Contents
+
+- [Stream of Consciousness](#stream-of-consciousness)
+- [References](#references)
+
 ## Stream of Consciousness
 
 Nullable reference type usage is common today. Embrace them.
