@@ -12,8 +12,8 @@ A collection of notes from research and continuing education, with references fo
 
 ## Current Learnings and Activities
 
+- [ ] Follow Rory's AI Generative Techniques sessions [Local AI](./ai-ondevice-local.md), [AI Gen Techniques](./ai-generative-techniques.md)
 - [ ] Update my custom [Weather App](https://github.com/nojronatron/MobWxCloud) to be cloud-native, supporting Web, WinUI 3, and Android.
-- [ ] Attend Microsoft Build 2025 and [take notes](./msbuild-2025-notes.md).
 
 ## Cheatsheets
 
@@ -24,6 +24,7 @@ A collection of notes from research and continuing education, with references fo
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] Attend Microsoft Build 2025 and [take notes](./msbuild-2025-notes.md).
 - [x] Notes about [MCP (Model Context Protocol)](./model-context-protocol.md)
 - [x] Learn [about Bicep](./azure-arm-bicep.md)
 - [x] Explore ASP.NET Blazor through develpment of a custom [RSS Feed Viewer](https://github.com/nojronatron/ExploreRssFeed).
