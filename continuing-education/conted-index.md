@@ -24,6 +24,7 @@ A collection of notes from research and continuing education, with references fo
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] [Scott Hanselman](https://www.hanselman.com/) made a guest appearance on On.NET Live! [where he shared a bunch of great web dev nuggets](https://www.youtube.com/watch?v=wRwV7CeLsKM). One tip was the benefit of using Azure Front Door, so [I did a little AFD research](./azure-front-door.md).
 - [x] Attend Microsoft Build 2025 and [take notes](./msbuild-2025-notes.md).
 - [x] Notes about [MCP (Model Context Protocol)](./model-context-protocol.md)
 - [x] Learn [about Bicep](./azure-arm-bicep.md)
