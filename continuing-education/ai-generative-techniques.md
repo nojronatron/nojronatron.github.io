@@ -64,15 +64,67 @@ Real-time calls:
 
 Keywords within the prompt trigger the LLM to try calling a related function.
 
-### Responsible AI
-
-Limit harmful content, basic hate speech, and simple jailbreaks (GitHub Models do these).
-
 ### Azure AI Integration
 
 Container-based (Kubernetes) application can be generated using the Azure Search OpenAI Demo (Java) repo.
 
-### Q and A
+## Responsible AI
+
+General overview notes:
+
+- Limit harmful content, basic hate speech, and simple jailbreaks (GitHub Models do these).
+- Understand there are several AI models available that don't follow responsible AI best practices.
+
+Common Responsible AI Features:
+
+- Fairness
+- Reliability and safety
+- Privacy and security
+- Inclusiveness
+- Transparency
+- Accountability
+
+Red Teaming: Scope, assemble, prepare, test responsible AI features, and provide reports on new models.
+
+- Red Team reports should be available for AI models
+- Models with appropriate Red Teaming should no provide details to unsafe prompts
+
+Types of Protections:
+
+- Hard Blocks: Model never sees the prompt content.
+- Soft Refusal: Most common, allows Model to decline responding.
+- Safe Content: Prompt passes checks and Model is able to respond.
+
+Flow: Client -> Prompt -> Model <-> Synchronous content filtering via a safety system -> Logged Monitoring data, and response to the Client
+
+Jailbreaks:
+
+- Protections must be included with the Model.
+- Direct and Indirect attacks included.
+
+Grounding: Inputs define how the Model should respond (think RAG grounding).
+
+GitHub Models Protections:
+
+- Harmful content
+- Basic hate speech
+- Simple jailbreaks
+- Enhanced by "Guardrails and Controls" within Azure AI Foundry
+
+> Note: Azure-hosted Models like Grok won't have the same safety gaurdrails that others might have.
+
+Testing:
+
+- Safety systems can be tested.
+- Test both positive and negative results for filtered, blocked, and allowed content types and expections.
+- Use same unit testing frameworks to confirm various inputs return valid responses that follow the Responsible AI policies of the group, organization, project, etc.
+- Introduce pass-able inputs to ensure the Model returns a response that doesn't include a blocked or moderated response type.
+
+Reporting:
+
+- Azure AI Foundry includes deployment reports on AI performance and "Red Teaming" statistics.
+
+## Q and A
 
 GPT 5 removed Temperature?
 
