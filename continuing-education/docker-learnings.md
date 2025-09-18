@@ -9,10 +9,14 @@ These space will contain scribblings from my studies, and use of, Docker.
 - [Introductory Concepts](#introductory-concepts)
 - [Basic Docker Process/Workflow](#basic-docker-processworkflow)
 - [Some Basic Docker Commands](#some-basic-docker-commands)
+- [Docker Desktop](#docker-desktop)
 - [Docker File Contents](#docker-file-contents)
 - [How To Think About Docker](#how-to-think-about-docker)
+- [Docker Pros and Cons](#docker-pros-and-cons)
 - [Docker Compose](#docker-compose)
 - [Docker Compose Logs](#docker-compose-logs)
+- [Dev Lifecycle Using Docket](#dev-lifecycle-using-docket)
+- [Security](#security)
 - [Questions](#questions)
 - [References](#references)
 - [Footer](#footer)
@@ -21,9 +25,12 @@ These space will contain scribblings from my studies, and use of, Docker.
 
 Docker is a linux-y thing:
 
-- Files might not have a name.
-- Paths are not Windows-y.
+- Files might not have a name or not have an extension.
+- Directory paths trees are not Windows-y.
+- Environment variables can be different.
 - Commands are linux-like.
+
+> Each of these differences will impact a Dockerized application, and Docker operation itself.
 
 Features:
 
@@ -65,7 +72,7 @@ Container:
 1. (Optional) Pull a base image to use: `docker pull {name}:{tag}` where name is a Docker Registry image name, and tag is the ID (usually 'latest').
 1. Write a Dockerfile which defines which image (and tag) to use and the commands to run and/or files to copy into the image instance. The `FROM` command will cause `docker pull ...` to run if the `FROM` image is not already local.
 1. Build the Image `docker build -t {name}:{tag} -f {dir_to_Dockerfile|.}` builds an Image using the Dockerfile, naming it 'name' and 'tag'. The Dockerfile defines _which base image to target_.
-1. Deploy: `docker run --rm -it -p nnnn:nnnn {image_name:image_tag}` uses the Dockerfile and Image to deploy a Container to the host.
+1. Deploy: `docker run --rm -it -p nnnn:xxxx {image_name:image_tag}` uses the Dockerfile and Image to deploy a Container to the host and expose port xxxx using port nnnn.
 
 ## Some Basic Docker Commands
 
@@ -112,7 +119,6 @@ Assists:
 - Collaboration with others
 - Minimal setup
 - Low overhead
-
 
 ## Docker File Contents
 
@@ -186,7 +192,7 @@ Consider Docker as a means to rapidly build, configure, deploy, and redeploy ima
 
 - The Dockerfile identifies the Image, and instructs Docker to `COPY` files, `RUN` scripts, and execute `CMD` commands to setup and configure a specific environment.
 
-It is possible to point Docker Build to a `path` where a project lives (e.g. Web front-end, etc) instead of a Docker Image. This is done by declaring the path rather than the Docker Image name.
+It is possible to point Docker Build to a `path` where a project lives (e.g. Web front-end, etc) instead of a Docker Image. This is done by declaring the path rather than the Docker Image name. The path _must be child to the current directory_.
 
 > Doing this ensures that the latest dev build is used every time a service is deployed. This is particularly helpful in multi-project environments (see Docker Compose, later in this document).
 
@@ -238,6 +244,19 @@ Redeployment:
 - Docker Containers should be considered _ephemeral_ and therefore quickly and consistently replaceable.
 - Do _not_ try to update an existing Image unless losing changes is not a problem.
 - Consider an `Image` to be a static, immutable thing that can only be changed through an added `Build` command set.
+- NuGet mappings can cause issues building Linux Images on Windows with VisualStudio installed due to custom Fallback Package Folders configuration. One solution is to remove those Fallback Folder settings in Visual Studio. Another solution involves generating a NuGet.config file in the directory where Docker Build is executed. See NuGet.config file contents example below.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
+  </packageSources>
+	<fallbackPackageFolders>
+		<!-- intentionally left blank to override parent configs -->
+	</fallbackPackageFolders>
+</configuration>
+```
 
 ## Docker Compose
 
@@ -268,7 +287,7 @@ Docker-compose uses YAML.
 - Build: Filepath where a dockerfile exists, for e.g. `.`
 - Command: What to run after the Image is built from the Dockerfile.
 - Volumes: Again, identify where to store persisted data. This can be defined as a `Volumes` item later in the Docker-Compose file, or as a `/path` such as `.`.
-- Ports: External-to-Container instance port mappings.
+- Ports: External-to-Container instance port mappings :arrow_right: external_port:internal_port
 - Depends_on: Define the condition under which this service should be considered healthy e.g. If the DB service is down, this API service should be marked 'unhealthy'.
 - Environment: Env-vars (see above).
 
@@ -365,6 +384,14 @@ How does a running Docker Image return output to the Docker command terminal?
 Can a running Docker Image stdout be piped elsewhere (file, web server, etc)?
 
 Is a running Docker Image `Screen` redirectable to the host?
+
+Can a Windows Project be deployed using Docker?
+
+> Yes, but there are gotchas. The most glaring one is WinUI, WPF, and other GUI project types are not really supported.
+
+Can an ASP.NET Core project be "dockerized"?
+
+> Yes. For the most part the process is fairly simple. _There are dependency gotchas_ that will need to be investigated and fixed in various ways. Also, platform-support issues can interrupt deploying ASP.NET Core to a Linux Container because of file system and environment variable differences.
 
 ## References
 
