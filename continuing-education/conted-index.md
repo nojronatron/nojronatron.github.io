@@ -12,8 +12,8 @@ A collection of notes from research and continuing education, with references fo
 
 ## Current Learnings and Activities
 
-- [ ] Follow Rory's AI Generative Techniques sessions [Local AI](./ai-ondevice-local.md), [AI Gen Techniques](./ai-generative-techniques.md)
 - [ ] Update my custom [Weather App](https://github.com/nojronatron/MobWxCloud) to be cloud-native, supporting Web, WinUI 3, and Android.
+- [ ] Continue learning about and using [Docker](./docker-learnings.md) for dev, test, and cloud (as necessary).
 
 ## Cheatsheets
 
@@ -24,6 +24,7 @@ A collection of notes from research and continuing education, with references fo
 
 ## Notes And Takeaways from Research and Experience
 
+- [ ] Follow Rory's AI Generative Techniques sessions [Local AI](./ai-ondevice-local.md), [AI Gen Techniques](./ai-generative-techniques.md)
 - [x] [Scott Hanselman](https://www.hanselman.com/) made a guest appearance on On.NET Live! [where he shared a bunch of great web dev nuggets](https://www.youtube.com/watch?v=wRwV7CeLsKM). One tip was the benefit of using Azure Front Door, so [I did a little AFD research](./azure-front-door.md).
 - [x] Attend Microsoft Build 2025 and [take notes](./msbuild-2025-notes.md).
 - [x] Notes about [MCP (Model Context Protocol)](./model-context-protocol.md)
