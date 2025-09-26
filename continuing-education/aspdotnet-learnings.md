@@ -1756,6 +1756,8 @@ ASP.NET Core [ComponentBase class](https://learn.microsoft.com/en-us/dotnet/api/
 
 Take a peek at the .NET Team's GitHub project [dotnet-presentations blazor-workshop](https://github.com/dotnet-presentations/blazor-workshop) repo.
 
+See my [Blazor 2025 session notes](./aspnet-blazor-2025-notes.md) (includes some .NET 10 and VS 2026 info).
+
 ## Footer
 
 Return to [ContEd Index](./conted-index.html)
