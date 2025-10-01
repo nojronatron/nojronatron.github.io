@@ -252,9 +252,9 @@ Redeployment:
   <packageSources>
     <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
-	<fallbackPackageFolders>
-		<!-- intentionally left blank to override parent configs -->
-	</fallbackPackageFolders>
+  <fallbackPackageFolders>
+    <!-- intentionally left blank to override parent configs -->
+  </fallbackPackageFolders>
 </configuration>
 ```
 
