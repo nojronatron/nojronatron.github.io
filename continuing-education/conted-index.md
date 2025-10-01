@@ -12,8 +12,11 @@ A collection of notes from research and continuing education, with references fo
 
 ## Current Learnings and Activities
 
+- [ ] Work through [CSS Battle](https://cssbattle.net) daily challenges and "Golf" rounds as time permits.
+- [ ] Brush-up on [LeetCode Challenges](https://leetcode.com) on a regular basis, focusing on DS&A topics to maintain core comprehensions.
+- [ ] Continue learning about and using [ASP.NET Blazor](./aspnet-blazor-2025-notes.md).
+- [ ] Continue learning about and using [Docker](./docker-learnings.md) for dev, test, and cloud (as necessary).
 - [ ] Update my custom [Weather App](https://github.com/nojronatron/MobWxCloud) to be cloud-native, supporting Web, WinUI 3, and Android.
-- [ ] Attend Microsoft Build 2025 and [take notes](./msbuild-2025-notes.md).
 
 ## Cheatsheets
 
@@ -24,6 +27,9 @@ A collection of notes from research and continuing education, with references fo
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] Follow Rory's AI Generative Techniques sessions [Local AI](./ai-ondevice-local.md), [AI Gen Techniques](./ai-generative-techniques.md)
+- [x] [Scott Hanselman](https://www.hanselman.com/) made a guest appearance on On.NET Live! [where he shared a bunch of great web dev nuggets](https://www.youtube.com/watch?v=wRwV7CeLsKM). One tip was the benefit of using Azure Front Door, so [I did a little AFD research](./azure-front-door.md).
+- [x] Attend Microsoft Build 2025 and [take notes](./msbuild-2025-notes.md).
 - [x] Notes about [MCP (Model Context Protocol)](./model-context-protocol.md)
 - [x] Learn [about Bicep](./azure-arm-bicep.md)
 - [x] Explore ASP.NET Blazor through develpment of a custom [RSS Feed Viewer](https://github.com/nojronatron/ExploreRssFeed).
