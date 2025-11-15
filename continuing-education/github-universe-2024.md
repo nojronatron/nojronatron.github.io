@@ -1,6 +1,6 @@
 # Github Universe 2024
 
-Randome notes taken while virtually attending GHU'24.
+Random notes taken while virtually attending GHU'24.
 
 "The world's fair of software"
 
