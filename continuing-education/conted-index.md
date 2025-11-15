@@ -13,14 +13,13 @@ A collection of notes from research and continuing education, with references fo
 ## Current Learnings and Activities
 
 - [ ] Update my custom [Weather App](https://github.com/nojronatron/MobWxCloud) to be cloud-native, supporting Web, WinUI 3, and Android (longer-term project).
-- [ ] Explore using [GitHub Copilot](https://github.com/features/copilot) to design a medium-sized Blazor Hybrid project - particularly Agent Mode and Copilot Instructions.
+- [ ] Explore using [GitHub Copilot](https://github.com/features/copilot) to design a Blazor Hybrid project - particularly Agent Mode and Copilot Instructions.
 - [ ] Continue learning about and using [ASP.NET Blazor](./aspnet-blazor-2025-notes.md).
 - [ ] Brush-up on querying SQL databases.
-- [ ] Brush-up on implementing SQL db's and integrating with full stack applications.
+- [ ] Brush-up on implementing SQL dbs and integrating with full stack applications.
 - [ ] Continue learning about and using [Docker](./docker-learnings.md) for dev, test, and cloud (as necessary).
 - [ ] Brush-up on [LeetCode Challenges](https://leetcode.com) on a regular basis, focusing on DS&A topics to maintain core comprehensions.
 - [ ] Investigate [LMStudio](https://lmstudio.ai/).
-- [ ] November 11, 12, 13: Attend [DotNET Conf 2025](https://www.dotnetconf.net/), take notes [DotNet-Conf-2025.md](./dotnet-conf-2025.md).
 
 ## Cheatsheets
 
@@ -35,6 +34,7 @@ A non-comprehensive list of tid bits focused on tools and languages and commonly
 
 ## Notes And Takeaways from Research and Experience
 
+- [x] November 11, 12, 13: Attend [DotNET Conf 2025](https://www.dotnetconf.net/), take notes [DotNet-Conf-2025.md](./dotnet-conf-2025.md).
 - [x] Attend Pittsburg DotNET User Group presentation on [Functional Programming](./about-functional-programming.md).
 - [x] Remotely attend [GitHub Universe](https://githubuniverse.com/) Keynotes, Oct 28, 29, capturing [stream of consciousness notes](./github-universe-2025.md).
 - [x] Complete first 15 rounds of code "Golf" as time permits.
